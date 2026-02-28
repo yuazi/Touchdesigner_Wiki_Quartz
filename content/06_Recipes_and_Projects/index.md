@@ -14,4 +14,4 @@ This module provides practical, step-by-step implementations combining technique
 - **[[Dreamscape Particle Cloud]]**: Glowing GPU particle cloud with noise-driven movement and feedback bloom — based on söla's tutorial.
 
 ---
-[[../Index|← Back to Main Index]]
+[[../index|← Back to Main Index]]

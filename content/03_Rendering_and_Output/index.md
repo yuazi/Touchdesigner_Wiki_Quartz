@@ -15,4 +15,4 @@ This module explains the techniques required to draw geometry and pixels to the 
 - **[[Feedback Loops]]**: Creating recursive trails, generative feedback, and reaction-diffusion systems by feeding a TOP's output back into itself.
 
 ---
-[[../Index|← Back to Main Index]]
+[[../index|← Back to Main Index]]

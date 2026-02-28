@@ -31,4 +31,4 @@ This module contains the best external resources for learning TouchDesigner, ran
 - **[TouchDesigner Help Group (Facebook/Discord)](#)**: Highly active communities where developers share work and troubleshoot networks.
 
 ---
-[[../Index|← Back to Main Index]]
+[[../index|← Back to Main Index]]

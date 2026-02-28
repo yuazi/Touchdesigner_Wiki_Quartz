@@ -20,4 +20,4 @@ This module covers Logic, code, performance optimization, and project management
 - **[[Performance Monitoring]]**: How to find and fix bottlenecks in your network.
 
 ---
-[[../Index|← Back to Main Index]]
+[[../index|← Back to Main Index]]
