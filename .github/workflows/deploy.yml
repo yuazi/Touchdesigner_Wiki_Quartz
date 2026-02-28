@@ -1,19 +1,21 @@
 name: Deploy Quartz site to GitHub Pages
-
+ 
 on:
   push:
     branches:
       - v4
-
+ 
 permissions:
-  contents: write
-
+  contents: read
+  pages: write
+  id-token: write
+ 
 concurrency:
   group: "pages"
   cancel-in-progress: false
-
+ 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
@@ -26,11 +28,18 @@ jobs:
         run: npm ci
       - name: Build Quartz
         run: npx quartz build
-      - name: Add .nojekyll
-        run: touch public/.nojekyll
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          publish_branch: gh-pages
+          path: public
+ 
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
