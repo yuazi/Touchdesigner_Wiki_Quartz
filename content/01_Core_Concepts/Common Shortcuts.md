@@ -9,7 +9,7 @@ tags:
 Mastering shortcuts will significantly speed up your workflow.
 
 | Key | Action |
-| --- | 
+| --- | --- |
 | **Tab** | Open the Operator Create Dialog |
 | **Middle Mouse** | Show operator info/status |
 | **P** | Toggle Parameter window |
