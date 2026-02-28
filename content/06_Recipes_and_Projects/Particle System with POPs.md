@@ -2,8 +2,8 @@
 tags:
   - touchdesigner
   - td/recipes
-  - pop
   - particles
+  - pop
   - recipes
 ---
 # Recipe: Particle System with POPs

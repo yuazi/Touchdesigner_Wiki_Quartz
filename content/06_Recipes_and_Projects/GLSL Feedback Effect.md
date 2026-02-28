@@ -2,10 +2,10 @@
 tags:
   - touchdesigner
   - td/recipes
-  - glsl
   - feedback
-  - shader
+  - glsl
   - recipes
+  - shader
 ---
 # Recipe: GLSL Feedback Effect
 

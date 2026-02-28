@@ -2,8 +2,8 @@
 tags:
   - touchdesigner
   - td/core
-  - scripting
   - expressions
+  - scripting
 ---
 # Expressions and Parameters
 
