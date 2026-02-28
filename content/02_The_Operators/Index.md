@@ -1,4 +1,5 @@
 ---
+title: "02. The Operators"
 tags:
   - touchdesigner
   - td/operators

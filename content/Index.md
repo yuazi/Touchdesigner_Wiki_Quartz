@@ -1,3 +1,6 @@
+---
+title: "TouchDesigner Wiki"
+---
 # TouchDesigner Wiki 🎛️
 
 Welcome to your **TouchDesigner** learning wiki. This space is designed to help you master node-based visual programming and real-time interactive media.

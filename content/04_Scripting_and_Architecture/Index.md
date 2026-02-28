@@ -1,4 +1,5 @@
 ---
+title: "04. Scripting & Architecture"
 tags:
   - touchdesigner
   - td/architecture

@@ -1,4 +1,5 @@
 ---
+title: "06. Recipes & Projects"
 tags:
   - touchdesigner
   - td/recipes

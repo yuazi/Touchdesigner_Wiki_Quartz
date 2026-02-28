@@ -1,4 +1,5 @@
 ---
+title: "03. Rendering & Output"
 tags:
   - touchdesigner
   - td/rendering
