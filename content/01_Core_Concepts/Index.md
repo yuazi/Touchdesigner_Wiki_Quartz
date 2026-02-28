@@ -4,8 +4,6 @@ tags:
   - touchdesigner
   - td/core
 ---
-# 01. Core Concepts
-
 Welcome to the Core Concepts module! This folder contains everything you need to get up and running with TouchDesigner's specific workflow.
 
 ## Contents

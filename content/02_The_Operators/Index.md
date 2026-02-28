@@ -4,8 +4,6 @@ tags:
   - touchdesigner
   - td/operators
 ---
-# 02. The Operators
-
 This module covers TouchDesigner's fundamental building blocks: Operators (or Nodes).
 
 ## The OP Families

@@ -4,8 +4,6 @@ tags:
   - touchdesigner
   - td/recipes
 ---
-# 06. Recipes & Projects
-
 This module provides practical, step-by-step implementations combining techniques from all previous chapters.
 
 ## Mini-Projects

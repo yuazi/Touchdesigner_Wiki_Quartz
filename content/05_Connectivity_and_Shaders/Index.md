@@ -4,8 +4,6 @@ tags:
   - touchdesigner
   - td/connectivity
 ---
-# 05. Connectivity & Shaders
-
 This module covers advanced hardware I/O, network protocols, and custom GPU programming.
 
 ## Connectivity & Protocols

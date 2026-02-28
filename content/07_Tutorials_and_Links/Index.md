@@ -4,8 +4,6 @@ tags:
   - touchdesigner
   - td/tutorials
 ---
-# 07. Tutorials & Links
-
 This module contains the best external resources for learning TouchDesigner, ranging from absolute beginner courses to advanced GLSL programming.
 
 ## Official Resources

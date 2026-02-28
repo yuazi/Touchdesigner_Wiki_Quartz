@@ -4,8 +4,6 @@ tags:
   - touchdesigner
   - td/architecture
 ---
-# 04. Scripting & Architecture
-
 This module covers Logic, code, performance optimization, and project management.
 
 ## Python Scripting
