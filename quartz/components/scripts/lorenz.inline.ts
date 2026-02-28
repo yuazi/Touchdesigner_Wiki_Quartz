@@ -112,14 +112,29 @@ function startLorenz(): void {
 
   const ctx = canvas.getContext("2d")!
 
+  // Main (center) attractor
   const particles: Particle[] = Array.from({ length: NUM_PARTICLES }, (_, i) => initParticle(i))
 
-  // Rotate slowly over time
-  let rotZ = 0.3
+  // Left side attractor — slightly different initial conditions for visual variation
+  const particlesLeft: Particle[] = Array.from({ length: NUM_PARTICLES }, (_, i) =>
+    initParticle(i + 5),
+  )
 
-  // Warm-up: run 5000 steps so the attractor is already in its strange-attractor shape
+  // Right side attractor — yet another variation
+  const particlesRight: Particle[] = Array.from({ length: NUM_PARTICLES }, (_, i) =>
+    initParticle(i + 10),
+  )
+
+  // Rotate slowly over time; side attractors are phase-shifted so they look distinct
+  let rotZ = Math.random() * Math.PI * 2
+  let rotZLeft = Math.random() * Math.PI * 2
+  let rotZRight = Math.random() * Math.PI * 2
+
+  // Warm-up: run 5000 steps so the attractors are already in their strange-attractor shapes
   for (let i = 0; i < 5000; i++) {
     particles.forEach(stepLorenz)
+    particlesLeft.forEach(stepLorenz)
+    particlesRight.forEach(stepLorenz)
   }
 
   let lastResize = 0
@@ -146,58 +161,53 @@ function startLorenz(): void {
     ctx.fillRect(0, 0, W, H)
 
     rotZ += 0.0003
+    rotZLeft += 0.0003
+    rotZRight += 0.0003
 
     // Step multiple times per frame for speed
     for (let s = 0; s < 5; s++) {
       particles.forEach(stepLorenz)
+      particlesLeft.forEach(stepLorenz)
+      particlesRight.forEach(stepLorenz)
     }
 
-    // Draw particle heads
-    particles.forEach((p, i) => {
-      const [px, py] = project(p.x, p.y, p.z, W / 2, H / 2, scale, 0.6, rotZ)
-      ctx.beginPath()
-      ctx.arc(px, py, 1.5, 0, Math.PI * 2)
-      ctx.fillStyle = colors[i % colors.length]
-      ctx.fill()
-
-      // Draw recent trail
-      const trail = p.trail
-      const trailLen = trail.length
-      const drawEvery = 2
-      for (let j = drawEvery; j < trailLen; j += drawEvery) {
-        const alpha = (j / trailLen) * 0.6
-        const [tx, ty] = project(
-          trail[j].x,
-          trail[j].y,
-          trail[j].z,
-          W / 2,
-          H / 2,
-          scale,
-          0.6,
-          rotZ,
-        )
-        const [px2, py2] = project(
-          trail[j - drawEvery].x,
-          trail[j - drawEvery].y,
-          trail[j - drawEvery].z,
-          W / 2,
-          H / 2,
-          scale,
-          0.6,
-          rotZ,
-        )
+    // Helper to draw one attractor at a given center and scale
+    function drawAttractor(pts: Particle[], cx: number, cy: number, sc: number, rZ: number, dotR: number, lw: number): void {
+      pts.forEach((p, i) => {
+        const [px, py] = project(p.x, p.y, p.z, cx, cy, sc, 0.6, rZ)
         ctx.beginPath()
-        ctx.moveTo(px2, py2)
-        ctx.lineTo(tx, ty)
-        ctx.strokeStyle =
-          colors[i % colors.length] +
-          Math.floor(alpha * 255)
-            .toString(16)
-            .padStart(2, "0")
-        ctx.lineWidth = 0.8
-        ctx.stroke()
-      }
-    })
+        ctx.arc(px, py, dotR, 0, Math.PI * 2)
+        ctx.fillStyle = colors[i % colors.length]
+        ctx.fill()
+
+        const trail = p.trail
+        const trailLen = trail.length
+        const drawEvery = 2
+        for (let j = drawEvery; j < trailLen; j += drawEvery) {
+          const alpha = (j / trailLen) * 0.6
+          const [tx, ty] = project(trail[j].x, trail[j].y, trail[j].z, cx, cy, sc, 0.6, rZ)
+          const [px2, py2] = project(trail[j - drawEvery].x, trail[j - drawEvery].y, trail[j - drawEvery].z, cx, cy, sc, 0.6, rZ)
+          ctx.beginPath()
+          ctx.moveTo(px2, py2)
+          ctx.lineTo(tx, ty)
+          ctx.strokeStyle =
+            colors[i % colors.length] +
+            Math.floor(alpha * 255)
+              .toString(16)
+              .padStart(2, "0")
+          ctx.lineWidth = lw
+          ctx.stroke()
+        }
+      })
+    }
+
+    // Main center attractor (full size)
+    drawAttractor(particles, W / 2, H / 2, scale, rotZ, 1.5, 0.8)
+
+    // Side attractors (~55 % of main scale, tucked into the left/right thirds)
+    const sideScale = scale * 0.55
+    drawAttractor(particlesLeft, W * 0.12, H / 2, sideScale, rotZLeft, 1.0, 0.55)
+    drawAttractor(particlesRight, W * 0.88, H / 2, sideScale, rotZRight, 1.0, 0.55)
 
     frameId = requestAnimationFrame(draw)
   }
