@@ -14,5 +14,5 @@ Every node has a small button in the bottom-right corner (looks like a plus sign
 
 ## Shortcut
 Select a node and press **A** to toggle Viewer Active.
-
-[[Index|Back to Home]]
+---
+[[01_Core_Concepts/index|Back to Core Concepts]] | [[index|Back to Main Page]]

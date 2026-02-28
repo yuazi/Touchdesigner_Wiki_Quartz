@@ -9,7 +9,7 @@ tags:
 Mastering shortcuts will significantly speed up your workflow.
 
 | Key | Action |
-| --- | --- |
+| --- | 
 | **Tab** | Open the Operator Create Dialog |
 | **Middle Mouse** | Show operator info/status |
 | **P** | Toggle Parameter window |
@@ -19,5 +19,5 @@ Mastering shortcuts will significantly speed up your workflow.
 | **A** | Toggle "Viewer Active" for the selected node |
 | **Space** | Pause/Play the global timeline |
 | **Cmd + R** | Reset the timeline to frame 1 |
-
-[[Index|Back to Home]]
+---
+[[01_Core_Concepts/index|Back to Core Concepts]] | [[index|Back to Main Page]]

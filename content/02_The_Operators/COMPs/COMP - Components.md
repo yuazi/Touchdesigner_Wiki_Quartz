@@ -36,5 +36,5 @@ To use Components effectively in your network:
 3. **Navigating In/Out:** You can enter a COMP by scrolling into it with your mouse wheel or pressing `i` while selected. To exit, zoom out or press `u`.
 4. **Connecting:** COMPs typically connect to other COMPs (like wire connections between Geometry COMPs and a Render COMP). They have special inputs/outputs depending on their type, and can pass internal data outside using In/Out components inside them.
 5. **Custom Parameters Interface:** Right-click the COMP and select "Customize Component" to add your own parameters, creating a clean modular interface for complex internal mechanics.
-
-[[Index|Back to Home]]
+---
+[[02_The_Operators/COMPs/index|Back to COMPs]] | [[02_The_Operators/index|Back to The Operators]] | [[index|Back to Main Page]]

@@ -71,3 +71,5 @@ Place a Constant and an LFO side-by-side, feed both into a **Switch CHOP**, and 
 - [[Math CHOP]] — combine and remap constant values
 
 [[Index|Back to The Operators]]
+---
+[[02_The_Operators/CHOPs/index|Back to CHOPs]] | [[02_The_Operators/index|Back to The Operators]] | [[index|Back to Main Page]]

@@ -38,5 +38,5 @@ DATs manage anything text or script-related in TouchDesigner.
    - For example, you can write Python inside a `CHOP Execute` DAT's `onValueChange` function to print a message whenever a button is clicked.
 5. **Conversion:**
    - DATs easily convert to other families. `DAT to CHOP` is incredibly useful for turning numerical table data into CHOP channels, while `CHOP to DAT` turns signals into a historical table of values.
-
-[[Index|Back to Home]]
+---
+[[02_The_Operators/DATs/index|Back to DATs]] | [[02_The_Operators/index|Back to The Operators]] | [[index|Back to Main Page]]

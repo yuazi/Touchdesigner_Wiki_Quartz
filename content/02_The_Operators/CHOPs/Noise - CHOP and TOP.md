@@ -34,5 +34,5 @@ To make the noise evolve over time:
 ## Common Uses
 - **Noise CHOP:** Driving the rotation of geometry, instancing coordinates, simulating wind/wobble on parameters.
 - **Noise TOP:** Building procedural clouds, water textures, or displacement maps. Using it over a generic geometry gives it an organic, undulating feel.
-
-[[Index|Back to Home]]
+---
+[[02_The_Operators/CHOPs/index|Back to CHOPs]] | [[02_The_Operators/index|Back to The Operators]] | [[index|Back to Main Page]]

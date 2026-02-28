@@ -23,5 +23,5 @@ Instancing allows you to draw the same piece of geometry thousands or millions o
 - **SOP Data:** Using the points of another 3D shape as positions for your instances. Less efficient but simple for 3D arrays.
 
 By instancing a simple box, you can create a massive cityscape, a grid of reactive particles, or a complex flocking simulation—all in real-time.
-
-[[Index|Back to Home]]
+---
+[[03_Rendering_and_Output/index|Back to Rendering and Output]] | [[index|Back to Main Page]]

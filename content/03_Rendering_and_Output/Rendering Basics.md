@@ -25,5 +25,5 @@ The **Render TOP** has several crucial parameters on its setup pages:
 - **Resolution:** By default, it inherits from its inputs or uses a preset (like 1280x720). You can customize this in the *Common* page.
 - **Pixel Format:** 8-bit, 16-bit float, or 32-bit float. Use higher bit depths for HDR imaging, feedback loops, or precise depth passes.
 - **Anti-alias:** Smooths the jagged edges of geometry. Higher values cost more performance.
-
-[[Index|Back to Home]]
+---
+[[03_Rendering_and_Output/index|Back to Rendering and Output]] | [[index|Back to Main Page]]

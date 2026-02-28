@@ -179,5 +179,5 @@ If you want the particle cloud to be fully 3D with a moving camera:
 - **Mouse interaction:** Use `monitorInfo('mousex')` as the Force POP's center X
 - **Multiple clouds:** Duplicate the entire POP chain with different noise seeds and composite them together
 - **Color palettes:** Try `Add` mode in the Composite for an additive neon look, or `Screen` for softer pastels
-
-[[06_Recipes_and_Projects/index|← Back to Recipes]]
+---
+[[06_Recipes_and_Projects/index|Back to Recipes and Projects]] | [[index|Back to Main Page]]

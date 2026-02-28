@@ -16,5 +16,5 @@ tags:
 
 ## The Core Concept: Flow
 In TouchDesigner, data flows from left to right through connections (wires). Each operator performs a specific task on the data.
-
-[[Index|Back to Home]]
+---
+[[01_Core_Concepts/index|Back to Core Concepts]] | [[index|Back to Main Page]]

@@ -69,3 +69,5 @@ This creates a light that fades between 0 and 1 with a gentle sine curve, comple
 - [[Timer CHOP]] — for one-shot and sequenced events
 
 [[Index|Back to The Operators]]
+---
+[[02_The_Operators/CHOPs/index|Back to CHOPs]] | [[02_The_Operators/index|Back to The Operators]] | [[index|Back to Main Page]]

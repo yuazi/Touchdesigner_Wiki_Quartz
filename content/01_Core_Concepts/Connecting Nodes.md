@@ -18,5 +18,5 @@ In TouchDesigner, you build networks by connecting operators.
 
 ## In/Out OPs
 - Use **In** and **Out** operators inside a Component (like a Base COMP) to define inputs/outputs on the Component node itself.
-
-[[Index|Back to Home]]
+---
+[[01_Core_Concepts/index|Back to Core Concepts]] | [[index|Back to Main Page]]

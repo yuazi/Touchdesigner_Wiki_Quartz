@@ -29,5 +29,5 @@ Instead of routing long, messy wires across your network (or between different C
 
 ## The Select TOP
 There is an equivalent **Select TOP** that works exactly the same way, but for grabbing 2D image data/textures from another part of your network without drawing long wires.
-
-[[Index|Back to Home]]
+---
+[[02_The_Operators/CHOPs/index|Back to CHOPs]] | [[02_The_Operators/index|Back to The Operators]] | [[index|Back to Main Page]]

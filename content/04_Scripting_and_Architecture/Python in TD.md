@@ -28,5 +28,5 @@ Binding creates a bi-directional property link:
 ## Common Tasks
 - **Driving Parameters:** Drag a CHOP channel onto a parameter and select "CHOP Reference".
 - **Accessing Tables:** `op('table1')[row, col]`
-
-[[Index|Back to Home]]
+---
+[[04_Scripting_and_Architecture/index|Back to Scripting and Architecture]] | [[index|Back to Main Page]]

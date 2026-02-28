@@ -30,5 +30,5 @@ To enable shadows:
 1. Go to the *Shadows* page of the Light COMP.
 2. Change the *Shadow Type* (e.g., Hard, Soft).
 3. Soft shadows require adjusting the *Softness* and *Resolution* parameters for quality.
-
-[[Index|Back to Home]]
+---
+[[03_Rendering_and_Output/index|Back to Rendering and Output]] | [[index|Back to Main Page]]

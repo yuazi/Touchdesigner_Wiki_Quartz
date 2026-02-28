@@ -71,3 +71,5 @@ This is your first debugging tool.
 - **"My network is huge and slow"** — Use `/` to search within the network. Collapse modules into COMPs with `Ctrl + Shift + C` (Network Box).
 
 [[Index|Back to Core Concepts]]
+---
+[[01_Core_Concepts/index|Back to Core Concepts]] | [[index|Back to Main Page]]

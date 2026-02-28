@@ -18,5 +18,5 @@ One of TouchDesigner's most powerful features is the ability to add your own par
 - Create clean "Master Control" panels for your project.
 - Expose only the settings you need without digging into deep networks.
 - Use Python expressions like `parent().par.MyCustomParameter` inside your child nodes.
-
-[[Index|Back to Home]]
+---
+[[04_Scripting_and_Architecture/index|Back to Scripting and Architecture]] | [[index|Back to Main Page]]

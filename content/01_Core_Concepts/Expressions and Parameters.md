@@ -116,3 +116,5 @@ x * x * (3 - 2 * x)
 - Using `op('path')` with an absolute path is fragile. Prefer relative references or `me` / `parent()`.
 
 [[Index|Back to Core Concepts]]
+---
+[[01_Core_Concepts/index|Back to Core Concepts]] | [[index|Back to Main Page]]

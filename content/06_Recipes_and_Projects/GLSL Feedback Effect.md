@@ -144,3 +144,5 @@ Kick drums push the zoom, creating the classic "zoom-in-on-beat" VJ effect.
 - [[Introduction to GLSL]] — GLSL fundamentals in TouchDesigner
 
 [[Index|Back to Recipes & Projects]]
+---
+[[06_Recipes_and_Projects/index|Back to Recipes and Projects]] | [[index|Back to Main Page]]

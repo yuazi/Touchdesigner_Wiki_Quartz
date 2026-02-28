@@ -32,5 +32,5 @@ This recipe connects audio analysis directly to geometry instancing, creating a 
 5. **The Reaction:** Map the `ty` (or `sy` for scaling height) parameter to the audio channel coming from the spectrum (`chan1`).
 
 Now, you have a row of boxes whose heights (or Y-positions) dynamically spike with the frequencies of the playing song.
-
-[[Index|Back to Home]]
+---
+[[06_Recipes_and_Projects/index|Back to Recipes and Projects]] | [[index|Back to Main Page]]

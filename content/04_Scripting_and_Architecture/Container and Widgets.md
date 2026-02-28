@@ -16,5 +16,5 @@ The primary structural component for UI. It can hold other OPs and has layout co
 Pre-built UI elements like buttons, sliders, and knobs found in the Palette (Basic Widgets).
 
 - **Customization:** Most styling is done via the "Look" and "Color" parameters on the Widget.
-
-[[Index|Back to Home]]
+---
+[[04_Scripting_and_Architecture/index|Back to Scripting and Architecture]] | [[index|Back to Main Page]]

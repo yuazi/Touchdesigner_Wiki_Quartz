@@ -42,5 +42,5 @@ CHOPs are the nervous system of your TouchDesigner network, moving numbers from 
      - You can bind by dragging a parameter to another parameter and selecting "Bind", or by writing a Python expression starting with `op('someNode').par.someParam.bindMaster`.
      - *Pros:* Essential for building interactive UIs where sliders need to both control logic and reflect external changes.
      - *Cons:* Can sometimes lead to evaluation loops if not careful.
-
-[[Index|Back to Home]]
+---
+[[02_The_Operators/CHOPs/index|Back to CHOPs]] | [[02_The_Operators/index|Back to The Operators]] | [[index|Back to Main Page]]

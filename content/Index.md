@@ -1,5 +1,5 @@
 ---
-title: "TouchDesigner Wiki"
+title: "Welcome to (y)usage"
 ---
 # TouchDesigner Wiki
 

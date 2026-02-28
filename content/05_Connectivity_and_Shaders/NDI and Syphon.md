@@ -23,5 +23,5 @@ Zero-latency GPU memory sharing on the same machine. Since you are on macOS, you
 - **Syphon Spout Out TOP:** Send your TouchDesigner video output to another app.
 
 *Note: In TouchDesigner, the node is called `Syphon Spout` to support both OS types, but on Mac, it utilizes the Syphon protocol under the hood.*
-
-[[Index|Back to Home]]
+---
+[[05_Connectivity_and_Shaders/index|Back to Connectivity and Shaders]] | [[index|Back to Main Page]]

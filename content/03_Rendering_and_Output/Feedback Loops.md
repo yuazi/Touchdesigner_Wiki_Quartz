@@ -21,5 +21,5 @@ A **Feedback TOP** reads the texture from the previous frame. Combining current 
 Feedback loops can quickly blow out to pure white or decay to pure black.
 - Use a **Level TOP** inside the loop to slightly reduce opacity or brightness (e.g., setting the opacity multiplier to 0.99) so trails fade out over time.
 - Be mindful of pixel formats (using 16-bit or 32-bit float prevents early color clamping).
-
-[[Index|Back to Home]]
+---
+[[03_Rendering_and_Output/index|Back to Rendering and Output]] | [[index|Back to Main Page]]

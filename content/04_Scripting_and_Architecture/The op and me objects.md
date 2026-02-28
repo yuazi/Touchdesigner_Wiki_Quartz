@@ -18,5 +18,5 @@ Used to find other operators.
 Refers to the operator where the code is written.
 - `me.parent()` - Reference the component containing this node.
 - `me.name` - Get the name of the current node.
-
-[[Index|Back to Home]]
+---
+[[04_Scripting_and_Architecture/index|Back to Scripting and Architecture]] | [[index|Back to Main Page]]

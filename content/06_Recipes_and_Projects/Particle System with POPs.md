@@ -95,3 +95,5 @@ Audio Device In CHOP → Audio Spectrum CHOP → Analyze CHOP (RMS/Peak)
 - **Colour not changing** → confirm `Life Source` is set to `Normalized Life`, not `Age`.
 
 [[Index|Back to Recipes & Projects]]
+---
+[[06_Recipes_and_Projects/index|Back to Recipes and Projects]] | [[index|Back to Main Page]]
