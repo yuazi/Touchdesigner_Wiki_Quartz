@@ -87,6 +87,7 @@ End-to-end practical examples.
 | [[06_Recipes_and_Projects/Audio Reactive Geometry\|Audio Reactive Geometry]] | Geometry driven by audio |
 | [[06_Recipes_and_Projects/GLSL Feedback Effect\|GLSL Feedback Effect]] | Shader-based feedback loop |
 | [[06_Recipes_and_Projects/Particle System with POPs\|Particle System with POPs]] | GPU particle system |
+| [[06_Recipes_and_Projects/Dreamscape Particle Cloud\|Dreamscape Particle Cloud]] | Glowing particle cloud with feedback bloom (söla tutorial) |
 
 ---
 
