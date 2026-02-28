@@ -1,4 +1,5 @@
 ---
+title: "The Network Editor"
 tags:
   - touchdesigner
   - td/core
@@ -21,7 +22,8 @@ The **Network Editor** is the main canvas where you build, connect, and manage y
 | Pan | `MMB` drag, or `Alt (⌥) + LMB` drag |
 | Zoom | Two-finger scroll, or `Alt (⌥) + RMB` drag |
 | Frame all nodes | `Home` key |
-| Frame selected | `A` key |
+| Frame selected nodes | `F` key |
+| Toggle Viewer Active (selected node) | `A` key |
 | Go into a COMP | `Double-click` it |
 | Go up one level | `U` key, or `Esc` |
 | Jump to root | `Shift + U` |
@@ -70,6 +72,5 @@ This is your first debugging tool.
 - **"I can't see my changes"** — Make sure the Viewer flag (bottom-left) is turned on.
 - **"My network is huge and slow"** — Use `/` to search within the network. Collapse modules into COMPs with `Ctrl + Shift + C` (Network Box).
 
-[[Index|Back to Core Concepts]]
 ---
 [[01_Core_Concepts/index|Back to Core Concepts]] | [[index|Back to Main Page]]

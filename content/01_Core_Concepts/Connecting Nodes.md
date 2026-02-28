@@ -1,4 +1,5 @@
 ---
+title: "Connecting Nodes"
 tags:
   - touchdesigner
   - td/core

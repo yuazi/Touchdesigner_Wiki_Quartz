@@ -1,4 +1,5 @@
 ---
+title: "Viewer Active Mode"
 tags:
   - touchdesigner
   - td/core

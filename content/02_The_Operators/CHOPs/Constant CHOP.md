@@ -58,6 +58,9 @@ Place a Constant and an LFO side-by-side, feed both into a **Switch CHOP**, and 
 |---|---|---|
 | Can drive multiple targets | ✗ (must copy value) | ✓ (one wire to many) |
 | Can be automated later | Requires rewrite | Just swap in an LFO |
+
+---
+[[02_The_Operators/CHOPs/index|Back to CHOPs]] | [[02_The_Operators/index|Back to The Operators]] | [[index|Back to Main Page]]
 | Visible in network | ✗ | ✓ |
 | Named | ✗ | ✓ |
 

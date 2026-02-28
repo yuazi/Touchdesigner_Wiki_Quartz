@@ -1,4 +1,5 @@
 ---
+title: "Common Shortcuts"
 tags:
   - touchdesigner
   - td/core
