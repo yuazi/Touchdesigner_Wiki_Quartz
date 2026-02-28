@@ -11,9 +11,9 @@ Every operator has a **Parameter Window** (Press `P` to toggle). This is where y
 
 ## Parameter Modes
 1. **Constant (Gray):** A static value you type in.
-2. **Expression (Green):** A Python script that calculates the value.
-3. **Export (Purple):** A value being pushed from a CHOP (using "CHOP Export").
-4. **Binding (Orange):** A bi-directional link between two parameters.
+2. **Expression (Blue):** A Python script that calculates the value.
+3. **Export (Green):** A value being pushed from a CHOP (using "CHOP Export"). Think *green for CHOPs*.
+4. **Binding (Purple):** A bi-directional link between two parameters.
 
 ## Best Practices
 - Use **Expressions** for simple logic.

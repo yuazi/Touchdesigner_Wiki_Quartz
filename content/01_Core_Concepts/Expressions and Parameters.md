@@ -13,9 +13,9 @@ Every parameter in TouchDesigner has **four modes**, switchable by clicking the 
 | Mode | Colour | Description |
 |---|---|---|
 | **Constant** | Grey | A plain, unchanging value you type in. |
-| **Expression** | Green | A Python expression evaluated every cook. |
-| **Export** | Purple | A CHOP or DAT export drives this value externally. |
-| **Bind** | Orange | Two-way sync with another parameter. |
+| **Expression** | Blue | A Python expression evaluated every cook. |
+| **Export** | Green | A CHOP export drives this value externally. Think *green for CHOPs*. |
+| **Bind** | Purple | Two-way sync with another parameter. |
 
 Right-click any parameter → **Set to Expression** (or press `=` in the field) to enter expression mode.
 
@@ -27,8 +27,8 @@ These are the most commonly used time variables in expressions:
 
 | Expression | Returns |
 |---|---|
-| `absTime.seconds` | Seconds elapsed since the project opened |
-| `absTime.frame` | Absolute frame count since project opened |
+| `absTime.seconds` | Seconds elapsed since the application started |
+| `absTime.frame` | Absolute frame count since the application started |
 | `me.time.seconds` | Seconds within the local component's timeline |
 | `me.time.frame` | Frame within the local timeline |
 | `me.time.rate` | The cook rate (FPS) of the local timeline |
@@ -113,9 +113,8 @@ x * x * (3 - 2 * x)
 ## Common Gotchas
 - **Green background on a parameter field** means expression mode is active — it's not an error.
 - Division by zero in an expression **silently evaluates to 0** rather than crashing.
-- `absTime.seconds` keeps counting even when playback is paused. Use `me.time.seconds` for timeline-relative time.
+- `absTime.seconds` keeps counting even when a **component's** local timeline is paused. It only stops if you pause the **root timeline** or hit the power button. Use `me.time.seconds` for timeline-relative time.
 - Using `op('path')` with an absolute path is fragile. Prefer relative references or `me` / `parent()`.
 
-[[Index|Back to Core Concepts]]
 ---
 [[01_Core_Concepts/index|Back to Core Concepts]] | [[index|Back to Main Page]]

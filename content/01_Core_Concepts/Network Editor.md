@@ -11,7 +11,7 @@ The **Network Editor** is the main canvas where you build, connect, and manage y
 
 > **macOS notes:**
 > - `Alt` = the `Option` key on Mac keyboards.
-> - `MMB` = middle mouse button. On a trackpad: scroll with two fingers to zoom, or use `Alt (⌥) + LMB` drag to pan.
+> - `MMB` = middle mouse button. On a trackpad: two-finger scroll to zoom, two-finger swipe to pan.
 > - `RMB` = right-click. On a trackpad: two-finger tap.
 > - TouchDesigner uses `Ctrl`, **not** `Cmd`, for its shortcuts on macOS — this is intentional and differs from most Mac apps.
 
@@ -19,8 +19,8 @@ The **Network Editor** is the main canvas where you build, connect, and manage y
 
 | Action | How |
 |---|---|
-| Pan | `MMB` drag, or `Alt (⌥) + LMB` drag |
-| Zoom | Two-finger scroll, or `Alt (⌥) + RMB` drag |
+| Pan | `LMB` drag in empty space (primary); two-finger swipe on trackpad |
+| Zoom | Scroll wheel / two-finger scroll; or `MMB` drag left/right |
 | Frame all nodes | `Home` key |
 | Frame selected nodes | `F` key |
 | Toggle Viewer Active (selected node) | `A` key |
