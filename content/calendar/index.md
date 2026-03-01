@@ -1,5 +1,5 @@
 ---
-title: "Calendar"
+title: Calendar
 tags:
   - calendar
   - log

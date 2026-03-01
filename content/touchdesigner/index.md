@@ -24,15 +24,15 @@ The fundamentals: interface, navigation, and workflow.
 ## [[touchdesigner/02_The_Operators/index|02. The Operators]]
 The six operator families — the building blocks of every network.
 
-| Family | Role |
-|--------|------|
-| [[touchdesigner/02_The_Operators/TOPs/index\|TOPs]] | 2D image & video processing (GPU) |
-| [[touchdesigner/02_The_Operators/CHOPs/index\|CHOPs]] | Numeric signals, audio & control data |
-| [[touchdesigner/02_The_Operators/SOPs/index\|SOPs]] | 3D geometry (CPU) |
-| [[touchdesigner/02_The_Operators/COMPs/index\|COMPs]] | Containers, 3D objects & UI panels |
-| [[touchdesigner/02_The_Operators/DATs/index\|DATs]] | Text, tables, scripts & JSON |
-| [[touchdesigner/02_The_Operators/MATs/index\|MATs]] | Materials & shaders for 3D geometry |
-| [[touchdesigner/02_The_Operators/POPs/index\|POPs]] | GPU-accelerated point clouds & particles |
+| Family                                                | Role                                     |
+| ----------------------------------------------------- | ---------------------------------------- |
+| [[touchdesigner/02_The_Operators/TOPs/index\|TOPs]]   | 2D image & video processing (GPU)        |
+| [[touchdesigner/02_The_Operators/CHOPs/index\|CHOPs]] | Numeric signals, audio & control data    |
+| [[touchdesigner/02_The_Operators/SOPs/index\|SOPs]]   | 3D geometry (CPU)                        |
+| [[touchdesigner/02_The_Operators/COMPs/index\|COMPs]] | Containers, 3D objects & UI panels       |
+| [[touchdesigner/02_The_Operators/DATs/index\|DATs]]   | Text, tables, scripts & JSON             |
+| [[touchdesigner/02_The_Operators/MATs/index\|MATs]]   | Materials & shaders for 3D geometry      |
+| [[touchdesigner/02_The_Operators/POPs/index\|POPs]]   | GPU-accelerated point clouds & particles |
 
 ---
 
