@@ -1,5 +1,5 @@
 ---
-title: "Hand Tracking in TouchDesigner — Complete Tutorial"
+title: "Hand Tracking in TouchDesigner — Tutorial"
 tags:
   - touchdesigner
   - td/tutorials
@@ -9,7 +9,7 @@ tags:
   - td/generative
 ---
 
-**Related:** [[Hand Tracking Master Class|← Master Class Hub]]
+**Related:** [[Hand Tracking|← Hub]]
 **Based on:** Torin Blankensmith's MediaPipe TouchDesigner series
 **Plugin:** [github.com/torinmb/mediapipe-touchdesigner](https://github.com/torinmb/mediapipe-touchdesigner)
 
@@ -458,7 +458,7 @@ From here you can extend the rig by:
 
 ## Related
 
-- [[Hand Tracking Master Class|← Master Class Hub]] — video links and series overview
+- [[Hand Tracking|Hub]] — video links and series overview
 - [[../04_Scripting_and_Architecture/Python in TD|Python in TD]]
 - [[../02_The_Operators/CHOPs/index|CHOPs]]
 - [[../03_Rendering_and_Output/Instancing|Instancing]]
@@ -466,5 +466,5 @@ From here you can extend the rig by:
 
 ---
 
-[[Hand Tracking Master Class|← Back to Master Class Hub]]
+[[Hand Tracking|← Back to Hub]]
 

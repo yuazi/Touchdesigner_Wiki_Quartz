@@ -12,8 +12,8 @@ This module provides practical, step-by-step implementations combining technique
 - **[[Particle System with POPs]]**: GPU particle simulation with emitters, forces, colour-over-life, and audio reactivity.
 - **[[GLSL Feedback Effect]]**: Feedback loop + custom GLSL shader for trails, zoom, rotation, and audio-driven VJ visuals.
 - **[[Dreamscape Particle Cloud]]**: Glowing GPU particle cloud with noise-driven movement and feedback bloom — based on söla's tutorial.
-- **[[Hand Tracking Master Class]]**: Real-time hand tracking with MediaPipe — gestures, landmark mapping, and driving visuals (Torin Blankensmith, 3-part series + bonus projects).
-  - [[Hand Tracking Complete Tutorial|★ Complete step-by-step tutorial]] — setup, watercolor brush, and generative architecture in one document
+- **[[Hand Tracking]]**: Real-time hand tracking with MediaPipe — gestures, landmark mapping, and driving visuals (Torin Blankensmith, 3-part series + bonus projects).
+  - [[Hand Tracking Tutorial|★ Complete step-by-step tutorial]] — setup, watercolor brush, and generative architecture in one document
 
 
 ---

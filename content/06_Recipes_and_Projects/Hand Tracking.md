@@ -1,5 +1,5 @@
 ---
-title: "Hand Tracking in TouchDesigner — Master Class"
+title: "Hand Tracking in TouchDesigner"
 tags:
   - touchdesigner
   - td/tutorials
@@ -29,7 +29,7 @@ A master class series on implementing real-time **hand tracking** in TouchDesign
 
 | | |
 |-|-|
-| [[Hand Tracking Complete Tutorial\|★ Complete Step-by-Step Tutorial]] | Setup → core rig → watercolor brush → generative architecture — everything in one document |
+| [[Hand Tracking Tutorial\|★ Complete Step-by-Step Tutorial]] | Setup → core rig → watercolor brush → generative architecture — everything in one document |
 
 ---
 
