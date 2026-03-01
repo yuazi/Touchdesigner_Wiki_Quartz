@@ -88,6 +88,9 @@ End-to-end practical examples.
 | [[06_Recipes_and_Projects/GLSL Feedback Effect\|GLSL Feedback Effect]] | Shader-based feedback loop |
 | [[06_Recipes_and_Projects/Particle System with POPs\|Particle System with POPs]] | GPU particle system |
 | [[06_Recipes_and_Projects/Dreamscape Particle Cloud\|Dreamscape Particle Cloud]] | Glowing particle cloud with feedback bloom (söla tutorial) |
+| [[06_Recipes_and_Projects/Hand Tracking Master Class\|Hand Tracking Master Class]] | MediaPipe hand tracking — gestures, landmarks, driving visuals (Torin Blankensmith) |
+| [[06_Recipes_and_Projects/Hand Tracking Complete Tutorial\|★ Hand Tracking: Complete Tutorial]] | Full step-by-step: setup → watercolor brush → generative architecture |
+
 
 ---
 
