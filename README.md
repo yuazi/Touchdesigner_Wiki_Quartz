@@ -1,12 +1,22 @@
-# (y)usage — TouchDesigner Wiki
+# (y)usage Garden
 
-A structured personal wiki for learning **TouchDesigner** — node-based visual programming and real-time interactive media.
+A personal **digital garden** — a living collection of notes, projects, and logs organized by curiosity and use.
+
+Live at: **[yuazi.github.io/_y_usagewiki](https://yuazi.github.io/_y_usagewiki)**
 
 Built with [Quartz v4](https://quartz.jzhao.xyz/), a static-site generator for Obsidian-style markdown notes.
 
 ---
 
-## Contents
+## What's Here
+
+| Section | Description |
+|---------|-------------|
+| **TouchDesigner** | Structured wiki for node-based visual programming and real-time interactive media |
+| **Work** | Projects, experiments, and things I've shipped |
+| **Calendar** | A running log of what I've been working on and learning |
+
+### TouchDesigner Wiki
 
 | Section | Description |
 |---------|-------------|
@@ -33,5 +43,5 @@ The site will be available at `http://localhost:8080`.
 
 ## Built With
 
-- [TouchDesigner](https://derivative.ca/) — real-time visual programming environment
 - [Quartz v4](https://quartz.jzhao.xyz/) — static site generator for markdown notes
+- [TouchDesigner](https://derivative.ca/) — real-time visual programming environment
