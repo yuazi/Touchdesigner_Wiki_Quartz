@@ -55,4 +55,4 @@ A master class series on implementing real-time **hand tracking** in TouchDesign
 
 ---
 
-[[./index|← Back to Recipes & Projects]]
+[[06_Recipes_and_Projects/index|← Back to Recipes & Projects]]
