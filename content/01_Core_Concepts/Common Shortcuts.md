@@ -9,6 +9,8 @@ tags:
 
 Mastering shortcuts will significantly speed up your workflow.
 
+> **macOS Note:** TouchDesigner uses `Ctrl`, **not** `Cmd`, for its shortcuts on macOS — this is intentional and differs from most Mac apps. `Alt` translates to the `Option (⌥)` key.
+
 | Key | Action |
 | --- | --- |
 | **Tab** | Open the Operator Create Dialog |
@@ -19,6 +21,6 @@ Mastering shortcuts will significantly speed up your workflow.
 | **C** | Toggle Color palette for nodes |
 | **A** | Toggle "Viewer Active" for the selected node |
 | **Space** | Pause/Play the global timeline |
-| **Cmd + R** | Reset the timeline to frame 1 |
+| **Reset button** | Reset the timeline to frame 1 — use the **Reset** transport button in the Timeline bar (no keyboard shortcut exists for this) |
 ---
 [[01_Core_Concepts/index|Back to Core Concepts]] | [[index|Back to Main Page]]

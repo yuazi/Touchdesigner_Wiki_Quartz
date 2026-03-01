@@ -17,7 +17,7 @@ TouchDesigner integrates Python 3 deeply into its core. You can use Python to co
 ## Expressions in Parameters
 Instead of a static number, you can click the parameter name and type:
 - `me.time.frame` (Current frame number)
-- `absTime.seconds` (Time since the project started)
+- `absTime.seconds` (Time since the application started)
 - `op('null1')['chan1']` (The value of 'chan1' in the operator 'null1')
 
 ## Parameter Binding

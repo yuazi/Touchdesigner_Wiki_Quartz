@@ -95,6 +95,5 @@ The Geo COMP does not have its own surface look — you must assign a MAT:
 - [[MAT - Material Operators|MAT]] — surface shaders
 - [[Instancing]] — duplicating geometry efficiently
 
-[[Index|Back to The Operators]]
 ---
 [[02_The_Operators/COMPs/index|Back to COMPs]] | [[02_The_Operators/index|Back to The Operators]] | [[index|Back to Main Page]]

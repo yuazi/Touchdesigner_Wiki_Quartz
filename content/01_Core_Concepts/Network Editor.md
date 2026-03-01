@@ -10,10 +10,10 @@ tags:
 The **Network Editor** is the main canvas where you build, connect, and manage your Operator networks. Almost everything you do in TouchDesigner happens here.
 
 > **macOS notes:**
-> - `Alt` = the `Option` key on Mac keyboards.
+> - `Alt` = the `Option` key.
+> - `Ctrl` shortcuts on Windows translate to `Cmd` (Command) on Mac keyboards.
 > - `MMB` = middle mouse button. On a trackpad: two-finger scroll to zoom, two-finger swipe to pan.
 > - `RMB` = right-click. On a trackpad: two-finger tap.
-> - TouchDesigner uses `Ctrl`, **not** `Cmd`, for its shortcuts on macOS — this is intentional and differs from most Mac apps.
 
 ## Navigation
 
@@ -21,7 +21,7 @@ The **Network Editor** is the main canvas where you build, connect, and manage y
 |---|---|
 | Pan | `LMB` drag in empty space (primary); two-finger swipe on trackpad |
 | Zoom | Scroll wheel / two-finger scroll; or `MMB` drag left/right |
-| Frame all nodes | `Home` key |
+| Home view (fit all nodes) | `H` key |
 | Frame selected nodes | `F` key |
 | Toggle Viewer Active (selected node) | `A` key |
 | Go into a COMP | `Double-click` it |
@@ -54,7 +54,7 @@ Right-click (two-finger tap on trackpad) on empty space → **Add Bookmark** to 
 - Right-click a node → **Add Comment** to attach a note directly to a node.
 
 ## The Info OP
-Press **`I`** while hovering over any node to open the **Info popup**. This shows:
+**Middle-click (MMB)** while hovering over any node to open the **Info popup**. This shows:
 - Cook time (ms)
 - Resolution (for TOPs)
 - Channel count and sample rate (for CHOPs)
