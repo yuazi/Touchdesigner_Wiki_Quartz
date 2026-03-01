@@ -25,6 +25,11 @@ Projects, experiments, and things I've shipped — personal and professional.
 ### [[calendar/index|Calendar]]
 A running log of what I've been working on and learning, ordered by time.
 
+### [[notes/index|Notes]]
+Short-form notes and references on tools, CLI utilities, and workflows I find useful.
+
+> Yazi · terminal tools · productivity
+
 ---
 
 ## How to navigate
