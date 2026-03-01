@@ -4,7 +4,7 @@ tags:
   - notes
 ---
 
-Short-form notes and references on tools, CLI utilities, and workflows I find useful.
+Notes and random stuff I think about
 
 ---
 

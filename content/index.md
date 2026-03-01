@@ -19,16 +19,16 @@ A structured wiki on node-based visual programming and real-time interactive med
 
 > Operator families · Python scripting · GLSL shaders · Audio reactivity · Connectivity protocols
 
-### [[work/index|Work]]
-Projects, experiments, and things I've shipped — personal and professional.
-
 ### [[calendar/index|Calendar]]
 A running log of what I've been working on and learning, ordered by time.
 
 ### [[notes/index|Notes]]
-Short-form notes and references on tools, CLI utilities, and workflows I find useful.
+Short-form notes and references on things I find interesting.
 
 > Yazi · terminal tools · productivity
+
+### [[work/index|Work]]
+Projects, experiments, and things I've shipped — personal and professional.
 
 ---
 
