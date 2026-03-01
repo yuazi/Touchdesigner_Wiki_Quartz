@@ -1,17 +1,37 @@
-# Quartz v4
+# (y)usage — TouchDesigner Wiki
 
-> “[One] who works with the door open gets all kinds of interruptions, but [they] also occasionally gets clues as to what the world is and what might be important.” — Richard Hamming
+A structured personal wiki for learning **TouchDesigner** — node-based visual programming and real-time interactive media.
 
-Quartz is a set of tools that helps you publish your [digital garden](https://jzhao.xyz/posts/networked-thought) and notes as a website for free.
+Built with [Quartz v4](https://quartz.jzhao.xyz/), a static-site generator for Obsidian-style markdown notes.
 
-🔗 Read the documentation and get started: https://quartz.jzhao.xyz/
+---
 
-[Join the Discord Community](https://discord.gg/cRFFHYye7t)
+## Contents
 
-## Sponsors
+| Section | Description |
+|---------|-------------|
+| **01. Core Concepts** | Interface, network editor, parameters, shortcuts |
+| **02. The Operators** | TOPs, CHOPs, SOPs, COMPs, DATs, MATs, POPs |
+| **03. Rendering & Output** | Render pipeline, cameras, instancing, feedback |
+| **04. Scripting & Architecture** | Python, custom parameters, toxes, performance |
+| **05. Connectivity & Shaders** | OSC, MIDI, NDI, Syphon, DMX, GLSL |
+| **06. Recipes & Projects** | End-to-end practical examples and project builds |
+| **07. Tutorials & Links** | Curated external resources and community links |
 
-<p align="center">
-  <a href="https://github.com/sponsors/jackyzha0">
-    <img src="https://cdn.jsdelivr.net/gh/jackyzha0/jackyzha0/sponsorkit/sponsors.svg" />
-  </a>
-</p>
+---
+
+## Running Locally
+
+```bash
+npm install
+npx quartz build --serve
+```
+
+The site will be available at `http://localhost:8080`.
+
+---
+
+## Built With
+
+- [TouchDesigner](https://derivative.ca/) — real-time visual programming environment
+- [Quartz v4](https://quartz.jzhao.xyz/) — static site generator for markdown notes
