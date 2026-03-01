@@ -23,4 +23,4 @@ Standard protocol for music hardware and software controllers.
 - **MIDI In CHOP:** Receive notes and CC data.
 - **MIDI Mapper:** Use the Dialogs > MIDI Device Mapper to connect your hardware.
 ---
-[[05_Connectivity_and_Shaders/index|Back to Connectivity and Shaders]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/05_Connectivity_and_Shaders/index|Back to Connectivity and Shaders]] | [[touchdesigner/index|Back to Main Page]]

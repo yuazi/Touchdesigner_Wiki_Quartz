@@ -40,4 +40,4 @@ SOPs are the traditional way of modeling and manipulating 3D data in TouchDesign
    - Right-click the `Null` SOP's output and select a `Geometry COMP` (under the COMP tab).
    - This places your SOP data inside an object that can be rendered using a `Render TOP`, along with a `Camera COMP` and a `Light COMP`.
 ---
-[[02_The_Operators/SOPs/index|Back to SOPs]] | [[02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/02_The_Operators/SOPs/index|Back to SOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to Main Page]]

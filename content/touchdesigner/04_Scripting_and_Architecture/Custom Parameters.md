@@ -19,4 +19,4 @@ One of TouchDesigner's most powerful features is the ability to add your own par
 - Expose only the settings you need without digging into deep networks.
 - Use Python expressions like `parent().par.MyCustomParameter` inside your child nodes.
 ---
-[[04_Scripting_and_Architecture/index|Back to Scripting and Architecture]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting and Architecture]] | [[touchdesigner/index|Back to Main Page]]

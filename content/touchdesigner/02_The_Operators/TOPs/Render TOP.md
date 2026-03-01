@@ -83,4 +83,4 @@ For effects that require separation (e.g. rendering geometry and particles separ
 - [[Rendering Basics]] — full rendering workflow walkthrough
 
 ---
-[[02_The_Operators/TOPs/index|Back to TOPs]] | [[02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/02_The_Operators/TOPs/index|Back to TOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to Main Page]]

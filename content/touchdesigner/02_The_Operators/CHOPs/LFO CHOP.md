@@ -69,4 +69,4 @@ This creates a light that fades between 0 and 1 with a gentle sine curve, comple
 - [[Timer CHOP]] — for one-shot and sequenced events
 
 ---
-[[02_The_Operators/CHOPs/index|Back to CHOPs]] | [[02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to Main Page]]
