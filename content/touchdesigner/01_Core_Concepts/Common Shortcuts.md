@@ -5,7 +5,6 @@ tags:
   - td/core
   - workflow
 ---
-# Common Shortcuts
 
 Mastering shortcuts will significantly speed up your workflow.
 

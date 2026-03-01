@@ -5,7 +5,6 @@ tags:
   - td/core
   - workflow
 ---
-# Connecting Nodes
 
 In TouchDesigner, you build networks by connecting operators.
 

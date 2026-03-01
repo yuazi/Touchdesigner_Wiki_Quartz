@@ -5,7 +5,6 @@ tags:
   - td/core
   - introduction
 ---
-# What is TouchDesigner?
 
 **TouchDesigner** is a node-based visual programming language for real-time interactive multimedia content. It is developed by Toronto-based company Derivative.
 

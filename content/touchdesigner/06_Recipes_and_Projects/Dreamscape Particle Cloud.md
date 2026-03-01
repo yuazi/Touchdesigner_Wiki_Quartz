@@ -1,5 +1,5 @@
 ---
-title: "Dreamscape Particle Cloud"
+title: "Recipe: Dreamscape Particle Cloud"
 tags:
   - touchdesigner
   - td/recipes
@@ -9,7 +9,6 @@ tags:
   - feedback
   - recipes
 ---
-# Recipe: Dreamscape Particle Cloud
 
 > **Based on:** [Touch Designer Dreamscape Particle Cloud Tutorial](https://www.youtube.com/watch?v=4tOldYnNFV0) by **söla**
 

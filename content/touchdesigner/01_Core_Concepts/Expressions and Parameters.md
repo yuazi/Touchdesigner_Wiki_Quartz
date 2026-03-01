@@ -6,7 +6,6 @@ tags:
   - expressions
   - scripting
 ---
-# Expressions and Parameters
 
 Every parameter in TouchDesigner has **four modes**, switchable by clicking the small mode indicator to the left of the parameter field:
 

@@ -5,7 +5,6 @@ tags:
   - td/core
   - workflow
 ---
-# Viewer Active Mode
 
 Every node has a small button in the bottom-right corner (looks like a plus sign or a target). This is the **Viewer Active** button.
 

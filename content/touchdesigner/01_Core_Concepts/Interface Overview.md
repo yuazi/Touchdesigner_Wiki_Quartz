@@ -1,10 +1,10 @@
 ---
+title: "Interface Overview"
 tags:
   - touchdesigner
   - td/core
   - introduction
 ---
-# Interface Overview
 
 The TouchDesigner interface is a large, infinite canvas called the **Network Editor**.
 

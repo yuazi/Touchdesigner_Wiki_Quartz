@@ -3,8 +3,6 @@ title: Yazi – Terminal File Manager
 tags: [cli, tools, productivity]
 ---
 
-# Shortcuts 
-
 [Yazi](https://yazi-rs.github.io/) is a blazing-fast terminal file manager written in Rust, with a three-column Miller-columns layout (parent / current / preview).
 
 Start it with:
