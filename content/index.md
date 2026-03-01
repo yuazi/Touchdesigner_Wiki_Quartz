@@ -1,5 +1,7 @@
 ---
-title: "(y)usage Garden"
+title: (y)usage Garden
+tags:
+  - home
 ---
 
 # Welcome to my Digital Garden 
