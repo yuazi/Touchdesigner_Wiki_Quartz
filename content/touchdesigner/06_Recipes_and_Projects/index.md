@@ -17,4 +17,4 @@ This module provides practical, step-by-step implementations combining technique
 
 
 ---
-[[../index|← Back to Main Index]]
+[[touchdesigner/index|← Back to TouchDesigner Index]]

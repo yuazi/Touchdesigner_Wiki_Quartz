@@ -6,8 +6,6 @@ tags:
   - mat
   - operators
 ---
-# MATs — Material Operators
-
 MATs give your 3D geometry its **surface appearance**. They are assigned to Geometry COMPs (not wired directly to SOPs) and control how objects look under lighting — from flat colors to physically-based reflections and custom GLSL shaders.
 
 **Key nodes:** Phong, Constant, PBR, GLSL

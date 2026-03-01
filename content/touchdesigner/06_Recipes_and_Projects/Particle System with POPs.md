@@ -96,4 +96,4 @@ Audio Device In CHOP → Audio Spectrum CHOP → Analyze CHOP (RMS/Peak)
 
 [[Index|Back to Recipes & Projects]]
 ---
-[[06_Recipes_and_Projects/index|Back to Recipes and Projects]] | [[index|Back to Main Page]]
+[[06_Recipes_and_Projects/index|Back to Recipes and Projects]] | [[touchdesigner/index|Back to Main Page]]

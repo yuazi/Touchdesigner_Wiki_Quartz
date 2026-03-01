@@ -19,4 +19,4 @@ Refers to the operator where the code is written.
 - `me.parent()` - Reference the component containing this node.
 - `me.name` - Get the name of the current node.
 ---
-[[04_Scripting_and_Architecture/index|Back to Scripting and Architecture]] | [[index|Back to Main Page]]
+[[04_Scripting_and_Architecture/index|Back to Scripting and Architecture]] | [[touchdesigner/index|Back to Main Page]]

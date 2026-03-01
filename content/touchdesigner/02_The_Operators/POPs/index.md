@@ -6,8 +6,6 @@ tags:
   - pop
   - operators
 ---
-# POPs — Point Operators
-
 POPs (introduced in TouchDesigner 2023+) bring **massive GPU-accelerated particle and point cloud processing** to TouchDesigner. Unlike SOPs which run on the CPU, POPs can handle millions of points in real-time by running operations in parallel on the GPU.
 
 **Key nodes:** Point, Merge, Force, Attribute, Render, Convert

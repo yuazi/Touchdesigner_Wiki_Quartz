@@ -15,4 +15,4 @@ This module explains the techniques required to draw geometry and pixels to the 
 - **[[Feedback Loops]]**: Creating recursive trails, generative feedback, and reaction-diffusion systems by feeding a TOP's output back into itself.
 
 ---
-[[../index|← Back to Main Index]]
+[[touchdesigner/index|← Back to TouchDesigner Index]]

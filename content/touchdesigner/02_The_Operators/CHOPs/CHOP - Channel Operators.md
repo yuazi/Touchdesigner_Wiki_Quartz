@@ -43,4 +43,4 @@ CHOPs are the nervous system of your TouchDesigner network, moving numbers from 
      - *Pros:* Essential for building interactive UIs where sliders need to both control logic and reflect external changes.
      - *Cons:* Can sometimes lead to evaluation loops if not careful.
 ---
-[[02_The_Operators/CHOPs/index|Back to CHOPs]] | [[02_The_Operators/index|Back to The Operators]] | [[index|Back to Main Page]]
+[[02_The_Operators/CHOPs/index|Back to CHOPs]] | [[02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to Main Page]]

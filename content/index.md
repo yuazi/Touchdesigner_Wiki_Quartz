@@ -17,6 +17,12 @@ A structured wiki on node-based visual programming and real-time interactive med
 
 > Operator families · Python scripting · GLSL shaders · Audio reactivity · Connectivity protocols
 
+### [[work/index|Work]]
+Projects, experiments, and things I've shipped — personal and professional.
+
+### [[calendar/index|Calendar]]
+A running log of what I've been working on and learning, ordered by time.
+
 ---
 
 ## How to navigate

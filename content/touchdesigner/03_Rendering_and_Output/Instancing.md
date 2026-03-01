@@ -24,4 +24,4 @@ Instancing allows you to draw the same piece of geometry thousands or millions o
 
 By instancing a simple box, you can create a massive cityscape, a grid of reactive particles, or a complex flocking simulation—all in real-time.
 ---
-[[03_Rendering_and_Output/index|Back to Rendering and Output]] | [[index|Back to Main Page]]
+[[03_Rendering_and_Output/index|Back to Rendering and Output]] | [[touchdesigner/index|Back to Main Page]]

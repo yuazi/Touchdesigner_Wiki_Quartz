@@ -24,4 +24,4 @@ Zero-latency GPU memory sharing on the same machine. Since you are on macOS, you
 
 *Note: In TouchDesigner, the node is called `Syphon Spout` to support both OS types, but on Mac, it utilizes the Syphon protocol under the hood.*
 ---
-[[05_Connectivity_and_Shaders/index|Back to Connectivity and Shaders]] | [[index|Back to Main Page]]
+[[05_Connectivity_and_Shaders/index|Back to Connectivity and Shaders]] | [[touchdesigner/index|Back to Main Page]]

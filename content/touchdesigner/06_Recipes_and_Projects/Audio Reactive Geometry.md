@@ -33,4 +33,4 @@ This recipe connects audio analysis directly to geometry instancing, creating a 
 
 Now, you have a row of boxes whose heights (or Y-positions) dynamically spike with the frequencies of the playing song.
 ---
-[[06_Recipes_and_Projects/index|Back to Recipes and Projects]] | [[index|Back to Main Page]]
+[[06_Recipes_and_Projects/index|Back to Recipes and Projects]] | [[touchdesigner/index|Back to Main Page]]

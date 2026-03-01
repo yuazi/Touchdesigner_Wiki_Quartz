@@ -1,8 +1,6 @@
 ---
 title: "TouchDesigner Wiki"
 ---
-# TouchDesigner Wiki
-
 Welcome to your **TouchDesigner** learning wiki — a structured reference for node-based visual programming and real-time interactive media.
 
 ---

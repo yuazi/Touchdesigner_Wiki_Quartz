@@ -60,7 +60,7 @@ Place a Constant and an LFO side-by-side, feed both into a **Switch CHOP**, and 
 | Can be automated later | Requires rewrite | Just swap in an LFO |
 
 ---
-[[02_The_Operators/CHOPs/index|Back to CHOPs]] | [[02_The_Operators/index|Back to The Operators]] | [[index|Back to Main Page]]
+[[02_The_Operators/CHOPs/index|Back to CHOPs]] | [[02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to Main Page]]
 | Visible in network | ✗ | ✓ |
 | Named | ✗ | ✓ |
 
@@ -74,4 +74,4 @@ Place a Constant and an LFO side-by-side, feed both into a **Switch CHOP**, and 
 - [[Math CHOP]] — combine and remap constant values
 
 ---
-[[02_The_Operators/CHOPs/index|Back to CHOPs]] | [[02_The_Operators/index|Back to The Operators]] | [[index|Back to Main Page]]
+[[02_The_Operators/CHOPs/index|Back to CHOPs]] | [[02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to Main Page]]

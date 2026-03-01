@@ -17,4 +17,4 @@ Pre-built UI elements like buttons, sliders, and knobs found in the Palette (Bas
 
 - **Customization:** Most styling is done via the "Look" and "Color" parameters on the Widget.
 ---
-[[04_Scripting_and_Architecture/index|Back to Scripting and Architecture]] | [[index|Back to Main Page]]
+[[04_Scripting_and_Architecture/index|Back to Scripting and Architecture]] | [[touchdesigner/index|Back to Main Page]]

@@ -145,4 +145,4 @@ Kick drums push the zoom, creating the classic "zoom-in-on-beat" VJ effect.
 
 [[Index|Back to Recipes & Projects]]
 ---
-[[06_Recipes_and_Projects/index|Back to Recipes and Projects]] | [[index|Back to Main Page]]
+[[06_Recipes_and_Projects/index|Back to Recipes and Projects]] | [[touchdesigner/index|Back to Main Page]]
