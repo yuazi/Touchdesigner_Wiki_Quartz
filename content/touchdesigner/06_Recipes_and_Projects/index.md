@@ -14,6 +14,7 @@ This module provides practical, step-by-step implementations combining technique
 - **[[Dreamscape Particle Cloud]]**: Glowing GPU particle cloud with noise-driven movement and feedback bloom — based on söla's tutorial.
 - **[[Hand Tracking]]**: Real-time hand tracking with MediaPipe — gestures, landmark mapping, and driving visuals (Torin Blankensmith, 3-part series + bonus projects).
   - [[Hand Tracking Tutorial|★ Complete step-by-step tutorial]] — setup, watercolor brush, and generative architecture in one document
+- **[[5 Ways To Make Particles]]**: All five particle methods compared — Particle SOP, POP Network, Instancing, GLSL Feedback, and 2D Feedback — based on anya maryina's tutorial.
 
 
 ---
