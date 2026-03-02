@@ -25,7 +25,8 @@ A running log of what I've been working on and learning, ordered by time.
 ### [[notes/index|Notes]]
 Short-form notes and references on things I find interesting.
 
-> Yazi · terminal tools · productivity
+- [[notes/perfumes|Perfumes]]
+- [[notes/yazi|Yazi – Terminal File Manager]]
 
 ### [[work/index|Work]]
 Projects, experiments, and things I've shipped — personal and professional.
