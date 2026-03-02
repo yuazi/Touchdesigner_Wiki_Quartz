@@ -1,6 +1,10 @@
 ---
 title: Ghostty – Terminal Emulator
-tags: [cli, tools, terminal]
+tags:
+  - cli
+  - tools
+  - terminal
+date: 2026-03-02
 ---
 
 [Ghostty](https://ghostty.org/) is a fast, feature-rich, and native terminal emulator written in Zig, with support for GPU rendering, native OS integrations, and a zero-config philosophy.
