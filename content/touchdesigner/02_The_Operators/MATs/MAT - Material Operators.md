@@ -4,6 +4,7 @@ tags:
   - td/operators
   - mat
   - operators
+date: 2026-03-01
 ---
 # MAT - Material Operators
 

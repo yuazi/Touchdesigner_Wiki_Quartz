@@ -3,6 +3,7 @@ tags:
   - touchdesigner
   - td/rendering
   - advanced
+date: 2026-03-01
 ---
 # Feedback Loops
 

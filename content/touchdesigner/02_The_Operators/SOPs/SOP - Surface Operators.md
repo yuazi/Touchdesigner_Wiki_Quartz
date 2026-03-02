@@ -4,6 +4,7 @@ tags:
   - td/operators
   - operators
   - sop
+date: 2026-03-01
 ---
 # SOP - Surface Operators (3D)
 

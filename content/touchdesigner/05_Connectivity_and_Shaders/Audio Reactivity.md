@@ -3,6 +3,7 @@ tags:
   - touchdesigner
   - td/connectivity
   - advanced
+date: 2026-03-01
 ---
 # Audio Reactivity
 

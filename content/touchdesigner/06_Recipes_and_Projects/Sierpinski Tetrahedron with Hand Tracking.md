@@ -9,6 +9,7 @@ tags:
   - td/generative
   - td/sop
   - td/fractal
+date: 2026-03-01
 ---
 
 **Related:** [[Hand Tracking Tutorial|Hand Tracking Tutorial]] · [[Hand Tracking|Hand Tracking Hub]]

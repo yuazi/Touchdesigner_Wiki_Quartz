@@ -4,6 +4,7 @@ tags:
   - td/architecture
   - ui
   - widgets
+date: 2026-03-01
 ---
 # Container and Widgets (Building Interfaces)
 

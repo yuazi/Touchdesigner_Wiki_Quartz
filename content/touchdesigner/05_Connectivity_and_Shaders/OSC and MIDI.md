@@ -5,6 +5,7 @@ tags:
   - io
   - midi
   - osc
+date: 2026-03-01
 ---
 # OSC and MIDI (Input/Output)
 

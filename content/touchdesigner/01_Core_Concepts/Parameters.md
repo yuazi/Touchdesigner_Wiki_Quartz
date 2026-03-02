@@ -4,6 +4,7 @@ tags:
   - touchdesigner
   - td/core
   - workflow
+date: 2026-03-01
 ---
 
 Every operator has a **Parameter Window** (Press `P` to toggle). This is where you configure what the node does.

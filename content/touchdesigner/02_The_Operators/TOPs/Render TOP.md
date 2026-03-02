@@ -5,6 +5,7 @@ tags:
   - top
   - rendering
   - operators
+date: 2026-03-01
 ---
 # Render TOP
 

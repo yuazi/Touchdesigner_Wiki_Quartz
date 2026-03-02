@@ -4,6 +4,7 @@ tags:
   - td/operators
   - chop
   - operators
+date: 2026-03-01
 ---
 # CHOP - Channel Operators (Data)
 

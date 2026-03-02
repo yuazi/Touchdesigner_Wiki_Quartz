@@ -4,6 +4,7 @@ tags:
   - td/operators
   - dat
   - operators
+date: 2026-03-01
 ---
 # DAT - Data Operators (Text)
 

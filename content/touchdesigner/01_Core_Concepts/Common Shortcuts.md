@@ -4,6 +4,7 @@ tags:
   - touchdesigner
   - td/core
   - workflow
+date: 2026-03-01
 ---
 
 Mastering shortcuts will significantly speed up your workflow.

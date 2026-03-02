@@ -4,6 +4,7 @@ tags:
   - touchdesigner
   - td/core
   - workflow
+date: 2026-03-01
 ---
 
 Every node has a small button in the bottom-right corner (looks like a plus sign or a target). This is the **Viewer Active** button.

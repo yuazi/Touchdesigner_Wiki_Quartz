@@ -6,6 +6,7 @@ tags:
   - noise
   - operators
   - top
+date: 2026-03-01
 ---
 # Noise Operators
 

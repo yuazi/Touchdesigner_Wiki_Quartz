@@ -5,6 +5,7 @@ tags:
   - particles
   - pop
   - recipes
+date: 2026-03-01
 ---
 # Recipe: Particle System with POPs
 
