@@ -459,6 +459,7 @@ From here you can extend the rig by:
 ## Related
 
 - [[Hand Tracking|Hub]] — video links and series overview
+- [[Sierpinski Tetrahedron with Hand Tracking]] — fractal geometry project using the same MediaPipe rig
 - [[../04_Scripting_and_Architecture/Python in TD|Python in TD]]
 - [[../02_The_Operators/CHOPs/index|CHOPs]]
 - [[../03_Rendering_and_Output/Instancing|Instancing]]

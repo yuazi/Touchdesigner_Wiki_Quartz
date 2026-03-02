@@ -88,6 +88,7 @@ End-to-end practical examples.
 | [[touchdesigner/06_Recipes_and_Projects/Dreamscape Particle Cloud\|Dreamscape Particle Cloud]] | Glowing particle cloud with feedback bloom (söla tutorial) |
 | [[touchdesigner/06_Recipes_and_Projects/Hand Tracking\|Hand Tracking]] | MediaPipe hand tracking — gestures, landmarks, driving visuals (Torin Blankensmith) |
 | [[touchdesigner/06_Recipes_and_Projects/Hand Tracking Tutorial\|★ Hand Tracking Tutorial]] | Full step-by-step: setup → watercolor brush → generative architecture |
+| [[touchdesigner/06_Recipes_and_Projects/Sierpinski Tetrahedron with Hand Tracking\|3D Sierpinski Tetrahedron with Hand Tracking]] | Recursive fractal geometry with Copy SOP, controlled by wrist orientation and pinch-zoom via MediaPipe |
 | [[touchdesigner/06_Recipes_and_Projects/5 Ways To Make Particles\|5 Ways To Make Particles]] | Every particle method compared: Particle SOP, POPs, Instancing, GLSL Feedback, 2D Feedback (anya maryina) |
 
 
