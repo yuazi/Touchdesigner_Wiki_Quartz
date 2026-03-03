@@ -1,4 +1,4 @@
-# (y)usage Garden
+# (y)usage chill Garden
 
 A personal **digital garden** — a living collection of notes, projects, and logs organized by curiosity and use.
 
