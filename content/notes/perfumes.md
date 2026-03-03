@@ -6,7 +6,7 @@ tags:
 date: 2026-03-02
 ---
 ## I think its essential to smell good, perhaps smelling things
-Here is a List of my favs
+Here is a List of my favs (to add short description and season)
 
 | Perfume | Top Notes | Middle Notes | Base Notes |
 | ------- | --------- | ------------ | ---------- |
