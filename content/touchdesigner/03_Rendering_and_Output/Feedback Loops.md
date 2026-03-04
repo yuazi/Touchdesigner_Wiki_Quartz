@@ -5,8 +5,6 @@ tags:
   - advanced
 date: 2026-02-16
 ---
-[[touchdesigner/03_Rendering_and_Output/index|Back to Rendering & Output]]
-
 # Feedback Loops
 
 A **Feedback TOP** reads the texture from the previous frame. Combining current video with the previous frame creates echoes, trails, complex fractals, and reaction-diffusion simulations.
@@ -26,3 +24,6 @@ Feedback loops can quickly blow out to pure white or decay to pure black.
 - Be mindful of pixel formats (using 16-bit or 32-bit float prevents early color clamping).
 ---
 [[touchdesigner/03_Rendering_and_Output/index|Back to Rendering & Output]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/03_Rendering_and_Output/index|Back to Rendering & Output]]

@@ -8,8 +8,6 @@ tags:
   - shader
 date: 2026-03-02
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]
-
 # Recipe: GLSL Feedback Effect
 
 A **feedback loop** feeds a texture's own output back into itself as input, creating trails, echo effects, fluid-like smearing, and reaction-diffusion patterns. Combining this with a custom GLSL shader gives you GPU-speed procedural visuals.
@@ -149,3 +147,6 @@ Kick drums push the zoom, creating the classic "zoom-in-on-beat" VJ effect.
 [[Index|Back to Recipes & Projects]]
 ---
 [[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]

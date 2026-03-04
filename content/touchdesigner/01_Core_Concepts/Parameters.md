@@ -6,8 +6,6 @@ tags:
   - workflow
 date: 2026-02-06
 ---
-[[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]]
-
 Every operator has a **Parameter Window** (Press `P` to toggle). This is where you configure what the node does.
 
 ## Parameter Modes
@@ -22,3 +20,6 @@ Every operator has a **Parameter Window** (Press `P` to toggle). This is where y
 - Use **Binding** when building user interfaces or custom components, allowing parameters to be controlled by a script, a CHOP, or a UI element simultaneously.
 ---
 [[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]]

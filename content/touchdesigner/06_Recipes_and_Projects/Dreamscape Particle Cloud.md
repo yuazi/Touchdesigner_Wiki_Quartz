@@ -10,8 +10,6 @@ tags:
   - recipes
 date: 2026-03-02
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]
-
 > **Based on:** [Touch Designer Dreamscape Particle Cloud Tutorial](https://www.youtube.com/watch?v=4tOldYnNFV0) by **söla**
 
 A soft, glowing particle cloud that floats and breathes — the "dreamscape" aesthetic. This combines POPs for GPU-based particle movement with a feedback loop and post-processing to achieve the hazy, luminous look.
@@ -182,3 +180,6 @@ If you want the particle cloud to be fully 3D with a moving camera:
 - **Color palettes:** Try `Add` mode in the Composite for an additive neon look, or `Screen` for softer pastels
 ---
 [[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]

@@ -7,8 +7,6 @@ tags:
   - scripting
 date: 2026-02-06
 ---
-[[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]]
-
 Every parameter in TouchDesigner has **four modes**, switchable by clicking the small mode indicator to the left of the parameter field:
 
 | Mode | Colour | Description |
@@ -119,3 +117,6 @@ x * x * (3 - 2 * x)
 
 ---
 [[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]]

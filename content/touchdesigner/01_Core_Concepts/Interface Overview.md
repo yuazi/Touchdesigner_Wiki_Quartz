@@ -6,8 +6,6 @@ tags:
   - introduction
 date: 2026-02-06
 ---
-[[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]]
-
 The TouchDesigner interface is a large, infinite canvas called the **Network Editor**.
 
 ## Major UI Elements
@@ -25,3 +23,6 @@ The TouchDesigner interface is a large, infinite canvas called the **Network Edi
 - **I:** Go into the selected component.
 ---
 [[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]]

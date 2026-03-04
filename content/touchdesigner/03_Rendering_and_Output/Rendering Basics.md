@@ -5,8 +5,6 @@ tags:
   - rendering
 date: 2026-02-16
 ---
-[[touchdesigner/03_Rendering_and_Output/index|Back to Rendering & Output]]
-
 # Rendering Basics
 
 In TouchDesigner, rendering involves converting 3D geometry (SOPs), materials (MATs), lighting, and camera perspectives into a 2D image (TOP).
@@ -30,3 +28,6 @@ The **Render TOP** has several crucial parameters on its setup pages:
 - **Anti-alias:** Smooths the jagged edges of geometry. Higher values cost more performance.
 ---
 [[touchdesigner/03_Rendering_and_Output/index|Back to Rendering & Output]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/03_Rendering_and_Output/index|Back to Rendering & Output]]

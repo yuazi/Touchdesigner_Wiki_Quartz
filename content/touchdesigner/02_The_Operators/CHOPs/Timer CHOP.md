@@ -7,8 +7,6 @@ tags:
   - timer
 date: 2026-02-11
 ---
-[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]]
-
 # Timer CHOP
 
 The **Timer CHOP** is the most robust and accurate way to handle triggers, countdowns, and time-based events in TouchDesigner. It is significantly more reliable for complex logic than building your own counters.
@@ -39,3 +37,6 @@ When you create a Timer CHOP, it usually comes attached to a Text DAT full of Py
 This is incredibly powerful. You can write Python code that *only executes* when those specific events happen. For example, triggering a sound effect using `onStart()`, and loading a new level using `onDone()`.
 ---
 [[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]]

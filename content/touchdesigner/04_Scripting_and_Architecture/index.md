@@ -5,8 +5,6 @@ tags:
   - td/architecture
 date: 2026-02-21
 ---
-[[touchdesigner/index|Back to TouchDesigner]]
-
 This module covers Logic, code, performance optimization, and project management.
 
 ## Python Scripting
@@ -21,3 +19,6 @@ This module covers Logic, code, performance optimization, and project management
 ## Optimization
 - **[[Cooking]]**: Understanding the push/pull execution methodology.
 - **[[Performance Monitoring]]**: How to find and fix bottlenecks in your network.
+
+---
+[[touchdesigner/index|Back to TouchDesigner]]

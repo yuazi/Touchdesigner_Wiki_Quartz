@@ -7,8 +7,6 @@ tags:
   - rendering
 date: 2026-02-26
 ---
-[[touchdesigner/05_Connectivity_and_Shaders/index|Back to Connectivity & Shaders]]
-
 # Introduction to GLSL in TouchDesigner
 
 While TouchDesigner's built-in nodes (TOPs, SOPs, MATs) are incredibly powerful, writing custom **GLSL (OpenGL Shading Language)** code allows you to bypass the node network overhead and write highly optimized, bespoke algorithms that run natively on the GPU.
@@ -62,3 +60,6 @@ The biggest advantage of GLSL in TD is how easily you can pass data *into* the s
 - **Samplers:** You can connect up to 30 Input TOPs (images, noises, videos) to a GLSL TOP.  In the shader, you reference them using standard sampler functions (like `texture(sTD2DInputs[0], uv)`).
 ---
 [[touchdesigner/05_Connectivity_and_Shaders/index|Back to Connectivity & Shaders]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/05_Connectivity_and_Shaders/index|Back to Connectivity & Shaders]]

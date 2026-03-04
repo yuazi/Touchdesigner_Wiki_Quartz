@@ -4,8 +4,6 @@ tags:
   - work
   - projects
 ---
-[[index|Back to Home]]
-
 A collection of projects, experiments, and professional work — things I've built or contributed to.
 
 ---
@@ -26,3 +24,6 @@ A collection of projects, experiments, and professional work — things I've bui
 ## What counts as "work"?
 
 Anything I've put real time into — client work, personal projects, open-source contributions, or experiments that shipped in some form.
+
+---
+[[index|Back to Home]]

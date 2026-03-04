@@ -6,8 +6,6 @@ tags:
   - workflow
 date: 2026-02-06
 ---
-[[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]]
-
 In TouchDesigner, you build networks by connecting operators.
 
 ## Left-to-Right Flow
@@ -22,3 +20,6 @@ In TouchDesigner, you build networks by connecting operators.
 - Use **In** and **Out** operators inside a Component (like a Base COMP) to define inputs/outputs on the Component node itself.
 ---
 [[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]]

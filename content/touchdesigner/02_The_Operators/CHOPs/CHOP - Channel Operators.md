@@ -6,8 +6,6 @@ tags:
   - operators
 date: 2026-02-11
 ---
-[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]]
-
 # CHOP - Channel Operators (Data)
 
 CHOPs are used for control signals, audio, and numeric data.
@@ -47,3 +45,6 @@ CHOPs are the nervous system of your TouchDesigner network, moving numbers from 
      - *Cons:* Can sometimes lead to evaluation loops if not careful.
 ---
 [[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]]

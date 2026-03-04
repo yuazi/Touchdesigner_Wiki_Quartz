@@ -5,8 +5,6 @@ tags:
   - td/core
 date: 2026-02-06
 ---
-[[touchdesigner/index|Back to TouchDesigner]]
-
 Welcome to the Core Concepts module! This folder contains everything you need to get up and running with TouchDesigner's specific workflow.
 
 ## Contents
@@ -18,3 +16,6 @@ Welcome to the Core Concepts module! This folder contains everything you need to
 - **[[Parameters]]**: Understanding the different modes for node settings (Constant, Expression, Export, Binding).
 - **[[Expressions and Parameters]]**: Python expressions, time references, `me`, `parent()`, and useful patterns.
 - **[[Viewer Active Mode]]**: How to interact directly with node outputs.
+
+---
+[[touchdesigner/index|Back to TouchDesigner]]

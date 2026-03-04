@@ -6,8 +6,6 @@ tags:
   - operators
 date: 2026-02-11
 ---
-[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]]
-
 # Constant CHOP
 
 The **Constant CHOP** is the simplest CHOP — it outputs one or more channels with fixed, user-defined values that do not change over time. Think of it as a named variable or knob.
@@ -78,3 +76,6 @@ Place a Constant and an LFO side-by-side, feed both into a **Switch CHOP**, and 
 
 ---
 [[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]]

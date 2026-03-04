@@ -5,8 +5,6 @@ tags:
   - rendering
 date: 2026-02-16
 ---
-[[touchdesigner/03_Rendering_and_Output/index|Back to Rendering & Output]]
-
 # Cameras and Lights
 
 ## Camera COMP
@@ -35,3 +33,6 @@ To enable shadows:
 3. Soft shadows require adjusting the *Softness* and *Resolution* parameters for quality.
 ---
 [[touchdesigner/03_Rendering_and_Output/index|Back to Rendering & Output]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/03_Rendering_and_Output/index|Back to Rendering & Output]]

@@ -12,8 +12,6 @@ tags:
   - td/tutorials
 date: 2026-03-02
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]
-
 > **Based on:** [5 Ways To Make Particles in TouchDesigner](https://www.youtube.com/watch?v=kNeSa7XivUs) by **anya maryina**
 
 A comparative breakdown of every major particle approach in TouchDesigner. Each method has its own performance profile, creative ceiling, and ideal use case. Understanding all five lets you pick the right tool for any project.
@@ -253,3 +251,6 @@ Total custom control / GPU only?  → Method 4 (GLSL Feedback)
 - [[GLSL Feedback Effect|Recipe: GLSL Feedback Effect]]
 
 ---
+
+---
+[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]

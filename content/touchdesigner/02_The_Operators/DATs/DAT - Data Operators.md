@@ -6,8 +6,6 @@ tags:
   - operators
 date: 2026-02-11
 ---
-[[touchdesigner/02_The_Operators/DATs/index|Back to DATs]]
-
 # DAT - Data Operators (Text)
 
 DATs are used for tables, scripts, XML, JSON, and plain text.
@@ -43,3 +41,6 @@ DATs manage anything text or script-related in TouchDesigner.
    - DATs easily convert to other families. `DAT to CHOP` is incredibly useful for turning numerical table data into CHOP channels, while `CHOP to DAT` turns signals into a historical table of values.
 ---
 [[touchdesigner/02_The_Operators/DATs/index|Back to DATs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/02_The_Operators/DATs/index|Back to DATs]]

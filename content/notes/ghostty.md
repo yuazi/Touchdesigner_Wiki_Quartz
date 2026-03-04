@@ -6,8 +6,6 @@ tags:
   - terminal
 date: 2026-03-02
 ---
-[[notes/index|Back to Notes]]
-
 [Ghostty](https://ghostty.org/) is a fast, feature-rich, and native terminal emulator written in Zig, with support for GPU rendering, native OS integrations, and a zero-config philosophy.
 
 ## Installation
@@ -84,3 +82,6 @@ theme = nord
 Ghostty automatically integrates with common shells (bash, zsh, fish). It tracks the current working directory, marks prompt zones, and reports exit codes. No manual setup required for supported shells.
 
 ---
+
+---
+[[notes/index|Back to Notes]]

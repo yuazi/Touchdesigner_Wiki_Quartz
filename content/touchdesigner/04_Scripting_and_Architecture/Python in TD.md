@@ -5,8 +5,6 @@ tags:
   - scripting
 date: 2026-02-21
 ---
-[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]]
-
 # Python in TouchDesigner
 
 TouchDesigner integrates Python 3 deeply into its core. You can use Python to control parameters, manage logic, and build custom tools.
@@ -33,3 +31,6 @@ Binding creates a bi-directional property link:
 - **Accessing Tables:** `op('table1')[row, col]`
 ---
 [[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]]

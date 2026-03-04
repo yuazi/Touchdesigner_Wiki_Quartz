@@ -6,8 +6,6 @@ tags:
   - top
 date: 2026-02-11
 ---
-[[touchdesigner/02_The_Operators/TOPs/index|Back to TOPs]]
-
 # TOP - Texture Operators (2D)
 
 TOPs are used for image processing and 2D graphics. They run on the GPU.
@@ -43,3 +41,6 @@ To use TOPs effectively:
 6. **Exporting and Converting:** You can pass TOP data to other families using conversion nodes like `TOP to CHOP` to convert pixel color values into channel data streams.
 ---
 [[touchdesigner/02_The_Operators/TOPs/index|Back to TOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/02_The_Operators/TOPs/index|Back to TOPs]]

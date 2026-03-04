@@ -6,8 +6,6 @@ tags:
   - operators
 date: 2026-02-11
 ---
-[[touchdesigner/02_The_Operators/MATs/index|Back to MATs]]
-
 # MAT - Material Operators
 
 MATs define the appearance of 3D geometry (SOPs). They are assigned to **Geometry COMPs**.
@@ -32,3 +30,6 @@ MATs are essential for giving your 3D geometry (SOPs) an actual surface appearan
 4. **Lighting:** Most materials (like Phong or PBR) require a `Light COMP` in the network to be visible in the render. Without a light, geometry with these materials might appear completely black.
 ---
 [[touchdesigner/02_The_Operators/MATs/index|Back to MATs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/02_The_Operators/MATs/index|Back to MATs]]

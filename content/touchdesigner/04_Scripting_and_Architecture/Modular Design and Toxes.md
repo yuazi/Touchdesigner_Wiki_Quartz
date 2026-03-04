@@ -7,8 +7,6 @@ tags:
   - tox
 date: 2026-02-21
 ---
-[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]]
-
 # Modular Design and Toxes
 
 Keeping your networks clean, organized, and reusable.
@@ -39,3 +37,6 @@ When your module needs complex logic or state management, loose script nodes bec
 - Avoid "spaghetti" wiring across levels (don't drag wires constantly in and out of COMPs). Use `Select` OPs, `In/Out` OPs, or **Global OP Shortcuts** to establish clear data highways between your modules.
 ---
 [[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]]

@@ -4,8 +4,6 @@ tags:
   - calendar
   - log
 ---
-[[index|Back to Home]]
-
 A running log of what I've been working on, learning, and building — ordered by time.
 
 ---
@@ -23,3 +21,5 @@ A running log of what I've been working on, learning, and building — ordered b
 
 Each entry is a brief note on what I shipped, read, or explored that week. Not a diary — more like a changelog for my brain.
 
+---
+[[index|Back to Home]]

@@ -7,8 +7,6 @@ tags:
   - recipes
 date: 2026-03-01
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]
-
 # Recipe: Particle System with POPs
 
 **POP (Point Operator)** nodes run entirely on the GPU, making them the fastest way to simulate and render hundreds of thousands of particles in real time. This recipe builds a foundational particle system you can extend.
@@ -100,3 +98,6 @@ Audio Device In CHOP → Audio Spectrum CHOP → Analyze CHOP (RMS/Peak)
 [[Index|Back to Recipes & Projects]]
 ---
 [[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]

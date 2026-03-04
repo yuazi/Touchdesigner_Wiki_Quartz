@@ -8,8 +8,6 @@ tags:
   - top
 date: 2026-02-11
 ---
-[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]]
-
 # Noise Operators
 
 Noise is the foundation of organic movement, procedural textures, and generative behavior in TouchDesigner. You will use the **Noise CHOP** and **Noise TOP** in almost every project.
@@ -39,3 +37,6 @@ To make the noise evolve over time:
 - **Noise TOP:** Building procedural clouds, water textures, or displacement maps. Using it over a generic geometry gives it an organic, undulating feel.
 ---
 [[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]]

@@ -7,8 +7,6 @@ tags:
   - osc
 date: 2026-02-26
 ---
-[[touchdesigner/05_Connectivity_and_Shaders/index|Back to Connectivity & Shaders]]
-
 # OSC and MIDI (Input/Output)
 
 How to communicate with other software and controllers.
@@ -27,3 +25,6 @@ Standard protocol for music hardware and software controllers.
 - **MIDI Mapper:** Use the Dialogs > MIDI Device Mapper to connect your hardware.
 ---
 [[touchdesigner/05_Connectivity_and_Shaders/index|Back to Connectivity & Shaders]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/05_Connectivity_and_Shaders/index|Back to Connectivity & Shaders]]

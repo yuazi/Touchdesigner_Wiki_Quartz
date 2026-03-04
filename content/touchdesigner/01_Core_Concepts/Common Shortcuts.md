@@ -6,8 +6,6 @@ tags:
   - workflow
 date: 2026-02-06
 ---
-[[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]]
-
 Mastering shortcuts will significantly speed up your workflow.
 
 > **macOS Note:** TouchDesigner uses `Ctrl`, **not** `Cmd`, for its shortcuts on macOS — this is intentional and differs from most Mac apps. `Alt` translates to the `Option (⌥)` key.
@@ -25,3 +23,6 @@ Mastering shortcuts will significantly speed up your workflow.
 | **Reset button** | Reset the timeline to frame 1 — use the **Reset** transport button in the Timeline bar (no keyboard shortcut exists for this) |
 ---
 [[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]]

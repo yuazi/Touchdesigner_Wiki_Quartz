@@ -8,8 +8,6 @@ tags:
   - td/mediapipe
 date: 2026-03-01
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]
-
 **Author:** Torin Blankensmith
 **Format:** 3-part YouTube series + bonus projects
 **Playlist:** [Watch on YouTube](https://www.youtube.com/watch?v=e2FtkufeErY&list=PLgfxkm9xFocaQXGTxu7HlFomE05kPbO8z)
@@ -57,3 +55,6 @@ A master class series on implementing real-time **hand tracking** in TouchDesign
 - [[Particle System with POPs]] — driving particles from hand position
 
 ---
+
+---
+[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]

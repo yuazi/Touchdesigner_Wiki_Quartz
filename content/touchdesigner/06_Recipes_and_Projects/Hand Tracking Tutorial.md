@@ -9,8 +9,6 @@ tags:
   - td/generative
 date: 2026-03-02
 ---
-
-**Related:** [[Hand Tracking|Back to Hand Tracking]]
 **Based on:** Torin Blankensmith's MediaPipe TouchDesigner series
 **Plugin:** [github.com/torinmb/mediapipe-touchdesigner](https://github.com/torinmb/mediapipe-touchdesigner)
 
@@ -470,3 +468,5 @@ From here you can extend the rig by:
 
 [[Hand Tracking|Back to Hand Tracking]]
 
+---
+[[Hand Tracking|Back to Hand Tracking]]

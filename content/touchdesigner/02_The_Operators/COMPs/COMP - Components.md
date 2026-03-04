@@ -6,8 +6,6 @@ tags:
   - operators
 date: 2026-02-11
 ---
-[[touchdesigner/02_The_Operators/COMPs/index|Back to COMPs]]
-
 # COMP - Components
 
 COMPs are structural nodes. They can contain other networks or provide specialized functionality.
@@ -41,3 +39,6 @@ To use Components effectively in your network:
 5. **Custom Parameters Interface:** Right-click the COMP and select "Customize Component" to add your own parameters, creating a clean modular interface for complex internal mechanics.
 ---
 [[touchdesigner/02_The_Operators/COMPs/index|Back to COMPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/02_The_Operators/COMPs/index|Back to COMPs]]

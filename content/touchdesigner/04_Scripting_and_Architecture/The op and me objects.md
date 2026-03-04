@@ -5,8 +5,6 @@ tags:
   - scripting
 date: 2026-03-01
 ---
-[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]]
-
 # The 'op' and 'me' Objects
 
 These are the most common Python objects you will use.
@@ -23,3 +21,6 @@ Refers to the operator where the code is written.
 - `me.name` - Get the name of the current node.
 ---
 [[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]] | [[touchdesigner/index|Back to TouchDesigner]]
+
+---
+[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]]
