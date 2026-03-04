@@ -6,7 +6,7 @@ Welcome to your **TouchDesigner** learning wiki — a structured reference for n
 
 ---
 
-## [[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]]
+## [[touchdesigner/01_Core_Concepts/index|Core Concepts]]
 The fundamentals: interface, navigation, and workflow.
 
 | Page | Description |
@@ -22,7 +22,7 @@ The fundamentals: interface, navigation, and workflow.
 
 ---
 
-## [[touchdesigner/02_The_Operators/index|Back to The Operators]]
+## [[touchdesigner/02_The_Operators/index|The Operators]]
 The six operator families — the building blocks of every network.
 
 | Family                                                | Role                                     |
@@ -37,7 +37,7 @@ The six operator families — the building blocks of every network.
 
 ---
 
-## [[touchdesigner/03_Rendering_and_Output/index|Back to Rendering & Output]]
+## [[touchdesigner/03_Rendering_and_Output/index|Rendering & Output]]
 Generating and compositing visuals.
 
 | Page | Description |
@@ -49,7 +49,7 @@ Generating and compositing visuals.
 
 ---
 
-## [[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]]
+## [[touchdesigner/04_Scripting_and_Architecture/index|Scripting & Architecture]]
 Python, project structure, and performance.
 
 | Page | Description |
@@ -64,7 +64,7 @@ Python, project structure, and performance.
 
 ---
 
-## [[touchdesigner/05_Connectivity_and_Shaders/index|Back to Connectivity & Shaders]]
+## [[touchdesigner/05_Connectivity_and_Shaders/index|Connectivity & Shaders]]
 External I/O, protocols, and GPU programming.
 
 | Page | Description |
@@ -77,7 +77,7 @@ External I/O, protocols, and GPU programming.
 
 ---
 
-## [[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]
+## [[touchdesigner/06_Recipes_and_Projects/index|Recipes & Projects]]
 End-to-end practical examples.
 
 | Page | Description |
@@ -95,7 +95,7 @@ End-to-end practical examples.
 
 ---
 
-## [[touchdesigner/07_Tutorials_and_Links/index|Back to Tutorials & Links]]
+## [[touchdesigner/07_Tutorials_and_Links/index|Tutorials & Links]]
 Curated external resources — YouTube channels, courses, and community forums.
 
 [[index|Back to Home]]

@@ -14,21 +14,24 @@ A digital garden is intentionally unfinished. You'll find notes at different sta
 
 ## What's growing here
 
-### [[touchdesigner/index|Back to TouchDesigner]]
+### [[touchdesigner/index|TouchDesigner Wiki]]
 A structured wiki on node-based visual programming and real-time interactive media — covering operators, scripting, shaders, rendering, and end-to-end project recipes.
 
 > Operator families · Python scripting · GLSL shaders · Audio reactivity · Connectivity protocols
 
+---
 ### [[calendar/index|Calendar]]
 A running log of what I've been working on and learning, ordered by time.
 
-### [[notes/index|Back to Notes]]
+---
+### [[notes/index|Notes]]
 Short-form notes and references on things I find interesting.
 
 - [[notes/ghostty|Ghostty – Terminal Emulator]]
 - [[notes/perfumes|Perfumes]]
 - [[notes/yazi|Yazi – Terminal File Manager]]
 
+---
 ### [[work/index|Work]]
 Projects, experiments, and things I've shipped — personal and professional.
 
