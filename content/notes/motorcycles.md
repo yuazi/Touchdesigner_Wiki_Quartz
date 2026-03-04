@@ -18,3 +18,7 @@ Motorcycles have been one of those things that just clicked for me. There's some
 - **Honda CBR 600RR** — the underseat exhaust is one of the best design decisions in motorcycle history. Keeps the tail clean and the sound is incredible. A proper supersport done right.
 - **Yamaha R6** — probably the most rewarding bike to push hard on a track. The high-revving inline-four screams past 10k RPM and it just begs to be wrung out. Not friendly for commuting but it's a weapon on twisty roads.
 - **BMW F800** — understated and dead reliable. A bike you could ride across continents without thinking twice. I appreciate the engineering more the older I get.
+
+---
+
+[[notes/index|← Notes]]

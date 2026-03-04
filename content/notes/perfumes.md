@@ -15,3 +15,7 @@ Here is a List of my favs (to add short description and season)
 | Louis Vuitton Imagination                  | Citrus-spicy tea fragrance with woody depth, sophisticated and refreshing   | Spring/Summer | Citron, Calabrian Bergamot, Sicilian Orange | Tunisian Neroli, Nigerian Ginger, Ceylon Cinnamon | Chinese Black Tea, Ambroxan, Guaiac Wood, Olibanum |
 | MFK 724                                    | Clean, airy floral with aldehydic sparkle, elegant and modern               | Spring/Summer | Aldehydes, Calabrian Bergamot               | Egyptian Jasmine, Mock Orange, Sweet Pea          | White Musk, Sandalwood                             |
 | Emporio Armani Stronger with You Intensely | Sweet, spicy oriental with gourmand warmth, bold and cozy                   | Fall/Winter   | Pink Pepper, Juniper, Violet                | Toffee, Cinnamon, Lavender, Sage                  | Vanilla, Amber, Tonka Bean, Suede                  |
+
+---
+
+[[notes/index|← Notes]]
