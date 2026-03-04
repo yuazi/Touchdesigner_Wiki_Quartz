@@ -5,7 +5,7 @@ tags:
   - td/core
 date: 2026-02-06
 ---
-[[touchdesigner/index|Back to TouchDesigner Index]]
+[[touchdesigner/index|Back to TouchDesigner]]
 
 Welcome to the Core Concepts module! This folder contains everything you need to get up and running with TouchDesigner's specific workflow.
 

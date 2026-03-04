@@ -7,7 +7,7 @@ tags:
   - lighting
 date: 2026-02-26
 ---
-[[touchdesigner/05_Connectivity_and_Shaders/index|Connectivity & Shaders]]
+[[touchdesigner/05_Connectivity_and_Shaders/index|Back to Connectivity & Shaders]]
 
 # DMX and Art-Net (Lighting)
 
@@ -19,4 +19,4 @@ The standard digital protocol for stage lighting.
 - **DMX Out CHOP:** Use this to send data to USB-to-DMX interfaces (like Enttec).
 - **Art-Net / sACN:** Sending DMX data over Ethernet. Set the 'Network Address' and 'Universe'.
 ---
-[[touchdesigner/05_Connectivity_and_Shaders/index|Back to Connectivity and Shaders]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/05_Connectivity_and_Shaders/index|Back to Connectivity & Shaders]] | [[touchdesigner/index|Back to TouchDesigner]]

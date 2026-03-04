@@ -7,7 +7,7 @@ tags:
   - recipes
 date: 2026-03-02
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|Recipes & Projects]]
+[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]
 
 # Recipe: Audio Reactive Geometry
 
@@ -36,4 +36,4 @@ This recipe connects audio analysis directly to geometry instancing, creating a 
 
 Now, you have a row of boxes whose heights (or Y-positions) dynamically spike with the frequencies of the playing song.
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes and Projects]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]] | [[touchdesigner/index|Back to TouchDesigner]]

@@ -5,7 +5,7 @@ tags:
 date: 2026-01-01
 ---
 
-[[index|Home]]
+[[index|Back to Home]]
 
 #### Notes and random stuff I think about
 

@@ -6,7 +6,7 @@ tags:
   - workflow
 date: 2026-03-01
 ---
-[[touchdesigner/01_Core_Concepts/index|Core Concepts]]
+[[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]]
 
 Every node has a small button in the bottom-right corner (looks like a plus sign or a target). This is the **Viewer Active** button.
 
@@ -17,4 +17,4 @@ Every node has a small button in the bottom-right corner (looks like a plus sign
 ## Shortcut
 Select a node and press **A** to toggle Viewer Active.
 ---
-[[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]] | [[touchdesigner/index|Back to TouchDesigner]]

@@ -5,7 +5,7 @@ tags:
   - rendering
 date: 2026-02-16
 ---
-[[touchdesigner/03_Rendering_and_Output/index|Rendering & Output]]
+[[touchdesigner/03_Rendering_and_Output/index|Back to Rendering & Output]]
 
 # Cameras and Lights
 
@@ -34,4 +34,4 @@ To enable shadows:
 2. Change the *Shadow Type* (e.g., Hard, Soft).
 3. Soft shadows require adjusting the *Softness* and *Resolution* parameters for quality.
 ---
-[[touchdesigner/03_Rendering_and_Output/index|Back to Rendering and Output]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/03_Rendering_and_Output/index|Back to Rendering & Output]] | [[touchdesigner/index|Back to TouchDesigner]]

@@ -5,7 +5,7 @@ tags:
   - td/tutorials
 date: 2026-03-01
 ---
-[[touchdesigner/index|Back to TouchDesigner Index]]
+[[touchdesigner/index|Back to TouchDesigner]]
 
 This module contains the best external resources for learning TouchDesigner, ranging from absolute beginner courses to advanced GLSL programming.
 

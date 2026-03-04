@@ -6,7 +6,7 @@ tags:
   - motorcycle
 date: 2026-03-04
 ---
-[[notes/index|Notes]]
+[[notes/index|Back to Notes]]
 
 Motorcycles have been one of those things that just clicked for me. There's something about being fully present — no distractions, just you, the bike, and the road. It forces a kind of focus I don't get anywhere else.
 

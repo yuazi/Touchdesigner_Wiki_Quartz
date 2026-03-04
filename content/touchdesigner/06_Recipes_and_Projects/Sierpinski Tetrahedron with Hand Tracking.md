@@ -11,9 +11,9 @@ tags:
   - td/fractal
 date: 2026-03-01
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|Recipes & Projects]]
+[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]
 
-**Related:** [[Hand Tracking Tutorial|Hand Tracking Tutorial]] · [[Hand Tracking|Hand Tracking Hub]]
+**Related:** [[Hand Tracking Tutorial|Hand Tracking Tutorial]] · [[Hand Tracking|Back to Hand Tracking]]
 
 ---
 

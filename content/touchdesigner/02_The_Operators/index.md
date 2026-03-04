@@ -5,7 +5,7 @@ tags:
   - td/operators
 date: 2026-02-11
 ---
-[[touchdesigner/index|Back to TouchDesigner Index]]
+[[touchdesigner/index|Back to TouchDesigner]]
 
 This module covers TouchDesigner's fundamental building blocks: Operators (or Nodes).
 

@@ -7,7 +7,7 @@ tags:
   - video
 date: 2026-02-26
 ---
-[[touchdesigner/05_Connectivity_and_Shaders/index|Connectivity & Shaders]]
+[[touchdesigner/05_Connectivity_and_Shaders/index|Back to Connectivity & Shaders]]
 
 # NDI and Syphon (Video Sharing)
 
@@ -27,4 +27,4 @@ Zero-latency GPU memory sharing on the same machine. Since you are on macOS, you
 
 *Note: In TouchDesigner, the node is called `Syphon Spout` to support both OS types, but on Mac, it utilizes the Syphon protocol under the hood.*
 ---
-[[touchdesigner/05_Connectivity_and_Shaders/index|Back to Connectivity and Shaders]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/05_Connectivity_and_Shaders/index|Back to Connectivity & Shaders]] | [[touchdesigner/index|Back to TouchDesigner]]

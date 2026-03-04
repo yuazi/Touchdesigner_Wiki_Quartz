@@ -10,7 +10,7 @@ tags:
 date: 2026-03-02
 ---
 
-**Related:** [[Hand Tracking|Hub]]
+**Related:** [[Hand Tracking|Back to Hand Tracking]]
 **Based on:** Torin Blankensmith's MediaPipe TouchDesigner series
 **Plugin:** [github.com/torinmb/mediapipe-touchdesigner](https://github.com/torinmb/mediapipe-touchdesigner)
 
@@ -459,7 +459,7 @@ From here you can extend the rig by:
 
 ## Related
 
-- [[Hand Tracking|Hub]] — video links and series overview
+- [[Hand Tracking|Back to Hand Tracking]] — video links and series overview
 - [[Sierpinski Tetrahedron with Hand Tracking]] — fractal geometry project using the same MediaPipe rig
 - [[../04_Scripting_and_Architecture/Python in TD|Python in TD]]
 - [[../02_The_Operators/CHOPs/index|CHOPs]]
@@ -468,5 +468,5 @@ From here you can extend the rig by:
 
 ---
 
-[[Hand Tracking|Back to Hub]]
+[[Hand Tracking|Back to Hand Tracking]]
 

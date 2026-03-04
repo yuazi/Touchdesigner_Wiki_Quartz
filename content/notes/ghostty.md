@@ -6,7 +6,7 @@ tags:
   - terminal
 date: 2026-03-02
 ---
-[[notes/index|Notes]]
+[[notes/index|Back to Notes]]
 
 [Ghostty](https://ghostty.org/) is a fast, feature-rich, and native terminal emulator written in Zig, with support for GPU rendering, native OS integrations, and a zero-config philosophy.
 

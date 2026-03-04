@@ -5,7 +5,7 @@ tags:
   - scripting
 date: 2026-02-21
 ---
-[[touchdesigner/04_Scripting_and_Architecture/index|Scripting & Architecture]]
+[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]]
 
 # Python in TouchDesigner
 
@@ -32,4 +32,4 @@ Binding creates a bi-directional property link:
 - **Driving Parameters:** Drag a CHOP channel onto a parameter and select "CHOP Reference".
 - **Accessing Tables:** `op('table1')[row, col]`
 ---
-[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting and Architecture]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]] | [[touchdesigner/index|Back to TouchDesigner]]

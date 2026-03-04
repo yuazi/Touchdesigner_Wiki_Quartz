@@ -5,7 +5,7 @@ tags:
   - advanced
 date: 2026-02-16
 ---
-[[touchdesigner/03_Rendering_and_Output/index|Rendering & Output]]
+[[touchdesigner/03_Rendering_and_Output/index|Back to Rendering & Output]]
 
 # Feedback Loops
 
@@ -25,4 +25,4 @@ Feedback loops can quickly blow out to pure white or decay to pure black.
 - Use a **Level TOP** inside the loop to slightly reduce opacity or brightness (e.g., setting the opacity multiplier to 0.99) so trails fade out over time.
 - Be mindful of pixel formats (using 16-bit or 32-bit float prevents early color clamping).
 ---
-[[touchdesigner/03_Rendering_and_Output/index|Back to Rendering and Output]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/03_Rendering_and_Output/index|Back to Rendering & Output]] | [[touchdesigner/index|Back to TouchDesigner]]

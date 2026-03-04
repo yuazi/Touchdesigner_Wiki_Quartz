@@ -5,7 +5,7 @@ tags:
   - scripting
 date: 2026-03-01
 ---
-[[touchdesigner/04_Scripting_and_Architecture/index|Scripting & Architecture]]
+[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]]
 
 # The 'op' and 'me' Objects
 
@@ -22,4 +22,4 @@ Refers to the operator where the code is written.
 - `me.parent()` - Reference the component containing this node.
 - `me.name` - Get the name of the current node.
 ---
-[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting and Architecture]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]] | [[touchdesigner/index|Back to TouchDesigner]]

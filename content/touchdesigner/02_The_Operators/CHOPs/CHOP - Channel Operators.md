@@ -6,7 +6,7 @@ tags:
   - operators
 date: 2026-02-11
 ---
-[[touchdesigner/02_The_Operators/CHOPs/index|CHOPs]]
+[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]]
 
 # CHOP - Channel Operators (Data)
 
@@ -46,4 +46,4 @@ CHOPs are the nervous system of your TouchDesigner network, moving numbers from 
      - *Pros:* Essential for building interactive UIs where sliders need to both control logic and reflect external changes.
      - *Cons:* Can sometimes lead to evaluation loops if not careful.
 ---
-[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to TouchDesigner]]

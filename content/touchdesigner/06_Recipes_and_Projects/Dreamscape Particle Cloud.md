@@ -10,7 +10,7 @@ tags:
   - recipes
 date: 2026-03-02
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|Recipes & Projects]]
+[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]
 
 > **Based on:** [Touch Designer Dreamscape Particle Cloud Tutorial](https://www.youtube.com/watch?v=4tOldYnNFV0) by **söla**
 
@@ -181,4 +181,4 @@ If you want the particle cloud to be fully 3D with a moving camera:
 - **Multiple clouds:** Duplicate the entire POP chain with different noise seeds and composite them together
 - **Color palettes:** Try `Add` mode in the Composite for an additive neon look, or `Screen` for softer pastels
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes and Projects]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]] | [[touchdesigner/index|Back to TouchDesigner]]

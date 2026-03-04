@@ -5,7 +5,7 @@ tags:
   - td/connectivity
 date: 2026-02-26
 ---
-[[touchdesigner/index|Back to TouchDesigner Index]]
+[[touchdesigner/index|Back to TouchDesigner]]
 
 This module covers advanced hardware I/O, network protocols, and custom GPU programming.
 

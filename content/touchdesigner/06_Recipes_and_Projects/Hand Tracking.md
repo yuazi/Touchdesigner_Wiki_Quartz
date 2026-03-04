@@ -8,7 +8,7 @@ tags:
   - td/mediapipe
 date: 2026-03-01
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|Recipes & Projects]]
+[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]
 
 **Author:** Torin Blankensmith
 **Format:** 3-part YouTube series + bonus projects

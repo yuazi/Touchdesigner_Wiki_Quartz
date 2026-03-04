@@ -5,7 +5,7 @@ tags:
   - advanced
 date: 2026-02-16
 ---
-[[touchdesigner/03_Rendering_and_Output/index|Rendering & Output]]
+[[touchdesigner/03_Rendering_and_Output/index|Back to Rendering & Output]]
 
 # Geometry Instancing
 
@@ -27,4 +27,4 @@ Instancing allows you to draw the same piece of geometry thousands or millions o
 
 By instancing a simple box, you can create a massive cityscape, a grid of reactive particles, or a complex flocking simulation—all in real-time.
 ---
-[[touchdesigner/03_Rendering_and_Output/index|Back to Rendering and Output]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/03_Rendering_and_Output/index|Back to Rendering & Output]] | [[touchdesigner/index|Back to TouchDesigner]]

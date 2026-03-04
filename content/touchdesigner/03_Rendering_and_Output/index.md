@@ -5,7 +5,7 @@ tags:
   - td/rendering
 date: 2026-02-16
 ---
-[[touchdesigner/index|Back to TouchDesigner Index]]
+[[touchdesigner/index|Back to TouchDesigner]]
 
 This module explains the techniques required to draw geometry and pixels to the screen.
 

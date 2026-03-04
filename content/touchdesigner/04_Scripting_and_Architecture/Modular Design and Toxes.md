@@ -7,7 +7,7 @@ tags:
   - tox
 date: 2026-02-21
 ---
-[[touchdesigner/04_Scripting_and_Architecture/index|Scripting & Architecture]]
+[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]]
 
 # Modular Design and Toxes
 
@@ -38,4 +38,4 @@ When your module needs complex logic or state management, loose script nodes bec
 - Use **Base COMPs** to group related logic.
 - Avoid "spaghetti" wiring across levels (don't drag wires constantly in and out of COMPs). Use `Select` OPs, `In/Out` OPs, or **Global OP Shortcuts** to establish clear data highways between your modules.
 ---
-[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting and Architecture]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]] | [[touchdesigner/index|Back to TouchDesigner]]

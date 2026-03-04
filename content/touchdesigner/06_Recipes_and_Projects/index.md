@@ -4,7 +4,7 @@ tags:
   - touchdesigner
   - td/recipes
 ---
-[[touchdesigner/index|Back to TouchDesigner Index]]
+[[touchdesigner/index|Back to TouchDesigner]]
 
 This module provides practical, step-by-step implementations combining techniques from all previous chapters.
 

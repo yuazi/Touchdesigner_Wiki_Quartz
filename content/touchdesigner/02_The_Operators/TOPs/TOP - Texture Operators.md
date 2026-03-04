@@ -6,7 +6,7 @@ tags:
   - top
 date: 2026-02-11
 ---
-[[touchdesigner/02_The_Operators/TOPs/index|TOPs]]
+[[touchdesigner/02_The_Operators/TOPs/index|Back to TOPs]]
 
 # TOP - Texture Operators (2D)
 
@@ -42,4 +42,4 @@ To use TOPs effectively:
 5. **Viewing Output:** Click the 'Viewer Active' toggle (bottom right of the node) to interact with the image or background-click 'Display' to set it as the network's backdrop.
 6. **Exporting and Converting:** You can pass TOP data to other families using conversion nodes like `TOP to CHOP` to convert pixel color values into channel data streams.
 ---
-[[touchdesigner/02_The_Operators/TOPs/index|Back to TOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/02_The_Operators/TOPs/index|Back to TOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to TouchDesigner]]

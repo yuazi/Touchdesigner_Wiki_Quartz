@@ -5,7 +5,7 @@ tags:
   - optimization
 date: 2026-02-21
 ---
-[[touchdesigner/04_Scripting_and_Architecture/index|Scripting & Architecture]]
+[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]]
 
 # Performance Monitoring
 
@@ -24,4 +24,4 @@ You can open this via the **Dialogs > Performance Monitor** menu. It breaks down
 - `Probe` is an extremely useful external tool (built as a `.tox` by Derivative) designed to visually track CPU and GPU usage per node. 
 - You can find it in your **Palette** panel under *Tools*, allowing you to observe performance live in the network editor.
 ---
-[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting and Architecture]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]] | [[touchdesigner/index|Back to TouchDesigner]]

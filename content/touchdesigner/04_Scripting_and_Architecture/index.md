@@ -5,7 +5,7 @@ tags:
   - td/architecture
 date: 2026-02-21
 ---
-[[touchdesigner/index|Back to TouchDesigner Index]]
+[[touchdesigner/index|Back to TouchDesigner]]
 
 This module covers Logic, code, performance optimization, and project management.
 

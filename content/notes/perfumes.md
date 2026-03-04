@@ -5,7 +5,7 @@ tags:
   - note
 date: 2026-03-02
 ---
-[[notes/index|Notes]]
+[[notes/index|Back to Notes]]
 
 ## I think its essential to smell good, perhaps smelling things
 Here is a List of my favs (to add short description and season)

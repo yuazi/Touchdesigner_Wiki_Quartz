@@ -6,7 +6,7 @@ tags:
   - interface
 date: 2026-02-06
 ---
-[[touchdesigner/01_Core_Concepts/index|Core Concepts]]
+[[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]]
 
 The **Network Editor** is the main canvas where you build, connect, and manage your Operator networks. Almost everything you do in TouchDesigner happens here.
 
@@ -74,4 +74,4 @@ This is your first debugging tool.
 - **"My network is huge and slow"** — Use `/` to search within the network. Collapse modules into COMPs with `Ctrl + Shift + C` (Network Box).
 
 ---
-[[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]] | [[touchdesigner/index|Back to TouchDesigner]]

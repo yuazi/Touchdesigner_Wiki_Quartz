@@ -7,7 +7,7 @@ tags:
   - select
 date: 2026-02-11
 ---
-[[touchdesigner/02_The_Operators/CHOPs/index|CHOPs]]
+[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]]
 
 # Select CHOP
 
@@ -33,4 +33,4 @@ Instead of routing long, messy wires across your network (or between different C
 ## The Select TOP
 There is an equivalent **Select TOP** that works exactly the same way, but for grabbing 2D image data/textures from another part of your network without drawing long wires.
 ---
-[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to TouchDesigner]]

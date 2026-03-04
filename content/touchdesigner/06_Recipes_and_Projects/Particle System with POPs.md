@@ -7,7 +7,7 @@ tags:
   - recipes
 date: 2026-03-01
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|Recipes & Projects]]
+[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]
 
 # Recipe: Particle System with POPs
 
@@ -99,4 +99,4 @@ Audio Device In CHOP → Audio Spectrum CHOP → Analyze CHOP (RMS/Peak)
 
 [[Index|Back to Recipes & Projects]]
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes and Projects]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]] | [[touchdesigner/index|Back to TouchDesigner]]

@@ -6,7 +6,7 @@ tags:
   - introduction
 date: 2026-03-01
 ---
-[[touchdesigner/01_Core_Concepts/index|Core Concepts]]
+[[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]]
 
 **TouchDesigner** is a node-based visual programming language for real-time interactive multimedia content. It is developed by Toronto-based company Derivative.
 
@@ -19,4 +19,4 @@ date: 2026-03-01
 ## The Core Concept: Flow
 In TouchDesigner, data flows from left to right through connections (wires). Each operator performs a specific task on the data.
 ---
-[[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]] | [[touchdesigner/index|Back to TouchDesigner]]

@@ -6,7 +6,7 @@ tags:
   - operators
 date: 2026-02-11
 ---
-[[touchdesigner/02_The_Operators/CHOPs/index|CHOPs]]
+[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]]
 
 # Constant CHOP
 
@@ -63,7 +63,7 @@ Place a Constant and an LFO side-by-side, feed both into a **Switch CHOP**, and 
 | Can be automated later | Requires rewrite | Just swap in an LFO |
 
 ---
-[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to TouchDesigner]]
 | Visible in network | ✗ | ✓ |
 | Named | ✗ | ✓ |
 
@@ -77,4 +77,4 @@ Place a Constant and an LFO side-by-side, feed both into a **Switch CHOP**, and 
 - [[Math CHOP]] — combine and remap constant values
 
 ---
-[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to TouchDesigner]]

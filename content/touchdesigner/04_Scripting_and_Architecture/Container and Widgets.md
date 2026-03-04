@@ -6,7 +6,7 @@ tags:
   - widgets
 date: 2026-02-21
 ---
-[[touchdesigner/04_Scripting_and_Architecture/index|Scripting & Architecture]]
+[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]]
 
 # Container and Widgets (Building Interfaces)
 
@@ -20,4 +20,4 @@ Pre-built UI elements like buttons, sliders, and knobs found in the Palette (Bas
 
 - **Customization:** Most styling is done via the "Look" and "Color" parameters on the Widget.
 ---
-[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting and Architecture]] | [[touchdesigner/index|Back to Main Page]]
+[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]] | [[touchdesigner/index|Back to TouchDesigner]]
