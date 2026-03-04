@@ -13,6 +13,7 @@ A running log of what I've been working on, learning, and building — ordered b
 ### March
 - Restructured this digital garden: moved TouchDesigner notes into their own subfolder, created the new homepage.
 - Set up Quartz 4 with a custom theme, Lorenz background, and graph view.
+- Made a simple Sudoku AI Trainer that uses GNN to learn
 
 ---
 
