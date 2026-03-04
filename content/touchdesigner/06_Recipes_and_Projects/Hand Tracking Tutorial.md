@@ -464,9 +464,6 @@ From here you can extend the rig by:
 - [[../03_Rendering_and_Output/Instancing|Instancing]]
 - [[Particle System with POPs]]
 
----
-
 [[Hand Tracking|Back to Hand Tracking]]
 
 ---
-[[Hand Tracking|Back to Hand Tracking]]

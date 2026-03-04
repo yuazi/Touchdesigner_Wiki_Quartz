@@ -16,5 +16,6 @@ This module covers advanced hardware I/O, network protocols, and custom GPU prog
 ## Custom Shaders
 - **[[Introduction to GLSL]]**: Writing custom vertex and pixel shaders in TouchDesigner to bypass node overhead and execute native GPU code.
 
----
 [[touchdesigner/index|Back to TouchDesigner]]
+
+---

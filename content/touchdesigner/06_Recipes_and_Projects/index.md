@@ -17,5 +17,6 @@ This module provides practical, step-by-step implementations combining technique
 - **[[Particle System with POPs]]**: GPU particle simulation with emitters, forces, colour-over-life, and audio reactivity.
 - **[[Sierpinski Tetrahedron with Hand Tracking|3D Sierpinski Tetrahedron with Hand Tracking]]** — fractal geometry via Copy SOP + MediaPipe orientation and pinch-zoom control
 
----
 [[touchdesigner/index|Back to TouchDesigner]]
+
+---

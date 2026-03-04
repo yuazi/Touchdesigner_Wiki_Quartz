@@ -15,5 +15,6 @@ This module explains the techniques required to draw geometry and pixels to the 
 - **[[Instancing]]**: The most critical technique for drawing thousands of identical shapes efficiently on the GPU using varied positions/colors.
 - **[[Feedback Loops]]**: Creating recursive trails, generative feedback, and reaction-diffusion systems by feeding a TOP's output back into itself.
 
----
 [[touchdesigner/index|Back to TouchDesigner]]
+
+---

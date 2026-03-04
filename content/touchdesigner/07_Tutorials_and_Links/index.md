@@ -32,5 +32,6 @@ This module contains the best external resources for learning TouchDesigner, ran
 - **[TouchDesigner Discord (Official)](https://discord.gg/touchdesigner)**: The official Discord server — the most active real-time community for troubleshooting and sharing work.
 - **[r/TouchDesigner](https://www.reddit.com/r/TouchDesigner/)**: Active Reddit community for questions, project sharing, and tutorials.
 
----
 [[touchdesigner/index|Back to TouchDesigner]]
+
+---

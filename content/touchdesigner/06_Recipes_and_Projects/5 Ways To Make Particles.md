@@ -250,7 +250,6 @@ Total custom control / GPU only?  → Method 4 (GLSL Feedback)
 - [[Dreamscape Particle Cloud|Recipe: Dreamscape Particle Cloud]]
 - [[GLSL Feedback Effect|Recipe: GLSL Feedback Effect]]
 
----
+[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]
 
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]

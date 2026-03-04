@@ -35,8 +35,7 @@ When your module needs complex logic or state management, loose script nodes bec
 ## Organization Best Practices
 - Use **Base COMPs** to group related logic.
 - Avoid "spaghetti" wiring across levels (don't drag wires constantly in and out of COMPs). Use `Select` OPs, `In/Out` OPs, or **Global OP Shortcuts** to establish clear data highways between your modules.
----
+
 [[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]] | [[touchdesigner/index|Back to TouchDesigner]]
 
 ---
-[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]]

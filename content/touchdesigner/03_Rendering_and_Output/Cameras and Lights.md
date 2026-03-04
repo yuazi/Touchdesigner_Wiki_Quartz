@@ -31,8 +31,7 @@ To enable shadows:
 1. Go to the *Shadows* page of the Light COMP.
 2. Change the *Shadow Type* (e.g., Hard, Soft).
 3. Soft shadows require adjusting the *Softness* and *Resolution* parameters for quality.
----
+
 [[touchdesigner/03_Rendering_and_Output/index|Back to Rendering & Output]] | [[touchdesigner/index|Back to TouchDesigner]]
 
 ---
-[[touchdesigner/03_Rendering_and_Output/index|Back to Rendering & Output]]

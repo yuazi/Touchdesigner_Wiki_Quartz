@@ -178,8 +178,7 @@ If you want the particle cloud to be fully 3D with a moving camera:
 - **Mouse interaction:** Use `monitorInfo('mousex')` as the Force POP's center X
 - **Multiple clouds:** Duplicate the entire POP chain with different noise seeds and composite them together
 - **Color palettes:** Try `Add` mode in the Composite for an additive neon look, or `Screen` for softer pastels
----
+
 [[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]] | [[touchdesigner/index|Back to TouchDesigner]]
 
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]

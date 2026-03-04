@@ -17,8 +17,7 @@ The primary structural component for UI. It can hold other OPs and has layout co
 Pre-built UI elements like buttons, sliders, and knobs found in the Palette (Basic Widgets).
 
 - **Customization:** Most styling is done via the "Look" and "Color" parameters on the Widget.
----
+
 [[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]] | [[touchdesigner/index|Back to TouchDesigner]]
 
 ---
-[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]]

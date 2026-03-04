@@ -19,5 +19,6 @@ COMPs are the **structural backbone** of a TouchDesigner project. They act as co
 - [[COMP - Components]]
 - [[Geo COMP]]
 
----
 [[touchdesigner/02_The_Operators/index|Back to The Operators]]
+
+---

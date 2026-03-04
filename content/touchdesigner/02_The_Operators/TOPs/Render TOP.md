@@ -83,8 +83,7 @@ For effects that require separation (e.g. rendering geometry and particles separ
 - [[MAT - Material Operators|MAT]] — shaders applied to geometry
 - [[Rendering Basics]] — full rendering workflow walkthrough
 
----
+
 [[touchdesigner/02_The_Operators/TOPs/index|Back to TOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to TouchDesigner]]
 
 ---
-[[touchdesigner/02_The_Operators/TOPs/index|Back to TOPs]]

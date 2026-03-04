@@ -54,7 +54,6 @@ A master class series on implementing real-time **hand tracking** in TouchDesign
 - [[../03_Rendering_and_Output/Instancing|Instancing]] — rendering landmark spheres efficiently
 - [[Particle System with POPs]] — driving particles from hand position
 
----
+[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]
 
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]

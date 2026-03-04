@@ -16,5 +16,6 @@ Here is a List of my favs (to add short description and season)
 | MFK 724                                    | Clean, airy floral with aldehydic sparkle, elegant and modern               | Spring/Summer | Aldehydes, Calabrian Bergamot               | Egyptian Jasmine, Mock Orange, Sweet Pea          | White Musk, Sandalwood                             |
 | Emporio Armani Stronger with You Intensely | Sweet, spicy oriental with gourmand warmth, bold and cozy                   | Fall/Winter   | Pink Pepper, Juniper, Violet                | Toffee, Cinnamon, Lavender, Sage                  | Vanilla, Amber, Tonka Bean, Suede                  |
 
----
 [[notes/index|Back to Notes]]
+
+---

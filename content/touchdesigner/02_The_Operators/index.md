@@ -26,5 +26,6 @@ This module covers TouchDesigner's fundamental building blocks: Operators (or No
 - **[[Geo COMP]]**: Placing 3D geometry in the scene — transforms, materials, and instancing.
 - **[[Render TOP]]**: Converting 3D scenes into 2D textures for display and processing.
 
----
 [[touchdesigner/index|Back to TouchDesigner]]
+
+---

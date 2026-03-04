@@ -24,5 +24,6 @@ CHOPs are the nervous system of a TouchDesigner network. They carry **numeric si
 - [[Select CHOP]]
 - [[Timer CHOP]]
 
----
 [[touchdesigner/02_The_Operators/index|Back to The Operators]]
+
+---

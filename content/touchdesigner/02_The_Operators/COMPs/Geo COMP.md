@@ -96,8 +96,7 @@ The Geo COMP does not have its own surface look — you must assign a MAT:
 - [[MAT - Material Operators|MAT]] — surface shaders
 - [[Instancing]] — duplicating geometry efficiently
 
----
+
 [[touchdesigner/02_The_Operators/COMPs/index|Back to COMPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to TouchDesigner]]
 
 ---
-[[touchdesigner/02_The_Operators/COMPs/index|Back to COMPs]]

@@ -39,8 +39,7 @@ To use TOPs effectively:
 4. **Resolution Management:** The first node in a chain usually dictates the resolution. Subsequent nodes default to "Use Input" resolution. You can override this in the Common page of any TOP's parameters.
 5. **Viewing Output:** Click the 'Viewer Active' toggle (bottom right of the node) to interact with the image or background-click 'Display' to set it as the network's backdrop.
 6. **Exporting and Converting:** You can pass TOP data to other families using conversion nodes like `TOP to CHOP` to convert pixel color values into channel data streams.
----
+
 [[touchdesigner/02_The_Operators/TOPs/index|Back to TOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to TouchDesigner]]
 
 ---
-[[touchdesigner/02_The_Operators/TOPs/index|Back to TOPs]]

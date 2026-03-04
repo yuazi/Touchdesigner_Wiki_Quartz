@@ -98,5 +98,6 @@ End-to-end practical examples.
 ## [[touchdesigner/07_Tutorials_and_Links/index|Back to Tutorials & Links]]
 Curated external resources — YouTube channels, courses, and community forums.
 
----
 [[index|Back to Home]]
+
+---

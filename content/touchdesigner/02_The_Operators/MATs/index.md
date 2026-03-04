@@ -18,5 +18,6 @@ MATs give your 3D geometry its **surface appearance**. They are assigned to Geom
 
 - [[MAT - Material Operators]]
 
----
 [[touchdesigner/02_The_Operators/index|Back to The Operators]]
+
+---

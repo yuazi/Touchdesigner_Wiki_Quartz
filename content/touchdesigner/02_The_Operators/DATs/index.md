@@ -18,5 +18,6 @@ DATs handle everything **text-based** in TouchDesigner — Python scripts, GLSL 
 
 - [[DAT - Data Operators]]
 
----
 [[touchdesigner/02_The_Operators/index|Back to The Operators]]
+
+---

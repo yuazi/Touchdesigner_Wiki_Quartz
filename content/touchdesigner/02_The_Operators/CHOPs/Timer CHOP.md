@@ -35,8 +35,7 @@ The power of the Timer CHOP lies in what it outputs automatically. When you conn
 When you create a Timer CHOP, it usually comes attached to a Text DAT full of Python callbacks (e.g., `onInitialize`, `onStart`, `onDone`). 
 
 This is incredibly powerful. You can write Python code that *only executes* when those specific events happen. For example, triggering a sound effect using `onStart()`, and loading a new level using `onDone()`.
----
+
 [[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to TouchDesigner]]
 
 ---
-[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]]

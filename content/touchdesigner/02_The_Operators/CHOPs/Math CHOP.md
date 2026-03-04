@@ -33,8 +33,7 @@ The Math CHOP's parameter window is divided into three main operational tabs con
 
 ## Common Use Case: Normalizing Data
 If you receive MIDI velocity data from `0` to `127`, you almost always want to pass it through a Math CHOP to scale it from `0` to `1` so it can cleanly drive transparency or scaling parameters elsewhere.
----
+
 [[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to TouchDesigner]]
 
 ---
-[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]]
