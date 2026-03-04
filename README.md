@@ -44,4 +44,3 @@ The site will be available at `http://localhost:8080`.
 ## Built With
 
 - [Quartz v4](https://quartz.jzhao.xyz/) — static site generator for markdown notes
-- [TouchDesigner](https://derivative.ca/) — real-time visual programming environment
