@@ -4,7 +4,7 @@ tags:
   - touchdesigner
   - td/core
   - workflow
-date: 2026-03-01
+date: 2026-02-06
 ---
 
 In TouchDesigner, you build networks by connecting operators.

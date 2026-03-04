@@ -5,7 +5,7 @@ tags:
   - chop
   - operators
   - timer
-date: 2026-03-01
+date: 2026-02-11
 ---
 # Timer CHOP
 

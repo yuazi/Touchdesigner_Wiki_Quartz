@@ -5,6 +5,7 @@ tags:
   - td/operators
   - chop
   - operators
+date: 2026-02-11
 ---
 CHOPs are the nervous system of a TouchDesigner network. They carry **numeric signals** — control values, audio, and animation data — between nodes. Common uses include driving parameters with oscillating signals (LFO), scaling and blending values (Math), and exporting live data directly onto other node parameters.
 

@@ -4,7 +4,7 @@ tags:
   - td/operators
   - operators
   - top
-date: 2026-03-01
+date: 2026-02-11
 ---
 # TOP - Texture Operators (2D)
 

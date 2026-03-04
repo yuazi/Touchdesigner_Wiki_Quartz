@@ -4,7 +4,7 @@ tags:
   - td/operators
   - operators
   - pop
-date: 2026-03-01
+date: 2026-02-11
 ---
 # POP - Point Operators (GPU Points)
 

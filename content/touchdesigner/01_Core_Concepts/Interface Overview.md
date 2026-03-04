@@ -4,7 +4,7 @@ tags:
   - touchdesigner
   - td/core
   - introduction
-date: 2026-03-01
+date: 2026-02-06
 ---
 
 The TouchDesigner interface is a large, infinite canvas called the **Network Editor**.

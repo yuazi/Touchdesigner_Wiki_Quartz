@@ -4,7 +4,7 @@ tags:
   - touchdesigner
   - td/core
   - interface
-date: 2026-03-01
+date: 2026-02-06
 ---
 
 The **Network Editor** is the main canvas where you build, connect, and manage your Operator networks. Almost everything you do in TouchDesigner happens here.

@@ -5,7 +5,7 @@ tags:
   - advanced
   - glsl
   - rendering
-date: 2026-03-01
+date: 2026-02-26
 ---
 # Introduction to GLSL in TouchDesigner
 

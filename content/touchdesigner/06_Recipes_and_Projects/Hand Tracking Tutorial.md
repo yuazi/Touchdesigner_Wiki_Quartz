@@ -7,7 +7,7 @@ tags:
   - td/interaction
   - td/mediapipe
   - td/generative
-date: 2026-03-01
+date: 2026-03-02
 ---
 
 **Related:** [[Hand Tracking|← Hub]]

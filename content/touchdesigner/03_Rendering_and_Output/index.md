@@ -3,6 +3,7 @@ title: "03. Rendering & Output"
 tags:
   - touchdesigner
   - td/rendering
+date: 2026-02-16
 ---
 This module explains the techniques required to draw geometry and pixels to the screen.
 

@@ -3,6 +3,7 @@ title: "05. Connectivity & Shaders"
 tags:
   - touchdesigner
   - td/connectivity
+date: 2026-02-26
 ---
 This module covers advanced hardware I/O, network protocols, and custom GPU programming.
 

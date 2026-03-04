@@ -3,6 +3,7 @@ title: "02. The Operators"
 tags:
   - touchdesigner
   - td/operators
+date: 2026-02-11
 ---
 This module covers TouchDesigner's fundamental building blocks: Operators (or Nodes).
 

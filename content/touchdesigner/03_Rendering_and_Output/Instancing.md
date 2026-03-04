@@ -3,7 +3,7 @@ tags:
   - touchdesigner
   - td/rendering
   - advanced
-date: 2026-03-01
+date: 2026-02-16
 ---
 # Geometry Instancing
 

@@ -10,7 +10,7 @@ tags:
   - feedback
   - recipes
   - td/tutorials
-date: 2026-03-01
+date: 2026-03-02
 ---
 
 > **Based on:** [5 Ways To Make Particles in TouchDesigner](https://www.youtube.com/watch?v=kNeSa7XivUs) by **anya maryina**

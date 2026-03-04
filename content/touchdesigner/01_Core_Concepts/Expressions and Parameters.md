@@ -5,7 +5,7 @@ tags:
   - td/core
   - expressions
   - scripting
-date: 2026-03-01
+date: 2026-02-06
 ---
 
 Every parameter in TouchDesigner has **four modes**, switchable by clicking the small mode indicator to the left of the parameter field:

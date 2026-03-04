@@ -5,7 +5,7 @@ tags:
   - audio
   - instancing
   - recipes
-date: 2026-03-01
+date: 2026-03-02
 ---
 # Recipe: Audio Reactive Geometry
 

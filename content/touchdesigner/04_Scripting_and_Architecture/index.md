@@ -3,6 +3,7 @@ title: "04. Scripting & Architecture"
 tags:
   - touchdesigner
   - td/architecture
+date: 2026-02-21
 ---
 This module covers Logic, code, performance optimization, and project management.
 
