@@ -5,6 +5,8 @@ tags:
   - td/rendering
 date: 2026-02-16
 ---
+[[touchdesigner/index|Back to TouchDesigner Index]]
+
 This module explains the techniques required to draw geometry and pixels to the screen.
 
 ## Core Setup
@@ -14,6 +16,3 @@ This module explains the techniques required to draw geometry and pixels to the 
 ## Advanced Rendering
 - **[[Instancing]]**: The most critical technique for drawing thousands of identical shapes efficiently on the GPU using varied positions/colors.
 - **[[Feedback Loops]]**: Creating recursive trails, generative feedback, and reaction-diffusion systems by feeding a TOP's output back into itself.
-
----
-[[touchdesigner/index|← Back to TouchDesigner Index]]

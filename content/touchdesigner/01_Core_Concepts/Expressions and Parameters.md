@@ -7,6 +7,7 @@ tags:
   - scripting
 date: 2026-02-06
 ---
+[[touchdesigner/01_Core_Concepts/index|Core Concepts]]
 
 Every parameter in TouchDesigner has **four modes**, switchable by clicking the small mode indicator to the left of the parameter field:
 

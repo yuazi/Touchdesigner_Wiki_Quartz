@@ -7,6 +7,8 @@ tags:
   - rendering
 date: 2026-02-26
 ---
+[[touchdesigner/05_Connectivity_and_Shaders/index|Connectivity & Shaders]]
+
 # Introduction to GLSL in TouchDesigner
 
 While TouchDesigner's built-in nodes (TOPs, SOPs, MATs) are incredibly powerful, writing custom **GLSL (OpenGL Shading Language)** code allows you to bypass the node network overhead and write highly optimized, bespoke algorithms that run natively on the GPU.

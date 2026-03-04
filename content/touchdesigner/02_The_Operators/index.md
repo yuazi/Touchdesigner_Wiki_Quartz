@@ -5,6 +5,8 @@ tags:
   - td/operators
 date: 2026-02-11
 ---
+[[touchdesigner/index|Back to TouchDesigner Index]]
+
 This module covers TouchDesigner's fundamental building blocks: Operators (or Nodes).
 
 ## The OP Families
@@ -25,6 +27,3 @@ This module covers TouchDesigner's fundamental building blocks: Operators (or No
 - **[[Noise - CHOP and TOP|Noise (CHOP/TOP)]]**: The foundation of organic movement and procedural textures.
 - **[[Geo COMP]]**: Placing 3D geometry in the scene — transforms, materials, and instancing.
 - **[[Render TOP]]**: Converting 3D scenes into 2D textures for display and processing.
-
----
-[[touchdesigner/index|← Back to TouchDesigner Index]]

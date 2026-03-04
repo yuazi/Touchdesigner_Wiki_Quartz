@@ -6,6 +6,7 @@ tags:
   - workflow
 date: 2026-02-06
 ---
+[[touchdesigner/01_Core_Concepts/index|Core Concepts]]
 
 Every operator has a **Parameter Window** (Press `P` to toggle). This is where you configure what the node does.
 

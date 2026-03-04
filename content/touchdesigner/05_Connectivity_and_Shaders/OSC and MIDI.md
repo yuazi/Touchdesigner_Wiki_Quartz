@@ -7,6 +7,8 @@ tags:
   - osc
 date: 2026-02-26
 ---
+[[touchdesigner/05_Connectivity_and_Shaders/index|Connectivity & Shaders]]
+
 # OSC and MIDI (Input/Output)
 
 How to communicate with other software and controllers.

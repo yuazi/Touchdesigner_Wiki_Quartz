@@ -7,6 +7,8 @@ tags:
   - select
 date: 2026-02-11
 ---
+[[touchdesigner/02_The_Operators/CHOPs/index|CHOPs]]
+
 # Select CHOP
 
 The **Select CHOP** is your primary tool for routing and filtering data channels. It extracts specific channels from any other CHOP in your project, even if that CHOP is inside a different component.

@@ -4,6 +4,8 @@ tags:
   - touchdesigner
   - td/recipes
 ---
+[[touchdesigner/index|Back to TouchDesigner Index]]
+
 This module provides practical, step-by-step implementations combining techniques from all previous chapters.
 
 ## Mini-Projects
@@ -16,7 +18,3 @@ This module provides practical, step-by-step implementations combining technique
   - [[Hand Tracking Tutorial|★ Complete step-by-step tutorial]] — setup, watercolor brush, and generative architecture in one document
 - **[[Particle System with POPs]]**: GPU particle simulation with emitters, forces, colour-over-life, and audio reactivity.
 - **[[Sierpinski Tetrahedron with Hand Tracking|3D Sierpinski Tetrahedron with Hand Tracking]]** — fractal geometry via Copy SOP + MediaPipe orientation and pinch-zoom control
-
-
----
-[[touchdesigner/index|← Back to TouchDesigner Index]]

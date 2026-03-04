@@ -5,6 +5,8 @@ tags:
   - rendering
 date: 2026-02-16
 ---
+[[touchdesigner/03_Rendering_and_Output/index|Rendering & Output]]
+
 # Cameras and Lights
 
 ## Camera COMP

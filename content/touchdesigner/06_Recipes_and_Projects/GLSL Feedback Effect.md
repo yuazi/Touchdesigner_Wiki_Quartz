@@ -8,6 +8,8 @@ tags:
   - shader
 date: 2026-03-02
 ---
+[[touchdesigner/06_Recipes_and_Projects/index|Recipes & Projects]]
+
 # Recipe: GLSL Feedback Effect
 
 A **feedback loop** feeds a texture's own output back into itself as input, creating trails, echo effects, fluid-like smearing, and reaction-diffusion patterns. Combining this with a custom GLSL shader gives you GPU-speed procedural visuals.

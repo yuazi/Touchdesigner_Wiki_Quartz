@@ -4,6 +4,8 @@ tags:
   - calendar
   - log
 ---
+[[index|Home]]
+
 A running log of what I've been working on, learning, and building — ordered by time.
 
 ---

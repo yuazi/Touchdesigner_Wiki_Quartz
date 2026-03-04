@@ -5,6 +5,8 @@ tags:
   - scripting
 date: 2026-02-21
 ---
+[[touchdesigner/04_Scripting_and_Architecture/index|Scripting & Architecture]]
+
 # Custom Parameters
 
 One of TouchDesigner's most powerful features is the ability to add your own parameters to any Component.

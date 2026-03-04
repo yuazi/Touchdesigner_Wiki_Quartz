@@ -7,6 +7,8 @@ tags:
   - timer
 date: 2026-02-11
 ---
+[[touchdesigner/02_The_Operators/CHOPs/index|CHOPs]]
+
 # Timer CHOP
 
 The **Timer CHOP** is the most robust and accurate way to handle triggers, countdowns, and time-based events in TouchDesigner. It is significantly more reliable for complex logic than building your own counters.

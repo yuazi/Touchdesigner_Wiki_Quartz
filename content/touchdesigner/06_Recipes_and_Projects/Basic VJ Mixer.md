@@ -7,6 +7,8 @@ tags:
   - vj
 date: 2026-03-02
 ---
+[[touchdesigner/06_Recipes_and_Projects/index|Recipes & Projects]]
+
 # Recipe: Basic A/B VJ Mixer
 
 This recipe demonstrates how to mix between two different generative scenes (or videos) using a single crossfader, which is the foundation of any live visual performance setup.

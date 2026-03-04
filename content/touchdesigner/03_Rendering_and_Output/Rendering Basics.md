@@ -5,6 +5,8 @@ tags:
   - rendering
 date: 2026-02-16
 ---
+[[touchdesigner/03_Rendering_and_Output/index|Rendering & Output]]
+
 # Rendering Basics
 
 In TouchDesigner, rendering involves converting 3D geometry (SOPs), materials (MATs), lighting, and camera perspectives into a 2D image (TOP).

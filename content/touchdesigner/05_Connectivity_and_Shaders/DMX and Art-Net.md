@@ -7,6 +7,8 @@ tags:
   - lighting
 date: 2026-02-26
 ---
+[[touchdesigner/05_Connectivity_and_Shaders/index|Connectivity & Shaders]]
+
 # DMX and Art-Net (Lighting)
 
 Controlling physical lighting fixtures and LEDs from TouchDesigner.

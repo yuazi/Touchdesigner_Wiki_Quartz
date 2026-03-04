@@ -5,6 +5,8 @@ tags:
   - optimization
 date: 2026-02-21
 ---
+[[touchdesigner/04_Scripting_and_Architecture/index|Scripting & Architecture]]
+
 # Performance Monitoring
 
 Maintaining a solid frame rate (typically 60fps) is essential for smooth interactives in TouchDesigner.

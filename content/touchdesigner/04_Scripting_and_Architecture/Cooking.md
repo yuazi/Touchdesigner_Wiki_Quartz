@@ -5,6 +5,8 @@ tags:
   - optimization
 date: 2026-02-21
 ---
+[[touchdesigner/04_Scripting_and_Architecture/index|Scripting & Architecture]]
+
 # Cooking in TouchDesigner
 
 "Cooking" is TouchDesigner's term for processing and evaluating a node.

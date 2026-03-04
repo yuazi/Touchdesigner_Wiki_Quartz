@@ -5,6 +5,8 @@ tags:
   - scripting
 date: 2026-02-21
 ---
+[[touchdesigner/04_Scripting_and_Architecture/index|Scripting & Architecture]]
+
 # Python in TouchDesigner
 
 TouchDesigner integrates Python 3 deeply into its core. You can use Python to control parameters, manage logic, and build custom tools.

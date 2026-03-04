@@ -7,6 +7,8 @@ tags:
   - tox
 date: 2026-02-21
 ---
+[[touchdesigner/04_Scripting_and_Architecture/index|Scripting & Architecture]]
+
 # Modular Design and Toxes
 
 Keeping your networks clean, organized, and reusable.

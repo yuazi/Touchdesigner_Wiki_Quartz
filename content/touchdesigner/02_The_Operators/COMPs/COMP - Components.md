@@ -6,6 +6,8 @@ tags:
   - operators
 date: 2026-02-11
 ---
+[[touchdesigner/02_The_Operators/COMPs/index|COMPs]]
+
 # COMP - Components
 
 COMPs are structural nodes. They can contain other networks or provide specialized functionality.

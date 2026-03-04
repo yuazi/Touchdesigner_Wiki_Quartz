@@ -6,6 +6,8 @@ tags:
   - operators
 date: 2026-02-11
 ---
+[[touchdesigner/02_The_Operators/CHOPs/index|CHOPs]]
+
 # CHOP - Channel Operators (Data)
 
 CHOPs are used for control signals, audio, and numeric data.

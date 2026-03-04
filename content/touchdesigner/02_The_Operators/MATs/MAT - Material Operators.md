@@ -6,6 +6,8 @@ tags:
   - operators
 date: 2026-02-11
 ---
+[[touchdesigner/02_The_Operators/MATs/index|MATs]]
+
 # MAT - Material Operators
 
 MATs define the appearance of 3D geometry (SOPs). They are assigned to **Geometry COMPs**.

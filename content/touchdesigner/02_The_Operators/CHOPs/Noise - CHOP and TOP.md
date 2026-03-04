@@ -8,6 +8,8 @@ tags:
   - top
 date: 2026-02-11
 ---
+[[touchdesigner/02_The_Operators/CHOPs/index|CHOPs]]
+
 # Noise Operators
 
 Noise is the foundation of organic movement, procedural textures, and generative behavior in TouchDesigner. You will use the **Noise CHOP** and **Noise TOP** in almost every project.

@@ -7,6 +7,8 @@ tags:
   - operators
 date: 2026-02-11
 ---
+[[touchdesigner/02_The_Operators/index|Back to The Operators]]
+
 COMPs are the **structural backbone** of a TouchDesigner project. They act as containers that hold entire sub-networks, 3D objects, cameras, lights, and UI panels. Base COMPs are the go-to tool for modular design — encapsulate logic inside, expose clean custom parameters outside.
 
 **Key nodes:** Geometry, Camera, Light, Container, Button, Slider, Base

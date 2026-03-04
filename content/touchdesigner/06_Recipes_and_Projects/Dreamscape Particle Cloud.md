@@ -10,6 +10,7 @@ tags:
   - recipes
 date: 2026-03-02
 ---
+[[touchdesigner/06_Recipes_and_Projects/index|Recipes & Projects]]
 
 > **Based on:** [Touch Designer Dreamscape Particle Cloud Tutorial](https://www.youtube.com/watch?v=4tOldYnNFV0) by **söla**
 

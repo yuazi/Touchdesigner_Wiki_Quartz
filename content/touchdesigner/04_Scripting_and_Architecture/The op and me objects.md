@@ -5,6 +5,8 @@ tags:
   - scripting
 date: 2026-03-01
 ---
+[[touchdesigner/04_Scripting_and_Architecture/index|Scripting & Architecture]]
+
 # The 'op' and 'me' Objects
 
 These are the most common Python objects you will use.

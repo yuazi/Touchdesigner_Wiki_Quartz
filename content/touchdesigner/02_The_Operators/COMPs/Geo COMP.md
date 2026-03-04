@@ -7,6 +7,8 @@ tags:
   - rendering
 date: 2026-02-11
 ---
+[[touchdesigner/02_The_Operators/COMPs/index|COMPs]]
+
 # Geo COMP
 
 The **Geometry COMP** (`Geo COMP`) is the fundamental container that places 3D geometry into the scene. It wraps a SOP network (your mesh/points) and adds the properties needed to render it: transform, material, instancing, and render settings.

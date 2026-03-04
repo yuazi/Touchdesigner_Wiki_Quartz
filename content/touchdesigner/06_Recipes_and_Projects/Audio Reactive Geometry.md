@@ -7,6 +7,8 @@ tags:
   - recipes
 date: 2026-03-02
 ---
+[[touchdesigner/06_Recipes_and_Projects/index|Recipes & Projects]]
+
 # Recipe: Audio Reactive Geometry
 
 This recipe connects audio analysis directly to geometry instancing, creating a classic "EQ visualizer" effect where bars or shapes react to different frequencies.

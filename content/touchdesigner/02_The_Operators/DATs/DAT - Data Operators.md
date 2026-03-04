@@ -6,6 +6,8 @@ tags:
   - operators
 date: 2026-02-11
 ---
+[[touchdesigner/02_The_Operators/DATs/index|DATs]]
+
 # DAT - Data Operators (Text)
 
 DATs are used for tables, scripts, XML, JSON, and plain text.

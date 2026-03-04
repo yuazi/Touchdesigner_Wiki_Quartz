@@ -6,6 +6,8 @@ tags:
   - widgets
 date: 2026-02-21
 ---
+[[touchdesigner/04_Scripting_and_Architecture/index|Scripting & Architecture]]
+
 # Container and Widgets (Building Interfaces)
 
 Creating custom control panels and dashboards for your projects.

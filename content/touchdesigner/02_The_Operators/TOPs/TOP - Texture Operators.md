@@ -6,6 +6,8 @@ tags:
   - top
 date: 2026-02-11
 ---
+[[touchdesigner/02_The_Operators/TOPs/index|TOPs]]
+
 # TOP - Texture Operators (2D)
 
 TOPs are used for image processing and 2D graphics. They run on the GPU.

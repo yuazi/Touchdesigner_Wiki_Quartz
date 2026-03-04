@@ -10,7 +10,7 @@ tags:
 date: 2026-03-02
 ---
 
-**Related:** [[Hand Tracking|← Hub]]
+**Related:** [[Hand Tracking|Hub]]
 **Based on:** Torin Blankensmith's MediaPipe TouchDesigner series
 **Plugin:** [github.com/torinmb/mediapipe-touchdesigner](https://github.com/torinmb/mediapipe-touchdesigner)
 
@@ -468,5 +468,5 @@ From here you can extend the rig by:
 
 ---
 
-[[Hand Tracking|← Back to Hub]]
+[[Hand Tracking|Back to Hub]]
 

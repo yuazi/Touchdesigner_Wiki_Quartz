@@ -6,6 +6,8 @@ tags:
   - pop
 date: 2026-02-11
 ---
+[[touchdesigner/02_The_Operators/POPs/index|POPs]]
+
 # POP - Point Operators (GPU Points)
 
 POPs are used for high-performance GPU-based point cloud processing and particle systems. Introduced in TouchDesigner 2023+, they represent a major shift from CPU-bound SOPs to massive GPU-driven point manipulation.

@@ -6,6 +6,8 @@ tags:
   - operators
 date: 2026-02-11
 ---
+[[touchdesigner/02_The_Operators/CHOPs/index|CHOPs]]
+
 # LFO CHOP
 
 The **LFO (Low Frequency Oscillator) CHOP** generates a continuously cycling waveform signal. It is one of the most fundamental CHOPs — used for anything that should repeat or pulse over time: camera movement, colour cycling, scale breathing, parameter animation.

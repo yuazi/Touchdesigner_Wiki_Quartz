@@ -6,6 +6,8 @@ tags:
   - sop
 date: 2026-02-11
 ---
+[[touchdesigner/02_The_Operators/SOPs/index|SOPs]]
+
 # SOP - Surface Operators (3D)
 
 SOPs are used for 3D geometry and point data.

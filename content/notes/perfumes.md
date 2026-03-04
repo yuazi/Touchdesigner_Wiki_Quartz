@@ -5,6 +5,8 @@ tags:
   - note
 date: 2026-03-02
 ---
+[[notes/index|Notes]]
+
 ## I think its essential to smell good, perhaps smelling things
 Here is a List of my favs (to add short description and season)
 
@@ -17,5 +19,3 @@ Here is a List of my favs (to add short description and season)
 | Emporio Armani Stronger with You Intensely | Sweet, spicy oriental with gourmand warmth, bold and cozy                   | Fall/Winter   | Pink Pepper, Juniper, Violet                | Toffee, Cinnamon, Lavender, Sage                  | Vanilla, Amber, Tonka Bean, Suede                  |
 
 ---
-
-[[notes/index|← Notes]]

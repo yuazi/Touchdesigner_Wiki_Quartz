@@ -5,6 +5,8 @@ tags:
   - advanced
 date: 2026-02-16
 ---
+[[touchdesigner/03_Rendering_and_Output/index|Rendering & Output]]
+
 # Geometry Instancing
 
 Instancing allows you to draw the same piece of geometry thousands or millions of times at very low performance cost. This is because the GPU is highly optimized for drawing the same mesh multiple times with varying transformation data.

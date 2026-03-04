@@ -7,6 +7,8 @@ tags:
   - operators
 date: 2026-02-11
 ---
+[[touchdesigner/02_The_Operators/CHOPs/index|CHOPs]]
+
 # Math CHOP
 
 The **Math CHOP** is the workhorse for scaling, converting, and combining numerical data streams.

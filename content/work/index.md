@@ -4,6 +4,8 @@ tags:
   - work
   - projects
 ---
+[[index|Home]]
+
 A collection of projects, experiments, and professional work — things I've built or contributed to.
 
 ---
