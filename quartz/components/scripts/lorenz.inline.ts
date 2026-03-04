@@ -221,6 +221,44 @@ function createSettingsUI(
     return h
   }
 
+  // ── Focus mode toggle ─────────────────────────────────────────────────────
+  const focusRow = document.createElement("div")
+  focusRow.className = "lorenz-focus-row"
+
+  const focusLabel = document.createElement("span")
+  focusLabel.textContent = "Focus mode"
+
+  const focusHint = document.createElement("span")
+  focusHint.className = "lorenz-focus-hint"
+  focusHint.textContent = "esc to exit"
+
+  const focusToggle = document.createElement("button")
+  focusToggle.className = "lorenz-toggle"
+  focusToggle.setAttribute("aria-pressed", "false")
+  focusToggle.setAttribute("aria-label", "Focus mode")
+
+  function setFocus(on: boolean): void {
+    document.body.classList.toggle("lorenz-focus", on)
+    focusToggle.setAttribute("aria-pressed", String(on))
+    focusToggle.classList.toggle("on", on)
+  }
+
+  focusToggle.addEventListener("click", () => {
+    const next = focusToggle.getAttribute("aria-pressed") !== "true"
+    setFocus(next)
+  })
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && document.body.classList.contains("lorenz-focus")) {
+      setFocus(false)
+    }
+  })
+
+  focusRow.appendChild(focusLabel)
+  focusRow.appendChild(focusHint)
+  focusRow.appendChild(focusToggle)
+  panel.appendChild(focusRow)
+
   // ── Lorenz section ────────────────────────────────────────────────────────
   panel.appendChild(makeSection("Main Attractor (Lorenz)"))
   panel.appendChild(makeSlider("σ (sigma)", 1, 50, 0.1, () => lorenzSigma, (v) => { lorenzSigma = v }, onLorenzChange))
@@ -293,7 +331,7 @@ function startLorenz(): void {
     const isDark = isDarkMode()
     const colors = getColor(isDark)
 
-    ctx.fillStyle = isDark ? "rgba(22,22,24,0.04)" : "rgba(250,248,248,0.04)"
+    ctx.fillStyle = isDark ? "rgba(22,22,24,0.04)" : "rgba(240,235,224,0.04)"
     ctx.fillRect(0, 0, W, H)
 
     rotZ += 0.0003
