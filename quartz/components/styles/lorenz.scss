@@ -47,6 +47,34 @@
   }
 }
 
+// ── Focus mode ────────────────────────────────────────────────────────────────
+body.lorenz-focus {
+  // Hide all page chrome, keep only the canvas + settings button/panel
+  #quartz-body,
+  header,
+  footer,
+  .left,
+  .right,
+  article,
+  .page-header,
+  .toc,
+  nav {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+
+  #lorenz-canvas {
+    opacity: 0.5 !important;
+    z-index: 0;
+  }
+
+  #lorenz-settings-btn,
+  #lorenz-settings-panel {
+    z-index: 1001;
+  }
+}
+
 // ── Settings panel ─────────────────────────────────────────────────────────────
 #lorenz-settings-panel {
   position: fixed;
@@ -116,6 +144,58 @@
       accent-color: var(--secondary);
       cursor: pointer;
       height: 4px;
+    }
+  }
+
+  .lorenz-focus-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding-bottom: 0.65rem;
+    margin-bottom: 0.65rem;
+    border-bottom: 1px solid var(--lightgray);
+    font-size: 0.82rem;
+    color: var(--dark);
+
+    .lorenz-focus-hint {
+      font-size: 0.7rem;
+      color: var(--gray);
+      flex: 1;
+    }
+
+    .lorenz-toggle {
+      position: relative;
+      width: 2.2rem;
+      height: 1.2rem;
+      border-radius: 999px;
+      border: 1px solid var(--lightgray);
+      background: var(--lightgray);
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+      transition: background 0.2s, border-color 0.2s;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: calc(1.2rem - 6px);
+        height: calc(1.2rem - 6px);
+        border-radius: 50%;
+        background: var(--gray);
+        transition: transform 0.2s, background 0.2s;
+      }
+
+      &.on {
+        background: var(--secondary);
+        border-color: var(--secondary);
+
+        &::after {
+          transform: translateX(1rem);
+          background: white;
+        }
+      }
     }
   }
 }
