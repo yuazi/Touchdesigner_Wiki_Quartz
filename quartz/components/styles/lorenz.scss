@@ -147,6 +147,25 @@ body.lorenz-focus {
     }
   }
 
+  .lorenz-reset-btn {
+    display: block;
+    width: 100%;
+    margin-top: 0.85rem;
+    padding: 0.35rem 0;
+    font-size: 0.78rem;
+    color: var(--gray);
+    background: transparent;
+    border: 1px solid var(--lightgray);
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+
+    &:hover {
+      color: var(--dark);
+      border-color: var(--gray);
+    }
+  }
+
   .lorenz-focus-row {
     display: flex;
     align-items: center;

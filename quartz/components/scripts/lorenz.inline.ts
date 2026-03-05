@@ -1,17 +1,21 @@
 // Lorenz attractor background animation
 
-// ── Mutable parameters (live-updated via settings panel, persisted to localStorage) ──────────────────────
-let lorenzSigma = parseFloat(localStorage.getItem("lorenz.sigma") ?? "10")
-let lorenzRho = parseFloat(localStorage.getItem("lorenz.rho") ?? "28")
-let lorenzBeta = parseFloat(localStorage.getItem("lorenz.beta") ?? String(8 / 3))
-let lorenzDt = parseFloat(localStorage.getItem("lorenz.dt") ?? "0.005")
-let lorenzTrailLength = parseInt(localStorage.getItem("lorenz.trail") ?? "2000", 10)
-let lorenzNumParticles = parseInt(localStorage.getItem("lorenz.particles") ?? "3", 10)
+// ── Defaults ─────────────────────────────────────────────────────────────────
+const LORENZ_DEFAULTS = { sigma: 10, rho: 28, beta: 8 / 3, dt: 0.005, trail: 2000, particles: 3 }
+const HALVORSEN_DEFAULTS = { a: 1.4, dt: 0.005, trail: 2000, particles: 3 }
 
-let halvorsenA = parseFloat(localStorage.getItem("halvorsen.a") ?? "1.4")
-let halvorsenDt = parseFloat(localStorage.getItem("halvorsen.dt") ?? "0.005")
-let halvorsenTrailLength = parseInt(localStorage.getItem("halvorsen.trail") ?? "2000", 10)
-let halvorsenNumParticles = parseInt(localStorage.getItem("halvorsen.particles") ?? "3", 10)
+// ── Mutable parameters (live-updated via settings panel, persisted to localStorage) ──────────────────────────────────────
+let lorenzSigma = parseFloat(localStorage.getItem("lorenz.sigma") ?? String(LORENZ_DEFAULTS.sigma))
+let lorenzRho = parseFloat(localStorage.getItem("lorenz.rho") ?? String(LORENZ_DEFAULTS.rho))
+let lorenzBeta = parseFloat(localStorage.getItem("lorenz.beta") ?? String(LORENZ_DEFAULTS.beta))
+let lorenzDt = parseFloat(localStorage.getItem("lorenz.dt") ?? String(LORENZ_DEFAULTS.dt))
+let lorenzTrailLength = parseInt(localStorage.getItem("lorenz.trail") ?? String(LORENZ_DEFAULTS.trail), 10)
+let lorenzNumParticles = parseInt(localStorage.getItem("lorenz.particles") ?? String(LORENZ_DEFAULTS.particles), 10)
+
+let halvorsenA = parseFloat(localStorage.getItem("halvorsen.a") ?? String(HALVORSEN_DEFAULTS.a))
+let halvorsenDt = parseFloat(localStorage.getItem("halvorsen.dt") ?? String(HALVORSEN_DEFAULTS.dt))
+let halvorsenTrailLength = parseInt(localStorage.getItem("halvorsen.trail") ?? String(HALVORSEN_DEFAULTS.trail), 10)
+let halvorsenNumParticles = parseInt(localStorage.getItem("halvorsen.particles") ?? String(HALVORSEN_DEFAULTS.particles), 10)
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 interface Particle {
@@ -274,6 +278,38 @@ function createSettingsUI(
   panel.appendChild(makeSlider("Speed (dt)", 0.001, 0.02, 0.0005, () => halvorsenDt, (v) => { halvorsenDt = v; localStorage.setItem("halvorsen.dt", String(v)) }, () => {}))
   panel.appendChild(makeSlider("Trail length", 100, 5000, 100, () => halvorsenTrailLength, (v) => { halvorsenTrailLength = Math.round(v); localStorage.setItem("halvorsen.trail", String(Math.round(v))) }, () => {}))
   panel.appendChild(makeSlider("Particles", 1, 6, 1, () => halvorsenNumParticles, (v) => { halvorsenNumParticles = Math.round(v); localStorage.setItem("halvorsen.particles", String(Math.round(v))) }, onHalvorsenChange))
+
+  // ── Reset button ──────────────────────────────────────────────────────────
+  const resetBtn = document.createElement("button")
+  resetBtn.className = "lorenz-reset-btn"
+  resetBtn.textContent = "Reset to defaults"
+  resetBtn.addEventListener("click", () => {
+    // Reset variables
+    lorenzSigma = LORENZ_DEFAULTS.sigma
+    lorenzRho = LORENZ_DEFAULTS.rho
+    lorenzBeta = LORENZ_DEFAULTS.beta
+    lorenzDt = LORENZ_DEFAULTS.dt
+    lorenzTrailLength = LORENZ_DEFAULTS.trail
+    lorenzNumParticles = LORENZ_DEFAULTS.particles
+    halvorsenA = HALVORSEN_DEFAULTS.a
+    halvorsenDt = HALVORSEN_DEFAULTS.dt
+    halvorsenTrailLength = HALVORSEN_DEFAULTS.trail
+    halvorsenNumParticles = HALVORSEN_DEFAULTS.particles
+    // Clear localStorage
+    ;["lorenz.sigma","lorenz.rho","lorenz.beta","lorenz.dt","lorenz.trail","lorenz.particles",
+      "halvorsen.a","halvorsen.dt","halvorsen.trail","halvorsen.particles"].forEach((k) =>
+      localStorage.removeItem(k)
+    )
+    // Rebuild particles and re-create sliders with fresh values
+    onLorenzChange()
+    onHalvorsenChange()
+    const existingBtn = document.getElementById("lorenz-settings-btn")
+    const existingPanel = document.getElementById("lorenz-settings-panel")
+    existingBtn?.remove()
+    existingPanel?.remove()
+    createSettingsUI(onLorenzChange, onHalvorsenChange)
+  })
+  panel.appendChild(resetBtn)
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────────
