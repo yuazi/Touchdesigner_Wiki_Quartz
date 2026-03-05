@@ -6,7 +6,7 @@ tags:
 
 # Welcome to my Digital Garden
 
-This is a space where ideas grow slowly and connect over time — not a blog, not a course, but a **living collection of notes** organized by curiosity and use.
+[About me](./about) · a space where ideas grow slowly and connect over time — not a blog, not a course, but a **living collection of notes** organized by curiosity and use.
 
 A digital garden is intentionally unfinished. You'll find notes at different stages of development: some polished, some just seedlings. That's the point.
 
