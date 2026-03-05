@@ -9,7 +9,7 @@ date: 2026-03-05
 
 ## Why Taekwondo
 
-I like kicking and spinning, looks really cool. Honestly I just saw someone do a spinning hook kick and thought "I need to learn that." That was enough motivation for me. No deep philosophical reason — just pure "that looks insane, I want to do it."
+I like kicking and spinning, looks really cool. Honestly I just saw someone do a spinning hook kick in a Jackie Chan movie and thought "I need to learn that." That was enough motivation for me. No deep philosophical reason — just pure "that looks insane, I want to do it."
 
 ---
 
@@ -17,18 +17,18 @@ I like kicking and spinning, looks really cool. Honestly I just saw someone do a
 
 These are the kicks I've been drilling. Some feel natural, some still feel like my leg has never been attached to my body.
 
-| Kick | Korean Name | Notes |
-|------|-------------|-------|
-| Front Kick | Ap Chagi | The first kick you learn. Push your hips forward, snap the knee up, extend — don't just lift your leg. |
-| Roundhouse Kick | Dollyo Chagi | The bread and butter. Hip rotation is everything here, your foot is almost an afterthought. |
-| Side Kick | Yeop Chagi | Chamber, pivot, push through the heel. Way harder than it looks to do properly. |
-| Back Kick | Dwi Chagi | You spin, then kick backwards — trust the process and don't look. |
-| Axe Kick | Naeryeo Chagi | Bring your leg up high and drop it like a hammer. |
-| Hook Kick | Huryeo Chagi | Kind of like a roundhouse that wraps around. Feels awkward at first. |
-| Spinning Hook Kick | Dwi Huryeo Chagi | The one that got me into this. Still not consistent but when it lands it feels amazing. |
-| Push Kick | Mireo Chagi | More of a defensive / distance-creating kick. Not flashy but useful. |
-| Jump Front Kick | Ieo Chagi | Like a front kick but jumping. Timing matters a lot. |
-| Jump Spinning Back Kick | Twieo Dwi Chagi | Absolute chaos. One day I'll land this cleanly. |
+| Kick | Korean Name | Description |
+|------|-------------|-------------|
+| Front Kick | Ap Chagi | A straight kick driven forward with the ball of the foot, snapping the knee up before extending. |
+| Roundhouse Kick | Dollyo Chagi | A circular kick that swings from the side and strikes with the instep or ball of the foot. |
+| Side Kick | Yeop Chagi | A linear kick delivered sideways, striking with the heel or blade of the foot. |
+| Back Kick | Dwi Chagi | A rear kick executed by turning away from the target and thrusting the heel straight back. |
+| Axe Kick | Naeryeo Chagi | The leg is raised high and brought straight down onto the target, striking with the heel. |
+| Hook Kick | Huryeo Chagi | A kick that arcs past the target and hooks back to strike with the heel or sole. |
+| Spinning Hook Kick | Dwi Huryeo Chagi | A full rotation that generates power before delivering the hook kick with the heel. |
+| Push Kick | Mireo Chagi | A thrusting kick used to create distance, pushing the target away with the sole of the foot. |
+| Jump Front Kick | Ieo Chagi | A front kick executed while jumping, adding height and momentum to the strike. |
+| Jump Spinning Back Kick | Twieo Dwi Chagi | A jumping variation of the back kick with a full spin, striking the target with the heel mid-air. |
 
 ---
 
