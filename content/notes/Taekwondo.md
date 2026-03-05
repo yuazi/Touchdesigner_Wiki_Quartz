@@ -20,7 +20,10 @@ These are the kicks I've been drilling. Some feel natural, some still feel like 
 | Kick | Korean Name | Description |
 |------|-------------|-------------|
 | Front Kick | Ap Chagi | A straight kick driven forward with the ball of the foot, snapping the knee up before extending. |
-| Roundhouse Kick | Dollyo Chagi | A circular kick that swings from the side and strikes with the instep or ball of the foot. |
+| Roundhouse Kick (body) | Baldum | A circular kick targeting the body, striking with the instep. |
+| High Roundhouse Kick | Dollyo Chagi | A circular kick aimed at head height, striking with the instep or ball of the foot. |
+| 360 Spinning Kick | Dora Baldum | A full 360° spinning roundhouse, generating power through the rotation before striking with the instep. |
+| Reverse Roundhouse Kick | Pandae Dollyo Chagi | A roundhouse kick thrown with the rear leg in the opposite direction of travel, striking with the heel or instep. |
 | Side Kick | Yeop Chagi | A linear kick delivered sideways, striking with the heel or blade of the foot. |
 | Back Kick | Dwi Chagi | A rear kick executed by turning away from the target and thrusting the heel straight back. |
 | Axe Kick | Naeryeo Chagi | The leg is raised high and brought straight down onto the target, striking with the heel. |
