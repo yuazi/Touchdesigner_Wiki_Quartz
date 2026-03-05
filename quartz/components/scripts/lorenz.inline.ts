@@ -1,17 +1,17 @@
 // Lorenz attractor background animation
 
-// ── Mutable parameters (live-updated via settings panel) ──────────────────────
-let lorenzSigma = 10
-let lorenzRho = 28
-let lorenzBeta = 8 / 3
-let lorenzDt = 0.005
-let lorenzTrailLength = 2000
-let lorenzNumParticles = 3
+// ── Mutable parameters (live-updated via settings panel, persisted to localStorage) ──────────────────────
+let lorenzSigma = parseFloat(localStorage.getItem("lorenz.sigma") ?? "10")
+let lorenzRho = parseFloat(localStorage.getItem("lorenz.rho") ?? "28")
+let lorenzBeta = parseFloat(localStorage.getItem("lorenz.beta") ?? String(8 / 3))
+let lorenzDt = parseFloat(localStorage.getItem("lorenz.dt") ?? "0.005")
+let lorenzTrailLength = parseInt(localStorage.getItem("lorenz.trail") ?? "2000", 10)
+let lorenzNumParticles = parseInt(localStorage.getItem("lorenz.particles") ?? "3", 10)
 
-let halvorsenA = 1.4
-let halvorsenDt = 0.005
-let halvorsenTrailLength = 2000
-let halvorsenNumParticles = 3
+let halvorsenA = parseFloat(localStorage.getItem("halvorsen.a") ?? "1.4")
+let halvorsenDt = parseFloat(localStorage.getItem("halvorsen.dt") ?? "0.005")
+let halvorsenTrailLength = parseInt(localStorage.getItem("halvorsen.trail") ?? "2000", 10)
+let halvorsenNumParticles = parseInt(localStorage.getItem("halvorsen.particles") ?? "3", 10)
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 interface Particle {
@@ -261,19 +261,19 @@ function createSettingsUI(
 
   // ── Lorenz section ────────────────────────────────────────────────────────
   panel.appendChild(makeSection("Main Attractor (Lorenz)"))
-  panel.appendChild(makeSlider("σ (sigma)", 1, 50, 0.1, () => lorenzSigma, (v) => { lorenzSigma = v }, onLorenzChange))
-  panel.appendChild(makeSlider("ρ (rho)", 1, 60, 0.5, () => lorenzRho, (v) => { lorenzRho = v }, onLorenzChange))
-  panel.appendChild(makeSlider("β (beta)", 0.1, 10, 0.01, () => lorenzBeta, (v) => { lorenzBeta = v }, onLorenzChange))
-  panel.appendChild(makeSlider("Speed (dt)", 0.001, 0.02, 0.0005, () => lorenzDt, (v) => { lorenzDt = v }, () => {}))
-  panel.appendChild(makeSlider("Trail length", 100, 5000, 100, () => lorenzTrailLength, (v) => { lorenzTrailLength = Math.round(v) }, () => {}))
-  panel.appendChild(makeSlider("Particles", 1, 6, 1, () => lorenzNumParticles, (v) => { lorenzNumParticles = Math.round(v) }, onLorenzChange))
+  panel.appendChild(makeSlider("σ (sigma)", 1, 50, 0.1, () => lorenzSigma, (v) => { lorenzSigma = v; localStorage.setItem("lorenz.sigma", String(v)) }, onLorenzChange))
+  panel.appendChild(makeSlider("ρ (rho)", 1, 60, 0.5, () => lorenzRho, (v) => { lorenzRho = v; localStorage.setItem("lorenz.rho", String(v)) }, onLorenzChange))
+  panel.appendChild(makeSlider("β (beta)", 0.1, 10, 0.01, () => lorenzBeta, (v) => { lorenzBeta = v; localStorage.setItem("lorenz.beta", String(v)) }, onLorenzChange))
+  panel.appendChild(makeSlider("Speed (dt)", 0.001, 0.02, 0.0005, () => lorenzDt, (v) => { lorenzDt = v; localStorage.setItem("lorenz.dt", String(v)) }, () => {}))
+  panel.appendChild(makeSlider("Trail length", 100, 5000, 100, () => lorenzTrailLength, (v) => { lorenzTrailLength = Math.round(v); localStorage.setItem("lorenz.trail", String(Math.round(v))) }, () => {}))
+  panel.appendChild(makeSlider("Particles", 1, 6, 1, () => lorenzNumParticles, (v) => { lorenzNumParticles = Math.round(v); localStorage.setItem("lorenz.particles", String(Math.round(v))) }, onLorenzChange))
 
   // ── Halvorsen section ─────────────────────────────────────────────────────
   panel.appendChild(makeSection("Side Attractors (Halvorsen)"))
-  panel.appendChild(makeSlider("a", 0.1, 3, 0.01, () => halvorsenA, (v) => { halvorsenA = v }, () => {}))
-  panel.appendChild(makeSlider("Speed (dt)", 0.001, 0.02, 0.0005, () => halvorsenDt, (v) => { halvorsenDt = v }, () => {}))
-  panel.appendChild(makeSlider("Trail length", 100, 5000, 100, () => halvorsenTrailLength, (v) => { halvorsenTrailLength = Math.round(v) }, () => {}))
-  panel.appendChild(makeSlider("Particles", 1, 6, 1, () => halvorsenNumParticles, (v) => { halvorsenNumParticles = Math.round(v) }, onHalvorsenChange))
+  panel.appendChild(makeSlider("a", 0.1, 3, 0.01, () => halvorsenA, (v) => { halvorsenA = v; localStorage.setItem("halvorsen.a", String(v)) }, () => {}))
+  panel.appendChild(makeSlider("Speed (dt)", 0.001, 0.02, 0.0005, () => halvorsenDt, (v) => { halvorsenDt = v; localStorage.setItem("halvorsen.dt", String(v)) }, () => {}))
+  panel.appendChild(makeSlider("Trail length", 100, 5000, 100, () => halvorsenTrailLength, (v) => { halvorsenTrailLength = Math.round(v); localStorage.setItem("halvorsen.trail", String(Math.round(v))) }, () => {}))
+  panel.appendChild(makeSlider("Particles", 1, 6, 1, () => halvorsenNumParticles, (v) => { halvorsenNumParticles = Math.round(v); localStorage.setItem("halvorsen.particles", String(Math.round(v))) }, onHalvorsenChange))
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────────
@@ -312,13 +312,10 @@ function startLorenz(): void {
 
   ;[...particles, ...particlesLeft, ...particlesRight].forEach((p) => (p.trail = []))
 
-  let lastResize = 0
+  let resizeTimer: ReturnType<typeof setTimeout>
   window.addEventListener("resize", () => {
-    const now = Date.now()
-    if (now - lastResize > 200) {
-      lastResize = now
-      resizeCanvas(canvas)
-    }
+    clearTimeout(resizeTimer)
+    resizeTimer = setTimeout(() => resizeCanvas(canvas), 150)
   })
 
   let frameId: number
