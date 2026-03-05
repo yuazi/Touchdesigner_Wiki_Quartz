@@ -5,9 +5,11 @@ tags:
   - td/operators
 date: 2026-02-11
 ---
+
 This module covers TouchDesigner's fundamental building blocks: Operators (or Nodes).
 
 ## The OP Families
+
 - **[[COMP - Components|COMP (Components)]]**: Structural containers and geometry bases.
 - **[[TOP - Texture Operators|TOP (Texture Operators)]]**: 2D image generating and processing (GPU).
 - **[[CHOP - Channel Operators|CHOP (Channel Operators)]]**: Numbers, animation curves, logic, and audio (CPU).
@@ -17,6 +19,7 @@ This module covers TouchDesigner's fundamental building blocks: Operators (or No
 - **[[POP - Point Operators|POP (Point Operators)]]**: Highly optimized GPU point clouds and particles.
 
 ## Specific Node Deep-Dives
+
 - **[[Constant CHOP]]**: Creating static named values — the building block of controllable networks.
 - **[[LFO CHOP]]**: Oscillating signals — sine, triangle, square, ramp, and pulse waveforms.
 - **[[Math CHOP]]**: Scaling, converting, and combining numerical data streams.

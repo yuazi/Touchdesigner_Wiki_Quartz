@@ -4,7 +4,7 @@ tags:
   - home
 ---
 
-# Welcome to my Digital Garden 
+# Welcome to my Digital Garden
 
 This is a space where ideas grow slowly and connect over time — not a blog, not a course, but a **living collection of notes** organized by curiosity and use.
 
@@ -15,16 +15,21 @@ A digital garden is intentionally unfinished. You'll find notes at different sta
 ## What's growing here
 
 ### [[touchdesigner/index|TouchDesigner Wiki]]
+
 A structured wiki on node-based visual programming and real-time interactive media — covering operators, scripting, shaders, rendering, and end-to-end project recipes.
 
 > Operator families · Python scripting · GLSL shaders · Audio reactivity · Connectivity protocols
 
 ---
+
 ### [[calendar/index|Calendar]]
+
 A running log of what I've been working on and learning, ordered by time.
 
 ---
+
 ### [[notes/index|Notes]]
+
 Short-form notes and references on things I find interesting.
 
 - [[notes/ghostty|Ghostty – Terminal Emulator]]
@@ -32,7 +37,9 @@ Short-form notes and references on things I find interesting.
 - [[notes/yazi|Yazi – Terminal File Manager]]
 
 ---
+
 ### [[work/index|Work]]
+
 Projects, experiments, and things I've shipped — personal and professional.
 
 ---
@@ -50,5 +57,4 @@ Projects, experiments, and things I've shipped — personal and professional.
 
 These are personal notes compiled while learning, experimenting, and building. They're meant to be useful to future-me — and hopefully to you too.
 
-> *"The goal of a digital garden is not to impress, but to think better."*
-
+> _"The goal of a digital garden is not to impress, but to think better."_

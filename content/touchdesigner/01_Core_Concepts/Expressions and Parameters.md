@@ -7,14 +7,15 @@ tags:
   - scripting
 date: 2026-02-06
 ---
+
 Every parameter in TouchDesigner has **four modes**, switchable by clicking the small mode indicator to the left of the parameter field:
 
-| Mode | Colour | Description |
-|---|---|---|
-| **Constant** | Grey | A plain, unchanging value you type in. |
-| **Expression** | Blue | A Python expression evaluated every cook. |
-| **Export** | Green | A CHOP export drives this value externally. Think *green for CHOPs*. |
-| **Bind** | Purple | Two-way sync with another parameter. |
+| Mode           | Colour | Description                                                          |
+| -------------- | ------ | -------------------------------------------------------------------- |
+| **Constant**   | Grey   | A plain, unchanging value you type in.                               |
+| **Expression** | Blue   | A Python expression evaluated every cook.                            |
+| **Export**     | Green  | A CHOP export drives this value externally. Think _green for CHOPs_. |
+| **Bind**       | Purple | Two-way sync with another parameter.                                 |
 
 Right-click any parameter → **Set to Expression** (or press `=` in the field) to enter expression mode.
 
@@ -24,16 +25,17 @@ Right-click any parameter → **Set to Expression** (or press `=` in the field) 
 
 These are the most commonly used time variables in expressions:
 
-| Expression | Returns |
-|---|---|
-| `absTime.seconds` | Seconds elapsed since the application started |
-| `absTime.frame` | Absolute frame count since the application started |
-| `me.time.seconds` | Seconds within the local component's timeline |
-| `me.time.frame` | Frame within the local timeline |
-| `me.time.rate` | The cook rate (FPS) of the local timeline |
-| `iop.Geometry1.par.tx` | The `tx` parameter on a sibling node `Geometry1` |
+| Expression             | Returns                                            |
+| ---------------------- | -------------------------------------------------- |
+| `absTime.seconds`      | Seconds elapsed since the application started      |
+| `absTime.frame`        | Absolute frame count since the application started |
+| `me.time.seconds`      | Seconds within the local component's timeline      |
+| `me.time.frame`        | Frame within the local timeline                    |
+| `me.time.rate`         | The cook rate (FPS) of the local timeline          |
+| `iop.Geometry1.par.tx` | The `tx` parameter on a sibling node `Geometry1`   |
 
 **Example:** Make a node's X-translate oscillate at 0.5 Hz:
+
 ```python
 math.sin(absTime.seconds * math.pi) * 5
 ```
@@ -81,6 +83,7 @@ me.path              # Full path e.g. /project1/base1/lfo1
 ## The `parent()` Shortcut
 
 Instead of writing `op(me.path + '/../')`, use:
+
 ```python
 parent()         # One level up
 parent(2)        # Two levels up
@@ -92,16 +95,19 @@ parent().par.Inputtex  # A custom parameter on the parent
 ## Useful Expression Tricks
 
 **Map a range (e.g. LFO -1→1 to 0→1):**
+
 ```python
 (op('lfo1')['chan1'] + 1) / 2
 ```
 
 **Conditional expression:**
+
 ```python
 1 if op('button1')['chan1'] > 0.5 else 0
 ```
 
 **Smoothstep (using numpy, available in TD):**
+
 ```python
 x = op('lfo1')['chan1']
 x * x * (3 - 2 * x)
@@ -110,11 +116,11 @@ x * x * (3 - 2 * x)
 ---
 
 ## Common Gotchas
+
 - **Green background on a parameter field** means expression mode is active — it's not an error.
 - Division by zero in an expression **silently evaluates to 0** rather than crashing.
 - `absTime.seconds` keeps counting even when a **component's** local timeline is paused. It only stops if you pause the **root timeline** or hit the power button. Use `me.time.seconds` for timeline-relative time.
 - Using `op('path')` with an absolute path is fragile. Prefer relative references or `me` / `parent()`.
-
 
 [[touchdesigner/01_Core_Concepts/index|Back to Core Concepts]] | [[touchdesigner/index|Back to TouchDesigner]]
 

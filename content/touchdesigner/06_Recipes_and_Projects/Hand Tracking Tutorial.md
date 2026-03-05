@@ -9,6 +9,7 @@ tags:
   - td/generative
 date: 2026-03-02
 ---
+
 **Based on:** Torin Blankensmith's MediaPipe TouchDesigner series
 **Plugin:** [github.com/torinmb/mediapipe-touchdesigner](https://github.com/torinmb/mediapipe-touchdesigner)
 
@@ -65,28 +66,28 @@ This section explains what comes out of the plugin and how to wire it into a cle
 
 The **MediaPipe COMP** has two main outputs visible at the top level:
 
-| Output | Type | What is in it |
-|--------|------|---------------|
-| TOP out | TOP | Live camera feed with optional landmark overlay drawn |
+| Output   | Type | What is in it                                                     |
+| -------- | ---- | ----------------------------------------------------------------- |
+| TOP out  | TOP  | Live camera feed with optional landmark overlay drawn             |
 | CHOP out | CHOP | All model channels: landmark positions, gestures, helper channels |
 
 The **Hand Tracking.tox** (connected via internal wiring) further breaks those channels into:
 
-| Output | Type | Contents |
-|--------|------|---------|
+| Output   | Type | Contents                                                                |
+| -------- | ---- | ----------------------------------------------------------------------- |
 | CHOP out | CHOP | All 21 landmark x/y/z channels + gesture + confidence + helper channels |
-| DAT out | DAT | Raw landmark data as a table (one row per landmark) |
+| DAT out  | DAT  | Raw landmark data as a table (one row per landmark)                     |
 
 The 21 landmark channels follow this naming pattern: `H1_<joint_name>_<axis>` for hand 1 (and `H2_…` for hand 2 if two hands are present). For example: `H1_index_fingertip_x`, `H1_index_fingertip_y`, `H1_index_fingertip_z`.
 
 There are also pre-computed **helper channels** the plugin calculates for you:
 
-| Channel | What it measures |
-|---------|-----------------|
-| `H1_pinch_midpoint_x/y/z` | Midpoint between thumb tip and index tip |
-| `H1_pinch_distance` | Euclidean distance between thumb and index tips (0–1) |
-| `H1_spread` | Overall hand openness |
-| `H1_<gesture>_confidence` | Confidence from 0–1 for each built-in gesture |
+| Channel                   | What it measures                                      |
+| ------------------------- | ----------------------------------------------------- |
+| `H1_pinch_midpoint_x/y/z` | Midpoint between thumb tip and index tip              |
+| `H1_pinch_distance`       | Euclidean distance between thumb and index tips (0–1) |
+| `H1_spread`               | Overall hand openness                                 |
+| `H1_<gesture>_confidence` | Confidence from 0–1 for each built-in gesture         |
 
 ### 2.2 Pulling Specific Joints with Select CHOP
 
@@ -160,15 +161,15 @@ op('null_hand_pos')['H1_pinch_midpoint_y']
 
 The hand tracking plugin outputs a confidence value (0–1) for each of the following built-in gestures:
 
-| Gesture channel | Trigger condition |
-|----------------|------------------|
-| `H1_open_palm_confidence` | Hand flat, fingers spread |
+| Gesture channel             | Trigger condition                    |
+| --------------------------- | ------------------------------------ |
+| `H1_open_palm_confidence`   | Hand flat, fingers spread            |
 | `H1_pointing_up_confidence` | Index finger extended, others curled |
-| `H1_thumb_up_confidence` | Thumbs-up shape |
-| `H1_thumb_down_confidence` | Thumbs-down shape |
-| `H1_closed_fist_confidence` | Clenched fist |
-| `H1_victory_confidence` | Peace / V sign |
-| `H1_iloveyou_confidence` | 🤘 horns sign |
+| `H1_thumb_up_confidence`    | Thumbs-up shape                      |
+| `H1_thumb_down_confidence`  | Thumbs-down shape                    |
+| `H1_closed_fist_confidence` | Clenched fist                        |
+| `H1_victory_confidence`     | Peace / V sign                       |
+| `H1_iloveyou_confidence`    | 🤘 horns sign                        |
 
 ### 3.2 Converting Confidence to a Clean Trigger
 
@@ -253,7 +254,7 @@ op('null_pen_state')[0]
 A **Feedback TOP** holds the previous frame's output and composites new brush strokes on top of it, creating the painted canvas.
 
 1. From the **Palette** browser (press Alt+L to open), search for **Feedback** and drag it into your network. This gives you a pre-built `feedback` component.
-2. The Feedback component has two inputs: *New Frame* (what to add this frame) and *Feedback In* (where to read the previous frame from). It will connect to itself internally.
+2. The Feedback component has two inputs: _New Frame_ (what to add this frame) and _Feedback In_ (where to read the previous frame from). It will connect to itself internally.
 3. Wire `circle_brush` → Feedback input.
 4. Wire the Feedback output → an **Over TOP** which composites the canvas over your camera feed.
 
@@ -276,7 +277,7 @@ Inside the Feedback network (or between the Feedback output and composite):
 Instead of a plain white circle, apply textures to the brush to vary the stroke feel.
 
 1. Create several texture sources:
-   - **Noise TOP**: set **Type** to `Sparse` or `Hermite`, adjust **Period** and **Amplitude` for a grainy texture.
+   - **Noise TOP**: set **Type** to `Sparse` or `Hermite`, adjust **Period** and \*\*Amplitude` for a grainy texture.
    - **Movie File In TOP**: point at a paper texture or watercolor swatch image.
    - **Video Device In TOP**: the live webcam feed itself (for a self-portrait brush effect).
 
@@ -421,11 +422,11 @@ This ensures the project opens correctly on other machines without re-linking fi
 - [ ] Feedback TOP has **Clamp** enabled to prevent overbright accumulation.
 - [ ] Check **Realtime CHOP** channels inside the MediaPipe COMP:
 
-| Channel | Healthy value |
-|---------|--------------|
-| `isRealTime` | `1` |
-| `realTimeRatio` | Below `1.0` |
-| `detectTime` | Below `33 ms` (for 30 fps) |
+| Channel             | Healthy value                                           |
+| ------------------- | ------------------------------------------------------- |
+| `isRealTime`        | `1`                                                     |
+| `realTimeRatio`     | Below `1.0`                                             |
+| `detectTime`        | Below `33 ms` (for 30 fps)                              |
 | `totalInToOutDelay` | Use as Cache TOP offset if sending TD feed to MediaPipe |
 
 ---
@@ -449,6 +450,7 @@ You now have three interconnected systems, all driven from a single hand-trackin
 ```
 
 From here you can extend the rig by:
+
 - Adding more gestures to cycle through brush modes or architectural styles.
 - Bringing in audio-reactive data via an **Audio Spectrum CHOP** and blending it with hand data.
 - Using the **Face Tracking.tox** decoder to also track eye gaze and blend it with hand control.
@@ -459,9 +461,9 @@ From here you can extend the rig by:
 
 - [[Hand Tracking|Back to Hand Tracking]] — video links and series overview
 - [[Sierpinski Tetrahedron with Hand Tracking]] — fractal geometry project using the same MediaPipe rig
-- [[../04_Scripting_and_Architecture/Python in TD|Python in TD]]
-- [[../02_The_Operators/CHOPs/index|CHOPs]]
-- [[../03_Rendering_and_Output/Instancing|Instancing]]
+- [[touchdesigner/04_Scripting_and_Architecture/Python in TD|Python in TD]]
+- [[touchdesigner/02_The_Operators/CHOPs/index|CHOPs]]
+- [[touchdesigner/03_Rendering_and_Output/Instancing|Instancing]]
 - [[Particle System with POPs]]
 
 [[Hand Tracking|Back to Hand Tracking]]

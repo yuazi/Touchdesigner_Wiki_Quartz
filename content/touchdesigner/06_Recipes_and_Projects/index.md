@@ -4,9 +4,11 @@ tags:
   - touchdesigner
   - td/recipes
 ---
+
 This module provides practical, step-by-step implementations combining techniques from all previous chapters.
 
 ## Mini-Projects
+
 - **[[5 Ways To Make Particles]]**: All five particle methods compared — Particle SOP, POP Network, Instancing, GLSL Feedback, and 2D Feedback — based on anya maryina's tutorial.
 - **[[Audio Reactive Geometry]]**: Step-by-step instancing of 3D shapes driven by audio spectrum data.
 - **[[Basic VJ Mixer]]**: How to construct a 2-channel crossfader for live performance.

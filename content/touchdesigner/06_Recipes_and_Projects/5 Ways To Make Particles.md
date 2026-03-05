@@ -12,6 +12,7 @@ tags:
   - td/tutorials
 date: 2026-03-02
 ---
+
 > **Based on:** [5 Ways To Make Particles in TouchDesigner](https://www.youtube.com/watch?v=kNeSa7XivUs) by **anya maryina**
 
 A comparative breakdown of every major particle approach in TouchDesigner. Each method has its own performance profile, creative ceiling, and ideal use case. Understanding all five lets you pick the right tool for any project.
@@ -20,13 +21,13 @@ A comparative breakdown of every major particle approach in TouchDesigner. Each 
 
 ## Overview of the 5 Methods
 
-| # | Method | Best For | GPU Friendly? |
-|---|---|---|---|
-| 1 | **Particle SOP** | Quick prototyping, legacy compatibility | No (CPU) |
-| 2 | **POP Network** | Large-scale physics simulations | Yes |
-| 3 | **Instancing** | Geometry-per-particle, audio reactive | Yes |
-| 4 | **GLSL / Feedback TOP** | Fully custom GPU particle logic | Yes (fully GPU) |
-| 5 | **2D Feedback Particles** | Paint-like trails, 2D screens | Yes |
+| #   | Method                    | Best For                                | GPU Friendly?   |
+| --- | ------------------------- | --------------------------------------- | --------------- |
+| 1   | **Particle SOP**          | Quick prototyping, legacy compatibility | No (CPU)        |
+| 2   | **POP Network**           | Large-scale physics simulations         | Yes             |
+| 3   | **Instancing**            | Geometry-per-particle, audio reactive   | Yes             |
+| 4   | **GLSL / Feedback TOP**   | Fully custom GPU particle logic         | Yes (fully GPU) |
+| 5   | **2D Feedback Particles** | Paint-like trails, 2D screens           | Yes             |
 
 ---
 
@@ -47,6 +48,7 @@ The built-in `Particle SOP` is TD's legacy CPU-based particle solver. Simple, no
 5. To render: drop a **`Geo COMP`**, point its SOP to `OUT_particles`, assign a **`Point Sprite MAT`** or **`Constant MAT`**.
 
 ### Limitations
+
 - Runs on the **CPU** — performance falls off sharply above ~50k particles.
 - No GPU forces or custom attributes without Python scripting.
 - Use this to sketch an idea, then migrate to POPs or instancing for production.
@@ -69,19 +71,23 @@ POP Source → POP Force (gravity) → POP Noise → POP Color → POP Solver �
 ```
 
 #### POP Source parameters:
+
 - **Emit Rate** → `2000` particles/sec
 - **Life Expectancy** → `4` seconds
 - **Initial Velocity** → small random spread, e.g. `0.1`
 
 #### POP Force parameters:
+
 - Set **Force Y** to `-0.1` or so to simulate a gentle gravity pull.
 
 #### POP Noise parameters:
+
 - **Type** → `Simplex`
 - **Amplitude** → `0.005` — subtle turbulence each frame.
 - Animate **Offset X** with `absTime.seconds * 0.05` for drifting noise.
 
 #### POP Color parameters:
+
 - **Color Source** → `Ramp`
 - Map a white-to-orange-to-transparent gradient across normalized life (`0` → `1`).
 
@@ -119,6 +125,7 @@ Instancing renders one piece of geometry repeated at thousands of different posi
 5. Add a **`Camera COMP`** and **`Render TOP`** + **`Light COMP`** to see the scene.
 
 ### Tips
+
 - Keep the instance geometry **low-poly** — 500 instances of a 100-poly sphere is cheaper than 500 instances of a 10k-poly one.
 - You can vary **colour per instance** using a `Color` channel in the instance CHOP and enabling **Instance Color** in the MAT.
 
@@ -226,6 +233,7 @@ Feedback TOP → Blur → Level → Composite TOP → Feedback TOP (loop)
 5. Add a **`Null TOP`** after the `Composite TOP` — this is your output for the Render or output viewport.
 
 ### Variations
+
 - **Colour shift:** Add a `HSV Adjust TOP` inside the feedback loop — particles shift hue as they age.
 - **Warping:** Insert a `Transform TOP` with a slight rotation or scale `< 1.0` before the feedback — particles spiral inward.
 - **Audio reactive emitter:** Replace the constant position with a `CHOP to TOP` that maps audio amplitude to the Y-position of the emitter dot.

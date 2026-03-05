@@ -7,11 +7,13 @@ tags:
   - recipes
 date: 2026-03-01
 ---
+
 # Recipe: Particle System with POPs
 
 **POP (Point Operator)** nodes run entirely on the GPU, making them the fastest way to simulate and render hundreds of thousands of particles in real time. This recipe builds a foundational particle system you can extend.
 
 ## How POPs Relate to SOPs
+
 POPs operate on **point clouds** — large sets of 3D points with attributes (position, velocity, colour, life). Unlike SOPs, POP networks execute on the GPU inside a **Particle System COMP** (or within a **Geo COMP's SOP network** using a `POP SOP`).
 
 ---
@@ -29,6 +31,7 @@ POPs operate on **point clouds** — large sets of 3D points with attributes (po
 6. Add a **`POP Solver CHOP`** after the emitter — this advances the simulation each frame.
 
 Your particle chain so far:
+
 ```
 POP Source → POP Solver → [POP network output]
 ```
@@ -39,14 +42,15 @@ POP Source → POP Solver → [POP network output]
 
 After the `POP Solver`, add force nodes:
 
-| Node | Effect |
-|---|---|
-| **POP Force CHOP** | Constant directional force (like gravity: set Gravity to `0, -9.8, 0`) |
-| **POP Wind CHOP** | Turbulent wind using noise |
-| **POP Attractor CHOP** | Pulls particles toward a point in space |
-| **POP Collision CHOP** | Bounces particles off a SOP surface |
+| Node                   | Effect                                                                 |
+| ---------------------- | ---------------------------------------------------------------------- |
+| **POP Force CHOP**     | Constant directional force (like gravity: set Gravity to `0, -9.8, 0`) |
+| **POP Wind CHOP**      | Turbulent wind using noise                                             |
+| **POP Attractor CHOP** | Pulls particles toward a point in space                                |
+| **POP Collision CHOP** | Bounces particles off a SOP surface                                    |
 
 Chain them between Solver and output:
+
 ```
 POP Source → POP Force (gravity) → POP Wind → POP Solver → output
 ```
@@ -67,11 +71,13 @@ POP Source → POP Force (gravity) → POP Wind → POP Solver → output
 Back in the Geo COMP's SOP network, the `POP SOP` outputs points. You need to render them:
 
 **Option A — Sprites (fastest):**
+
 1. Connect the `POP SOP` output to a **`Sprite SOP`** then to the `out1`.
 2. Assign a **`Point Sprite MAT`** in the Geo COMP render page.
 3. Each particle becomes a camera-facing textured quad.
 
 **Option B — Instanced geometry:**
+
 1. Connect the `POP SOP` to a **`Geometry COMP`** with **Instancing ON**.
 2. Set the Instance CHOP/DAT to the POP SOP.
 3. Map `tx`, `ty`, `tz` to the point position attributes.
@@ -81,6 +87,7 @@ Back in the Geo COMP's SOP network, the `POP SOP` outputs points. You need to re
 ## Part 5: Audio Reactivity
 
 To make emission rate or force react to audio:
+
 ```
 Audio Device In CHOP → Audio Spectrum CHOP → Analyze CHOP (RMS/Peak)
   → Math CHOP (remap 0→1 to 100→5000)
@@ -90,6 +97,7 @@ Audio Device In CHOP → Audio Spectrum CHOP → Analyze CHOP (RMS/Peak)
 ---
 
 ## Common Gotchas
+
 - **No particles visible** → make sure the `POP Solver` is in the chain; without it, positions never update.
 - **Particles fly off screen instantly** → add gravity via `POP Force` or reduce initial velocity in `POP Source`.
 - **Performance drops** → limit particle count with a `POP Kill` node (kill old/far particles), or reduce the POP SOP resolution.

@@ -13,9 +13,11 @@ The Lorenz attractor is one of those rare mathematical objects that stops you mi
 $$
 \dot{x} = \sigma(y - x)
 $$
+
 $$
 \dot{y} = x(\rho - z) - y
 $$
+
 $$
 \dot{z} = xy - \beta z
 $$
@@ -24,7 +26,7 @@ With $\sigma = 10$, $\rho = 28$, $\beta = \frac{8}{3}$, the system never settles
 
 ## Why I find it fascinating
 
-The thing that really gets me is how a tiny difference in starting position — something almost too small to measure — sends the system on a completely different path. It's fully deterministic. No randomness, no dice rolls. And yet you can't predict where it ends up without running the whole simulation. That gap between *deterministic* and *predictable* hits different when you see it actually playing out on screen.
+The thing that really gets me is how a tiny difference in starting position — something almost too small to measure — sends the system on a completely different path. It's fully deterministic. No randomness, no dice rolls. And yet you can't predict where it ends up without running the whole simulation. That gap between _deterministic_ and _predictable_ hits different when you see it actually playing out on screen.
 
 It's a good reminder that "having rules" doesn't mean "being in control." A lot of things in life work like that.
 
@@ -39,9 +41,11 @@ The side attractors on this site use the **Halvorsen system**, a cousin of the L
 $$
 \dot{x} = -ax - 4y - 4z - y^2
 $$
+
 $$
 \dot{y} = -ay - 4z - 4x - z^2
 $$
+
 $$
 \dot{z} = -az - 4x - 4y - x^2
 $$

@@ -70,9 +70,12 @@ export const defaultListPageLayout: PageLayout = {
       folderClickBehavior: "link",
     }),
   ],
-  right: [Component.Graph(), Component.DesktopOnly(Component.TableOfContents()),
+  right: [
+    Component.Graph(),
+    Component.DesktopOnly(Component.TableOfContents()),
     Component.ConditionalRender({
       component: Component.Backlinks(),
       condition: (page) => page.fileData.slug !== "index",
-    })],
+    }),
+  ],
 }

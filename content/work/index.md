@@ -4,6 +4,7 @@ tags:
   - work
   - projects
 ---
+
 A collection of projects, experiments, and professional work — things I've built or contributed to.
 
 ---
@@ -17,7 +18,7 @@ A collection of projects, experiments, and professional work — things I've bui
 
 ## Archive
 
-*Past projects will live here.*
+_Past projects will live here._
 
 ---
 

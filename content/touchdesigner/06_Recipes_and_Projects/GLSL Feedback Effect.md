@@ -8,6 +8,7 @@ tags:
   - shader
 date: 2026-03-02
 ---
+
 # Recipe: GLSL Feedback Effect
 
 A **feedback loop** feeds a texture's own output back into itself as input, creating trails, echo effects, fluid-like smearing, and reaction-diffusion patterns. Combining this with a custom GLSL shader gives you GPU-speed procedural visuals.
@@ -31,11 +32,12 @@ A feedback loop in TouchDesigner is built with a **Feedback TOP**:
 ```
 
 Step by step:
+
 1. Create a **`Noise TOP`** as your seed texture (or any visual source).
 2. Create a **`GLSL TOP`** — this is where the effect lives.
 3. Create a **`Feedback TOP`**.
    - Set its **Target TOP** parameter to the path of the **GLSL TOP** (e.g. `glsl1`).
-   - This makes the Feedback TOP read from the GLSL TOP's *previous* frame.
+   - This makes the Feedback TOP read from the GLSL TOP's _previous_ frame.
 4. Connect: `Noise TOP → input[0] of GLSL TOP`, `Feedback TOP → input[1] of GLSL TOP`.
 5. Connect the `GLSL TOP` output to a `Null TOP`.
 
@@ -97,6 +99,7 @@ void main()
 ## Part 3: Adding Custom Parameters
 
 For the uniforms to be tweakable, create **Custom Parameters** on the GLSL TOP:
+
 1. Right-click the GLSL TOP → **Customize Component…**
 2. Add float parameters matching the uniform names:
    - `uZoom` — default `1.002`, range `0.99–1.05`
@@ -122,25 +125,27 @@ Kick drums push the zoom, creating the classic "zoom-in-on-beat" VJ effect.
 
 ## Visual Variations
 
-| Change | Effect |
-|---|---|
-| `uZoom > 1` | Content zooms in and expands outward — "into the abyss" |
-| `uZoom < 1` | Content shrinks inward — imploding tunnel |
-| `uRotation != 0` | Trails spiral |
-| `uDecay` close to 1 | Long, persistent trails |
-| `uDecay` close to 0.5 | Short, quickly fading traces |
-| Add `sin(absTime.seconds)` to `uOffset` | Drifting, oscillating trails |
+| Change                                  | Effect                                                  |
+| --------------------------------------- | ------------------------------------------------------- |
+| `uZoom > 1`                             | Content zooms in and expands outward — "into the abyss" |
+| `uZoom < 1`                             | Content shrinks inward — imploding tunnel               |
+| `uRotation != 0`                        | Trails spiral                                           |
+| `uDecay` close to 1                     | Long, persistent trails                                 |
+| `uDecay` close to 0.5                   | Short, quickly fading traces                            |
+| Add `sin(absTime.seconds)` to `uOffset` | Drifting, oscillating trails                            |
 
 ---
 
 ## Common Gotchas
+
 - **Feedback explodes to white** → `uDecay` is too high (≥ 1.0). Drop it to `0.97`.
-- **Nothing feeds back** → confirm the Feedback TOP's **Target TOP** path is exactly the GLSL TOP's  name.
+- **Nothing feeds back** → confirm the Feedback TOP's **Target TOP** path is exactly the GLSL TOP's name.
 - **Green/uniform shader errors** → check the GLSL TOP's `Info` OP for compile errors; common issue is uniform name mismatch.
-- **1-frame latency** in the loop is unavoidable and is what makes feedback work — the Feedback TOP always serves the *previous* frame.
+- **1-frame latency** in the loop is unavoidable and is what makes feedback work — the Feedback TOP always serves the _previous_ frame.
 - For **reaction-diffusion** (Turing patterns), replace the simple zoom/rotate with a two-channel diffusion equation in the shader — a natural next step from this recipe.
 
 ## Related Topics
+
 - [[Feedback Loops]] — pure TOP-based feedback without GLSL
 - [[Introduction to GLSL]] — GLSL fundamentals in TouchDesigner
 

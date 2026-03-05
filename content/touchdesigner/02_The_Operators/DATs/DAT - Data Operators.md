@@ -6,16 +6,20 @@ tags:
   - operators
 date: 2026-02-11
 ---
+
 # DAT - Data Operators (Text)
 
 DATs are used for tables, scripts, XML, JSON, and plain text.
 
 ## Text vs. Tables
+
 DATs generally fall into two categories:
+
 - **Tables:** Data organized in rows and columns. Accessed via scripts using row/column indices or names (e.g., `op('table1')[0, 'name']`).
 - **Text:** Free-form text strings. Typically used for Python scripts, GLSL shader code, or raw JSON payloads.
 
 ## Key DATs
+
 - **Table:** Store data in rows and columns.
 - **Text:** Write Python scripts or GLSL code.
 - **Select:** Isolate rows/columns from a table.
@@ -28,7 +32,7 @@ DATs generally fall into two categories:
 DATs manage anything text or script-related in TouchDesigner.
 
 1. **Adding a DAT:** Open the OP Create Dialog (Tab) and select the DAT family (pink/magenta color).
-2. **Working with Text:** 
+2. **Working with Text:**
    - Drop a `Text DAT` to write notes, Python scripts, or custom GLSL shaders.
    - Click the node and type directly into the viewer if 'Viewer Active' is on, or right-click and choose "Edit Contents" to open it in your external text editor (like VS Code).
 3. **Working with Tables:**

@@ -11,6 +11,7 @@ tags:
   - td/fractal
 date: 2026-03-01
 ---
+
 **Related:** [[Hand Tracking Tutorial|Hand Tracking Tutorial]] · [[Hand Tracking|Back to Hand Tracking]]
 
 ---
@@ -27,30 +28,30 @@ Instead of writing complex L-System rules, we use TouchDesigner's `Copy SOP` to 
 
 ### 1. Create the Base Geometry
 
-- Add a **Platonic Solids SOP** and set its *Type* to `Tetrahedron`. Name it `platonic1`. This acts as our "template" layout — it has 4 points.
+- Add a **Platonic Solids SOP** and set its _Type_ to `Tetrahedron`. Name it `platonic1`. This acts as our "template" layout — it has 4 points.
 - Add a second **Platonic Solids SOP**, also set to `Tetrahedron`. Name it `platonic2`.
-- Connect `platonic2` to a **Transform SOP** and set the *Uniform Scale* to `0.5`.
+- Connect `platonic2` to a **Transform SOP** and set the _Uniform Scale_ to `0.5`.
 
 ### 2. The First Iteration
 
 - Add a **Copy SOP**.
-- Connect the **Transform SOP** to the *left* input (Primitives to Copy).
-- Connect `platonic1` to the *right* input (Template Point SOP).
+- Connect the **Transform SOP** to the _left_ input (Primitives to Copy).
+- Connect `platonic1` to the _right_ input (Template Point SOP).
 
 > **Result:** You should now see a larger tetrahedron made of 4 smaller ones. This is Iteration 1.
 
 ### 3. The Second Iteration (and beyond)
 
-- Add a new **Transform SOP** after the `Copy SOP` and set its *Uniform Scale* to `0.5`.
+- Add a new **Transform SOP** after the `Copy SOP` and set its _Uniform Scale_ to `0.5`.
 - Add a second **Copy SOP**.
-- Connect the new **Transform SOP** to the *left* input.
-- Connect your original `platonic1` to the *right* input.
+- Connect the new **Transform SOP** to the _left_ input.
+- Connect your original `platonic1` to the _right_ input.
 
 > **Result:** Iteration 2. Repeat the "Transform (`0.5`) → Copy (onto `platonic1`)" chain 1 or 2 more times to increase the fractal detail.
 
 ### 4. Prepare for Rendering
 
-- Connect your final `Copy SOP` to an **Attribute Create SOP** with *Compute Normals* enabled so lighting works correctly, then into a **Geometry COMP** (`geo1`).
+- Connect your final `Copy SOP` to an **Attribute Create SOP** with _Compute Normals_ enabled so lighting works correctly, then into a **Geometry COMP** (`geo1`).
 - Add a **Camera COMP**, a **Light COMP**, and a **Render TOP** to complete the standard 3D rendering pipeline.
 - Add an **Out TOP** to view your final result.
 
@@ -64,14 +65,14 @@ Recent versions of TouchDesigner make MediaPipe very easy to implement without e
 
 - Open the **Palette** (`Alt+L`).
 - Navigate to **MachineLearning** (or **Tools**, depending on your TD build) and drag the **mediapipe** component into your network.
-- Inside the component's parameters, enable *Hand Tracking* and select your webcam as the video device.
+- Inside the component's parameters, enable _Hand Tracking_ and select your webcam as the video device.
 
 ### 2. Extracting Hand Coordinates
 
 The MediaPipe component outputs a CHOP with data for all hand landmarks. We need a few specific channels.
 
 - Connect a **Select CHOP** to the CHOP output of the MediaPipe component.
-- **For Orientation (Rotation):** Track the dominant hand's wrist. In the Select CHOP's *Channel Names* field, enter:
+- **For Orientation (Rotation):** Track the dominant hand's wrist. In the Select CHOP's _Channel Names_ field, enter:
   ```
   h1_wrist:x h1_wrist:y
   ```
@@ -89,10 +90,10 @@ Raw MediaPipe data is normalized (usually between 0 and 1) and jittery. We need 
 ### 1. Controlling Orientation
 
 - Connect the wrist **Select CHOP** (`h1_wrist:x`, `h1_wrist:y`) to a **Math CHOP**.
-- In the Math CHOP's *Range* tab, map *From Range* `[0, 1]` to *To Range* `[-180, 180]` (degrees).
+- In the Math CHOP's _Range_ tab, map _From Range_ `[0, 1]` to _To Range_ `[-180, 180]` (degrees).
 - Connect this to a **Filter CHOP** to smooth the data — a filter width of `0.1` to `0.3` works well.
 - Connect the Filter CHOP to a **Null CHOP**.
-- Make `geo1` active. Drag the smoothed `x` channel to *Rotate Y* and the `y` channel to *Rotate X* (inverting the axes usually feels more intuitive when tracking hands).
+- Make `geo1` active. Drag the smoothed `x` channel to _Rotate Y_ and the `y` channel to _Rotate X_ (inverting the axes usually feels more intuitive when tracking hands).
 
 ### 2. Controlling Zoom (Pinch Gesture)
 
@@ -103,17 +104,17 @@ To zoom, calculate the distance between the thumb tip and index finger tip.
   ```python
   math.sqrt((val(1)-val(3))**2 + (val(2)-val(4))**2)
   ```
-- Connect that distance to another **Math CHOP** to remap the pinch range. For example, map *From Range* `[0.05, 0.3]` (tight pinch vs. open hand) to a *To Range* for the camera's Z translation, such as `[3, 10]`.
+- Connect that distance to another **Math CHOP** to remap the pinch range. For example, map _From Range_ `[0.05, 0.3]` (tight pinch vs. open hand) to a _To Range_ for the camera's Z translation, such as `[3, 10]`.
 - Add a **Filter CHOP** for smoothness, then a **Null CHOP**.
-- Drag the final distance channel to the *Translate Z* (`tz`) parameter of the **Camera COMP**.
+- Drag the final distance channel to the _Translate Z_ (`tz`) parameter of the **Camera COMP**.
 
 ---
 
 ## Troubleshooting
 
-| Problem | Fix |
-|---|---|
-| Laggy framerate | Recursive geometries get heavy fast. 3–4 iterations are usually fine; 6–7 will crash your framerate. |
+| Problem           | Fix                                                                                                                                           |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Laggy framerate   | Recursive geometries get heavy fast. 3–4 iterations are usually fine; 6–7 will crash your framerate.                                          |
 | Hand disappearing | MediaPipe loses tracking on fast movement. Use a **Filter CHOP** to prevent the geometry from snapping violently back to default coordinates. |
 
 [[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]

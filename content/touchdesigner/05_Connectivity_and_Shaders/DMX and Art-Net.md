@@ -7,11 +7,13 @@ tags:
   - lighting
 date: 2026-02-26
 ---
+
 # DMX and Art-Net (Lighting)
 
 Controlling physical lighting fixtures and LEDs from TouchDesigner.
 
 ## DMX
+
 The standard digital protocol for stage lighting.
 
 - **DMX Out CHOP:** Use this to send data to USB-to-DMX interfaces (like Enttec).

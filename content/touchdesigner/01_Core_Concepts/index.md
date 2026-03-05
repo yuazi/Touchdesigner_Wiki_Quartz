@@ -5,9 +5,11 @@ tags:
   - td/core
 date: 2026-02-06
 ---
+
 Welcome to the Core Concepts module! This folder contains everything you need to get up and running with TouchDesigner's specific workflow.
 
 ## Contents
+
 - **[[What is TouchDesigner]]**: High-level overview of the software.
 - **[[Interface Overview]]**: Navigating the panes, palettes, and parameters.
 - **[[Network Editor]]**: The canvas — navigation, node flags, bookmarks, and debugging tips.

@@ -6,6 +6,7 @@ tags:
   - terminal
 date: 2026-03-02
 ---
+
 [Ghostty](https://ghostty.org/) is a fast, feature-rich, and native terminal emulator written in Zig, with support for GPU rendering, native OS integrations, and a zero-config philosophy.
 
 ## Installation
@@ -46,22 +47,22 @@ window-padding-y = 8
 
 ## Splits & Tabs
 
-| Action | Keybind (macOS) |
-|---|---|
-| New window | `Cmd+N` |
-| New tab | `Cmd+T` |
-| Close surface | `Cmd+W` |
-| Previous tab | `Cmd+Shift+[` |
-| Next tab | `Cmd+Shift+]` |
-| Split horizontally | `Cmd+D` |
-| Split vertically | `Cmd+Shift+D` |
-| Focus split left | `Cmd+Option+Left` |
-| Focus split right | `Cmd+Option+Right` |
-| Focus split up | `Cmd+Option+Up` |
-| Focus split down | `Cmd+Option+Down` |
-| Increase font size | `Cmd++` |
-| Decrease font size | `Cmd+-` |
-| Reset font size | `Cmd+0` |
+| Action             | Keybind (macOS)    |
+| ------------------ | ------------------ |
+| New window         | `Cmd+N`            |
+| New tab            | `Cmd+T`            |
+| Close surface      | `Cmd+W`            |
+| Previous tab       | `Cmd+Shift+[`      |
+| Next tab           | `Cmd+Shift+]`      |
+| Split horizontally | `Cmd+D`            |
+| Split vertically   | `Cmd+Shift+D`      |
+| Focus split left   | `Cmd+Option+Left`  |
+| Focus split right  | `Cmd+Option+Right` |
+| Focus split up     | `Cmd+Option+Up`    |
+| Focus split down   | `Cmd+Option+Down`  |
+| Increase font size | `Cmd++`            |
+| Decrease font size | `Cmd+-`            |
+| Reset font size    | `Cmd+0`            |
 
 ## Themes
 

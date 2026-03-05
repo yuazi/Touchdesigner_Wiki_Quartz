@@ -10,6 +10,7 @@ tags:
   - recipes
 date: 2026-03-02
 ---
+
 > **Based on:** [Touch Designer Dreamscape Particle Cloud Tutorial](https://www.youtube.com/watch?v=4tOldYnNFV0) by **söla**
 
 A soft, glowing particle cloud that floats and breathes — the "dreamscape" aesthetic. This combines POPs for GPU-based particle movement with a feedback loop and post-processing to achieve the hazy, luminous look.
@@ -19,6 +20,7 @@ A soft, glowing particle cloud that floats and breathes — the "dreamscape" aes
 ## What You'll Build
 
 A real-time particle system where thousands of points:
+
 - Are seeded from a 3D mesh or noise field
 - Drift and swirl driven by a Noise force
 - Render as glowing soft points
@@ -30,7 +32,7 @@ A real-time particle system where thousands of points:
 
 ## 1. Create the Source Geometry
 
-This defines the *initial positions* of the particles.
+This defines the _initial positions_ of the particles.
 
 1. Drop a `Sphere SOP` (or any mesh you like — `Grid`, `Torus`, etc.).
 2. Set its resolution high enough to give you a dense point cloud (e.g., rows/columns = 50).
@@ -95,6 +97,7 @@ This keeps the cloud from drifting off screen over time.
 ## 7. Colorize the Points
 
 Insert a `Level TOP` after the `POP Render TOP`:
+
 - **Opacity:** 1
 - **Brightness:** slight boost
 
@@ -120,6 +123,7 @@ POP Render TOP
 ```
 
 Step by step:
+
 1. Drop a `Feedback TOP`. Set its **Target TOP** to itself (or a `Null TOP` at the end of the chain — see Quartz's [[Feedback Loops]] page for details).
 2. After the Feedback TOP, add a `Level TOP` and set **Opacity** to `0.93–0.97`. This dims the old frame slightly each tick.
 3. Add a `Blur TOP` (size 3–8px) to soften the fading trail.
@@ -134,14 +138,15 @@ Step by step:
 
 After the Composite:
 
-| Node | Settings | Purpose |
-|------|----------|---------|
-| `Blur TOP` | Size: 8–20px | Adds soft bloom around bright points |
-| `Level TOP` | Brightness +10%, Contrast +5% | Punches up the image |
-| `HSV Adjust TOP` | Hue rotate over time | Slowly shifts color over time |
-| `Null TOP` | Name: `OUT` | Output handle |
+| Node             | Settings                      | Purpose                              |
+| ---------------- | ----------------------------- | ------------------------------------ |
+| `Blur TOP`       | Size: 8–20px                  | Adds soft bloom around bright points |
+| `Level TOP`      | Brightness +10%, Contrast +5% | Punches up the image                 |
+| `HSV Adjust TOP` | Hue rotate over time          | Slowly shifts color over time        |
+| `Null TOP`       | Name: `OUT`                   | Output handle                        |
 
 To animate the color shift:
+
 - Right-click **Hue** on the `HSV Adjust TOP` → Expression → `absTime.seconds * 2`
 
 ---
@@ -160,15 +165,15 @@ If you want the particle cloud to be fully 3D with a moving camera:
 
 ## Parameter Cheat Sheet
 
-| Parameter | Value to Start |
-|-----------|---------------|
-| Noise Amplitude | `0.01` |
+| Parameter                 | Value to Start          |
+| ------------------------- | ----------------------- |
+| Noise Amplitude           | `0.01`                  |
 | Noise Offset Z expression | `absTime.seconds * 0.1` |
-| Force Strength | `0.002` |
-| Point Size | `3` |
-| Feedback Level Opacity | `0.95` |
-| Blur Size | `5` |
-| HSV Hue expression | `absTime.seconds * 2` |
+| Force Strength            | `0.002`                 |
+| Point Size                | `3`                     |
+| Feedback Level Opacity    | `0.95`                  |
+| Blur Size                 | `5`                     |
+| HSV Hue expression        | `absTime.seconds * 2`   |
 
 ---
 
