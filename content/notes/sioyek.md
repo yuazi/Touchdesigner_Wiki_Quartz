@@ -47,150 +47,151 @@ Or download the latest release from [github.com/ahrm/sioyek/releases](https://gi
 
 ### Navigation
 
-| Key | Action |
-|-----|--------|
-| `Space` / `PageDown` | Scroll down one screen |
-| `Shift+Space` / `PageUp` | Scroll up one screen |
-| `gg` | Go to the beginning of the document |
-| `G` / `End` | Go to the end of the document |
-| `<number>gg` | Go to page *number* (e.g. `42gg`) |
-| `Home` | Open "go to page" number prompt |
-| `gc` | Go to the next chapter |
-| `gC` | Go to the previous chapter |
-| `^` | Jump to left side of page (ignoring white margins) |
-| `$` | Jump to right side of page (ignoring white margins) |
-| `zz` | Jump to top-right of page (useful for two-column documents) |
-| `+` | Zoom in |
-| `-` | Zoom out |
-| `=` / `F9` | Fit page to screen width |
-| `F10` | Fit page to screen width (smart — ignores margins) |
-| `Backspace` / `Ctrl+Left` | Go back (previous location in history) |
-| `Shift+Backspace` / `Ctrl+Right` | Go forward (next location in history) |
-| `Ctrl+PageDown` | Next page (one full page forward) |
-| `Ctrl+PageUp` | Previous page (one full page back) |
-| `r` | Rotate document clockwise |
-| `R` | Rotate document counter-clockwise |
-| `Ctrl+T` | Open a new Sioyek window |
-| `Ctrl+W` | Close the current Sioyek window |
+| Key                              | Action                                                      |
+| -------------------------------- | ----------------------------------------------------------- |
+| `Space` / `PageDown`             | Scroll down one screen                                      |
+| `Shift+Space` / `PageUp`         | Scroll up one screen                                        |
+| `gg`                             | Go to the beginning of the document                         |
+| `G` / `End`                      | Go to the end of the document                               |
+| `<number>gg`                     | Go to page _number_ (e.g. `42gg`)                           |
+| `Home`                           | Open "go to page" number prompt                             |
+| `gc`                             | Go to the next chapter                                      |
+| `gC`                             | Go to the previous chapter                                  |
+| `^`                              | Jump to left side of page (ignoring white margins)          |
+| `$`                              | Jump to right side of page (ignoring white margins)         |
+| `zz`                             | Jump to top-right of page (useful for two-column documents) |
+| `+`                              | Zoom in                                                     |
+| `-`                              | Zoom out                                                    |
+| `=` / `F9`                       | Fit page to screen width                                    |
+| `F10`                            | Fit page to screen width (smart — ignores margins)          |
+| `Backspace` / `Ctrl+Left`        | Go back (previous location in history)                      |
+| `Shift+Backspace` / `Ctrl+Right` | Go forward (next location in history)                       |
+| `Ctrl+PageDown`                  | Next page (one full page forward)                           |
+| `Ctrl+PageUp`                    | Previous page (one full page back)                          |
+| `r`                              | Rotate document clockwise                                   |
+| `R`                              | Rotate document counter-clockwise                           |
+| `Ctrl+T`                         | Open a new Sioyek window                                    |
+| `Ctrl+W`                         | Close the current Sioyek window                             |
 
 ### Opening Documents
 
-| Key | Action |
-|-----|--------|
-| `o` | Open a file picker dialog |
-| `Ctrl+O` | Open an embedded file picker inside Sioyek |
+| Key            | Action                                                           |
+| -------------- | ---------------------------------------------------------------- |
+| `o`            | Open a file picker dialog                                        |
+| `Ctrl+O`       | Open an embedded file picker inside Sioyek                       |
 | `Ctrl+Shift+O` | Open embedded file picker rooted at the current file's directory |
-| `O` | Open a searchable list of previously opened documents |
+| `O`            | Open a searchable list of previously opened documents            |
 
 ### Search
 
-| Key | Action |
-|-----|--------|
-| `/` or `Ctrl+F` | Search the document |
+| Key                | Action                                 |
+| ------------------ | -------------------------------------- |
+| `/` or `Ctrl+F`    | Search the document                    |
 | `c/` or `c Ctrl+F` | Search within the current chapter only |
-| `n` | Jump to next search result |
-| `N` | Jump to previous search result |
+| `n`                | Jump to next search result             |
+| `N`                | Jump to previous search result         |
 
 ### Visual Mark (Ruler)
 
 The "ruler" in Sioyek is called the **visual mark**. It highlights the current line and dims everything above and below it — useful for staying focused on a single line of dense text.
 
 **How to use it:**
+
 1. **Right-click** anywhere on the PDF to place the visual mark on that line.
 2. Press `j` / `↓` to move it down one line, `k` / `↑` to move it up.
 3. Press `F7` to toggle **visual scroll mode** — in this mode the mouse wheel also moves the visual mark line-by-line instead of scrolling the page.
 
-| Key | Action |
-|-----|--------|
-| Right-click | Place visual mark on that line |
-| `j` / `↓` | Move visual mark down one line |
-| `k` / `↑` | Move visual mark up one line |
-| `F7` | Toggle visual scroll mode (mouse wheel drives the visual mark) |
+| Key         | Action                                                         |
+| ----------- | -------------------------------------------------------------- |
+| Right-click | Place visual mark on that line                                 |
+| `j` / `↓`   | Move visual mark down one line                                 |
+| `k` / `↑`   | Move visual mark up one line                                   |
+| `F7`        | Toggle visual scroll mode (mouse wheel drives the visual mark) |
 
 **Ruler appearance settings** (in `prefs_user.config`):
 
-| Setting | Default | Description |
-|---------|---------|-------------|
-| `visual_mark_color` | `0.0 0.0 0.0 0.1` | RGBA color of the dimming mask |
-| `ruler_mode` | `1` | `1` = mask above **and** below the line; `0` = mask only below |
-| `ruler_padding` | `1.0` | Vertical padding (in points) added above/below the highlighted line |
-| `ruler_x_padding` | `5.0` | Horizontal padding added to the left/right of the highlighted line |
-| `visual_mark_next_page_fraction` | `0.75` | Where on screen the mark sits when it triggers a page scroll (0 = top, 1 = center) |
-| `visual_mark_next_page_threshold` | `0.25` | How close to the bottom the mark must get before the page auto-scrolls |
+| Setting                           | Default           | Description                                                                        |
+| --------------------------------- | ----------------- | ---------------------------------------------------------------------------------- |
+| `visual_mark_color`               | `0.0 0.0 0.0 0.1` | RGBA color of the dimming mask                                                     |
+| `ruler_mode`                      | `1`               | `1` = mask above **and** below the line; `0` = mask only below                     |
+| `ruler_padding`                   | `1.0`             | Vertical padding (in points) added above/below the highlighted line                |
+| `ruler_x_padding`                 | `5.0`             | Horizontal padding added to the left/right of the highlighted line                 |
+| `visual_mark_next_page_fraction`  | `0.75`            | Where on screen the mark sits when it triggers a page scroll (0 = top, 1 = center) |
+| `visual_mark_next_page_threshold` | `0.25`            | How close to the bottom the mark must get before the page auto-scrolls             |
 
 ### Marks
 
-| Key | Action |
-|-----|--------|
-| `m <char>` | Set a named mark at the current position (e.g. `ma`) |
-| `` ` <char>`` | Jump to a named mark (e.g. `` `a``) |
+| Key           | Action                                               |
+| ------------- | ---------------------------------------------------- |
+| `m <char>`    | Set a named mark at the current position (e.g. `ma`) |
+| `` ` <char>`` | Jump to a named mark (e.g. `` `a``)                  |
 
 ### Bookmarks
 
-| Key | Action |
-|-----|--------|
-| `b` | Add a bookmark at the current location |
-| `db` | Delete the nearest bookmark |
+| Key  | Action                                 |
+| ---- | -------------------------------------- |
+| `b`  | Add a bookmark at the current location |
+| `db` | Delete the nearest bookmark            |
 | `gb` | Open bookmarks list (current document) |
-| `gB` | Open bookmarks list (all documents) |
+| `gB` | Open bookmarks list (all documents)    |
 
 ### Highlights
 
 Select text with the mouse first, then press the shortcut.
 
-| Key | Action |
-|-----|--------|
-| `h` | Add a highlight (uses current highlight type) |
-| `dh` | Delete the highlight under the cursor |
-| `gh` | Open highlights list (current document) |
-| `gH` | Open highlights list (all documents) |
-| `gnh` | Jump to next highlight |
-| `gNh` | Jump to previous highlight |
+| Key   | Action                                        |
+| ----- | --------------------------------------------- |
+| `h`   | Add a highlight (uses current highlight type) |
+| `dh`  | Delete the highlight under the cursor         |
+| `gh`  | Open highlights list (current document)       |
+| `gH`  | Open highlights list (all documents)          |
+| `gnh` | Jump to next highlight                        |
+| `gNh` | Jump to previous highlight                    |
 
 ### Portals (Persistent Links)
 
 Portals are two-way spatial links between locations — useful for jumping between a figure and the text that references it, or linking across documents.
 
-| Key | Action |
-|-----|--------|
-| `p` | Enter portal creation mode (press again at destination to confirm) |
-| `P` or `Shift+Tab` | Edit the nearest portal (update its destination) |
-| `gp` or `Tab` | Jump to the nearest portal's destination |
-| `dp` | Delete the nearest portal |
-| `F12` | Toggle the portal helper window |
+| Key                | Action                                                             |
+| ------------------ | ------------------------------------------------------------------ |
+| `p`                | Enter portal creation mode (press again at destination to confirm) |
+| `P` or `Shift+Tab` | Edit the nearest portal (update its destination)                   |
+| `gp` or `Tab`      | Jump to the nearest portal's destination                           |
+| `dp`               | Delete the nearest portal                                          |
+| `F12`              | Toggle the portal helper window                                    |
 
 ### Links & Keyboard Selection
 
-| Key | Action |
-|-----|--------|
-| `f` | Enter link-follow mode — highlights all links on the page for keyboard selection |
-| `F` | Smart jump — follow the most semantically relevant link under cursor |
-| `v` | Select text using the keyboard |
-| `l` | Open definition overview (in visual scroll mode) |
-| `Ctrl+]` | Go to definition |
-| `]` | Create a portal to the definition |
+| Key      | Action                                                                           |
+| -------- | -------------------------------------------------------------------------------- |
+| `f`      | Enter link-follow mode — highlights all links on the page for keyboard selection |
+| `F`      | Smart jump — follow the most semantically relevant link under cursor             |
+| `v`      | Select text using the keyboard                                                   |
+| `l`      | Open definition overview (in visual scroll mode)                                 |
+| `Ctrl+]` | Go to definition                                                                 |
+| `]`      | Create a portal to the definition                                                |
 
 ### Table of Contents
 
-| Key | Action |
-|-----|--------|
+| Key | Action                 |
+| --- | ---------------------- |
 | `t` | Open table of contents |
 
 ### Miscellaneous
 
-| Key | Action |
-|-----|--------|
-| `:` | Open command palette |
-| `q` | Quit Sioyek |
-| `Ctrl+C` | Copy selected text to clipboard |
-| `s` | Search selected text in external search engine (Google Scholar by default) |
-| `F1` | Toggle PDF link highlighting |
-| `F4` | Toggle SyncTeX mode (right-click jumps to LaTeX source) |
-| `F5` | Toggle presentation mode (pages fit full screen, movement skips whole pages) |
-| `F6` | Toggle mouse drag mode (drag pans the view instead of selecting text) |
-| `F7` | Toggle visual scroll mode (scroll wheel moves the visual mark line by line) |
-| `F8` | Toggle dark mode (invert colors) |
-| `F11` | Toggle fullscreen |
+| Key      | Action                                                                       |
+| -------- | ---------------------------------------------------------------------------- |
+| `:`      | Open command palette                                                         |
+| `q`      | Quit Sioyek                                                                  |
+| `Ctrl+C` | Copy selected text to clipboard                                              |
+| `s`      | Search selected text in external search engine (Google Scholar by default)   |
+| `F1`     | Toggle PDF link highlighting                                                 |
+| `F4`     | Toggle SyncTeX mode (right-click jumps to LaTeX source)                      |
+| `F5`     | Toggle presentation mode (pages fit full screen, movement skips whole pages) |
+| `F6`     | Toggle mouse drag mode (drag pans the view instead of selecting text)        |
+| `F7`     | Toggle visual scroll mode (scroll wheel moves the visual mark line by line)  |
+| `F8`     | Toggle dark mode (invert colors)                                             |
+| `F11`    | Toggle fullscreen                                                            |
 
 ---
 
@@ -198,10 +199,10 @@ Portals are two-way spatial links between locations — useful for jumping betwe
 
 Sioyek stores its config files in:
 
-| File | Location (macOS) |
-|------|------------------|
+| File           | Location (macOS)                                         |
+| -------------- | -------------------------------------------------------- |
 | `prefs.config` | `~/Library/Application Support/sioyek/prefs_user.config` |
-| `keys.config` | `~/Library/Application Support/sioyek/keys_user.config` |
+| `keys.config`  | `~/Library/Application Support/sioyek/keys_user.config`  |
 
 > The `_user` variants are the files you edit. The base `prefs.config` and `keys.config` inside the app bundle contain the defaults and are overridden by your `_user` files.
 
