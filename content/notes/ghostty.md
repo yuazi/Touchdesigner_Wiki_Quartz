@@ -54,8 +54,8 @@ window-padding-y = 8
 | Close surface      | `Cmd+W`            |
 | Previous tab       | `Cmd+Shift+[`      |
 | Next tab           | `Cmd+Shift+]`      |
-| Split horizontally | `Cmd+D`            |
-| Split vertically   | `Cmd+Shift+D`      |
+| Split vertically   | `Cmd+D`            |
+| Split horizontally | `Cmd+Shift+D`      |
 | Focus split left   | `Cmd+Option+Left`  |
 | Focus split right  | `Cmd+Option+Right` |
 | Focus split up     | `Cmd+Option+Up`    |
