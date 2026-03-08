@@ -24,6 +24,7 @@ date: 2026-03-08
 **Goal:** Real-time Lorenz attractor visuals driven by MediaPipe hand tracking via webcam — no plugin required, fully scripted in Python.
 
 **Signal flow:**
+
 ```
 Webcam → Script CHOP (MediaPipe) → Filter/Lag CHOPs → Math CHOPs
   → Script SOP (Lorenz) → Geo COMP → Render TOP → Post FX → Output
@@ -39,22 +40,22 @@ Create the following nodes inside `/project1`:
 
 ### Tracking
 
-| Node | Type | Notes |
-|---|---|---|
-| `script_hand` | Script CHOP | MediaPipe code lives here |
-| `filter_hand` | Filter CHOP | Smooth jitter, width ~5 |
-| `lag_hand` | Lag CHOP | Lag In: 0.08, Lag Out: 0.15 |
-| `null_ctrl` | Null CHOP | Tap point for downstream refs |
+| Node          | Type        | Notes                         |
+| ------------- | ----------- | ----------------------------- |
+| `script_hand` | Script CHOP | MediaPipe code lives here     |
+| `filter_hand` | Filter CHOP | Smooth jitter, width ~5       |
+| `lag_hand`    | Lag CHOP    | Lag In: 0.08, Lag Out: 0.15   |
+| `null_ctrl`   | Null CHOP   | Tap point for downstream refs |
 
 ### Geometry
 
-| Node | Type | Notes |
-|---|---|---|
-| `script_lorenz` | Script SOP | Lorenz code lives here |
-| `geo_attractor` | Geo COMP | SOP = `script_lorenz` |
-| `cam1` | Camera COMP | Translate Z = 8 |
-| `light1` | Light COMP | Default is fine |
-| `render1` | Render TOP | 1920×1080 |
+| Node            | Type        | Notes                  |
+| --------------- | ----------- | ---------------------- |
+| `script_lorenz` | Script SOP  | Lorenz code lives here |
+| `geo_attractor` | Geo COMP    | SOP = `script_lorenz`  |
+| `cam1`          | Camera COMP | Translate Z = 8        |
+| `light1`        | Light COMP  | Default is fine        |
+| `render1`       | Render TOP  | 1920×1080              |
 
 ### Post FX (chain in order)
 
@@ -71,8 +72,8 @@ render1 → level1 → bloom1 → feedback1 ┐
 
 ### Output
 
-| Node | Type | Notes |
-|---|---|---|
+| Node      | Type        | Notes                 |
+| --------- | ----------- | --------------------- |
 | `window1` | Window COMP | Operator → `null_out` |
 
 ---
@@ -193,6 +194,7 @@ def onCook(scriptOp):
 > **State storage:** `op.store` is used instead of `globals()` — it's the TD-native way to persist data between cooks and won't break on network reloads.
 
 **CHOP chain:**
+
 ```
 script_hand → filter_hand → lag_hand → null_ctrl
 ```
@@ -208,16 +210,19 @@ script_hand → filter_hand → lag_hand → null_ctrl
 Create three Math CHOPs after `null_ctrl`:
 
 **`math_sigma`** — Select channel `x`
+
 - From Range: 0 → 1
 - To Range: 8 → 20
 - Rename output channel to `sigma`
 
 **`math_rho`** — Select channel `y`
+
 - From Range: 0 → 1
 - To Range: 20 → 45
 - Rename output channel to `rho`
 
 **`math_beta`** — Select channel `pinch`
+
 - From Range: 0 → 1
 - To Range: 1.8 → 3.5
 - Rename output channel to `beta`
@@ -251,14 +256,14 @@ Create a **Script SOP** named `script_lorenz`.
 
 ### Custom Parameters (Gear icon → Custom Parameters)
 
-| Name | Type | Default |
-|---|---|---|
-| `Sigma` | Float | 10.0 |
-| `Rho` | Float | 28.0 |
-| `Beta` | Float | 2.667 |
-| `Points` | Int | 6000 |
-| `Dt` | Float | 0.005 |
-| `Scale` | Float | 0.08 |
+| Name     | Type  | Default |
+| -------- | ----- | ------- |
+| `Sigma`  | Float | 10.0    |
+| `Rho`    | Float | 28.0    |
+| `Beta`   | Float | 2.667   |
+| `Points` | Int   | 6000    |
+| `Dt`     | Float | 0.005   |
+| `Scale`  | Float | 0.08    |
 
 ### Script SOP DAT code
 
@@ -337,6 +342,7 @@ See [[touchdesigner/03_Rendering_and_Output/Feedback Loops|Feedback Loops]] for 
 ## Part 6 — Output
 
 In `window1` (Window COMP):
+
 - Operator: `../null_out`
 - Resolution: match render (1920×1080)
 - Hit **Open Window** or use **Perform Mode** (F1) for full performance
@@ -345,14 +351,14 @@ In `window1` (Window COMP):
 
 ## Part 7 — Performance Tips (M1 Pro)
 
-| Setting | Value |
-|---|---|
-| Starting point count | 4,000–6,000 |
-| Safe target | 20,000–40,000 |
-| MediaPipe resolution | 640×480 |
-| TD cook mode | Realtime |
-| Turn off | All node viewers during perform |
-| TD build | Latest stable, Apple Silicon native |
+| Setting              | Value                               |
+| -------------------- | ----------------------------------- |
+| Starting point count | 4,000–6,000                         |
+| Safe target          | 20,000–40,000                       |
+| MediaPipe resolution | 640×480                             |
+| TD cook mode         | Realtime                            |
+| Turn off             | All node viewers during perform     |
+| TD build             | Latest stable, Apple Silicon native |
 
 - If CPU spikes: reduce `Points` first, then lower `dt` slightly
 - To decouple tracking FPS: add a **Timer CHOP** to only trigger Script CHOP at 30fps while render runs at 60fps

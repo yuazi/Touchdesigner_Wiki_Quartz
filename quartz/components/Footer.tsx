@@ -21,7 +21,15 @@ export default ((opts?: Options) => {
         <ul>
           {Object.entries(links).map(([text, link]) => (
             <li>
-              <a href={link.startsWith("/") ? resolveRelative(fileData.slug!, link.slice(1) as SimpleSlug) : link}>{text}</a>
+              <a
+                href={
+                  link.startsWith("/")
+                    ? resolveRelative(fileData.slug!, link.slice(1) as SimpleSlug)
+                    : link
+                }
+              >
+                {text}
+              </a>
             </li>
           ))}
         </ul>
