@@ -54,6 +54,7 @@ A master class series on implementing real-time **hand tracking** in TouchDesign
 - [[touchdesigner/02_The_Operators/CHOPs/index|CHOPs]] — processing tracking data as signals
 - [[touchdesigner/03_Rendering_and_Output/Instancing|Instancing]] — rendering landmark spheres efficiently
 - [[Particle System with POPs]] — driving particles from hand position
+- [[Hand-Tracked Chaotic Attractor]] — Lorenz attractor driven by a custom Script CHOP (no plugin)
 
 [[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]
 

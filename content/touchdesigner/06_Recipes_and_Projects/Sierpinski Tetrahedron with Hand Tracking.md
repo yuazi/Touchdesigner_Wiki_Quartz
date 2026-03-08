@@ -12,7 +12,7 @@ tags:
 date: 2026-03-01
 ---
 
-**Related:** [[Hand Tracking Tutorial|Hand Tracking Tutorial]] · [[Hand Tracking|Back to Hand Tracking]]
+**Related:** [[Hand Tracking Tutorial|Hand Tracking Tutorial]] · [[Hand Tracking|Back to Hand Tracking]] · [[Hand-Tracked Chaotic Attractor|Hand-Tracked Chaotic Attractor]]
 
 ---
 
