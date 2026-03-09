@@ -21,6 +21,8 @@ date: 2026-03-09
 
 Most ML today is **automatic machine learning (aML)**: algorithms that interact with agents and optimize their learning *without* human involvement during training. This works great when you have large, clean, labeled datasets.
 
+This "big data + end-to-end automation" paradigm powers many successful applications, including **recommender systems**, **autonomous vehicles**, and **industrial AI systems**. The lecture's framing point is that these successes depend heavily on abundant data and well-specified objectives; they do **not** automatically transfer to every domain.
+
 But sometimes you **still need a human in the loop**:
 
 - **Small or multiple datasets** — not enough data for aML to be reliable
@@ -32,6 +34,8 @@ But sometimes you **still need a human in the loop**:
 > **Interactive Machine Learning (iML)** := algorithms that interact with agents (which can be humans) and that can optimise their learning behaviour through this interaction. — Holzinger, 2015
 
 The human is seen as an agent involved in the **actual learning phase**, influencing measures such as distance or cost functions step by step — not just checking results at the end.
+
+This matters especially in **health informatics** and other high-stakes settings, where decision making can be viewed as a search problem in a very large hypothesis space under tight time constraints. A "good" decision is not only about raw prediction accuracy; it is about **expected utility** under domain-specific costs, risks, and failure modes.
 
 ### Types of ML on a Spectrum
 
@@ -48,6 +52,13 @@ The human is seen as an agent involved in the **actual learning phase**, influen
 - A **crowd** (e.g. Amazon Mechanical Turk workers)
 - **Multiple heterogeneous agents** (domain experts + crowd + automated tools)
 - **Nature-inspired agents** (evolutionary algorithms, etc.)
+
+### Limits of Pure aML and of Human Interaction
+
+The lecture also highlights two complementary cautions:
+
+- **Pure aML** struggles when data are scarce, rare events matter, or the search problem is combinatorial / NP-hard
+- **Human-in-the-loop systems** introduce their own issues: robustness of human feedback, subjectivity, transferability across tasks, and open questions around evaluation and reproducibility
 
 ---
 
@@ -239,6 +250,15 @@ What if $c^* \notin H$? (The realistic case — noise, model mismatch.)
 - Exponential improvement for threshold classifiers in low-noise settings
 - For homogeneous linear separators in $\mathbb{R}^d$, uniform distribution, low noise: only $d^2 \log(1/\varepsilon)$ labels needed
 
+### Theoretical Guarantees — What to Retain
+
+The lecture's theory slides emphasise that disagreement-based active learning is attractive because it comes with **explicit guarantees**, not just heuristics:
+
+- In favorable low-noise settings, active learning can provide **exponential label savings**
+- A² is **safe** in the sense that it should not perform worse than passive learning
+- Disagreement-based methods are quite generic and can be made computationally efficient for classes with **small VC-dimension**
+- But they are not universally optimal: label complexity can still be suboptimal, and general computation can become expensive
+
 ---
 
 ## Other AL Techniques in Practice
@@ -263,9 +283,11 @@ Select a **batch** of points that maximally covers the feature space, so no two 
 
 $$\text{select } B \text{ points s.t. every unlabeled point is close to at least one selected point}$$
 
-### 3. Ensemble-Based Sampling (Query by Committee)
+### 3. Ensemble-Based Possibilities (Query by Committee)
 
 Train multiple diverse models (a "committee"). Query the example where they **disagree most**.
+
+The committee can be created through different initialisations, bootstrap resampling, different architectures, or approximate Bayesian samples. The key idea is always the same: if several plausible models disagree, the example is informative.
 
 ```python
 # 3-model committee
@@ -299,6 +321,8 @@ Assume a **pairwise similarity function** exists and that very similar examples 
 - Many **unlabeled** points → use them as "stepping stones" via **label propagation**
 
 Unlabeled data can help **"glue" objects of the same class together** even when there is no direct edge between labeled points of the same class.
+
+This graph view is particularly useful when the geometry of the unlabeled data is more informative than individual feature vectors: once the graph captures the manifold or cluster structure, labels can propagate through the unlabeled region instead of relying only on isolated supervised points.
 
 ### Building the Graph
 
@@ -346,6 +370,15 @@ This approach performs well for **video segmentation** (Fathi et al., 2011) wher
 ---
 
 ## Deep Active Learning
+
+Deep active learning is best viewed as a **continuation of the classical ideas**, not a separate topic. The same goals remain:
+
+- estimate **uncertainty**
+- capture **disagreement**
+- avoid redundant batch queries
+- prefer points that influence the rest of the pool
+
+What changes is that deep networks do not expose these quantities cleanly, so we need approximations such as MC Dropout, BALD, and batch-aware acquisition objectives.
 
 ### Challenges
 
@@ -457,6 +490,7 @@ Uncertainty alone grabs near-duplicates; diversity alone ignores which regions a
 - Common heuristics (uncertainty sampling, active SVM) work but **beware of sampling bias**
 - **Disagreement-based safe schemes** (A²) provide noise-robust guarantees
 - **Graph methods** leverage data manifold structure for label propagation
+- **Deep active learning** reuses the same principles with approximate Bayesian uncertainty and batch-aware objectives
 
 ### Techniques at a Glance
 

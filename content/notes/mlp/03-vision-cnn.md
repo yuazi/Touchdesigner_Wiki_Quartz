@@ -90,6 +90,8 @@ Use a **sliding window**:
 
 > **Example flow**: ~2,000 region proposals per image, each warped to 227×227 and fed through AlexNet → `pool5` features → 20 SVMs (one per VOC class) + box regressor.
 
+The lecture's result slide makes the core contribution visible: once proposals are cropped and passed through a fine-tuned CNN, the detector can localise many Pascal VOC objects quite tightly across very different categories. The tradeoff is efficiency: every proposal still requires its **own CNN forward pass**, which makes test-time inference extremely slow.
+
 ---
 
 ### Fast R-CNN [Girshick, 2015]
@@ -144,11 +146,25 @@ $$L(p_i, t_i) = \frac{1}{N_\text{cls}} \sum_i L_\text{cls}(p_i, p_i^*) + \lambda
 
 **Result**: ~10× speedup over Fast R-CNN with no loss in accuracy.
 
+#### The R-CNN Family at a Glance
+
+The lecture's comparison slide highlights that the main progress from **R-CNN → Fast R-CNN → Faster R-CNN** is about eliminating repeated computation while preserving accuracy:
+
+| Model | Test time / image (with proposals) | Speedup | mAP (VOC 2007) |
+|------|-------------------------------|---------|----------------|
+| **R-CNN** | 50 s | 1× | 66.0 |
+| **Fast R-CNN** | 2 s | 25× | 66.9 |
+| **Faster R-CNN** | 0.2 s | 250× | 66.9 |
+
+So the big story is not that Faster R-CNN suddenly becomes much more accurate; it achieves **roughly the same detection quality with drastically less wasted computation**.
+
+The COCO qualitative examples in the PDF also show that the Faster R-CNN pipeline scales beyond the cleaner Pascal VOC setting: it can detect many objects simultaneously in cluttered indoor and outdoor scenes, from kitchen items and trains to animals and street scenes.
+
 ---
 
 ### Segmentation Extension: Mask R-CNN [He et al., 2017]
 
-Extends Faster R-CNN with an additional **semantic segmentation** head:
+Extends Faster R-CNN with an additional **instance-segmentation** head:
 
 - The classification stage gains an extra branch for predicting a per-pixel binary mask
 - Further improves object detection results alongside providing instance masks
@@ -182,6 +198,15 @@ Two-stage detectors are accurate but slow. Single-stage detectors skip the propo
 **Classification at pixel-level**: assign each pixel an object class label (e.g., road, sky, person). Does **not** distinguish different instances of the same class.
 
 > **Example — Pascal VOC**: an image with two people and a car would have every person-pixel labelled "person" and every car-pixel labelled "car" — both people share the same label colour.
+
+It helps to separate the related tasks clearly:
+
+| Task | Output | Example |
+|------|--------|---------|
+| **Image classification** | One label for the whole image | "dog" |
+| **Object detection** | One box + class per instance | two dogs → two boxes |
+| **Semantic segmentation** | One class per pixel | both dogs share the same `dog` label region |
+| **Instance segmentation** | One mask per object instance | each dog gets its **own** mask |
 
 ---
 
@@ -281,6 +306,8 @@ $$L = L_\text{cls} + L_\text{box} + L_\text{mask}$$
 - $L_\text{box}$: difference between ground truth and output coordinates
 - $L_\text{mask}$: sigmoid cross-entropy between ground truth binary mask and prediction (not softmax — classes compete only via classification, not through the mask)
 
+The qualitative Mask R-CNN result slide makes the distinction from semantic segmentation concrete: in sports, retail, and beach scenes, the model outputs **separate masks for different people or objects of the same class**, while keeping the masks aligned to object boundaries. That is the defining extra capability beyond "label every pixel as person/chair/umbrella".
+
 ---
 
 ### ROI Pooling vs. ROI Align
@@ -308,7 +335,7 @@ $$L = L_\text{cls} + L_\text{box} + L_\text{mask}$$
 - **Object Detection**: localise objects using bounding boxes
 - **Two-stage approaches** (region proposals + classification): R-CNN → Fast R-CNN → Faster R-CNN
 - **Single-stage approaches**: SSD, YOLO (faster, at some cost in accuracy)
-- **Semantic segmentation**: classify each pixel (no instance distinction)
+- **Semantic segmentation**: classify each pixel (no instance distinction); **instance segmentation** additionally separates same-class objects
 - **FCN, U-Net**: encoder–decoder models with learnable upsampling and skip connections
 - **Mask R-CNN**: Faster R-CNN extended with an object segmentation branch + ROI Align
 

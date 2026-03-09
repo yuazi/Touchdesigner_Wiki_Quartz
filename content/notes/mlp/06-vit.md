@@ -311,7 +311,16 @@ This shows the modularity of the Transformer-based approach — segmentation req
 
 ### DETR — Results and Shortcomings
 
-DETR achieves **comparable or better AP** than Faster R-CNN on COCO object detection.
+On COCO, DETR is not just conceptually elegant; it is also **competitive with strong Faster R-CNN baselines**. In the lecture comparison table:
+
+- **DETR-R50** reaches **42.0 AP**, essentially matching **Faster R-CNN-FPN** at **42.0 AP**
+- The strongest DETR variant shown, **DETR-DC5-R101**, reaches **44.9 AP**, **64.7 AP50**, and **62.3 AP_L**
+- The weakness is visible on **small objects**: **AP_S = 23.7**, below the stronger Faster R-CNN multi-scale baseline (**27.2**)
+
+The qualitative slides explain *why* DETR feels different from proposal-based detectors:
+
+- The **encoder** can separate nearby instances into different slots even in crowded scenes
+- The **decoder** often attends to **object extremities** such as heads, legs, and tails rather than box centers, yet still predicts coherent boxes
 
 **Shortcomings**:
 
@@ -530,9 +539,11 @@ def dino_loss(student_out, teacher_out, tau_s=0.1, tau_t=0.04, center=None):
 
 DINO is **very effective for Transformer backbones**:
 
+- On **ResNet-50**, DINO is already competitive with the best CNN self-supervised baselines in the lecture table: **75.3** linear-eval accuracy and **67.5** $k$-NN accuracy
+- On **ViT-S**, the gains are clearer: DINO reaches **77.0** linear accuracy and **74.5** $k$-NN, outperforming BYOL, MoCov2, and SwAV on the same Transformer backbone
 - Self-supervised ViTs develop **explicit semantic segmentation maps** in their last-layer attention — clear foreground/background separation with no segmentation labels
 - $k$-NN classification on ImageNet without fine-tuning achieves strong accuracy, demonstrating the quality of learned representations
-- Attention maps are semantically interpretable: the model identifies object boundaries and scene structure
+- Attention maps are semantically interpretable: the model identifies object boundaries and scene structure for objects such as birds, boats, bicycles, giraffes, dogs, and even large scene regions like skylines
 - DINO features transfer well across datasets and tasks
 
 These properties do **not** emerge as strongly in CNN-based self-supervised models — the inductive biases of Transformers (global attention, no forced locality) appear to be key.
@@ -585,4 +596,3 @@ From the lecture's closing slide — notable models and frameworks as of WS 2025
 ---
 
 [[notes/mlp/05-transformer|← L05: Transformers]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/07-multimodal|Next: Multimodal Learning →]]
-

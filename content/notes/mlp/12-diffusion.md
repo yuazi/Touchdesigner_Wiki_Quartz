@@ -338,6 +338,11 @@ Diffusion models **do not scale well with image resolution**. A 512×512×3 pixe
 
 Observation (Ho et al., 2020): most "bits" in an image encode fine-grained **perceptual detail**, not semantic content. Running the full generative process in pixel space wastes computation on imperceptible differences.
 
+The lecture motivates this with a **rate-distortion view**: fine-grained perceptual details consume most of the bit budget, while the more semantically meaningful structure can often be modeled in a much smaller latent space. Latent diffusion therefore splits the problem into:
+
+- **Perceptual compression**: let an autoencoder preserve visually important detail
+- **Semantic compression**: let diffusion model the higher-level structure in latent space
+
 Two common strategies:
 1. Downsample → process at smaller scale → upsample.
 2. **Translate to latent space → run diffusion in latent space → decode back.**
@@ -356,6 +361,15 @@ Text Prompt c ──────────────────────
                                                       │
 x_0 →[VAE Enc]→ z_0 →[Noise]→ z_T →[U-Net]→ ẑ_0 →[VAE Dec]→ x̂_0
 ```
+
+### Two-Stage Training
+
+Latent diffusion is trained in **two stages**:
+
+1. **Train the autoencoder first** so that $x \to z \to \hat{x}$ preserves perceptually relevant content
+2. **Train the diffusion model on latents** $z$ instead of pixels
+
+In the lecture slides, the first stage is not just plain reconstruction: a **patch-based adversarial discriminator** is added on top of the reconstruction / perceptual objective so the latent space keeps visually important details while staying compressed.
 
 ### Advantages of Latent Diffusion
 
@@ -394,6 +408,15 @@ $$\nabla_x \mathcal{L} = \nabla_x \mathcal{L}_\text{data}(x_t, c) + s \cdot \nab
 
 > **Example**: When generating "a red apple on a wooden table", the CLIP gradient nudges each denoising step toward images whose visual features are more similar to that text description.
 
+### GLIDE Training
+
+The lecture's training slide clarifies how **classifier-free guidance** is enabled: during training, GLIDE is randomly asked to denoise **with text conditioning** and **without text conditioning**. That means the same network learns both:
+
+- a generic unconditional denoiser
+- a prompt-conditioned denoiser
+
+The difference between these two predictions becomes the direction that is later amplified at inference time.
+
 ### Classifier-Free Guidance (Ho & Salimans, 2022)
 
 **Problem**: Conditional generation doesn't always follow the text prompt closely enough.
@@ -406,7 +429,7 @@ $$\hat\varepsilon = \varepsilon_\theta(x_t, t, \varnothing) + w \cdot \left[\var
 - $w = 1$: no guidance (pure conditional).
 - $w > 1$: amplify the conditional signal → stronger prompt adherence, less diversity.
 
-The GLIDE paper shows that **classifier-free guidance outperforms CLIP guidance** in evaluations.
+The lecture explicitly notes that **the best GLIDE results are obtained with classifier-free guidance**, rather than the external CLIP-guided variant.
 
 ```python
 # Classifier-free guidance at inference
@@ -419,6 +442,17 @@ eps_guided = eps_uncond + w * (eps_cond - eps_uncond)  # guided prediction
 > - $w = 1.0$ → "a painting of a sunset" produces a vague, diverse sunset.
 > - $w = 7.5$ → the prompt is followed closely, boats and horizon are clearly visible.
 > - $w = 15$ → very strong adherence but may produce over-saturated artifacts.
+
+### GLIDE Editing Results
+
+GLIDE is not only a text-to-image generator from scratch; the lecture's editing slide shows it can perform **text-guided local edits** while preserving the rest of the image. The examples include:
+
+- inserting **zebras into an empty field**
+- editing a painting into **"a girl hugging a corgi on a pedestal"**
+- changing a person's hair to **red**
+- replacing a masked table region with **a vase of flowers**
+
+This is the same general diffusion machinery applied in an **editing / inpainting-style** setting: keep most of the scene fixed, but regenerate the masked region so it becomes consistent with the prompt.
 
 ---
 
@@ -435,9 +469,10 @@ eps_guided = eps_uncond + w * (eps_cond - eps_uncond)  # guided prediction
 | **Connection to VAEs** | Diffusion = hierarchical VAE with fixed encoder, shared decoder |
 | **Continuous time** | SDE: $dx = f(x,t)dt + g(t)dw$; reverse uses score $\nabla_x \log p_t(x)$ |
 | **Generative trilemma** | Diffusion: high quality + high diversity, but slow |
-| **Latent diffusion** | Diffuse in VAE latent space → 96× fewer dimensions, consumer GPU friendly |
+| **Latent diffusion** | Two-stage setup: perceptually compress with an autoencoder, then diffuse in VAE latent space |
 | **CLIP guidance** | Gradient of CLIP similarity steers denoising toward text description |
-| **Classifier-free guidance** | Amplify $(\varepsilon_\text{cond} - \varepsilon_\text{uncond})$ by scale $w$ → stronger text adherence |
+| **Classifier-free guidance** | Train with and without text, then amplify $(\varepsilon_\text{cond} - \varepsilon_\text{uncond})$ by scale $w$ |
+| **GLIDE editing** | Text-guided masked edits preserve global scene context while changing selected regions |
 
 ---
 
