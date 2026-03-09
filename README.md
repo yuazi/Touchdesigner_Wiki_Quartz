@@ -1,46 +1,114 @@
 # (y)usage Garden
 
-A personal **digital garden** — a living collection of notes, projects, and logs organized by curiosity and use.
+A Quartz v4-based ***digital garden*** and personal knowledge base for my notes, experiments, and long-form references.
 
-Live at: **[yuazi.github.io/\_y_usagewiki](https://yuazi.github.io/_y_usagewiki)**
+Live site: [yuazi.github.io/\_y_usagewiki](https://yuazi.github.io/_y_usagewiki)
 
-Built with [Quartz v4](https://quartz.jzhao.xyz/), a static-site generator for Obsidian-style markdown notes.
+## Overview
 
----
+This repository is no longer a near-default Quartz starter. It is a customized Quartz fork with:
 
-## What's Here
+- a personal digital garden homepage and about page
+- a large TouchDesigner wiki organized into seven topic areas
+- notes, work logs, and calendar-style updates
+- a custom Lorenz attractor background
+- a BIOS-style intro boot overlay
+- custom layout choices such as graph view, explorer, reader mode, and Quartz theme overrides
 
-| Section           | Description                                                                       |
-| ----------------- | --------------------------------------------------------------------------------- |
-| **TouchDesigner** | Structured wiki for node-based visual programming and real-time interactive media |
-| **Work**          | Projects, experiments, and things I've shipped                                    |
-| **Calendar**      | A running log of what I've been working on and learning                           |
+The content is written as markdown in an Obsidian-style vault under `content/`, then built into a static site with Quartz.
 
-### TouchDesigner Wiki
+## Main Sections
 
-| Section                          | Description                                      |
-| -------------------------------- | ------------------------------------------------ |
-| **01. Core Concepts**            | Interface, network editor, parameters, shortcuts |
-| **02. The Operators**            | TOPs, CHOPs, SOPs, COMPs, DATs, MATs, POPs       |
-| **03. Rendering & Output**       | Render pipeline, cameras, instancing, feedback   |
-| **04. Scripting & Architecture** | Python, custom parameters, toxes, performance    |
-| **05. Connectivity & Shaders**   | OSC, MIDI, NDI, Syphon, DMX, GLSL                |
-| **06. Recipes & Projects**       | End-to-end practical examples and project builds |
-| **07. Tutorials & Links**        | Curated external resources and community links   |
+- `TouchDesigner`: structured reference material for real-time interactive media, operators, scripting, shaders, rendering, and project recipes
+- `Notes`: shorter topic pages, references, and side explorations
+- `Calendar`: time-based log of what has been learned or worked on
+- `Work`: active projects, shipped experiments, and professional/personal output
 
----
+## Customizations In This Fork
 
-## Running Locally
+- `quartz/components/LorenzBackground.tsx`: injects the animated Lorenz background
+- `quartz/components/GardenBootOverlay.tsx`: mounts the fullscreen boot intro overlay
+- `quartz/components/ReaderMode.tsx`: adds the reader mode toggle to the layout
+- `quartz.layout.ts`: wires the shared page layout, sidebar tools, graph, explorer, and background components
+- `quartz.config.ts`: defines the site title, base URL, analytics, theme typography, and dark/light palettes
+
+The boot overlay is session-gated with `sessionStorage.gardenBooted`, so it only appears once per browser session unless cleared manually.
+
+## Project Structure
+
+```text
+.
+├── content/                     # Markdown source content
+│   ├── about.md
+│   ├── calendar/
+│   ├── notes/
+│   ├── touchdesigner/
+│   └── work/
+├── quartz/                      # Quartz source plus custom components/scripts/styles
+│   ├── components/
+│   ├── plugins/
+│   └── styles/
+├── public/                      # Generated static site output
+├── docs/snippets/               # Reusable HTML/CSS/JS snippets used during customization work
+├── quartz.config.ts             # Site configuration
+├── quartz.layout.ts             # Shared and per-page layout configuration
+└── package.json                 # Scripts and dependencies
+```
+
+Do not edit `public/` by hand. It is build output.
+
+## Local Development
+
+Requirements:
+
+- Node.js `>=22`
+- npm `>=10.9.2`
+
+Install dependencies:
 
 ```bash
-npm install
+npm ci
+```
+
+Start the local dev server:
+
+```bash
 npx quartz build --serve
 ```
 
-The site will be available at `http://localhost:8080`.
+Quartz serves the site locally at `http://localhost:8080`.
 
----
+Build the static site without serving:
 
-## Built With
+```bash
+npx quartz build
+```
 
-- [Quartz v4](https://quartz.jzhao.xyz/) — static site generator for markdown notes
+## Useful Scripts
+
+```bash
+npm run check    # TypeScript + Prettier check
+npm run test     # Test suite
+npm run format   # Format the repo with Prettier
+```
+
+## Deployment
+
+Deployment is handled by GitHub Actions in [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+
+- pushes to the `v4` branch trigger a production build
+- the workflow runs `npm ci` and `npx quartz build`
+- the generated `public/` directory is deployed to GitHub Pages
+
+## Notes For Editing
+
+- content pages live under `content/`
+- most UI changes belong in `quartz/components/`, `quartz/components/scripts/`, or `quartz/components/styles/`
+- sitewide theme values live in `quartz.config.ts`
+- layout composition lives in `quartz.layout.ts`
+
+If you want to replay the intro overlay during development, clear the session key in the browser console:
+
+```js
+sessionStorage.removeItem("gardenBooted")
+```
