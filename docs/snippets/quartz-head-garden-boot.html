@@ -98,6 +98,7 @@
 <script>
   ;(() => {
     const SESSION_KEY = "gardenBooted"
+    const OVERLAY_ID = "garden-boot-overlay"
     const TYPE_SPEED_MS = 12
     const GROUP_GAP_MS = 420
     const FINAL_PROMPT_DELAY_MS = 700
@@ -136,6 +137,14 @@
         sessionStorage.setItem(SESSION_KEY, "true")
       } catch {
         // Ignore storage failures and still let the overlay exit.
+      }
+    }
+
+    function shouldPreloadOverlay() {
+      try {
+        return sessionStorage.getItem(SESSION_KEY) !== "true"
+      } catch {
+        return true
       }
     }
 
@@ -258,14 +267,48 @@
       await typePrompt(logEl, signal)
     }
 
+    if (shouldPreloadOverlay() && !document.getElementById(OVERLAY_ID)) {
+      const preloadedOverlay = document.createElement("div")
+      preloadedOverlay.id = OVERLAY_ID
+      preloadedOverlay.style.cssText = [
+        "position:fixed",
+        "inset:0",
+        "z-index:2147483647",
+        "background-color:rgb(17, 17, 21)",
+        "transition:background-color 500ms ease",
+      ].join(";")
+
+      document.documentElement.appendChild(preloadedOverlay)
+    }
+
     function initGardenBootOverlay() {
-      if (hasBooted() || document.getElementById("garden-boot-overlay") || !document.body) {
+      const existingOverlay = document.getElementById(OVERLAY_ID)
+      if (hasBooted()) {
+        existingOverlay?.remove()
+        return
+      }
+
+      if (!document.body) {
+        return
+      }
+
+      if (
+        existingOverlay instanceof HTMLElement &&
+        existingOverlay.dataset.bootMounted === "true"
+      ) {
         return
       }
 
       const previousOverflow = document.body.style.overflow
-      const overlay = document.createElement("div")
-      overlay.id = "garden-boot-overlay"
+      const overlay =
+        existingOverlay instanceof HTMLDivElement ? existingOverlay : document.createElement("div")
+      overlay.id = OVERLAY_ID
+      overlay.dataset.bootMounted = "true"
+      overlay.removeAttribute("style")
+
+      if (overlay.parentElement !== document.body) {
+        document.body.appendChild(overlay)
+      }
 
       const shell = document.createElement("div")
       shell.className = "garden-boot-shell"
@@ -274,8 +317,7 @@
       log.className = "garden-boot-log"
 
       shell.appendChild(log)
-      overlay.appendChild(shell)
-      document.body.appendChild(overlay)
+      overlay.replaceChildren(shell)
       document.body.style.overflow = "hidden"
 
       const controller = new AbortController()

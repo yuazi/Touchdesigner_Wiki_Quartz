@@ -1,4 +1,5 @@
 const GARDEN_BOOT_SESSION_KEY = "gardenBooted"
+const GARDEN_BOOT_OVERLAY_ID = "garden-boot-overlay"
 const GARDEN_BOOT_TYPE_SPEED_MS = 12
 const GARDEN_BOOT_GROUP_GAP_MS = 420
 const GARDEN_BOOT_FINAL_PROMPT_DELAY_MS = 700
@@ -171,13 +172,30 @@ async function runGardenBootSequence(logEl: HTMLElement, signal: AbortSignal) {
 }
 
 function initGardenBootOverlay() {
-  if (hasGardenBooted() || document.getElementById("garden-boot-overlay") || !document.body) {
+  const existingOverlay = document.getElementById(GARDEN_BOOT_OVERLAY_ID)
+  if (hasGardenBooted()) {
+    existingOverlay?.remove()
+    return
+  }
+
+  if (!document.body) {
+    return
+  }
+
+  if (existingOverlay instanceof HTMLElement && existingOverlay.dataset.bootMounted === "true") {
     return
   }
 
   const previousOverflow = document.body.style.overflow
-  const overlay = document.createElement("div")
-  overlay.id = "garden-boot-overlay"
+  const overlay =
+    existingOverlay instanceof HTMLDivElement ? existingOverlay : document.createElement("div")
+  overlay.id = GARDEN_BOOT_OVERLAY_ID
+  overlay.dataset.bootMounted = "true"
+  overlay.removeAttribute("style")
+
+  if (overlay.parentElement !== document.body) {
+    document.body.appendChild(overlay)
+  }
 
   const shell = document.createElement("div")
   shell.className = "garden-boot-shell"
@@ -186,8 +204,7 @@ function initGardenBootOverlay() {
   log.className = "garden-boot-log"
 
   shell.appendChild(log)
-  overlay.appendChild(shell)
-  document.body.appendChild(overlay)
+  overlay.replaceChildren(shell)
   document.body.style.overflow = "hidden"
 
   const controller = new AbortController()
