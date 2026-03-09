@@ -33,6 +33,7 @@ The basic unit of a neural network:
 $$y = \sigma(w^\top x + b)$$
 
 where:
+
 - $w$ = weight vector
 - $x$ = input
 - $b$ = bias
@@ -61,6 +62,7 @@ $$f = W_3 \max(0,\, W_2 \max(0,\, W_1 x))$$
 ### Brain Analogy — Be Careful
 
 Biological neurons ≠ artificial neurons:
+
 - There are many different types of biological neurons
 - Synapses are not a single weight but a complex non-linear dynamical system
 - The firing-rate code may not adequately model inter-neuron communication
@@ -72,14 +74,16 @@ Given a non-linear (e.g. sigmoid) activation function $\sigma \in C^\infty(\math
 
 $$f(x) \approx g(x) = \sum_{i=1}^{N} \nu_i\, \sigma(w_i^\top x + b_i), \qquad |g(x) - f(x)| < \varepsilon \quad \forall x \in I^m$$
 
-*(Original proof: Hornik et al., 1989; formal statement: Cybenko, 1989)*
+_(Original proof: Hornik et al., 1989; formal statement: Cybenko, 1989)_
 
 **Key intuition — building a "bump" function:**
+
 1. Increase weight $w$ until $\sigma(w^\top x + b)$ becomes a step function; step position $s = -b/w$
 2. Two neurons (with step positions $s_1$, $s_2$) combine to form a "bump" of height $h$
 3. Many such bump pairs can approximate any shape
 
 **Critical caveats:**
+
 - Networks with a single hidden layer need **exponentially wide** layers → in practice, deeper networks work better
 - The theorem guarantees **expressiveness**, not **learnability** — it says nothing about whether gradient descent will find those weights
 
@@ -113,10 +117,10 @@ while True:
 
 ### Numerical vs. Analytic Gradient
 
-| Type | Description | Properties |
-|------|-------------|------------|
-| **Numerical** | $\frac{f(W+h) - f(W)}{h}$, computed per dimension | Approximate, slow, easy to write |
-| **Analytic** | Exact derivative via calculus/backprop | Exact, fast, error-prone to implement |
+| Type          | Description                                       | Properties                            |
+| ------------- | ------------------------------------------------- | ------------------------------------- |
+| **Numerical** | $\frac{f(W+h) - f(W)}{h}$, computed per dimension | Approximate, slow, easy to write      |
+| **Analytic**  | Exact derivative via calculus/backprop            | Exact, fast, error-prone to implement |
 
 **In practice**: always use the **analytic gradient**, but verify your implementation with a **gradient check** using the numerical gradient.
 
@@ -124,22 +128,22 @@ while True:
 
 Process **all** $n$ training samples, then update weights once based on $L(W) = \frac{1}{n}\sum_{i=1}^n L_i(W)$.
 
-| Upsides | Downsides |
-|---------|-----------|
-| Fewer updates → higher computational efficiency | Stable gradient may cause premature convergence |
-| Stable error gradient → more stable convergence | Requires entire training dataset in memory |
-| Separates prediction and update → parallelisable | Very slow for large datasets |
+| Upsides                                          | Downsides                                       |
+| ------------------------------------------------ | ----------------------------------------------- |
+| Fewer updates → higher computational efficiency  | Stable gradient may cause premature convergence |
+| Stable error gradient → more stable convergence  | Requires entire training dataset in memory      |
+| Separates prediction and update → parallelisable | Very slow for large datasets                    |
 
 ### Stochastic Gradient Descent (SGD)
 
 Randomly choose **one** training sample $x_i$, update weights based on $L_i(W)$.
 
-| Upsides | Downsides |
-|---------|-----------|
-| Frequent updates → insight into model performance | Computationally more expensive per epoch |
-| Easy to understand and implement | Noisy gradient → parameters jump around (high variance) |
-| Higher update frequency → faster learning on some problems | Hard for the algorithm to settle on a minimum |
-| Noisy updates can escape local minima → robustness | |
+| Upsides                                                    | Downsides                                               |
+| ---------------------------------------------------------- | ------------------------------------------------------- |
+| Frequent updates → insight into model performance          | Computationally more expensive per epoch                |
+| Easy to understand and implement                           | Noisy gradient → parameters jump around (high variance) |
+| Higher update frequency → faster learning on some problems | Hard for the algorithm to settle on a minimum           |
+| Noisy updates can escape local minima → robustness         |                                                         |
 
 ### Mini-Batch Training
 
@@ -149,11 +153,11 @@ $$L_M(W) = \frac{1}{|M|} \sum_{i \in M} L_i(W)$$
 
 Seeks a balance between the robustness of SGD and the efficiency of batch gradient descent. **Most common implementation in deep learning.**
 
-| Upsides | Downsides |
-|---------|-----------|
+| Upsides                                                  | Downsides                                          |
+| -------------------------------------------------------- | -------------------------------------------------- |
 | Higher update frequency than batch → avoids local minima | Requires an extra hyperparameter (mini-batch size) |
-| More computationally efficient than SGD | Error must be accumulated across mini-batches |
-| Doesn't require all data in memory | |
+| More computationally efficient than SGD                  | Error must be accumulated across mini-batches      |
+| Doesn't require all data in memory                       |                                                    |
 
 ### Backpropagation
 
@@ -176,6 +180,7 @@ z ────────────┘
 - **Backward pass**: computes gradients $\nabla_w L$ via the chain rule
 
 **Worked example** with $x = -2,\; y = 5,\; z = -4$:
+
 - $q = x + y = 3$
 - $f = q \cdot z = -12$
 - $\frac{\partial f}{\partial z} = q = 3$; $\frac{\partial f}{\partial q} = z = -4$
@@ -183,11 +188,11 @@ z ────────────┘
 
 ### Patterns in Backward Flow
 
-| Gate | Role | Behaviour |
-|------|------|-----------|
-| **Add gate** | Gradient distributor | Passes the upstream gradient equally to **both** inputs |
-| **Max gate** | Gradient router | Passes the upstream gradient to whichever input was **larger**; zero to the other |
-| **Mul gate** | Gradient scaler | Passes upstream gradient × the **other** input's value |
+| Gate         | Role                 | Behaviour                                                                         |
+| ------------ | -------------------- | --------------------------------------------------------------------------------- |
+| **Add gate** | Gradient distributor | Passes the upstream gradient equally to **both** inputs                           |
+| **Max gate** | Gradient router      | Passes the upstream gradient to whichever input was **larger**; zero to the other |
+| **Mul gate** | Gradient scaler      | Passes upstream gradient × the **other** input's value                            |
 
 ---
 
@@ -226,15 +231,15 @@ $$\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
 
 $$f(x) = \max(0, x)$$
 
-*(Krizhevsky et al., 2012; Nair and Hinton, 2010)*
+_(Krizhevsky et al., 2012; Nair and Hinton, 2010)_
 
-| Property | Value |
-|----------|-------|
-| Saturates in + region? | No ✓ |
-| Computationally efficient? | Yes ✓ |
-| Converges faster than sigmoid/tanh? | ~6× faster ✓ |
-| Zero-centred output? | No ✗ |
-| Dead neurons? | Yes — a ReLU unit can permanently output 0 if it never activates ✗ |
+| Property                            | Value                                                              |
+| ----------------------------------- | ------------------------------------------------------------------ |
+| Saturates in + region?              | No ✓                                                               |
+| Computationally efficient?          | Yes ✓                                                              |
+| Converges faster than sigmoid/tanh? | ~6× faster ✓                                                       |
+| Zero-centred output?                | No ✗                                                               |
+| Dead neurons?                       | Yes — a ReLU unit can permanently output 0 if it never activates ✗ |
 
 **Fix for dead ReLU**: initialise ReLU neurons with slightly positive biases (e.g. 0.01).
 
@@ -242,7 +247,7 @@ $$f(x) = \max(0, x)$$
 
 $$f(x) = \max(0.01x,\; x)$$
 
-*(Maas et al., 2013; He et al., 2015)*
+_(Maas et al., 2013; He et al., 2015)_
 
 - All benefits of ReLU ✓
 - Does **not** saturate in the negative region → will not "die" ✓
@@ -252,7 +257,7 @@ $$f(x) = \max(0.01x,\; x)$$
 
 $$f(x) = \begin{cases} x & \text{if } x > 0 \\ \alpha(e^x - 1) & \text{if } x \le 0 \end{cases} \qquad (\text{default: } \alpha = 1)$$
 
-*(Clevert et al., 2016)*
+_(Clevert et al., 2016)_
 
 - All benefits of ReLU ✓
 - Closer to **zero-mean outputs** compared to Leaky ReLU ✓
@@ -263,7 +268,7 @@ $$f(x) = \begin{cases} x & \text{if } x > 0 \\ \alpha(e^x - 1) & \text{if } x \l
 
 $$f(x) = \max(w_1^\top x + b_1,\; w_2^\top x + b_2)$$
 
-*(Goodfellow et al., 2013)*
+_(Goodfellow et al., 2013)_
 
 - Generalises ReLU (set $w_1 = b_1 = 0$) and Leaky ReLU
 - Linear regime: **does not saturate**, **does not die** ✓
@@ -286,6 +291,7 @@ If all weights are the same value, all neurons compute **identical gradients** �
 ### Small Random Numbers — `W = 0.01 * randn(Din, Dout)`
 
 Works okay for small networks, but **not** for deep ones:
+
 - Activations tend to **zero** in deeper layers
 - Gradients $\frac{\partial L}{\partial W} \to 0$ → **no learning**
 

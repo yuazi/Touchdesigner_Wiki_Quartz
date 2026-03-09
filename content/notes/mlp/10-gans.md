@@ -12,7 +12,7 @@ date: 2026-03-09
 
 [[notes/mlp/09-vae|← L09: VAE]] | [[notes/mlp/index|↑ MLP Index]] | [[notes/mlp/11-diffusion|Next: Diffusion Models →]]
 
-> *University of Stuttgart — Machine Perception and Learning for Collaborative Intelligent Systems, Prof. Dr. Andreas Bulling, WS 2025/2026*
+> _University of Stuttgart — Machine Perception and Learning for Collaborative Intelligent Systems, Prof. Dr. Andreas Bulling, WS 2025/2026_
 
 ---
 
@@ -31,24 +31,25 @@ $$p_\theta(x) = \int p_\theta(z)\, p_\theta(x|z)\, dz$$
 
 ### Summary of VAEs
 
-| Property | VAE |
-|----------|-----|
-| Training | Relatively easier |
-| Inference | Explicit inference network $q(z\|x)$ |
+| Property      | VAE                                      |
+| ------------- | ---------------------------------------- |
+| Training      | Relatively easier                        |
+| Inference     | Explicit inference network $q(z\|x)$     |
 | Image quality | More blurry (due to reconstruction loss) |
-| Density | Explicit but intractable |
+| Density       | Explicit but intractable                 |
 
 ---
 
 ## Motivation: From Explicit to Implicit Density
 
-> *What if we give up on explicitly modelling the density, and just want the ability to sample?*
+> _What if we give up on explicitly modelling the density, and just want the ability to sample?_
 
 High-dimensional $p(x)$ is:
+
 - Difficult to evaluate and optimise
 - A high $p(x)$ may not correspond to visually realistic samples
 
-This motivates **implicit density** models — we don't write down $p(x)$ at all. We only care about *samples*.
+This motivates **implicit density** models — we don't write down $p(x)$ at all. We only care about _samples_.
 
 ### The Two-Sample Test Intuition
 
@@ -58,12 +59,13 @@ The core question GANs are built on: **Given two finite sets of samples, how can
 - $S_2 = \{x \sim p_\theta\}$ — model samples
 
 We set up a hypothesis test:
+
 - **Null hypothesis** $H_0$: $P = Q$ (distributions are the same)
 - **Alternate hypothesis** $H_1$: $P \neq Q$
 
 The test statistic $T$ compares $S_1$ and $S_2$ in terms of means and variance. If $T < \alpha$, we accept $H_0$.
 
-**Key observation**: The test statistic is *likelihood-free* — it only uses *samples*, not the densities $P$ or $Q$ directly.
+**Key observation**: The test statistic is _likelihood-free_ — it only uses _samples_, not the densities $P$ or $Q$ directly.
 
 ### The GAN Idea
 
@@ -72,9 +74,10 @@ Instead of hand-designing a test statistic, **learn one**:
 > Train the generative model to minimise a two-sample test objective between $S_1 = p_{data}$ and $S_2 = p_\theta$.
 
 Finding a two-sample test objective in high dimensions is hard, so we:
+
 1. **Sample from a simple distribution** $z \sim p_z$ (e.g., Gaussian noise)
 2. **Learn a transformation** $G: z \mapsto x$ using a neural network
-3. Use another neural network to *learn the test statistic*
+3. Use another neural network to _learn the test statistic_
 
 ---
 
@@ -82,10 +85,10 @@ Finding a two-sample test objective in high dimensions is hard, so we:
 
 Two neural networks compete in a minimax game (Goodfellow et al., 2014):
 
-| Network | Role | Goal |
-|---------|------|------|
-| **Generator** $G$ | Transforms noise $z \sim p_z$ into fake samples | Fool the discriminator — support $H_0: p_{data} = p_\theta$ |
-| **Discriminator** $D$ | Classifies real vs. fake samples | Distinguish — support $H_1: p_{data} \neq p_\theta$ |
+| Network               | Role                                            | Goal                                                        |
+| --------------------- | ----------------------------------------------- | ----------------------------------------------------------- |
+| **Generator** $G$     | Transforms noise $z \sim p_z$ into fake samples | Fool the discriminator — support $H_0: p_{data} = p_\theta$ |
+| **Discriminator** $D$ | Classifies real vs. fake samples                | Distinguish — support $H_1: p_{data} \neq p_\theta$         |
 
 ```
 Noise z ~ p_z ──→ [Generator G] ──→ fake x̂
@@ -96,6 +99,7 @@ Real data x ~ p_data ──────────────→ [Discriminato
 The generator never sees real data directly — it only receives feedback through the discriminator's gradient.
 
 **Example intuition** — a counterfeiter and a police detective:
+
 - The **counterfeiter** (G) makes fake banknotes and tries to pass them off as real.
 - The **detective** (D) examines banknotes and tries to identify fakes.
 - As the detective gets better, the counterfeiter is forced to improve. Eventually, the fakes become indistinguishable from real notes.
@@ -143,6 +147,7 @@ The **Jensen-Shannon Divergence** (also called symmetric KL):
 $$D_{JSD} = \frac{1}{2}\left(D_{KL}\!\left[p, \frac{p+q}{2}\right] + D_{KL}\!\left[q, \frac{p+q}{2}\right]\right)$$
 
 Properties:
+
 - $D_{JSD}[p, q] \geq 0$
 - $D_{JSD}[p, q] = 0 \iff p = q$
 - $D_{JSD}[p, q] = D_{JSD}[q, p]$ (symmetric)
@@ -229,6 +234,7 @@ Additionally, the generator can learn to exploit statistical properties of the d
 Illustrated by a "saddle point in dual energy landscape" — the generator finds a local mode and the discriminator cannot push it away.
 
 **Solutions**:
+
 - **Unrolled GAN** (Metz et al., 2017): the generator optimises against a "future" discriminator by unrolling several discriminator update steps.
 - **Mini-batch discrimination**: the discriminator sees entire batches, penalising low sample diversity.
 - **Wasserstein GAN**: different loss that avoids the problem fundamentally (see below).
@@ -237,12 +243,12 @@ Illustrated by a "saddle point in dual energy landscape" — the generator finds
 
 ## GANs vs VAEs
 
-| Property | VAE | GAN |
-|----------|-----|-----|
-| Training | Relatively easier | Requires many optimisation tricks, prone to mode collapse |
-| Inference | Explicit $q(z\|x)$ | Implicit (no encoder; unless BiGAN) |
-| Image quality | Blurrier (reconstruction loss) | Sharper (discriminator signal) |
-| Density evaluation | Lower bound via ELBO | Not possible — likelihood-free |
+| Property           | VAE                            | GAN                                                       |
+| ------------------ | ------------------------------ | --------------------------------------------------------- |
+| Training           | Relatively easier              | Requires many optimisation tricks, prone to mode collapse |
+| Inference          | Explicit $q(z\|x)$             | Implicit (no encoder; unless BiGAN)                       |
+| Image quality      | Blurrier (reconstruction loss) | Sharper (discriminator signal)                            |
+| Density evaluation | Lower bound via ELBO           | Not possible — likelihood-free                            |
 
 ---
 
@@ -261,7 +267,7 @@ More fundamentally: if $p_{data}$ and $p_G$ have **non-overlapping supports** (c
 
 ## Wasserstein Distance and WGAN
 
-*Arjovsky et al., 2017*
+_Arjovsky et al., 2017_
 
 ### Earth Mover's Distance
 
@@ -274,6 +280,7 @@ Where $\Pi(P, Q)$ is the set of all joint distributions $\gamma(x, y)$ whose mar
 **Intuition**: the minimum "work" needed to transport a pile of dirt shaped like $P$ to a pile shaped like $Q$. Think of two piles of sand — the Wasserstein distance is the cost of moving sand optimally from one pile's shape to the other's.
 
 **Why it's better than JSD**:
+
 - Well-defined even when distributions have **disjoint support**
 - **Continuous and differentiable** everywhere — the generator always gets a useful gradient proportional to how far apart the distributions are
 
@@ -304,6 +311,7 @@ def critic_loss(real, fake, critic, gp_weight=10):
 ```
 
 **Benefits of WGAN**:
+
 - No mode collapse in practice
 - Loss value is **meaningful** — it correlates with visual sample quality (unlike vanilla GAN loss)
 - More stable training
@@ -329,7 +337,7 @@ $$\min_G \max_D \; \mathbb{E}_{x,c}[\log D(x, c)] + \mathbb{E}_{z,c}[\log(1 - D(
 
 ### Pix2Pix — Image-to-Image Translation
 
-*Isola et al., 2017*
+_Isola et al., 2017_
 
 A conditional GAN where the condition is a **full image** (not just a label). Requires **paired training images** $(x, y)$ — e.g., (edge map, photo), (semantic mask, street scene), (day, night).
 
@@ -354,25 +362,27 @@ Input image x ──→ [Generator (U-Net)] ──→ output image ŷ
 ```
 
 **Applications**:
+
 - Sketch → realistic photo
 - Semantic segmentation map → street scene photo
 - Black & white → colour
 - Day photograph → night photograph
 - Aerial map → satellite image
 
-> **Example**: Given an architectural blueprint (edge map), Pix2Pix generates a realistic photo of what that building might look like. The discriminator judges whether the photo *and* the blueprint are a plausible pair, not just whether the photo looks real in isolation.
+> **Example**: Given an architectural blueprint (edge map), Pix2Pix generates a realistic photo of what that building might look like. The discriminator judges whether the photo _and_ the blueprint are a plausible pair, not just whether the photo looks real in isolation.
 
-**Limitation**: Requires *paired* images, which are often expensive or impossible to collect (e.g., "photo of an apple" ↔ "photo of an orange").
+**Limitation**: Requires _paired_ images, which are often expensive or impossible to collect (e.g., "photo of an apple" ↔ "photo of an orange").
 
 ---
 
 ### CycleGAN — Unpaired Image-to-Image Translation
 
-*Zhu et al., 2017*
+_Zhu et al., 2017_
 
 CycleGAN removes the requirement for paired training data. It uses **two generators** and **two discriminators** with a **cycle-consistency loss**.
 
 Setup:
+
 - Domain $X$ (e.g., horses), Domain $Y$ (e.g., zebras)
 - Generator $G: X \to Y$, Generator $F: Y \to X$
 - Discriminator $D_Y$: real vs. fake in $Y$; Discriminator $D_X$: real vs. fake in $X$
@@ -397,6 +407,7 @@ y (zebra) ──→ F ──→ x̂ (fake horse) ──→ G ──→ ŷ (recon
 ```
 
 **Applications**:
+
 - Horse ↔ Zebra
 - Summer ↔ Winter landscape
 - Photo ↔ Monet painting
@@ -408,7 +419,7 @@ y (zebra) ──→ F ──→ x̂ (fake horse) ──→ G ──→ ŷ (recon
 
 ### GauGAN / SPADE — Spatially-Adaptive Normalization
 
-*Park, Liu, Wang, Zhu (NVIDIA), 2019*
+_Park, Liu, Wang, Zhu (NVIDIA), 2019_
 
 **Task**: Given a semantic segmentation mask and a reference style image, synthesise a photorealistic scene.
 
@@ -416,14 +427,15 @@ y (zebra) ──→ F ──→ x̂ (fake horse) ──→ G ──→ ŷ (recon
 
 **Solution — SPADE** (Spatially-Adaptive Denormalization):
 
-Instead of scalar $\gamma$ and $\beta$ vectors, SPADE produces *spatially-varying* modulation tensors:
+Instead of scalar $\gamma$ and $\beta$ vectors, SPADE produces _spatially-varying_ modulation tensors:
+
 1. Project the segmentation mask into an embedding space
 2. Apply convolutions to produce $\gamma(x, y)$ and $\beta(x, y)$ — 2D tensors, not just scalars
 3. Apply element-wise: normalise the activation, then modulate: $h = \gamma(x,y) \cdot \text{Norm}(h) + \beta(x,y)$
 
 The generator contains a series of **SPADE residual blocks** with upsampling layers. Each block conditions on the full-resolution semantic map, so spatial information is never lost.
 
-**Result**: Fine-grained control over what appears *where* in the generated image.
+**Result**: Fine-grained control over what appears _where_ in the generated image.
 
 > **Example**: Draw a rough semantic mask with "sky" at the top, "mountains" in the middle, and "lake" at the bottom. GauGAN renders a photorealistic landscape matching that layout exactly. You can swap the style by providing a different reference image (e.g., a Van Gogh painting) while keeping the same layout.
 
@@ -431,7 +443,7 @@ The generator contains a series of **SPADE residual blocks** with upsampling lay
 
 ### StyleGAN — Style-Based Generator Architecture
 
-*Karras, Laine, Aila (NVIDIA), 2019*
+_Karras, Laine, Aila (NVIDIA), 2019_
 
 StyleGAN generates high-resolution photorealistic images (e.g., human faces at 1024×1024) with fine-grained style control.
 
@@ -459,10 +471,10 @@ Training starts at low resolution (4×4) and progressively adds layers for highe
 
 At inference, use $w_1$ for early (coarse) layers and $w_2$ for later (fine) layers. This creates hybrid outputs — e.g., the face shape and pose of person A combined with the hair colour and skin texture of person B.
 
-| Style level | Controls |
-|-------------|---------|
-| Coarse (4×4–8×8) | Pose, face shape, hair type |
-| Middle (16×16–32×32) | Facial features, eye shape |
+| Style level            | Controls                     |
+| ---------------------- | ---------------------------- |
+| Coarse (4×4–8×8)       | Pose, face shape, hair type  |
+| Middle (16×16–32×32)   | Facial features, eye shape   |
 | Fine (64×64–1024×1024) | Colour scheme, micro-texture |
 
 > **Example**: `thispersondoesnotexist.com` generates realistic human faces using StyleGAN. None of the people exist — every image is synthesised from scratch from random $z$ noise. Refresh the page to get a completely different face.
@@ -471,17 +483,17 @@ At inference, use $w_1$ for early (coarse) layers and $w_2$ for later (fine) lay
 
 ## Case Study: GANs for Gaze Redirection
 
-*(He, Spurr, Zhang, Hilliges — ICCV 2019)*
+_(He, Spurr, Zhang, Hilliges — ICCV 2019)_
 
 ### Motivation
 
 Appearance-based gaze estimation requires large datasets annotated with ground-truth gaze angles, collected using expensive eye-tracking equipment under diverse conditions (illumination, head pose, gaze angle). Key datasets:
 
-| Dataset | Notes |
-|---------|-------|
-| MPIIGaze (Zhang et al., 2015) | In-the-wild appearance-based gaze |
-| GazeCapture (Krafka et al., 2016) | Mobile device eye tracking |
-| ETH-XGaze (Zhang et al., 2020) | Extreme head pose and gaze variation |
+| Dataset                           | Notes                                |
+| --------------------------------- | ------------------------------------ |
+| MPIIGaze (Zhang et al., 2015)     | In-the-wild appearance-based gaze    |
+| GazeCapture (Krafka et al., 2016) | Mobile device eye tracking           |
+| ETH-XGaze (Zhang et al., 2020)    | Extreme head pose and gaze variation |
 
 **One solution**: Use GANs for **gaze redirection as data augmentation** — take existing images and synthesise versions with arbitrary target gaze angles.
 
@@ -492,6 +504,7 @@ Given an input eye image $x_r$ with gaze direction $d_r = [\phi_r, \theta_r]$ (y
 $$G(x_r, d_g) = x_g$$
 
 Two requirements:
+
 1. $x_g$ must look **photo-realistic and consistent** with $x_r$
 2. The gaze in $x_g$ must **actually point in direction $d_g$**
 
@@ -538,19 +551,19 @@ Perceptual quality is evaluated using **LPIPS** (Learned Perceptual Image Patch 
 ### Key Contributions
 
 1. **First GAN-based method** for gaze redirection from monocular images
-2. **Novel dual-purpose discriminator** — judges both realism *and* gaze direction
+2. **Novel dual-purpose discriminator** — judges both realism _and_ gaze direction
 3. **One of the first works** to demonstrate synthetic image augmentation improving real gaze estimation model performance
 
 ---
 
 ## Evaluation Metrics for GANs
 
-| Metric | Measures | Direction |
-|--------|----------|-----------|
-| **FID** (Fréchet Inception Distance) | Distributional similarity to real data | Lower is better |
-| **IS** (Inception Score) | Quality + diversity jointly | Higher is better |
-| **LPIPS** | Perceptual similarity to a reference | Lower is better |
-| **Precision & Recall** | Quality vs. diversity separately | Both higher |
+| Metric                               | Measures                               | Direction        |
+| ------------------------------------ | -------------------------------------- | ---------------- |
+| **FID** (Fréchet Inception Distance) | Distributional similarity to real data | Lower is better  |
+| **IS** (Inception Score)             | Quality + diversity jointly            | Higher is better |
+| **LPIPS**                            | Perceptual similarity to a reference   | Lower is better  |
+| **Precision & Recall**               | Quality vs. diversity separately       | Both higher      |
 
 ### FID — The Standard Metric
 
@@ -566,25 +579,25 @@ Lower FID means the generated distribution is closer to the real one. FID captur
 
 ## Summary: GAN Variants
 
-| GAN Variant | Key Innovation | Paper |
-|-------------|---------------|-------|
-| **Vanilla GAN** | Minimax game, JS divergence | Goodfellow et al., 2014 |
-| **DCGAN** | Convolutional architecture, BatchNorm | Radford et al., 2015 |
-| **WGAN / WGAN-GP** | Wasserstein distance, stable training | Arjovsky et al., 2017 |
-| **cGAN** | Condition on labels for controlled generation | Mirza & Osindero, 2014 |
-| **Pix2Pix** | Condition on paired images | Isola et al., 2017 |
-| **CycleGAN** | Unpaired translation via cycle-consistency | Zhu et al., 2017 |
-| **GauGAN / SPADE** | Spatially-adaptive normalization | Park et al., 2019 |
-| **StyleGAN** | Disentangled $w$-space, AdaIN | Karras et al., 2019 |
+| GAN Variant        | Key Innovation                                | Paper                   |
+| ------------------ | --------------------------------------------- | ----------------------- |
+| **Vanilla GAN**    | Minimax game, JS divergence                   | Goodfellow et al., 2014 |
+| **DCGAN**          | Convolutional architecture, BatchNorm         | Radford et al., 2015    |
+| **WGAN / WGAN-GP** | Wasserstein distance, stable training         | Arjovsky et al., 2017   |
+| **cGAN**           | Condition on labels for controlled generation | Mirza & Osindero, 2014  |
+| **Pix2Pix**        | Condition on paired images                    | Isola et al., 2017      |
+| **CycleGAN**       | Unpaired translation via cycle-consistency    | Zhu et al., 2017        |
+| **GauGAN / SPADE** | Spatially-adaptive normalization              | Park et al., 2019       |
+| **StyleGAN**       | Disentangled $w$-space, AdaIN                 | Karras et al., 2019     |
 
 ## Final Comparison: VAEs vs GANs
 
-| | VAE | GAN |
-|-|-----|-----|
-| Training | Easier (single optimisation) | Hard (adversarial, mode collapse risk) |
-| Inference | Explicit $q(z\|x)$ | Implicit |
-| Image quality | Blurry | Sharp |
-| Density access | Lower bound | None (likelihood-free) |
+|                | VAE                          | GAN                                    |
+| -------------- | ---------------------------- | -------------------------------------- |
+| Training       | Easier (single optimisation) | Hard (adversarial, mode collapse risk) |
+| Inference      | Explicit $q(z\|x)$           | Implicit                               |
+| Image quality  | Blurry                       | Sharp                                  |
+| Density access | Lower bound                  | None (likelihood-free)                 |
 
 GANs have largely been superseded by diffusion models for highest-quality generation, but adversarial training and discriminators remain influential — appearing in perceptual loss networks, data augmentation pipelines, and as discriminators in hybrid models.
 
@@ -599,19 +612,19 @@ GANs have largely been superseded by diffusion models for highest-quality genera
 
 ## References
 
-- Goodfellow, Pouget-Abadie, Mirza, Xu, Warde-Farley, Ozair, Courville, Bengio (2014). *Generative Adversarial Nets.* NeurIPS.
-- Arjovsky, Chintala, Bottou (2017). *Wasserstein GAN.* arXiv:1701.07875.
-- Isola, Zhu, Zhou, Efros (2017). *Image-to-Image Translation with Conditional Adversarial Networks.* CVPR.
-- Zhu, Park, Isola, Efros (2017). *Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks.* ICCV.
-- Park, Liu, Wang, Zhu (2019). *Semantic Image Synthesis with Spatially-Adaptive Normalization.* CVPR.
-- Karras, Laine, Aila (2019). *A Style-Based Generator Architecture for Generative Adversarial Networks.* CVPR.
-- He, Spurr, Zhang, Hilliges (2019). *Photo-Realistic Monocular Gaze Redirection Using Generative Adversarial Networks.* ICCV.
-- Metz, Poole, Pfau, Sohl-Dickstein (2017). *Unrolled Generative Adversarial Networks.* arXiv:1611.02163.
-- Nowozin, Cseke, Tomioka (2016). *f-GAN: Training Generative Neural Samplers using Variational Divergence Minimization.* NIPS.
-- Zhang, Isola, Efros, Shechtman, Wang (2018). *The Unreasonable Effectiveness of Deep Features as a Perceptual Metric.* CVPR.
-- Zhang, Sugano, Fritz, Bulling (2015). *Appearance-Based Gaze Estimation in the Wild.* CVPR.
-- Krafka, Khosla, Kellnhofer et al. (2016). *Eye Tracking for Everyone.* CVPR.
-- Zhang, Park, Beeler, Bradley, Tang, Hilliges (2020). *ETH-XGaze: A Large Scale Dataset for Gaze Estimation under Extreme Head Pose and Gaze Variation.* ECCV.
+- Goodfellow, Pouget-Abadie, Mirza, Xu, Warde-Farley, Ozair, Courville, Bengio (2014). _Generative Adversarial Nets._ NeurIPS.
+- Arjovsky, Chintala, Bottou (2017). _Wasserstein GAN._ arXiv:1701.07875.
+- Isola, Zhu, Zhou, Efros (2017). _Image-to-Image Translation with Conditional Adversarial Networks._ CVPR.
+- Zhu, Park, Isola, Efros (2017). _Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks._ ICCV.
+- Park, Liu, Wang, Zhu (2019). _Semantic Image Synthesis with Spatially-Adaptive Normalization._ CVPR.
+- Karras, Laine, Aila (2019). _A Style-Based Generator Architecture for Generative Adversarial Networks._ CVPR.
+- He, Spurr, Zhang, Hilliges (2019). _Photo-Realistic Monocular Gaze Redirection Using Generative Adversarial Networks._ ICCV.
+- Metz, Poole, Pfau, Sohl-Dickstein (2017). _Unrolled Generative Adversarial Networks._ arXiv:1611.02163.
+- Nowozin, Cseke, Tomioka (2016). _f-GAN: Training Generative Neural Samplers using Variational Divergence Minimization._ NIPS.
+- Zhang, Isola, Efros, Shechtman, Wang (2018). _The Unreasonable Effectiveness of Deep Features as a Perceptual Metric._ CVPR.
+- Zhang, Sugano, Fritz, Bulling (2015). _Appearance-Based Gaze Estimation in the Wild._ CVPR.
+- Krafka, Khosla, Kellnhofer et al. (2016). _Eye Tracking for Everyone._ CVPR.
+- Zhang, Park, Beeler, Bradley, Tang, Hilliges (2020). _ETH-XGaze: A Large Scale Dataset for Gaze Estimation under Extreme Head Pose and Gaze Variation._ ECCV.
 
 ---
 

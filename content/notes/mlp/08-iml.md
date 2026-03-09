@@ -19,7 +19,7 @@ date: 2026-03-09
 
 ### Automatic vs. Interactive ML
 
-Most ML today is **automatic machine learning (aML)**: algorithms that interact with agents and optimize their learning *without* human involvement during training. This works great when you have large, clean, labeled datasets.
+Most ML today is **automatic machine learning (aML)**: algorithms that interact with agents and optimize their learning _without_ human involvement during training. This works great when you have large, clean, labeled datasets.
 
 This "big data + end-to-end automation" paradigm powers many successful applications, including **recommender systems**, **autonomous vehicles**, and **industrial AI systems**. The lecture's framing point is that these successes depend heavily on abundant data and well-specified objectives; they do **not** automatically transfer to every domain.
 
@@ -39,12 +39,12 @@ This matters especially in **health informatics** and other high-stakes settings
 
 ### Types of ML on a Spectrum
 
-| Type | Labels | Human Role |
-|------|--------|------------|
-| **Unsupervised** | None | Check results at end |
-| **Supervised** | All data labeled | Provide labels & features upfront |
-| **Semi-supervised** | Some labeled, rest unlabeled | Label a small seed set |
-| **Interactive (iML)** | Adaptive | Inform/correct the model during learning |
+| Type                  | Labels                       | Human Role                               |
+| --------------------- | ---------------------------- | ---------------------------------------- |
+| **Unsupervised**      | None                         | Check results at end                     |
+| **Supervised**        | All data labeled             | Provide labels & features upfront        |
+| **Semi-supervised**   | Some labeled, rest unlabeled | Label a small seed set                   |
+| **Interactive (iML)** | Adaptive                     | Inform/correct the model during learning |
 
 ### Who Can Be "In the Loop"?
 
@@ -77,9 +77,9 @@ Proteins are the building blocks of life; their 3D structure is determined by th
 #### Example 3: Subspace Clustering
 
 Patterns in high-dimensional data often live in **subsets of dimensions** (subspaces). Clustering in subspaces is non-convex and NP-hard, data is often noisy, and there's little prior knowledge about the low-dimensional structure. Human experts can:
+
 - Identify **positive subspace clusters** (e.g. one homogeneous cluster of healthy patients)
 - Identify **negative clusters** with obvious reasons for poor outcomes
-
 
 ---
 
@@ -88,6 +88,7 @@ Patterns in high-dimensional data often live in **subsets of dimensions** (subsp
 ### Setup
 
 Given:
+
 - $S_l = (x_1, y_1), (x_2, y_2), \ldots, (x_m, y_m)$ — labeled examples drawn i.i.d. from distribution $D$, with $y_i = c^*(x_i)$
 - $S_u = x_1, \ldots, x_{m_u}$ — unlabeled examples drawn i.i.d. from $D$
 
@@ -98,17 +99,18 @@ Given:
 Unlabeled data is useful **only if** we have a belief not just about the form of the target function, but also about its **relationship with the underlying data distribution**.
 
 Unlabeled data can:
+
 - Reduce the search space
 - Re-order functions in the search space according to our belief
 - Bias the search toward functions consistent with the data manifold
 
-*(Zhu and Goldberg, 2009)*
+_(Zhu and Goldberg, 2009)_
 
 ### Fundamental Questions (General Discriminative Model)
 
 - How much unlabeled data is needed? — depends on complexity of $H$ and the compatibility notion
 - Can unlabeled data reduce the number of labeled examples needed?
-- Is the target function *compatible* with the data distribution? — helpfulness depends on this
+- Is the target function _compatible_ with the data distribution? — helpfulness depends on this
 
 > **Example**: Two concentric rings of data points (inner ring = class A, outer ring = class B). With only labeled data you might draw the wrong boundary; with unlabeled data you can "see" the ring structure and place the boundary between the rings.
 
@@ -118,9 +120,9 @@ Unlabeled data can:
 
 ### Batch vs. Selective Sampling (Stream)
 
-| Mode | Description |
-|------|-------------|
-| **Batch Active Learning** | Learner picks specific examples from a pool to label |
+| Mode                               | Description                                                                         |
+| ---------------------------------- | ----------------------------------------------------------------------------------- |
+| **Batch Active Learning**          | Learner picks specific examples from a pool to label                                |
 | **Selective Sampling (Online AL)** | A stream of unlabeled examples arrives; learner decides on-the-fly whether to query |
 
 In both cases the **goal** is to use far fewer labeled examples than passive (random) learning by picking **informative** examples.
@@ -130,6 +132,7 @@ In both cases the **goal** is to use far fewer labeled examples than passive (ra
 **Yes — exponentially so (sometimes).**
 
 Consider learning a threshold classifier on the real line:
+
 - **Passive supervised**: need $\Omega(1/\varepsilon)$ labels to find an $\varepsilon$-accurate threshold
 - **Active learning**: only $O(\log 1/\varepsilon)$ labels needed — an **exponential improvement**
 
@@ -156,6 +159,7 @@ Passive learning needs 1/ε queries to get the same ε accuracy.
 A common and effective technique (Tong & Koller, 2001; Schohn & Cohn, 2000):
 
 **Algorithm**:
+
 1. Maintain the current **max-margin separator** $w_t$ over all labeled points so far
 2. At each step, **request the label of the example closest to the decision boundary** (smallest margin = most uncertain)
 3. Retrain the SVM and update $w_t$
@@ -169,10 +173,10 @@ labeled_idx = np.random.choice(len(X_pool), size=10)  # seed
 
 for _ in range(num_rounds):
     model.fit(X_pool[labeled_idx], y[labeled_idx])
-    
+
     distances = np.abs(model.decision_function(X_pool))
     distances[labeled_idx] = np.inf  # exclude already labeled
-    
+
     query_idx = np.argmin(distances)   # closest to boundary → most uncertain
     labeled_idx = np.append(labeled_idx, query_idx)
     # oracle labels X_pool[query_idx] ...
@@ -182,13 +186,14 @@ for _ in range(num_rounds):
 
 Uncertainty sampling is **myopic and greedy**. Over time the queried sample becomes **less representative** of the true data distribution — the model excels near the boundary but may fail elsewhere. (Dasgupta, 2011)
 
-**Main tension**: we want informative points (near boundary) *and* guarantees that the classifier performs well on truly random examples from the underlying distribution.
+**Main tension**: we want informative points (near boundary) _and_ guarantees that the classifier performs well on truly random examples from the underlying distribution.
 
 ---
 
 ### Version Spaces
 
 **Definition** (Mitchell, 1982):
+
 - $X$ — feature/instance space; distribution $D$ over $X$; target $c^* \in H$
 - **Realisable case**: $c^* \in H$
 - **Version space** $VS(H)$: the part of $H$ consistent with all labels so far
@@ -196,8 +201,9 @@ Uncertainty sampling is **myopic and greedy**. Over time the queried sample beco
 $$h \in VS(H) \iff h(x_i) = c^*(x_i) \quad \forall i$$
 
 The version space is bounded by:
-- **GB** — maximally *general* positive hypothesis boundary (outer boundary)
-- **SB** — maximally *specific* positive hypothesis boundary (inner boundary)
+
+- **GB** — maximally _general_ positive hypothesis boundary (outer boundary)
+- **SB** — maximally _specific_ positive hypothesis boundary (inner boundary)
 
 > **Example**: Data on a circle in $\mathbb{R}^2$; $H$ = homogeneous linear separators. After 3 positive and 3 negative labels placed on the circle, only separators that correctly divide those 6 points remain in the version space. Each new label eliminates more separators, shrinking the version space.
 
@@ -218,6 +224,7 @@ Outside the region of disagreement, **all hypotheses agree** — labeling such a
 ### Disagreement-Based Active Learning
 
 **Algorithm** (CAL — Cohn et al., 1992):
+
 1. Query labels for a few random $x_i$; initialize version space $H_1 = H$
 2. For $t = 1, 2, \ldots$:
    - Pick points at random from the current **region of disagreement** $DIS(H_t)$
@@ -228,6 +235,7 @@ Outside the region of disagreement, **all hypotheses agree** — labeling such a
 **Why active?** We never waste labels querying outside $DIS(H_t)$ — only queries inside can update the version space.
 
 > **Example**: Spam classifier with a linear decision boundary.
+>
 > - After 10 labels, the version space = all lines dividing those 10 emails correctly.
 > - Region of disagreement = the "strip" of emails near the boundary where different consistent classifiers disagree.
 > - We only query emails inside that strip, not emails far away that every consistent classifier already agrees on.
@@ -239,13 +247,15 @@ Outside the region of disagreement, **all hypotheses agree** — labeling such a
 What if $c^* \notin H$? (The realistic case — noise, model mismatch.)
 
 **A² algorithm** (Balcan, Beygelzimer, Langford, 2006):
+
 1. Let $H_1 = H$
 2. For $t = 1, 2, \ldots$:
    - Pick random points from $DIS(H_t)$, query their labels
-   - **Throw out** any hypothesis you are *statistically confident* is suboptimal (using generalization bounds)
+   - **Throw out** any hypothesis you are _statistically confident_ is suboptimal (using generalization bounds)
 3. Avoids sampling bias by careful use of generalization bounds
 
 **Guarantees**:
+
 - **Safe**: never worse than passive learning
 - Exponential improvement for threshold classifiers in low-noise settings
 - For homogeneous linear separators in $\mathbb{R}^d$, uniform distribution, low noise: only $d^2 \log(1/\varepsilon)$ labels needed
@@ -274,6 +284,7 @@ Or equivalently, maximise **entropy**:
 $$x^* = \arg\max_x - \sum_c P(c \mid x) \log P(c \mid x)$$
 
 > **Example**: 3-class image classifier (cat / dog / bird).
+>
 > - Image A: $P = [0.95, 0.03, 0.02]$ → entropy ≈ 0.24 → confident → **skip**
 > - Image B: $P = [0.35, 0.34, 0.31]$ → entropy ≈ 1.58 → very uncertain → **query**
 
@@ -334,11 +345,11 @@ Often used in a **transductive** setting: given $L \cup U$, output predictions o
 
 ### Graph Partitioning Algorithms
 
-| Method | Description |
-|--------|-------------|
-| **Minimum cut** (Blum & Chawla, 2001) | Hard partition: minimize total weight of cut edges |
+| Method                                              | Description                                                            |
+| --------------------------------------------------- | ---------------------------------------------------------------------- |
+| **Minimum cut** (Blum & Chawla, 2001)               | Hard partition: minimize total weight of cut edges                     |
 | **Soft cut / Label propagation** (Zhu et al., 2003) | Smooth label function minimizing $\sum_{ij} w_{ij}(f(x_i) - f(x_j))^2$ |
-| **Spectral partitioning** | Eigenvectors of the graph Laplacian |
+| **Spectral partitioning**                           | Eigenvectors of the graph Laplacian                                    |
 
 ### Semi-supervised Learning with Soft Cuts (Zhu et al., 2003)
 
@@ -359,6 +370,7 @@ This is a **harmonic equation**: labels spread outward from labeled nodes, weigh
 **Better — 1-step lookahead heuristic** (Fathi et al., 2011):
 
 For each candidate node $s$ with current soft label $p$:
+
 1. Assume the oracle answers $1$ with probability $p$, answers $0$ with probability $1 - p$
 2. Run label propagation for each outcome, compute **average confidence** across all nodes
 3. Query the node that maximises expected confidence:
@@ -385,7 +397,7 @@ What changes is that deep networks do not expose these quantities cleanly, so we
 Classical active learning theory assumes a fixed, well-understood hypothesis class. DNNs break this:
 
 1. **Overconfident softmax**: the softmax output of DNNs is typically overconfident — high probability outputs even on misclassified examples
-2. **Batch selection**: large-scale training requires selecting a *batch* of images at once, not one at a time
+2. **Batch selection**: large-scale training requires selecting a _batch_ of images at once, not one at a time
 3. **Mode collapse**: uncertainty heuristics may repeatedly select examples from the same class, severely imbalancing the training set
 
 ---
@@ -397,6 +409,7 @@ Classical active learning theory assumes a fixed, well-understood hypothesis cla
 $$p(y = c \mid x) = \int p(y = c \mid x, \omega) \, p(\omega) \, d\omega$$
 
 **Approximation via MC Dropout**:
+
 - Apply **dropout at test time** (not just during training)
 - Run $T$ forward passes with different dropout masks — each pass samples a "thinned" network
 - Average predictions:
@@ -419,7 +432,7 @@ entropy = -(mean_pred * np.log(mean_pred + 1e-8)).sum(axis=1)  # (N,)
 query_indices = entropy.argsort()[-batch_size:]
 ```
 
-**High entropy** → every dropout run is confident about a *different* class → very uncertain → good to query.
+**High entropy** → every dropout run is confident about a _different_ class → very uncertain → good to query.
 
 ---
 
@@ -429,8 +442,8 @@ query_indices = entropy.argsort()[-batch_size:]
 
 $$I(y; \omega \mid x, \mathcal{D}) = \underbrace{H(y \mid x, \mathcal{D})}_{\text{entropy of mean}} - \underbrace{\mathbb{E}_{p(\omega \mid \mathcal{D})}[H(y \mid x, \omega, \mathcal{D})]}_{\text{mean entropy of individual models}}$$
 
-- **First term**: high if the *average* model output is uncertain
-- **Second term**: penalises cases where *individual* models are also uncertain — we want models that are individually confident but *disagree* with each other
+- **First term**: high if the _average_ model output is uncertain
+- **Second term**: penalises cases where _individual_ models are also uncertain — we want models that are individually confident but _disagree_ with each other
 
 $$x^* = \arg\max_x \; I(y; \omega \mid x, \mathcal{D})$$
 
@@ -439,8 +452,9 @@ In practice with MC Dropout:
 $$I \approx -\sum_c \left(\frac{1}{T}\sum_t p^t_c\right)\log\left(\frac{1}{T}\sum_t p^t_c\right) + \frac{1}{T}\sum_t\sum_c p^t_c \log p^t_c$$
 
 > **Example**: Blurry image of a handwritten digit — looks like either 4 or 9.
+>
 > - Entropy: average of 50 dropout runs gives $[0.5, 0.5]$ (4 vs 9) → high uncertainty ✓
-> - Expected entropy: each *individual* run says "definitely 4" or "definitely 9" → low — models are confident _individually_ but **disagree** → high BALD score → **query this image**
+> - Expected entropy: each _individual_ run says "definitely 4" or "definitely 9" → low — models are confident _individually_ but **disagree** → high BALD score → **query this image**
 
 ---
 
@@ -449,11 +463,13 @@ $$I \approx -\sum_c \left(\frac{1}{T}\sum_t p^t_c\right)\log\left(\frac{1}{T}\su
 (Yoo & Kweon, 2019) — **predict which examples the model will get wrong**.
 
 **Architecture**:
+
 - Extract intermediate features from multiple layers of the main network
 - A small auxiliary **loss prediction module** combines them and outputs a predicted loss for each unlabeled example
 - Query examples with the **highest predicted loss**
 
 **Challenge**: loss values change as the model trains. Instead of regressing the raw loss value, compare **pairs**:
+
 - Split each batch of size $B$ into $B/2$ pairs
 - For each pair, predict which image has the higher loss
 - Train with a pairwise ranking loss (more stable)
@@ -494,18 +510,18 @@ Uncertainty alone grabs near-duplicates; diversity alone ignores which regions a
 
 ### Techniques at a Glance
 
-| Technique | Core Idea | Key Risk |
-|-----------|-----------|----------|
-| **Uncertainty sampling** | Query least-confident examples | Sampling bias |
-| **Disagreement-based (A²)** | Query within version space's region of disagreement | Computationally expensive in general |
-| **Maximal diversity / Core-Set** | Batch covering feature space | Ignores uncertainty |
-| **Query by committee** | Query where committee disagrees most | Needs diverse committee |
-| **Density-based** | Weight uncertainty by representativeness | Density estimation cost |
-| **Graph label propagation** | Labels flow through similarity graph | Needs good similarity metric |
-| **MC Dropout / BALD** | Bayesian uncertainty via multiple forward passes | $T$ forward passes per query round |
-| **Learning Loss** | Predict which examples have high loss | Auxiliary module complexity |
-| **BatchBALD** | Joint MI maximisation for batch acquisition | Computationally intensive |
-| **Semi-supervised (soft cuts)** | Harmonic label propagation on unlabeled data | Requires compatible distribution assumption |
+| Technique                        | Core Idea                                           | Key Risk                                    |
+| -------------------------------- | --------------------------------------------------- | ------------------------------------------- |
+| **Uncertainty sampling**         | Query least-confident examples                      | Sampling bias                               |
+| **Disagreement-based (A²)**      | Query within version space's region of disagreement | Computationally expensive in general        |
+| **Maximal diversity / Core-Set** | Batch covering feature space                        | Ignores uncertainty                         |
+| **Query by committee**           | Query where committee disagrees most                | Needs diverse committee                     |
+| **Density-based**                | Weight uncertainty by representativeness            | Density estimation cost                     |
+| **Graph label propagation**      | Labels flow through similarity graph                | Needs good similarity metric                |
+| **MC Dropout / BALD**            | Bayesian uncertainty via multiple forward passes    | $T$ forward passes per query round          |
+| **Learning Loss**                | Predict which examples have high loss               | Auxiliary module complexity                 |
+| **BatchBALD**                    | Joint MI maximisation for batch acquisition         | Computationally intensive                   |
+| **Semi-supervised (soft cuts)**  | Harmonic label propagation on unlabeled data        | Requires compatible distribution assumption |
 
 ---
 

@@ -28,8 +28,8 @@ A master class series on implementing real-time **hand tracking** in TouchDesign
 
 ## Tutorial
 
-|                                                                                             |                                                                                                        |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+|                                                                                               |                                                                                                        |
+| --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | [[Hand Tracking Tutorial\|→ ★ Complete Step-by-Step Tutorial]]                                | Setup → core rig → watercolor brush → generative architecture — everything in one document             |
 | [[Sierpinski Tetrahedron with Hand Tracking\|→ 3D Sierpinski Tetrahedron with Hand Tracking]] | Recursive fractal geometry with Copy SOP, controlled by wrist orientation and pinch-zoom via MediaPipe |
 

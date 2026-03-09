@@ -57,6 +57,7 @@ Use a **sliding window**:
 **Problem**: applying the classifier at all positions and scales is extremely time-consuming.
 
 **Possible solutions**:
+
 - Use a very fast classifier (e.g., HOG)
 - Run the classifier only on some locations and scales → **region proposals**
 
@@ -121,6 +122,7 @@ Eliminates the external region proposal step by adding a **Region Proposal Netwo
 - **Approach**: slide a small (mini) net over the feature map; at each position evaluate $k$ different window sizes for objectness → $\approx W \times H \times k$ proposals
 
 **Anchors**:
+
 - Initial reference boxes defined by aspect ratio and scale, centred at each sliding window position
 - 3 scales × 3 aspect ratios = **9 anchors per position**
 - `reg` head: regression of anchor coordinates; `cls` head: object / no-object score
@@ -150,11 +152,11 @@ $$L(p_i, t_i) = \frac{1}{N_\text{cls}} \sum_i L_\text{cls}(p_i, p_i^*) + \lambda
 
 The lecture's comparison slide highlights that the main progress from **R-CNN → Fast R-CNN → Faster R-CNN** is about eliminating repeated computation while preserving accuracy:
 
-| Model | Test time / image (with proposals) | Speedup | mAP (VOC 2007) |
-|------|-------------------------------|---------|----------------|
-| **R-CNN** | 50 s | 1× | 66.0 |
-| **Fast R-CNN** | 2 s | 25× | 66.9 |
-| **Faster R-CNN** | 0.2 s | 250× | 66.9 |
+| Model            | Test time / image (with proposals) | Speedup | mAP (VOC 2007) |
+| ---------------- | ---------------------------------- | ------- | -------------- |
+| **R-CNN**        | 50 s                               | 1×      | 66.0           |
+| **Fast R-CNN**   | 2 s                                | 25×     | 66.9           |
+| **Faster R-CNN** | 0.2 s                              | 250×    | 66.9           |
 
 So the big story is not that Faster R-CNN suddenly becomes much more accurate; it achieves **roughly the same detection quality with drastically less wasted computation**.
 
@@ -176,12 +178,14 @@ Extends Faster R-CNN with an additional **instance-segmentation** head:
 Two-stage detectors are accurate but slow. Single-stage detectors skip the proposal step.
 
 **SSD — Single Shot MultiBox Detector** [Liu et al., 2016]:
+
 - Directly predicts class scores and box offsets (no RPN)
 - Uses **default (anchor) boxes** for predictions
 - Detects objects at **multiple scales** using feature maps from different layers
 - Combines multi-scale predictions for improved accuracy over objects of varying sizes
 
 **YOLO — You Only Look Once** [Redmon et al., 2016]:
+
 - Divides the image into a grid (e.g., 13×13 for YOLOv3)
 - Each grid cell predicts bounding boxes and class probabilities
 - Processes images in a **single forward pass** → extremely fast
@@ -201,12 +205,12 @@ Two-stage detectors are accurate but slow. Single-stage detectors skip the propo
 
 It helps to separate the related tasks clearly:
 
-| Task | Output | Example |
-|------|--------|---------|
-| **Image classification** | One label for the whole image | "dog" |
-| **Object detection** | One box + class per instance | two dogs → two boxes |
-| **Semantic segmentation** | One class per pixel | both dogs share the same `dog` label region |
-| **Instance segmentation** | One mask per object instance | each dog gets its **own** mask |
+| Task                      | Output                        | Example                                     |
+| ------------------------- | ----------------------------- | ------------------------------------------- |
+| **Image classification**  | One label for the whole image | "dog"                                       |
+| **Object detection**      | One box + class per instance  | two dogs → two boxes                        |
+| **Semantic segmentation** | One class per pixel           | both dogs share the same `dog` label region |
+| **Instance segmentation** | One mask per object instance  | each dog gets its **own** mask              |
 
 ---
 
@@ -315,6 +319,7 @@ The qualitative Mask R-CNN result slide makes the distinction from semantic segm
 **ROI Pooling problem**: the CNN predicts floating-point coordinates $(x, y, w, h)$. ROI Pooling must quantise these to integers → introduces pixel misalignment, which breaks accurate segmentation.
 
 **ROI Align** solution:
+
 - Split the input feature map region into $H \times W$ bins
 - For each bin, set 4 sample points at regular subpixel intervals
 - **Bilinear interpolate** the feature values at each of the 4 points
@@ -322,11 +327,11 @@ The qualitative Mask R-CNN result slide makes the distinction from semantic segm
 
 > **Example**: a proposal at $(10.7, 20.3, 5.6, 8.2)$ would be rounded to $(11, 20, 6, 8)$ in ROI Pooling, introducing quantisation error. ROI Align samples at the exact floating-point coordinates using bilinear interpolation, preserving pixel-to-pixel alignment — critical for mask quality.
 
-| | ROI Pooling | ROI Align |
-|-|-------------|-----------|
-| Coordinates | Rounded to integers | Floating-point |
-| Alignment error | Present (quantisation) | Eliminated (bilinear interp.) |
-| Segmentation quality | Coarse | Precise |
+|                      | ROI Pooling            | ROI Align                     |
+| -------------------- | ---------------------- | ----------------------------- |
+| Coordinates          | Rounded to integers    | Floating-point                |
+| Alignment error      | Present (quantisation) | Eliminated (bilinear interp.) |
+| Segmentation quality | Coarse                 | Precise                       |
 
 ---
 

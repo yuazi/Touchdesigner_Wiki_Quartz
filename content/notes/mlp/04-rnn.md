@@ -14,6 +14,7 @@ date: 2026-03-09
 [[notes/mlp/03-vision-cnn|← L03: Vision CNNs]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/05-transformer|Next: Transformers →]]
 
 **This lecture covers:**
+
 - Recurrent Neural Networks
 - Backpropagation Through Time
 - An Example Task (Image Captioning)
@@ -25,13 +26,13 @@ date: 2026-03-09
 
 Unlike feedforward networks, RNNs can model a wide range of relationships between variable- or fixed-length inputs and outputs. The architecture adapts to the task structure.
 
-| Type | Input → Output | Example |
-|------|----------------|---------|
-| **One-to-one** | Fixed → Fixed | Image classification (vanilla NN) |
-| **One-to-many** | Fixed → Sequence | Image captioning |
-| **Many-to-one** | Sequence → Fixed | Sentiment classification |
-| **Many-to-many (sync)** | Sequence → Sequence (aligned) | Video frame labeling |
-| **Many-to-many (async)** | Sequence → Sequence | Machine translation |
+| Type                     | Input → Output                | Example                           |
+| ------------------------ | ----------------------------- | --------------------------------- |
+| **One-to-one**           | Fixed → Fixed                 | Image classification (vanilla NN) |
+| **One-to-many**          | Fixed → Sequence              | Image captioning                  |
+| **Many-to-one**          | Sequence → Fixed              | Sentiment classification          |
+| **Many-to-many (sync)**  | Sequence → Sequence (aligned) | Video frame labeling              |
+| **Many-to-many (async)** | Sequence → Sequence           | Machine translation               |
 
 ---
 
@@ -59,11 +60,11 @@ The entire input sequence is processed step-by-step. The **final hidden state** 
 
 **Example — COVIDSenti dataset** (Naseem et al., 2021):
 
-| Tweet | Label |
-|-------|-------|
+| Tweet                                                                                    | Label    |
+| ---------------------------------------------------------------------------------------- | -------- |
 | "Happy New Year. May the Year of the Rat bring you good fortune, cheese in abundance..." | Positive |
-| "Watching breaking news about the coronavirus — 200 infected now! Very sad" | Negative |
-| "What are the symptoms of coronavirus and where has it spread?" | Neutral |
+| "Watching breaking news about the coronavirus — 200 infected now! Very sad"              | Negative |
+| "What are the symptoms of coronavirus and where has it spread?"                          | Neutral  |
 
 ```
 "Watching" → h_1 → "breaking" → h_2 → ... → "sad" → h_n → [Dense] → Negative
@@ -82,10 +83,12 @@ An output is produced at **every time step**, aligned with the input. Each frame
 ## Many-to-Many (Async): Machine Translation
 
 A **Sequence-to-Sequence** architecture — a combination of:
+
 1. A **many-to-one encoder** that reads the entire source sentence and compresses it into a context vector
 2. A **one-to-many decoder** that generates the target sentence from that context vector
 
 **Example — Google's Neural Machine Translation** (Wu et al., 2016):
+
 ```
 Encoder: "I love Paris" → context vector c
 Decoder: c → "J'" → "adore" → "Paris"
@@ -113,14 +116,14 @@ $$y_t = W_{hy} h_t$$
 
 Andrej Karpathy's famous experiment trained a vanilla RNN character-by-character on text corpora. The progression shows what the model learns over training:
 
-| Iterations | What the model produces |
-|------------|------------------------|
-| 100 | Random jumbles of characters |
-| 300 | Understands quotes and periods |
-| 500 | Can spell short and common words |
-| 700 | English-like text |
-| 1,200 | Quotations, questions, exclamation marks |
-| 2,000 | Properly spelled words, quotations, names |
+| Iterations | What the model produces                   |
+| ---------- | ----------------------------------------- |
+| 100        | Random jumbles of characters              |
+| 300        | Understands quotes and periods            |
+| 500        | Can spell short and common words          |
+| 700        | English-like text                         |
+| 1,200      | Quotations, questions, exclamation marks  |
+| 2,000      | Properly spelled words, quotations, names |
 
 After enough training, the same RNN could generate plausible **Wikipedia markup**, **Shakespeare**, and even **LaTeX** code (with math environments, tables, etc.) — all from just predicting the next character.
 
@@ -129,17 +132,21 @@ After enough training, the same RNN could generate plausible **Wikipedia markup*
 ## Computational Graphs
 
 ### Many-to-Many
+
 At every time step $t$, a class score $y_t$ is computed from $h_t$, and an intermediate loss $L_t$ is calculated against ground-truth labels. The **final loss** $L$ is the sum of all intermediate losses:
 
 $$L = \sum_{t=1}^{S} L_t$$
 
 ### Many-to-One
+
 The network runs through the full sequence but only the **final hidden state** is used, since it summarizes all prior context.
 
 ### One-to-Many
+
 A **fixed-size input** (e.g., an image feature vector) initializes $h_0$, and the model then produces a variable-length output.
 
 ### Sequence-to-Sequence
+
 Encoder (many-to-one) + Decoder (one-to-many):
 
 ```
@@ -197,18 +204,19 @@ if total_norm > max_norm:
         p.grad *= max_norm / total_norm
 ```
 
-> Gradient clipping prevents overshooting the local minimum in the energy landscape without changing the gradient *direction*, just its magnitude.
+> Gradient clipping prevents overshooting the local minimum in the energy landscape without changing the gradient _direction_, just its magnitude.
 
 ---
 
 ## Example Task: Image Captioning
 
 ### Papers
-- *Explain Images with Multimodal Recurrent Neural Networks* — Mao et al., 2014
-- *Deep Visual-Semantic Alignments for Generating Image Descriptions* — Karpathy & Fei-Fei, 2017
-- *Show and Tell: A Neural Image Caption Generator* — Vinyals et al., 2015
-- *Long-term Recurrent Convolutional Networks* — Donahue et al., 2015
-- *Learning a Recurrent Visual Representation for Image Caption Generation* — Chen & Zitnick, 2014
+
+- _Explain Images with Multimodal Recurrent Neural Networks_ — Mao et al., 2014
+- _Deep Visual-Semantic Alignments for Generating Image Descriptions_ — Karpathy & Fei-Fei, 2017
+- _Show and Tell: A Neural Image Caption Generator_ — Vinyals et al., 2015
+- _Long-term Recurrent Convolutional Networks_ — Donahue et al., 2015
+- _Learning a Recurrent Visual Representation for Image Caption Generation_ — Chen & Zitnick, 2014
 
 ### Architecture
 
@@ -243,7 +251,7 @@ class ImageCaptionRNN(nn.Module):
         resnet = models.resnet50(pretrained=True)
         self.cnn = nn.Sequential(*list(resnet.children())[:-1])  # (B, 2048, 1, 1)
         self.cnn_proj = nn.Linear(2048, hidden_dim)
-        
+
         # RNN decoder
         self.embed = nn.Embedding(vocab_size, embed_dim)
         self.rnn = nn.LSTMCell(embed_dim, hidden_dim)
@@ -255,14 +263,14 @@ class ImageCaptionRNN(nn.Module):
         feat = self.cnn(image).squeeze(-1).squeeze(-1)   # (B, 2048)
         h = self.cnn_proj(feat)                           # (B, hidden_dim)
         c = torch.zeros_like(h)
-        
+
         outputs = []
         for t in range(captions.size(1)):
             x = self.embed(captions[:, t])               # (B, embed_dim)
             h, c = self.rnn(x, (h, c))
             logits = self.out(h)                         # (B, vocab_size)
             outputs.append(logits)
-        
+
         return torch.stack(outputs, dim=1)               # (B, T, vocab_size)
 ```
 
@@ -282,12 +290,12 @@ The key idea: introduce a **cell state** $c_t$ that runs alongside the hidden st
 
 The LSTM uses four learned gating vectors, all computed from $[h_{t-1}, x_t]$:
 
-| Gate | Symbol | Role |
-|------|--------|------|
-| Input gate | $i$ | How much new information to write |
-| Forget gate | $f$ | How much old cell state to keep |
-| Output gate | $o$ | How much cell state to expose |
-| Gate gate | $g$ | Candidate new cell content ($\tanh$ activation) |
+| Gate        | Symbol | Role                                            |
+| ----------- | ------ | ----------------------------------------------- |
+| Input gate  | $i$    | How much new information to write               |
+| Forget gate | $f$    | How much old cell state to keep                 |
+| Output gate | $o$    | How much cell state to expose                   |
+| Gate gate   | $g$    | Candidate new cell content ($\tanh$ activation) |
 
 $$\begin{pmatrix} i \\ f \\ o \\ g \end{pmatrix} = \begin{pmatrix} \sigma \\ \sigma \\ \sigma \\ \tanh \end{pmatrix} \left( W \begin{pmatrix} h_{t-1} \\ x_t \end{pmatrix} + b \right)$$
 
@@ -302,7 +310,7 @@ where $\odot$ is the Hadamard (element-wise) product.
 
 ### Intuition — Concrete Example
 
-> Parsing: *"The cats, which lived in Paris, were ___"*
+> Parsing: _"The cats, which lived in Paris, were \_\_\_"_
 >
 > 1. Read "cats" → **input gate** opens, writes "plural subject" into $c_t$
 > 2. Process "which lived in Paris" → **forget gate** ≈ 1 (keep memory), **input gate** selectively writes clause info
@@ -317,7 +325,7 @@ Three reasons gradients flow more easily through LSTMs (Fei-Fei, Justin Johnson,
 
 1. **Element-wise multiplication with $f \in [0,1]$** — numerically nicer than multiplying by the full $W_{hh}$ repeatedly. The forget gate attenuates rather than chaotically distorts.
 
-2. **Forget gate varies per time step** — unlike vanilla RNNs where the *same* $W$ multiplies at every step (causing exponential behavior), the effective "weight" on $c_{t-1}$ changes each step.
+2. **Forget gate varies per time step** — unlike vanilla RNNs where the _same_ $W$ multiplies at every step (causing exponential behavior), the effective "weight" on $c_{t-1}$ changes each step.
 
 3. **No $\tanh$ at every step** — gradients flow directly through the additive cell update $c_t = f \odot c_{t-1} + i \odot g$. The $\tanh$ is only applied once at the output, not at every recurrent step.
 
@@ -381,13 +389,13 @@ $$h_t = z_t \odot h_{t-1} + (1 - z_t) \odot \tilde{h}_t \quad \text{(new hidden 
 
 ### GRU vs LSTM
 
-| | GRU | LSTM |
-|--|-----|------|
-| Parameters | Fewer (no output gate) | More |
-| States | One ($h_t$) | Two ($h_t$ and $c_t$) |
-| Speed | Faster | Slower |
-| Long sequences | Slightly weaker | Stronger |
-| Practice | Often comparable | Often comparable |
+|                | GRU                    | LSTM                  |
+| -------------- | ---------------------- | --------------------- |
+| Parameters     | Fewer (no output gate) | More                  |
+| States         | One ($h_t$)            | Two ($h_t$ and $c_t$) |
+| Speed          | Faster                 | Slower                |
+| Long sequences | Slightly weaker        | Stronger              |
+| Practice       | Often comparable       | Often comparable      |
 
 > Neither always wins. Try both. For tasks where training speed matters and sequences are moderate length, GRU is a good default.
 
@@ -479,36 +487,36 @@ From the lecture's closing slide:
   - Vanishing → **Additive Interactions** (LSTM/GRU cell state)
 - **(Bidirectional) LSTM and GRU** are more powerful in practice — additive interactions improve gradient flow
 
-| Model | Key Idea | Weakness |
-|-------|----------|----------|
-| Vanilla RNN | Hidden state = memory ($h_t = \tanh(W_{hh} h_{t-1} + W_{xh} x_t)$) | Vanishing gradients |
-| LSTM | Cell state + 4 gates (i, f, o, g) | More parameters (4× weight matrices vs. RNN) |
-| GRU | 2 gates (reset, update), no cell state | Slightly less expressive than LSTM |
-| BiLSTM | Forward + backward LSTM, concatenated | Cannot be used for autoregressive generation |
-| Seq2Seq | Encoder (many-to-one) + Decoder (one-to-many) | Context bottleneck for long sequences |
+| Model       | Key Idea                                                           | Weakness                                     |
+| ----------- | ------------------------------------------------------------------ | -------------------------------------------- |
+| Vanilla RNN | Hidden state = memory ($h_t = \tanh(W_{hh} h_{t-1} + W_{xh} x_t)$) | Vanishing gradients                          |
+| LSTM        | Cell state + 4 gates (i, f, o, g)                                  | More parameters (4× weight matrices vs. RNN) |
+| GRU         | 2 gates (reset, update), no cell state                             | Slightly less expressive than LSTM           |
+| BiLSTM      | Forward + backward LSTM, concatenated                              | Cannot be used for autoregressive generation |
+| Seq2Seq     | Encoder (many-to-one) + Decoder (one-to-many)                      | Context bottleneck for long sequences        |
 
-> Further reading: *LSTM: A Search Space Odyssey* — Greff et al., 2017. Systematic comparison of LSTM variants.
+> Further reading: _LSTM: A Search Space Odyssey_ — Greff et al., 2017. Systematic comparison of LSTM variants.
 
 ---
 
 ## References
 
-- Anderson et al. (2018) — Bottom-up and top-down attention for image captioning and VQA. *CVPR*.
-- Bengio et al. (1994) — Learning long-term dependencies with gradient descent is difficult. *IEEE Trans. Neural Networks*.
-- Chen & Zitnick (2014) — Learning a recurrent visual representation for image caption generation. *arXiv:1411.5654*.
-- Cho et al. (2014) — Learning phrase representations using RNN Encoder-Decoder for statistical machine translation. *EMNLP*.
-- Damen et al. (2018, 2021) — Epic-Kitchens dataset. *ECCV / IJCV*.
-- Donahue et al. (2015) — Long-term recurrent convolutional networks for visual recognition and description. *CVPR*.
-- Graves & Schmidhuber (2005) — Framewise phoneme classification with bidirectional LSTM. *Neural Networks*.
-- Greff et al. (2017) — LSTM: A search space odyssey. *IEEE Trans. Neural Networks and Learning Systems*.
-- Hochreiter & Schmidhuber (1997) — Long short-term memory. *Neural Computation*, 9:1735–1780.
-- Karpathy & Fei-Fei (2017) — Deep visual-semantic alignments for generating image descriptions. *PAMI*.
-- Mao et al. (2014) — Explain images with multimodal recurrent neural networks. *arXiv:1410.1090*.
-- Naseem et al. (2021) — COVIDSenti: A large-scale benchmark Twitter dataset for COVID-19 sentiment analysis. *IEEE Trans. Computational Social Systems*.
-- Pascanu et al. (2013) — On the difficulty of training recurrent neural networks. *ICML*.
-- Russakovsky et al. (2015) — ImageNet large scale visual recognition challenge. *IJCV*, 115:211–252.
-- Vinyals et al. (2015) — Show and tell: A neural image caption generator. *CVPR*.
-- Wu et al. (2016) — Google's neural machine translation system. *arXiv:1609.08144*.
+- Anderson et al. (2018) — Bottom-up and top-down attention for image captioning and VQA. _CVPR_.
+- Bengio et al. (1994) — Learning long-term dependencies with gradient descent is difficult. _IEEE Trans. Neural Networks_.
+- Chen & Zitnick (2014) — Learning a recurrent visual representation for image caption generation. _arXiv:1411.5654_.
+- Cho et al. (2014) — Learning phrase representations using RNN Encoder-Decoder for statistical machine translation. _EMNLP_.
+- Damen et al. (2018, 2021) — Epic-Kitchens dataset. _ECCV / IJCV_.
+- Donahue et al. (2015) — Long-term recurrent convolutional networks for visual recognition and description. _CVPR_.
+- Graves & Schmidhuber (2005) — Framewise phoneme classification with bidirectional LSTM. _Neural Networks_.
+- Greff et al. (2017) — LSTM: A search space odyssey. _IEEE Trans. Neural Networks and Learning Systems_.
+- Hochreiter & Schmidhuber (1997) — Long short-term memory. _Neural Computation_, 9:1735–1780.
+- Karpathy & Fei-Fei (2017) — Deep visual-semantic alignments for generating image descriptions. _PAMI_.
+- Mao et al. (2014) — Explain images with multimodal recurrent neural networks. _arXiv:1410.1090_.
+- Naseem et al. (2021) — COVIDSenti: A large-scale benchmark Twitter dataset for COVID-19 sentiment analysis. _IEEE Trans. Computational Social Systems_.
+- Pascanu et al. (2013) — On the difficulty of training recurrent neural networks. _ICML_.
+- Russakovsky et al. (2015) — ImageNet large scale visual recognition challenge. _IJCV_, 115:211–252.
+- Vinyals et al. (2015) — Show and tell: A neural image caption generator. _CVPR_.
+- Wu et al. (2016) — Google's neural machine translation system. _arXiv:1609.08144_.
 
 ---
 

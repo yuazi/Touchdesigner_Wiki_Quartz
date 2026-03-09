@@ -21,15 +21,15 @@ Model understanding is critical in domains involving high-stakes decisions. With
 
 **Why model understanding matters**:
 
-| Reason | Description |
-|--------|-------------|
-| **Debugging** | Diagnose why a model misbehaves |
-| **Bias detection** | Identify unfair patterns across demographic groups |
-| **Recourse** | Tell individuals what they could change to get a different outcome |
-| **Trust calibration** | Know when (and when not) to trust a prediction |
-| **Deployment vetting** | Assess whether a model is safe for real-world use |
+| Reason                 | Description                                                        |
+| ---------------------- | ------------------------------------------------------------------ |
+| **Debugging**          | Diagnose why a model misbehaves                                    |
+| **Bias detection**     | Identify unfair patterns across demographic groups                 |
+| **Recourse**           | Tell individuals what they could change to get a different outcome |
+| **Trust calibration**  | Know when (and when not) to trust a prediction                     |
+| **Deployment vetting** | Assess whether a model is safe for real-world use                  |
 
-**Motivating example — Wolf vs. Husky classifier**: A model achieves 90% accuracy distinguishing wolves from huskies. LIME reveals the classifier is actually a *snow detector* — wolves appear on snowy backgrounds and huskies on grass. The model learned a spurious correlation, not the actual concept. XAI exposes this before deployment.
+**Motivating example — Wolf vs. Husky classifier**: A model achieves 90% accuracy distinguishing wolves from huskies. LIME reveals the classifier is actually a _snow detector_ — wolves appear on snowy backgrounds and huskies on grass. The model learned a spurious correlation, not the actual concept. XAI exposes this before deployment.
 
 ---
 
@@ -41,7 +41,7 @@ Two approaches exist:
 
 Build a model that is interpretable by design: decision trees, rule lists, linear classifiers, scoring systems [Letham et al., 2015; Lakkaraju et al., 2016].
 
-- *If Education ≤ High School → Salary ≤ 50k* (a rule list)
+- _If Education ≤ High School → Salary ≤ 50k_ (a rule list)
 - Transparent, auditable, but may sacrifice predictive power
 
 ### Approach 2 — Post-hoc Explanations
@@ -57,11 +57,11 @@ Train a powerful black-box model first, then explain its predictions after the f
 
 ## Local vs. Global Explanations
 
-| | Local | Global |
-|--|-------|--------|
-| **Scope** | One prediction | Entire model behaviour |
-| **Use case** | Verify an individual decision is made for the right reasons | Detect big-picture biases across subgroups; vet for deployment |
-| **Definition** | Interpretable description of model behaviour in a target neighbourhood | Interpretable description of complete model behaviour |
+|                | Local                                                                  | Global                                                         |
+| -------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------- |
+| **Scope**      | One prediction                                                         | Entire model behaviour                                         |
+| **Use case**   | Verify an individual decision is made for the right reasons            | Detect big-picture biases across subgroups; vet for deployment |
+| **Definition** | Interpretable description of model behaviour in a target neighbourhood | Interpretable description of complete model behaviour          |
 
 ---
 
@@ -87,7 +87,7 @@ Post-hoc Explainability
 
 **Authors**: Ribeiro et al. (2016)
 
-**Key idea**: Approximate the model *locally* around one prediction with a simple, sparse linear model. Being model-agnostic means it works on any black-box without requiring access to internals.
+**Key idea**: Approximate the model _locally_ around one prediction with a simple, sparse linear model. Being model-agnostic means it works on any black-box without requiring access to internals.
 
 ### Algorithm
 
@@ -121,8 +121,9 @@ image_exp, mask = explanation.get_image_and_mask(
 **Wolf vs. Husky example**: LIME shows the model highlights snow (background) rather than the animal's body when classifying a wolf — revealing the spurious feature.
 
 **Properties**:
+
 - Model-agnostic, works on any black box
-- Faithful only *locally* near $x$, not globally
+- Faithful only _locally_ near $x$, not globally
 - Explanations can be **unstable**: similar inputs may yield very different explanations due to random perturbation sampling
 
 ---
@@ -131,24 +132,24 @@ image_exp, mask = explanation.get_image_and_mask(
 
 **Authors**: Ribeiro et al. (2018)
 
-Anchors answer a different question from LIME: instead of *"what features were most important?"*, they ask *"what is a sufficient condition for this prediction?"*
+Anchors answer a different question from LIME: instead of _"what features were most important?"_, they ask _"what is a sufficient condition for this prediction?"_
 
 > **Definition**: An anchor is a rule such that the model's prediction is the same (with high probability) whenever the rule holds, regardless of what the rest of the features are.
 
 **Salary prediction example**:
 
-| Method | Output |
-|--------|--------|
-| LIME | Feature weights — *age: +0.3, education: +0.5* |
-| Anchors | Rule — *If Education ≤ High School → Predict Salary ≤ 50k* |
+| Method  | Output                                                     |
+| ------- | ---------------------------------------------------------- |
+| LIME    | Feature weights — _age: +0.3, education: +0.5_             |
+| Anchors | Rule — _If Education ≤ High School → Predict Salary ≤ 50k_ |
 
-The anchor is interpretable as a human-readable condition that *reliably* reproduces the model's prediction in its neighbourhood.
+The anchor is interpretable as a human-readable condition that _reliably_ reproduces the model's prediction in its neighbourhood.
 
 ---
 
 ## Saliency Maps
 
-Saliency maps answer: *"Which parts of the input were most relevant for the model's prediction?"*
+Saliency maps answer: _"Which parts of the input were most relevant for the model's prediction?"_
 
 Also called: feature attribution maps, heatmaps.
 
@@ -169,6 +170,7 @@ saliency = x.grad.data.abs().max(dim=0).values  # collapse channels
 ```
 
 **Challenges**:
+
 - Visually noisy and hard to interpret
 - **Gradient saturation**: in flat regions of the loss landscape, gradients vanish even when the feature truly matters
 
@@ -190,7 +192,7 @@ Accounts for the magnitude of the input feature, not just its sensitivity.
 
 ### 4. Guided Backpropagation
 
-Modify the backward pass through ReLUs: zero out gradient entries that are either *negative* OR whose forward activation was *negative*:
+Modify the backward pass through ReLUs: zero out gradient entries that are either _negative_ OR whose forward activation was _negative_:
 
 $$R^l_i = (f^l_i > 0) \cdot (R^{l+1}_i > 0) \cdot R^{l+1}_i$$
 
@@ -204,9 +206,10 @@ Propagate a "relevance" score from the output back through the network iterative
 
 **Authors**: Selvaraju et al. (2017)
 
-Grad-CAM produces a *spatial heatmap* showing which regions of the image mattered, using the last convolutional layer's feature maps.
+Grad-CAM produces a _spatial heatmap_ showing which regions of the image mattered, using the last convolutional layer's feature maps.
 
 **Algorithm**:
+
 1. Forward pass → feature maps $A^k$ at the last conv layer (shape $H' \times W' \times K$)
 2. Compute gradient of class $c$ score w.r.t. feature maps: $\frac{\partial y^c}{\partial A^k_{ij}}$
 3. Global average pool the gradients → importance weight per channel:
@@ -238,10 +241,10 @@ def grad_cam(model, x, target_class):
 
 **Variants**:
 
-| Variant | Improvement |
-|---------|-------------|
-| **Grad-CAM++** | Better localisation when multiple instances of a class exist |
-| **Score-CAM** | Perturbation-based, no gradients needed |
+| Variant             | Improvement                                                     |
+| ------------------- | --------------------------------------------------------------- |
+| **Grad-CAM++**      | Better localisation when multiple instances of a class exist    |
+| **Score-CAM**       | Perturbation-based, no gradients needed                         |
 | **Guided Grad-CAM** | Combines Grad-CAM with Guided Backprop for pixel-precise detail |
 
 **Additional saliency methods**: CAM [Zhou et al., 2016], Meaningful Perturbation [Fong & Vedaldi, 2017], RISE [Petsiuk et al., 2018], DeepLIFT [Shrikumar et al., 2017], Expected Gradients [Erion et al., 2019].
@@ -250,9 +253,10 @@ def grad_cam(model, x, target_class):
 
 ## Prototypes / Example-based Explanations
 
-**Key idea**: Explain a model not with feature weights but with *example inputs* — real or synthetic — that illuminate its behaviour.
+**Key idea**: Explain a model not with feature weights but with _example inputs_ — real or synthetic — that illuminate its behaviour.
 
 Key questions:
+
 1. Which training samples maximally influence the test loss?
 2. Which inputs are the model most likely to misclassify?
 3. Which input maximally activates a given internal neuron?
@@ -282,19 +286,19 @@ for step in range(500):
     optimizer.step()
 ```
 
-This reveals what *concept* each neuron is detecting. See [distill.pub/2017/feature-visualization] for examples at scale.
+This reveals what _concept_ each neuron is detecting. See [distill.pub/2017/feature-visualization] for examples at scale.
 
 ---
 
 ## Counterfactual Explanations
 
-**Key question**: *"What is the minimum change to the input to flip the model's decision?"*
+**Key question**: _"What is the minimum change to the input to flip the model's decision?"_
 
 This provides **recourse** — actionable feedback to individuals affected by a model's decision.
 
 > **Example**: "Your loan application was denied. If you increased your annual income by €15K and paid your credit card bills on time for three months, it would be approved."
 
-Counterfactuals are fundamentally different from saliency: saliency says *"this feature mattered"*; counterfactuals say *"change this feature to get a different outcome"*.
+Counterfactuals are fundamentally different from saliency: saliency says _"this feature mattered"_; counterfactuals say _"change this feature to get a different outcome"_.
 
 ### 1. Minimum Distance Counterfactuals [Wachter et al., 2017]
 
@@ -314,7 +318,7 @@ $$x^{CF} = \arg\min_{x' \in \mathcal{A}} \; \text{cost}(x, x') \quad \text{s.t.}
 
 ### 3. Causally Feasible Counterfactuals [Mahajan et al., 2019; Karimi et al., 2020]
 
-Changing one feature can be impossible without changing causally downstream features (e.g., changing *income* should also change *debt-to-income ratio*). Use a **Structural Causal Model (SCM)**:
+Changing one feature can be impossible without changing causally downstream features (e.g., changing _income_ should also change _debt-to-income ratio_). Use a **Structural Causal Model (SCM)**:
 
 $$x^{CF} = \arg\min_{x'} \; d_{\text{causal}}(x, x') \quad \text{s.t.} \quad f(x') = y'$$
 
@@ -322,11 +326,11 @@ Implementation: solve via a variational autoencoder; requires access to model gr
 
 ### 4. Further Considerations
 
-| Consideration | Details |
-|---------------|---------|
+| Consideration               | Details                                                                              |
+| --------------------------- | ------------------------------------------------------------------------------------ |
 | **Data manifold closeness** | Counterfactual should lie on the training distribution, not in an unrealistic region |
-| **Sparsity** | Prefer counterfactuals that change few features (L0/L1 penalty on changed features) |
-| **Model access** | Black-box vs. gradient-based → affects which algorithm to use |
+| **Sparsity**                | Prefer counterfactuals that change few features (L0/L1 penalty on changed features)  |
+| **Model access**            | Black-box vs. gradient-based → affects which algorithm to use                        |
 
 ---
 
@@ -339,6 +343,7 @@ Implementation: solve via a variational autoencoder; requires access to model gr
 **SP-LIME** (Submodular Pick LIME) selects $k$ representative and diverse local explanations to summarise the model's global behaviour.
 
 **Criteria**:
+
 - **Representative**: the $k$ instances should collectively cover the most important features
 - **Diverse**: explanations should not be redundant
 
@@ -357,6 +362,7 @@ All instances → LIME for each → explanation matrix (N × F)
 Determine what human-interpretable concepts are encoded by individual neurons (convolutional filters).
 
 **Procedure**:
+
 1. Collect a broad set of human-labelled visual concepts (colour, texture, part, scene, object)
 2. For each concept, gather the response of every hidden unit (filter) to those concept examples
 3. Quantify the alignment of each hidden unit–concept pair using IoU
@@ -383,12 +389,12 @@ $$\phi_i = \sum_{S \subseteq F \setminus \{i\}} \frac{|S|!(|F|-|S|-1)!}{|F|!}\bi
 
 ### Axiomatic Guarantees
 
-| Property | Meaning |
-|----------|---------|
+| Property       | Meaning                                                                            |
+| -------------- | ---------------------------------------------------------------------------------- |
 | **Efficiency** | $\sum_i \phi_i = f(x) - \mathbb{E}[f(x)]$ — values account for the full prediction |
-| **Symmetry** | Features with equal contributions receive equal values |
-| **Dummy** | Feature with zero marginal contribution → zero Shapley value |
-| **Linearity** | Values are additive when games are combined |
+| **Symmetry**   | Features with equal contributions receive equal values                             |
+| **Dummy**      | Feature with zero marginal contribution → zero Shapley value                       |
+| **Linearity**  | Values are additive when games are combined                                        |
 
 ### DeepSHAP
 
@@ -452,7 +458,7 @@ Train a **linear probe** on frozen layer $l$ representations to predict a human-
 text input → [Frozen BERT layer l] → linear probe → P(concept)
 ```
 
-If a *linear* probe achieves high accuracy, the concept is **linearly decodable** from that layer's representation.
+If a _linear_ probe achieves high accuracy, the concept is **linearly decodable** from that layer's representation.
 
 > **Example**: Train a probe on BERT layer 8 to predict part-of-speech tags. High accuracy → layer 8 encodes syntactic structure. Layer 12 probes for coreference tend to be more accurate than layer 2 probes, suggesting deeper layers encode more abstract structure.
 
@@ -465,11 +471,12 @@ If a *linear* probe achieves high accuracy, the concept is **linearly decodable*
 Common in: disease diagnosis (weight, age, glucose), credit scoring (income, previous crimes), recommender systems.
 
 **Challenges**:
+
 - Mixed variable types (categorical, ordinal, continuous) require different similarity/perturbation functions
 - Gradients may not be meaningful for discrete inputs
 - Datasets can be very high-dimensional (e.g., a user × movie matrix)
 
-**Recommended methods**: LIME, Anchors, rule-based explanations, counterfactuals. Saliency maps are generally *not* meaningful here.
+**Recommended methods**: LIME, Anchors, rule-based explanations, counterfactuals. Saliency maps are generally _not_ meaningful here.
 
 ### Computer Vision
 
@@ -480,6 +487,7 @@ Applicable methods: all gradient-based saliency (Input Gradient, Guided Backprop
 ### Natural Language Processing
 
 **Challenges**:
+
 - Discrete input space: gradients not directly applicable or interpretable
 - Not all token-substitution perturbations are grammatical or meaningful
 - Task format varies: classification, span selection, text generation
@@ -490,7 +498,7 @@ Applicable methods: all gradient-based saliency (Input Gradient, Guided Backprop
 
 ## Evaluation of Explanations
 
-How do we know if an explanation is *good*? This is non-trivial — explanations exist for human consumers, so evaluation requires human studies.
+How do we know if an explanation is _good_? This is non-trivial — explanations exist for human consumers, so evaluation requires human studies.
 
 Three evaluation goals [Doshi-Velez & Kim, 2017]:
 
@@ -498,8 +506,8 @@ Three evaluation goals [Doshi-Velez & Kim, 2017]:
 
 **Deletion / Insertion tests** [Qi et al., 2020]: Remove (or add) features in order of importance and measure the change in model prediction. A good explanation should identify features whose removal causes a sharp accuracy drop.
 
-- *Deletion*: mask top-$k$ features → model performance should drop rapidly
-- *Insertion*: start from blank and add top-$k$ features → performance should rise rapidly
+- _Deletion_: mask top-$k$ features → model performance should drop rapidly
+- _Insertion_: start from blank and add top-$k$ features → performance should rise rapidly
 
 **Training data influence**: Add/remove influential training examples (ranked by explanation method) and observe effect on test loss [Ghorbani & Zou, 2019].
 
@@ -522,24 +530,25 @@ Three evaluation goals [Doshi-Velez & Kim, 2017]:
 
 ## Summary
 
-| Method | Scope | Model-Agnostic | Output |
-|--------|-------|----------------|--------|
-| Input Gradient | Local | ✗ | Pixel heatmap |
-| SmoothGrad | Local | ✗ | Smoothed heatmap |
-| Grad-CAM | Local | ✗ | Spatial region map |
-| LRP | Local | ✗ | Layerwise heatmap |
-| LIME | Local | ✓ | Feature importances (sparse linear) |
-| Anchors | Local | ✓ | Sufficient condition rule |
-| Counterfactuals | Local | ✓ | "What-if" recourse |
-| Influence functions | Local | ✗ | Training example attribution |
-| Activation Maximisation | Global | ✗ | Neuron-activating prototype |
-| SP-LIME | Global | ✓ | $k$ representative local explanations |
-| Network Dissection | Global | ✗ | Neuron–concept alignment scores |
-| SHAP / DeepSHAP | Local + Global | ✓ | Shapley value attributions |
-| TCAV | Global | ✗ | Concept sensitivity score per layer |
-| Probing | Global | ✗ | Concept decodability per layer |
+| Method                  | Scope          | Model-Agnostic | Output                                |
+| ----------------------- | -------------- | -------------- | ------------------------------------- |
+| Input Gradient          | Local          | ✗              | Pixel heatmap                         |
+| SmoothGrad              | Local          | ✗              | Smoothed heatmap                      |
+| Grad-CAM                | Local          | ✗              | Spatial region map                    |
+| LRP                     | Local          | ✗              | Layerwise heatmap                     |
+| LIME                    | Local          | ✓              | Feature importances (sparse linear)   |
+| Anchors                 | Local          | ✓              | Sufficient condition rule             |
+| Counterfactuals         | Local          | ✓              | "What-if" recourse                    |
+| Influence functions     | Local          | ✗              | Training example attribution          |
+| Activation Maximisation | Global         | ✗              | Neuron-activating prototype           |
+| SP-LIME                 | Global         | ✓              | $k$ representative local explanations |
+| Network Dissection      | Global         | ✗              | Neuron–concept alignment scores       |
+| SHAP / DeepSHAP         | Local + Global | ✓              | Shapley value attributions            |
+| TCAV                    | Global         | ✗              | Concept sensitivity score per layer   |
+| Probing                 | Global         | ✗              | Concept decodability per layer        |
 
 **Key takeaways**:
+
 1. If an interpretable model achieves sufficient accuracy, prefer it over post-hoc explanations
 2. No single explanation method is complete — use multiple
 3. A convincing-looking explanation can still be wrong (gradient saturation, spurious correlations)

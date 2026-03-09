@@ -34,11 +34,11 @@ date: 2026-03-09
 - **Generator**: try to fool the discriminator by generating real-looking images.
 - **Discriminator**: try to distinguish between real and fake images.
 
-| | VAEs | GANs |
-|---|---|---|
-| Training | Relatively easier | Many tricks needed (mode collapse, adversarial objective) |
-| Inference | Explicit encoder $q(z\|x)$ | Implicit generative model |
-| Image quality | More blurry (reconstruction loss) | Sharper (discriminator loss) |
+|               | VAEs                              | GANs                                                      |
+| ------------- | --------------------------------- | --------------------------------------------------------- |
+| Training      | Relatively easier                 | Many tricks needed (mode collapse, adversarial objective) |
+| Inference     | Explicit encoder $q(z\|x)$        | Implicit generative model                                 |
+| Image quality | More blurry (reconstruction loss) | Sharper (discriminator loss)                              |
 
 ---
 
@@ -86,10 +86,10 @@ $$q(x_{1:T}|x_0) = \prod_{t=1}^{T} q(x_t|x_{t-1})$$
 
 #### Noise Schedule Intuition
 
-| Timestep $t$ | Effect |
-|---|---|
-| Small $t$ | Mostly washes out **high frequencies** (fine details) |
-| Large $t$ | Destroys **low-frequency content** (main structure of the image) |
+| Timestep $t$ | Effect                                                           |
+| ------------ | ---------------------------------------------------------------- |
+| Small $t$    | Mostly washes out **high frequencies** (fine details)            |
+| Large $t$    | Destroys **low-frequency content** (main structure of the image) |
 
 > **Example**: At $t = 100$ a face image starts looking blurry (details lost). At $t = 800$ only a rough blob is visible. At $t = 1000$ it is pure noise.
 
@@ -250,12 +250,12 @@ alpha_bar = torch.cumprod(alpha, dim=0)        # ᾱ_t
 
 Diffusion models are a **special form of hierarchical VAEs**:
 
-| | Standard VAE | Diffusion Model |
-|---|---|---|
-| Encoder (posterior) | Learned $q_\phi(z\|x)$ | Fixed forward process $q(x_{1:T}\|x_0)$ |
-| Decoder | Learned $p_\theta(x\|z)$ | Shared network $p_\theta(x_{t-1}\|x_t)$ across all $t$ |
-| Latent dimensionality | Smaller than input | **Same** as input |
-| Training objective | ELBO | Very similar variational lower bound |
+|                       | Standard VAE             | Diffusion Model                                        |
+| --------------------- | ------------------------ | ------------------------------------------------------ |
+| Encoder (posterior)   | Learned $q_\phi(z\|x)$   | Fixed forward process $q(x_{1:T}\|x_0)$                |
+| Decoder               | Learned $p_\theta(x\|z)$ | Shared network $p_\theta(x_{t-1}\|x_t)$ across all $t$ |
+| Latent dimensionality | Smaller than input       | **Same** as input                                      |
+| Training objective    | ELBO                     | Very similar variational lower bound                   |
 
 ---
 
@@ -312,11 +312,11 @@ FAST SAMPLING ──────────── HIGH DIVERSITY
                              (mode coverage)
 ```
 
-| Model | Quality | Diversity | Speed |
-|-------|---------|-----------|-------|
-| GANs | ✅ High | ❌ Mode collapse | ✅ 1 pass |
-| VAEs | ⚠️ Blurry | ✅ Good | ✅ 1 pass |
-| Diffusion (DDPM) | ✅ High | ✅ Full distribution | ❌ 1000 steps |
+| Model            | Quality   | Diversity            | Speed         |
+| ---------------- | --------- | -------------------- | ------------- |
+| GANs             | ✅ High   | ❌ Mode collapse     | ✅ 1 pass     |
+| VAEs             | ⚠️ Blurry | ✅ Good              | ✅ 1 pass     |
+| Diffusion (DDPM) | ✅ High   | ✅ Full distribution | ❌ 1000 steps |
 
 Diffusion dominates quality and coverage but sacrifices speed — motivating DDIM, consistency models, and flow matching.
 
@@ -344,6 +344,7 @@ The lecture motivates this with a **rate-distortion view**: fine-grained percept
 - **Semantic compression**: let diffusion model the higher-level structure in latent space
 
 Two common strategies:
+
 1. Downsample → process at smaller scale → upsample.
 2. **Translate to latent space → run diffusion in latent space → decode back.**
 
@@ -373,11 +374,11 @@ In the lecture slides, the first stage is not just plain reconstruction: a **pat
 
 ### Advantages of Latent Diffusion
 
-| Benefit | Explanation |
-|---|---|
-| **Compressed latent space** | Train diffusion in low-resolution latent → computationally efficient |
-| **Regularized/smooth space** | Easier denoising task, faster sampling than pixel-space |
-| **Flexibility** | The autoencoder can be adapted to images, video, text, graphs, 3D point clouds, meshes, etc. |
+| Benefit                      | Explanation                                                                                  |
+| ---------------------------- | -------------------------------------------------------------------------------------------- |
+| **Compressed latent space**  | Train diffusion in low-resolution latent → computationally efficient                         |
+| **Regularized/smooth space** | Easier denoising task, faster sampling than pixel-space                                      |
+| **Flexibility**              | The autoencoder can be adapted to images, video, text, graphs, 3D point clouds, meshes, etc. |
 
 > **Example — Stable Diffusion**: A 512×512 image is encoded into a 64×64×4 latent. All 1000 denoising steps happen in this small latent space, then a single decoder pass produces the final image. This enables high-quality image generation on a consumer GPU.
 
@@ -439,6 +440,7 @@ eps_guided = eps_uncond + w * (eps_cond - eps_uncond)  # guided prediction
 ```
 
 > **Example**:
+>
 > - $w = 1.0$ → "a painting of a sunset" produces a vague, diverse sunset.
 > - $w = 7.5$ → the prompt is followed closely, boats and horizon are clearly visible.
 > - $w = 15$ → very strong adherence but may produce over-saturated artifacts.
@@ -458,21 +460,21 @@ This is the same general diffusion machinery applied in an **editing / inpaintin
 
 ## Summary
 
-| Concept | Key Detail |
-|---|---|
-| **Forward process** | Markov chain: add Gaussian noise step-by-step until $x_T \approx \mathcal{N}(0,I)$ |
-| **Closed-form noisy sample** | $x_t = \sqrt{\bar\alpha_t}\,x_0 + \sqrt{1-\bar\alpha_t}\,\varepsilon$ — jump to any $t$ directly |
-| **Reverse process** | Parametric Gaussian: $p_\theta(x_{t-1}\|x_t) = \mathcal{N}(\mu_\theta(x_t,t), \sigma_t^2 I)$ |
-| **Training loss** | $\mathcal{L}(\theta) = \|\varepsilon - \theta(x_t, t)\|_2^2$ — simple noise prediction MSE |
-| **Network** | U-Net with ResBlocks + self-attention; time $t$ injected via sinusoidal embeddings |
-| **Noise schedule** | $\beta_t$ (linear or cosine) controls how fast structure is destroyed |
-| **Connection to VAEs** | Diffusion = hierarchical VAE with fixed encoder, shared decoder |
-| **Continuous time** | SDE: $dx = f(x,t)dt + g(t)dw$; reverse uses score $\nabla_x \log p_t(x)$ |
-| **Generative trilemma** | Diffusion: high quality + high diversity, but slow |
-| **Latent diffusion** | Two-stage setup: perceptually compress with an autoencoder, then diffuse in VAE latent space |
-| **CLIP guidance** | Gradient of CLIP similarity steers denoising toward text description |
+| Concept                      | Key Detail                                                                                                     |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| **Forward process**          | Markov chain: add Gaussian noise step-by-step until $x_T \approx \mathcal{N}(0,I)$                             |
+| **Closed-form noisy sample** | $x_t = \sqrt{\bar\alpha_t}\,x_0 + \sqrt{1-\bar\alpha_t}\,\varepsilon$ — jump to any $t$ directly               |
+| **Reverse process**          | Parametric Gaussian: $p_\theta(x_{t-1}\|x_t) = \mathcal{N}(\mu_\theta(x_t,t), \sigma_t^2 I)$                   |
+| **Training loss**            | $\mathcal{L}(\theta) = \|\varepsilon - \theta(x_t, t)\|_2^2$ — simple noise prediction MSE                     |
+| **Network**                  | U-Net with ResBlocks + self-attention; time $t$ injected via sinusoidal embeddings                             |
+| **Noise schedule**           | $\beta_t$ (linear or cosine) controls how fast structure is destroyed                                          |
+| **Connection to VAEs**       | Diffusion = hierarchical VAE with fixed encoder, shared decoder                                                |
+| **Continuous time**          | SDE: $dx = f(x,t)dt + g(t)dw$; reverse uses score $\nabla_x \log p_t(x)$                                       |
+| **Generative trilemma**      | Diffusion: high quality + high diversity, but slow                                                             |
+| **Latent diffusion**         | Two-stage setup: perceptually compress with an autoencoder, then diffuse in VAE latent space                   |
+| **CLIP guidance**            | Gradient of CLIP similarity steers denoising toward text description                                           |
 | **Classifier-free guidance** | Train with and without text, then amplify $(\varepsilon_\text{cond} - \varepsilon_\text{uncond})$ by scale $w$ |
-| **GLIDE editing** | Text-guided masked edits preserve global scene context while changing selected regions |
+| **GLIDE editing**            | Text-guided masked edits preserve global scene context while changing selected regions                         |
 
 ---
 

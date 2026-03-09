@@ -14,6 +14,7 @@ date: 2026-03-09
 [[notes/mlp/06-vit|← L06: ViT]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/08-iml|Next: Interactive ML →]]
 
 **This lecture covers:**
+
 - Motivation of Multimodal Learning
 - Multimodal Representation Learning
 - Multimodal Alignment
@@ -27,19 +28,20 @@ date: 2026-03-09
 
 **Modality** refers to the way in which something is expressed or perceived (sight, sound, text, touch, …). **Multimodal** means using multiple modalities together.
 
-From a probability perspective, *multimodal* originally means multiple modes (local maxima) in a probability density — the term was adopted by the field to describe systems that handle multiple data types.
+From a probability perspective, _multimodal_ originally means multiple modes (local maxima) in a probability density — the term was adopted by the field to describe systems that handle multiple data types.
 
 Three definitions of increasing scope (Baltrušaitis et al., 2018 / Morency, CMU):
 
-| Term | Definition |
-|------|-----------|
-| **Multimodal Machine Learning** | Computer algorithms that learn and improve through the use of multimodal data |
-| **Multimodal AI** | Agents that demonstrate intelligence (understanding, reasoning, planning) through multimodal experiences |
-| **Multimodal Science** | Study of heterogeneous and **interconnected** (connected + interacting) data |
+| Term                            | Definition                                                                                               |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| **Multimodal Machine Learning** | Computer algorithms that learn and improve through the use of multimodal data                            |
+| **Multimodal AI**               | Agents that demonstrate intelligence (understanding, reasoning, planning) through multimodal experiences |
+| **Multimodal Science**          | Study of heterogeneous and **interconnected** (connected + interacting) data                             |
 
 ### Heterogeneity of Modalities
 
 Information in different modalities shows diverse qualities, structures, and noise levels:
+
 - **Video**: spatial + temporal, high-dimensional, dense
 - **Speech / Audio**: sequential, waveform or spectrogram
 - **Text**: symbolic, discrete, structured by grammar
@@ -49,14 +51,14 @@ This heterogeneity is both a challenge and an opportunity — each modality carr
 
 ### Real-World Multimodal Tasks
 
-| Category | Examples |
-|----------|---------|
-| **Affect recognition** | Emotion, sentiment, personality from face + voice + text |
-| **Media description** | Image & video captioning |
-| **Visual Q&A / Reasoning** | VQA, visual dialog, multimodal QA |
-| **Navigation** | Language-guided navigation, autonomous driving |
-| **Event recognition** | Action recognition, segmentation |
-| **Multimedia retrieval** | Content-based and cross-media search |
+| Category                   | Examples                                                 |
+| -------------------------- | -------------------------------------------------------- |
+| **Affect recognition**     | Emotion, sentiment, personality from face + voice + text |
+| **Media description**      | Image & video captioning                                 |
+| **Visual Q&A / Reasoning** | VQA, visual dialog, multimodal QA                        |
+| **Navigation**             | Language-guided navigation, autonomous driving           |
+| **Event recognition**      | Action recognition, segmentation                         |
+| **Multimedia retrieval**   | Content-based and cross-media search                     |
 
 > **Example — Affect recognition**: given a video of someone speaking, the model uses their facial expression (vision), tone of voice (audio), and the words they say (text) to predict whether they are happy, frustrated, or neutral. Unimodal models (text-only, audio-only) perform significantly worse than fusion approaches.
 
@@ -72,17 +74,18 @@ Baltrušaitis et al. (2018) define **five fundamental challenges** for multimoda
 
 Two families:
 
-| Type | Description | Example |
-|------|-------------|---------|
-| **Joint representation** | Combine modalities into a single shared space (fusion) | CLIP embedding space |
+| Type                           | Description                                                             | Example                                                                |
+| ------------------------------ | ----------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| **Joint representation**       | Combine modalities into a single shared space (fusion)                  | CLIP embedding space                                                   |
 | **Coordinated representation** | Keep separate spaces but enforce a coordination constraint between them | DeViSE — image and word-vector spaces constrained by cosine similarity |
 
 Early examples:
+
 - **Bimodal Deep Belief Network** (Ngiam et al., 2011) — audio-visual speech recognition
 - **Multimodal Deep Boltzmann Machine** (Srivastava et al., 2012) — image captioning
-- **Kiros et al. (2014)** demonstrated *multimodal vector space arithmetic*: `image("dog running") − image("dog") + text("cat") ≈ image("cat running")`
+- **Kiros et al. (2014)** demonstrated _multimodal vector space arithmetic_: `image("dog running") − image("dog") + text("cat") ≈ image("cat running")`
 
-> **Example**: In CLIP, a photo of a red car and the text *"a red car"* both map to nearby points in the same 512-dimensional space — the representation is **joint** and **cross-modal**.
+> **Example**: In CLIP, a photo of a red car and the text _"a red car"_ both map to nearby points in the same 512-dimensional space — the representation is **joint** and **cross-modal**.
 
 ---
 
@@ -90,14 +93,14 @@ Early examples:
 
 **Definition**: Identify the direct relations between (sub)elements from two or more different modalities.
 
-| Type | Purpose | Example |
-|------|---------|---------|
-| **Explicit alignment** | Alignment is the task itself | Match words in a sentence to bounding boxes in an image (Karpathy et al., 2014) |
-| **Implicit / Latent alignment** | A hidden alignment step that improves a downstream task | Cross-attention in VisualBERT between text tokens and image regions |
+| Type                            | Purpose                                                 | Example                                                                         |
+| ------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| **Explicit alignment**          | Alignment is the task itself                            | Match words in a sentence to bounding boxes in an image (Karpathy et al., 2014) |
+| **Implicit / Latent alignment** | A hidden alignment step that improves a downstream task | Cross-attention in VisualBERT between text tokens and image regions             |
 
 Use cases for implicit alignment: Machine Translation, Cross-modal retrieval, Image & Video Captioning, VQA, Visual Dialog.
 
-> **Example**: When answering *"What colour is the dog's collar?"*, an implicit attention mechanism highlights the word "collar" and the corresponding image region — without any explicit word–region pairing labels in training.
+> **Example**: When answering _"What colour is the dog's collar?"_, an implicit attention mechanism highlights the word "collar" and the corresponding image region — without any explicit word–region pairing labels in training.
 
 ---
 
@@ -105,12 +108,12 @@ Use cases for implicit alignment: Machine Translation, Cross-modal retrieval, Im
 
 **Definition**: Change ("translate") data from one modality to another; the translation relationship is often open-ended or subjective.
 
-| Type | Description | Example |
-|------|-------------|---------|
-| **Example-based** | Retrieve an existing translation from a database | Find the most similar video clip for a caption |
-| **Model-driven** | A learned model generates the translated output | Neural image captioning, language-guided pose forecasting |
+| Type              | Description                                      | Example                                                   |
+| ----------------- | ------------------------------------------------ | --------------------------------------------------------- |
+| **Example-based** | Retrieve an existing translation from a database | Find the most similar video clip for a caption            |
+| **Model-driven**  | A learned model generates the translated output  | Neural image captioning, language-guided pose forecasting |
 
-> **Example — Body pose from language**: Ahuja & Morency (2019) built Language2Pose, which translates *"a person jumps and waves their right arm"* into a 3D skeleton pose sequence.
+> **Example — Body pose from language**: Ahuja & Morency (2019) built Language2Pose, which translates _"a person jumps and waves their right arm"_ into a 3D skeleton pose sequence.
 
 ---
 
@@ -118,11 +121,11 @@ Use cases for implicit alignment: Machine Translation, Cross-modal retrieval, Im
 
 **Definition**: Join information from two or more modalities to perform a prediction task.
 
-| Strategy | Description | Trade-off |
-|----------|-------------|-----------|
-| **Early fusion** | Concatenate raw features from all modalities before any model | Simple; modalities can interfere before useful representations are learned |
-| **Late fusion** | Process each modality separately; combine predictions (average, voting) | Clean separation; no cross-modal interaction within the model |
-| **Model-based / Intermediate** | Exchange information at intermediate layers via attention or gating | Highest accuracy; architecturally complex |
+| Strategy                       | Description                                                             | Trade-off                                                                  |
+| ------------------------------ | ----------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| **Early fusion**               | Concatenate raw features from all modalities before any model           | Simple; modalities can interfere before useful representations are learned |
+| **Late fusion**                | Process each modality separately; combine predictions (average, voting) | Clean separation; no cross-modal interaction within the model              |
+| **Model-based / Intermediate** | Exchange information at intermediate layers via attention or gating     | Highest accuracy; architecturally complex                                  |
 
 Model-based techniques include kernel-based methods, graphical models, and deep neural networks with cross-attention.
 
@@ -147,6 +150,7 @@ Appending $1$ to each unimodal vector means the outer product encodes all subset
 **Definition**: Transfer knowledge between modalities, including their representations and predictive models.
 
 Useful when one modality has abundant data and another is scarce:
+
 - **Zero-shot learning**: use a rich modality (text) to label examples in a scarce modality (novel visual categories)
 - **Cyclic translation** (Pham et al., 2019): learn robust joint representations by cycling language ↔ vision ↔ audio
 - **Weak supervision**: use web captions as free image labels
@@ -196,10 +200,10 @@ Text  → [Text Encoder: Transformer]           → text  embedding (d)
 Both projected to the same d=512 dimensional space.
 ```
 
-| Component | Weight |
-|-----------|--------|
-| Vision encoder | Heavy (large ViT) |
-| Text encoder | Heavy (large Transformer) |
+| Component            | Weight                               |
+| -------------------- | ------------------------------------ |
+| Vision encoder       | Heavy (large ViT)                    |
+| Text encoder         | Heavy (large Transformer)            |
 | Modality interaction | Lightweight (cosine similarity only) |
 
 #### Training Data
@@ -261,12 +265,12 @@ CLIP achieves **76.2% zero-shot top-1 on ImageNet**, matching supervised ResNet-
 
 #### Key Properties
 
-| Property | Detail |
-|----------|--------|
-| **Prompt engineering matters** | `"a photo of a {class}"` outperforms bare class name |
-| **Robust features** | Generalises well to distribution shifts (texture, style, domain) |
-| **Zero-shot capable** | No task-specific fine-tuning needed |
-| **Open vocabulary** | Any concept expressible in text can be a class |
+| Property                       | Detail                                                           |
+| ------------------------------ | ---------------------------------------------------------------- |
+| **Prompt engineering matters** | `"a photo of a {class}"` outperforms bare class name             |
+| **Robust features**            | Generalises well to distribution shifts (texture, style, domain) |
+| **Zero-shot capable**          | No task-specific fine-tuning needed                              |
+| **Open vocabulary**            | Any concept expressible in text can be a class                   |
 
 #### Embedding Space Arithmetic
 
@@ -287,7 +291,7 @@ image(red car) − image(car) + text("boat") ≈ image(red boat)
 - Enables **zero-shot object detection** (open vocabulary)
 - Uses large-scale grounding datasets (COCO, Visual Genome, + web data)
 
-> **Example**: Given the prompt *"the red fire hydrant"*, GLIP draws a bounding box around it — no task-specific detector training needed.
+> **Example**: Given the prompt _"the red fire hydrant"_, GLIP draws a bounding box around it — no task-specific detector training needed.
 
 #### LSeg — Language-Driven Semantic Segmentation (Li et al., 2022)
 
@@ -305,10 +309,10 @@ image(red car) − image(car) + text("boat") ≈ image(red boat)
 
 **Goal**: Find relationships/correspondences between elements of two or more modalities.
 
-| Alignment Type | Purpose | Example |
-|----------------|---------|---------|
-| **Explicit** | Alignment is the end task | Match words in a caption to image regions |
-| **Implicit / Latent** | Internal alignment improves a downstream task | Cross-attention in VQA |
+| Alignment Type        | Purpose                                       | Example                                   |
+| --------------------- | --------------------------------------------- | ----------------------------------------- |
+| **Explicit**          | Alignment is the end task                     | Match words in a caption to image regions |
+| **Implicit / Latent** | Internal alignment improves a downstream task | Cross-attention in VQA                    |
 
 ### Cross-Modal Transformer (Tsai et al., 2019)
 
@@ -331,13 +335,13 @@ This allows modality A to selectively read information from modality B.
 
 $$f = f_o + f_s + f_p$$
 
-| Component | Role |
-|-----------|------|
-| $f_o$ | Visual feature of the bounding region (CNN output) |
-| $f_s$ | Segment embedding ("this is an image token, not text") |
-| $f_p$ | Positional embedding (aligns words and image regions spatially) |
+| Component | Role                                                            |
+| --------- | --------------------------------------------------------------- |
+| $f_o$     | Visual feature of the bounding region (CNN output)              |
+| $f_s$     | Segment embedding ("this is an image token, not text")          |
+| $f_p$     | Positional embedding (aligns words and image regions spatially) |
 
-> **Example — NLVR2**: Given an image and *"There is exactly one dog left of the red cube"*, VisualBERT attends over regions labelled "dog" and "cube" to verify the spatial claim.
+> **Example — NLVR2**: Given an image and _"There is exactly one dog left of the red cube"_, VisualBERT attends over regions labelled "dog" and "cube" to verify the spatial claim.
 
 ---
 
@@ -347,9 +351,9 @@ $$f = f_o + f_s + f_p$$
 - Co-attention: image tokens attend to all text tokens; text tokens attend to all image tokens — simultaneously
 - More flexible than VisualBERT's single stream; better at fine-grained cross-modal tasks
 
-| | VisualBERT | ViLBERT |
-|--|-----------|---------|
-| Streams | Single | Dual |
+|           | VisualBERT                      | ViLBERT                      |
+| --------- | ------------------------------- | ---------------------------- |
+| Streams   | Single                          | Dual                         |
 | Alignment | Implicit (joint self-attention) | Explicit co-attention layers |
 
 ---
@@ -367,7 +371,7 @@ Each clip's subtitle set is treated as a **bag of positives** — at least one s
 
 Input: 3.2-second video clip (32 frames at 10 FPS) + up to 16 subtitle words.
 
-> **Example**: A cooking clip shows someone whisking eggs. The subtitle *"and now you want to beat the eggs vigorously"* arrives a few seconds early. MIL-NCE treats all nearby subtitle segments as potential positives, reducing the penalty for off-by-a-few-seconds noise.
+> **Example**: A cooking clip shows someone whisking eggs. The subtitle _"and now you want to beat the eggs vigorously"_ arrives a few seconds early. MIL-NCE treats all nearby subtitle segments as potential positives, reducing the penalty for off-by-a-few-seconds noise.
 
 ---
 
@@ -377,32 +381,32 @@ Input: 3.2-second video clip (32 frames at 10 FPS) + up to 16 subtitle words.
 - **60× faster** than VisualBERT at inference (no Faster R-CNN bottleneck)
 - Training losses: Masked Language Modelling (MLM) + Image Text Matching (ITM)
 
-| Model | Vision encoder | Interaction | Speed |
-|-------|---------------|-------------|-------|
-| DeViSE | Heavy CNN | Lightweight | Fast |
-| VisualBERT | Detector (heavy) | Moderate | Slow |
-| **ViLT** | **Patch embed (light)** | **Heavy (full Transformer)** | **Fast** |
-| CLIP | Heavy ViT | Lightweight | Fast |
+| Model      | Vision encoder          | Interaction                  | Speed    |
+| ---------- | ----------------------- | ---------------------------- | -------- |
+| DeViSE     | Heavy CNN               | Lightweight                  | Fast     |
+| VisualBERT | Detector (heavy)        | Moderate                     | Slow     |
+| **ViLT**   | **Patch embed (light)** | **Heavy (full Transformer)** | **Fast** |
+| CLIP       | Heavy ViT               | Lightweight                  | Fast     |
 
 ---
 
 ### ALBEF — Align Before Fuse (Li et al., 2021)
 
-**Key insight**: explicitly align image and text embeddings *before* fusing them — so the fusion module gets clean aligned inputs rather than having to align and fuse simultaneously.
+**Key insight**: explicitly align image and text embeddings _before_ fusing them — so the fusion module gets clean aligned inputs rather than having to align and fuse simultaneously.
 
 Integrates MoCo (He et al., 2020) momentum encoder + ViT + BERT.
 
 #### Loss Components
 
-| Loss | Purpose |
-|------|---------|
-| **Image-Text Contrastive (ITC)** | Align image and text unimodal embeddings (CLIP-style) |
-| **Image-Text Matching (ITM)** | Binary: does this (image, text) pair match? |
-| **Masked Language Modelling (MLM)** | Predict masked text tokens using image context |
+| Loss                                | Purpose                                               |
+| ----------------------------------- | ----------------------------------------------------- |
+| **Image-Text Contrastive (ITC)**    | Align image and text unimodal embeddings (CLIP-style) |
+| **Image-Text Matching (ITM)**       | Binary: does this (image, text) pair match?           |
+| **Masked Language Modelling (MLM)** | Predict masked text tokens using image context        |
 
-**Hard negative mining**: for ITM, use the negative pair with the *highest ITC similarity* (not a random negative) — forces the model to learn fine-grained distinctions.
+**Hard negative mining**: for ITM, use the negative pair with the _highest ITC similarity_ (not a random negative) — forces the model to learn fine-grained distinctions.
 
-> **Example**: For a batch of beach images and ocean captions, a random negative is easy to reject (e.g., a caption about mountains). The hard negative is a *different* beach caption — very similar but not the correct pair — forcing the model to learn subtle cross-modal differences.
+> **Example**: For a batch of beach images and ocean captions, a random negative is easy to reject (e.g., a caption about mountains). The hard negative is a _different_ beach caption — very similar but not the correct pair — forcing the model to learn subtle cross-modal differences.
 
 ---
 
@@ -416,7 +420,7 @@ An improved version of ALBEF with two innovations:
    - **Filter** removes captions (original or generated) that do not match the image
    - Result: higher-quality dataset than raw web data
 
-> **Example — CapFilt in action**: A web image shows a sunset, but the scraped alt-text says *"click here for more sunsets"*. The Filter removes this useless caption. The Captioner generates *"a vibrant orange sunset over calm ocean waters"*, which passes the Filter. The model trains on the better caption.
+> **Example — CapFilt in action**: A web image shows a sunset, but the scraped alt-text says _"click here for more sunsets"_. The Filter removes this useless caption. The Captioner generates _"a vibrant orange sunset over calm ocean waters"_, which passes the Filter. The model trains on the better caption.
 
 ---
 
@@ -427,10 +431,11 @@ An improved version of ALBEF with two innovations:
 **Task**: Given an image and a natural language question, produce a natural language answer.
 
 > Examples of increasing difficulty:
-> 1. *"What colour is the car?"* → "Red" (perception)
-> 2. *"How many chairs are around the table?"* → "4" (counting)
-> 3. *"Is the traffic light showing red or green?"* → "Green" (fine-grained)
-> 4. *"What would happen if the person on the left steps forward?"* → commonsense + spatial reasoning
+>
+> 1. _"What colour is the car?"_ → "Red" (perception)
+> 2. _"How many chairs are around the table?"_ → "4" (counting)
+> 3. _"Is the traffic light showing red or green?"_ → "Green" (fine-grained)
+> 4. _"What would happen if the person on the left steps forward?"_ → commonsense + spatial reasoning
 
 ---
 
@@ -446,11 +451,12 @@ Image encodings    ──► V-guided Question Attention ──► attended ques
 ```
 
 Computed at three levels of granularity:
+
 1. **Word level**: individual question words ↔ image patches
 2. **Phrase level**: multi-word phrases ↔ spatial regions
 3. **Sentence level**: full question ↔ global image
 
-> **Example**: For *"What colour is the large sphere to the left of the metallic cube?"*, word-level attention highlights "large", "sphere", "left", "metallic cube". Phrase-level groups these into an object reference. Sentence-level selects the colour attribute.
+> **Example**: For _"What colour is the large sphere to the left of the metallic cube?"_, word-level attention highlights "large", "sphere", "left", "metallic cube". Phrase-level groups these into an object reference. Sentence-level selects the colour attribute.
 
 ---
 
@@ -465,17 +471,17 @@ Hop 2: Q + v̂₁ → refined attention α₂ → v̂₂
 Final: Q + v̂_K → answer prediction
 ```
 
-> **Example**: For *"What is to the right of the red cube?"*, Hop 1 attends broadly to red objects. Hop 2 uses that result to attend specifically to what is spatially to the right. The final answer is predicted from the refined feature.
+> **Example**: For _"What is to the right of the red cube?"_, Hop 1 attends broadly to red objects. Hop 2 uses that result to attend specifically to what is spatially to the right. The final answer is predicted from the refined feature.
 
 ---
 
 ### Other Attention-Based Models
 
-| Model | Key Idea |
-|-------|---------|
+| Model                                                        | Key Idea                                                                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
 | **Bottom-up and top-down attention** (Anderson et al., 2018) | Object-level representations from Faster R-CNN; top-down question-conditioned attention over detected objects |
-| **Bilinear Attention Pooling** (Kim et al., 2018) | Low-rank bilinear pooling between image and text — efficient pairwise interaction |
-| **Generalized High-Order Pooling** (Yu et al., 2018) | Extends bilinear to higher-order interactions for richer fusion |
+| **Bilinear Attention Pooling** (Kim et al., 2018)            | Low-rank bilinear pooling between image and text — efficient pairwise interaction                             |
+| **Generalized High-Order Pooling** (Yu et al., 2018)         | Extends bilinear to higher-order interactions for richer fusion                                               |
 
 Open research questions: how to make attention more interpretable? Can we leverage explicit language structure (syntax trees, dependency graphs)?
 
@@ -483,20 +489,21 @@ Open research questions: how to make attention more interpretable? Can we levera
 
 ### Neural Module Networks — V1 (Andreas et al., 2015)
 
-**Key insight**: decompose the question into a *program* (a composition of neural modules), then execute it over the image.
+**Key insight**: decompose the question into a _program_ (a composition of neural modules), then execute it over the image.
 
 1. **Parse** the question → a layout (directed tree of operations)
 2. **Assemble** predefined neural modules according to the layout
 3. **Execute** the assembled network on the image
 
 Example modules:
+
 - `find[dog]` — produces an attention map highlighting dogs
 - `relate[left-of]` — shifts attention spatially
 - `describe[colour]` — predicts the colour of the attended region
 - `count` — counts distinct attended objects
 - `and`, `or` — logical compositions
 
-> **Example**: Question *"What colour is the ball to the left of the blue cube?"*
+> **Example**: Question _"What colour is the ball to the left of the blue cube?"_
 >
 > Program: `describe[colour]( relate[left-of]( find[blue-cube], find[ball] ) )`
 >
@@ -509,14 +516,16 @@ Example modules:
 ### CLEVR — A Dataset for Visual Reasoning (Johnson et al., 2017)
 
 A synthetic benchmark for **compositional visual reasoning**:
+
 - 3D-rendered scenes of simple objects (cubes, spheres, cylinders) in various colours, sizes, materials
 - Questions generated programmatically from scene graphs → guaranteed ground truth programs
 - Designed so that statistical shortcuts fail — models must reason compositionally
 
 Example questions:
-> *"Is there a large red sphere made of rubber?"*
-> *"How many silver metallic objects are the same size as the yellow cube?"*
-> *"What colour is the object to the left of the large metal sphere behind the blue rubber cylinder?"*
+
+> _"Is there a large red sphere made of rubber?"_
+> _"How many silver metallic objects are the same size as the yellow cube?"_
+> _"What colour is the object to the left of the large metal sphere behind the blue rubber cylinder?"_
 
 ---
 
@@ -538,7 +547,7 @@ Image    ───────────────────────�
                                Answer prediction
 ```
 
-> **Example**: *"How many red things are left of the large sphere?"* is fed to the program generator, which proposes `count(filter[red](relate[left-of](find[large-sphere])))` — without explicit parse annotation. The executor runs this on the image and returns a count.
+> **Example**: _"How many red things are left of the large sphere?"_ is fed to the program generator, which proposes `count(filter[red](relate[left-of](find[large-sphere])))` — without explicit parse annotation. The executor runs this on the image and returns a count.
 
 ---
 
@@ -546,34 +555,34 @@ Image    ───────────────────────�
 
 ### Representation Learning Models
 
-| Model | Vision encoder | Text encoder | Interaction | Key contribution |
-|-------|---------------|-------------|-------------|-----------------|
-| DeViSE (2013) | Heavy CNN | Word2Vec | Dot product | Earliest visual-semantic embedding; semantic label space |
-| CLIP (2021) | Heavy ViT | Heavy Transformer | Cosine sim | Contrastive pre-training at scale; zero-shot |
-| GLIP (2022) | Detector | Transformer | Grounded boxes | Zero-shot object detection |
-| LSeg (2022) | ViT + decoder | Frozen CLIP text | Pixel–text alignment | Open-vocabulary segmentation |
+| Model         | Vision encoder | Text encoder      | Interaction          | Key contribution                                         |
+| ------------- | -------------- | ----------------- | -------------------- | -------------------------------------------------------- |
+| DeViSE (2013) | Heavy CNN      | Word2Vec          | Dot product          | Earliest visual-semantic embedding; semantic label space |
+| CLIP (2021)   | Heavy ViT      | Heavy Transformer | Cosine sim           | Contrastive pre-training at scale; zero-shot             |
+| GLIP (2022)   | Detector       | Transformer       | Grounded boxes       | Zero-shot object detection                               |
+| LSeg (2022)   | ViT + decoder  | Frozen CLIP text  | Pixel–text alignment | Open-vocabulary segmentation                             |
 
 ### Alignment Models
 
-| Model | Architecture | Key Innovation |
-|-------|-------------|----------------|
-| VisualBERT (2019) | Single-stream | Region features + text → joint self-attention |
-| ViLBERT (2019) | Dual-stream | Co-attention layers between modalities |
-| HowTo100M + MIL-NCE (2019/20) | Video + text | MIL loss handles temporal noise in ASR captions |
-| ViLT (2021) | Single-stream patches | No region detectors; 60× faster |
-| ALBEF (2021) | Dual encoder + fusion | ITC aligns before ITM fuses; hard negative mining |
-| BLIP (2022) | Unified enc.+dec. | CapFilt bootstrapping; generation + understanding |
+| Model                         | Architecture          | Key Innovation                                    |
+| ----------------------------- | --------------------- | ------------------------------------------------- |
+| VisualBERT (2019)             | Single-stream         | Region features + text → joint self-attention     |
+| ViLBERT (2019)                | Dual-stream           | Co-attention layers between modalities            |
+| HowTo100M + MIL-NCE (2019/20) | Video + text          | MIL loss handles temporal noise in ASR captions   |
+| ViLT (2021)                   | Single-stream patches | No region detectors; 60× faster                   |
+| ALBEF (2021)                  | Dual encoder + fusion | ITC aligns before ITM fuses; hard negative mining |
+| BLIP (2022)                   | Unified enc.+dec.     | CapFilt bootstrapping; generation + understanding |
 
 ### Reasoning Models
 
-| Model | Key Idea |
-|-------|---------|
-| Hierarchical co-attention (Lu 2016) | Parallel V↔Q attention at word/phrase/sentence levels |
-| Stacked Attention (Yang 2016) | Multi-hop refinement of image attention guided by partial answer |
-| Bottom-up + top-down (Anderson 2018) | Object-level attention; question-conditioned top-down guidance |
-| NMN V1 (Andreas 2015) | Program decomposition into interpretable neural modules |
-| CLEVR (Johnson 2017) | Compositional reasoning benchmark; no statistical shortcuts |
-| NMN V2 / E2E (Hu 2017) | End-to-end learned program generation; no parser required |
+| Model                                | Key Idea                                                         |
+| ------------------------------------ | ---------------------------------------------------------------- |
+| Hierarchical co-attention (Lu 2016)  | Parallel V↔Q attention at word/phrase/sentence levels            |
+| Stacked Attention (Yang 2016)        | Multi-hop refinement of image attention guided by partial answer |
+| Bottom-up + top-down (Anderson 2018) | Object-level attention; question-conditioned top-down guidance   |
+| NMN V1 (Andreas 2015)                | Program decomposition into interpretable neural modules          |
+| CLEVR (Johnson 2017)                 | Compositional reasoning benchmark; no statistical shortcuts      |
+| NMN V2 / E2E (Hu 2017)               | End-to-end learned program generation; no parser required        |
 
 The shared embedding space from CLIP is foundational for [[notes/mlp/12-diffusion|→ Diffusion models]] (Stable Diffusion's text conditioning), [[notes/mlp/13-xai|→ XAI]] (concept-based explanations), and modern vision-language systems such as LLaVA and GPT-4V.
 
@@ -581,32 +590,32 @@ The shared embedding space from CLIP is foundational for [[notes/mlp/12-diffusio
 
 ## References
 
-- Baltrušaitis, Ahuja & Morency (2018). *Multimodal machine learning: A survey and taxonomy.* IEEE TPAMI.
-- Frome et al. (2013). *DeViSE: A deep visual-semantic embedding model.* NeurIPS.
-- Radford et al. (2021). *Learning transferable visual models from natural language supervision.* ICML. (CLIP)
-- Li et al. (2022a). *Language-driven semantic segmentation.* arXiv. (LSeg)
-- Li et al. (2022c). *Grounded language-image pre-training.* CVPR. (GLIP)
-- Zadeh et al. (2017). *Tensor Fusion Network for Multimodal Sentiment Analysis.* EMNLP.
-- Kiros et al. (2014). *Unifying visual-semantic embeddings with multimodal neural language models.* arXiv.
-- Tsai et al. (2019). *Multimodal Transformer for Unaligned Multimodal Language Sequences.* ACL.
-- Li et al. (2019). *VisualBERT: A simple and performant baseline for vision and language.* arXiv.
-- Lu et al. (2019). *ViLBERT: Pretraining task-agnostic visiolinguistic representations.* NeurIPS.
-- Miech et al. (2019). *HowTo100M: Learning a text-video embedding by watching 100M narrated clips.* ICCV.
-- Miech et al. (2020). *End-to-end learning of visual representations from uncurated instructional videos.* CVPR.
-- Kim et al. (2021). *ViLT: Vision-and-language transformer without convolution or region supervision.* ICML.
-- Li et al. (2021). *Align before fuse: Vision and language representation learning with momentum distillation.* NeurIPS. (ALBEF)
-- Li et al. (2022b). *BLIP: Bootstrapping language-image pre-training.* ICML.
-- Lu et al. (2016). *Hierarchical question-image co-attention for VQA.* NeurIPS.
-- Yang et al. (2016). *Stacked Attention Networks for Image Question Answering.* CVPR.
-- Anderson et al. (2018). *Bottom-up and top-down attention for image captioning and VQA.* CVPR.
-- Kim et al. (2018). *Bilinear Attention Networks.* NeurIPS.
-- Andreas et al. (2015). *Deep compositional question answering with neural module networks.* arXiv.
-- Johnson et al. (2017). *CLEVR: A diagnostic dataset for compositional language and visual reasoning.* CVPR.
-- Hu et al. (2017). *Learning to reason: End-to-end module networks for VQA.* ICCV.
-- Ahuja & Morency (2019). *Language2Pose: Natural language grounded pose forecasting.* 3DV.
-- Ngiam et al. (2011). *Multimodal deep learning.* ICML.
-- Srivastava & Salakhutdinov (2012). *Multimodal learning with deep Boltzmann machines.* NeurIPS.
-- Pham et al. (2019). *Found in translation: Learning robust joint representations by cyclic translations between modalities.* AAAI.
+- Baltrušaitis, Ahuja & Morency (2018). _Multimodal machine learning: A survey and taxonomy._ IEEE TPAMI.
+- Frome et al. (2013). _DeViSE: A deep visual-semantic embedding model._ NeurIPS.
+- Radford et al. (2021). _Learning transferable visual models from natural language supervision._ ICML. (CLIP)
+- Li et al. (2022a). _Language-driven semantic segmentation._ arXiv. (LSeg)
+- Li et al. (2022c). _Grounded language-image pre-training._ CVPR. (GLIP)
+- Zadeh et al. (2017). _Tensor Fusion Network for Multimodal Sentiment Analysis._ EMNLP.
+- Kiros et al. (2014). _Unifying visual-semantic embeddings with multimodal neural language models._ arXiv.
+- Tsai et al. (2019). _Multimodal Transformer for Unaligned Multimodal Language Sequences._ ACL.
+- Li et al. (2019). _VisualBERT: A simple and performant baseline for vision and language._ arXiv.
+- Lu et al. (2019). _ViLBERT: Pretraining task-agnostic visiolinguistic representations._ NeurIPS.
+- Miech et al. (2019). _HowTo100M: Learning a text-video embedding by watching 100M narrated clips._ ICCV.
+- Miech et al. (2020). _End-to-end learning of visual representations from uncurated instructional videos._ CVPR.
+- Kim et al. (2021). _ViLT: Vision-and-language transformer without convolution or region supervision._ ICML.
+- Li et al. (2021). _Align before fuse: Vision and language representation learning with momentum distillation._ NeurIPS. (ALBEF)
+- Li et al. (2022b). _BLIP: Bootstrapping language-image pre-training._ ICML.
+- Lu et al. (2016). _Hierarchical question-image co-attention for VQA._ NeurIPS.
+- Yang et al. (2016). _Stacked Attention Networks for Image Question Answering._ CVPR.
+- Anderson et al. (2018). _Bottom-up and top-down attention for image captioning and VQA._ CVPR.
+- Kim et al. (2018). _Bilinear Attention Networks._ NeurIPS.
+- Andreas et al. (2015). _Deep compositional question answering with neural module networks._ arXiv.
+- Johnson et al. (2017). _CLEVR: A diagnostic dataset for compositional language and visual reasoning._ CVPR.
+- Hu et al. (2017). _Learning to reason: End-to-end module networks for VQA._ ICCV.
+- Ahuja & Morency (2019). _Language2Pose: Natural language grounded pose forecasting._ 3DV.
+- Ngiam et al. (2011). _Multimodal deep learning._ ICML.
+- Srivastava & Salakhutdinov (2012). _Multimodal learning with deep Boltzmann machines._ NeurIPS.
+- Pham et al. (2019). _Found in translation: Learning robust joint representations by cyclic translations between modalities._ AAAI.
 
 ---
 

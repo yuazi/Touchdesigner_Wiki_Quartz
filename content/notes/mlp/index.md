@@ -18,21 +18,21 @@ This is my study hub for the MPL master's course. Each lecture gets its own page
 
 ## Lectures
 
-| # | Topic | Core Idea |
-|---|-------|-----------|
-| 01 | [[notes/mlp/01-introduction\|Introduction]] | What is ML? Loss, optimization, training loops |
-| 02 | [[notes/mlp/02-cnn\|Convolutional Neural Networks]] | Spatial feature extraction with filters |
-| 03 | [[notes/mlp/03-vision-cnn\|Vision CNNs]] | AlexNet, VGG, ResNet, EfficientNet |
-| 04 | [[notes/mlp/04-rnn\|Recurrent Neural Networks]] | Sequences, LSTMs, GRUs, vanishing gradients |
-| 05 | [[notes/mlp/05-transformer\|Transformers]] | Attention is all you need |
-| 06 | [[notes/mlp/06-vit\|Vision Transformer (ViT)]] | Patches + Transformers = vision |
-| 07 | [[notes/mlp/07-multimodal\|Multimodal Learning]] | CLIP, image+text, cross-modal alignment |
-| 08 | [[notes/mlp/08-iml\|Interactive Machine Learning]] | Humans in the loop |
-| 09 | [[notes/mlp/09-vae\|Generative AI & VAE]] | Latent spaces and variational inference |
-| 10 | [[notes/mlp/10-gans\|GANs]] | Generator vs. Discriminator |
-| 11 | [[notes/mlp/11-rl\|Reinforcement Learning]] | Rewards, policies, Q-learning |
-| 12 | [[notes/mlp/12-diffusion\|Diffusion Models]] | Denoising as generation |
-| 13 | [[notes/mlp/13-xai\|Explainable AI (XAI)]] | Why did the model decide that? |
+| #   | Topic                                               | Core Idea                                      |
+| --- | --------------------------------------------------- | ---------------------------------------------- |
+| 01  | [[notes/mlp/01-introduction\|Introduction]]         | What is ML? Loss, optimization, training loops |
+| 02  | [[notes/mlp/02-cnn\|Convolutional Neural Networks]] | Spatial feature extraction with filters        |
+| 03  | [[notes/mlp/03-vision-cnn\|Vision CNNs]]            | AlexNet, VGG, ResNet, EfficientNet             |
+| 04  | [[notes/mlp/04-rnn\|Recurrent Neural Networks]]     | Sequences, LSTMs, GRUs, vanishing gradients    |
+| 05  | [[notes/mlp/05-transformer\|Transformers]]          | Attention is all you need                      |
+| 06  | [[notes/mlp/06-vit\|Vision Transformer (ViT)]]      | Patches + Transformers = vision                |
+| 07  | [[notes/mlp/07-multimodal\|Multimodal Learning]]    | CLIP, image+text, cross-modal alignment        |
+| 08  | [[notes/mlp/08-iml\|Interactive Machine Learning]]  | Humans in the loop                             |
+| 09  | [[notes/mlp/09-vae\|Generative AI & VAE]]           | Latent spaces and variational inference        |
+| 10  | [[notes/mlp/10-gans\|GANs]]                         | Generator vs. Discriminator                    |
+| 11  | [[notes/mlp/11-rl\|Reinforcement Learning]]         | Rewards, policies, Q-learning                  |
+| 12  | [[notes/mlp/12-diffusion\|Diffusion Models]]        | Denoising as generation                        |
+| 13  | [[notes/mlp/13-xai\|Explainable AI (XAI)]]          | Why did the model decide that?                 |
 
 ---
 
@@ -47,10 +47,10 @@ This is my study hub for the MPL master's course. Each lecture gets its own page
 
 ## Quick Reference: Key Concepts
 
-| Concept | Where It Appears |
-|---------|-----------------|
-| Backpropagation | [[notes/mlp/01-introduction\|L01]], [[notes/mlp/02-cnn\|L02]] |
-| Attention | [[notes/mlp/05-transformer\|L05]], [[notes/mlp/06-vit\|L06]], [[notes/mlp/07-multimodal\|L07]] |
-| Latent Space | [[notes/mlp/09-vae\|L09]], [[notes/mlp/10-gans\|L10]], [[notes/mlp/12-diffusion\|L12]] |
-| Sequential Data | [[notes/mlp/04-rnn\|L04]], [[notes/mlp/05-transformer\|L05]] |
-| Generative Models | [[notes/mlp/09-vae\|L09]], [[notes/mlp/10-gans\|L10]], [[notes/mlp/12-diffusion\|L12]] |
+| Concept           | Where It Appears                                                                               |
+| ----------------- | ---------------------------------------------------------------------------------------------- |
+| Backpropagation   | [[notes/mlp/01-introduction\|L01]], [[notes/mlp/02-cnn\|L02]]                                  |
+| Attention         | [[notes/mlp/05-transformer\|L05]], [[notes/mlp/06-vit\|L06]], [[notes/mlp/07-multimodal\|L07]] |
+| Latent Space      | [[notes/mlp/09-vae\|L09]], [[notes/mlp/10-gans\|L10]], [[notes/mlp/12-diffusion\|L12]]         |
+| Sequential Data   | [[notes/mlp/04-rnn\|L04]], [[notes/mlp/05-transformer\|L05]]                                   |
+| Generative Models | [[notes/mlp/09-vae\|L09]], [[notes/mlp/10-gans\|L10]], [[notes/mlp/12-diffusion\|L12]]         |

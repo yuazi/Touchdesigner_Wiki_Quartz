@@ -14,6 +14,7 @@ date: 2026-03-09
 [[notes/mlp/04-rnn|← L04: RNNs]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/06-vit|Next: ViT →]]
 
 **This lecture covers:**
+
 - Embeddings
 - Attention Mechanisms
 - Attention is All You Need (Vaswani et al., 2017)
@@ -53,6 +54,7 @@ $$\text{rabbit} = [0, 0, 1, 0, \ldots]$$
 Instead of a sparse binary vector, map each word to a **dense real-valued vector** in a shared vector space. These vectors are learned from data.
 
 **Key properties**:
+
 - Semantically similar words end up close in the embedding space
 - Angle (cosine similarity) is more informative than Euclidean distance
 - Algebraic relationships emerge:
@@ -67,7 +69,7 @@ This property reflects that the difference between gendered word pairs is captur
 
 Three main approaches:
 
-1. **Continuous Bag-of-Words (CBOW)**: takes a context window *around* a focus word → predicts the focus word
+1. **Continuous Bag-of-Words (CBOW)**: takes a context window _around_ a focus word → predicts the focus word
 2. **Skip-gram**: takes a focus word → predicts the context window
 3. **Statistical**: uses co-occurrence probabilities across the whole corpus
 
@@ -120,6 +122,7 @@ $$J = \sum_{i,j} f(X_{ij}) \left( w_i^\top \tilde{w}_j + b_i + \tilde{b}_j - \lo
 - Often outperforms Word2Vec on word analogy benchmarks
 
 **GloVe example — gender analogy preserved across multiple pairs**:
+
 ```
 man → woman  same offset as:
 king → queen
@@ -133,16 +136,16 @@ father → mother
 
 In Word2Vec and GloVe, each word has exactly **one fixed vector** regardless of context. But many words are polysemous:
 
-> *"I **left** my phone on the **left** side of the table."*
+> _"I **left** my phone on the **left** side of the table."_
 
 The word "left" (past tense of leave) and "left" (spatial direction) are different meanings, but Word2Vec gives them the same embedding.
 
 **Contextual embeddings** (ELMo, BERT, GPT) produce a different vector for each occurrence of a word, depending on its surrounding context.
 
-| Type | Examples | Representation |
-|------|----------|----------------|
-| **Non-contextual** | Word2Vec, GloVe, FastText | One fixed vector per word type |
-| **Contextual** | ELMo, BERT, GPT-2 | Vector depends on sentence context |
+| Type               | Examples                  | Representation                     |
+| ------------------ | ------------------------- | ---------------------------------- |
+| **Non-contextual** | Word2Vec, GloVe, FastText | One fixed vector per word type     |
+| **Contextual**     | ELMo, BERT, GPT-2         | Vector depends on sentence context |
 
 ---
 
@@ -151,6 +154,7 @@ The word "left" (past tense of leave) and "left" (spatial direction) are differe
 Ethayarajh (2019) compared BERT, ELMo, and GPT-2 using three new measures: self-similarity, intra-sentence similarity, and **Maximum Explainable Variance (MEV)** — the proportion of variance in a word's representations that can be explained by its first principal component.
 
 **Findings**:
+
 - Representations of words are **anisotropic** — they occupy a narrow cone in the embedding space (not uniformly distributed)
 - **Upper layers** produce more context-specific representations than lower layers
 - Models contextualise words very differently from one another
@@ -177,6 +181,7 @@ RNNs have several fundamental weaknesses that motivated the development of atten
 ### Inspiration from Human Attention
 
 Neural attention is loosely inspired by **human visual attention**:
+
 - Humans perceive with high acuity only within ~2 degrees of visual angle (foveal vision)
 - We don't perceive a whole image at once — we focus on different parts sequentially (scanpaths of eye fixations)
 - Neurons associated with the attended stimulus fire more synchronously
@@ -223,12 +228,12 @@ This is a small **feed-forward network** that scores, given the current decoder 
 
 ### Soft vs. Hard Attention (Xu et al., 2015)
 
-| | Soft Attention | Hard Attention |
-|--|---------------|----------------|
-| Method | Weighted average of all positions | Samples a single position |
-| Differentiability | Differentiable (end-to-end) | Stochastic (requires REINFORCE) |
-| Behaviour | "Looks" everywhere with varying focus | "Looks" at one area at a time |
-| Human similarity | Less similar | More similar to human gaze |
+|                   | Soft Attention                        | Hard Attention                  |
+| ----------------- | ------------------------------------- | ------------------------------- |
+| Method            | Weighted average of all positions     | Samples a single position       |
+| Differentiability | Differentiable (end-to-end)           | Stochastic (requires REINFORCE) |
+| Behaviour         | "Looks" everywhere with varying focus | "Looks" at one area at a time   |
+| Human similarity  | Less similar                          | More similar to human gaze      |
 
 **Example — visual captioning** (Xu et al., 2015 — "Show, Attend and Tell"):  
 When generating the word "bird", soft attention weights the entire image with a peak around the bird. Hard attention samples one patch — the bird's location — and attends only there.
@@ -237,11 +242,11 @@ When generating the word "bird", soft attention weights the entire image with a 
 
 ### Global vs. Local Attention (Luong et al., 2015)
 
-| | Global Attention | Local Attention |
-|--|-----------------|-----------------|
-| Scope | All encoder hidden states | Subset of hidden states |
-| Cost | Expensive, $O(n)$ per step | Cheaper, $O(k)$ per step |
-| Practical | OK for short sequences | Better for long sequences |
+|           | Global Attention           | Local Attention           |
+| --------- | -------------------------- | ------------------------- |
+| Scope     | All encoder hidden states  | Subset of hidden states   |
+| Cost      | Expensive, $O(n)$ per step | Cheaper, $O(k)$ per step  |
+| Practical | OK for short sequences     | Better for long sequences |
 
 In **local attention**, the model first predicts the "aligned position" $p_t$ for each decoder step, then attends only within a window $[p_t - D, p_t + D]$.
 
@@ -262,9 +267,10 @@ For the output word "Wirtschaftszone", global attention correctly puts weight on
 
 ## Attention Is All You Need
 
-**Paper**: Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser, Polosukhin. *"Attention Is All You Need."* NeurIPS 2017. (202k+ citations)
+**Paper**: Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser, Polosukhin. _"Attention Is All You Need."_ NeurIPS 2017. (202k+ citations)
 
 **Core idea**:
+
 - Remove recurrence completely
 - Use only attention mechanisms
 - Stack multiple attention layers
@@ -308,6 +314,7 @@ For a sequence of $n$ tokens, each token attends to all $n$ tokens simultaneousl
 $$\text{Attention}(Q, K, V) = \text{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}}\right) V$$
 
 **Step-by-step**:
+
 1. Compute dot products: $Q K^\top$ — shape $(n \times n)$, entry $(i, j)$ scores how relevant token $j$ is to token $i$
 2. Scale by $\frac{1}{\sqrt{d_k}}$ — prevents dot products from growing large in high dimensions and saturating softmax
 3. Apply softmax — produces attention weights that sum to 1 per row
@@ -317,9 +324,10 @@ $$\text{Attention}(Q, K, V) = \text{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}}\r
 
 **Example**:
 
-*"The animal didn't cross the street because it was too tired."*
+_"The animal didn't cross the street because it was too tired."_
 
 When computing the contextual embedding of "it", self-attention assigns high weight to "animal":
+
 ```
 The     → 0.01
 animal  → 0.72   ← correctly resolves the pronoun
@@ -394,6 +402,7 @@ $$\text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h
 $$\text{head}_i = \text{Attention}(Q W_i^Q,\; K W_i^K,\; V W_i^V)$$
 
 where:
+
 - $W_i^Q \in \mathbb{R}^{d_{model} \times d_q}$
 - $W_i^K \in \mathbb{R}^{d_{model} \times d_k}$
 - $W_i^V \in \mathbb{R}^{d_{model} \times d_v}$
@@ -441,17 +450,17 @@ class MultiHeadAttention(nn.Module):
 
 ### Summary of Multi-Head Attention Usage
 
-| Context | Who attends to what |
-|---------|---------------------|
-| **Self-attention (encoder)** | Every encoder position attends to every other encoder position |
-| **Self-attention (decoder)** | Every decoder position attends to all *previous* decoder positions (masked) |
+| Context                       | Who attends to what                                                                              |
+| ----------------------------- | ------------------------------------------------------------------------------------------------ |
+| **Self-attention (encoder)**  | Every encoder position attends to every other encoder position                                   |
+| **Self-attention (decoder)**  | Every decoder position attends to all _previous_ decoder positions (masked)                      |
 | **Cross-attention (decoder)** | Every decoder position attends to every encoder position ($K, V$ from encoder, $Q$ from decoder) |
 
 ---
 
 ### Feed-Forward Networks (FFN)
 
-Each encoder/decoder block also contains a **position-wise feed-forward network** — a two-layer MLP applied *independently* to each position:
+Each encoder/decoder block also contains a **position-wise feed-forward network** — a two-layer MLP applied _independently_ to each position:
 
 $$\text{FFN}(x) = \max(0,\; xW_1 + b_1) W_2 + b_2$$
 
@@ -485,7 +494,7 @@ $$\text{output} = \text{LayerNorm}(x + \text{sublayer}(x))$$
 
 **Residual connections** (Add: $f(x) + x$) help avoid vanishing gradients — the same idea as ResNets (L03).
 
-**Layer Normalisation**: normalizes by the mean and standard deviation of the activations *within a single sample* (across the feature dimension), not across the batch. This is essential because sequence lengths vary and batch statistics would be unreliable.
+**Layer Normalisation**: normalizes by the mean and standard deviation of the activations _within a single sample_ (across the feature dimension), not across the batch. This is essential because sequence lengths vary and batch statistics would be unreliable.
 
 $$\text{LayerNorm}(x) = \gamma \cdot \frac{x - \mu}{\sigma + \epsilon} + \beta$$
 
@@ -510,7 +519,7 @@ class TransformerBlock(nn.Module):
 
 ### Positional Encoding
 
-The Transformer architecture is **permutation-invariant** — self-attention treats the input as a set, not a sequence. To inject order information, a **positional encoding** is *added* to the input embeddings before the first layer.
+The Transformer architecture is **permutation-invariant** — self-attention treats the input as a set, not a sequence. To inject order information, a **positional encoding** is _added_ to the input embeddings before the first layer.
 
 The original paper uses **sinusoidal encodings** (no learned parameters):
 
@@ -523,6 +532,7 @@ $$PE(pos, 2i+1) = \cos\!\left(\frac{pos}{10000^{2i/d_{model}}}\right)$$
 - Relative positions can be expressed as linear functions of each other (useful for generalising to longer sequences)
 
 **Modern alternatives**:
+
 - **Learned positional embeddings**: treat position as a token ID and learn an embedding (used in BERT, GPT-2)
 - **RoPE** (Rotary Position Embedding): rotates Q and K vectors by their position before dot-product — used in LLaMA, GPT-NeoX
 
@@ -553,10 +563,10 @@ The embedding weight matrix (dimension $d_{model} \times |V|$) is often **shared
 
 ### Complexity Analysis
 
-| Operation | Complexity per Layer |
-|-----------|---------------------|
+| Operation      | Complexity per Layer                            |
+| -------------- | ----------------------------------------------- |
 | Self-Attention | $O(n^2 \cdot d)$ — quadratic in sequence length |
-| FFN | $O(n \cdot d^2)$ — linear in sequence length |
+| FFN            | $O(n \cdot d^2)$ — linear in sequence length    |
 
 **The $O(n^2)$ cost is the main scalability bottleneck** for long sequences. For $n = 512$ (BERT) it is fine; for $n = 100\text{k}$ it is not. Solutions: FlashAttention (memory-efficient exact attention), sparse attention, linear attention approximations.
 
@@ -564,16 +574,16 @@ The embedding weight matrix (dimension $d_{model} \times |V|$) is often **shared
 
 ## BERT
 
-**Paper**: Devlin, Chang, Lee, Toutanova. *"BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding."* ACL 2019.
+**Paper**: Devlin, Chang, Lee, Toutanova. _"BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding."_ ACL 2019.
 
 BERT is an **encoder-only** Transformer that produces contextual representations for every token, trained with self-supervised objectives on unlabeled text.
 
 ### Architecture
 
-| Variant | Layers | Attention Heads | Parameters |
-|---------|--------|-----------------|------------|
-| BERT-base | 12 | 12 | 110 million |
-| BERT-large | 24 | 16 | 340 million |
+| Variant    | Layers | Attention Heads | Parameters  |
+| ---------- | ------ | --------------- | ----------- |
+| BERT-base  | 12     | 12              | 110 million |
+| BERT-large | 24     | 16              | 340 million |
 
 ---
 
@@ -582,6 +592,7 @@ BERT is an **encoder-only** Transformer that produces contextual representations
 #### 1. Masked Language Model (MLM)
 
 Randomly mask **15%** of input tokens, then predict the original tokens. Of the selected 15%:
+
 - **80%** — replace with `[MASK]`
 - **10%** — replace with a random token from the vocabulary
 - **10%** — keep the original token unchanged
@@ -621,6 +632,7 @@ Label:  NotNext (False)
 BERT is trained with **self-supervised learning** — the labels (masked tokens, next sentence pairs) are derived automatically from unlabeled text, with no human annotation required. This allows training on massive datasets.
 
 **Training data**:
+
 - BooksCorpus: 800 million words
 - English Wikipedia: 2,500 million words
 
@@ -639,12 +651,12 @@ Fine-tuning:  labeled task data + BERT weights → task-specific model
 
 **Common fine-tuning tasks**:
 
-| Task | How to use BERT | Example |
-|------|----------------|---------|
-| Text classification | Use `[CLS]` token representation | Sentiment analysis |
-| Named Entity Recognition | Use per-token representations | Label each word B-PER, I-PER, O, ... |
-| Question Answering | Predict start/end span in passage | SQuAD |
-| Sentence pair tasks | Use `[CLS]` with two sentences | Natural language inference |
+| Task                     | How to use BERT                   | Example                              |
+| ------------------------ | --------------------------------- | ------------------------------------ |
+| Text classification      | Use `[CLS]` token representation  | Sentiment analysis                   |
+| Named Entity Recognition | Use per-token representations     | Label each word B-PER, I-PER, O, ... |
+| Question Answering       | Predict start/end span in passage | SQuAD                                |
+| Sentence pair tasks      | Use `[CLS]` with two sentences    | Natural language inference           |
 
 ```python
 from transformers import BertTokenizer, BertForSequenceClassification
@@ -687,38 +699,38 @@ From the lecture's closing slide:
 - **BERT and its variants** are the current SOTA for encoder representations
 - Training transformers takes a **lot** of training data, GPU memory, and time — a significant disadvantage compared to RNNs for small datasets
 
-| Component | Key Point |
-|-----------|-----------|
-| One-hot encoding | Sparse, no similarity information |
-| Word2Vec / GloVe | Dense, non-contextual, algebraic properties |
+| Component             | Key Point                                                |
+| --------------------- | -------------------------------------------------------- |
+| One-hot encoding      | Sparse, no similarity information                        |
+| Word2Vec / GloVe      | Dense, non-contextual, algebraic properties              |
 | Contextual embeddings | Different vector per context; upper layers more specific |
-| Self-attention | Every token attends to every other — $O(n^2)$ |
-| Scaled dot-product | $\text{softmax}(QK^\top / \sqrt{d_k})V$ |
-| Masked self-attention | Causal masking for autoregressive generation |
-| Multi-head attention | $h$ parallel heads, different subspaces |
-| Positional encoding | Sinusoidal or learned; added to embeddings |
-| FFN | Per-position 2-layer MLP with ReLU |
-| Residual + LayerNorm | Add & Norm — avoids vanishing gradients |
-| BERT | Encoder-only, MLM + NSP, 110M–340M params |
+| Self-attention        | Every token attends to every other — $O(n^2)$            |
+| Scaled dot-product    | $\text{softmax}(QK^\top / \sqrt{d_k})V$                  |
+| Masked self-attention | Causal masking for autoregressive generation             |
+| Multi-head attention  | $h$ parallel heads, different subspaces                  |
+| Positional encoding   | Sinusoidal or learned; added to embeddings               |
+| FFN                   | Per-position 2-layer MLP with ReLU                       |
+| Residual + LayerNorm  | Add & Norm — avoids vanishing gradients                  |
+| BERT                  | Encoder-only, MLM + NSP, 110M–340M params                |
 
 ---
 
 ## References
 
-- Ba, Mnih, Kavukcuoglu (2014) — Multiple object recognition with visual attention. *arXiv:1412.7755*.
-- Bahdanau, Cho, Bengio (2015) — Neural machine translation by jointly learning to align and translate. *ICLR*.
-- Devlin, Chang, Lee, Toutanova (2019) — BERT: Pre-training of deep bidirectional transformers for language understanding. *arXiv:1810.04805*.
-- Ethayarajh (2019) — How contextual are contextualized word representations? *arXiv:1909.00512*.
+- Ba, Mnih, Kavukcuoglu (2014) — Multiple object recognition with visual attention. _arXiv:1412.7755_.
+- Bahdanau, Cho, Bengio (2015) — Neural machine translation by jointly learning to align and translate. _ICLR_.
+- Devlin, Chang, Lee, Toutanova (2019) — BERT: Pre-training of deep bidirectional transformers for language understanding. _arXiv:1810.04805_.
+- Ethayarajh (2019) — How contextual are contextualized word representations? _arXiv:1909.00512_.
 - Firth (1957) — Studies in linguistic analysis. Blackwell, Oxford.
-- Lindsay (2020) — Attention in psychology, neuroscience, and machine learning. *Frontiers in Computational Neuroscience*, 14:29.
-- Luong, Pham, Manning (2015) — Effective approaches to attention-based neural machine translation. *arXiv:1508.04025*.
-- Mikolov et al. (2013a) — Efficient estimation of word representations in vector space. *arXiv:1301.3781*.
-- Mikolov et al. (2013b) — Exploiting similarities among languages for machine translation. *arXiv:1309.4168*.
-- Mnih, Heess, Graves et al. (2014) — Recurrent models of visual attention. *NeurIPS*, pp. 2204–2212.
-- Nozza, Bianchi, Hovy (2020) — What the [MASK]? Making sense of language-specific BERT models. *arXiv:2003.02912*.
-- Pennington, Socher, Manning (2014) — GloVe: Global vectors for word representation. *EMNLP*, pp. 1532–1543.
-- Vaswani et al. (2017) — Attention is all you need. *NeurIPS*, pp. 5998–6008.
-- Xu et al. (2015) — Show, attend and tell: Neural image caption generation with visual attention. *ICML*, pp. 2048–2057.
+- Lindsay (2020) — Attention in psychology, neuroscience, and machine learning. _Frontiers in Computational Neuroscience_, 14:29.
+- Luong, Pham, Manning (2015) — Effective approaches to attention-based neural machine translation. _arXiv:1508.04025_.
+- Mikolov et al. (2013a) — Efficient estimation of word representations in vector space. _arXiv:1301.3781_.
+- Mikolov et al. (2013b) — Exploiting similarities among languages for machine translation. _arXiv:1309.4168_.
+- Mnih, Heess, Graves et al. (2014) — Recurrent models of visual attention. _NeurIPS_, pp. 2204–2212.
+- Nozza, Bianchi, Hovy (2020) — What the [MASK]? Making sense of language-specific BERT models. _arXiv:2003.02912_.
+- Pennington, Socher, Manning (2014) — GloVe: Global vectors for word representation. _EMNLP_, pp. 1532–1543.
+- Vaswani et al. (2017) — Attention is all you need. _NeurIPS_, pp. 5998–6008.
+- Xu et al. (2015) — Show, attend and tell: Neural image caption generation with visual attention. _ICML_, pp. 2048–2057.
 
 ---
 

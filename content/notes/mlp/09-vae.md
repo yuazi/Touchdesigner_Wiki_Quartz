@@ -21,11 +21,11 @@ date: 2026-03-09
 
 ### Supervised vs. Unsupervised Learning
 
-| | Supervised | Unsupervised |
-|---|---|---|
-| **Data** | $(x, y)$ — labelled pairs | $x$ — no labels |
-| **Goal** | Learn mapping $X \to y$ | Learn underlying structure of data |
-| **Examples** | Image classification, regression | Clustering, generation |
+|              | Supervised                       | Unsupervised                       |
+| ------------ | -------------------------------- | ---------------------------------- |
+| **Data**     | $(x, y)$ — labelled pairs        | $x$ — no labels                    |
+| **Goal**     | Learn mapping $X \to y$          | Learn underlying structure of data |
+| **Examples** | Image classification, regression | Clustering, generation             |
 
 ### Generative Modelling
 
@@ -34,6 +34,7 @@ Given training data, we want to learn a **model** of the data and be able to sam
 $$p_{\text{model}}(x) \approx p_{\text{data}}(x)$$
 
 What we want to do with $p_{\text{model}}(x)$:
+
 - **Evaluate** $p_{\text{model}}(x)$ — realistic data should score high, fake data should score low
 - **Sample** new $x \sim p_{\text{model}}(x)$ — e.g. generate realistic images
 
@@ -58,7 +59,7 @@ Likelihood as a function of model parameters:
 
 $$L(\theta) = \prod_i p(x_i | \theta) \quad \Longrightarrow \quad \log L(\theta) = \sum_i \log p(x_i | \theta)$$
 
-MLE is the backbone of supervised deep learning — cross-entropy and least-squares are both MLE estimators. Generative models extend this to the *unsupervised* setting.
+MLE is the backbone of supervised deep learning — cross-entropy and least-squares are both MLE estimators. Generative models extend this to the _unsupervised_ setting.
 
 ### Taxonomy of Generative Models
 
@@ -87,6 +88,7 @@ A simple but instructive latent variable model.
 $$z \sim \text{Categorical}(1 \ldots K), \qquad p(x | z=k) = \mathcal{N}(\mu_k, \Sigma_k)$$
 
 **Generative process**:
+
 1. Pick a mixture component by sampling $z \sim \text{Categorical}(\pi)$
 2. Sample the data point from that Gaussian: $x \sim \mathcal{N}(\mu_z, \Sigma_z)$
 
@@ -124,6 +126,7 @@ $$\hat\theta_f, \hat\theta_g = \arg\min_{\theta_f, \theta_g} \sum_{n=1}^N \|x_n 
 > **Linear special case**: if both $f$ and $g$ are linear, the optimal solution is **PCA** — the encoder learns the top-$d$ principal components.
 
 ### What Autoencoders Are Good At
+
 - Dimensionality reduction and compression
 - Denoising (train on corrupted input, reconstruct clean output)
 - Representation learning: use $z$ for downstream classification or clustering
@@ -134,7 +137,7 @@ After training, the latent space $\mathcal{Z}$ is **irregular and discontinuous*
 
 > **Analogy**: imagine the library stacks were randomly assigned. Opening a random drawer is unlikely to give you a coherent book.
 
-Fitting a simple Gaussian $f(x) \sim \mathcal{N}(\hat\mu, \hat\sigma I)$ over the encoded training points and sampling from it does *not* work either — the density model is too simple to capture the true structure.
+Fitting a simple Gaussian $f(x) \sim \mathcal{N}(\hat\mu, \hat\sigma I)$ over the encoded training points and sampling from it does _not_ work either — the density model is too simple to capture the true structure.
 
 > **MNIST example**: plot the 2D latent codes of an autoencoder trained on MNIST. You'll see tight clusters per digit with large empty gaps between them. A random sample from $z$-space lands in the gaps → blurry or meaningless output.
 
@@ -142,7 +145,7 @@ Fitting a simple Gaussian $f(x) \sim \mathcal{N}(\hat\mu, \hat\sigma I)$ over th
 
 ## Variational Autoencoders (VAE)
 
-**Paper**: Kingma & Welling, *Auto-Encoding Variational Bayes* (2014)
+**Paper**: Kingma & Welling, _Auto-Encoding Variational Bayes_ (2014)
 
 A **probabilistic** version of the autoencoder that allows genuine sampling of new, unseen data.
 
@@ -150,11 +153,11 @@ A **probabilistic** version of the autoencoder that allows genuine sampling of n
 
 The VAE is essentially a MoG with a **neural network** replacing the fixed Gaussians:
 
-| | MoG | VAE |
-|---|---|---|
-| Prior on $z$ | $\text{Categorical}(\pi)$ | $\mathcal{N}(0, I)$ |
+|                      | MoG                            | VAE                                            |
+| -------------------- | ------------------------------ | ---------------------------------------------- |
+| Prior on $z$         | $\text{Categorical}(\pi)$      | $\mathcal{N}(0, I)$                            |
 | Likelihood $p(x\|z)$ | $\mathcal{N}(\mu_k, \Sigma_k)$ | $\mathcal{N}(\mu_\theta(z), \Sigma_\theta(z))$ |
-| Features | Fixed, hand-specified | Learned by the network |
+| Features             | Fixed, hand-specified          | Learned by the network                         |
 
 - Prior: $z \sim \mathcal{N}(0, I)$
 - Decoder: $p(x|z) = \mathcal{N}(\mu_\theta(z),\, \Sigma_\theta(z))$ — $\mu_\theta, \Sigma_\theta$ are neural networks
@@ -215,6 +218,7 @@ $$= \mathbb{E}_{q_\phi(z|x)}\!\Big[\log p_\theta(x|z)\Big] - D_{KL}\!\Big(q_\phi
 $$= \underbrace{\mathbb{E}_{q(z|x)}[\log p_\theta(x|z)]}_{\text{Reconstruction}} - \underbrace{D_{KL}(q_\phi(z|x) \| p(z))}_{\text{Regularisation}}$$
 
 **Term 1 — Reconstruction loss**: how well does the decoder recover $x$ from $z$?
+
 - Continuous data ($x \in \mathbb{R}^d$): $\|x - \hat{x}\|^2$ (MSE / Gaussian likelihood)
 - Binary data (e.g. binarised MNIST): binary cross-entropy
 
@@ -291,7 +295,7 @@ x ──→ Encoder ──→ μ, σ
                ELBO loss
 ```
 
-> **Example**: without reparameterization, training a VAE on MNIST wouldn't converge — the KL term would not receive gradients back to the encoder. With reparameterization, the encoder learns to produce posteriors that both reconstruct well *and* stay close to $\mathcal{N}(0,I)$.
+> **Example**: without reparameterization, training a VAE on MNIST wouldn't converge — the KL term would not receive gradients back to the encoder. With reparameterization, the encoder learns to produce posteriors that both reconstruct well _and_ stay close to $\mathcal{N}(0,I)$.
 
 ---
 
@@ -338,12 +342,12 @@ z("smiling woman") − z("neutral woman") + z("neutral man") ≈ z("smiling man"
 
 ## Autoencoder vs. VAE Latent Spaces
 
-| | Regular Autoencoder | VAE |
-|---|---|---|
-| Encoder output | Single point $z$ | Distribution $(\mu, \sigma)$ |
-| Latent space | Irregular, discontinuous | Smooth, structured |
-| Random sampling | Mostly garbage | Valid outputs |
-| Interpolation | Discontinuous | Smooth |
+|                 | Regular Autoencoder      | VAE                          |
+| --------------- | ------------------------ | ---------------------------- |
+| Encoder output  | Single point $z$         | Distribution $(\mu, \sigma)$ |
+| Latent space    | Irregular, discontinuous | Smooth, structured           |
+| Random sampling | Mostly garbage           | Valid outputs                |
+| Interpolation   | Discontinuous            | Smooth                       |
 
 > **MNIST visualisation**: a regular AE has tight digit clusters with large empty gaps — random samples from the gaps are meaningless. A VAE has overlapping, smoothly-varying clusters — samples from anywhere produce recognisable (if blurry) digits.
 
@@ -374,6 +378,7 @@ VAEs disentangle **style** from **content** in the latent space. Applications:
 ### Handwriting Synthesis (Aksan et al., 2018)
 
 A VAE trained on handwriting samples can:
+
 - (A) Synthesize handwriting from typed text while giving users control over visual appearance (style)
 - (B) Transfer style across handwriting samples
 - (C) Edit handwritten samples at the word level
@@ -485,26 +490,26 @@ frames = interpolate(model, mu_a, mu_b)
 
 ## Summary of VAEs
 
-| Aspect | Detail |
-|--------|--------|
-| **Pros** | Relatively easy to train; explicit inference network $q(z\|x)$; principled probabilistic framework; smooth latent space |
-| **Cons** | Blurry samples (MSE averages over uncertainty); ELBO is a lower bound (no exact likelihood) |
-| **vs. AE** | Adds KL regularization → structured, sampleable latent space |
-| **vs. GAN** | More stable training; explicit likelihood; but lower sharpness |
-| **vs. Diffusion** | Faster sampling; but lower sample quality |
+| Aspect            | Detail                                                                                                                  |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| **Pros**          | Relatively easy to train; explicit inference network $q(z\|x)$; principled probabilistic framework; smooth latent space |
+| **Cons**          | Blurry samples (MSE averages over uncertainty); ELBO is a lower bound (no exact likelihood)                             |
+| **vs. AE**        | Adds KL regularization → structured, sampleable latent space                                                            |
+| **vs. GAN**       | More stable training; explicit likelihood; but lower sharpness                                                          |
+| **vs. Diffusion** | Faster sampling; but lower sample quality                                                                               |
 
-**Why blurry?** Optimizing MSE reconstruction encourages the decoder to output the *mean* of all possible reconstructions consistent with $z$, rather than a single sharp sample. This is the classic **regression-to-the-mean** problem.
+**Why blurry?** Optimizing MSE reconstruction encourages the decoder to output the _mean_ of all possible reconstructions consistent with $z$, rather than a single sharp sample. This is the classic **regression-to-the-mean** problem.
 
 ---
 
 ## VAEs vs. Other Generative Models
 
-| Model | Latent Space | Sample Quality | Training Stability |
-|-------|-------------|-------------------|--------------------|
-| Autoencoder | Unstructured | Bad (gap problem) | Stable |
-| **VAE** | Structured, continuous | OK (blurry) | Stable |
-| GAN | Implicit | Sharp, high quality | Unstable (mode collapse) |
-| Diffusion | Hierarchical noise | Excellent | Stable |
+| Model       | Latent Space           | Sample Quality      | Training Stability       |
+| ----------- | ---------------------- | ------------------- | ------------------------ |
+| Autoencoder | Unstructured           | Bad (gap problem)   | Stable                   |
+| **VAE**     | Structured, continuous | OK (blurry)         | Stable                   |
+| GAN         | Implicit               | Sharp, high quality | Unstable (mode collapse) |
+| Diffusion   | Hierarchical noise     | Excellent           | Stable                   |
 
 VAEs underpin many modern generative systems. Stable Diffusion, for instance, uses a **VAE** to compress images into a compact latent space and then runs the diffusion process there — combining stable VAE training with the sharpness of diffusion sampling. → [[notes/mlp/12-diffusion|Diffusion Models L12]]
 

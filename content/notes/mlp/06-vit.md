@@ -14,6 +14,7 @@ date: 2026-03-09
 [[notes/mlp/05-transformer|← L05: Transformers]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/07-multimodal|Next: Multimodal Learning →]]
 
 **This lecture covers:**
+
 - Vision Transformer (ViT)
 - Object Detection with ViTs (DETR)
 - Self-supervised Vision Transformers (DINO)
@@ -51,7 +52,7 @@ This allows the model to ask "how well do the pixel features match their neighbo
 
 ### Vision Transformer (ViT) — Main Workflow
 
-**Paper**: Dosovitskiy et al. *"An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale."* ICLR 2021.
+**Paper**: Dosovitskiy et al. _"An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale."_ ICLR 2021.
 
 The ViT processes images as a sequence of fixed-size patches fed into a standard Transformer encoder.
 
@@ -63,6 +64,7 @@ The ViT processes images as a sequence of fixed-size patches fed into a standard
 4. Prepend a learnable **[CLS] token** — its final representation is used for classification
 
 For a 224×224 image with 16×16 patches:
+
 - Number of patches: $(224/16)^2 = 196$
 - Flattened patch size: $16 \times 16 \times 3 = 768$
 - Sequence length fed to Transformer: $196 + 1 = 197$ (patches + [CLS])
@@ -95,11 +97,11 @@ Image (224×224×3)
 
 Three standard variants (Dosovitskiy et al., 2021):
 
-| Model | Layers | Hidden size $d$ | MLP size | Heads | Params |
-|-------|--------|-----------------|----------|-------|--------|
-| ViT-Base | 12 | 768 | 3072 | 12 | 86M |
-| ViT-Large | 24 | 1024 | 4096 | 16 | 307M |
-| ViT-Huge | 32 | 1280 | 5120 | 16 | 632M |
+| Model     | Layers | Hidden size $d$ | MLP size | Heads | Params |
+| --------- | ------ | --------------- | -------- | ----- | ------ |
+| ViT-Base  | 12     | 768             | 3072     | 12    | 86M    |
+| ViT-Large | 24     | 1024            | 4096     | 16    | 307M   |
+| ViT-Huge  | 32     | 1280            | 5120     | 16    | 632M   |
 
 Both 16×16 and 32×32 patch sizes are used. Smaller patches = more tokens = more compute but better fine-grained features.
 
@@ -111,13 +113,14 @@ ViTs have **fewer inductive biases** than CNNs (no built-in locality or translat
 
 **Dataset scaling experiment** (Dosovitskiy et al., 2021):
 
-| Pre-training dataset | Size | ViT-L vs ResNet |
-|----------------------|------|-----------------|
-| ImageNet-1K | 1.2M images | ViT-L *underperforms* ResNets |
-| ImageNet-21K | 14.2M images | ViT-L ≈ ViT-B (comparable) |
-| JFT-300M | 300M images | ViT-L *outperforms* all ResNets |
+| Pre-training dataset | Size         | ViT-L vs ResNet                 |
+| -------------------- | ------------ | ------------------------------- |
+| ImageNet-1K          | 1.2M images  | ViT-L _underperforms_ ResNets   |
+| ImageNet-21K         | 14.2M images | ViT-L ≈ ViT-B (comparable)      |
+| JFT-300M             | 300M images  | ViT-L _outperforms_ all ResNets |
 
 **Key findings**:
+
 - With ImageNet-1K only, larger ViT models (ViT-L) actually underperform smaller ones (ViT-B), even with regularisation — not enough data
 - The full advantage of model scale only emerges with JFT-300M pre-training
 - ResNets show better performance on **smaller** pre-training datasets, but reach a plateau earlier
@@ -212,10 +215,12 @@ logits = model(img)  # (4, 1000)
 ### Recap: CNN-Based Object Detection
 
 Object detection requires:
+
 - **Localisation**: bounding box per instance $(x, y, \text{width}, \text{height})$
 - **Classification**: class label per bounding box (e.g., "cat", "tv")
 
 **CNN workflow (Faster R-CNN — Ren et al., 2015)**:
+
 1. **Region Proposal Network (RPN)**: generates candidate bounding boxes
 2. **ROI Pooling**: extract fixed-size features for each proposed region
 3. **Classification + BBox regression**: classify each ROI and refine the box
@@ -226,11 +231,12 @@ Object detection requires:
 
 ### DETR — End-to-End Object Detection with Transformers
 
-**Paper**: Carion, Massa, Synnaeve, Usunier, Kirillov, Zagoruyko. *"End-to-End Object Detection with Transformers."* ECCV 2020.
+**Paper**: Carion, Massa, Synnaeve, Usunier, Kirillov, Zagoruyko. _"End-to-End Object Detection with Transformers."_ ECCV 2020.
 
 **Key innovation**: DETR is the first **fully end-to-end** object detector — no RPN, no NMS, no anchor boxes. It directly predicts the final set of detected objects.
 
 **Advantages**:
+
 - Eliminates hand-crafted components → fewer hyperparameters to tune
 - Simpler to deploy
 - Naturally handles **one-to-many** detection via set prediction
@@ -254,6 +260,7 @@ Image → [CNN Backbone] → feature map (H/32 × W/32 × 2048)
 ```
 
 **Components**:
+
 1. **CNN Backbone**: extracts rich spatial features (e.g., ResNet-50); very similar to Faster R-CNN's backbone
 2. **Positional Encoding**: added to the flattened feature map before the encoder
 3. **Transformer Encoder**: applies self-attention over all spatial positions — allows the encoder to separate individual instances (the encoder learns to disentangle overlapping objects)
@@ -274,6 +281,7 @@ Given an unordered set of $N$ predictions and padded ground truth $y$, find the 
 $$\hat{\sigma} = \arg\min_{\sigma \in \mathcal{S}_N} \sum_{i=1}^{N} \mathcal{L}_{\text{match}}(y_i, \hat{y}_{\sigma(i)})$$
 
 The matching cost $\mathcal{L}_{\text{match}}$ considers:
+
 - **Probability** of the predicted class for the true label class
 - **Overlap** between the matched bounding boxes (IoU)
 
@@ -317,17 +325,17 @@ On COCO, DETR is not just conceptually elegant; it is also **competitive with st
 - The strongest DETR variant shown, **DETR-DC5-R101**, reaches **44.9 AP**, **64.7 AP50**, and **62.3 AP_L**
 - The weakness is visible on **small objects**: **AP_S = 23.7**, below the stronger Faster R-CNN multi-scale baseline (**27.2**)
 
-The qualitative slides explain *why* DETR feels different from proposal-based detectors:
+The qualitative slides explain _why_ DETR feels different from proposal-based detectors:
 
 - The **encoder** can separate nearby instances into different slots even in crowded scenes
 - The **decoder** often attends to **object extremities** such as heads, legs, and tails rather than box centers, yet still predicts coherent boxes
 
 **Shortcomings**:
 
-| Problem | Cause |
-|---------|-------|
-| **Slow convergence** | Initially, attention weights are nearly uniform — many epochs needed before queries learn to focus on relevant locations |
-| **Poor small object detection** | Full-resolution attention is $O(n^2)$ — hard to use high-resolution feature maps without prohibitive cost |
+| Problem                         | Cause                                                                                                                    |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **Slow convergence**            | Initially, attention weights are nearly uniform — many epochs needed before queries learn to focus on relevant locations |
+| **Poor small object detection** | Full-resolution attention is $O(n^2)$ — hard to use high-resolution feature maps without prohibitive cost                |
 
 ---
 
@@ -336,11 +344,13 @@ The qualitative slides explain *why* DETR feels different from proposal-based de
 Two targeted fixes for DETR's shortcomings:
 
 **1. Deformable Attention Module** — solves slow convergence:
+
 - Instead of attending to all spatial tokens, each query attends to only a **small set of key sampling points** around a reference point (typically 4 per head)
 - Cost is dramatically reduced regardless of feature map size
 - Attention focuses quickly on relevant locations
 
 **2. Multi-scale Deformable Attention** — solves small object detection:
+
 - Looks over sampling points from **multi-scale feature maps** simultaneously (e.g., 1/8, 1/16, 1/32, 1/64 of input resolution)
 - Small objects are better represented at finer scales
 - Uses CNN-style FPN-like multi-scale features
@@ -365,7 +375,7 @@ Two targeted fixes for DETR's shortcomings:
 
 **Self-supervised goal**: learn representations that distinguish visually similar images even without labels.
 
-**Why now?** Transformers drove NLP progress through self-supervised learning (BERT, GPT) — can the same approach work for vision? Vision Transformer (ViT, L06) was trained in a *fully supervised* manner — we want to explore self-supervised alternatives.
+**Why now?** Transformers drove NLP progress through self-supervised learning (BERT, GPT) — can the same approach work for vision? Vision Transformer (ViT, L06) was trained in a _fully supervised_ manner — we want to explore self-supervised alternatives.
 
 ---
 
@@ -384,13 +394,13 @@ These tasks forced the model to learn rich semantic representations without huma
 
 Many analogous pretext tasks were proposed for vision (Li, cs231):
 
-| Pretext Task | Hypothesis |
-|-------------|-----------|
-| **Predict image rotation** (0°, 90°, 180°, 270°) | To know the correct orientation, the model must understand what objects "should" look like |
-| **Predict relative patch location** | The model must understand spatial layout and object structure |
-| **Solve jigsaw puzzles** | Shuffled patches require understanding of coherent composition |
-| **Predict missing pixels (inpainting)** | The model must understand context to hallucinate missing regions |
-| **Image colouring** | To colour a grayscale image, the model must understand object semantics (grass is green, sky is blue) |
+| Pretext Task                                     | Hypothesis                                                                                            |
+| ------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| **Predict image rotation** (0°, 90°, 180°, 270°) | To know the correct orientation, the model must understand what objects "should" look like            |
+| **Predict relative patch location**              | The model must understand spatial layout and object structure                                         |
+| **Solve jigsaw puzzles**                         | Shuffled patches require understanding of coherent composition                                        |
+| **Predict missing pixels (inpainting)**          | The model must understand context to hallucinate missing regions                                      |
+| **Image colouring**                              | To colour a grayscale image, the model must understand object semantics (grass is green, sky is blue) |
 
 **Problem with pretext tasks**: the learned representations may be tied to the specific task. A model trained to predict rotation may learn to detect horizon lines without learning object semantics. The representations don't necessarily transfer well to downstream tasks.
 
@@ -401,6 +411,7 @@ Many analogous pretext tasks were proposed for vision (Li, cs231):
 An alternative to pretext tasks: **contrastive learning** with augmented view pairs.
 
 **Idea**:
+
 1. Take an image and create two different **augmented views** of the same image → these are **positive pairs**
 2. Views of different images → **negative pairs**
 3. **Minimise** the distance between positive pair representations
@@ -423,7 +434,7 @@ loss: bring z₁ and z₂ close together, push apart from all z_other
 
 ### DINO — Self-supervised Vision Transformers
 
-**Paper**: Zhang et al. (2022). *"DINO: DETR with Improved Denoising Anchor Boxes for End-to-End Object Detection."* (The self-supervised DINO framework.)
+**Paper**: Zhang et al. (2022). _"DINO: DETR with Improved Denoising Anchor Boxes for End-to-End Object Detection."_ (The self-supervised DINO framework.)
 
 ---
 
@@ -485,6 +496,7 @@ $$\min_{\theta_s} \sum_{x \in \{x_1^g, x_2^g\}} \sum_{\substack{x' \in V \\ x' \
 #### Mode Collapse Problem
 
 **Mode collapse** occurs when the model outputs the same distribution for all inputs, making the loss trivially zero:
+
 1. The output is identical along all dimensions for any input
 2. The output is dominated by a single dimension (one feature value is always highest)
 
@@ -501,11 +513,13 @@ DINO prevents mode collapse with two complementary techniques:
 $$\text{Logits} = \text{Logits} - \overline{\text{Logits}}$$
 
 Subtract a running mean from the teacher's raw activations before the softmax:
+
 - Features that are above their mean become positive → softmax assigns high probability
 - Features below their mean become negative → softmax assigns low probability
 - Prevents any single feature from always dominating by centering the range
 
 **Sharpening** (prevents uniform outputs):
+
 - Use a low teacher temperature $\tau_t$ → sharper, more confident teacher distribution
 - Forces the student to commit to specific features rather than predicting a uniform distribution
 
@@ -566,32 +580,32 @@ From the lecture's closing slide — notable models and frameworks as of WS 2025
 
 ## Summary
 
-| Topic | Key Points |
-|-------|-----------|
-| **CNN limitations** | Brittle to certain distribution shifts; Transformers show better robustness but need explicit position encoding |
-| **Stand-alone self-attention** | Can replace convolution; relative position embedding captures spatial structure |
-| **ViT** | 16×16 patches as tokens; [CLS] for classification; GeLU MLP head; needs large data (JFT-300M > ImageNet-21K > ImageNet-1K) |
-| **ViT data scaling** | ResNets better on small datasets; ViT surpasses at JFT-300M scale |
-| **DETR** | CNN backbone + Transformer encoder/decoder; $N$ object queries; Hungarian matching; no NMS; slow convergence, poor small objects |
-| **Deformable DETR** | Sparse deformable attention + multi-scale features; solves DETR's shortcomings |
-| **Pretext tasks** | Rotation, jigsaw, inpainting, colouring — but representations tied to task |
-| **Contrastive learning** | Positive (same image, different augmentations) vs negative pairs; minimize/maximize distance |
-| **DINO** | Teacher (EMA) + student; global views to teacher only; local-to-global correspondence; centering + sharpening prevents mode collapse; emergent segmentation |
+| Topic                          | Key Points                                                                                                                                                  |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **CNN limitations**            | Brittle to certain distribution shifts; Transformers show better robustness but need explicit position encoding                                             |
+| **Stand-alone self-attention** | Can replace convolution; relative position embedding captures spatial structure                                                                             |
+| **ViT**                        | 16×16 patches as tokens; [CLS] for classification; GeLU MLP head; needs large data (JFT-300M > ImageNet-21K > ImageNet-1K)                                  |
+| **ViT data scaling**           | ResNets better on small datasets; ViT surpasses at JFT-300M scale                                                                                           |
+| **DETR**                       | CNN backbone + Transformer encoder/decoder; $N$ object queries; Hungarian matching; no NMS; slow convergence, poor small objects                            |
+| **Deformable DETR**            | Sparse deformable attention + multi-scale features; solves DETR's shortcomings                                                                              |
+| **Pretext tasks**              | Rotation, jigsaw, inpainting, colouring — but representations tied to task                                                                                  |
+| **Contrastive learning**       | Positive (same image, different augmentations) vs negative pairs; minimize/maximize distance                                                                |
+| **DINO**                       | Teacher (EMA) + student; global views to teacher only; local-to-global correspondence; centering + sharpening prevents mode collapse; emergent segmentation |
 
 ---
 
 ## References
 
-- Carion, Massa, Synnaeve, Usunier, Kirillov, Zagoruyko (2020) — End-to-end object detection with transformers. *ECCV*, pp. 213–229.
-- Dosovitskiy et al. (2021) — An image is worth 16×16 words: Transformers for image recognition at scale. *arXiv:2010.11929*.
-- He, Fan, Wu, Xie, Girshick (2020) — Momentum contrast for unsupervised visual representation learning. *CVPR*, pp. 9729–9738.
-- Naseer, Ranasinghe, Khan et al. (2021) — Intriguing properties of vision transformers. *NeurIPS*, 34:23296–23308.
-- Ramachandran, Parmar, Vaswani, Bello, Levskaya, Shlens (2019) — Stand-alone self-attention in vision models. *arXiv:1906.05909*.
-- Ren, He, Girshick, Sun (2015) — Faster R-CNN: Towards real-time object detection with region proposal networks. *NeurIPS*, 28:91–99.
-- Stewart, Andriluka, Ng (2016) — End-to-end people detection in crowded scenes. *CVPR*, pp. 2325–2333.
-- Wu, Xiong, Yu, Lin (2018) — Unsupervised feature learning via non-parametric instance discrimination. *CVPR*, pp. 3733–3742.
-- Zhang, Li, Liu et al. (2022) — DINO: DETR with improved denoising anchor boxes for end-to-end object detection. *arXiv:2203.03605*.
-- Zhu, Su, Lu, Li, Wang, Dai (2020) — Deformable DETR: Deformable transformers for end-to-end object detection. *arXiv:2010.04159*.
+- Carion, Massa, Synnaeve, Usunier, Kirillov, Zagoruyko (2020) — End-to-end object detection with transformers. _ECCV_, pp. 213–229.
+- Dosovitskiy et al. (2021) — An image is worth 16×16 words: Transformers for image recognition at scale. _arXiv:2010.11929_.
+- He, Fan, Wu, Xie, Girshick (2020) — Momentum contrast for unsupervised visual representation learning. _CVPR_, pp. 9729–9738.
+- Naseer, Ranasinghe, Khan et al. (2021) — Intriguing properties of vision transformers. _NeurIPS_, 34:23296–23308.
+- Ramachandran, Parmar, Vaswani, Bello, Levskaya, Shlens (2019) — Stand-alone self-attention in vision models. _arXiv:1906.05909_.
+- Ren, He, Girshick, Sun (2015) — Faster R-CNN: Towards real-time object detection with region proposal networks. _NeurIPS_, 28:91–99.
+- Stewart, Andriluka, Ng (2016) — End-to-end people detection in crowded scenes. _CVPR_, pp. 2325–2333.
+- Wu, Xiong, Yu, Lin (2018) — Unsupervised feature learning via non-parametric instance discrimination. _CVPR_, pp. 3733–3742.
+- Zhang, Li, Liu et al. (2022) — DINO: DETR with improved denoising anchor boxes for end-to-end object detection. _arXiv:2203.03605_.
+- Zhu, Su, Lu, Li, Wang, Dai (2020) — Deformable DETR: Deformable transformers for end-to-end object detection. _arXiv:2010.04159_.
 
 ---
 

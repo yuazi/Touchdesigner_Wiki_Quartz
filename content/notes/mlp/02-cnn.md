@@ -41,15 +41,15 @@ Hierarchy of cell layers:
 
 ### Photoreceptors
 
-|  | Rods | Cones |
-|--|------|-------|
-| Sensitivity | + | − |
-| Number | 90 × 10⁶ | 4.5 × 10⁶ |
-| Location | periphery | center |
-| Response time | − | + |
-| Wavelength range | + | − |
-| # Pigments | 1 | 3 |
-| # Photons needed | 1 | 10–100 |
+|                  | Rods      | Cones     |
+| ---------------- | --------- | --------- |
+| Sensitivity      | +         | −         |
+| Number           | 90 × 10⁶  | 4.5 × 10⁶ |
+| Location         | periphery | center    |
+| Response time    | −         | +         |
+| Wavelength range | +         | −         |
+| # Pigments       | 1         | 3         |
+| # Photons needed | 1         | 10–100    |
 
 - **Rods**: night vision
 - **Cones**: colour vision and fine details
@@ -151,6 +151,7 @@ Beyond classification, CNNs were extended to dense predictions — object detect
 ### Traditional Approach
 
 Image features were often:
+
 - Handcrafted and fixed
 - Too general (not task-specific enough), or too specific (do not generalise well to other tasks)
 
@@ -262,8 +263,9 @@ $F(x)$ is a **residual mapping** w.r.t. identity.
 - **Residual connections improve gradient flow**: at add-gates in the backward pass, the upstream gradient flows directly through the skip connection
 
 Results:
+
 - Deep ResNets can be trained without difficulty
-- Deeper ResNets achieve lower training *and* lower test error
+- Deeper ResNets achieve lower training _and_ lower test error
 - Trained in 2–3 weeks on an 8-GPU machine; faster than VGG at runtime despite being 8× deeper
 
 ### Case Study: DenseNet / FractalNet
@@ -281,6 +283,7 @@ Results:
 - CondenseNet [Huang et al., 2018]
 
 Fully convolutional networks for dense prediction:
+
 - HourGlass [Newell et al., 2016]
 - U-Net [Ronneberger et al., 2015]
 
