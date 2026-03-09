@@ -9,8 +9,6 @@ tags:
 date: 2026-03-09
 ---
 
-## Lecture 05 — Transformers
-
 [[notes/mlp/04-rnn|← L04: RNNs]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/06-vit|Next: ViT →]]
 
 **This lecture covers:**

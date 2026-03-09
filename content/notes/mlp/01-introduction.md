@@ -8,8 +8,6 @@ tags:
 date: 2026-03-09
 ---
 
-## Lecture 01 — Introduction to Machine Learning
-
 [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/02-cnn|Next: CNNs →]]
 
 ---

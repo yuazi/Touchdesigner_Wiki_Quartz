@@ -9,8 +9,6 @@ tags:
 date: 2026-03-09
 ---
 
-## Lecture 08 — Interactive Machine Learning (IML)
-
 [[notes/mlp/07-multimodal|← L07: Multimodal Learning]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/09-vae|Next: VAE →]]
 
 ---

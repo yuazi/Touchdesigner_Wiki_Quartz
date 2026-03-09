@@ -9,8 +9,6 @@ tags:
 date: 2026-03-09
 ---
 
-## Lecture 13 — Explainable AI (XAI)
-
 [[notes/mlp/12-diffusion|← L12: Diffusion]] | [[notes/mlp/index|↑ MPL Index]]
 
 ---

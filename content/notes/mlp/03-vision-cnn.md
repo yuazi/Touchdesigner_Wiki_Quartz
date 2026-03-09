@@ -9,8 +9,6 @@ tags:
 date: 2026-03-09
 ---
 
-## Lecture 03 — CNNs in Computer Vision
-
 [[notes/mlp/02-cnn|← L02: CNNs]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/04-rnn|Next: RNNs →]]
 
 ---

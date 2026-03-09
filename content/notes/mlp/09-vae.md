@@ -9,8 +9,6 @@ tags:
 date: 2026-03-09
 ---
 
-## Lecture 09 — Generative AI & Variational Autoencoders
-
 [[notes/mlp/08-iml|← L08: Interactive ML]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/10-gans|Next: GANs →]]
 
 > **Slide credits**: O. Hilliges @ ETHZ · Paul Liang & Louis-Philippe Morency @ CMU

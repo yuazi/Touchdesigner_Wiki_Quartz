@@ -9,8 +9,6 @@ tags:
 date: 2026-03-09
 ---
 
-## Lecture 06 — Transformers in Computer Vision
-
 [[notes/mlp/05-transformer|← L05: Transformers]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/07-multimodal|Next: Multimodal Learning →]]
 
 **This lecture covers:**

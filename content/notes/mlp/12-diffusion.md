@@ -9,8 +9,6 @@ tags:
 date: 2026-03-09
 ---
 
-## Lecture 12 — Diffusion Models
-
 [[notes/mlp/11-rl|← L11: RL]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/13-xai|Next: XAI →]]
 
 > **Course**: Machine Perception and Learning for Collaborative Intelligent Systems  

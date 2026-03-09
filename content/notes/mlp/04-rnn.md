@@ -9,8 +9,6 @@ tags:
 date: 2026-03-09
 ---
 
-## Lecture 04 — Recurrent Neural Networks (RNNs)
-
 [[notes/mlp/03-vision-cnn|← L03: Vision CNNs]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/05-transformer|Next: Transformers →]]
 
 **This lecture covers:**

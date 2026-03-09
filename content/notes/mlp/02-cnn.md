@@ -8,8 +8,6 @@ tags:
 date: 2026-03-09
 ---
 
-## Lecture 02 — Convolutional Neural Networks (CNNs)
-
 [[notes/mlp/01-introduction|← L01: Introduction]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/03-vision-cnn|Next: Vision CNNs →]]
 
 ---

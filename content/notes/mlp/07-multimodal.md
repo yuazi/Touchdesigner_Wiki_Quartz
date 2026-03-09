@@ -9,8 +9,6 @@ tags:
 date: 2026-03-09
 ---
 
-## Lecture 07 — Multimodal Learning
-
 [[notes/mlp/06-vit|← L06: ViT]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/08-iml|Next: Interactive ML →]]
 
 **This lecture covers:**

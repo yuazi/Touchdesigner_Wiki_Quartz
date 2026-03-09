@@ -8,8 +8,6 @@ tags:
 date: 2026-03-09
 ---
 
-## Lecture 10 — Generative Adversarial Networks (GANs)
-
 [[notes/mlp/09-vae|← L09: VAE]] | [[notes/mlp/index|↑ MLP Index]] | [[notes/mlp/11-diffusion|Next: Diffusion Models →]]
 
 > _University of Stuttgart — Machine Perception and Learning for Collaborative Intelligent Systems, Prof. Dr. Andreas Bulling, WS 2025/2026_
