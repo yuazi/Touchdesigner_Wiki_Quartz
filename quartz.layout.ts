@@ -5,7 +5,7 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
-  afterBody: [Component.LorenzBackground()],
+  afterBody: [Component.LorenzBackground(), Component.GardenBootOverlay()],
   footer: Component.Footer({
     links: {
       GitHub: "https://github.com/yuazi/_y_usagewiki",

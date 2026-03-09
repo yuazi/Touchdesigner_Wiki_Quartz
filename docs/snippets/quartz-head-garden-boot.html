@@ -1,0 +1,313 @@
+<style>
+  :root {
+    --garden-boot-bg: rgb(17, 17, 21);
+    --garden-boot-text: #d4d4d4;
+    --garden-boot-accent: #84a98c;
+    --garden-boot-lavender: #9d8fbe;
+    --garden-boot-dim: #393639;
+    --garden-boot-font: "JetBrains Mono", "Fira Code", Consolas, monospace;
+  }
+
+  #garden-boot-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483647;
+    background-color: var(--garden-boot-bg);
+    transition: background-color 500ms ease;
+  }
+
+  #garden-boot-overlay.is-exiting {
+    background-color: rgba(17, 17, 21, 0);
+  }
+
+  .garden-boot-shell {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(520px, calc(100vw - 48px));
+    transform: translate(-50%, -50%);
+    text-align: left;
+    color: var(--garden-boot-text);
+    font-family: var(--garden-boot-font);
+    font-size: 13px;
+    line-height: 1.9;
+    letter-spacing: 0.01em;
+    opacity: 1;
+    pointer-events: none;
+    user-select: none;
+    transition: opacity 250ms ease;
+  }
+
+  #garden-boot-overlay.is-exiting .garden-boot-shell {
+    opacity: 0;
+  }
+
+  .garden-boot-log {
+    width: 100%;
+  }
+
+  .garden-boot-group {
+    margin: 0;
+  }
+
+  .garden-boot-line {
+    color: var(--garden-boot-text);
+    white-space: pre-wrap;
+    transition: color 1.2s ease;
+  }
+
+  .garden-boot-segment {
+    transition: color 1.2s ease;
+  }
+
+  .tone-accent {
+    color: var(--garden-boot-accent);
+  }
+
+  .tone-lavender {
+    color: var(--garden-boot-lavender);
+  }
+
+  .tone-dim {
+    color: var(--garden-boot-dim);
+  }
+
+  .garden-boot-group.is-past .garden-boot-line,
+  .garden-boot-group.is-past .garden-boot-segment {
+    color: var(--garden-boot-dim);
+  }
+
+  .garden-boot-cursor {
+    color: var(--garden-boot-accent);
+    animation: garden-boot-cursor-blink 1s steps(1, end) infinite;
+  }
+
+  @keyframes garden-boot-cursor-blink {
+    0%,
+    49.999% {
+      opacity: 1;
+    }
+
+    50%,
+    100% {
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  ;(() => {
+    const SESSION_KEY = "gardenBooted"
+    const TYPE_SPEED_MS = 12
+    const GROUP_GAP_MS = 420
+    const FINAL_PROMPT_DELAY_MS = 700
+    const EXIT_BG_FADE_MS = 500
+    const CURSOR_CHAR = "\u258c"
+    const BOOT_GROUPS = [
+      [
+        "[lavender](y)usage BIOS v1.0[/lavender]",
+        "Memory       : [accent]16384K[/accent] \u2014 OK",
+        "Signal state : [accent]STRANGE ATTRACTOR[/accent]",
+      ],
+      [
+        "Mounting nodes...",
+        "Primary      : [accent]TouchDesigner.wiki[/accent]",
+        "Secondary    : [accent]Notes \u00b7 Calendar \u00b7 Work[/accent]",
+      ],
+      [
+        "Compiling wikilinks...",
+        "Seeding      : [accent]BACKLINKS.SYS[/accent]",
+        "Graph status : [accent]ALIVE[/accent]",
+      ],
+      ["[lavender]Entering (y)usage Garden...[/lavender]"],
+    ]
+    const PROMPT_LINE = "[dim]press any key or click to enter  [/dim]"
+
+    function hasBooted() {
+      try {
+        return sessionStorage.getItem(SESSION_KEY) === "true"
+      } catch {
+        return false
+      }
+    }
+
+    function markBooted() {
+      try {
+        sessionStorage.setItem(SESSION_KEY, "true")
+      } catch {
+        // Ignore storage failures and still let the overlay exit.
+      }
+    }
+
+    function parseMarkup(line) {
+      const pattern = /\[(accent|lavender|dim)\]([\s\S]*?)\[\/\1\]/g
+      const segments = []
+      let cursor = 0
+
+      for (const match of line.matchAll(pattern)) {
+        const start = match.index ?? 0
+        if (start > cursor) {
+          segments.push({ tone: "normal", text: line.slice(cursor, start) })
+        }
+
+        segments.push({ tone: match[1], text: match[2] })
+        cursor = start + match[0].length
+      }
+
+      if (cursor < line.length) {
+        segments.push({ tone: "normal", text: line.slice(cursor) })
+      }
+
+      return segments.filter((segment) => segment.text.length > 0)
+    }
+
+    function wait(ms, signal) {
+      return new Promise((resolve) => {
+        if (signal.aborted || ms <= 0) {
+          resolve()
+          return
+        }
+
+        const onAbort = () => {
+          window.clearTimeout(timer)
+          resolve()
+        }
+
+        const timer = window.setTimeout(() => {
+          signal.removeEventListener("abort", onAbort)
+          resolve()
+        }, ms)
+
+        signal.addEventListener("abort", onAbort, { once: true })
+      })
+    }
+
+    async function typeSegments(lineEl, segments, signal) {
+      for (const segment of segments) {
+        if (signal.aborted) {
+          return
+        }
+
+        const node =
+          segment.tone === "normal" ? document.createTextNode("") : document.createElement("span")
+
+        if (node instanceof HTMLSpanElement) {
+          node.className = `garden-boot-segment tone-${segment.tone}`
+        }
+
+        lineEl.appendChild(node)
+
+        for (const char of segment.text) {
+          if (signal.aborted) {
+            return
+          }
+
+          node.textContent += char
+          await wait(TYPE_SPEED_MS, signal)
+        }
+      }
+    }
+
+    async function typePrompt(logEl, signal) {
+      const lineEl = document.createElement("div")
+      lineEl.className = "garden-boot-line"
+      logEl.appendChild(lineEl)
+
+      await typeSegments(lineEl, parseMarkup(PROMPT_LINE), signal)
+      if (signal.aborted) {
+        return
+      }
+
+      const cursor = document.createElement("span")
+      cursor.className = "garden-boot-cursor"
+      cursor.textContent = CURSOR_CHAR
+      lineEl.appendChild(cursor)
+    }
+
+    async function runSequence(logEl, signal) {
+      let previousGroup = null
+
+      for (let groupIndex = 0; groupIndex < BOOT_GROUPS.length; groupIndex += 1) {
+        if (signal.aborted) {
+          return
+        }
+
+        if (previousGroup) {
+          previousGroup.classList.add("is-past")
+        }
+
+        const groupEl = document.createElement("div")
+        groupEl.className = "garden-boot-group"
+        logEl.appendChild(groupEl)
+
+        for (const line of BOOT_GROUPS[groupIndex]) {
+          const lineEl = document.createElement("div")
+          lineEl.className = "garden-boot-line"
+          groupEl.appendChild(lineEl)
+          await typeSegments(lineEl, parseMarkup(line), signal)
+        }
+
+        previousGroup = groupEl
+
+        if (groupIndex < BOOT_GROUPS.length - 1) {
+          await wait(GROUP_GAP_MS, signal)
+        }
+      }
+
+      await wait(FINAL_PROMPT_DELAY_MS, signal)
+      await typePrompt(logEl, signal)
+    }
+
+    function initGardenBootOverlay() {
+      if (hasBooted() || document.getElementById("garden-boot-overlay") || !document.body) {
+        return
+      }
+
+      const previousOverflow = document.body.style.overflow
+      const overlay = document.createElement("div")
+      overlay.id = "garden-boot-overlay"
+
+      const shell = document.createElement("div")
+      shell.className = "garden-boot-shell"
+
+      const log = document.createElement("div")
+      log.className = "garden-boot-log"
+
+      shell.appendChild(log)
+      overlay.appendChild(shell)
+      document.body.appendChild(overlay)
+      document.body.style.overflow = "hidden"
+
+      const controller = new AbortController()
+      let exited = false
+
+      const exitOverlay = () => {
+        if (exited) {
+          return
+        }
+
+        exited = true
+        controller.abort()
+        markBooted()
+        window.removeEventListener("keydown", exitOverlay)
+        overlay.removeEventListener("click", exitOverlay)
+        overlay.classList.add("is-exiting")
+
+        window.setTimeout(() => {
+          document.body.style.overflow = previousOverflow
+          overlay.remove()
+        }, EXIT_BG_FADE_MS)
+      }
+
+      window.addEventListener("keydown", exitOverlay)
+      overlay.addEventListener("click", exitOverlay, { passive: true })
+      runSequence(log, controller.signal)
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initGardenBootOverlay, { once: true })
+    } else {
+      initGardenBootOverlay()
+    }
+  })()
+</script>
