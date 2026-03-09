@@ -12,7 +12,7 @@ tags:
 date: 2026-03-01
 ---
 
-**Related:** [[Hand Tracking Tutorial|Hand Tracking Tutorial]] · [[Hand Tracking|Back to Hand Tracking]] · [[Hand-Tracked Chaotic Attractor|Hand-Tracked Chaotic Attractor]]
+**Related:** [[Hand Tracking Tutorial|→ Hand Tracking Tutorial]] · [[Hand Tracking|↑ Back to Hand Tracking]] · [[Hand-Tracked Chaotic Attractor|→ Hand-Tracked Chaotic Attractor]]
 
 ---
 
@@ -117,6 +117,6 @@ To zoom, calculate the distance between the thumb tip and index finger tip.
 | Laggy framerate   | Recursive geometries get heavy fast. 3–4 iterations are usually fine; 6–7 will crash your framerate.                                          |
 | Hand disappearing | MediaPipe loses tracking on fast movement. Use a **Filter CHOP** to prevent the geometry from snapping violently back to default coordinates. |
 
-[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]
+[[touchdesigner/06_Recipes_and_Projects/index|↑ Back to Recipes & Projects]]
 
 ---

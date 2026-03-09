@@ -103,8 +103,8 @@ Audio Device In CHOP → Audio Spectrum CHOP → Analyze CHOP (RMS/Peak)
 - **Performance drops** → limit particle count with a `POP Kill` node (kill old/far particles), or reduce the POP SOP resolution.
 - **Colour not changing** → confirm `Life Source` is set to `Normalized Life`, not `Age`.
 
-[[Index|Back to Recipes & Projects]]
+[[Index|↑ Back to Recipes & Projects]]
 
-[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]] | [[touchdesigner/index|Back to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|↑ Back to Recipes & Projects]] | [[touchdesigner/index|↑ Back to TouchDesigner]]
 
 ---

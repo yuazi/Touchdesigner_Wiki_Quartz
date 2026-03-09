@@ -26,6 +26,6 @@ _Past projects will live here._
 
 Anything I've put real time into — client work, personal projects, open-source contributions, or experiments that shipped in some form.
 
-[[index|Back to Home]]
+[[index|↑ Back to Home]]
 
 ---

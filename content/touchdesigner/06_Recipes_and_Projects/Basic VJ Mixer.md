@@ -39,6 +39,6 @@ Between the `Cross TOP` and your final `Out TOP`, insert a few effects you want 
 - A `Level TOP` to control master brightness/contrast.
 - An `Edge TOP` or `Feedback` loop that you can toggle on or off during drops in the music.
 
-[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]] | [[touchdesigner/index|Back to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|↑ Back to Recipes & Projects]] | [[touchdesigner/index|↑ Back to TouchDesigner]]
 
 ---

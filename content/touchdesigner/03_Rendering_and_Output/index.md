@@ -10,14 +10,14 @@ This module explains the techniques required to draw geometry and pixels to the 
 
 ## Core Setup
 
-- **[[Rendering Basics]]**: The core pipeline involving the Render TOP, Geometry COMP, Camera COMP, and Light COMP.
-- **[[Cameras and Lights]]**: Setting up the "eye" and illumination in a 3D scene.
+- **[[Rendering Basics|→ Rendering Basics]]**: The core pipeline involving the Render TOP, Geometry COMP, Camera COMP, and Light COMP.
+- **[[Cameras and Lights|→ Cameras and Lights]]**: Setting up the "eye" and illumination in a 3D scene.
 
 ## Advanced Rendering
 
-- **[[Instancing]]**: The most critical technique for drawing thousands of identical shapes efficiently on the GPU using varied positions/colors.
-- **[[Feedback Loops]]**: Creating recursive trails, generative feedback, and reaction-diffusion systems by feeding a TOP's output back into itself.
+- **[[Instancing|→ Instancing]]**: The most critical technique for drawing thousands of identical shapes efficiently on the GPU using varied positions/colors.
+- **[[Feedback Loops|→ Feedback Loops]]**: Creating recursive trails, generative feedback, and reaction-diffusion systems by feeding a TOP's output back into itself.
 
-[[touchdesigner/index|Back to TouchDesigner]]
+[[touchdesigner/index|↑ Back to TouchDesigner]]
 
 ---

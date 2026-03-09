@@ -12,14 +12,14 @@ POPs (introduced in TouchDesigner 2023+) bring **massive GPU-accelerated particl
 
 **Key nodes:** Point, Merge, Force, Attribute, Render, Convert
 
-→ [[POP - Point Operators|Read the full POP guide]]
+[[POP - Point Operators|→ Read the full POP guide]]
 
 ---
 
 ## In This Section
 
-- [[POP - Point Operators]]
+- [[POP - Point Operators|→ POP - Point Operators]]
 
-[[touchdesigner/02_The_Operators/index|Back to The Operators]]
+[[touchdesigner/02_The_Operators/index|↑ Back to The Operators]]
 
 ---

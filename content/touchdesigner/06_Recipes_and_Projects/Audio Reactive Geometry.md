@@ -38,6 +38,6 @@ _Optional:_ The raw spectrum might be too noisy. Place a `Filter CHOP` or `Lag C
 
 Now, you have a row of boxes whose heights (or Y-positions) dynamically spike with the frequencies of the playing song.
 
-[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]] | [[touchdesigner/index|Back to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|↑ Back to Recipes & Projects]] | [[touchdesigner/index|↑ Back to TouchDesigner]]
 
 ---

@@ -29,5 +29,5 @@ Combinations are where it starts to actually feel like Taekwondo. Single kicks a
 | 6     | Right baldum → right baldum → pandae dollyo chagi → right baldum → right baldum → dora baldum |
 | 6     | Right baldum → right baldum → right baldum → dwi chagi → pandae dollyo chagi → dora baldum    |
 
-[[notes/index|Back to Notes]]
-[[notes/taekwondo|Back to Taekwondo]]
+[[notes/index|↑ Back to Notes]]
+[[notes/taekwondo|↑ Back to Taekwondo]]

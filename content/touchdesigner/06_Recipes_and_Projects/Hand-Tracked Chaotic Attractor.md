@@ -13,7 +13,7 @@ tags:
 date: 2026-03-08
 ---
 
-**Related:** [[Hand Tracking Tutorial|Hand Tracking Tutorial]] · [[Hand Tracking|Hand Tracking]] · [[Sierpinski Tetrahedron with Hand Tracking|Sierpinski with Hand Tracking]]
+**Related:** [[Hand Tracking Tutorial|→ Hand Tracking Tutorial]] · [[Hand Tracking|→ Hand Tracking]] · [[Sierpinski Tetrahedron with Hand Tracking|→ Sierpinski with Hand Tracking]]
 
 > Tested architecture for M1 Pro · TouchDesigner 2023+ (Apple Silicon native build)
 
@@ -30,7 +30,7 @@ Webcam → Script CHOP (MediaPipe) → Filter/Lag CHOPs → Math CHOPs
   → Script SOP (Lorenz) → Geo COMP → Render TOP → Post FX → Output
 ```
 
-See also: [[notes/lorenz-attractor|The Lorenz Attractor]] — the maths behind the system.
+See also: [[notes/lorenz-attractor|→ The Lorenz Attractor]] — the maths behind the system.
 
 ---
 
@@ -335,7 +335,7 @@ render1
 composite1 → null_out
 ```
 
-See [[touchdesigner/03_Rendering_and_Output/Feedback Loops|Feedback Loops]] for a deeper explanation of how the feedback chain works.
+See [[touchdesigner/03_Rendering_and_Output/Feedback Loops|→ Feedback Loops]] for a deeper explanation of how the feedback chain works.
 
 ---
 
@@ -369,22 +369,22 @@ In `window1` (Window COMP):
 ## Next Steps
 
 - **Gesture switching:** detect open hand vs. fist to toggle between Lorenz / Rössler / Thomas attractors
-- **Color reaction:** map `vel` to hue shift in a GLSL MAT — see [[touchdesigner/05_Connectivity_and_Shaders/Introduction to GLSL|Introduction to GLSL]]
+- **Color reaction:** map `vel` to hue shift in a GLSL MAT — see [[touchdesigner/05_Connectivity_and_Shaders/Introduction to GLSL|→ Introduction to GLSL]]
 - **GPU particles:** replace Script SOP with a feedback TOP-based GPU particle advection system for 500k+ particles — see [[5 Ways To Make Particles]]
 
 ---
 
 ## Related
 
-- [[Hand Tracking Tutorial|Hand Tracking Tutorial]] — full setup walkthrough with the MediaPipe plugin
-- [[Hand Tracking|Hand Tracking]] — video links and series overview
-- [[Sierpinski Tetrahedron with Hand Tracking|Sierpinski with Hand Tracking]] — another script SOP driven by MediaPipe
-- [[notes/lorenz-attractor|The Lorenz Attractor]] — the maths behind σ, ρ, β
-- [[touchdesigner/04_Scripting_and_Architecture/Python in TD|Python in TD]]
-- [[touchdesigner/03_Rendering_and_Output/Feedback Loops|Feedback Loops]]
-- [[touchdesigner/02_The_Operators/SOPs/index|SOPs]]
-- [[touchdesigner/02_The_Operators/CHOPs/index|CHOPs]]
+- [[Hand Tracking Tutorial|→ Hand Tracking Tutorial]] — full setup walkthrough with the MediaPipe plugin
+- [[Hand Tracking|→ Hand Tracking]] — video links and series overview
+- [[Sierpinski Tetrahedron with Hand Tracking|→ Sierpinski with Hand Tracking]] — another script SOP driven by MediaPipe
+- [[notes/lorenz-attractor|→ The Lorenz Attractor]] — the maths behind σ, ρ, β
+- [[touchdesigner/04_Scripting_and_Architecture/Python in TD|→ Python in TD]]
+- [[touchdesigner/03_Rendering_and_Output/Feedback Loops|→ Feedback Loops]]
+- [[touchdesigner/02_The_Operators/SOPs/index|→ SOPs]]
+- [[touchdesigner/02_The_Operators/CHOPs/index|→ CHOPs]]
 
-[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]
+[[touchdesigner/06_Recipes_and_Projects/index|↑ Back to Recipes & Projects]]
 
 ---

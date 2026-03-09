@@ -30,8 +30,8 @@ A master class series on implementing real-time **hand tracking** in TouchDesign
 
 |                                                                                             |                                                                                                        |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| [[Hand Tracking Tutorial\|★ Complete Step-by-Step Tutorial]]                                | Setup → core rig → watercolor brush → generative architecture — everything in one document             |
-| [[Sierpinski Tetrahedron with Hand Tracking\|3D Sierpinski Tetrahedron with Hand Tracking]] | Recursive fractal geometry with Copy SOP, controlled by wrist orientation and pinch-zoom via MediaPipe |
+| [[Hand Tracking Tutorial\|→ ★ Complete Step-by-Step Tutorial]]                                | Setup → core rig → watercolor brush → generative architecture — everything in one document             |
+| [[Sierpinski Tetrahedron with Hand Tracking\|→ 3D Sierpinski Tetrahedron with Hand Tracking]] | Recursive fractal geometry with Copy SOP, controlled by wrist orientation and pinch-zoom via MediaPipe |
 
 ---
 
@@ -49,13 +49,13 @@ A master class series on implementing real-time **hand tracking** in TouchDesign
 
 ## Related
 
-- [[touchdesigner/05_Connectivity_and_Shaders/OSC and MIDI|OSC and MIDI]] — alternative control input methods
-- [[touchdesigner/04_Scripting_and_Architecture/Python in TD|Python in TD]] — scripting gesture logic
-- [[touchdesigner/02_The_Operators/CHOPs/index|CHOPs]] — processing tracking data as signals
-- [[touchdesigner/03_Rendering_and_Output/Instancing|Instancing]] — rendering landmark spheres efficiently
+- [[touchdesigner/05_Connectivity_and_Shaders/OSC and MIDI|→ OSC and MIDI]] — alternative control input methods
+- [[touchdesigner/04_Scripting_and_Architecture/Python in TD|→ Python in TD]] — scripting gesture logic
+- [[touchdesigner/02_The_Operators/CHOPs/index|→ CHOPs]] — processing tracking data as signals
+- [[touchdesigner/03_Rendering_and_Output/Instancing|→ Instancing]] — rendering landmark spheres efficiently
 - [[Particle System with POPs]] — driving particles from hand position
 - [[Hand-Tracked Chaotic Attractor]] — Lorenz attractor driven by a custom Script CHOP (no plugin)
 
-[[touchdesigner/06_Recipes_and_Projects/index|Back to Recipes & Projects]]
+[[touchdesigner/06_Recipes_and_Projects/index|↑ Back to Recipes & Projects]]
 
 ---

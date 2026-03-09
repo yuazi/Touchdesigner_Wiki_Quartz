@@ -38,6 +38,6 @@ Binding creates a bi-directional property link:
 - **Driving Parameters:** Drag a CHOP channel onto a parameter and select "CHOP Reference".
 - **Accessing Tables:** `op('table1')[row, col]`
 
-[[touchdesigner/04_Scripting_and_Architecture/index|Back to Scripting & Architecture]] | [[touchdesigner/index|Back to TouchDesigner]]
+[[touchdesigner/04_Scripting_and_Architecture/index|↑ Back to Scripting & Architecture]] | [[touchdesigner/index|↑ Back to TouchDesigner]]
 
 ---

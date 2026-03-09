@@ -246,6 +246,6 @@ inverse_search_command  code --goto "%1:%2"
 
 Then `Ctrl+Click` on any text in the PDF to jump to the corresponding source line.
 
-[[notes/index|Back to Notes]]
+[[notes/index|↑ Back to Notes]]
 
 ---

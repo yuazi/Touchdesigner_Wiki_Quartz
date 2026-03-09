@@ -72,7 +72,7 @@ Place a Constant and an LFO side-by-side, feed both into a **Switch CHOP**, and 
 
 ---
 
-[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to TouchDesigner]]
+[[touchdesigner/02_The_Operators/CHOPs/index|↑ Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|↑ Back to The Operators]] | [[touchdesigner/index|↑ Back to TouchDesigner]]
 | Visible in network | ✗ | ✓ |
 | Named | ✗ | ✓ |
 
@@ -84,9 +84,9 @@ Place a Constant and an LFO side-by-side, feed both into a **Switch CHOP**, and 
 ## Related Nodes
 
 - [[LFO CHOP]] — time-varying signal
-- [[Noise - CHOP and TOP|Noise CHOP]] — random/organic signal
+- [[Noise - CHOP and TOP|→ Noise CHOP]] — random/organic signal
 - [[Math CHOP]] — combine and remap constant values
 
-[[touchdesigner/02_The_Operators/CHOPs/index|Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|Back to The Operators]] | [[touchdesigner/index|Back to TouchDesigner]]
+[[touchdesigner/02_The_Operators/CHOPs/index|↑ Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|↑ Back to The Operators]] | [[touchdesigner/index|↑ Back to TouchDesigner]]
 
 ---

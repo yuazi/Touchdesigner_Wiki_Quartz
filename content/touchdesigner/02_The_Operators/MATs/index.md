@@ -12,14 +12,14 @@ MATs give your 3D geometry its **surface appearance**. They are assigned to Geom
 
 **Key nodes:** Phong, Constant, PBR, GLSL
 
-→ [[MAT - Material Operators|Read the full MAT guide]]
+[[MAT - Material Operators|→ Read the full MAT guide]]
 
 ---
 
 ## In This Section
 
-- [[MAT - Material Operators]]
+- [[MAT - Material Operators|→ MAT - Material Operators]]
 
-[[touchdesigner/02_The_Operators/index|Back to The Operators]]
+[[touchdesigner/02_The_Operators/index|↑ Back to The Operators]]
 
 ---
