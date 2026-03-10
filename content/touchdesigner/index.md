@@ -28,15 +28,15 @@ The fundamentals: interface, navigation, and workflow.
 
 The six operator families are the building blocks of every network.
 
-| Family                                                  | Role                                     |
-| ------------------------------------------------------- | ---------------------------------------- |
-| [[touchdesigner/02_The_Operators/TOPs/index\|→ TOPs]]   | 2D image & video processing (GPU)        |
-| [[touchdesigner/02_The_Operators/CHOPs/index\|→ CHOPs]] | Numeric signals, audio & control data    |
-| [[touchdesigner/02_The_Operators/SOPs/index\|→ SOPs]]   | 3D geometry (CPU)                        |
-| [[touchdesigner/02_The_Operators/COMPs/index\|→ COMPs]] | Containers, 3D objects & UI panels       |
-| [[touchdesigner/02_The_Operators/DATs/index\|→ DATs]]   | Text, tables, scripts & JSON             |
-| [[touchdesigner/02_The_Operators/MATs/index\|→ MATs]]   | Materials & shaders for 3D geometry      |
-| [[touchdesigner/02_The_Operators/POPs/index\|→ POPs]]   | GPU point clouds and particles           |
+| Family                                                  | Role                                  |
+| ------------------------------------------------------- | ------------------------------------- |
+| [[touchdesigner/02_The_Operators/TOPs/index\|→ TOPs]]   | 2D image & video processing (GPU)     |
+| [[touchdesigner/02_The_Operators/CHOPs/index\|→ CHOPs]] | Numeric signals, audio & control data |
+| [[touchdesigner/02_The_Operators/SOPs/index\|→ SOPs]]   | 3D geometry (CPU)                     |
+| [[touchdesigner/02_The_Operators/COMPs/index\|→ COMPs]] | Containers, 3D objects & UI panels    |
+| [[touchdesigner/02_The_Operators/DATs/index\|→ DATs]]   | Text, tables, scripts & JSON          |
+| [[touchdesigner/02_The_Operators/MATs/index\|→ MATs]]   | Materials & shaders for 3D geometry   |
+| [[touchdesigner/02_The_Operators/POPs/index\|→ POPs]]   | GPU point clouds and particles        |
 
 ---
 
@@ -87,18 +87,18 @@ External I/O, protocols, and GPU programming.
 
 Practical examples from start to finish.
 
-| Page                                                                                                                                | Description                                                                                               |
-| ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| [[touchdesigner/06_Recipes_and_Projects/Basic VJ Mixer\|→ Basic VJ Mixer]]                                                          | A simple live video mixer                                                                                 |
-| [[touchdesigner/06_Recipes_and_Projects/Audio Reactive Geometry\|→ Audio Reactive Geometry]]                                        | Geometry driven by audio                                                                                  |
-| [[touchdesigner/06_Recipes_and_Projects/GLSL Feedback Effect\|→ GLSL Feedback Effect]]                                              | Feedback loop built with shaders                                                                          |
-| [[touchdesigner/06_Recipes_and_Projects/Particle System with POPs\|→ Particle System with POPs]]                                    | GPU particle system                                                                                       |
-| [[touchdesigner/06_Recipes_and_Projects/Dreamscape Particle Cloud\|→ Dreamscape Particle Cloud]]                                    | Glowing particle cloud with feedback bloom (söla tutorial)                                                |
-| [[touchdesigner/06_Recipes_and_Projects/Hand Tracking\|→ Hand Tracking]]                                                            | MediaPipe hand tracking with gestures, landmarks, and visuals (Torin Blankensmith)                        |
-| [[touchdesigner/06_Recipes_and_Projects/Hand Tracking Tutorial\|→ ★ Hand Tracking Tutorial]]                                        | Full walkthrough: setup → watercolor brush → generative architecture                                      |
-| [[touchdesigner/06_Recipes_and_Projects/Sierpinski Tetrahedron with Hand Tracking\|→ 3D Sierpinski Tetrahedron with Hand Tracking]] | Recursive fractal geometry with Copy SOP, controlled by wrist orientation and pinch zoom via MediaPipe    |
-| [[touchdesigner/06_Recipes_and_Projects/5 Ways To Make Particles\|→ 5 Ways To Make Particles]]                                      | Every particle method compared: Particle SOP, POPs, Instancing, GLSL Feedback, 2D Feedback (anya maryina) |
-| [[touchdesigner/06_Recipes_and_Projects/Hand-Tracked Chaotic Attractor\|→ ★ Chaotic Attractor with Hand Tracking]]                 | Lorenz attractor driven by MediaPipe hand tracking, using Script CHOP + Script SOP and optimized for M1 Pro |
+| Page                                                                                                                                | Description                                                                                                 |
+| ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| [[touchdesigner/06_Recipes_and_Projects/Basic VJ Mixer\|→ Basic VJ Mixer]]                                                          | A simple live video mixer                                                                                   |
+| [[touchdesigner/06_Recipes_and_Projects/Audio Reactive Geometry\|→ Audio Reactive Geometry]]                                        | Geometry driven by audio                                                                                    |
+| [[touchdesigner/06_Recipes_and_Projects/GLSL Feedback Effect\|→ GLSL Feedback Effect]]                                              | Feedback loop built with shaders                                                                            |
+| [[touchdesigner/06_Recipes_and_Projects/Particle System with POPs\|→ Particle System with POPs]]                                    | GPU particle system                                                                                         |
+| [[touchdesigner/06_Recipes_and_Projects/Dreamscape Particle Cloud\|→ Dreamscape Particle Cloud]]                                    | Glowing particle cloud with feedback bloom (söla tutorial)                                                  |
+| [[touchdesigner/06_Recipes_and_Projects/Hand Tracking\|→ Hand Tracking]]                                                            | MediaPipe hand tracking with gestures, landmarks, and visuals (Torin Blankensmith)                          |
+| [[touchdesigner/06_Recipes_and_Projects/Hand Tracking Tutorial\|→ ★ Hand Tracking Tutorial]]                                        | Full walkthrough: setup → watercolor brush → generative architecture                                        |
+| [[touchdesigner/06_Recipes_and_Projects/Sierpinski Tetrahedron with Hand Tracking\|→ 3D Sierpinski Tetrahedron with Hand Tracking]] | Recursive fractal geometry with Copy SOP, controlled by wrist orientation and pinch zoom via MediaPipe      |
+| [[touchdesigner/06_Recipes_and_Projects/5 Ways To Make Particles\|→ 5 Ways To Make Particles]]                                      | Every particle method compared: Particle SOP, POPs, Instancing, GLSL Feedback, 2D Feedback (anya maryina)   |
+| [[touchdesigner/06_Recipes_and_Projects/Hand-Tracked Chaotic Attractor\|→ ★ Chaotic Attractor with Hand Tracking]]                  | Lorenz attractor driven by MediaPipe hand tracking, using Script CHOP + Script SOP and optimized for M1 Pro |
 
 ---
 

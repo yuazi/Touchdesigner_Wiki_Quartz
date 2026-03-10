@@ -134,15 +134,15 @@ Then use `y` to start Yazi. Press `q` to quit and `cd` into the last directory, 
 
 ### Tabs
 
-| Key        | Action                             |
-| ---------- | ---------------------------------- |
-| `t`        | Create a new tab with CWD          |
+| Key        | Action                              |
+| ---------- | ----------------------------------- |
+| `t`        | Create a new tab with CWD           |
 | `1` to `9` | Switch to the matching numbered tab |
-| `[`        | Switch to the previous tab         |
-| `]`        | Switch to the next tab             |
-| `{`        | Swap current tab with previous tab |
-| `}`        | Swap current tab with next tab     |
-| `Ctrl + c` | Close the current tab              |
+| `[`        | Switch to the previous tab          |
+| `]`        | Switch to the next tab              |
+| `{`        | Swap current tab with previous tab  |
+| `}`        | Swap current tab with next tab      |
+| `Ctrl + c` | Close the current tab               |
 
 ---
 
