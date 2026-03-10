@@ -3,6 +3,7 @@ title: "L01 — Introduction to Machine Learning"
 tags:
   - mlp
   - machine-learning
+  - deep-learning
   - introduction
   - neural-networks
 date: 2026-03-09

@@ -6,6 +6,8 @@ tags:
   - generative-ai
   - ddpm
   - stable-diffusion
+  - deep-learning
+  - neural-networks
 date: 2026-03-09
 ---
 

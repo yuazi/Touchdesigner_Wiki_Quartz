@@ -4,6 +4,7 @@ tags:
   - mlp
   - cnn
   - deep-learning
+  - neural-networks
   - computer-vision
 date: 2026-03-09
 ---

@@ -6,6 +6,8 @@ tags:
   - clip
   - vision-language
   - deep-learning
+  - computer-vision
+  - nlp
 date: 2026-03-09
 ---
 

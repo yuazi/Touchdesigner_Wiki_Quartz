@@ -6,6 +6,8 @@ tags:
   - transformer
   - computer-vision
   - attention
+  - deep-learning
+  - neural-networks
 date: 2026-03-09
 ---
 

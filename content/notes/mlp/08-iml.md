@@ -2,6 +2,7 @@
 title: "L08 — Interactive Machine Learning (IML)"
 tags:
   - mlp
+  - machine-learning
   - interactive-ml
   - active-learning
   - human-in-the-loop

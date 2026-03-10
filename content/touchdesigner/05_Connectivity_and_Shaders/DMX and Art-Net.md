@@ -5,6 +5,7 @@ tags:
   - artnet
   - dmx
   - lighting
+  - io
 date: 2026-02-26
 ---
 

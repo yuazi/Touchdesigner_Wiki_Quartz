@@ -3,6 +3,8 @@ title: "L03 — CNNs in Computer Vision"
 tags:
   - mlp
   - cnn
+  - deep-learning
+  - neural-networks
   - computer-vision
   - object-detection
   - semantic-segmentation

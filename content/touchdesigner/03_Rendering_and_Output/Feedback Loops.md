@@ -2,6 +2,8 @@
 tags:
   - touchdesigner
   - td/rendering
+  - rendering
+  - feedback
   - advanced
 date: 2026-02-16
 ---

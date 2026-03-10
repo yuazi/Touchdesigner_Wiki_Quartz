@@ -4,6 +4,7 @@ tags:
   - cli
   - tools
   - productivity
+  - terminal
 date: 2026-02-28
 ---
 

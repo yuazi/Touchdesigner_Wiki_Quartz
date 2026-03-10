@@ -2,6 +2,7 @@
 title: "L13 — Explainable AI (XAI)"
 tags:
   - mlp
+  - machine-learning
   - xai
   - explainability
   - interpretability

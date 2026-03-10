@@ -3,6 +3,7 @@ tags:
   - touchdesigner
   - td/architecture
   - scripting
+  - python
 date: 2026-02-21
 ---
 

@@ -2,6 +2,8 @@
 tags:
   - touchdesigner
   - td/connectivity
+  - audio
+  - chop
   - advanced
 date: 2026-02-26
 ---
