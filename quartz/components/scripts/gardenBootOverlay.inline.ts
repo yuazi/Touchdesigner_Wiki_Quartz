@@ -422,7 +422,7 @@ async function hydrateTracker(state: TrackerState, signal: AbortSignal) {
     p.stage = particleStage(i, lorenzParams.particles)
     p.colorIndex = i
     p.important = i < importantIds.length
-    p.label = p.important ? `CL:${String(importantIds[i]).padStart(4, "0")}` : null
+    p.label = p.important ? `ID:${String(importantIds[i]).padStart(4, "0")}` : null
     return p
   })
 
