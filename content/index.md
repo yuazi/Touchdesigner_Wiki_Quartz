@@ -8,7 +8,7 @@ tags:
 
 [I am (y-)useful](./about) · a space where ideas grow slowly and connect over time — not a blog, not a course, but a **living collection of notes** organized by curiosity and use.
 
-A digital garden is intentionally unfinished. You'll find notes at different stages of development: some polished, some just seedlings. That's the point.
+A digital garden is intentionally unfinished. You'll find notes at different stages of development: some polished, some just seedlings. That's the <span data-gb-restart>point</span>.
 
 ---
 

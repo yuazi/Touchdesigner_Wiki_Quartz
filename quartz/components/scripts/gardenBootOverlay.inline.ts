@@ -2,6 +2,7 @@ import { Delaunay } from "d3"
 
 const GARDEN_BOOT_SESSION_KEY = "gardenBooted"
 const GARDEN_BOOT_OVERLAY_ID = "garden-boot-overlay"
+const GARDEN_BOOT_RESTART_SELECTOR = "[data-gb-restart]"
 const GARDEN_BOOT_STAGE_COUNT = 4
 const GARDEN_BOOT_TYPE_SPEED_MS = 12
 const GARDEN_BOOT_GROUP_GAP_MS = 420
@@ -189,6 +190,14 @@ function markGardenBooted() {
     sessionStorage.setItem(GARDEN_BOOT_SESSION_KEY, "true")
   } catch {
     // Ignore storage failures and still dismiss the overlay.
+  }
+}
+
+function clearGardenBooted() {
+  try {
+    sessionStorage.removeItem(GARDEN_BOOT_SESSION_KEY)
+  } catch {
+    // Ignore storage failures and attempt restart anyway.
   }
 }
 
@@ -965,6 +974,47 @@ async function runGardenBootSequence(
   await typeGardenBootPrompt(logEl, signal)
 }
 
+function restartGardenBootOverlay() {
+  clearGardenBooted()
+  document.getElementById(GARDEN_BOOT_OVERLAY_ID)?.remove()
+  initGardenBootOverlay()
+}
+
+function bindGardenBootRestartTriggers() {
+  const triggers = document.querySelectorAll<HTMLElement>(GARDEN_BOOT_RESTART_SELECTOR)
+
+  for (const trigger of triggers) {
+    if (trigger.dataset.gbRestartBound === "true") {
+      continue
+    }
+
+    trigger.dataset.gbRestartBound = "true"
+
+    if (!trigger.hasAttribute("tabindex")) {
+      trigger.tabIndex = 0
+    }
+
+    if (!trigger.hasAttribute("role")) {
+      trigger.setAttribute("role", "button")
+    }
+
+    const restart = (event: Event) => {
+      event.preventDefault()
+      event.stopPropagation()
+      restartGardenBootOverlay()
+    }
+
+    trigger.addEventListener("click", restart)
+    trigger.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") {
+        return
+      }
+
+      restart(event)
+    })
+  }
+}
+
 function initGardenBootOverlay() {
   const existingOverlay = document.getElementById(GARDEN_BOOT_OVERLAY_ID)
   if (hasGardenBooted()) {
@@ -1031,5 +1081,10 @@ function initGardenBootOverlay() {
   runGardenBootSequence(log, trackerState, controller.signal)
 }
 
-document.addEventListener("nav", initGardenBootOverlay)
-initGardenBootOverlay()
+function handleGardenBootNav() {
+  bindGardenBootRestartTriggers()
+  initGardenBootOverlay()
+}
+
+document.addEventListener("nav", handleGardenBootNav)
+handleGardenBootNav()
