@@ -214,6 +214,11 @@
   color: #393639;
 }
 
+.gb-group.is-past .gb-line,
+.gb-group.is-past .gb-seg {
+  color: #393639;
+}
+
 .gb-cursor {
   color: #84a98c;
   animation: gb-cursor-blink 1s steps(1, end) infinite;

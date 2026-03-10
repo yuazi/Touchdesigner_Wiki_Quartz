@@ -64,9 +64,24 @@ const PROMPT_LINE = "[dim]press any key or click to enter  [/dim]"
 const LORENZ_DEFAULTS = { sigma: 10, rho: 28, beta: 8 / 3, dt: 0.005, particles: 12 }
 
 const PALETTE = [
-  { core: "rgba(126, 180, 156, 0.82)", glow: "rgba(74, 109, 95, 0.12)",  trail: "rgba(112, 165, 145, 0.18)", ring: "rgba(166, 210, 193, 0.42)" },
-  { core: "rgba(164, 146, 198, 0.8)",  glow: "rgba(99, 84, 129, 0.11)",  trail: "rgba(132, 118, 168, 0.17)", ring: "rgba(191, 179, 221, 0.4)"  },
-  { core: "rgba(142, 164, 198, 0.76)", glow: "rgba(86, 103, 129, 0.1)",  trail: "rgba(112, 132, 167, 0.16)", ring: "rgba(173, 190, 221, 0.38)" },
+  {
+    core: "rgba(126, 180, 156, 0.82)",
+    glow: "rgba(74, 109, 95, 0.12)",
+    trail: "rgba(112, 165, 145, 0.18)",
+    ring: "rgba(166, 210, 193, 0.42)",
+  },
+  {
+    core: "rgba(164, 146, 198, 0.8)",
+    glow: "rgba(99, 84, 129, 0.11)",
+    trail: "rgba(132, 118, 168, 0.17)",
+    ring: "rgba(191, 179, 221, 0.4)",
+  },
+  {
+    core: "rgba(142, 164, 198, 0.76)",
+    glow: "rgba(86, 103, 129, 0.1)",
+    trail: "rgba(112, 132, 167, 0.16)",
+    ring: "rgba(173, 190, 221, 0.38)",
+  },
 ]
 
 const GB = {
@@ -99,26 +114,67 @@ const GB = {
 type Tone = "normal" | "accent" | "lavender" | "dim"
 type Segment = { tone: Tone; text: string }
 type Particle = {
-  stage: number; colorIndex: number; important: boolean; label: string | null
-  x: number; y: number; z: number; trail: Array<{ x: number; y: number; z: number }>
+  stage: number
+  colorIndex: number
+  important: boolean
+  label: string | null
+  x: number
+  y: number
+  z: number
+  trail: Array<{ x: number; y: number; z: number }>
 }
 type LorenzParams = { sigma: number; rho: number; beta: number; dt: number; particles: number }
 type TrackerRecord = {
-  particle: Particle; tracker: SVGGElement; trail: SVGPolylineElement
-  glow: SVGCircleElement; box: SVGRectElement; ring: SVGCircleElement; core: SVGCircleElement
-  screenX: number; screenY: number; screenZ: number; screenScale: number
-  reveal: number; targetReveal: number; pulsePhase: number
+  particle: Particle
+  tracker: SVGGElement
+  trail: SVGPolylineElement
+  glow: SVGCircleElement
+  box: SVGRectElement
+  ring: SVGCircleElement
+  core: SVGCircleElement
+  screenX: number
+  screenY: number
+  screenZ: number
+  screenScale: number
+  reveal: number
+  targetReveal: number
+  pulsePhase: number
 }
 type TrackerState = {
-  layer: HTMLDivElement; hud: HTMLDivElement; hudRows: HTMLDivElement[]
-  currentStage: number; trackers: TrackerRecord[]; stop: () => void
+  layer: HTMLDivElement
+  hud: HTMLDivElement
+  hudRows: HTMLDivElement[]
+  currentStage: number
+  trackers: TrackerRecord[]
+  stop: () => void
 }
-type MeshPoint = { x: number; y: number; reveal: number; readability: number; fill: string; glow: string }
+type MeshPoint = {
+  x: number
+  y: number
+  reveal: number
+  readability: number
+  fill: string
+  glow: string
+}
 type MeshEdge = { start: MeshPoint; end: MeshPoint; distance: number }
 
-const hasGardenBooted = () => { try { return sessionStorage.getItem(CFG.SESSION_KEY) === "true" } catch { return false } }
-const markGardenBooted = () => { try { sessionStorage.setItem(CFG.SESSION_KEY, "true") } catch {} }
-const clearGardenBooted = () => { try { sessionStorage.removeItem(CFG.SESSION_KEY) } catch {} }
+const hasGardenBooted = () => {
+  try {
+    return sessionStorage.getItem(CFG.SESSION_KEY) === "true"
+  } catch {
+    return false
+  }
+}
+const markGardenBooted = () => {
+  try {
+    sessionStorage.setItem(CFG.SESSION_KEY, "true")
+  } catch {}
+}
+const clearGardenBooted = () => {
+  try {
+    sessionStorage.removeItem(CFG.SESSION_KEY)
+  } catch {}
+}
 
 const clamp = (v: number, lo: number, hi: number) => Math.min(Math.max(v, lo), hi)
 
@@ -147,8 +203,16 @@ function svgEl<K extends keyof SVGElementTagNameMap>(tag: K): SVGElementTagNameM
 }
 
 function newParticle(offset = 0): Particle {
-  return { stage: 0, colorIndex: 0, important: false, label: null,
-    x: 0.1 + offset * 0.3, y: 0.1 + offset * 0.2, z: 0.1 + offset * 0.4, trail: [] }
+  return {
+    stage: 0,
+    colorIndex: 0,
+    important: false,
+    label: null,
+    x: 0.1 + offset * 0.3,
+    y: 0.1 + offset * 0.2,
+    z: 0.1 + offset * 0.4,
+    trail: [],
+  }
 }
 
 function parseMarkup(line: string): Segment[] {
@@ -167,9 +231,18 @@ function parseMarkup(line: string): Segment[] {
 
 function waitMs(ms: number, signal: AbortSignal) {
   return new Promise<void>((resolve) => {
-    if (signal.aborted || ms <= 0) { resolve(); return }
-    const onAbort = () => { window.clearTimeout(timer); resolve() }
-    const timer = window.setTimeout(() => { signal.removeEventListener("abort", onAbort); resolve() }, ms)
+    if (signal.aborted || ms <= 0) {
+      resolve()
+      return
+    }
+    const onAbort = () => {
+      window.clearTimeout(timer)
+      resolve()
+    }
+    const timer = window.setTimeout(() => {
+      signal.removeEventListener("abort", onAbort)
+      resolve()
+    }, ms)
     signal.addEventListener("abort", onAbort, { once: true })
   })
 }
@@ -192,15 +265,22 @@ function readability(x: number, y: number, width: number, height: number) {
 }
 
 function pushEdge(
-  points: MeshPoint[], edges: MeshEdge[], seen: Set<string>,
-  i: number, j: number, maxDSq: number,
+  points: MeshPoint[],
+  edges: MeshEdge[],
+  seen: Set<string>,
+  i: number,
+  j: number,
+  maxDSq: number,
 ) {
   if (i === j) return
-  const a = Math.min(i, j), b = Math.max(i, j)
+  const a = Math.min(i, j),
+    b = Math.max(i, j)
   const key = `${a}:${b}`
   if (seen.has(key)) return
-  const start = points[a], end = points[b]
-  const dx = end.x - start.x, dy = end.y - start.y
+  const start = points[a],
+    end = points[b]
+  const dx = end.x - start.x,
+    dy = end.y - start.y
   const dSq = dx * dx + dy * dy
   if (dSq > maxDSq) return
   seen.add(key)
@@ -212,15 +292,21 @@ function buildEdges(points: MeshPoint[]) {
   const maxDSq = CFG.MESH_DISTANCE_THRESHOLD * CFG.MESH_DISTANCE_THRESHOLD
   const edges: MeshEdge[] = []
   const seen = new Set<string>()
-  if (points.length === 2) { pushEdge(points, edges, seen, 0, 1, maxDSq); return edges }
+  if (points.length === 2) {
+    pushEdge(points, edges, seen, 0, 1, maxDSq)
+    return edges
+  }
 
-  const delaunay = Delaunay.from(points, (p) => p.x, (p) => p.y)
+  const delaunay = Delaunay.from(
+    points,
+    (p) => p.x,
+    (p) => p.y,
+  )
   const { triangles } = delaunay
 
   if (triangles.length === 0) {
     for (let i = 0; i < points.length; i++)
-      for (let j = i + 1; j < points.length; j++)
-        pushEdge(points, edges, seen, i, j, maxDSq)
+      for (let j = i + 1; j < points.length; j++) pushEdge(points, edges, seen, i, j, maxDSq)
     return edges
   }
 
@@ -237,23 +323,35 @@ function buildEdges(points: MeshPoint[]) {
 const particleStage = (index: number, total: number) =>
   total <= 0 ? 1 : 1 + Math.min(CFG.STAGE_COUNT - 1, Math.floor((index * CFG.STAGE_COUNT) / total))
 
-function stepLorenz(p: Particle, params: LorenzParams) {
+function stepLorenz(p: Particle, params: LorenzParams, recordTrail = true) {
   const dx = params.sigma * (p.y - p.x)
   const dy = p.x * (params.rho - p.z) - p.y
   const dz = p.x * p.y - params.beta * p.z
-  p.trail.push({ x: p.x, y: p.y, z: p.z })
-  if (p.trail.length > CFG.TRAIL_HISTORY_LENGTH) p.trail.shift()
+  if (recordTrail) {
+    p.trail.push({ x: p.x, y: p.y, z: p.z })
+    if (p.trail.length > CFG.TRAIL_HISTORY_LENGTH) p.trail.shift()
+  }
   const dt = params.dt * CFG.SIM_DT_SCALE
-  p.x += dx * dt; p.y += dy * dt; p.z += dz * dt
+  p.x += dx * dt
+  p.y += dy * dt
+  p.z += dz * dt
 }
 
 function project(
-  x: number, y: number, z: number,
-  cx: number, cy: number, scale: number,
-  rotX: number, rotZ: number, czOffset: number,
+  x: number,
+  y: number,
+  z: number,
+  cx: number,
+  cy: number,
+  scale: number,
+  rotX: number,
+  rotZ: number,
+  czOffset: number,
 ): [number, number] {
-  const cosZ = Math.cos(rotZ), sinZ = Math.sin(rotZ)
-  const cosX = Math.cos(rotX), sinX = Math.sin(rotX)
+  const cosZ = Math.cos(rotZ),
+    sinZ = Math.sin(rotZ)
+  const cosX = Math.cos(rotX),
+    sinX = Math.sin(rotX)
   const rx = x * cosZ - y * sinZ
   const ry = x * sinZ + y * cosZ
   return [cx + rx * scale, cy + (ry * cosX - (z - czOffset) * sinX) * scale]
@@ -300,8 +398,9 @@ function pushHudSample(state: TrackerState, record: TrackerRecord, sampleIndex: 
   const elapsed = sampleIndex * CFG.HUD_SAMPLE_INTERVAL_MS
   const s = String(Math.floor(elapsed / 1000) % 100).padStart(2, "0")
   const ms = String(elapsed % 1000).padStart(3, "0")
-  const line = `${record.particle.label ?? "CL:0000"}  X:${formatRatio(record.screenX)}  Y:${formatRatio(record.screenY)}  Z:${formatRatio(record.screenZ)}  S:${formatRatio(record.screenScale)}  T:${s}:${ms}  CONF:${confidence.toString().padStart(2, "0")}`
-  for (let i = state.hudRows.length - 1; i > 0; i--) state.hudRows[i].textContent = state.hudRows[i - 1].textContent
+  const line = `${record.particle.label ?? "ID:0000"}  X:${formatRatio(record.screenX)}  Y:${formatRatio(record.screenY)}  Z:${formatRatio(record.screenZ)}  S:${formatRatio(record.screenScale)}  T:${s}:${ms}  CONF:${confidence.toString().padStart(2, "0")}`
+  for (let i = state.hudRows.length - 1; i > 0; i--)
+    state.hudRows[i].textContent = state.hudRows[i - 1].textContent
   state.hudRows[0].textContent = line
 }
 
@@ -311,7 +410,10 @@ async function hydrateTracker(state: TrackerState, signal: AbortSignal) {
     rho: readStoredNumber("lorenz.rho", LORENZ_DEFAULTS.rho),
     beta: readStoredNumber("lorenz.beta", LORENZ_DEFAULTS.beta),
     dt: readStoredNumber("lorenz.dt", LORENZ_DEFAULTS.dt),
-    particles: Math.max(CFG.OVERLAY_MIN_PARTICLES, readStoredInt("lorenz.particles", LORENZ_DEFAULTS.particles)),
+    particles: Math.max(
+      CFG.OVERLAY_MIN_PARTICLES,
+      readStoredInt("lorenz.particles", LORENZ_DEFAULTS.particles),
+    ),
   }
   const random = createSeededRandom(29)
   const importantIds = [3791, 5898, 7460, 8847]
@@ -324,8 +426,9 @@ async function hydrateTracker(state: TrackerState, signal: AbortSignal) {
     return p
   })
 
-  for (let i = 0; i < CFG.WARMUP_STEPS; i++) mainParticles.forEach((p) => stepLorenz(p, lorenzParams))
-  mainParticles.forEach((p) => { p.trail = [] })
+  for (let i = 0; i < CFG.WARMUP_STEPS; i++) {
+    for (const p of mainParticles) stepLorenz(p, lorenzParams, false)
+  }
 
   if (signal.aborted) return
 
@@ -335,21 +438,33 @@ async function hydrateTracker(state: TrackerState, signal: AbortSignal) {
   svg.setAttribute("preserveAspectRatio", "xMidYMid slice")
   svg.setAttribute("aria-hidden", "true")
 
-  const meshLineGroup = svgEl("g"); meshLineGroup.classList.add(GB.meshLineLayer)
-  const meshGlowGroup = svgEl("g"); meshGlowGroup.classList.add(GB.meshKeypointGlowLayer)
-  const meshPointGroup = svgEl("g"); meshPointGroup.classList.add(GB.meshKeypointLayer)
+  const meshLineGroup = svgEl("g")
+  meshLineGroup.classList.add(GB.meshLineLayer)
+  const meshGlowGroup = svgEl("g")
+  meshGlowGroup.classList.add(GB.meshKeypointGlowLayer)
+  const meshPointGroup = svgEl("g")
+  meshPointGroup.classList.add(GB.meshKeypointLayer)
   const trackerGroup = svgEl("g")
   svg.append(meshLineGroup, trackerGroup, meshGlowGroup, meshPointGroup)
   state.layer.replaceChildren(svg)
 
   const linePool = Array.from({ length: Math.max(0, mainParticles.length * 3) }, () => {
-    const el = svgEl("line"); el.classList.add(GB.meshLine); meshLineGroup.appendChild(el); return el
+    const el = svgEl("line")
+    el.classList.add(GB.meshLine)
+    meshLineGroup.appendChild(el)
+    return el
   })
   const glowPool = Array.from({ length: mainParticles.length }, () => {
-    const el = svgEl("circle"); el.classList.add(GB.meshKeypointGlow); meshGlowGroup.appendChild(el); return el
+    const el = svgEl("circle")
+    el.classList.add(GB.meshKeypointGlow)
+    meshGlowGroup.appendChild(el)
+    return el
   })
   const pointPool = Array.from({ length: mainParticles.length }, () => {
-    const el = svgEl("circle"); el.classList.add(GB.meshKeypoint); meshPointGroup.appendChild(el); return el
+    const el = svgEl("circle")
+    el.classList.add(GB.meshKeypoint)
+    meshPointGroup.appendChild(el)
+    return el
   })
 
   for (const p of mainParticles) {
@@ -360,28 +475,50 @@ async function hydrateTracker(state: TrackerState, signal: AbortSignal) {
     tracker.style.setProperty("--tracker-glow", pal.glow)
     tracker.style.setProperty("--tracker-trail", pal.trail)
     tracker.style.setProperty("--tracker-ring", pal.ring)
-    const trail = svgEl("polyline"); trail.classList.add(GB.trackTrail)
-    const glow = svgEl("circle");   glow.classList.add(GB.trackGlow)
-    const box = svgEl("rect");      box.classList.add(GB.trackBox)
-    const ring = svgEl("circle");   ring.classList.add(GB.trackRing)
-    const core = svgEl("circle");   core.classList.add(GB.trackCore)
+    const trail = svgEl("polyline")
+    trail.classList.add(GB.trackTrail)
+    const glow = svgEl("circle")
+    glow.classList.add(GB.trackGlow)
+    const box = svgEl("rect")
+    box.classList.add(GB.trackBox)
+    const ring = svgEl("circle")
+    ring.classList.add(GB.trackRing)
+    const core = svgEl("circle")
+    core.classList.add(GB.trackCore)
     tracker.append(trail, glow, box, ring, core)
     trackerGroup.appendChild(tracker)
     state.trackers.push({
-      particle: p, tracker, trail, glow, box, ring, core,
-      screenX: 0.5, screenY: 0.5, screenZ: 0.5, screenScale: 0,
-      reveal: 0, targetReveal: 0, pulsePhase: random() * Math.PI * 2,
+      particle: p,
+      tracker,
+      trail,
+      glow,
+      box,
+      ring,
+      core,
+      screenX: 0.5,
+      screenY: 0.5,
+      screenZ: 0.5,
+      screenScale: 0,
+      reveal: 0,
+      targetReveal: 0,
+      pulsePhase: random() * Math.PI * 2,
     })
   }
 
   syncStage(state)
 
-  let width = window.innerWidth, height = window.innerHeight, rotZ = -0.72
-  let frameId = 0, active = true, lastFrameTime = performance.now()
-  let lastHudTime = 0, hudIdx = 0
+  let width = window.innerWidth,
+    height = window.innerHeight,
+    rotZ = -0.72
+  let frameId = 0,
+    active = true,
+    lastFrameTime = performance.now()
+  let lastHudTime = 0,
+    hudIdx = 0
 
   const handleResize = () => {
-    width = window.innerWidth; height = window.innerHeight
+    width = window.innerWidth
+    height = window.innerHeight
     svg.setAttribute("viewBox", `0 0 ${width} ${height}`)
   }
 
@@ -391,7 +528,8 @@ async function hydrateTracker(state: TrackerState, signal: AbortSignal) {
     const fs = deltaMs / 16.667
     lastFrameTime = time
 
-    const scale = Math.min(width, height) / (width < 900 ? CFG.SCALE_DIV_MOBILE : CFG.SCALE_DIV_DESKTOP)
+    const scale =
+      Math.min(width, height) / (width < 900 ? CFG.SCALE_DIV_MOBILE : CFG.SCALE_DIV_DESKTOP)
     const cx = width < 900 ? width * CFG.CENTER_X_MOBILE : width * CFG.CENTER_X_DESKTOP
     const cy = height * 0.555
     const stageFactor = (state.currentStage + 1) / (CFG.STAGE_COUNT + 1)
@@ -404,7 +542,17 @@ async function hydrateTracker(state: TrackerState, signal: AbortSignal) {
     for (const r of state.trackers) {
       r.reveal += (r.targetReveal - r.reveal) * 0.08
 
-      const [px, py] = project(r.particle.x, r.particle.y, r.particle.z, cx, cy, scale, CFG.MAIN_ROT_X, rotZ, CFG.MAIN_CZ_OFFSET)
+      const [px, py] = project(
+        r.particle.x,
+        r.particle.y,
+        r.particle.z,
+        cx,
+        cy,
+        scale,
+        CFG.MAIN_ROT_X,
+        rotZ,
+        CFG.MAIN_CZ_OFFSET,
+      )
       const pulse = 0.5 + 0.5 * Math.sin(time * 0.00075 + r.pulsePhase)
       const baseR = (r.particle.important ? 5.8 : 4.1) * (0.96 + pulse * 0.12)
       const coreR = baseR * (r.particle.important ? 0.74 : 0.6)
@@ -418,39 +566,62 @@ async function hydrateTracker(state: TrackerState, signal: AbortSignal) {
       const isPurple = r.particle.colorIndex % PALETTE.length === 1
 
       for (let i = 1; i < visTail.length; i++) {
-        const [tx, ty] = project(visTail[i].x, visTail[i].y, visTail[i].z, cx, cy, scale, CFG.MAIN_ROT_X, rotZ, CFG.MAIN_CZ_OFFSET)
+        const [tx, ty] = project(
+          visTail[i].x,
+          visTail[i].y,
+          visTail[i].z,
+          cx,
+          cy,
+          scale,
+          CFG.MAIN_ROT_X,
+          rotZ,
+          CFG.MAIN_CZ_OFFSET,
+        )
         pts.push(`${tx.toFixed(2)},${ty.toFixed(2)}`)
       }
 
-      r.screenX = px / width; r.screenY = py / height
+      r.screenX = px / width
+      r.screenY = py / height
       r.screenZ = clamp((r.particle.z + 6) / 40, 0, 0.999)
       r.tracker.style.opacity = (r.reveal * rf).toFixed(3)
 
       r.trail.setAttribute("points", pts.join(" "))
       r.trail.setAttribute("stroke-width", trailW.toFixed(2))
-      r.trail.style.opacity = (r.reveal * (r.particle.important ? 0.56 : 0.34 + stageFactor * 0.22)).toFixed(3)
+      r.trail.style.opacity = (
+        r.reveal * (r.particle.important ? 0.56 : 0.34 + stageFactor * 0.22)
+      ).toFixed(3)
 
-      r.glow.setAttribute("cx", px.toFixed(2)); r.glow.setAttribute("cy", py.toFixed(2))
+      r.glow.setAttribute("cx", px.toFixed(2))
+      r.glow.setAttribute("cy", py.toFixed(2))
       r.glow.setAttribute("r", glowR.toFixed(2))
       r.glow.style.opacity = (r.reveal * (r.particle.important ? 0.46 : 0.24)).toFixed(3)
 
       const boxSize = baseR * (r.particle.important ? 5.8 + pulse * 0.32 : 4.6 + pulse * 0.24)
       r.screenScale = normalizeScale(boxSize)
-      r.box.setAttribute("x", (px - boxSize / 2).toFixed(2)); r.box.setAttribute("y", (py - boxSize / 2).toFixed(2))
-      r.box.setAttribute("width", boxSize.toFixed(2)); r.box.setAttribute("height", boxSize.toFixed(2))
-      r.box.style.opacity = (r.reveal * (r.particle.important ? 0.56 + pulse * 0.22 : 0.34 + pulse * 0.14)).toFixed(3)
+      r.box.setAttribute("x", (px - boxSize / 2).toFixed(2))
+      r.box.setAttribute("y", (py - boxSize / 2).toFixed(2))
+      r.box.setAttribute("width", boxSize.toFixed(2))
+      r.box.setAttribute("height", boxSize.toFixed(2))
+      r.box.style.opacity = (
+        r.reveal * (r.particle.important ? 0.56 + pulse * 0.22 : 0.34 + pulse * 0.14)
+      ).toFixed(3)
 
-      r.ring.setAttribute("cx", px.toFixed(2)); r.ring.setAttribute("cy", py.toFixed(2))
+      r.ring.setAttribute("cx", px.toFixed(2))
+      r.ring.setAttribute("cy", py.toFixed(2))
       r.ring.setAttribute("r", ringR.toFixed(2))
       r.ring.style.opacity = (r.reveal * (r.particle.important ? 0.4 : 0.24)).toFixed(3)
 
-      r.core.setAttribute("cx", px.toFixed(2)); r.core.setAttribute("cy", py.toFixed(2))
+      r.core.setAttribute("cx", px.toFixed(2))
+      r.core.setAttribute("cy", py.toFixed(2))
       r.core.setAttribute("r", coreR.toFixed(2))
       r.core.style.opacity = (r.reveal * 0.94).toFixed(3)
 
       if (r.reveal > CFG.TRACKER_REVEAL_THRESHOLD) {
         meshPts.push({
-          x: px, y: py, reveal: r.reveal, readability: rf,
+          x: px,
+          y: py,
+          reveal: r.reveal,
+          readability: rf,
           fill: isPurple ? CFG.KEYPOINT_PURPLE : CFG.KEYPOINT_GREEN,
           glow: isPurple ? CFG.KEYPOINT_PURPLE_GLOW : CFG.KEYPOINT_GREEN_GLOW,
         })
@@ -460,39 +631,53 @@ async function hydrateTracker(state: TrackerState, signal: AbortSignal) {
     const edges = buildEdges(meshPts)
     let li = 0
     for (let ei = 0; ei < edges.length && li < linePool.length; ei++) {
-      const e = edges[ei], line = linePool[li]
+      const e = edges[ei],
+        line = linePool[li]
       const minReveal = Math.min(e.start.reveal, e.end.reveal)
       const rf = Math.min(e.start.readability, e.end.readability)
       const dr = e.distance / CFG.MESH_DISTANCE_THRESHOLD
       const op = clamp(0.34 - dr * 0.12, 0.22, 0.34)
-      line.setAttribute("x1", e.start.x.toFixed(2)); line.setAttribute("y1", e.start.y.toFixed(2))
-      line.setAttribute("x2", e.end.x.toFixed(2)); line.setAttribute("y2", e.end.y.toFixed(2))
+      line.setAttribute("x1", e.start.x.toFixed(2))
+      line.setAttribute("y1", e.start.y.toFixed(2))
+      line.setAttribute("x2", e.end.x.toFixed(2))
+      line.setAttribute("y2", e.end.y.toFixed(2))
       line.style.opacity = (op * normalizeReveal(minReveal) * rf).toFixed(3)
       li++
     }
     for (; li < linePool.length; li++) {
-      linePool[li].setAttribute("x1", "0"); linePool[li].setAttribute("y1", "0")
-      linePool[li].setAttribute("x2", "0"); linePool[li].setAttribute("y2", "0")
+      linePool[li].setAttribute("x1", "0")
+      linePool[li].setAttribute("y1", "0")
+      linePool[li].setAttribute("x2", "0")
+      linePool[li].setAttribute("y2", "0")
       linePool[li].style.opacity = "0"
     }
 
     const visPts = meshPts.slice(0, pointPool.length)
     for (let i = 0; i < visPts.length; i++) {
-      const pt = visPts[i], op = normalizeReveal(pt.reveal) * pt.readability
-      glowPool[i].setAttribute("cx", pt.x.toFixed(2)); glowPool[i].setAttribute("cy", pt.y.toFixed(2))
-      glowPool[i].setAttribute("r", "5.5"); glowPool[i].style.fill = pt.glow
+      const pt = visPts[i],
+        op = normalizeReveal(pt.reveal) * pt.readability
+      glowPool[i].setAttribute("cx", pt.x.toFixed(2))
+      glowPool[i].setAttribute("cy", pt.y.toFixed(2))
+      glowPool[i].setAttribute("r", "5.5")
+      glowPool[i].style.fill = pt.glow
       glowPool[i].style.opacity = (op * 0.52).toFixed(3)
-      pointPool[i].setAttribute("cx", pt.x.toFixed(2)); pointPool[i].setAttribute("cy", pt.y.toFixed(2))
-      pointPool[i].setAttribute("r", "2.5"); pointPool[i].style.fill = pt.fill
+      pointPool[i].setAttribute("cx", pt.x.toFixed(2))
+      pointPool[i].setAttribute("cy", pt.y.toFixed(2))
+      pointPool[i].setAttribute("r", "2.5")
+      pointPool[i].style.fill = pt.fill
       pointPool[i].style.opacity = (op * 0.98).toFixed(3)
     }
     for (let i = visPts.length; i < pointPool.length; i++) {
-      glowPool[i].style.opacity = "0"; pointPool[i].style.opacity = "0"
+      glowPool[i].style.opacity = "0"
+      pointPool[i].style.opacity = "0"
     }
 
     if (time - lastHudTime >= CFG.HUD_SAMPLE_INTERVAL_MS) {
       const vis = state.trackers.filter((r) => r.particle.important && r.reveal > 0.2)
-      if (vis.length > 0) { pushHudSample(state, vis[hudIdx % vis.length], hudIdx); hudIdx++ }
+      if (vis.length > 0) {
+        pushHudSample(state, vis[hudIdx % vis.length], hudIdx)
+        hudIdx++
+      }
       lastHudTime = time
     }
 
@@ -511,7 +696,8 @@ async function hydrateTracker(state: TrackerState, signal: AbortSignal) {
 async function typeSegments(lineEl: HTMLElement, segments: Segment[], signal: AbortSignal) {
   for (const seg of segments) {
     if (signal.aborted) return
-    const node = seg.tone === "normal" ? document.createTextNode("") : document.createElement("span")
+    const node =
+      seg.tone === "normal" ? document.createTextNode("") : document.createElement("span")
     if (node instanceof HTMLSpanElement) node.className = `${GB.seg} tone-${seg.tone}`
     lineEl.appendChild(node)
     for (const ch of seg.text) {
@@ -572,15 +758,24 @@ function bindRestartTriggers() {
     trigger.dataset.gbRestartBound = "true"
     if (!trigger.hasAttribute("tabindex")) trigger.tabIndex = 0
     if (!trigger.hasAttribute("role")) trigger.setAttribute("role", "button")
-    const restart = (e: Event) => { e.preventDefault(); e.stopPropagation(); restartOverlay() }
+    const restart = (e: Event) => {
+      e.preventDefault()
+      e.stopPropagation()
+      restartOverlay()
+    }
     trigger.addEventListener("click", restart)
-    trigger.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") restart(e) })
+    trigger.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") restart(e)
+    })
   }
 }
 
 function initOverlay() {
   const existing = document.getElementById(CFG.OVERLAY_ID)
-  if (hasGardenBooted()) { existing?.remove(); return }
+  if (hasGardenBooted()) {
+    existing?.remove()
+    return
+  }
   if (!document.body) return
   if (existing instanceof HTMLElement && existing.dataset.bootMounted === "true") return
 
@@ -614,7 +809,10 @@ function initOverlay() {
     window.removeEventListener("keydown", exitOverlay)
     overlay.removeEventListener("click", exitOverlay)
     overlay.classList.add("is-exiting")
-    window.setTimeout(() => { document.body.style.overflow = prevOverflow; overlay.remove() }, CFG.EXIT_BG_FADE_MS)
+    window.setTimeout(() => {
+      document.body.style.overflow = prevOverflow
+      overlay.remove()
+    }, CFG.EXIT_BG_FADE_MS)
   }
 
   window.addEventListener("keydown", exitOverlay)
