@@ -685,6 +685,87 @@ BERT set a new state-of-the-art across almost all NLP benchmarks when released a
 
 ---
 
+## GPT — Decoder-only Transformers
+
+GPT ("Generative Pre-trained Transformer") takes the opposite design choice from BERT (Radford et al., 2018; Brown et al., 2020). Whereas BERT is **encoder-only** and **bidirectional**, GPT is **decoder-only**, **autoregressive**, and processes text strictly **left-to-right**.
+
+### BERT vs. GPT
+
+| Model    | Architecture | Attention pattern              | Pre-training objective | Typical use                                     |
+| -------- | ------------ | ------------------------------ | ---------------------- | ----------------------------------------------- |
+| **BERT** | Encoder-only | Bidirectional self-attention   | MLM + NSP              | Representation learning, classification, QA     |
+| **GPT**  | Decoder-only | Causal (masked) self-attention | Next-token prediction  | Text generation, prompting, in-context learning |
+
+### Causal Self-Attention Only
+
+A GPT block uses only **masked self-attention**. There is **no encoder** and, in the plain language-model setting, **no cross-attention**. Token $t$ may only attend to tokens at positions $\leq t$.
+
+$$
+\text{Attention}(Q, K, V) = \text{softmax}\!\left(\frac{QK^\top + M}{\sqrt{d_k}}\right)V
+$$
+
+where the causal mask $M_{ij} = -\infty$ for $j > i$ and $0$ otherwise.
+
+This mask prevents the model from "looking into the future" during training.
+
+### Pre-training Objective: Next-Token Prediction
+
+GPT is trained as a standard language model:
+
+$$
+p(x_1, \dots, x_T) = \prod_{t=1}^{T} p(x_t \mid x_{<t})
+$$
+
+so the loss is the negative log-likelihood of the next token:
+
+$$
+\mathcal{L}_\text{LM} = -\sum_{t=1}^{T} \log p_\theta(x_t \mid x_{<t})
+$$
+
+At every step, the model answers the same question: given the prefix so far, **what token should come next?**
+
+> **Example**:
+> Prompt: `The capital of France is`
+>
+> Target next token: `Paris`
+
+### Scaling: GPT-1 → GPT-2 → GPT-3
+
+A major result of the GPT line is that simply scaling parameters and data leads to qualitatively new behaviour.
+
+| Model     | Parameters | Training data                                                             | Key outcome                                                         |
+| --------- | ---------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| **GPT-1** | 117M       | BooksCorpus                                                               | Generative pre-training improves many NLP tasks after fine-tuning   |
+| **GPT-2** | 1.5B       | WebText                                                                   | Stronger long-form generation; zero-shot behaviour starts to emerge |
+| **GPT-3** | 175B       | Web-scale corpus (~300B tokens from Common Crawl, books, Wikipedia, etc.) | Clear few-shot prompting and in-context learning                    |
+
+As scale increases, GPT models become better at **zero-shot**, **one-shot**, and **few-shot** generalisation, even though the core decoder-only architecture stays the same (Brown et al., 2020).
+
+### Fine-tuning vs. Prompting
+
+There are two common ways to adapt GPT models:
+
+| Strategy                            | How it works                                                                     | Strength                                               |
+| ----------------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| **Fine-tuning**                     | Update model weights on task-specific labeled data                               | Best when you want a specialised model for one task    |
+| **Prompting / in-context learning** | Keep weights fixed and describe the task in the prompt, optionally with examples | No gradient updates needed; flexible across many tasks |
+
+> **Example**:
+>
+> ```text
+> Translate English to German.
+>
+> dog -> Hund
+> cat -> Katze
+> house ->
+> ```
+>
+> The model infers the task from the prompt itself. This is **in-context learning**: the context changes the behaviour without changing the weights.
+
+In short: **BERT** is mainly a bidirectional encoder for representation learning, while **GPT** is mainly a decoder-only model for autoregressive generation and prompting.
+
+---
+
 ## Summary
 
 From the lecture's closing slide:
@@ -698,19 +779,20 @@ From the lecture's closing slide:
 - **BERT and its variants** are the current SOTA for encoder representations
 - Training transformers takes a **lot** of training data, GPU memory, and time — a significant disadvantage compared to RNNs for small datasets
 
-| Component             | Key Point                                                |
-| --------------------- | -------------------------------------------------------- |
-| One-hot encoding      | Sparse, no similarity information                        |
-| Word2Vec / GloVe      | Dense, non-contextual, algebraic properties              |
-| Contextual embeddings | Different vector per context; upper layers more specific |
-| Self-attention        | Every token attends to every other — $O(n^2)$            |
-| Scaled dot-product    | $\text{softmax}(QK^\top / \sqrt{d_k})V$                  |
-| Masked self-attention | Causal masking for autoregressive generation             |
-| Multi-head attention  | $h$ parallel heads, different subspaces                  |
-| Positional encoding   | Sinusoidal or learned; added to embeddings               |
-| FFN                   | Per-position 2-layer MLP with ReLU                       |
-| Residual + LayerNorm  | Add & Norm — avoids vanishing gradients                  |
-| BERT                  | Encoder-only, MLM + NSP, 110M–340M params                |
+| Component             | Key Point                                                                                   |
+| --------------------- | ------------------------------------------------------------------------------------------- |
+| One-hot encoding      | Sparse, no similarity information                                                           |
+| Word2Vec / GloVe      | Dense, non-contextual, algebraic properties                                                 |
+| Contextual embeddings | Different vector per context; upper layers more specific                                    |
+| Self-attention        | Every token attends to every other — $O(n^2)$                                               |
+| Scaled dot-product    | $\text{softmax}(QK^\top / \sqrt{d_k})V$                                                     |
+| Masked self-attention | Causal masking for autoregressive generation                                                |
+| Multi-head attention  | $h$ parallel heads, different subspaces                                                     |
+| Positional encoding   | Sinusoidal or learned; added to embeddings                                                  |
+| FFN                   | Per-position 2-layer MLP with ReLU                                                          |
+| Residual + LayerNorm  | Add & Norm — avoids vanishing gradients                                                     |
+| BERT                  | Encoder-only, MLM + NSP, 110M–340M params                                                   |
+| GPT                   | Decoder-only, causal self-attention, next-token prediction, strong zero-/few-shot prompting |
 
 ---
 
@@ -718,6 +800,7 @@ From the lecture's closing slide:
 
 - Ba, Mnih, Kavukcuoglu (2014) — Multiple object recognition with visual attention. _arXiv:1412.7755_.
 - Bahdanau, Cho, Bengio (2015) — Neural machine translation by jointly learning to align and translate. _ICLR_.
+- Brown et al. (2020) — Language models are few-shot learners. _NeurIPS_.
 - Devlin, Chang, Lee, Toutanova (2019) — BERT: Pre-training of deep bidirectional transformers for language understanding. _arXiv:1810.04805_.
 - Ethayarajh (2019) — How contextual are contextualized word representations? _arXiv:1909.00512_.
 - Firth (1957) — Studies in linguistic analysis. Blackwell, Oxford.
@@ -728,6 +811,8 @@ From the lecture's closing slide:
 - Mnih, Heess, Graves et al. (2014) — Recurrent models of visual attention. _NeurIPS_, pp. 2204–2212.
 - Nozza, Bianchi, Hovy (2020) — What the [MASK]? Making sense of language-specific BERT models. _arXiv:2003.02912_.
 - Pennington, Socher, Manning (2014) — GloVe: Global vectors for word representation. _EMNLP_, pp. 1532–1543.
+- Radford, Narasimhan, Salimans, Sutskever (2018) — Improving language understanding by generative pre-training. _OpenAI technical report_.
+- Radford et al. (2019) — Language models are unsupervised multitask learners. _OpenAI technical report_.
 - Vaswani et al. (2017) — Attention is all you need. _NeurIPS_, pp. 5998–6008.
 - Xu et al. (2015) — Show, attend and tell: Neural image caption generation with visual attention. _ICML_, pp. 2048–2057.
 

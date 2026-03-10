@@ -69,6 +69,8 @@ For a 224×224 image with 16×16 patches:
 - Flattened patch size: $16 \times 16 \times 3 = 768$
 - Sequence length fed to Transformer: $196 + 1 = 197$ (patches + [CLS])
 
+> **Example — patchifying a photo**: a 224×224 RGB image of a dog becomes 196 patch tokens. Some tokens mostly contain grass, some contain the dog's face, and others contain background sky. After patchification, the Transformer reasons over a 197-token sequence (`[CLS]` + 196 patches), not over the original pixel grid directly.
+
 ```
 Image (224×224×3)
     ↓ split into non-overlapping 16×16 patches
@@ -128,6 +130,8 @@ ViTs have **fewer inductive biases** than CNNs (no built-in locality or translat
 - For smaller model sizes, **hybrids** (CNN backbone + Transformer) outperform pure Transformers; the gap vanishes at larger scales
 
 To improve performance on smaller datasets, three regularisation parameters help: **weight decay**, **dropout**, and **label smoothing**.
+
+> **Example — small-data regime vs. large-data regime**: on a modest dataset with only tens of thousands of labeled images, a ResNet often wins because locality and translation equivariance are built in. On web-scale pre-training data, a ViT can learn those priors from data and eventually surpass the CNN.
 
 ---
 
@@ -289,6 +293,8 @@ This is solved efficiently using the **Hungarian algorithm** (also used in Stewa
 
 **Key benefit**: unlike NMS, the matching is unique — every ground-truth object is matched to exactly one prediction.
 
+> **Example — one dog, one bicycle, four queries**: suppose an image contains one dog and one bicycle, but DETR outputs four slots: `dog (0.93)`, `bicycle (0.88)`, `dog duplicate (0.81)`, and `empty (0.97)`. Hungarian matching assigns one slot to the dog and one to the bicycle; the duplicate dog prediction is matched to $\emptyset$ and explicitly penalized during training.
+
 ---
 
 ### Combined Loss Function (Hungarian Loss)
@@ -356,6 +362,8 @@ Two targeted fixes for DETR's shortcomings:
 - Uses CNN-style FPN-like multi-scale features
 
 **Result**: Deformable DETR converges ~10× faster than DETR and significantly improves small object AP.
+
+> **Example — far-away traffic sign**: in a street scene, a distant stop sign may occupy only a tiny region. Vanilla DETR spreads attention across the whole feature map, so that signal is weak. Deformable DETR samples a handful of relevant points on fine-resolution features near the sign, making the query lock onto it much faster.
 
 ```python
 # Conceptual: deformable attention samples K points per head
@@ -434,7 +442,7 @@ loss: bring z₁ and z₂ close together, push apart from all z_other
 
 ### DINO — Self-supervised Vision Transformers
 
-**Paper**: Zhang et al. (2022). _"DINO: DETR with Improved Denoising Anchor Boxes for End-to-End Object Detection."_ (The self-supervised DINO framework.)
+**Paper**: Caron, Touvron, Misra, Jégou, Mairal, Bojanowski, Joulin (2021). _"Emerging Properties in Self-Supervised Vision Transformers."_ ICCV 2021.
 
 ---
 
@@ -446,6 +454,8 @@ DINO uses **different crops** of one image to create multiple views:
 - **Global views**: large crops — **more than 50%** of the image area
 
 This asymmetry forces the model to learn **local-to-global correspondence**: the student sees small local patches and must learn to match the global understanding captured by the teacher.
+
+> **Example — bird image**: a local crop may contain only a bird's wing, while a global crop shows the full bird on a branch. The student must map that wing-only view to the same semantic representation that the teacher produces from the full scene.
 
 ---
 
@@ -560,6 +570,8 @@ DINO is **very effective for Transformer backbones**:
 - Attention maps are semantically interpretable: the model identifies object boundaries and scene structure for objects such as birds, boats, bicycles, giraffes, dogs, and even large scene regions like skylines
 - DINO features transfer well across datasets and tasks
 
+> **Example — emergent segmentation without labels**: for a dog standing on grass, the last-layer DINO attention often highlights the dog's body as one coherent region while downweighting the background, even though the model never saw a segmentation mask during training.
+
 These properties do **not** emerge as strongly in CNN-based self-supervised models — the inductive biases of Transformers (global attention, no forced locality) appear to be key.
 
 DINO became the foundation for **DINOv2**, **SAM (Segment Anything Model)**, and other prominent vision foundation models.
@@ -604,7 +616,7 @@ From the lecture's closing slide — notable models and frameworks as of WS 2025
 - Ren, He, Girshick, Sun (2015) — Faster R-CNN: Towards real-time object detection with region proposal networks. _NeurIPS_, 28:91–99.
 - Stewart, Andriluka, Ng (2016) — End-to-end people detection in crowded scenes. _CVPR_, pp. 2325–2333.
 - Wu, Xiong, Yu, Lin (2018) — Unsupervised feature learning via non-parametric instance discrimination. _CVPR_, pp. 3733–3742.
-- Zhang, Li, Liu et al. (2022) — DINO: DETR with improved denoising anchor boxes for end-to-end object detection. _arXiv:2203.03605_.
+- Caron, Touvron, Misra, Jégou, Mairal, Bojanowski, Joulin (2021) — Emerging properties in self-supervised vision transformers. _ICCV_.
 - Zhu, Su, Lu, Li, Wang, Dai (2020) — Deformable DETR: Deformable transformers for end-to-end object detection. _arXiv:2010.04159_.
 
 ---

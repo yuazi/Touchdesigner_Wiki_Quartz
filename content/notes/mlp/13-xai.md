@@ -181,7 +181,79 @@ $$\text{SmoothGrad}(x) = \frac{1}{N} \sum_{i=1}^N \nabla_{x+\epsilon_i} F(x + \e
 
 where $\epsilon_i \sim \mathcal{N}(0, \sigma^2)$. Produces cleaner, more interpretable maps.
 
-### 3. Gradient × Input
+### 3. Integrated Gradients
+
+Vanilla input gradients only measure the **local slope** at the input $x$. This creates a problem in saturated regions: the gradient can be near zero even when a feature was crucial for the prediction. Integrated Gradients was proposed to address this and to satisfy the **completeness axiom**, i.e. the attributions should sum to the prediction difference between the input and a baseline (Sundararajan et al., 2017).
+
+Given an input $x$, a baseline $x'$, and model output $F(x)$, the attribution for feature $i$ is
+
+$$
+\operatorname{IG}_i(x)
+=
+(x_i - x'_i)
+\int_0^1
+\frac{\partial F\!\bigl(x' + \alpha(x-x')\bigr)}{\partial x_i}
+\, d\alpha
+$$
+
+So instead of taking the gradient only at $x$, we integrate the gradient along the straight-line path from the baseline $x'$ to the input $x$.
+
+### Riemann Sum Approximation
+
+In practice, the integral is approximated numerically:
+
+$$
+\operatorname{IG}_i(x)
+\approx
+(x_i - x'_i)\,
+\frac{1}{m}
+\sum_{k=1}^{m}
+\frac{\partial F\!\left(x' + \frac{k}{m}(x-x')\right)}{\partial x_i}
+$$
+
+A common default is **$m = 50$ steps**.
+
+### Baseline Choice
+
+The baseline represents "absence of signal", but this depends on the task. Common image baselines are:
+
+- **black image**
+- **blurred image**
+- **random noise**
+
+The explanation can change significantly with the baseline, so this choice matters.
+
+> **Example**: For an image classifier, a black baseline asks: which pixels had to be added when moving from an empty image to this specific input in order to obtain the current prediction?
+
+### Captum Example
+
+```python
+import torch
+from captum.attr import IntegratedGradients
+
+model.eval()
+ig = IntegratedGradients(model)
+
+attributions, delta = ig.attribute(
+    x,
+    baselines=torch.zeros_like(x),   # black image baseline
+    target=target_class,
+    n_steps=50,
+    return_convergence_delta=True,
+)
+
+saliency = attributions.abs().sum(dim=1)  # collapse channels
+```
+
+Integrated Gradients is often more stable than vanilla gradients and, up to numerical approximation, satisfies
+
+$$
+\sum_i \operatorname{IG}_i(x) \approx F(x) - F(x')
+$$
+
+which is the desired completeness property.
+
+### 4. Gradient × Input
 
 Element-wise product of the input gradient and the input itself:
 
@@ -189,7 +261,7 @@ $$\text{GradInput}(x) = \nabla_x F(x) \odot x$$
 
 Accounts for the magnitude of the input feature, not just its sensitivity.
 
-### 4. Guided Backpropagation
+### 5. Guided Backpropagation
 
 Modify the backward pass through ReLUs: zero out gradient entries that are either _negative_ OR whose forward activation was _negative_:
 
@@ -197,11 +269,11 @@ $$R^l_i = (f^l_i > 0) \cdot (R^{l+1}_i > 0) \cdot R^{l+1}_i$$
 
 This produces sharper, less noisy maps compared to vanilla gradients.
 
-### 5. Layer-wise Relevance Propagation (LRP)
+### 6. Layer-wise Relevance Propagation (LRP)
 
 Propagate a "relevance" score from the output back through the network iteratively, using conservation rules. Different propagation rules can be specified per layer type. Heatmapping.org provides visualisations.
 
-### 6. Grad-CAM
+### 7. Grad-CAM
 
 **Authors**: Selvaraju et al. (2017)
 
@@ -533,6 +605,7 @@ Three evaluation goals [Doshi-Velez & Kim, 2017]:
 | ----------------------- | -------------- | -------------- | ------------------------------------- |
 | Input Gradient          | Local          | ✗              | Pixel heatmap                         |
 | SmoothGrad              | Local          | ✗              | Smoothed heatmap                      |
+| Integrated Gradients    | Local          | ✗              | Path-integrated attribution map       |
 | Grad-CAM                | Local          | ✗              | Spatial region map                    |
 | LRP                     | Local          | ✗              | Layerwise heatmap                     |
 | LIME                    | Local          | ✓              | Feature importances (sparse linear)   |
@@ -555,5 +628,9 @@ Three evaluation goals [Doshi-Velez & Kim, 2017]:
 5. Evaluation requires both automatic metrics (deletion/insertion) and human studies (debugging, simulation)
 
 ---
+
+## References
+
+- Sundararajan, Taly, Yan (2017) — Axiomatic attribution for deep networks. _ICML_.
 
 [[notes/mlp/12-diffusion|← L12: Diffusion]] | [[notes/mlp/index|↑ MPL Index]]

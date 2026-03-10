@@ -181,6 +181,8 @@ A 32×32×3 image flattened to 3072×1 is fed into a dense layer. This ignores a
 - Filters always **extend the full depth** of the input volume
 - The filter computes a dot product at each spatial position → produces an **activation map** (also called a **feature map**)
 
+> **Example — vertical edge filter**: imagine a 3×3 kernel whose left column has positive weights and right column has negative weights. When it slides over a photo, it activates strongly on transitions like a door frame, a window border, or the outline of a dog's ear, but stays near zero on flat sky or wall regions.
+
 ### Multiple Activation Maps
 
 Using multiple filters in parallel produces multiple feature maps. For example, six 5×5 filters applied to a 32×32×3 input produce six separate activation maps of size 28×28, which stack into a volume of **28×28×6**.
@@ -214,6 +216,8 @@ Each unit in a feature map is connected only to a local patch of the input (its 
 - Operates over each activation map **independently**
 
 **Max pooling**: takes the maximum value in each pooling window — the most common form.
+
+> **Example — max pooling**: if a 2×2 activation patch is $\begin{bmatrix}0.1 & 0.7 \\ 0.2 & 0.6\end{bmatrix}$, max pooling outputs `0.7`. If the strongest response shifts slightly within that same window, the pooled output stays almost unchanged, which is why pooling gives small translation invariance.
 
 ### Revolution of Depth
 
@@ -256,6 +260,8 @@ A deeper network should perform at least as well as a shallower one — in theor
 $$y = F(x) + x$$
 
 $F(x)$ is a **residual mapping** w.r.t. identity.
+
+> **Example — learning a correction instead of a full mapping**: if earlier layers already detect a useful edge map, a later residual block only needs to learn a small change like "emphasize curved edges" or "suppress background texture". That is much easier than relearning the entire representation from scratch.
 
 - If identity is optimal, it is easy to push $F(x)$ weights to 0
 - If the optimal mapping is close to identity, it is easier to learn small fluctuations

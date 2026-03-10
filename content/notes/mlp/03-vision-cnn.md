@@ -15,6 +15,59 @@ date: 2026-03-09
 
 ---
 
+## Case Study: EfficientNet
+
+EfficientNet asked a simple scaling question: if we are allowed more compute, should we make a CNN **deeper**, **wider**, or feed it **higher-resolution** images? The key result was that these three dimensions should be scaled **together**, not independently (Tan and Le, 2019).
+
+#### Compound Scaling
+
+EfficientNet uses a single scaling coefficient $\phi$ and scales depth, width, and resolution jointly:
+
+$$
+\text{depth} = \alpha^\phi,\qquad
+\text{width} = \beta^\phi,\qquad
+\text{resolution} = \gamma^\phi
+$$
+
+subject to the constraint
+
+$$
+\alpha \beta^2 \gamma^2 \approx 2
+$$
+
+so that each increment of $\phi$ roughly doubles the compute budget in a balanced way.
+
+#### Base Architecture from NAS
+
+The base network, **EfficientNet-B0**, was found with **Neural Architecture Search (NAS)**. Once B0 is fixed, larger variants **B1-B7** are produced by compound scaling rather than redesigning the architecture by hand.
+
+#### EfficientNet B0-B7
+
+| Model  | Input resolution | Params | ImageNet top-1 |
+| ------ | ---------------- | ------ | -------------- |
+| **B0** | 224              | 5.3M   | 77.1%          |
+| **B1** | 240              | 7.8M   | 79.1%          |
+| **B2** | 260              | 9.2M   | 80.1%          |
+| **B3** | 300              | 12M    | 81.6%          |
+| **B4** | 380              | 19M    | 82.9%          |
+| **B5** | 456              | 30M    | 83.6%          |
+| **B6** | 528              | 43M    | 84.0%          |
+| **B7** | 600              | 66M    | 84.3%          |
+
+This shows the intended tradeoff clearly:
+
+- **B0/B1**: smaller and faster
+- **B4/B5**: strong middle ground
+- **B6/B7**: highest accuracy, but much more expensive
+
+> **Example**: Instead of only stacking more layers like a deeper ResNet, EfficientNet also increases channel width and image resolution, so the extra compute is spent more evenly across the model.
+
+#### Why It Mattered
+
+At the time, EfficientNet achieved **better accuracy per FLOP** than many ResNet-family models. The broader lesson was that **balanced scaling** is more efficient than blindly scaling depth alone.
+
+---
+
 ## Object Detection
 
 ### What is it?
@@ -345,5 +398,9 @@ The qualitative Mask R-CNN result slide makes the distinction from semantic segm
 - **Mask R-CNN**: Faster R-CNN extended with an object segmentation branch + ROI Align
 
 ---
+
+## References
+
+- Tan, Le (2019) — EfficientNet: Rethinking model scaling for convolutional neural networks. _ICML_.
 
 [[notes/mlp/02-cnn|← L02: CNNs]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/04-rnn|Next: RNNs →]]

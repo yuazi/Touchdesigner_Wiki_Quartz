@@ -152,11 +152,11 @@ A **probabilistic** version of the autoencoder that allows genuine sampling of n
 
 The VAE is essentially a MoG with a **neural network** replacing the fixed Gaussians:
 
-|                      | MoG                            | VAE                                            |
-| -------------------- | ------------------------------ | ---------------------------------------------- |
-| Prior on $z$         | $\text{Categorical}(\pi)$      | $\mathcal{N}(0, I)$                            |
-| Likelihood $p(x\|z)$ | $\mathcal{N}(\mu_k, \Sigma_k)$ | $\mathcal{N}(\mu_\theta(z), \Sigma_\theta(z))$ |
-| Features             | Fixed, hand-specified          | Learned by the network                         |
+|                          | MoG                            | VAE                                            |
+| ------------------------ | ------------------------------ | ---------------------------------------------- |
+| Prior on $z$             | $\text{Categorical}(\pi)$      | $\mathcal{N}(0, I)$                            |
+| Likelihood $p(x \mid z)$ | $\mathcal{N}(\mu_k, \Sigma_k)$ | $\mathcal{N}(\mu_\theta(z), \Sigma_\theta(z))$ |
+| Features                 | Fixed, hand-specified          | Learned by the network                         |
 
 - Prior: $z \sim \mathcal{N}(0, I)$
 - Decoder: $p(x|z) = \mathcal{N}(\mu_\theta(z),\, \Sigma_\theta(z))$ — $\mu_\theta, \Sigma_\theta$ are neural networks
@@ -489,13 +489,13 @@ frames = interpolate(model, mu_a, mu_b)
 
 ## Summary of VAEs
 
-| Aspect            | Detail                                                                                                                  |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| **Pros**          | Relatively easy to train; explicit inference network $q(z\|x)$; principled probabilistic framework; smooth latent space |
-| **Cons**          | Blurry samples (MSE averages over uncertainty); ELBO is a lower bound (no exact likelihood)                             |
-| **vs. AE**        | Adds KL regularization → structured, sampleable latent space                                                            |
-| **vs. GAN**       | More stable training; explicit likelihood; but lower sharpness                                                          |
-| **vs. Diffusion** | Faster sampling; but lower sample quality                                                                               |
+| Aspect            | Detail                                                                                                                      |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **Pros**          | Relatively easy to train; explicit inference network $q(z \mid x)$; principled probabilistic framework; smooth latent space |
+| **Cons**          | Blurry samples (MSE averages over uncertainty); ELBO is a lower bound (no exact likelihood)                                 |
+| **vs. AE**        | Adds KL regularization → structured, sampleable latent space                                                                |
+| **vs. GAN**       | More stable training; explicit likelihood; but lower sharpness                                                              |
+| **vs. Diffusion** | Faster sampling; but lower sample quality                                                                                   |
 
 **Why blurry?** Optimizing MSE reconstruction encourages the decoder to output the _mean_ of all possible reconstructions consistent with $z$, rather than a single sharp sample. This is the classic **regression-to-the-mean** problem.
 

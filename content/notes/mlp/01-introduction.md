@@ -323,6 +323,151 @@ Xavier breaks down for ReLU because ReLU is not zero-centred (it zeros out half 
 
 ---
 
+## Batch Normalisation
+
+Batch Normalisation was introduced to make deep networks easier to optimise (Ioffe and Szegedy, 2015). The original motivation was to reduce **internal covariate shift**: as lower layers change during training, the distribution seen by higher layers also changes. In practice, BatchNorm also makes training **less sensitive to weight initialisation** and typically stabilises optimisation.
+
+### BatchNorm Formula
+
+For a mini-batch $B = \{x_1, \dots, x_m\}$, BatchNorm computes
+
+$$
+\mu_B = \frac{1}{m}\sum_{i=1}^{m} x_i
+\qquad\text{and}\qquad
+\sigma_B^2 = \frac{1}{m}\sum_{i=1}^{m} (x_i - \mu_B)^2
+$$
+
+then normalises each activation:
+
+$$
+\hat{x}_i = \frac{x_i - \mu_B}{\sqrt{\sigma_B^2 + \varepsilon}}
+$$
+
+and finally applies a learnable scale and shift:
+
+$$
+y_i = \gamma \hat{x}_i + \beta
+$$
+
+The parameters $\gamma$ and $\beta$ are learned, so the network can recover any useful mean or variance if needed.
+
+### Train Time vs. Test Time
+
+| Phase         | Statistics used                                   | Behaviour                                             |
+| ------------- | ------------------------------------------------- | ----------------------------------------------------- |
+| **Training**  | Mean/variance of the current mini-batch           | Adds some noise, which can act as mild regularisation |
+| **Inference** | Running mean/variance accumulated during training | Deterministic behaviour                               |
+
+For convolutional layers, BatchNorm is usually applied **per channel**, averaging over batch and spatial dimensions.
+
+### Why Does It Help?
+
+BatchNorm often helps because it:
+
+- makes the loss landscape **smoother**
+- allows **higher learning rates**
+- reduces sensitivity to poor initialisation
+- improves gradient flow in deeper networks
+
+> **Example**: A deep CNN that becomes unstable with a large learning rate can often train cleanly once each `Conv` layer is followed by BatchNorm.
+
+### PyTorch Example
+
+```python
+import torch.nn as nn
+
+block = nn.Sequential(
+    nn.Conv2d(3, 64, kernel_size=3, padding=1, bias=False),
+    nn.BatchNorm2d(64),
+    nn.ReLU(inplace=True),
+    nn.MaxPool2d(2),
+)
+```
+
+A common pattern is:
+
+$$
+\text{Conv} \rightarrow \text{BatchNorm} \rightarrow \text{ReLU}
+$$
+
+---
+
+## Regularisation
+
+### Why Regularise?
+
+A model **overfits** when it fits the training data too closely, including noise and accidental patterns, but fails to generalise to unseen data. This is the classic **bias-variance tradeoff**:
+
+- **High bias**: model is too simple → underfitting
+- **High variance**: model is too flexible → overfitting
+
+Regularisation adds constraints or noise so that the learned model generalises better.
+
+### L2 Regularisation / Weight Decay
+
+L2 regularisation adds a penalty on large weights:
+
+$$
+\mathcal{L}_\text{total} = \mathcal{L}_\text{data} + \lambda \|W\|_2^2
+$$
+
+This encourages weights to stay small and smooths the fitted function. In deep learning, L2 regularisation is usually implemented as **weight decay** in the optimiser.
+
+### L1 Regularisation
+
+L1 regularisation uses
+
+$$
+\mathcal{L}_\text{total} = \mathcal{L}_\text{data} + \lambda \|W\|_1
+$$
+
+Unlike L2, L1 encourages many weights to become exactly zero, so it tends to produce **sparser** models.
+
+### Dropout
+
+Dropout randomly zeros activations during training (Srivastava et al., 2014). If $h$ is a hidden representation and $m_i \sim \text{Bernoulli}(1-p)$, then
+
+$$
+\tilde{h} = m \odot h
+$$
+
+where $p$ is the dropout rate.
+
+Intuition:
+
+- each mini-batch sees a slightly different sub-network
+- neurons cannot rely too strongly on any single other neuron
+- this reduces co-adaptation and improves generalisation
+
+Classically, activations are scaled at test time by $(1-p)$. In modern libraries such as PyTorch, **inverted dropout** is used instead: activations are scaled during training, so evaluation needs no extra rescaling.
+
+### Data Augmentation
+
+Data augmentation is another form of regularisation: random crops, flips, colour jitter, noise, etc. It does not directly penalise the weights, but it makes the learning problem harder to overfit.
+
+### Summary of Common Regularisers
+
+| Method                | Main effect                                  | Typical outcome                      |
+| --------------------- | -------------------------------------------- | ------------------------------------ |
+| **L2 / weight decay** | Penalises large weights                      | Smoother, more stable models         |
+| **L1**                | Encourages sparsity                          | Many weights become zero             |
+| **Dropout**           | Randomly removes activations during training | More robust hidden representations   |
+| **Data augmentation** | Increases effective data diversity           | Better generalisation to new samples |
+
+> **Example**: If training accuracy keeps rising but validation accuracy stalls, adding weight decay and dropout is often a good first fix before changing the architecture.
+
+### Practical Guidance
+
+A good default recipe is:
+
+- **weight decay** for most models
+- **dropout** in fully connected heads or smaller datasets
+- **data augmentation** for vision tasks
+
+In practice, **weight decay + dropout** is a strong baseline regularisation combination.
+
+---
+
 ## Summary
 
 1. ML = automatically learning from data without explicit programming
@@ -331,6 +476,15 @@ Xavier breaks down for ReLU because ReLU is not zero-centred (it zeros out half 
 4. Backpropagation = efficient gradient computation via the chain rule through computational graphs
 5. Activation functions: **use ReLU** (avoid sigmoid/tanh in hidden layers)
 6. Weight initialisation: **Xavier** for tanh networks, **Kaiming** for ReLU networks
+7. BatchNorm normalises activations and makes optimisation more stable
+8. Regularisation improves generalisation; strong defaults are **weight decay + dropout**
+
+---
+
+## References
+
+- Ioffe, Szegedy (2015) — Batch normalization: Accelerating deep network training by reducing internal covariate shift. _ICML_.
+- Srivastava, Hinton, Krizhevsky, Sutskever, Salakhutdinov (2014) — Dropout: A simple way to prevent neural networks from overfitting. _JMLR_, 15:1929–1958.
 
 ---
 

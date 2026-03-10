@@ -37,7 +37,7 @@ date: 2026-03-09
 |               | VAEs                              | GANs                                                      |
 | ------------- | --------------------------------- | --------------------------------------------------------- |
 | Training      | Relatively easier                 | Many tricks needed (mode collapse, adversarial objective) |
-| Inference     | Explicit encoder $q(z\|x)$        | Implicit generative model                                 |
+| Inference     | Explicit encoder $q(z \mid x)$    | Implicit generative model                                 |
 | Image quality | More blurry (reconstruction loss) | Sharper (discriminator loss)                              |
 
 ---
@@ -250,12 +250,12 @@ alpha_bar = torch.cumprod(alpha, dim=0)        # ᾱ_t
 
 Diffusion models are a **special form of hierarchical VAEs**:
 
-|                       | Standard VAE             | Diffusion Model                                        |
-| --------------------- | ------------------------ | ------------------------------------------------------ |
-| Encoder (posterior)   | Learned $q_\phi(z\|x)$   | Fixed forward process $q(x_{1:T}\|x_0)$                |
-| Decoder               | Learned $p_\theta(x\|z)$ | Shared network $p_\theta(x_{t-1}\|x_t)$ across all $t$ |
-| Latent dimensionality | Smaller than input       | **Same** as input                                      |
-| Training objective    | ELBO                     | Very similar variational lower bound                   |
+|                       | Standard VAE                 | Diffusion Model                                            |
+| --------------------- | ---------------------------- | ---------------------------------------------------------- |
+| Encoder (posterior)   | Learned $q_\phi(z \mid x)$   | Fixed forward process $q(x_{1:T} \mid x_0)$                |
+| Decoder               | Learned $p_\theta(x \mid z)$ | Shared network $p_\theta(x_{t-1} \mid x_t)$ across all $t$ |
+| Latent dimensionality | Smaller than input           | **Same** as input                                          |
+| Training objective    | ELBO                         | Very similar variational lower bound                       |
 
 ---
 
@@ -320,13 +320,90 @@ FAST SAMPLING ──────────── HIGH DIVERSITY
 
 Diffusion dominates quality and coverage but sacrifices speed — motivating DDIM, consistency models, and flow matching.
 
----
+## DDIM — Fast Sampling
 
-## Are We Done? — Open Challenges
+DDPM sampling is high quality but slow: at inference time it often requires **$T = 1000$ denoising steps**. This is one of the main practical bottlenecks of diffusion models.
 
-- Research on key diffusion model elements is ongoing.
-- **Accelerating the diffusion process** remains a central challenge.
-- Many small update steps are needed to keep the reverse process invertible.
+DDIM (**Denoising Diffusion Implicit Models**) addresses this by introducing a **non-Markovian forward process** that keeps the same training objective but allows much faster and even **deterministic** sampling (Song et al., 2020).
+
+### Key Idea: Skip Timesteps
+
+Instead of following every single reverse step
+
+$$
+T \to T-1 \to T-2 \to \dots \to 0
+$$
+
+DDIM chooses a shorter subsequence of timesteps
+
+$$
+\tau = \{t_1, t_2, \dots, t_S\}, \qquad S \ll T
+$$
+
+and jumps directly along this shorter trajectory.
+
+So at inference we can use, for example, **50 steps instead of 1000**.
+
+### DDIM Update Rule
+
+As in DDPM, first estimate the clean sample:
+
+$$
+\hat{x}_0 =
+\frac{x_t - \sqrt{1-\bar{\alpha}_t}\,\varepsilon_\theta(x_t, t)}
+{\sqrt{\bar{\alpha}_t}}
+$$
+
+Then the general DDIM update from $t_i$ to $t_{i-1}$ is
+
+$$
+x_{t_{i-1}} =
+\sqrt{\bar{\alpha}_{t_{i-1}}}\,\hat{x}_0
++
+\sqrt{1-\bar{\alpha}_{t_{i-1}}-\sigma_{t_i}^2}\,\varepsilon_\theta(x_{t_i}, t_i)
++
+\sigma_{t_i} z,
+\qquad z \sim \mathcal{N}(0, I)
+$$
+
+For **deterministic DDIM sampling**, set $\sigma_{t_i}=0$:
+
+$$
+x_{t_{i-1}} =
+\sqrt{\bar{\alpha}_{t_{i-1}}}\,\hat{x}_0
++
+\sqrt{1-\bar{\alpha}_{t_{i-1}}}\,\varepsilon_\theta(x_{t_i}, t_i)
+$$
+
+So DDIM can be viewed as tracing a deterministic path through latent space when desired.
+
+> **Example**: Instead of denoising along `999 -> 998 -> 997 -> ... -> 0`, DDIM may use a much shorter path such as `999 -> 979 -> 959 -> ... -> 19 -> 0`.
+
+### Why It Matters
+
+The practical result is that DDIM often achieves **roughly the same visual quality** with **50 steps instead of 1000**, making diffusion models much more usable at inference time.
+
+### Code: Skipping Timesteps with a Stride
+
+```python
+# Example: deterministic DDIM with a strided timestep schedule
+S = 50
+stride = T // S
+timesteps = list(range(T - 1, -1, -stride))
+
+x = torch.randn(1, 3, 64, 64)
+
+for i, t in enumerate(timesteps[:-1]):
+    t_prev = timesteps[i + 1]
+
+    eps = model(x, torch.tensor([t]))
+    x0_hat = (x - (1 - alpha_bar[t]).sqrt() * eps) / alpha_bar[t].sqrt()
+
+    # DDIM with eta = 0 -> deterministic update
+    x = alpha_bar[t_prev].sqrt() * x0_hat + (1 - alpha_bar[t_prev]).sqrt() * eps
+```
+
+The essential trick is simple: define a shorter timestep schedule and denoise only on that schedule.
 
 ---
 
@@ -458,14 +535,22 @@ This is the same general diffusion machinery applied in an **editing / inpaintin
 
 ---
 
+## Are We Done? — Open Challenges
+
+- Research on key diffusion model elements is ongoing.
+- **Accelerating the diffusion process** remains a central challenge.
+- Many small update steps are needed to keep the reverse process invertible.
+
+---
+
 ## Summary
 
 | Concept                      | Key Detail                                                                                                     |
 | ---------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | **Forward process**          | Markov chain: add Gaussian noise step-by-step until $x_T \approx \mathcal{N}(0,I)$                             |
 | **Closed-form noisy sample** | $x_t = \sqrt{\bar\alpha_t}\,x_0 + \sqrt{1-\bar\alpha_t}\,\varepsilon$ — jump to any $t$ directly               |
-| **Reverse process**          | Parametric Gaussian: $p_\theta(x_{t-1}\|x_t) = \mathcal{N}(\mu_\theta(x_t,t), \sigma_t^2 I)$                   |
-| **Training loss**            | $\mathcal{L}(\theta) = \|\varepsilon - \theta(x_t, t)\|_2^2$ — simple noise prediction MSE                     |
+| **Reverse process**          | Parametric Gaussian: $p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(\mu_\theta(x_t,t), \sigma_t^2 I)$               |
+| **Training loss**            | $\mathcal{L}(\theta) = \lVert \varepsilon - \theta(x_t, t) \rVert_2^2$ — simple noise prediction MSE           |
 | **Network**                  | U-Net with ResBlocks + self-attention; time $t$ injected via sinusoidal embeddings                             |
 | **Noise schedule**           | $\beta_t$ (linear or cosine) controls how fast structure is destroyed                                          |
 | **Connection to VAEs**       | Diffusion = hierarchical VAE with fixed encoder, shared decoder                                                |
@@ -477,5 +562,9 @@ This is the same general diffusion machinery applied in an **editing / inpaintin
 | **GLIDE editing**            | Text-guided masked edits preserve global scene context while changing selected regions                         |
 
 ---
+
+## References
+
+- Song, Meng, Ermon (2020) — Denoising diffusion implicit models. _arXiv:2010.02502_.
 
 [[notes/mlp/11-rl|← L11: RL]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/13-xai|Next: XAI →]]

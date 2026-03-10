@@ -33,7 +33,7 @@ $$p_\theta(x) = \int p_\theta(z)\, p_\theta(x|z)\, dz$$
 | Property      | VAE                                      |
 | ------------- | ---------------------------------------- |
 | Training      | Relatively easier                        |
-| Inference     | Explicit inference network $q(z\|x)$     |
+| Inference     | Explicit inference network $q(z \mid x)$ |
 | Image quality | More blurry (due to reconstruction loss) |
 | Density       | Explicit but intractable                 |
 
@@ -245,7 +245,7 @@ Illustrated by a "saddle point in dual energy landscape" — the generator finds
 | Property           | VAE                            | GAN                                                       |
 | ------------------ | ------------------------------ | --------------------------------------------------------- |
 | Training           | Relatively easier              | Requires many optimisation tricks, prone to mode collapse |
-| Inference          | Explicit $q(z\|x)$             | Implicit (no encoder; unless BiGAN)                       |
+| Inference          | Explicit $q(z \mid x)$         | Implicit (no encoder; unless BiGAN)                       |
 | Image quality      | Blurrier (reconstruction loss) | Sharper (discriminator signal)                            |
 | Density evaluation | Lower bound via ELBO           | Not possible — likelihood-free                            |
 
@@ -594,7 +594,7 @@ Lower FID means the generated distribution is closer to the real one. FID captur
 |                | VAE                          | GAN                                    |
 | -------------- | ---------------------------- | -------------------------------------- |
 | Training       | Easier (single optimisation) | Hard (adversarial, mode collapse risk) |
-| Inference      | Explicit $q(z\|x)$           | Implicit                               |
+| Inference      | Explicit $q(z \mid x)$       | Implicit                               |
 | Image quality  | Blurry                       | Sharp                                  |
 | Density access | Lower bound                  | None (likelihood-free)                 |
 
