@@ -1,3 +1,5 @@
+import { Delaunay } from "d3"
+
 const GARDEN_BOOT_SESSION_KEY = "gardenBooted"
 const GARDEN_BOOT_OVERLAY_ID = "garden-boot-overlay"
 const GARDEN_BOOT_STAGE_COUNT = 4
@@ -15,9 +17,25 @@ const GARDEN_BOOT_MAIN_ROT_X = 0.6
 const GARDEN_BOOT_MAIN_CZ_OFFSET = 25
 const GARDEN_BOOT_HUD_ROW_COUNT = 44
 const GARDEN_BOOT_HUD_SAMPLE_INTERVAL_MS = 110
-const GARDEN_BOOT_TRAIL_HISTORY_LENGTH = 420
-const GARDEN_BOOT_MESH_LINE_COUNT = 228
-const GARDEN_BOOT_MESH_POINT_COUNT = 132
+const GARDEN_BOOT_TRAIL_HISTORY_LENGTH = 2000
+const GARDEN_BOOT_OVERLAY_MIN_PARTICLES = 25
+const GARDEN_BOOT_MESH_DISTANCE_THRESHOLD = 500
+const GARDEN_BOOT_TRACKER_REVEAL_THRESHOLD = 0.14
+const GARDEN_BOOT_SCREEN_SCALE_MIN = 16
+const GARDEN_BOOT_SCREEN_SCALE_MAX = 40
+const GARDEN_BOOT_TRAIL_POINT_BASE = 168
+const GARDEN_BOOT_TRAIL_POINT_RANGE = 456
+const GARDEN_BOOT_MAIN_SCALE_DIVISOR_MOBILE = 39
+const GARDEN_BOOT_MAIN_SCALE_DIVISOR_DESKTOP = 47
+const GARDEN_BOOT_MAIN_CENTER_X_MOBILE = 0.54
+const GARDEN_BOOT_MAIN_CENTER_X_DESKTOP = 0.56
+const GARDEN_BOOT_READABILITY_MIN = 0.78
+const GARDEN_BOOT_READABILITY_RADIUS_X = 0.14
+const GARDEN_BOOT_READABILITY_RADIUS_Y = 0.11
+const GARDEN_BOOT_KEYPOINT_GREEN = "#8fd6c3"
+const GARDEN_BOOT_KEYPOINT_GREEN_GLOW = "rgba(143, 214, 195, 0.58)"
+const GARDEN_BOOT_KEYPOINT_PURPLE = "#b39adf"
+const GARDEN_BOOT_KEYPOINT_PURPLE_GLOW = "rgba(179, 154, 223, 0.56)"
 const GARDEN_BOOT_BOOT_GROUPS = [
   [
     "[lavender](y)usage BIOS v1.0[/lavender]",
@@ -42,65 +60,37 @@ const GARDEN_BOOT_LORENZ_DEFAULTS = {
   rho: 28,
   beta: 8 / 3,
   dt: 0.005,
-  particles: 8,
+  particles: 12,
 }
 const GARDEN_BOOT_TRACKER_PALETTE = [
   {
-    core: "rgba(132, 169, 140, 0.88)",
-    glow: "rgba(132, 169, 140, 0.18)",
-    trail: "rgba(132, 169, 140, 0.32)",
-    ring: "rgba(185, 216, 191, 0.74)",
+    core: "rgba(126, 180, 156, 0.82)",
+    glow: "rgba(74, 109, 95, 0.12)",
+    trail: "rgba(112, 165, 145, 0.18)",
+    ring: "rgba(166, 210, 193, 0.42)",
   },
   {
-    core: "rgba(157, 143, 190, 0.82)",
-    glow: "rgba(157, 143, 190, 0.14)",
-    trail: "rgba(157, 143, 190, 0.26)",
-    ring: "rgba(198, 190, 224, 0.62)",
+    core: "rgba(164, 146, 198, 0.8)",
+    glow: "rgba(99, 84, 129, 0.11)",
+    trail: "rgba(132, 118, 168, 0.17)",
+    ring: "rgba(191, 179, 221, 0.4)",
   },
   {
-    core: "rgba(212, 212, 212, 0.76)",
-    glow: "rgba(212, 212, 212, 0.12)",
-    trail: "rgba(212, 212, 212, 0.2)",
-    ring: "rgba(212, 212, 212, 0.46)",
-  },
-]
-const GARDEN_BOOT_MESH_PALETTE = [
-  {
-    stroke: "rgba(244, 244, 240, 0.72)",
-    glow: "rgba(244, 244, 240, 0.22)",
-    point: "rgba(250, 250, 247, 0.98)",
-    blob: "rgba(250, 250, 247, 0.24)",
-  },
-  {
-    stroke: "rgba(204, 235, 213, 0.54)",
-    glow: "rgba(204, 235, 213, 0.18)",
-    point: "rgba(228, 245, 234, 0.88)",
-    blob: "rgba(204, 235, 213, 0.14)",
-  },
-  {
-    stroke: "rgba(233, 214, 247, 0.48)",
-    glow: "rgba(233, 214, 247, 0.16)",
-    point: "rgba(242, 228, 251, 0.82)",
-    blob: "rgba(233, 214, 247, 0.12)",
-  },
-  {
-    stroke: "rgba(214, 226, 247, 0.42)",
-    glow: "rgba(214, 226, 247, 0.14)",
-    point: "rgba(238, 243, 250, 0.8)",
-    blob: "rgba(214, 226, 247, 0.1)",
+    core: "rgba(142, 164, 198, 0.76)",
+    glow: "rgba(86, 103, 129, 0.1)",
+    trail: "rgba(112, 132, 167, 0.16)",
+    ring: "rgba(173, 190, 221, 0.38)",
   },
 ]
 const GB = {
   layer: "gb-layer",
   fx: "gb-fx",
-  meshGlowLayer: "gb-mesh-glow",
   meshLineLayer: "gb-mesh-lines",
-  meshBlobLayer: "gb-mesh-blobs",
-  meshPointLayer: "gb-mesh-points",
-  meshLineGlow: "gb-mesh-line-glow",
+  meshKeypointGlowLayer: "gb-mesh-keypoint-glows",
+  meshKeypointLayer: "gb-mesh-keypoints",
   meshLine: "gb-mesh-line",
-  meshBlob: "gb-mesh-blob",
-  meshPoint: "gb-mesh-point",
+  meshKeypointGlow: "gb-mesh-keypoint-glow",
+  meshKeypoint: "gb-mesh-keypoint",
   track: "gb-track",
   trackTrail: "gb-track-trail",
   trackGlow: "gb-track-glow",
@@ -156,6 +146,7 @@ type GardenBootTrackerRecord = {
   screenX: number
   screenY: number
   screenZ: number
+  screenScale: number
   reveal: number
   targetReveal: number
   pulsePhase: number
@@ -174,14 +165,15 @@ type GardenBootMeshPoint = {
   x: number
   y: number
   reveal: number
-  anchor: boolean
-  colorIndex: number
+  readability: number
+  fill: string
+  glow: string
 }
 
 type GardenBootMeshEdge = {
   start: GardenBootMeshPoint
   end: GardenBootMeshPoint
-  score: number
+  distance: number
 }
 
 function hasGardenBooted() {
@@ -292,6 +284,131 @@ function formatGardenBootRatio(value: number) {
   return clamp(value, 0, 0.999).toFixed(2)
 }
 
+function normalizeGardenBootReveal(reveal: number) {
+  return clamp(
+    (reveal - GARDEN_BOOT_TRACKER_REVEAL_THRESHOLD) / (1 - GARDEN_BOOT_TRACKER_REVEAL_THRESHOLD),
+    0,
+    1,
+  )
+}
+
+function normalizeGardenBootScreenScale(size: number) {
+  return clamp(
+    (size - GARDEN_BOOT_SCREEN_SCALE_MIN) /
+      (GARDEN_BOOT_SCREEN_SCALE_MAX - GARDEN_BOOT_SCREEN_SCALE_MIN),
+    0,
+    0.999,
+  )
+}
+
+function getGardenBootReadabilityFactor(x: number, y: number, width: number, height: number) {
+  const safeCenterX = width * 0.5
+  const safeCenterY = height * 0.5
+  const radiusX = Math.max(180, width * GARDEN_BOOT_READABILITY_RADIUS_X)
+  const radiusY = Math.max(110, height * GARDEN_BOOT_READABILITY_RADIUS_Y)
+  const dx = (x - safeCenterX) / radiusX
+  const dy = (y - safeCenterY) / radiusY
+  const distance = Math.sqrt(dx * dx + dy * dy)
+
+  if (distance >= 1) {
+    return 1
+  }
+
+  return GARDEN_BOOT_READABILITY_MIN + (1 - GARDEN_BOOT_READABILITY_MIN) * Math.pow(distance, 1.35)
+}
+
+function pushGardenBootMeshEdge(
+  points: GardenBootMeshPoint[],
+  edges: GardenBootMeshEdge[],
+  seenKeys: Set<string>,
+  firstIndex: number,
+  secondIndex: number,
+  maxDistanceSq: number,
+) {
+  if (firstIndex === secondIndex) {
+    return
+  }
+
+  const startIndex = Math.min(firstIndex, secondIndex)
+  const endIndex = Math.max(firstIndex, secondIndex)
+  const key = `${startIndex}:${endIndex}`
+
+  if (seenKeys.has(key)) {
+    return
+  }
+
+  const start = points[startIndex]
+  const end = points[endIndex]
+  const dx = end.x - start.x
+  const dy = end.y - start.y
+  const distanceSq = dx * dx + dy * dy
+
+  if (distanceSq > maxDistanceSq) {
+    return
+  }
+
+  seenKeys.add(key)
+  edges.push({
+    start,
+    end,
+    distance: Math.sqrt(distanceSq),
+  })
+}
+
+function createGardenBootMeshEdges(points: GardenBootMeshPoint[]) {
+  if (points.length < 2) {
+    return []
+  }
+
+  const maxDistanceSq = GARDEN_BOOT_MESH_DISTANCE_THRESHOLD * GARDEN_BOOT_MESH_DISTANCE_THRESHOLD
+  const edges: GardenBootMeshEdge[] = []
+  const seenKeys = new Set<string>()
+
+  if (points.length === 2) {
+    pushGardenBootMeshEdge(points, edges, seenKeys, 0, 1, maxDistanceSq)
+    return edges
+  }
+
+  const delaunay = Delaunay.from(
+    points,
+    (point) => point.x,
+    (point) => point.y,
+  )
+  const { triangles } = delaunay
+
+  if (triangles.length === 0) {
+    for (let index = 0; index < points.length; index += 1) {
+      for (let otherIndex = index + 1; otherIndex < points.length; otherIndex += 1) {
+        pushGardenBootMeshEdge(points, edges, seenKeys, index, otherIndex, maxDistanceSq)
+      }
+    }
+
+    return edges
+  }
+
+  for (let index = 0; index < triangles.length; index += 3) {
+    const a = triangles[index]
+    const b = triangles[index + 1]
+    const c = triangles[index + 2]
+
+    pushGardenBootMeshEdge(points, edges, seenKeys, a, b, maxDistanceSq)
+    pushGardenBootMeshEdge(points, edges, seenKeys, b, c, maxDistanceSq)
+    pushGardenBootMeshEdge(points, edges, seenKeys, c, a, maxDistanceSq)
+  }
+
+  return edges
+}
+
+function getGardenBootParticleStage(index: number, total: number) {
+  if (total <= 0) {
+    return 1
+  }
+
+  return (
+    1 + Math.min(GARDEN_BOOT_STAGE_COUNT - 1, Math.floor((index * GARDEN_BOOT_STAGE_COUNT) / total))
+  )
+}
+
 function stepGardenBootLorenz(particle: GardenBootParticle, params: GardenBootLorenzParams) {
   const dx = params.sigma * (particle.y - particle.x)
   const dy = particle.x * (params.rho - particle.z) - particle.y
@@ -398,7 +515,7 @@ function pushGardenBootHudSample(
   const elapsedMs = sampleIndex * GARDEN_BOOT_HUD_SAMPLE_INTERVAL_MS
   const seconds = String(Math.floor(elapsedMs / 1000) % 100).padStart(2, "0")
   const milliseconds = String(elapsedMs % 1000).padStart(3, "0")
-  const line = `${record.particle.label ?? "ID:0000"}  X:${formatGardenBootRatio(record.screenX)}  Y:${formatGardenBootRatio(record.screenY)}  Z:${formatGardenBootRatio(record.screenZ)}  T:${seconds}:${milliseconds}  CONF:${confidence.toString().padStart(2, "0")}`
+  const line = `${record.particle.label ?? "CL:0000"}  X:${formatGardenBootRatio(record.screenX)}  Y:${formatGardenBootRatio(record.screenY)}  Z:${formatGardenBootRatio(record.screenZ)}  S:${formatGardenBootRatio(record.screenScale)}  T:${seconds}:${milliseconds}  CONF:${confidence.toString().padStart(2, "0")}`
 
   for (let index = state.hudRows.length - 1; index > 0; index -= 1) {
     state.hudRows[index].textContent = state.hudRows[index - 1].textContent
@@ -414,7 +531,7 @@ async function hydrateGardenBootTrackerLayer(state: GardenBootTrackerState, sign
     beta: readStoredNumber("lorenz.beta", GARDEN_BOOT_LORENZ_DEFAULTS.beta),
     dt: readStoredNumber("lorenz.dt", GARDEN_BOOT_LORENZ_DEFAULTS.dt),
     particles: Math.max(
-      7,
+      GARDEN_BOOT_OVERLAY_MIN_PARTICLES,
       readStoredInt("lorenz.particles", GARDEN_BOOT_LORENZ_DEFAULTS.particles),
     ),
   }
@@ -422,11 +539,11 @@ async function hydrateGardenBootTrackerLayer(state: GardenBootTrackerState, sign
   const importantIds = [3791, 5898, 7460, 8847]
   const mainParticles = Array.from({ length: lorenzParams.particles }, (_, index) => {
     const particle = createGardenBootPoint(index)
-    particle.stage = index === 0 ? 0 : index < 3 ? 1 : index < 5 ? 2 : 3
+    particle.stage = getGardenBootParticleStage(index, lorenzParams.particles)
     particle.colorIndex = index
     particle.important = index < importantIds.length
     particle.label = particle.important
-      ? `ID:${String(importantIds[index]).padStart(4, "0")}`
+      ? `CL:${String(importantIds[index]).padStart(4, "0")}`
       : null
     return particle
   })
@@ -449,43 +566,34 @@ async function hydrateGardenBootTrackerLayer(state: GardenBootTrackerState, sign
   svg.setAttribute("preserveAspectRatio", "xMidYMid slice")
   svg.setAttribute("aria-hidden", "true")
 
-  const meshGlowGroup = createGardenBootSvgEl("g")
-  meshGlowGroup.classList.add(GB.meshGlowLayer)
   const meshLineGroup = createGardenBootSvgEl("g")
   meshLineGroup.classList.add(GB.meshLineLayer)
-  const meshBlobGroup = createGardenBootSvgEl("g")
-  meshBlobGroup.classList.add(GB.meshBlobLayer)
-  const meshPointGroup = createGardenBootSvgEl("g")
-  meshPointGroup.classList.add(GB.meshPointLayer)
+  const meshKeypointGlowGroup = createGardenBootSvgEl("g")
+  meshKeypointGlowGroup.classList.add(GB.meshKeypointGlowLayer)
+  const meshKeypointGroup = createGardenBootSvgEl("g")
+  meshKeypointGroup.classList.add(GB.meshKeypointLayer)
   const trackerGroup = createGardenBootSvgEl("g")
-  svg.append(meshGlowGroup, meshBlobGroup, meshLineGroup, meshPointGroup, trackerGroup)
+  svg.append(meshLineGroup, trackerGroup, meshKeypointGlowGroup, meshKeypointGroup)
   state.layer.replaceChildren(svg)
 
-  const meshGlowLinePool = Array.from({ length: GARDEN_BOOT_MESH_LINE_COUNT }, () => {
-    const line = createGardenBootSvgEl("polyline")
-    line.classList.add(GB.meshLineGlow)
-    meshGlowGroup.appendChild(line)
-    return line
-  })
-
-  const meshLinePool = Array.from({ length: GARDEN_BOOT_MESH_LINE_COUNT }, () => {
-    const line = createGardenBootSvgEl("polyline")
+  const meshLinePool = Array.from({ length: Math.max(0, mainParticles.length * 3) }, () => {
+    const line = createGardenBootSvgEl("line")
     line.classList.add(GB.meshLine)
     meshLineGroup.appendChild(line)
     return line
   })
 
-  const meshBlobPool = Array.from({ length: GARDEN_BOOT_MESH_POINT_COUNT }, () => {
+  const meshKeypointGlowPool = Array.from({ length: mainParticles.length }, () => {
     const point = createGardenBootSvgEl("circle")
-    point.classList.add(GB.meshBlob)
-    meshBlobGroup.appendChild(point)
+    point.classList.add(GB.meshKeypointGlow)
+    meshKeypointGlowGroup.appendChild(point)
     return point
   })
 
-  const meshPointPool = Array.from({ length: GARDEN_BOOT_MESH_POINT_COUNT }, () => {
+  const meshKeypointPool = Array.from({ length: mainParticles.length }, () => {
     const point = createGardenBootSvgEl("circle")
-    point.classList.add(GB.meshPoint)
-    meshPointGroup.appendChild(point)
+    point.classList.add(GB.meshKeypoint)
+    meshKeypointGroup.appendChild(point)
     return point
   })
 
@@ -528,6 +636,7 @@ async function hydrateGardenBootTrackerLayer(state: GardenBootTrackerState, sign
       screenX: 0.5,
       screenY: 0.5,
       screenZ: 0.5,
+      screenScale: 0,
       reveal: 0,
       targetReveal: 0,
       pulsePhase: random() * Math.PI * 2,
@@ -560,8 +669,13 @@ async function hydrateGardenBootTrackerLayer(state: GardenBootTrackerState, sign
     const frameScale = deltaMs / 16.667
     lastFrameTime = time
 
-    const scale = Math.min(width, height) / (width < 900 ? 35 : 42)
-    const centerX = width < 900 ? width * 0.545 : width * 0.585
+    const scale =
+      Math.min(width, height) /
+      (width < 900 ? GARDEN_BOOT_MAIN_SCALE_DIVISOR_MOBILE : GARDEN_BOOT_MAIN_SCALE_DIVISOR_DESKTOP)
+    const centerX =
+      width < 900
+        ? width * GARDEN_BOOT_MAIN_CENTER_X_MOBILE
+        : width * GARDEN_BOOT_MAIN_CENTER_X_DESKTOP
     const centerY = height * 0.555
     const stageFactor = (state.currentStage + 1) / (GARDEN_BOOT_STAGE_COUNT + 1)
     const meshPoints: GardenBootMeshPoint[] = []
@@ -597,10 +711,15 @@ async function hydrateGardenBootTrackerLayer(state: GardenBootTrackerState, sign
       const ringRadius = baseRadius * (record.particle.important ? 1.75 : 1.28)
       const glowRadius = baseRadius * (record.particle.important ? 3.2 : 2.35)
       const trailWidth = record.particle.important ? 1.15 : 0.88
-      const drawEvery = record.particle.important ? 1 : 2
-      const trailPointLimit = Math.round(96 + stageFactor * 320)
+      const drawEvery = 1
+      const trailPointLimit = Math.round(
+        GARDEN_BOOT_TRAIL_POINT_BASE + stageFactor * GARDEN_BOOT_TRAIL_POINT_RANGE,
+      )
       const visibleTrail = record.particle.trail.slice(-trailPointLimit)
       const points: string[] = []
+      const readabilityFactor = getGardenBootReadabilityFactor(px, py, width, height)
+      const usePurpleKeypoint =
+        record.particle.colorIndex % GARDEN_BOOT_TRACKER_PALETTE.length === 1
 
       for (let index = drawEvery; index < visibleTrail.length; index += drawEvery) {
         const point = visibleTrail[index]
@@ -622,11 +741,11 @@ async function hydrateGardenBootTrackerLayer(state: GardenBootTrackerState, sign
       record.screenY = py / height
       record.screenZ = clamp((record.particle.z + 6) / 40, 0, 0.999)
 
-      record.tracker.style.opacity = record.reveal.toFixed(3)
+      record.tracker.style.opacity = (record.reveal * readabilityFactor).toFixed(3)
       record.trail.setAttribute("points", points.join(" "))
       record.trail.setAttribute("stroke-width", trailWidth.toFixed(2))
       record.trail.style.opacity = (
-        record.reveal * (record.particle.important ? 0.5 : 0.28 + stageFactor * 0.18)
+        record.reveal * (record.particle.important ? 0.56 : 0.34 + stageFactor * 0.22)
       ).toFixed(3)
 
       record.glow.setAttribute("cx", px.toFixed(2))
@@ -638,6 +757,7 @@ async function hydrateGardenBootTrackerLayer(state: GardenBootTrackerState, sign
 
       const boxSize =
         baseRadius * (record.particle.important ? 5.8 + pulse * 0.32 : 4.6 + pulse * 0.24)
+      record.screenScale = normalizeGardenBootScreenScale(boxSize)
       record.box.setAttribute("x", (px - boxSize / 2).toFixed(2))
       record.box.setAttribute("y", (py - boxSize / 2).toFixed(2))
       record.box.setAttribute("width", boxSize.toFixed(2))
@@ -658,213 +778,73 @@ async function hydrateGardenBootTrackerLayer(state: GardenBootTrackerState, sign
       record.core.setAttribute("r", coreRadius.toFixed(2))
       record.core.style.opacity = (record.reveal * 0.94).toFixed(3)
 
-      if (record.reveal > 0.14) {
+      if (record.reveal > GARDEN_BOOT_TRACKER_REVEAL_THRESHOLD) {
         meshPoints.push({
           x: px,
           y: py,
           reveal: record.reveal,
-          anchor: record.particle.important,
-          colorIndex: record.particle.colorIndex,
-        })
-
-        const meshStride = record.particle.important ? 3 : 5
-        const meshLimit = record.particle.important ? 16 : 9
-
-        for (
-          let index = visibleTrail.length - 2, emitted = 0;
-          index >= 0 && emitted < meshLimit;
-          index -= meshStride, emitted += 1
-        ) {
-          const point = visibleTrail[index]
-          const [mx, my] = projectGardenBootPoint(
-            point.x,
-            point.y,
-            point.z,
-            centerX,
-            centerY,
-            scale,
-            GARDEN_BOOT_MAIN_ROT_X,
-            rotZ,
-            GARDEN_BOOT_MAIN_CZ_OFFSET,
-          )
-
-          meshPoints.push({
-            x: mx,
-            y: my,
-            reveal: record.reveal * (1 - emitted / (meshLimit + 1)),
-            anchor: record.particle.important && emitted < 2,
-            colorIndex: record.particle.colorIndex,
-          })
-        }
-      }
-    }
-
-    const localEdges: GardenBootMeshEdge[] = []
-    const bridgeEdges: GardenBootMeshEdge[] = []
-    const meshKeys = new Set<string>()
-    const localDistanceSq = Math.pow(Math.min(width, height) * (width < 900 ? 0.22 : 0.175), 2)
-    const bridgeDistanceSq = Math.pow(Math.min(width, height) * (width < 900 ? 0.5 : 0.4), 2)
-
-    for (let index = 0; index < meshPoints.length; index += 1) {
-      const point = meshPoints[index]
-      const candidates: Array<{ index: number; distanceSq: number }> = []
-
-      for (let otherIndex = index + 1; otherIndex < meshPoints.length; otherIndex += 1) {
-        const other = meshPoints[otherIndex]
-        const dx = other.x - point.x
-        const dy = other.y - point.y
-        const distanceSq = dx * dx + dy * dy
-
-        if (distanceSq <= localDistanceSq) {
-          candidates.push({ index: otherIndex, distanceSq })
-          continue
-        }
-
-        if ((point.anchor || other.anchor) && distanceSq <= bridgeDistanceSq) {
-          bridgeEdges.push({
-            start: point,
-            end: other,
-            score: distanceSq,
-          })
-        }
-      }
-
-      candidates.sort((left, right) => left.distanceSq - right.distanceSq)
-      const neighborCount = point.anchor ? 7 : 4
-
-      for (
-        let candidateIndex = 0;
-        candidateIndex < candidates.length && candidateIndex < neighborCount;
-        candidateIndex += 1
-      ) {
-        const candidate = candidates[candidateIndex]
-        const other = meshPoints[candidate.index]
-        const key = `${Math.min(index, candidate.index)}:${Math.max(index, candidate.index)}`
-
-        if (meshKeys.has(key)) {
-          continue
-        }
-
-        meshKeys.add(key)
-        localEdges.push({
-          start: point,
-          end: other,
-          score: candidate.distanceSq,
+          readability: readabilityFactor,
+          fill: usePurpleKeypoint ? GARDEN_BOOT_KEYPOINT_PURPLE : GARDEN_BOOT_KEYPOINT_GREEN,
+          glow: usePurpleKeypoint
+            ? GARDEN_BOOT_KEYPOINT_PURPLE_GLOW
+            : GARDEN_BOOT_KEYPOINT_GREEN_GLOW,
         })
       }
     }
 
-    bridgeEdges.sort((left, right) => {
-      const anchorPairDelta =
-        Number(right.start.anchor && right.end.anchor) -
-        Number(left.start.anchor && left.end.anchor)
-      return anchorPairDelta !== 0 ? anchorPairDelta : right.score - left.score
-    })
-    const selectedEdges = [...localEdges]
-    const bridgeBudget = Math.max(18, Math.round(meshLinePool.length * 0.36))
-
-    for (
-      let edgeIndex = 0, bridgesAdded = 0;
-      edgeIndex < bridgeEdges.length &&
-      selectedEdges.length < meshLinePool.length &&
-      bridgesAdded < bridgeBudget;
-      edgeIndex += 1
-    ) {
-      const edge = bridgeEdges[edgeIndex]
-      const startIndex = meshPoints.indexOf(edge.start)
-      const endIndex = meshPoints.indexOf(edge.end)
-      const key = `${Math.min(startIndex, endIndex)}:${Math.max(startIndex, endIndex)}`
-
-      if (meshKeys.has(key)) {
-        continue
-      }
-
-      meshKeys.add(key)
-      selectedEdges.push(edge)
-      bridgesAdded += 1
-    }
+    const meshEdges = createGardenBootMeshEdges(meshPoints)
 
     let meshLineIndex = 0
     for (
       let edgeIndex = 0;
-      edgeIndex < selectedEdges.length && meshLineIndex < meshLinePool.length;
+      edgeIndex < meshEdges.length && meshLineIndex < meshLinePool.length;
       edgeIndex += 1
     ) {
-      const edge = selectedEdges[edgeIndex]
-      const glowLine = meshGlowLinePool[meshLineIndex]
+      const edge = meshEdges[edgeIndex]
       const line = meshLinePool[meshLineIndex]
-      const dx = edge.end.x - edge.start.x
-      const dy = edge.end.y - edge.start.y
-      const distance = Math.sqrt(dx * dx + dy * dy)
-      const distanceRatio = distance / Math.sqrt(bridgeDistanceSq)
-      const isBridge = edge.score > localDistanceSq
-      const paletteIndex =
-        edge.start.anchor && edge.end.anchor
-          ? (edge.start.colorIndex + edge.end.colorIndex + edgeIndex) %
-            GARDEN_BOOT_MESH_PALETTE.length
-          : edge.start.anchor || edge.end.anchor
-            ? edge.start.anchor
-              ? edge.start.colorIndex % GARDEN_BOOT_MESH_PALETTE.length
-              : edge.end.colorIndex % GARDEN_BOOT_MESH_PALETTE.length
-            : 0
-      const palette = GARDEN_BOOT_MESH_PALETTE[paletteIndex]
-      const opacity =
-        Math.min(edge.start.reveal, edge.end.reveal) *
-        (edge.start.anchor || edge.end.anchor ? 0.78 : 0.5) *
-        (isBridge ? 0.64 + distanceRatio * 0.18 : 0.96 - distanceRatio * 0.24)
-      const linePoints = `${edge.start.x.toFixed(2)},${edge.start.y.toFixed(2)} ${edge.end.x.toFixed(2)},${edge.end.y.toFixed(2)}`
-      const lineOpacity = clamp(opacity, 0, 0.84)
-      const glowOpacity = clamp(
-        lineOpacity * (isBridge ? 0.68 : edge.start.anchor || edge.end.anchor ? 0.54 : 0.38),
-        0,
-        0.5,
-      )
-      const lineWidth = isBridge ? 0.92 : edge.start.anchor || edge.end.anchor ? 0.84 : 0.68
-      const glowWidth = lineWidth * (isBridge ? 4.2 : 3.4)
-
-      glowLine.setAttribute("points", linePoints)
-      glowLine.style.stroke = palette.glow
-      glowLine.style.strokeWidth = glowWidth.toFixed(2)
-      glowLine.style.opacity = glowOpacity.toFixed(3)
-
-      line.setAttribute("points", linePoints)
-      line.style.stroke = palette.stroke
-      line.style.strokeWidth = lineWidth.toFixed(2)
-      line.style.opacity = lineOpacity.toFixed(3)
+      const minReveal = Math.min(edge.start.reveal, edge.end.reveal)
+      const revealFactor = normalizeGardenBootReveal(minReveal)
+      const readabilityFactor = Math.min(edge.start.readability, edge.end.readability)
+      const distanceRatio = edge.distance / GARDEN_BOOT_MESH_DISTANCE_THRESHOLD
+      const baseOpacity = clamp(0.34 - distanceRatio * 0.12, 0.22, 0.34)
+      line.setAttribute("x1", edge.start.x.toFixed(2))
+      line.setAttribute("y1", edge.start.y.toFixed(2))
+      line.setAttribute("x2", edge.end.x.toFixed(2))
+      line.setAttribute("y2", edge.end.y.toFixed(2))
+      line.style.opacity = (baseOpacity * revealFactor * readabilityFactor).toFixed(3)
       meshLineIndex += 1
     }
 
     for (let index = meshLineIndex; index < meshLinePool.length; index += 1) {
-      meshGlowLinePool[index].setAttribute("points", "")
-      meshGlowLinePool[index].style.opacity = "0"
-      meshLinePool[index].setAttribute("points", "")
+      meshLinePool[index].setAttribute("x1", "0")
+      meshLinePool[index].setAttribute("y1", "0")
+      meshLinePool[index].setAttribute("x2", "0")
+      meshLinePool[index].setAttribute("y2", "0")
       meshLinePool[index].style.opacity = "0"
     }
 
-    const visibleMeshPoints = meshPoints.slice(0, meshPointPool.length)
+    const visibleMeshPoints = meshPoints.slice(0, meshKeypointPool.length)
     for (let index = 0; index < visibleMeshPoints.length; index += 1) {
       const point = visibleMeshPoints[index]
-      const palette = GARDEN_BOOT_MESH_PALETTE[point.colorIndex % GARDEN_BOOT_MESH_PALETTE.length]
-      const meshBlob = meshBlobPool[index]
-      const meshPoint = meshPointPool[index]
-      meshBlob.setAttribute("cx", point.x.toFixed(2))
-      meshBlob.setAttribute("cy", point.y.toFixed(2))
-      meshBlob.setAttribute("r", (point.anchor ? 8.4 : 5).toFixed(2))
-      meshBlob.style.fill = palette.blob
-      meshBlob.style.opacity = clamp(point.reveal * (point.anchor ? 0.48 : 0.2), 0, 0.54).toFixed(3)
+      const pointOpacity = normalizeGardenBootReveal(point.reveal) * point.readability
+      const meshKeypointGlow = meshKeypointGlowPool[index]
+      const meshKeypoint = meshKeypointPool[index]
+      meshKeypointGlow.setAttribute("cx", point.x.toFixed(2))
+      meshKeypointGlow.setAttribute("cy", point.y.toFixed(2))
+      meshKeypointGlow.setAttribute("r", "5.5")
+      meshKeypointGlow.style.fill = point.glow
+      meshKeypointGlow.style.opacity = (pointOpacity * 0.52).toFixed(3)
 
-      meshPoint.setAttribute("cx", point.x.toFixed(2))
-      meshPoint.setAttribute("cy", point.y.toFixed(2))
-      meshPoint.setAttribute("r", (point.anchor ? 2.2 : 1.25).toFixed(2))
-      meshPoint.style.fill = palette.point
-      meshPoint.style.opacity = clamp(point.reveal * (point.anchor ? 0.92 : 0.56), 0, 0.96).toFixed(
-        3,
-      )
+      meshKeypoint.setAttribute("cx", point.x.toFixed(2))
+      meshKeypoint.setAttribute("cy", point.y.toFixed(2))
+      meshKeypoint.setAttribute("r", "2.5")
+      meshKeypoint.style.fill = point.fill
+      meshKeypoint.style.opacity = (pointOpacity * 0.98).toFixed(3)
     }
 
-    for (let index = visibleMeshPoints.length; index < meshPointPool.length; index += 1) {
-      meshBlobPool[index].style.opacity = "0"
-      meshPointPool[index].style.opacity = "0"
+    for (let index = visibleMeshPoints.length; index < meshKeypointPool.length; index += 1) {
+      meshKeypointGlowPool[index].style.opacity = "0"
+      meshKeypointPool[index].style.opacity = "0"
     }
 
     if (time - lastHudSampleTime >= GARDEN_BOOT_HUD_SAMPLE_INTERVAL_MS) {

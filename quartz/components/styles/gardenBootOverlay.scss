@@ -31,47 +31,34 @@
   opacity: 0.8;
 }
 
-.gb-mesh-glow,
 .gb-mesh-lines,
-.gb-mesh-blobs,
-.gb-mesh-points {
+.gb-mesh-keypoint-glows,
+.gb-mesh-keypoints {
   mix-blend-mode: screen;
 }
 
-.gb-mesh-glow {
-  filter: blur(6px);
-}
-
-.gb-mesh-blobs {
-  filter: blur(14px);
-}
-
-.gb-mesh-line,
-.gb-mesh-line-glow {
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
+.gb-mesh-keypoint-glows {
+  filter: blur(3px);
 }
 
 .gb-mesh-line {
-  stroke: rgba(244, 244, 244, 0.68);
-  stroke-width: 0.88;
-}
-
-.gb-mesh-line-glow {
-  stroke: rgba(244, 244, 244, 0.2);
-  stroke-width: 3.2;
+  fill: none;
+  stroke: rgba(232, 238, 255, 1);
+  stroke-width: 0.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
   opacity: 0;
 }
 
-.gb-mesh-blob {
-  fill: rgba(244, 244, 244, 0.22);
+.gb-mesh-keypoint-glow {
+  fill: rgba(0, 255, 136, 0.72);
   opacity: 0;
 }
 
-.gb-mesh-point {
-  fill: rgba(244, 244, 244, 0.92);
+.gb-mesh-keypoint {
+  fill: #00ff88;
+  opacity: 0;
 }
 
 .gb-track-trail {
@@ -162,8 +149,9 @@
   top: 50%;
   left: 50%;
   z-index: 2;
-  width: min(560px, calc(100vw - 40px));
-  padding: 26px 30px 24px;
+  width: min(48ch, calc(100vw - 40px));
+  box-sizing: border-box;
+  padding: 22px 24px 20px;
   transform: translate(-50%, -50%);
   text-align: left;
   color: #f0f0ea;
@@ -178,6 +166,18 @@
     0 0 10px rgba(7, 7, 10, 0.92);
   user-select: none;
   transition: opacity 250ms ease;
+  isolation: isolate;
+
+  &::before {
+    position: absolute;
+    inset: -8px -14px -8px -12px;
+    z-index: -1;
+    border-radius: 22px;
+    content: "";
+    background: rgba(2, 4, 10, 0.035);
+    backdrop-filter: blur(1.5px) brightness(0.34);
+    -webkit-backdrop-filter: blur(1.5px) brightness(0.34);
+  }
 
   #garden-boot-overlay.is-exiting & {
     opacity: 0;
@@ -214,11 +214,6 @@
   color: #393639;
 }
 
-.gb-group.is-past .gb-line,
-.gb-group.is-past .gb-seg {
-  color: #393639;
-}
-
 .gb-cursor {
   color: #84a98c;
   animation: gb-cursor-blink 1s steps(1, end) infinite;
@@ -247,8 +242,12 @@
   }
 
   .gb-shell {
-    width: min(540px, calc(100vw - 32px));
-    padding: 22px 24px 20px;
+    width: min(46ch, calc(100vw - 32px));
+    padding: 20px 20px 18px;
+
+    &::before {
+      inset: -8px -10px -8px -10px;
+    }
   }
 }
 
@@ -259,10 +258,15 @@
   }
 
   .gb-shell {
-    width: calc(100vw - 24px);
-    padding: 18px 18px 16px;
+    width: min(42ch, calc(100vw - 24px));
+    padding: 16px 16px 14px;
     border-radius: 20px;
     font-size: 12px;
     line-height: 1.75;
+
+    &::before {
+      inset: -6px -8px -6px -8px;
+      border-radius: 18px;
+    }
   }
 }
