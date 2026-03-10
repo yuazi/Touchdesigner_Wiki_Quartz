@@ -168,17 +168,6 @@
   transition: opacity 250ms ease;
   isolation: isolate;
 
-  &::before {
-    position: absolute;
-    inset: -8px -14px -8px -12px;
-    z-index: -1;
-    border-radius: 22px;
-    content: "";
-    background: rgba(2, 4, 10, 0.035);
-    backdrop-filter: blur(1.5px) brightness(0.34);
-    -webkit-backdrop-filter: blur(1.5px) brightness(0.34);
-  }
-
   #garden-boot-overlay.is-exiting & {
     opacity: 0;
   }
