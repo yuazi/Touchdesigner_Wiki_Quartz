@@ -1,6 +1,6 @@
 # (y)usage Garden
 
-A Quartz v4-based ***digital garden*** and personal knowledge base for my notes, experiments, and long-form references.
+A Quartz v4-based **_digital garden_** and personal knowledge base for my notes, experiments, and long-form references.
 
 Live site: [yuazi.github.io/\_y_usagewiki](https://yuazi.github.io/_y_usagewiki)
 

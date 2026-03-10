@@ -13,6 +13,6 @@ date: 2026-01-01
 
 ## Courses
 
-- [[notes/mlp/index|→ Machine Perception & Learning (MPL)]] — CNNs, Transformers, ViT, GANs, Diffusion, RL, XAI
+- [[notes/mlp/index|→ Machine Perception & Learning (MPL)]] with notes on CNNs, Transformers, ViT, GANs, Diffusion, RL, and XAI
 
 ---

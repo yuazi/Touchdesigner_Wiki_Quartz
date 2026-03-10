@@ -1,5 +1,5 @@
 ---
-title: Ghostty – Terminal Emulator
+title: Ghostty, a Terminal Emulator
 tags:
   - cli
   - tools
@@ -7,7 +7,7 @@ tags:
 date: 2026-03-02
 ---
 
-[Ghostty](https://ghostty.org/) is a fast, feature-rich, and native terminal emulator written in Zig, with support for GPU rendering, native OS integrations, and a zero-config philosophy.
+[Ghostty](https://ghostty.org/) is a fast native terminal emulator written in Zig. It supports GPU rendering, fits nicely into the OS, and works well right out of the box.
 
 ## Installation
 
@@ -19,7 +19,7 @@ brew install --cask ghostty
 
 ## Configuration
 
-Ghostty uses a plain-text config file located at:
+Ghostty uses a plain text config file located at:
 
 ```
 ~/.config/ghostty/config
@@ -37,13 +37,13 @@ window-padding-y = 8
 
 ## Key Features
 
-- **GPU-accelerated rendering** via Metal (macOS) and OpenGL/Vulkan (Linux)
-- **Native UI** — uses platform-native window decorations and menus
-- **Split panes** — horizontal and vertical splits built in
-- **Tabs** — native tab support
-- **Ligature support** — full font ligature rendering
-- **True color & undercurl** — full modern terminal capability support
-- **Shell integration** — automatic shell prompts, cursor shape, and working directory tracking
+- **GPU rendering:** via Metal (macOS) and OpenGL/Vulkan (Linux)
+- **Native UI:** uses window decorations and menus that feel at home on the platform
+- **Split panes:** horizontal and vertical splits are built in
+- **Tabs:** native tab support
+- **Ligature support:** full font ligature rendering
+- **True color & undercurl:** modern terminal capability support
+- **Shell integration:** automatic shell prompts, cursor shape, and working directory tracking
 
 ## Splits & Tabs
 
@@ -66,7 +66,7 @@ window-padding-y = 8
 
 ## Themes
 
-Ghostty ships with many built-in themes. List them with:
+Ghostty ships with many built in themes. List them with:
 
 ```sh
 ghostty +list-themes

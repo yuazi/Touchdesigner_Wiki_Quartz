@@ -1,5 +1,5 @@
 ---
-title: Yazi – Terminal File Manager
+title: Yazi, a Terminal File Manager
 tags:
   - cli
   - tools
@@ -8,7 +8,7 @@ tags:
 date: 2026-02-28
 ---
 
-[Yazi](https://yazi-rs.github.io/) is a blazing-fast terminal file manager written in Rust, with a three-column Miller-columns layout (parent / current / preview).
+[Yazi](https://yazi-rs.github.io/) is a very fast terminal file manager written in Rust, with a three column Miller layout (parent / current / preview).
 
 Start it with:
 
@@ -132,12 +132,12 @@ Then use `y` to start Yazi. Press `q` to quit and `cd` into the last directory, 
 | `,` ⇒ `S` | Sort by size (reverse)           |
 | `,` ⇒ `r` | Sort randomly                    |
 
-### Multi-Tab
+### Tabs
 
 | Key        | Action                             |
 | ---------- | ---------------------------------- |
 | `t`        | Create a new tab with CWD          |
-| `1` – `9`  | Switch to the N-th tab             |
+| `1` to `9` | Switch to the matching numbered tab |
 | `[`        | Switch to the previous tab         |
 | `]`        | Switch to the next tab             |
 | `{`        | Swap current tab with previous tab |
