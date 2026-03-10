@@ -11,6 +11,9 @@
         --garden-boot-accent: #84a98c;
         --garden-boot-lavender: #9d8fbe;
         --garden-boot-dim: #393639;
+        --garden-boot-muted: rgba(212, 212, 212, 0.32);
+        --garden-boot-edge: rgba(132, 169, 140, 0.2);
+        --garden-boot-bridge: rgba(157, 143, 190, 0.24);
         --garden-boot-font: "JetBrains Mono", "Fira Code", Consolas, monospace;
       }
 
@@ -29,6 +32,7 @@
         position: fixed;
         inset: 0;
         z-index: 2147483647;
+        overflow: hidden;
         background-color: var(--garden-boot-bg);
         transition: background-color 500ms ease;
       }
@@ -37,10 +41,87 @@
         background-color: rgba(17, 17, 21, 0);
       }
 
+      .garden-boot-graph-layer {
+        position: absolute;
+        inset: -6%;
+        pointer-events: none;
+        opacity: 1;
+        transition: opacity 250ms ease;
+      }
+
+      #garden-boot-overlay.is-exiting .garden-boot-graph-layer {
+        opacity: 0;
+      }
+
+      .garden-boot-graph {
+        display: block;
+        width: 100%;
+        height: 100%;
+        opacity: 0.72;
+      }
+
+      .garden-boot-graph-edge {
+        fill: none;
+        opacity: 0;
+        stroke: var(--garden-boot-edge);
+        stroke-linecap: round;
+        stroke-opacity: 0;
+        vector-effect: non-scaling-stroke;
+        will-change: opacity, stroke-opacity;
+      }
+
+      .garden-boot-graph-edge.is-bridge {
+        stroke: var(--garden-boot-bridge);
+      }
+
+      .garden-boot-graph-node-wrap {
+        opacity: 0;
+        transform-box: fill-box;
+        transform-origin: center;
+        will-change: opacity, transform;
+      }
+
+      .garden-boot-graph-node-wrap.is-core .garden-boot-graph-halo,
+      .garden-boot-graph-node-wrap.is-bridge-node .garden-boot-graph-halo {
+        opacity: 0;
+      }
+
+      .garden-boot-graph-node {
+        vector-effect: non-scaling-stroke;
+      }
+
+      .garden-boot-graph-node.is-accent {
+        fill: rgba(166, 191, 179, 0.82);
+      }
+
+      .garden-boot-graph-node.is-muted {
+        fill: var(--garden-boot-muted);
+      }
+
+      .garden-boot-graph-node.is-ring {
+        fill: rgba(132, 169, 140, 0.08);
+        stroke: rgba(185, 216, 191, 0.92);
+        stroke-width: 1.6;
+      }
+
+      .garden-boot-graph-node.is-hub {
+        fill: rgba(166, 191, 179, 0.88);
+      }
+
+      .garden-boot-graph-halo {
+        fill: none;
+        opacity: 0;
+        stroke: rgba(132, 169, 140, 0.2);
+        stroke-width: 1;
+        vector-effect: non-scaling-stroke;
+        will-change: opacity, transform;
+      }
+
       .garden-boot-shell {
         position: absolute;
         top: 50%;
         left: 50%;
+        z-index: 2;
         width: min(520px, calc(100vw - 48px));
         transform: translate(-50%, -50%);
         text-align: left;
@@ -51,6 +132,10 @@
         letter-spacing: 0.01em;
         opacity: 1;
         pointer-events: none;
+        text-shadow:
+          0 0 2px rgba(17, 17, 21, 1),
+          0 0 18px rgba(17, 17, 21, 0.96),
+          0 0 36px rgba(17, 17, 21, 0.88);
         user-select: none;
         transition: opacity 250ms ease;
       }
@@ -115,11 +200,13 @@
       ;(() => {
         const SESSION_KEY = "gardenBooted"
         const OVERLAY_ID = "garden-boot-overlay"
+        const GRAPH_STAGE_COUNT = 4
         const TYPE_SPEED_MS = 12
         const GROUP_GAP_MS = 420
         const FINAL_PROMPT_DELAY_MS = 700
         const EXIT_BG_FADE_MS = 500
         const CURSOR_CHAR = "\u258c"
+        const SVG_NS = "http://www.w3.org/2000/svg"
         const BOOT_GROUPS = [
           [
             "[lavender](y)usage BIOS v1.0[/lavender]",
@@ -139,6 +226,74 @@
           ["[lavender]Entering (y)usage Garden...[/lavender]"],
         ]
         const PROMPT_LINE = "[dim]press any key or click to enter  [/dim]"
+        const GRAPH_CLUSTERS = [
+          {
+            id: "leftTop",
+            cx: 210,
+            cy: 320,
+            rx: 98,
+            ry: 82,
+            innerCount: 12,
+            ringCount: 6,
+            baseStage: 1,
+            hubRadius: 7,
+          },
+          {
+            id: "leftBottom",
+            cx: 280,
+            cy: 700,
+            rx: 130,
+            ry: 112,
+            innerCount: 16,
+            ringCount: 8,
+            baseStage: 1,
+            hubRadius: 11,
+          },
+          {
+            id: "center",
+            cx: 500,
+            cy: 395,
+            rx: 74,
+            ry: 54,
+            innerCount: 5,
+            ringCount: 3,
+            baseStage: 0,
+            hubRadius: 8,
+          },
+          {
+            id: "rightNorth",
+            cx: 720,
+            cy: 185,
+            rx: 105,
+            ry: 96,
+            innerCount: 14,
+            ringCount: 7,
+            baseStage: 2,
+            hubRadius: 10,
+          },
+          {
+            id: "rightSpine",
+            cx: 805,
+            cy: 490,
+            rx: 94,
+            ry: 250,
+            innerCount: 26,
+            ringCount: 12,
+            baseStage: 0,
+            hubRadius: 18,
+          },
+          {
+            id: "farRight",
+            cx: 920,
+            cy: 585,
+            rx: 94,
+            ry: 150,
+            innerCount: 14,
+            ringCount: 8,
+            baseStage: 3,
+            hubRadius: 10,
+          },
+        ]
 
         function hasBooted() {
           try {
@@ -162,6 +317,28 @@
           } catch {
             return true
           }
+        }
+
+        function clamp(value, min, max) {
+          return Math.min(Math.max(value, min), max)
+        }
+
+        function lerp(start, end, amount) {
+          return start + (end - start) * amount
+        }
+
+        function createSeededRandom(seed) {
+          let state = seed >>> 0
+          return () => {
+            state += 0x6d2b79f5
+            let t = Math.imul(state ^ (state >>> 15), state | 1)
+            t ^= t + Math.imul(t ^ (t >>> 7), t | 61)
+            return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+          }
+        }
+
+        function createSvgEl(tagName) {
+          return document.createElementNS(SVG_NS, tagName)
         }
 
         function parseMarkup(line) {
@@ -204,6 +381,473 @@
             }, ms)
 
             signal.addEventListener("abort", onAbort, { once: true })
+          })
+        }
+
+        function createGraphBlueprint() {
+          const random = createSeededRandom(23)
+          const nodes = []
+          const edges = []
+          const nodesById = new Map()
+          const clusterData = new Map()
+          const edgeKeys = new Set()
+
+          function addNode(node) {
+            const normalized = {
+              ...node,
+              stage: clamp(node.stage, 0, GRAPH_STAGE_COUNT),
+              bridgeNode: Boolean(node.bridgeNode),
+              core: Boolean(node.core),
+              ring: Boolean(node.ring),
+              halo: Boolean(node.halo),
+            }
+            nodes.push(normalized)
+            nodesById.set(normalized.id, normalized)
+            return normalized
+          }
+
+          function addEdge(sourceId, targetId, stage, bridge = false) {
+            if (sourceId === targetId) {
+              return
+            }
+
+            const key =
+              sourceId < targetId ? `${sourceId}::${targetId}` : `${targetId}::${sourceId}`
+            if (edgeKeys.has(key)) {
+              return
+            }
+
+            edgeKeys.add(key)
+            edges.push({
+              sourceId,
+              targetId,
+              stage: clamp(stage, 0, GRAPH_STAGE_COUNT),
+              bridge,
+            })
+          }
+
+          for (const cluster of GRAPH_CLUSTERS) {
+            const hub = addNode({
+              id: `${cluster.id}-hub`,
+              x: cluster.cx,
+              y: cluster.cy,
+              r: cluster.hubRadius,
+              tone: "accent",
+              stage: 0,
+              halo: true,
+              core: true,
+            })
+
+            const innerNodes = []
+            const ringNodes = []
+
+            for (let index = 0; index < cluster.innerCount; index += 1) {
+              const angle = (index / cluster.innerCount) * Math.PI * 2 + random() * 0.9
+              const radius = 0.2 + Math.pow(random(), 0.82) * 0.85
+              const x =
+                cluster.cx + Math.cos(angle) * cluster.rx * radius * (0.82 + random() * 0.24)
+              const y = cluster.cy + Math.sin(angle) * cluster.ry * radius * (0.78 + random() * 0.3)
+              const stage = cluster.baseStage + (radius > 0.48 ? 1 : 0) + (radius > 0.74 ? 1 : 0)
+
+              const node = addNode({
+                id: `${cluster.id}-inner-${index}`,
+                x,
+                y,
+                r: index === 0 ? Math.max(6, cluster.hubRadius - 1) : 2.8 + random() * 4.6,
+                tone: random() > 0.24 ? "accent" : "muted",
+                stage,
+                halo: index < 2 && cluster.baseStage < 3,
+                core: index === 0 && cluster.baseStage < 2,
+              })
+
+              innerNodes.push(node)
+              addEdge(hub.id, node.id, Math.max(0, stage - 1))
+            }
+
+            for (let index = 0; index < cluster.ringCount; index += 1) {
+              const angle =
+                (index / cluster.ringCount) * Math.PI * 2 +
+                random() * 0.45 +
+                (cluster.id === "rightSpine" ? 0.1 : 0)
+              const x = cluster.cx + Math.cos(angle) * cluster.rx * (1.04 + random() * 0.12)
+              const y = cluster.cy + Math.sin(angle) * cluster.ry * (1.04 + random() * 0.14)
+              const node = addNode({
+                id: `${cluster.id}-ring-${index}`,
+                x,
+                y,
+                r: 3.2 + random() * 3.2,
+                tone: "ring",
+                stage: cluster.baseStage + 2,
+                ring: true,
+              })
+
+              ringNodes.push(node)
+            }
+
+            clusterData.set(cluster.id, { cluster, hub, innerNodes, ringNodes })
+          }
+
+          function distance(nodeA, nodeB) {
+            return Math.hypot(nodeA.x - nodeB.x, nodeA.y - nodeB.y)
+          }
+
+          for (const { cluster, hub, innerNodes, ringNodes } of clusterData.values()) {
+            for (const node of innerNodes) {
+              const nearestInner = innerNodes
+                .filter((candidate) => candidate.id !== node.id)
+                .sort((nodeA, nodeB) => distance(node, nodeA) - distance(node, nodeB))
+                .slice(0, node.core ? 4 : 2)
+
+              for (const neighbor of nearestInner) {
+                addEdge(
+                  node.id,
+                  neighbor.id,
+                  Math.max(cluster.baseStage, Math.max(node.stage, neighbor.stage) - 1),
+                )
+              }
+            }
+
+            for (const node of ringNodes) {
+              const anchor = [...innerNodes, hub].sort(
+                (nodeA, nodeB) => distance(node, nodeA) - distance(node, nodeB),
+              )[0]
+
+              addEdge(node.id, anchor.id, node.stage)
+            }
+          }
+
+          function pickNearestNode(clusterId, targetX, targetY) {
+            const { hub, innerNodes, ringNodes } = clusterData.get(clusterId)
+            return [hub, ...innerNodes, ...ringNodes].sort((nodeA, nodeB) => {
+              const distanceA = Math.hypot(nodeA.x - targetX, nodeA.y - targetY)
+              const distanceB = Math.hypot(nodeB.x - targetX, nodeB.y - targetY)
+              return distanceA - distanceB
+            })[0]
+          }
+
+          function connectBridge(sourceNode, targetNode, stage) {
+            sourceNode.bridgeNode = true
+            targetNode.bridgeNode = true
+            addEdge(sourceNode.id, targetNode.id, stage, true)
+          }
+
+          connectBridge(
+            pickNearestNode("leftTop", 340, 420),
+            pickNearestNode("center", 500, 395),
+            1,
+          )
+          connectBridge(
+            pickNearestNode("leftBottom", 420, 640),
+            pickNearestNode("center", 500, 395),
+            2,
+          )
+          connectBridge(
+            pickNearestNode("center", 640, 360),
+            pickNearestNode("rightSpine", 720, 505),
+            2,
+          )
+          connectBridge(
+            pickNearestNode("center", 600, 250),
+            pickNearestNode("rightNorth", 640, 210),
+            2,
+          )
+          connectBridge(
+            pickNearestNode("leftBottom", 520, 780),
+            pickNearestNode("rightSpine", 650, 740),
+            3,
+          )
+          connectBridge(
+            pickNearestNode("rightNorth", 770, 310),
+            pickNearestNode("rightSpine", 780, 360),
+            1,
+          )
+          connectBridge(
+            pickNearestNode("rightSpine", 885, 470),
+            pickNearestNode("farRight", 840, 560),
+            3,
+          )
+          connectBridge(
+            pickNearestNode("rightNorth", 840, 290),
+            pickNearestNode("farRight", 845, 420),
+            4,
+          )
+          connectBridge(
+            pickNearestNode("leftTop", 300, 500),
+            pickNearestNode("leftBottom", 320, 575),
+            2,
+          )
+
+          return {
+            nodes,
+            edges: edges.map((edge) => ({
+              ...edge,
+              source: nodesById.get(edge.sourceId),
+              target: nodesById.get(edge.targetId),
+            })),
+          }
+        }
+
+        function createGraphLayer() {
+          const layer = document.createElement("div")
+          layer.className = "garden-boot-graph-layer"
+
+          const svg = createSvgEl("svg")
+          svg.classList.add("garden-boot-graph")
+          svg.setAttribute("viewBox", "0 0 1000 1000")
+          svg.setAttribute("preserveAspectRatio", "xMidYMid slice")
+          svg.setAttribute("aria-hidden", "true")
+
+          const edgeGroup = createSvgEl("g")
+          const nodeGroup = createSvgEl("g")
+          const graph = createGraphBlueprint()
+          const random = createSeededRandom(97)
+          const hubByCluster = new Map(
+            graph.nodes
+              .filter((node) => node.id.endsWith("-hub"))
+              .map((node) => [node.id.slice(0, -4), node]),
+          )
+          const nodeRecords = []
+          const nodeRecordById = new Map()
+          const edgeRecords = []
+
+          function getClusterKey(nodeId) {
+            return nodeId.replace(/-(hub|inner-\d+|ring-\d+)$/, "")
+          }
+
+          function getStartPosition(node) {
+            const hub = hubByCluster.get(getClusterKey(node.id)) ?? node
+            const compression = node.core ? 1 : node.bridgeNode ? 0.18 : node.ring ? 0.3 : 0.22
+            const jitter = node.core ? 8 : node.ring ? 18 : 12
+
+            return {
+              x: lerp(hub.x, node.x, compression) + (random() - 0.5) * jitter,
+              y: lerp(hub.y, node.y, compression) + (random() - 0.5) * jitter,
+            }
+          }
+
+          graph.nodes.forEach((node) => {
+            const start = getStartPosition(node)
+            const translate = createSvgEl("g")
+            translate.setAttribute(
+              "transform",
+              `translate(${start.x.toFixed(2)} ${start.y.toFixed(2)})`,
+            )
+
+            const wrap = createSvgEl("g")
+            wrap.classList.add("garden-boot-graph-node-wrap")
+            wrap.setAttribute("transform", "scale(0.34)")
+
+            if (node.core) {
+              wrap.classList.add("is-core")
+            }
+
+            if (node.bridgeNode) {
+              wrap.classList.add("is-bridge-node")
+            }
+
+            const halo = createSvgEl("circle")
+            halo.classList.add("garden-boot-graph-halo")
+            halo.setAttribute("cx", "0")
+            halo.setAttribute("cy", "0")
+            halo.setAttribute("r", (node.r * 2.25).toFixed(2))
+            wrap.appendChild(halo)
+
+            const circle = createSvgEl("circle")
+            circle.classList.add("garden-boot-graph-node")
+            circle.setAttribute("cx", "0")
+            circle.setAttribute("cy", "0")
+            circle.setAttribute("r", node.r.toFixed(2))
+
+            if (node.ring) {
+              circle.classList.add("is-ring")
+            } else if (node.core) {
+              circle.classList.add("is-hub")
+            } else if (node.tone === "muted") {
+              circle.classList.add("is-muted")
+            } else {
+              circle.classList.add("is-accent")
+            }
+
+            wrap.appendChild(circle)
+            translate.appendChild(wrap)
+            nodeGroup.appendChild(translate)
+
+            const record = {
+              node,
+              translate,
+              wrap,
+              halo,
+              currentX: start.x,
+              currentY: start.y,
+              originX: start.x,
+              originY: start.y,
+              velocityX: (random() - 0.5) * 1.2,
+              velocityY: (random() - 0.5) * 1.2,
+              reveal: 0,
+              targetReveal: 0,
+              phase: random() * Math.PI * 2,
+              driftRadius: node.core
+                ? 2.4 + random() * 1.8
+                : node.ring
+                  ? 1.6 + random() * 2.2
+                  : 0.9 + random() * 1.5,
+              driftSpeed: 0.00026 + random() * 0.00016,
+            }
+
+            nodeRecords.push(record)
+            nodeRecordById.set(node.id, record)
+          })
+
+          graph.edges.forEach((edge) => {
+            const line = createSvgEl("line")
+            line.classList.add("garden-boot-graph-edge")
+
+            if (edge.bridge) {
+              line.classList.add("is-bridge")
+            }
+
+            const source = nodeRecordById.get(edge.sourceId)
+            const target = nodeRecordById.get(edge.targetId)
+            line.setAttribute("x1", source.currentX.toFixed(2))
+            line.setAttribute("y1", source.currentY.toFixed(2))
+            line.setAttribute("x2", source.currentX.toFixed(2))
+            line.setAttribute("y2", source.currentY.toFixed(2))
+            line.setAttribute("stroke-width", edge.bridge ? "1.5" : "1")
+            edgeGroup.appendChild(line)
+            edgeRecords.push({
+              edge,
+              line,
+              source,
+              target,
+              reveal: 0,
+              targetReveal: 0,
+              phase: random() * Math.PI * 2,
+              pulseSpeed: 0.0012 + random() * 0.0008,
+            })
+          })
+
+          svg.append(edgeGroup, nodeGroup)
+          layer.appendChild(svg)
+
+          let frameId = 0
+          let active = true
+          let lastTime = 0
+
+          const tick = (time) => {
+            if (!active) {
+              return
+            }
+
+            const dt = clamp((time - lastTime || 16.667) / 16.667, 0.72, 2.1)
+            lastTime = time || 16.667
+
+            for (const record of nodeRecords) {
+              record.reveal += (record.targetReveal - record.reveal) * 0.11 * dt
+
+              const ambientX =
+                Math.cos(time * record.driftSpeed + record.phase) *
+                record.driftRadius *
+                record.reveal
+              const ambientY =
+                Math.sin(time * record.driftSpeed * 0.86 + record.phase * 1.17) *
+                record.driftRadius *
+                record.reveal
+              const targetX = lerp(record.originX, record.node.x, record.reveal) + ambientX
+              const targetY = lerp(record.originY, record.node.y, record.reveal) + ambientY
+              const settle = 0.08 + record.reveal * 0.05
+
+              record.velocityX += (targetX - record.currentX) * settle * dt
+              record.velocityY += (targetY - record.currentY) * settle * dt
+              record.velocityX *= 0.72
+              record.velocityY *= 0.72
+              record.currentX += record.velocityX * dt
+              record.currentY += record.velocityY * dt
+
+              const scale = 0.34 + record.reveal * 0.66
+              record.translate.setAttribute(
+                "transform",
+                `translate(${record.currentX.toFixed(2)} ${record.currentY.toFixed(2)})`,
+              )
+              record.wrap.setAttribute("transform", `scale(${scale.toFixed(3)})`)
+              record.wrap.style.opacity = record.reveal.toFixed(3)
+
+              if (record.node.core || record.node.bridgeNode) {
+                const pulse = 0.5 + 0.5 * Math.sin(time * 0.00115 + record.phase)
+                const haloScale = 0.94 + pulse * 0.44 + (1 - record.reveal) * 0.36
+                const haloOpacity =
+                  record.reveal * (record.node.core ? 0.34 : 0.18) * (0.72 + pulse * 0.5)
+
+                record.halo.setAttribute("transform", `scale(${haloScale.toFixed(3)})`)
+                record.halo.style.opacity = haloOpacity.toFixed(3)
+              } else {
+                record.halo.style.opacity = "0"
+              }
+            }
+
+            for (const record of edgeRecords) {
+              const visibilityTarget = Math.min(
+                record.targetReveal,
+                record.source.reveal,
+                record.target.reveal,
+              )
+
+              record.reveal += (visibilityTarget - record.reveal) * 0.095 * dt
+
+              const startX = record.source.currentX
+              const startY = record.source.currentY
+              const endX = record.target.currentX
+              const endY = record.target.currentY
+              const reach = 0.06 + record.reveal * 0.94
+              const drawX = lerp(startX, endX, reach)
+              const drawY = lerp(startY, endY, reach)
+              const pulse = 0.5 + 0.5 * Math.sin(time * record.pulseSpeed + record.phase)
+
+              record.line.setAttribute("x1", startX.toFixed(2))
+              record.line.setAttribute("y1", startY.toFixed(2))
+              record.line.setAttribute("x2", drawX.toFixed(2))
+              record.line.setAttribute("y2", drawY.toFixed(2))
+              record.line.style.opacity = record.reveal.toFixed(3)
+              record.line.style.strokeOpacity = (
+                record.reveal *
+                (record.edge.bridge ? 0.78 : 0.44) *
+                (0.76 + pulse * 0.48)
+              ).toFixed(3)
+            }
+
+            frameId = window.requestAnimationFrame(tick)
+          }
+
+          frameId = window.requestAnimationFrame(tick)
+
+          return {
+            layer,
+            nodeRecords,
+            edgeRecords,
+            currentStage: -1,
+            stop() {
+              active = false
+              window.cancelAnimationFrame(frameId)
+            },
+          }
+        }
+
+        function setGraphStage(graphState, stage) {
+          if (!graphState) {
+            return
+          }
+
+          const nextStage = clamp(stage, 0, GRAPH_STAGE_COUNT)
+          if (graphState.currentStage === nextStage) {
+            return
+          }
+
+          graphState.currentStage = nextStage
+          graphState.layer.dataset.stage = String(nextStage)
+          graphState.nodeRecords.forEach((record) => {
+            record.targetReveal = record.node.stage <= nextStage ? 1 : 0
+          })
+          graphState.edgeRecords.forEach((record) => {
+            record.targetReveal = record.edge.stage <= nextStage ? 1 : 0
           })
         }
 
@@ -251,13 +895,16 @@
           lineEl.appendChild(cursor)
         }
 
-        async function runSequence(logEl, signal) {
+        async function runSequence(logEl, graphState, signal) {
           let previousGroup = null
+          setGraphStage(graphState, 0)
 
           for (let groupIndex = 0; groupIndex < BOOT_GROUPS.length; groupIndex += 1) {
             if (signal.aborted) {
               return
             }
+
+            setGraphStage(graphState, groupIndex + 1)
 
             if (previousGroup) {
               previousGroup.classList.add("is-past")
@@ -282,6 +929,7 @@
           }
 
           await wait(FINAL_PROMPT_DELAY_MS, signal)
+          setGraphStage(graphState, GRAPH_STAGE_COUNT)
           await typePrompt(logEl, signal)
         }
 
@@ -292,6 +940,7 @@
             "position:fixed",
             "inset:0",
             "z-index:2147483647",
+            "overflow:hidden",
             "background-color:rgb(17, 17, 21)",
             "transition:background-color 500ms ease",
           ].join(";")
@@ -330,6 +979,7 @@
             document.body.appendChild(overlay)
           }
 
+          const graphState = createGraphLayer()
           const shell = document.createElement("div")
           shell.className = "garden-boot-shell"
 
@@ -337,7 +987,7 @@
           log.className = "garden-boot-log"
 
           shell.appendChild(log)
-          overlay.replaceChildren(shell)
+          overlay.replaceChildren(graphState.layer, shell)
           document.body.style.overflow = "hidden"
 
           const controller = new AbortController()
@@ -350,6 +1000,7 @@
 
             exited = true
             controller.abort()
+            graphState.stop()
             markBooted()
             window.removeEventListener("keydown", exitOverlay)
             overlay.removeEventListener("click", exitOverlay)
@@ -363,7 +1014,7 @@
 
           window.addEventListener("keydown", exitOverlay)
           overlay.addEventListener("click", exitOverlay, { passive: true })
-          runSequence(log, controller.signal)
+          runSequence(log, graphState, controller.signal)
         }
 
         if (document.readyState === "loading") {

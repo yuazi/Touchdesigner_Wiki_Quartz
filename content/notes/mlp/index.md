@@ -5,7 +5,7 @@ tags:
   - machine-learning
   - deep-learning
   - notes
-date: 2026-03-09
+date: 2026-03-10
 ---
 
 ## Machine Perception & Learning
