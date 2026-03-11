@@ -32,9 +32,9 @@ A running log of what I've been working on and learning, ordered by time.
 
 Short notes and references on things I find interesting.
 
-- [[notes/ghostty|→ Ghostty, a Terminal Emulator]]
-- [[notes/perfumes|→ Perfumes]]
-- [[notes/yazi|→ Yazi, a Terminal File Manager]]
+- [[notes/lorenz-attractor|→ The Lorenz Attractor]]
+- [[notes/sioyek|→ Sioyek, a Keyboard Driven PDF Reader]]
+- [[notes/taekwondo|→ Taekwondo]]
 
 ---
 
