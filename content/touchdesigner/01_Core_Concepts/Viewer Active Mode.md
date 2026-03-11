@@ -18,6 +18,6 @@ Every node has a small button in the bottom-right corner (looks like a plus sign
 
 Select a node and press **A** to toggle Viewer Active.
 
-[[touchdesigner/01_Core_Concepts/index|↑ Back to Core Concepts]] | [[touchdesigner/index|↑ Back to TouchDesigner]]
+[[touchdesigner/01_Core_Concepts/index|Return to Core Concepts]] | [[touchdesigner/index|Return to TouchDesigner]]
 
 ---

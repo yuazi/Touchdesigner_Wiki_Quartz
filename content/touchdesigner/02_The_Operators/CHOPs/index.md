@@ -12,20 +12,20 @@ CHOPs are the nervous system of a TouchDesigner network. They carry **numeric si
 
 **Key nodes:** Constant, LFO, Math, Analyze, Select, Trail
 
-[[CHOP - Channel Operators|→ Read the full CHOP guide]]
+[[CHOP - Channel Operators|(y-) Read the full CHOP guide]]
 
 ---
 
 ## In This Section
 
-- [[CHOP - Channel Operators|→ CHOP - Channel Operators]]
-- [[Constant CHOP|→ Constant CHOP]]
-- [[LFO CHOP|→ LFO CHOP]]
-- [[Math CHOP|→ Math CHOP]]
-- [[Noise - CHOP and TOP|→ Noise - CHOP and TOP]]
-- [[Select CHOP|→ Select CHOP]]
-- [[Timer CHOP|→ Timer CHOP]]
+- [[CHOP - Channel Operators|(y-) CHOP - Channel Operators]]
+- [[Constant CHOP|(y-) Constant CHOP]]
+- [[LFO CHOP|(y-) LFO CHOP]]
+- [[Math CHOP|(y-) Math CHOP]]
+- [[Noise - CHOP and TOP|(y-) Noise - CHOP and TOP]]
+- [[Select CHOP|(y-) Select CHOP]]
+- [[Timer CHOP|(y-) Timer CHOP]]
 
-[[touchdesigner/02_The_Operators/index|↑ Back to The Operators]]
+[[touchdesigner/02_The_Operators/index|Return to The Operators]]
 
 ---

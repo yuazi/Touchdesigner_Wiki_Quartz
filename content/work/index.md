@@ -27,6 +27,6 @@ A collection of projects, experiments, and professional work. These are things I
 
 Anything I've spent real time on, whether that means client work, personal projects, open source contributions, or experiments that shipped in some form.
 
-[[index|↑ Back to Home]]
+[[index|Return to Home]]
 
 ---

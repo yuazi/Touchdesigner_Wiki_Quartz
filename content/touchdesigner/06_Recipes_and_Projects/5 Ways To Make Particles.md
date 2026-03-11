@@ -254,10 +254,10 @@ Total custom control / GPU only?  → Method 4 (GLSL Feedback)
 
 ## Related Notes
 
-- [[Particle System with POPs|→ Recipe: Particle System with POPs]]
-- [[Dreamscape Particle Cloud|→ Recipe: Dreamscape Particle Cloud]]
-- [[GLSL Feedback Effect|→ Recipe: GLSL Feedback Effect]]
+- [[Particle System with POPs|(y-) Recipe: Particle System with POPs]]
+- [[Dreamscape Particle Cloud|(y-) Recipe: Dreamscape Particle Cloud]]
+- [[GLSL Feedback Effect|(y-) Recipe: GLSL Feedback Effect]]
 
-[[touchdesigner/06_Recipes_and_Projects/index|↑ Back to Recipes & Projects]]
+[[touchdesigner/06_Recipes_and_Projects/index|Return to Recipes & Projects]]
 
 ---

@@ -21,4 +21,4 @@ _The garden is never finished. Neither am I._
 
 ---
 
-[[index|← Back to Garden]]
+[[index|Return to Garden]]

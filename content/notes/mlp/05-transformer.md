@@ -10,7 +10,7 @@ tags:
 date: 2026-03-09
 ---
 
-[[notes/mlp/04-rnn|← L04: RNNs]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/06-vit|Next: ViT →]]
+[[notes/mlp/04-rnn|Previous: L04: RNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/06-vit|Next: ViT]]
 
 **This lecture covers:**
 
@@ -818,4 +818,4 @@ From the lecture's closing slide:
 
 ---
 
-[[notes/mlp/04-rnn|← L04: RNNs]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/06-vit|Next: ViT →]]
+[[notes/mlp/04-rnn|Previous: L04: RNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/06-vit|Next: ViT]]

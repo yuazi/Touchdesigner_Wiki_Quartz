@@ -12,14 +12,14 @@ DATs handle everything **text-based** in TouchDesigner — Python scripts, GLSL 
 
 **Key nodes:** Table, Text, Select, CHOP Execute, DAT Execute, Web Client, JSON
 
-[[DAT - Data Operators|→ Read the full DAT guide]]
+[[DAT - Data Operators|(y-) Read the full DAT guide]]
 
 ---
 
 ## In This Section
 
-- [[DAT - Data Operators|→ DAT - Data Operators]]
+- [[DAT - Data Operators|(y-) DAT - Data Operators]]
 
-[[touchdesigner/02_The_Operators/index|↑ Back to The Operators]]
+[[touchdesigner/02_The_Operators/index|Return to The Operators]]
 
 ---

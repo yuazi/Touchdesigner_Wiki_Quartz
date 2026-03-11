@@ -98,8 +98,8 @@ These are directions suggested by the current codebase, not features already doc
 ## Related
 
 - [GitHub Repo](https://github.com/yuazi/attractormediapipe)
-- [[notes/lorenz-attractor|→ The Lorenz Attractor]] — background on one of the systems included in the viewer
+- [[notes/lorenz-attractor|(y-) The Lorenz Attractor]] — background on one of the systems included in the viewer
 
-[[index|↑ Back to Work]]
+[[index|Return to Work]]
 
 ---

@@ -9,7 +9,7 @@ tags:
 date: 2026-03-09
 ---
 
-[[notes/mlp/01-introduction|← L01: Introduction]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/03-vision-cnn|Next: Vision CNNs →]]
+[[notes/mlp/01-introduction|Previous: L01: Introduction]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/03-vision-cnn|Next: Vision CNNs]]
 
 ---
 
@@ -294,4 +294,4 @@ Fully convolutional networks for dense prediction:
 
 ---
 
-[[notes/mlp/01-introduction|← L01: Introduction]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/03-vision-cnn|Next: Vision CNNs →]]
+[[notes/mlp/01-introduction|Previous: L01: Introduction]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/03-vision-cnn|Next: Vision CNNs]]

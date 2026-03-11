@@ -10,7 +10,7 @@ tags:
 date: 2026-03-09
 ---
 
-[[notes/mlp/12-diffusion|← L12: Diffusion]] | [[notes/mlp/index|↑ MPL Index]]
+[[notes/mlp/12-diffusion|Previous: L12: Diffusion]] | [[notes/mlp/index|Back to MPL Index]]
 
 ---
 
@@ -633,4 +633,4 @@ Three evaluation goals [Doshi-Velez & Kim, 2017]:
 
 - Sundararajan, Taly, Yan (2017) — Axiomatic attribution for deep networks. _ICML_.
 
-[[notes/mlp/12-diffusion|← L12: Diffusion]] | [[notes/mlp/index|↑ MPL Index]]
+[[notes/mlp/12-diffusion|Previous: L12: Diffusion]] | [[notes/mlp/index|Back to MPL Index]]

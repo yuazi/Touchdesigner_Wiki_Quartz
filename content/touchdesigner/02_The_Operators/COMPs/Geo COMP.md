@@ -104,11 +104,11 @@ The Geo COMP does not have its own surface look — you must assign a MAT:
 
 ## Related Nodes
 
-- [[SOP - Surface Operators|→ SOP]] — geometry source
+- [[SOP - Surface Operators|(y-) SOP]] — geometry source
 - [[Render TOP]] — renders the scene to a texture
-- [[MAT - Material Operators|→ MAT]] — surface shaders
+- [[MAT - Material Operators|(y-) MAT]] — surface shaders
 - [[Instancing]] — duplicating geometry efficiently
 
-[[touchdesigner/02_The_Operators/COMPs/index|↑ Back to COMPs]] | [[touchdesigner/02_The_Operators/index|↑ Back to The Operators]] | [[touchdesigner/index|↑ Back to TouchDesigner]]
+[[touchdesigner/02_The_Operators/COMPs/index|Return to COMPs]] | [[touchdesigner/02_The_Operators/index|Return to The Operators]] | [[touchdesigner/index|Return to TouchDesigner]]
 
 ---

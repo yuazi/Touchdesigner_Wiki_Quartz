@@ -10,7 +10,7 @@ tags:
 date: 2026-03-09
 ---
 
-[[notes/mlp/07-multimodal|← L07: Multimodal Learning]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/09-vae|Next: VAE →]]
+[[notes/mlp/07-multimodal|Previous: L07: Multimodal Learning]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/09-vae|Next: VAE]]
 
 ---
 
@@ -524,4 +524,4 @@ Uncertainty alone grabs near-duplicates; diversity alone ignores which regions a
 
 ---
 
-[[notes/mlp/07-multimodal|← L07: Multimodal Learning]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/09-vae|Next: VAE →]]
+[[notes/mlp/07-multimodal|Previous: L07: Multimodal Learning]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/09-vae|Next: VAE]]

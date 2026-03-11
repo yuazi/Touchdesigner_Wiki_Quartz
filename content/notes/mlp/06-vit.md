@@ -11,7 +11,7 @@ tags:
 date: 2026-03-09
 ---
 
-[[notes/mlp/05-transformer|← L05: Transformers]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/07-multimodal|Next: Multimodal Learning →]]
+[[notes/mlp/05-transformer|Previous: L05: Transformers]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/07-multimodal|Next: Multimodal Learning]]
 
 **This lecture covers:**
 
@@ -621,4 +621,4 @@ From the lecture's closing slide — notable models and frameworks as of WS 2025
 
 ---
 
-[[notes/mlp/05-transformer|← L05: Transformers]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/07-multimodal|Next: Multimodal Learning →]]
+[[notes/mlp/05-transformer|Previous: L05: Transformers]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/07-multimodal|Next: Multimodal Learning]]

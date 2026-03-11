@@ -70,8 +70,8 @@ That is why it makes sense in the archive. It is worth keeping around, but it do
 ## Related
 
 - [GitHub Repo](https://github.com/yuazi/simpleLorenzcss)
-- [[notes/lorenz-attractor|→ The Lorenz Attractor]]: background on the system used at the center of the animation
+- [[notes/lorenz-attractor|(y-) The Lorenz Attractor]]: background on the system used at the center of the animation
 
-[[index|↑ Back to Work]]
+[[index|Return to Work]]
 
 ---

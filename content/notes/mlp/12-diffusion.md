@@ -11,7 +11,7 @@ tags:
 date: 2026-03-09
 ---
 
-[[notes/mlp/11-rl|← L11: RL]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/13-xai|Next: XAI →]]
+[[notes/mlp/11-rl|Previous: L11: RL]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/13-xai|Next: XAI]]
 
 > **Course**: Machine Perception and Learning for Collaborative Intelligent Systems  
 > **Lecturer**: Prof. Dr. Andreas Bulling, University of Stuttgart, WS 2025/2026
@@ -567,4 +567,4 @@ This is the same general diffusion machinery applied in an **editing / inpaintin
 
 - Song, Meng, Ermon (2020) — Denoising diffusion implicit models. _arXiv:2010.02502_.
 
-[[notes/mlp/11-rl|← L11: RL]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/13-xai|Next: XAI →]]
+[[notes/mlp/11-rl|Previous: L11: RL]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/13-xai|Next: XAI]]

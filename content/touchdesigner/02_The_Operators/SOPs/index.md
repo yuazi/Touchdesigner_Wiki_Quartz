@@ -12,14 +12,14 @@ SOPs are TouchDesigner's **3D geometry** operators. They run on the CPU and let 
 
 **Key nodes:** Box, Sphere, Torus, Grid, Noise, Transform, Copy, Null
 
-[[SOP - Surface Operators|→ Read the full SOP guide]]
+[[SOP - Surface Operators|(y-) Read the full SOP guide]]
 
 ---
 
 ## In This Section
 
-- [[SOP - Surface Operators|→ SOP - Surface Operators]]
+- [[SOP - Surface Operators|(y-) SOP - Surface Operators]]
 
-[[touchdesigner/02_The_Operators/index|↑ Back to The Operators]]
+[[touchdesigner/02_The_Operators/index|Return to The Operators]]
 
 ---

@@ -14,7 +14,7 @@ A digital garden is intentionally unfinished. You'll find notes at different sta
 
 ## What's growing here
 
-### [[touchdesigner/index|→ TouchDesigner Wiki]]
+### [[touchdesigner/index|y\ TouchDesigner Wiki]]
 
 A structured wiki on visual programming with nodes and interactive media in real time. It covers operators, scripting, shaders, rendering, and complete project recipes.
 
@@ -22,23 +22,23 @@ A structured wiki on visual programming with nodes and interactive media in real
 
 ---
 
-### [[calendar/index|→ Calendar]]
+### [[calendar/index|y\ Calendar]]
 
 A running log of what I've been working on and learning, ordered by time.
 
 ---
 
-### [[notes/index|→ Notes]]
+### [[notes/index|y\ Notes]]
 
 Short notes and references on things I find interesting.
 
-- [[notes/lorenz-attractor|→ The Lorenz Attractor]]
-- [[notes/sioyek|→ Sioyek, a Keyboard Driven PDF Reader]]
-- [[notes/taekwondo|→ Taekwondo]]
+- [[notes/lorenz-attractor|(y-) The Lorenz Attractor]]
+- [[notes/sioyek|(y-) Sioyek, a Keyboard Driven PDF Reader]]
+- [[notes/taekwondo|(y-) Taekwondo]]
 
 ---
 
-### [[work/index|→ Work]]
+### [[work/index|y\ Work]]
 
 Projects, experiments, and things I've shipped, both personal and professional.
 

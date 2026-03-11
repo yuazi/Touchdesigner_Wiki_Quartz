@@ -12,7 +12,7 @@ date: 2026-03-10
 
 This is my study hub for the MPL master's course. Each lecture gets its own page with explanations, key concepts, math, and examples I worked through to actually understand the material — not just memorize it.
 
-[[notes/index|← Back to Notes]] | [[index|↑ Back to Home]]
+[[notes/index|Return to Notes]] | [[index|Return to Home]]
 
 ---
 

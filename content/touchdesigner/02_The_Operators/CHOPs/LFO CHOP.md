@@ -75,9 +75,9 @@ This creates a light that fades between 0 and 1 with a gentle sine curve, comple
 ## Related Nodes
 
 - [[Math CHOP]] — remap and combine LFO output
-- [[Noise - CHOP and TOP|→ Noise CHOP]] — like an LFO but organic/random
+- [[Noise - CHOP and TOP|(y-) Noise CHOP]] — like an LFO but organic/random
 - [[Timer CHOP]] — for one-shot and sequenced events
 
-[[touchdesigner/02_The_Operators/CHOPs/index|↑ Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|↑ Back to The Operators]] | [[touchdesigner/index|↑ Back to TouchDesigner]]
+[[touchdesigner/02_The_Operators/CHOPs/index|Return to CHOPs]] | [[touchdesigner/02_The_Operators/index|Return to The Operators]] | [[touchdesigner/index|Return to TouchDesigner]]
 
 ---

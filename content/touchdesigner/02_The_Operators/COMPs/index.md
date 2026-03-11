@@ -12,15 +12,15 @@ COMPs are the **structural backbone** of a TouchDesigner project. They act as co
 
 **Key nodes:** Geometry, Camera, Light, Container, Button, Slider, Base
 
-[[COMP - Components|→ Read the full COMP guide]]
+[[COMP - Components|(y-) Read the full COMP guide]]
 
 ---
 
 ## In This Section
 
-- [[COMP - Components|→ COMP - Components]]
-- [[Geo COMP|→ Geo COMP]]
+- [[COMP - Components|(y-) COMP - Components]]
+- [[Geo COMP|(y-) Geo COMP]]
 
-[[touchdesigner/02_The_Operators/index|↑ Back to The Operators]]
+[[touchdesigner/02_The_Operators/index|Return to The Operators]]
 
 ---

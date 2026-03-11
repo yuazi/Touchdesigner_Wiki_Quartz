@@ -9,7 +9,7 @@ tags:
 date: 2026-03-09
 ---
 
-[[notes/mlp/09-vae|← L09: VAE]] | [[notes/mlp/index|↑ MLP Index]] | [[notes/mlp/11-rl|Next: Reinforcement Learning →]]
+[[notes/mlp/09-vae|Previous: L09: VAE]] | [[notes/mlp/index|Back to MLP Index]] | [[notes/mlp/11-rl|Next: Reinforcement Learning]]
 
 > _University of Stuttgart — Machine Perception and Learning for Collaborative Intelligent Systems, Prof. Dr. Andreas Bulling, WS 2025/2026_
 
@@ -627,4 +627,4 @@ GANs have largely been superseded by diffusion models for highest-quality genera
 
 ---
 
-[[notes/mlp/09-vae|← L09: VAE]] | [[notes/mlp/index|↑ MLP Index]] | [[notes/mlp/11-rl|Next: Reinforcement Learning →]]
+[[notes/mlp/09-vae|Previous: L09: VAE]] | [[notes/mlp/index|Back to MLP Index]] | [[notes/mlp/11-rl|Next: Reinforcement Learning]]

@@ -11,7 +11,7 @@ tags:
 date: 2026-03-09
 ---
 
-[[notes/mlp/03-vision-cnn|← L03: Vision CNNs]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/05-transformer|Next: Transformers →]]
+[[notes/mlp/03-vision-cnn|Previous: L03: Vision CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/05-transformer|Next: Transformers]]
 
 **This lecture covers:**
 
@@ -520,4 +520,4 @@ From the lecture's closing slide:
 
 ---
 
-[[notes/mlp/03-vision-cnn|← L03: Vision CNNs]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/05-transformer|Next: Transformers →]]
+[[notes/mlp/03-vision-cnn|Previous: L03: Vision CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/05-transformer|Next: Transformers]]

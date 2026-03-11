@@ -11,7 +11,7 @@ tags:
 date: 2026-03-09
 ---
 
-[[notes/mlp/02-cnn|← L02: CNNs]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/04-rnn|Next: RNNs →]]
+[[notes/mlp/02-cnn|Previous: L02: CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/04-rnn|Next: RNNs]]
 
 ---
 
@@ -403,4 +403,4 @@ The qualitative Mask R-CNN result slide makes the distinction from semantic segm
 
 - Tan, Le (2019) — EfficientNet: Rethinking model scaling for convolutional neural networks. _ICML_.
 
-[[notes/mlp/02-cnn|← L02: CNNs]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/04-rnn|Next: RNNs →]]
+[[notes/mlp/02-cnn|Previous: L02: CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/04-rnn|Next: RNNs]]

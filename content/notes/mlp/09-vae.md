@@ -10,7 +10,7 @@ tags:
 date: 2026-03-09
 ---
 
-[[notes/mlp/08-iml|← L08: Interactive ML]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/10-gans|Next: GANs →]]
+[[notes/mlp/08-iml|Previous: L08: Interactive ML]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/10-gans|Next: GANs]]
 
 > **Slide credits**: O. Hilliges @ ETHZ · Paul Liang & Louis-Philippe Morency @ CMU
 
@@ -514,4 +514,4 @@ VAEs underpin many modern generative systems. Stable Diffusion, for instance, us
 
 ---
 
-[[notes/mlp/08-iml|← L08: Interactive ML]] | [[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/10-gans|Next: GANs →]]
+[[notes/mlp/08-iml|Previous: L08: Interactive ML]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/10-gans|Next: GANs]]

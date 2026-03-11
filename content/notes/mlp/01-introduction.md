@@ -9,7 +9,7 @@ tags:
 date: 2026-03-09
 ---
 
-[[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/02-cnn|Next: CNNs →]]
+[[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/02-cnn|Next: CNNs]]
 
 ---
 
@@ -488,4 +488,4 @@ In practice, **weight decay + dropout** is a strong baseline regularisation comb
 
 ---
 
-[[notes/mlp/index|↑ MPL Index]] | [[notes/mlp/02-cnn|Next: CNNs →]]
+[[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/02-cnn|Next: CNNs]]

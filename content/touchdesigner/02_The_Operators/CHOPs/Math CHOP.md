@@ -42,6 +42,6 @@ _The most frequently used feature._ Maps the input value range to a new output v
 
 If you receive MIDI velocity data from `0` to `127`, you almost always want to pass it through a Math CHOP to scale it from `0` to `1` so it can cleanly drive transparency or scaling parameters elsewhere.
 
-[[touchdesigner/02_The_Operators/CHOPs/index|↑ Back to CHOPs]] | [[touchdesigner/02_The_Operators/index|↑ Back to The Operators]] | [[touchdesigner/index|↑ Back to TouchDesigner]]
+[[touchdesigner/02_The_Operators/CHOPs/index|Return to CHOPs]] | [[touchdesigner/02_The_Operators/index|Return to The Operators]] | [[touchdesigner/index|Return to TouchDesigner]]
 
 ---

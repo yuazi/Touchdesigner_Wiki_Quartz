@@ -12,15 +12,15 @@ TOPs are TouchDesigner's **2D image and video processing** operators, running en
 
 **Key nodes:** Movie File In, Constant, Composite, Blur, Level, Render
 
-[[TOP - Texture Operators|→ Read the full TOP guide]]
+[[TOP - Texture Operators|(y-) Read the full TOP guide]]
 
 ---
 
 ## In This Section
 
-- [[TOP - Texture Operators|→ TOP - Texture Operators]]
-- [[Render TOP|→ Render TOP]]
+- [[TOP - Texture Operators|(y-) TOP - Texture Operators]]
+- [[Render TOP|(y-) Render TOP]]
 
-[[touchdesigner/02_The_Operators/index|↑ Back to The Operators]]
+[[touchdesigner/02_The_Operators/index|Return to The Operators]]
 
 ---
