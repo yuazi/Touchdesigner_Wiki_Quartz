@@ -85,4 +85,4 @@ Flexibility is the thing I'm working the hardest on. My hips are not naturally o
 
 The goal eventually is to be able to throw kicks above shoulder height without it being a whole ordeal. Not there yet but getting closer.
 
-[[notes/index|Return to Notes]] | [[notes/taekwondo-combinations|(y-) Combination Kicks]]
+[[notes/index|Return to Notes]] | [[notes/taekwondo-stances|Stances]] | [[notes/taekwondo-combinations|Combination Kicks]]
