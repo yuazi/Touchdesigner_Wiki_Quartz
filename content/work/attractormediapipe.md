@@ -21,28 +21,17 @@ The project sits right in the overlap of the things I like most: mathematical sy
 
 ## What it does
 
-The app renders one active attractor at a time as a bright additive trail and lets you move through a curated set of systems:
+AttractorMediaPipe shows one attractor at a time as a bright additive trail, but the fun of it is moving between them. You can switch through **Lorenz**, **Aizawa**, **Sprott B**, **Thomas**, **Dadras**, **Chen**, **Langford**, **Rossler**, and **Halvorsen**, and each one gives the viewer a different feel.
 
-- **Lorenz**
-- **Aizawa**
-- **Sprott B**
-- **Thomas**
-- **Dadras**
-- **Chen**
-- **Langford**
-- **Rossler**
-- **Halvorsen**
+Some look airy and open. Others feel tighter, rougher, or more intense. So switching attractors does more than change the math in the background. It changes the mood of the whole piece.
 
-![[pictures/attractor_aizawa.png|Aizawa attractor with grain-texture background]]
+![[pictures/attractor_aizawa.png|Aizawa attractor with grain-texture background]] *A dense Aizawa attractor snapshot from the viewer, rendered as glowing trails against the project's grain-texture background.*
 
-The viewer supports two input modes at the same time:
+There are also two ways to use it. With a webcam, it turns into a gesture-controlled interface. Without one, it still works well with keyboard and mouse, which makes it feel more like a real tool and less like a one-off experiment.
 
-- **Gesture control via webcam**
-- **Keyboard and mouse fallback without camera**
+When the camera is enabled, the left hand handles **speed** and **luminosity**, while the right hand controls **yaw**, **pitch**, **zoom**, and **trail length**. Left pinky-to-palm resets the current attractor; right pinky-to-palm advances to the next one.
 
-When the camera is enabled, the left and right hands do different jobs. The left hand adjusts **speed** and **luminosity**, while the right hand controls **yaw**, **pitch**, **zoom**, and **trail length**. Left pinky touches against the palm to reset the attractor. Right pinky touches against the palm to switch to the next attractor.
-
-On top of that, the project includes an overlay with helper text, parameter sliders, an attractor list, a placard, and an optional webcam picture in picture with skeleton overlays.
+Around the main view, there is also an overlay with helper text, parameter sliders, an attractor list, a placard, and an optional picture-in-picture webcam view with skeleton overlays. Those details help the project feel more finished and easier to actually use.
 
 ---
 
