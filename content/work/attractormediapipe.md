@@ -6,8 +6,8 @@ tags:
   - python
   - moderngl
   - mediapipe
-  - generative
   - chaos
+  - generative
 date: 2026-03-11
 ---
 
@@ -30,13 +30,15 @@ The app renders one active attractor at a time as a bright additive trail and le
 - **Dadras**
 - **Chen**
 - **Langford**
+- **Rossler**
+- **Halvorsen**
 
 The viewer supports two input modes at the same time:
 
 - **Gesture control via webcam**
 - **Keyboard and mouse fallback without camera**
 
-When the camera is enabled, the left and right hands do different jobs. The left hand adjusts **speed** and **luminosity**, while the right hand controls **yaw**, **pitch**, **zoom**, and **trail length**. Pinky touches against the palm switch to the previous or next attractor.
+When the camera is enabled, the left and right hands do different jobs. The left hand adjusts **speed** and **luminosity**, while the right hand controls **yaw**, **pitch**, **zoom**, and **trail length**. Left pinky touches against the palm to reset the attractor. Right pinky touches against the palm to switch to the next attractor.
 
 On top of that, the project includes an overlay with helper text, parameter sliders, an attractor list, a placard, and an optional webcam picture in picture with skeleton overlays.
 
@@ -70,6 +72,7 @@ The main technical pieces are:
 - **MediaPipe** tracks up to two hands, then a gesture layer maps pinches and pinky touch gestures into scene controls and attractor switching.
 - The live view is rendered through **ModernGL** as animated additive point sprites with shader based pulse and drift.
 - The export path uses **Datashader** to generate dense 4K snapshots of the current attractor with inferno inspired density coloring.
+- A procedural grain-texture background with subtle drift keeps the visual aesthetic cohesive, while a fog veil layered on top keeps the attractor legible against the busy trail.
 
 One detail I especially like is that the project is not locked to webcam input. It still works as a keyboard and mouse viewer with `--no-camera`, and it can also run in snapshot only or headless export modes.
 
@@ -88,7 +91,6 @@ One detail I especially like is that the project is not locked to webcam input. 
 
 These are directions suggested by the current codebase, not features already documented in the repo:
 
-- Bring more attractors from the inactive set into the live viewer, especially **Rossler** and **Halvorsen**
 - Push more of the trail generation and shading further onto the GPU
 - Expand the snapshot pipeline with more export looks and metadata presets
 - Keep refining the interaction language so the viewer feels closer to a real performance tool
