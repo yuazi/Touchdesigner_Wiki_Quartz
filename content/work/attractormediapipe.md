@@ -33,7 +33,7 @@ The app renders one active attractor at a time as a bright additive trail and le
 - **Rossler**
 - **Halvorsen**
 
-![Aizawa attractor with grain-texture background](/content/work/attractor_aizawa.png)
+![[pictures/attractor_aizawa.png|Aizawa attractor with grain-texture background]]
 
 The viewer supports two input modes at the same time:
 
