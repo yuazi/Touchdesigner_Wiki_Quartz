@@ -74,11 +74,11 @@ The MediaPipe component outputs a CHOP with data for all hand landmarks. We need
 - Connect a **Select CHOP** to the CHOP output of the MediaPipe component.
 - **For Orientation (Rotation):** Track the dominant hand's wrist. In the Select CHOP's _Channel Names_ field, enter:
   ```
-  h1_wrist:x h1_wrist:y
+  H1_wrist_x H1_wrist_y
   ```
 - **For Zoom:** Track the pinch distance between thumb and index finger. Add another **Select CHOP** and select:
   ```
-  h1_thumb_tip:x h1_thumb_tip:y h1_index_finger_tip:x h1_index_finger_tip:y
+  H1_thumb_tip_x H1_thumb_tip_y H1_index_fingertip_x H1_index_fingertip_y
   ```
 
 ---
@@ -100,10 +100,21 @@ Raw MediaPipe data is normalized (usually between 0 and 1) and jittery. We need 
 To zoom, calculate the distance between the thumb tip and index finger tip.
 
 - Connect the finger tip **Select CHOP** to a **Math CHOP**.
-- Use an **Expression CHOP** with the Pythagorean theorem to compute the distance:
+- Connect the finger tip **Select CHOP** to a **Script CHOP**. In its DAT, compute the Euclidean distance:
   ```python
-  math.sqrt((val(1)-val(3))**2 + (val(2)-val(4))**2)
+  def onCook(scriptOp):
+      scriptOp.clear()
+      c = scriptOp.appendChan('pinch_dist')
+      tx = op('select_pinch')['H1_thumb_tip_x'][0]
+      ty = op('select_pinch')['H1_thumb_tip_y'][0]
+      ix = op('select_pinch')['H1_index_fingertip_x'][0]
+      iy = op('select_pinch')['H1_index_fingertip_y'][0]
+      import math
+      c[0] = math.sqrt((tx - ix)**2 + (ty - iy)**2)
   ```
+  Name the Select CHOP `select_pinch` so the Script CHOP can reference it.
+
+> **Why not Expression CHOP?** The Expression CHOP runs one expression per output channel, so you can't combine four input channels into one distance value without referencing the source operator directly. A Script CHOP is cleaner for this kind of multi-channel math.
 - Connect that distance to another **Math CHOP** to remap the pinch range. For example, map _From Range_ `[0.05, 0.3]` (tight pinch vs. open hand) to a _To Range_ for the camera's Z translation, such as `[3, 10]`.
 - Add a **Filter CHOP** for smoothness, then a **Null CHOP**.
 - Drag the final distance channel to the _Translate Z_ (`tz`) parameter of the **Camera COMP**.

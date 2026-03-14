@@ -5,7 +5,6 @@ tags:
   - td/recipes
   - pop
   - particles
-  - glsl
   - feedback
   - recipes
 date: 2026-03-02
@@ -26,7 +25,7 @@ A real-time particle system where thousands of points:
 - Render as glowing soft points
 - Pass through a feedback + blur chain for the dreamy trail effect
 
-**Operators used:** SOP → POP, Noise POP, Force POP, POP Render, Feedback TOP, Blur TOP, Level TOP, Composite TOP
+**Operators used:** SOP to POP, Noise POP, Force POP, Limit POP, POP SOP, Sprite SOP, Point Sprite MAT, Render TOP, Feedback TOP, Blur TOP, Level TOP, Composite TOP
 
 ---
 
@@ -82,13 +81,16 @@ This keeps the cloud from drifting off screen over time.
 
 ## 6. Render the Particles
 
-1. Drop a `POP Render TOP`.
-2. Connect it to the last POP in your chain.
-3. In its parameters:
-   - **Render Type:** `Sprite` or `Point`
+To render POP points, bring them back into SOP space and use a standard Geo COMP + Render TOP setup.
+
+1. Add a **`POP SOP`** at the end of your POP chain — this outputs the particle positions as SOP points each frame.
+2. Connect the POP SOP output to a **`Sprite SOP`**, then to `out1`.
+3. Create a **`Geo COMP`** and set its SOP to the POP SOP chain.
+4. On the Geo COMP, assign a **`Point Sprite MAT`** in the material slot.
    - **Point Size:** `2–5` pixels
+5. Add a **`Camera COMP`**, **`Light COMP`**, and **`Render TOP`**:
    - **Resolution:** `1920 × 1080` (or your output resolution)
-4. Set a **Background Color** of pure black (`0, 0, 0, 1`).
+   - **Background Color:** pure black (`0, 0, 0, 1`)
 
 > The result is white/grey dots on black — the glow comes in the next step.
 
@@ -96,7 +98,7 @@ This keeps the cloud from drifting off screen over time.
 
 ## 7. Colorize the Points
 
-Insert a `Level TOP` after the `POP Render TOP`:
+Insert a `Level TOP` after the `Render TOP`:
 
 - **Opacity:** 1
 - **Brightness:** slight boost
@@ -110,7 +112,7 @@ Then add a `HSV Adjust TOP` (or use a `Color Correct TOP`) to shift particle col
 This is the key step that creates the soft trails and bloom.
 
 ```
-POP Render TOP
+Render TOP
     → Composite TOP  ←──────────────────┐
          ↓                              │
       Level TOP (darken: ~0.95)         │
@@ -128,7 +130,7 @@ Step by step:
 2. After the Feedback TOP, add a `Level TOP` and set **Opacity** to `0.93–0.97`. This dims the old frame slightly each tick.
 3. Add a `Blur TOP` (size 3–8px) to soften the fading trail.
 4. Feed this blurred+dimmed output into a `Composite TOP`:
-   - **Input 0:** Current `POP Render TOP` output (new frame)
+   - **Input 0:** Current `Render TOP` output (new frame)
    - **Input 1:** Feedback output (old trails)
    - **Operation:** `Add` or `Screen`
 
@@ -153,12 +155,9 @@ To animate the color shift:
 
 ## 10. Camera (Optional 3D Version)
 
-If you want the particle cloud to be fully 3D with a moving camera:
+For a fully 3D version with a moving camera, replace the Point Sprite MAT with a proper 3D material and add a moving camera:
 
-1. Instead of `POP Render TOP`, use a **Geometry COMP** setup:
-   - Add a `Camera COMP` and `Light COMP`.
-   - Use a `Render TOP` pointed at the scene.
-   - Use a `Point Sprite MAT` on the geometry.
+1. On the Geo COMP, swap the Point Sprite MAT for a **Phong MAT** or **Constant MAT**.
 2. Animate the `Camera COMP`'s `rz` (roll/orbit) with `absTime.seconds * 5`.
 
 ---

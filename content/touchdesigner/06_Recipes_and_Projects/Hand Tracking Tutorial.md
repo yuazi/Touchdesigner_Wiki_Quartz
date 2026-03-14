@@ -97,13 +97,13 @@ Rather than working with all 63+ channels at once, use a **Select CHOP** to grab
 2. In the **Channel Names** field, use a glob pattern to grab all three axes of the index fingertip:
 
 ```
-H1_index_fingertip:*
+H1_index_fingertip_*
 ```
 
-The `:*` wildcard expands to `_x`, `_y`, `_z` automatically. You can also grab multiple joints at once:
+The `_*` wildcard matches `_x`, `_y`, `_z`. You can also grab multiple joints at once:
 
 ```
-H1_index_fingertip:* H1_thumb_tip:*
+H1_index_fingertip_* H1_thumb_tip_*
 ```
 
 3. Add a **Null CHOP** after it and name it `null_fingertip` — this is your clean export reference.
