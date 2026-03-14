@@ -10,98 +10,87 @@ date: 2026-03-01
 
 # Recipe: Particle System with POPs
 
-**POP (Point Operator)** nodes run entirely on the GPU, making them the fastest way to simulate and render hundreds of thousands of particles in real time. This recipe builds a foundational particle system you can extend.
+POPs (Point Operators) run on the GPU, so you can push hundreds of thousands of particles with forces and colour without the CPU breaking a sweat. This builds a basic system you can extend.
 
-## How POPs Relate to SOPs
+## How POPs fit into a network
 
-POPs operate on **point clouds** — large sets of 3D points with attributes (position, velocity, colour, life). Unlike SOPs, POP networks execute on the GPU inside a **Particle System COMP** (or within a **Geo COMP's SOP network** using a `POP SOP`).
+POPs work on point clouds — big sets of 3D points each carrying attributes like position, velocity, colour, and age. They live inside a **POP SOP**, which is the node that bridges the POP world and the SOP world inside a Geo COMP.
 
 ---
 
-## Part 1: The Basic Emitter
+## Part 1: Basic emitter
 
-1. Create a **`Geo COMP`** in your root network.
-2. Double-click inside it to enter its SOP network.
-3. Delete the default torus. Place a **`POP SOP`** — this is the POP-to-SOP bridge.
-4. Inside the `POP SOP`, there is already a network. **Double-click** into it to enter the POP network.
-5. Inside the POP network, add a **`POP Source CHOP`**:
-   - Set **Source Type** to `Point` or connect a SOP for surface emission.
-   - Set **Emit Rate** to `1000` (particles per second).
-   - Set **Life Expectancy** to `3` seconds.
-6. Add a **`POP Solver CHOP`** after the emitter — this advances the simulation each frame.
-
-Your particle chain so far:
+1. Create a **`Geo COMP`** in your root network and enter it.
+2. Delete the default torus. Place a **`POP SOP`**.
+3. Double-click into the POP SOP to enter the POP network.
+4. Add a **`Source POP`**:
+   - **Source Type** → `Point`, or connect a SOP for surface emission
+   - **Emit Rate** → `1000` per second
+   - **Life Expectancy** → `3` seconds
+5. Add a **`Solver POP`** after it — without this, nothing moves.
 
 ```
-POP Source → POP Solver → [POP network output]
+Source POP → Solver POP → [output]
 ```
 
 ---
 
-## Part 2: Adding Forces
+## Part 2: Forces
 
-After the `POP Solver`, add force nodes:
+Drop force nodes between the Source and Solver:
 
-| Node                   | Effect                                                                 |
-| ---------------------- | ---------------------------------------------------------------------- |
-| **POP Force CHOP**     | Constant directional force (like gravity: set Gravity to `0, -9.8, 0`) |
-| **POP Wind CHOP**      | Turbulent wind using noise                                             |
-| **POP Attractor CHOP** | Pulls particles toward a point in space                                |
-| **POP Collision CHOP** | Bounces particles off a SOP surface                                    |
-
-Chain them between Solver and output:
+| Node              | What it does                                            |
+| ----------------- | ------------------------------------------------------- |
+| **Force POP**     | Constant push in a direction — set Y to `-9.8` for gravity |
+| **Wind POP**      | Noise-based turbulence                                  |
+| **Attractor POP** | Pulls particles toward a point                          |
+| **Collision POP** | Bounces particles off a SOP surface                     |
 
 ```
-POP Source → POP Force (gravity) → POP Wind → POP Solver → output
+Source POP → Force POP → Wind POP → Solver POP → output
 ```
 
 ---
 
-## Part 3: Colour Over Life
+## Part 3: Colour over lifetime
 
-1. Add a **`POP Color CHOP`** in the chain.
-2. Set **Color Source** to `Ramp`.
-3. Design a gradient — e.g. bright white at birth, orange mid-life, transparent at death.
-4. Set **Life Source** to `Normalized Life` so the ramp maps across 0→1 lifespan.
+Use the **Color POP** to change colour as particles age:
+
+1. Add a **`Color POP`** before the Solver.
+2. **Color Source** → `Ramp`
+3. Design a gradient — e.g. white at birth, orange in the middle, transparent at death.
+4. **Life Source** → `Normalized Life` so the ramp runs from 0 to 1 across the full lifespan.
+
+> If you've used Houdini, you might look for "colour-over-life" — that's not a TD term. In TD this is just the Color POP with Life Source set to Normalized Life.
 
 ---
 
 ## Part 4: Rendering
 
-Back in the Geo COMP's SOP network, the `POP SOP` outputs points. You need to render them:
+The POP SOP outputs points. Back in the Geo COMP's SOP network, you need to render them.
 
-**Option A — Sprites (fastest):**
+**Sprites (simplest):** Connect POP SOP → **`Sprite SOP`** → `out1`. Assign a **`Point Sprite MAT`** on the Geo COMP. Each particle becomes a billboard quad facing the camera.
 
-1. Connect the `POP SOP` output to a **`Sprite SOP`** then to the `out1`.
-2. Assign a **`Point Sprite MAT`** in the Geo COMP render page.
-3. Each particle becomes a camera-facing textured quad.
-
-**Option B — Instanced geometry:**
-
-1. Connect the `POP SOP` to a **`Geometry COMP`** with **Instancing ON**.
-2. Set the Instance CHOP/DAT to the POP SOP.
-3. Map `tx`, `ty`, `tz` to the point position attributes.
+**Instanced geometry:** Connect POP SOP to a **`Geometry COMP`** with Instancing on. Set the Instance CHOP/DAT to the POP SOP and map `tx ty tz` to the position attributes. Each particle renders as actual geometry.
 
 ---
 
-## Part 5: Audio Reactivity
-
-To make emission rate or force react to audio:
+## Part 5: Audio reactivity
 
 ```
 Audio Device In CHOP → Audio Spectrum CHOP → Analyze CHOP (RMS/Peak)
   → Math CHOP (remap 0→1 to 100→5000)
-  → [CHOP reference onto POP Source's Emit Rate parameter]
+  → Source POP Emit Rate parameter
 ```
 
 ---
 
-## Common Gotchas
+## Common issues
 
-- **No particles visible** → make sure the `POP Solver` is in the chain; without it, positions never update.
-- **Particles fly off screen instantly** → add gravity via `POP Force` or reduce initial velocity in `POP Source`.
-- **Performance drops** → limit particle count with a `POP Kill` node (kill old/far particles), or reduce the POP SOP resolution.
-- **Colour not changing** → confirm `Life Source` is set to `Normalized Life`, not `Age`.
+- **No particles showing** — check the Solver POP is in the chain.
+- **Particles shoot off screen** — add a Force POP with some gravity, or lower the initial velocity on the Source POP.
+- **Framerate tanks** — add a Kill POP to cull old or distant particles, or lower the POP SOP cook resolution.
+- **Colour not changing** — Life Source needs to be `Normalized Life`, not `Age`.
 
 [[Index|Return to Recipes & Projects]]
 

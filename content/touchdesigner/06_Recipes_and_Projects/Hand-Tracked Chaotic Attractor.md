@@ -15,15 +15,13 @@ date: 2026-03-08
 
 **Related:** [[Hand Tracking Tutorial|(y-) Hand Tracking Tutorial]] · [[Hand Tracking|(y-) Hand Tracking]] · [[Sierpinski Tetrahedron with Hand Tracking|(y-) Sierpinski with Hand Tracking]]
 
-> Tested architecture for M1 Pro · TouchDesigner 2023+ (Apple Silicon native build)
+> Tested on M1 Pro · TD 2023+. Performance numbers in Part 7 are from that machine specifically — results will vary.
 
 ---
 
 ## Overview
 
-**Goal:** Real-time Lorenz attractor visuals driven by MediaPipe hand tracking via webcam — no plugin required, fully scripted in Python.
-
-**Signal flow:**
+Real-time Lorenz attractor driven by MediaPipe hand tracking over webcam. No plugin needed, everything runs through Python in a Script CHOP and Script SOP.
 
 ```
 Webcam → Script CHOP (MediaPipe) → Filter/Lag CHOPs → Math CHOPs
@@ -34,9 +32,9 @@ See also: [[notes/lorenz-attractor|(y-) The Lorenz Attractor]] — the maths beh
 
 ---
 
-## Part 1 — Node Layout
+## Part 1 — Node layout
 
-Create the following nodes inside `/project1`:
+Create these inside `/project1`:
 
 ### Tracking
 
@@ -57,7 +55,7 @@ Create the following nodes inside `/project1`:
 | `light1`        | Light COMP  | Default is fine        |
 | `render1`       | Render TOP  | 1920×1080              |
 
-### Post FX (chain in order)
+### Post FX
 
 ```
 render1 → level1 → bloom1 → feedback1 ┐
@@ -65,10 +63,7 @@ render1 → level1 → bloom1 → feedback1 ┐
                               composite1 → null_out
 ```
 
-> **Feedback wiring (critical):** In `composite1`, set Operation to **Over**.
-> Wire `bloom1` into input 0 and `feedback1` into input 1.
-> Wire `composite1` → `feedback1` (this closes the loop).
-> Set `feedback1` Opacity to **0.92–0.96** for trails.
+In `composite1`: Operation → **Over**. Wire `bloom1` into input 0, `feedback1` into input 1, then wire `composite1` back into `feedback1`. Set `feedback1` Opacity to **0.92–0.96** for trails.
 
 ### Output
 
@@ -80,13 +75,13 @@ render1 → level1 → bloom1 → feedback1 ┐
 
 ## Part 2 — MediaPipe Script CHOP
 
-Install dependencies **outside TD** first:
+Install outside TD first:
 
 ```bash
 pip install mediapipe opencv-python
 ```
 
-Create `script_hand` (Script CHOP). Paste the following into its **DAT** (the callbacks script):
+Create `script_hand` (Script CHOP) and paste this into its DAT:
 
 ```python
 # script_hand callbacks DAT
@@ -133,14 +128,12 @@ def onCook(scriptOp):
     _init(scriptOp)
     st = _get_state(scriptOp)
 
-    # Always recreate channels each cook
     scriptOp.clear()
     for name in ['hand_present', 'x', 'y', 'pinch', 'vel']:
         scriptOp.appendChan(name)
 
     ok, frame = st['cap'].read()
     if not ok:
-        # Camera read failed — hold last values
         scriptOp['hand_present'][0] = 0
         scriptOp['x'][0] = st['last_x']
         scriptOp['y'][0] = st['last_y']
@@ -163,14 +156,13 @@ def onCook(scriptOp):
         cx = sum(lm[i].x for i in palm_idx) / len(palm_idx)
         cy = 1.0 - sum(lm[i].y for i in palm_idx) / len(palm_idx)  # flip Y
 
-        # Pinch: distance thumb tip (4) to index tip (8), normalized 0..1
+        # Pinch: thumb tip (4) to index tip (8), normalized 0..1
         pdx = lm[4].x - lm[8].x
         pdy = lm[4].y - lm[8].y
         pinch_dist = math.sqrt(pdx * pdx + pdy * pdy)
-        # ~0.25 = open, ~0.05 = closed pinch
+        # ~0.25 = open, ~0.05 = closed
         pinch = max(0.0, min(1.0, (0.25 - pinch_dist) / 0.20))
 
-        # Velocity (normalized)
         vx = (cx - st['last_x']) / dt
         vy = (cy - st['last_y']) / dt
         vel = min(1.0, math.sqrt(vx * vx + vy * vy) * 0.015)
@@ -191,9 +183,7 @@ def onCook(scriptOp):
         scriptOp['vel'][0] = 0.0
 ```
 
-> **State storage:** `op.store` is used instead of `globals()` — it's the TD-native way to persist data between cooks and won't break on network reloads.
-
-**CHOP chain:**
+> `op.store` keeps state between cooks without breaking on network reloads. Don't use `globals()` here.
 
 ```
 script_hand → filter_hand → lag_hand → null_ctrl
@@ -201,52 +191,29 @@ script_hand → filter_hand → lag_hand → null_ctrl
 
 ---
 
-## Part 3 — Control Mapping
+## Part 3 — Control mapping
 
-> ⚠️ A single Math CHOP cannot remap **different channels to different ranges**. You need **three separate Math CHOPs**, one per channel being remapped.
+> One Math CHOP can't remap different channels to different ranges — you need a separate one per channel.
 
-### Option A — Separate Math CHOPs (recommended)
+### Option A — Separate Math CHOPs
 
-Create three Math CHOPs after `null_ctrl`:
+**`math_sigma`** — channel `x`, From 0→1, To 8→20, rename output to `sigma`
 
-**`math_sigma`** — Select channel `x`
+**`math_rho`** — channel `y`, From 0→1, To 20→45, rename output to `rho`
 
-- From Range: 0 → 1
-- To Range: 8 → 20
-- Rename output channel to `sigma`
+**`math_beta`** — channel `pinch`, From 0→1, To 1.8→3.5, rename output to `beta`
 
-**`math_rho`** — Select channel `y`
+Merge them: `math_sigma + math_rho + math_beta → merge_params`
 
-- From Range: 0 → 1
-- To Range: 20 → 45
-- Rename output channel to `rho`
+### Option B — Expressions directly in Script SOP parameters
 
-**`math_beta`** — Select channel `pinch`
+Skip the Math CHOPs. Type into the parameter fields of `script_lorenz`:
 
-- From Range: 0 → 1
-- To Range: 1.8 → 3.5
-- Rename output channel to `beta`
+- **Sigma**: `tdu.remap(op('null_ctrl')['x'][0], 0, 1, 8, 20)`
+- **Rho**: `tdu.remap(op('null_ctrl')['y'][0], 0, 1, 20, 45)`
+- **Beta**: `tdu.remap(op('null_ctrl')['pinch'][0], 0, 1, 1.8, 3.5)`
 
-Then use a **Merge CHOP** to combine: `math_sigma + math_rho + math_beta → merge_params`
-
-### Option B — Expressions in Script SOP parameters (simpler)
-
-Skip extra Math CHOPs entirely. In the Script SOP custom parameters, use `tdu.remap()` expressions directly:
-
-- **`Sigma`** parameter:
-  ```python
-  tdu.remap(op('null_ctrl')['x'][0], 0, 1, 8, 20)
-  ```
-- **`Rho`** parameter:
-  ```python
-  tdu.remap(op('null_ctrl')['y'][0], 0, 1, 20, 45)
-  ```
-- **`Beta`** parameter:
-  ```python
-  tdu.remap(op('null_ctrl')['pinch'][0], 0, 1, 1.8, 3.5)
-  ```
-
-Option B is the easier starting point — type directly into the parameter fields of `script_lorenz`.
+Start with Option B — it's less to set up.
 
 ---
 
@@ -254,7 +221,7 @@ Option B is the easier starting point — type directly into the parameter field
 
 Create a **Script SOP** named `script_lorenz`.
 
-### Custom Parameters (Gear icon → Custom Parameters)
+### Custom parameters (Gear icon → Custom Parameters)
 
 | Name     | Type  | Default |
 | -------- | ----- | ------- |
@@ -265,7 +232,7 @@ Create a **Script SOP** named `script_lorenz`.
 | `Dt`     | Float | 0.005   |
 | `Scale`  | Float | 0.08    |
 
-### Script SOP DAT code
+### DAT code
 
 ```python
 def onCook(scriptOp):
@@ -278,10 +245,8 @@ def onCook(scriptOp):
     dt    = float(scriptOp.par.Dt)
     s     = float(scriptOp.par.Scale)
 
-    # Seed position (slightly off-origin to start on attractor)
     x, y, z = 0.1, 0.0, 0.0
 
-    # Build polyline
     poly = scriptOp.appendPoly(n, closed=False, addPoints=True)
 
     for i in range(n):
@@ -298,88 +263,71 @@ def onCook(scriptOp):
         pt.z = z * s
 ```
 
-### Wire Script SOP to Geo COMP
-
 In `geo_attractor` parameters → SOP path = `../script_lorenz`
 
 ---
 
-## Part 5 — Render & Display Setup
+## Part 5 — Render setup
 
-### Geo COMP (`geo_attractor`)
+**Geo COMP (`geo_attractor`):** Render on, Primitive Type → Line (or Point for a dot cloud), Constant MAT with a bright colour.
 
-- Render tab → **Render** = On
-- Display tab → Primitive Type = **Line** (or **Point** for a dot cloud look)
-- Material: leave default or use a simple Constant MAT with a bright color
+**Camera (`cam1`):** Translate Z = 8.
 
-### Camera (`cam1`)
+**Render TOP (`render1`):** 1920×1080, Camera `../cam1`, background black.
 
-- Translate: X=0, Y=0, Z=8
-- Look At: point at `geo_attractor` or leave default
-
-### Render TOP (`render1`)
-
-- Resolution: 1920 × 1080
-- Camera: `../cam1`
-- Background Color: black (0, 0, 0, 1)
-
-### Post FX chain
+**Post FX:**
 
 ```
 render1
   → level1       (Brightness: 1.2, Gamma: 0.9)
   → bloom1       (Threshold: 0.3, Size: 0.015)
   → composite1   (input 0 = bloom1, input 1 = feedback1, Op = Over)
-  ↑___ feedback1 ← composite1   (Opacity: 0.93 for trails)
+  ↑___ feedback1 ← composite1   (Opacity: 0.93)
 
 composite1 → null_out
 ```
 
-See [[touchdesigner/03_Rendering_and_Output/Feedback Loops|(y-) Feedback Loops]] for a deeper explanation of how the feedback chain works.
+See [[touchdesigner/03_Rendering_and_Output/Feedback Loops|(y-) Feedback Loops]] for how the feedback chain works.
 
 ---
 
 ## Part 6 — Output
 
-In `window1` (Window COMP):
-
-- Operator: `../null_out`
-- Resolution: match render (1920×1080)
-- Hit **Open Window** or use **Perform Mode** (F1) for full performance
+In `window1`: Operator → `../null_out`, match render resolution. Open Window or Perform Mode (F1).
 
 ---
 
-## Part 7 — Performance Tips (M1 Pro)
+## Part 7 — Performance (M1 Pro)
 
-| Setting              | Value                               |
-| -------------------- | ----------------------------------- |
-| Starting point count | 4,000–6,000                         |
-| Safe target          | 20,000–40,000                       |
-| MediaPipe resolution | 640×480                             |
-| TD cook mode         | Realtime                            |
-| Turn off             | All node viewers during perform     |
-| TD build             | Latest stable, Apple Silicon native |
+These numbers are from my machine — use them as a rough reference.
 
-- If CPU spikes: reduce `Points` first, then lower `dt` slightly
-- To decouple tracking FPS: add a **Timer CHOP** to only trigger Script CHOP at 30fps while render runs at 60fps
-- Keep `model_complexity=0` in MediaPipe for speed
+| Setting              | Value                           |
+| -------------------- | ------------------------------- |
+| Starting point count | 4,000–6,000                     |
+| Safe target          | 20,000–40,000                   |
+| MediaPipe resolution | 640×480                         |
+| Cook mode            | Realtime                        |
+| Turn off             | All viewers during perform      |
+| TD build             | 2023+ recommended               |
+
+If CPU spikes, reduce Points first, then lower dt a little. Add a Timer CHOP to run the Script CHOP at 30fps if you want to decouple tracking from render framerate. Keep `model_complexity=0` in MediaPipe.
 
 ---
 
-## Next Steps
+## Where to go from here
 
-- **Gesture switching:** detect open hand vs. fist to toggle between Lorenz / Rössler / Thomas attractors
-- **Color reaction:** map `vel` to hue shift in a GLSL MAT — see [[touchdesigner/05_Connectivity_and_Shaders/Introduction to GLSL|(y-) Introduction to GLSL]]
-- **GPU particles:** replace Script SOP with a feedback TOP-based GPU particle advection system for 500k+ particles — see [[5 Ways To Make Particles]]
+- **Gesture switching** — detect open hand vs fist to swap between Lorenz, Rössler, and Thomas attractors
+- **Colour reaction** — map `vel` to hue shift in a GLSL MAT, see [[touchdesigner/05_Connectivity_and_Shaders/Introduction to GLSL|(y-) Introduction to GLSL]]
+- **GPU particles** — replace the Script SOP with a feedback TOP based solver for 500k+ particles, see [[5 Ways To Make Particles]]
 
 ---
 
 ## Related
 
-- [[Hand Tracking Tutorial|(y-) Hand Tracking Tutorial]] — full setup walkthrough with the MediaPipe plugin
-- [[Hand Tracking|(y-) Hand Tracking]] — video links and series overview
-- [[Sierpinski Tetrahedron with Hand Tracking|(y-) Sierpinski with Hand Tracking]] — another script SOP driven by MediaPipe
-- [[notes/lorenz-attractor|(y-) The Lorenz Attractor]] — the maths behind σ, ρ, β
+- [[Hand Tracking Tutorial|(y-) Hand Tracking Tutorial]]
+- [[Hand Tracking|(y-) Hand Tracking]]
+- [[Sierpinski Tetrahedron with Hand Tracking|(y-) Sierpinski with Hand Tracking]]
+- [[notes/lorenz-attractor|(y-) The Lorenz Attractor]]
 - [[touchdesigner/04_Scripting_and_Architecture/Python in TD|(y-) Python in TD]]
 - [[touchdesigner/03_Rendering_and_Output/Feedback Loops|(y-) Feedback Loops]]
 - [[touchdesigner/02_The_Operators/SOPs/index|(y-) SOPs]]
