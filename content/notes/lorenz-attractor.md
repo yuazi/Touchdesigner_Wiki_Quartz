@@ -8,6 +8,8 @@ tags:
 date: 2026-03-04
 ---
 
+![Lorenz Attractor](/pictures/lorenz_8k_textured.png)
+
 The Lorenz attractor is one of those rare mathematical objects that stops you mid-thought. It's simple enough to write on a napkin — three coupled differential equations — yet complex enough that no two trajectories ever quite repeat themselves.
 
 $$
