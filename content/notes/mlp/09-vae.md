@@ -19,7 +19,6 @@ date: 2026-03-09
 ## Introduction
 
 ### Supervised vs. Unsupervised Learning
-
 |              | Supervised                       | Unsupervised                       |
 | ------------ | -------------------------------- | ---------------------------------- |
 | **Data**     | $(x, y)$ — labelled pairs        | $x$ — no labels                    |
@@ -27,6 +26,8 @@ date: 2026-03-09
 | **Examples** | Image classification, regression | Clustering, generation             |
 
 ### Generative Modelling
+![[Lec09_Pg008_Generative_Modelling.png]]
+
 
 Given training data, we want to learn a **model** of the data and be able to sample from the same distribution.
 
@@ -40,6 +41,8 @@ What we want to do with $p_{\text{model}}(x)$:
 We may also want **conditional** generation $p(x|c)$, where $c$ is a category (e.g. "generate a face"), or even $p(x_2 | x_1, c)$ for style transfer (change style $c$ applied to image $x_1$).
 
 ### Latent Variable Models
+![[Lec09_Pg015_Latent_Variable_Models.png]]
+
 
 Images have huge variability: gender, eye colour, hair colour, pose, lighting, etc. Unless annotated, these **factors of variation** are not explicitly available — they are **latent**.
 
@@ -53,6 +56,8 @@ Images have huge variability: gender, eye colour, hair colour, pose, lighting, e
 > **Example**: two images of the same person smiling will map to nearby $z$ vectors; an image of a different person with the same pose will share some $z$ dimensions but differ in others.
 
 ### Maximum Likelihood Estimation (MLE)
+![[Lec09_Pg019_Maximum_Likelihood_Estimation_Mle.png]]
+
 
 Likelihood as a function of model parameters:
 
@@ -61,6 +66,8 @@ $$L(\theta) = \prod_i p(x_i | \theta) \quad \Longrightarrow \quad \log L(\theta)
 MLE is the backbone of supervised deep learning — cross-entropy and least-squares are both MLE estimators. Generative models extend this to the _unsupervised_ setting.
 
 ### Taxonomy of Generative Models
+![[Lec09_Pg022_Taxonomy_Of_Generative_Models.png]]
+
 
 ```
 Generative Models
@@ -81,6 +88,8 @@ Generative Models
 ---
 
 ## Mixture of Gaussians (MoG)
+![[Lec09_Pg024_Mixture_Of_Gaussians_Mog.png]]
+
 
 A simple but instructive latent variable model.
 
@@ -106,6 +115,8 @@ Combining simple Gaussians gives a much more expressive, multi-modal density.
 ## Autoencoders
 
 ### Architecture
+![[Lec09_Pg031_Architecture.png]]
+
 
 An **autoencoder** = encoder $f$ + decoder $g$.
 
@@ -143,12 +154,16 @@ Fitting a simple Gaussian $f(x) \sim \mathcal{N}(\hat\mu, \hat\sigma I)$ over th
 ---
 
 ## Variational Autoencoders (VAE)
+![[Lec09_Pg041_Variational_Autoencoders_Vae.png]]
+
 
 **Paper**: Kingma & Welling, _Auto-Encoding Variational Bayes_ (2014)
 
 A **probabilistic** version of the autoencoder that allows genuine sampling of new, unseen data.
 
 ### From GMMs to VAEs
+![[Lec09_Pg045_From_Gmms_To_Vaes.png]]
+
 
 The VAE is essentially a MoG with a **neural network** replacing the fixed Gaussians:
 
@@ -173,6 +188,8 @@ The sum inside the log is **intractable** for continuous, high-dimensional $z$ �
 ## Evidence Lower Bound (ELBO)
 
 ### Derivation via Jensen's Inequality
+![[Lec09_Pg048_Derivation_Via_Jensen_S_Inequality.png]]
+
 
 The log-likelihood with latent variables is hard:
 
@@ -189,6 +206,8 @@ Applying this with $f(z) = p_\theta(x,z)/q(z)$:
 $$\log p(x;\theta) \ge \mathbb{E}_{z \sim q(z)}\!\left[\log \frac{p_\theta(x,z)}{q(z)}\right] =: \mathcal{L}(x;\theta,\phi) \quad \text{(ELBO)}$$
 
 ### Derivation via KL Divergence
+![[Lec09_Pg052_Derivation_Via_Kl_Divergence.png]]
+
 
 Starting from:
 
@@ -207,6 +226,8 @@ $$\boxed{\log p(x;\theta) = \mathcal{L}(x;\theta,\phi) + D_{KL}(q(z) \| p(z|x;\t
 The closer our chosen $q$ is to the true posterior $p(z|x)$, the tighter the ELBO is to the true likelihood.
 
 ### ELBO as Reconstruction + KL
+![[Lec09_Pg049_Elbo_As_Reconstruction_Kl.png]]
+
 
 Expanding the ELBO with $q_\phi(z|x)$ as the encoder:
 
@@ -232,6 +253,8 @@ $$D_{KL} = -\frac{1}{2}\sum_{j=1}^{d}\left(1 + \log\sigma_j^2 - \mu_j^2 - \sigma
 ---
 
 ## Variational Inference
+![[Lec09_Pg055_Variational_Inference.png]]
+
 
 We introduce an **approximate posterior** $q_\phi(z|x)$ (the encoder) — a tractable distribution parametrised by $\phi$, e.g. a diagonal Gaussian:
 
@@ -246,6 +269,8 @@ The key insight of VAEs is to **amortise** this inference: instead of running op
 ---
 
 ## Learning the Parameters
+![[Lec09_Pg065_Learning_The_Parameters.png]]
+
 
 We jointly optimise decoder parameters $\theta$ and encoder parameters $\phi$ by maximising the ELBO:
 
@@ -299,6 +324,8 @@ x ──→ Encoder ──→ μ, σ
 ---
 
 ## Generating Data
+![[Lec09_Pg074_Generating_Data.png]]
+
 
 At **training time**: requires both encoder and decoder (compute ELBO).
 
@@ -312,6 +339,8 @@ The KL regularization ensures this works — because the encoder is trained to p
 ---
 
 ## Latent Space Properties
+![[Lec09_Pg037_Latent_Space_Properties.png]]
+
 
 Because the KL term regularizes $z$ toward $\mathcal{N}(0,I)$, the latent space has structure:
 
@@ -330,7 +359,6 @@ z_A ─────────────────────────�
 With a standard autoencoder, decoding points between $z_A$ and $z_B$ would give noise. With a VAE, you get a smooth morphing sequence.
 
 ### Latent Space Arithmetic
-
 Like word2vec arithmetic (`king − man + woman ≈ queen`), VAE latent codes support semantic arithmetic:
 
 ```
@@ -340,7 +368,6 @@ z("smiling woman") − z("neutral woman") + z("neutral man") ≈ z("smiling man"
 ---
 
 ## Autoencoder vs. VAE Latent Spaces
-
 |                 | Regular Autoencoder      | VAE                          |
 | --------------- | ------------------------ | ---------------------------- |
 | Encoder output  | Single point $z$         | Distribution $(\mu, \sigma)$ |
@@ -355,6 +382,8 @@ z("smiling woman") − z("neutral woman") + z("neutral man") ≈ z("smiling man"
 ## Applications
 
 ### Disentangled Representation Learning
+![[Lec09_Pg079_Disentangled_Representation_Learning.png]]
+
 
 **Goal**: learn a latent space where each dimension controls an independent, interpretable factor (e.g. one dimension = pose, another = lighting).
 
@@ -368,6 +397,8 @@ $$\mathcal{L}_\beta(x) = \mathbb{E}_{q_\phi(z|x)}\!\big[\log p_\theta(x|z)\big] 
 [Locatello et al., 2019] showed that unsupervised disentanglement is hard without inductive biases — there are many equally valid disentangled representations.
 
 ### Style Transfer (Text and Images)
+![[Lec09_Pg082_Style_Transfer_Text_And_Images.png]]
+
 
 VAEs disentangle **style** from **content** in the latent space. Applications:
 
@@ -375,6 +406,8 @@ VAEs disentangle **style** from **content** in the latent space. Applications:
 - **Text style transfer**: encode a sentence, manipulate the style dimension (e.g. sentiment), decode back. [Shen et al., 2017]
 
 ### Handwriting Synthesis (Aksan et al., 2018)
+![[Lec09_Pg086_Handwriting_Synthesis_Aksan_Et_Al_2018.png]]
+
 
 A VAE trained on handwriting samples can:
 
@@ -383,6 +416,8 @@ A VAE trained on handwriting samples can:
 - (C) Edit handwritten samples at the word level
 
 ### Hand Pose Manifold (Tagliasacchi et al., 2015)
+![[Lec09_Pg083_Hand_Pose_Manifold_Tagliasacchi_Et_Al.png]]
+
 
 A VAE trained on hand pose data learns a smooth, compact manifold of valid hand configurations. Sampling from the manifold always produces a valid (anatomically plausible) hand pose — useful for 3D pose estimation from noisy depth sensors.
 
@@ -488,6 +523,8 @@ frames = interpolate(model, mu_a, mu_b)
 ---
 
 ## Summary of VAEs
+![[Lec09_Pg087_Summary_Of_Vaes.png]]
+
 
 | Aspect            | Detail                                                                                                                      |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------- |

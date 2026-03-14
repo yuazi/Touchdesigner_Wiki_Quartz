@@ -13,3 +13,4 @@ replit.nix
 .gemini/
 gha-creds-*.json
 *.pdf
+find_keywords.py

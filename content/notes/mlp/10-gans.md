@@ -16,6 +16,8 @@ date: 2026-03-09
 ---
 
 ## VAE Recap
+![[Lec10_Pg004_Vae_Recap.png]]
+
 
 Before jumping into GANs, recall the key idea behind VAEs (covered in [[notes/mlp/09-vae|L09]]):
 
@@ -29,6 +31,8 @@ $$p_\theta(x) = \int p_\theta(z)\, p_\theta(x|z)\, dz$$
 - Since this can't be optimised directly, we derive and optimise a **lower bound (ELBO)** on the likelihood.
 
 ### Summary of VAEs
+![[Lec10_Pg008_Summary_Of_Vaes.png]]
+
 
 | Property      | VAE                                      |
 | ------------- | ---------------------------------------- |
@@ -40,6 +44,8 @@ $$p_\theta(x) = \int p_\theta(z)\, p_\theta(x|z)\, dz$$
 ---
 
 ## Motivation: From Explicit to Implicit Density
+![[Lec10_Pg010_Motivation_From_Explicit_To_Implicit_Density.png]]
+
 
 > _What if we give up on explicitly modelling the density, and just want the ability to sample?_
 
@@ -51,6 +57,8 @@ High-dimensional $p(x)$ is:
 This motivates **implicit density** models — we don't write down $p(x)$ at all. We only care about _samples_.
 
 ### The Two-Sample Test Intuition
+![[Lec10_Pg016_The_Two_Sample_Test_Intuition.png]]
+
 
 The core question GANs are built on: **Given two finite sets of samples, how can we tell if they come from the same distribution?**
 
@@ -67,6 +75,10 @@ The test statistic $T$ compares $S_1$ and $S_2$ in terms of means and variance. 
 **Key observation**: The test statistic is _likelihood-free_ — it only uses _samples_, not the densities $P$ or $Q$ directly.
 
 ### The GAN Idea
+<!-- Review Needed: close slide match for 'The GAN Idea' (p24: 0.394, p23: 0.382) -->
+![[Lec10_Pg024_The_Gan_Idea.png]]
+![[Lec10_Pg023_The_Gan_Idea.png]]
+
 
 Instead of hand-designing a test statistic, **learn one**:
 
@@ -81,6 +93,8 @@ Finding a two-sample test objective in high dimensions is hard, so we:
 ---
 
 ## The Adversarial Framework
+![[Lec10_Pg028_The_Adversarial_Framework.png]]
+
 
 Two neural networks compete in a minimax game (Goodfellow et al., 2014):
 
@@ -108,6 +122,8 @@ The generator never sees real data directly — it only receives feedback throug
 ## Training Objectives
 
 ### Discriminator Objective
+![[Lec10_Pg029_Discriminator_Objective.png]]
+
 
 The discriminator performs binary classification — real samples get label 1, fake samples get label 0:
 
@@ -120,6 +136,8 @@ $$D^*_G(x) = \frac{p_{data}(x)}{p_{data}(x) + p_G(x)}$$
 > **Example**: if at a given point $x$, half the density is real and half is fake, the optimal discriminator outputs $D^*(x) = 0.5$ — it cannot do better than chance there.
 
 ### Generator Objective
+![[Lec10_Pg030_Generator_Objective.png]]
+
 
 The generator minimises the same quantity — it wants the discriminator to fail:
 
@@ -157,6 +175,8 @@ Properties:
 ## Training in Practice
 
 ### Alternating Optimisation
+![[Lec10_Pg036_Alternating_Optimisation.png]]
+
 
 Training alternates between gradient steps on $D$ and $G$:
 
@@ -169,6 +189,10 @@ $$\max_{\Theta_d} \; \mathbb{E}_{x \sim p_{data}}[\log D_{\Theta_d}(x)] + \mathb
 $$\min_{\Theta_g} \; \mathbb{E}_{z \sim p_z}[\log(1 - D_{\Theta_d}(G_{\Theta_g}(z)))]$$
 
 ### The Gradient Problem
+<!-- Review Needed: close slide match for 'The Gradient Problem' (p37: 0.445, p36: 0.441) -->
+![[Lec10_Pg037_The_Gradient_Problem.png]]
+![[Lec10_Pg036_The_Gradient_Problem.png]]
+
 
 Minimising $\log(1 - D(G(z)))$ causes a **vanishing gradient** early in training:
 
@@ -176,6 +200,8 @@ Minimising $\log(1 - D(G(z)))$ causes a **vanishing gradient** early in training
 - The gradient in this region is **flat** — the generator receives almost no learning signal exactly when it needs it most.
 
 ### The Non-Saturating Fix (Standard in Practice)
+![[Lec10_Pg039_The_Non_Saturating_Fix_Standard_In.png]]
+
 
 Instead of minimising $\log(1 - D(G(z)))$, **maximise** $\log D(G(z))$:
 
@@ -219,12 +245,16 @@ for real_batch in dataloader:
 ## Issues
 
 ### 1. Training Instability (Nash Equilibrium)
+![[Lec10_Pg042_1_Training_Instability_Nash_Equilibrium.png]]
+
 
 GAN training is a two-player game. Finding a **Nash equilibrium** is hard: making downhill progress for one player may push the other player uphill.
 
 Additionally, the generator can learn to exploit statistical properties of the discriminator, producing samples that fooled the discriminator but are not actually realistic.
 
 ### 2. Mode Collapse
+![[Lec10_Pg043_2_Mode_Collapse.png]]
+
 
 **Mode collapse**: the generator produces only a small number of outputs (modes) that fool the discriminator, ignoring most of the real data distribution.
 
@@ -241,6 +271,10 @@ Illustrated by a "saddle point in dual energy landscape" — the generator finds
 ---
 
 ## GANs vs VAEs
+<!-- Review Needed: close slide match for 'GANs vs VAEs' (p92: 0.435, p44: 0.409) -->
+![[Lec10_Pg092_Gans_Vs_Vaes.png]]
+![[Lec10_Pg044_Gans_Vs_Vaes.png]]
+
 
 | Property           | VAE                            | GAN                                                       |
 | ------------------ | ------------------------------ | --------------------------------------------------------- |
@@ -252,6 +286,8 @@ Illustrated by a "saddle point in dual energy landscape" — the generator finds
 ---
 
 ## Issues with Jensen-Shannon Divergence
+![[Lec10_Pg045_Issues_With_Jensen_Shannon_Divergence.png]]
+
 
 The JSD-based GAN objective has two serious problems:
 
@@ -265,10 +301,16 @@ More fundamentally: if $p_{data}$ and $p_G$ have **non-overlapping supports** (c
 ---
 
 ## Wasserstein Distance and WGAN
+<!-- Review Needed: close slide match for 'Wasserstein Distance and WGAN' (p50: 0.523, p51: 0.506) -->
+![[Lec10_Pg050_Wasserstein_Distance_And_Wgan.png]]
+![[Lec10_Pg051_Wasserstein_Distance_And_Wgan.png]]
+
 
 _Arjovsky et al., 2017_
 
 ### Earth Mover's Distance
+![[Lec10_Pg051_Earth_Mover_S_Distance.png]]
+
 
 Instead of JSD, use the **Wasserstein-1 (Earth Mover's) Distance**:
 
@@ -284,6 +326,10 @@ Where $\Pi(P, Q)$ is the set of all joint distributions $\gamma(x, y)$ whose mar
 - **Continuous and differentiable** everywhere — the generator always gets a useful gradient proportional to how far apart the distributions are
 
 ### WGAN Objective
+<!-- Review Needed: close slide match for 'WGAN Objective' (p51: 0.419, p50: 0.402) -->
+![[Lec10_Pg051_Wgan_Objective.png]]
+![[Lec10_Pg050_Wgan_Objective.png]]
+
 
 By the Kantorovich-Rubinstein duality, the Wasserstein distance can be computed as:
 
@@ -322,6 +368,8 @@ def critic_loss(real, fake, critic, gp_weight=10):
 ## Applications
 
 ### Conditional GAN (cGAN)
+![[Lec10_Pg029_Conditional_Gan_Cgan.png]]
+
 
 Condition both $G$ and $D$ on an auxiliary label $c$ (class, attribute, etc.) for **controlled generation**:
 
@@ -335,6 +383,8 @@ $$\min_G \max_D \; \mathbb{E}_{x,c}[\log D(x, c)] + \mathbb{E}_{z,c}[\log(1 - D(
 ---
 
 ### Pix2Pix — Image-to-Image Translation
+![[Lec10_Pg056_Pix2pix_Image_To_Image_Translation.png]]
+
 
 _Isola et al., 2017_
 
@@ -375,6 +425,10 @@ Input image x ──→ [Generator (U-Net)] ──→ output image ŷ
 ---
 
 ### CycleGAN — Unpaired Image-to-Image Translation
+<!-- Review Needed: close slide match for 'CycleGAN — Unpaired Image-to-Image Translation' (p60: 0.698, p61: 0.698) -->
+![[Lec10_Pg060_Cyclegan_Unpaired_Image_To_Image_Translation.png]]
+![[Lec10_Pg061_Cyclegan_Unpaired_Image_To_Image_Translation.png]]
+
 
 _Zhu et al., 2017_
 
@@ -417,6 +471,8 @@ y (zebra) ──→ F ──→ x̂ (fake horse) ──→ G ──→ ŷ (recon
 ---
 
 ### GauGAN / SPADE — Spatially-Adaptive Normalization
+![[Lec10_Pg066_Gaugan_Spade_Spatially_Adaptive_Normalization.png]]
+
 
 _Park, Liu, Wang, Zhu (NVIDIA), 2019_
 
@@ -441,6 +497,8 @@ The generator contains a series of **SPADE residual blocks** with upsampling lay
 ---
 
 ### StyleGAN — Style-Based Generator Architecture
+![[Lec10_Pg073_Stylegan_Style_Based_Generator_Architecture.png]]
+
 
 _Karras, Laine, Aila (NVIDIA), 2019_
 
@@ -449,12 +507,18 @@ StyleGAN generates high-resolution photorealistic images (e.g., human faces at 1
 **Key Innovations**:
 
 #### 1. Mapping Network
+![[Lec10_Pg073_1_Mapping_Network.png]]
+
 
 $z \sim \mathcal{N}(0, I)$ → **8-layer MLP** → $w$ (disentangled latent space)
 
 The $w$-space is more linearly disentangled than $z$-space — individual dimensions correspond more cleanly to interpretable attributes (age, hair, pose, expression, etc.).
 
 #### 2. Adaptive Instance Normalization (AdaIN)
+<!-- Review Needed: close slide match for '2. Adaptive Instance Normalization (AdaIN)' (p73: 0.440, p74: 0.403) -->
+![[Lec10_Pg073_2_Adaptive_Instance_Normalization_Adain.png]]
+![[Lec10_Pg074_2_Adaptive_Instance_Normalization_Adain.png]]
+
 
 Style is injected at each resolution by modulating intermediate features:
 
@@ -463,6 +527,8 @@ $$\text{AdaIN}(x_i, y) = y_{s,i} \cdot \frac{x_i - \mu(x_i)}{\sigma(x_i)} + y_{b
 Where $y_s, y_b$ are learned affine transforms of $w$. This is how "style" (colour palette, texture, coarse structure) is controlled at each scale.
 
 #### 3. Progressive Growing
+![[Lec10_Pg073_3_Progressive_Growing.png]]
+
 
 Training starts at low resolution (4×4) and progressively adds layers for higher resolutions (4×4 → 8×8 → 16×16 → … → 1024×1024). This produces stable, high-quality training by starting with easy, coarse structure before refining fine details.
 
@@ -481,6 +547,8 @@ At inference, use $w_1$ for early (coarse) layers and $w_2$ for later (fine) lay
 ---
 
 ## Case Study: GANs for Gaze Redirection
+![[Lec10_Pg081_Case_Study_Gans_For_Gaze_Redirection.png]]
+
 
 _(He, Spurr, Zhang, Hilliges — ICCV 2019)_
 
@@ -497,6 +565,8 @@ Appearance-based gaze estimation requires large datasets annotated with ground-t
 **One solution**: Use GANs for **gaze redirection as data augmentation** — take existing images and synthesise versions with arbitrary target gaze angles.
 
 ### Task Definition
+![[Lec10_Pg082_Task_Definition.png]]
+
 
 Given an input eye image $x_r$ with gaze direction $d_r = [\phi_r, \theta_r]$ (yaw, pitch), learn a generator $G$ that redirects the gaze to a target direction $d_g = [\phi_g, \theta_g]$:
 
@@ -508,6 +578,10 @@ Two requirements:
 2. The gaze in $x_g$ must **actually point in direction $d_g$**
 
 ### Conditional GAN Framework
+<!-- Review Needed: close slide match for 'Conditional GAN Framework' (p85: 0.509, p86: 0.477) -->
+![[Lec10_Pg085_Conditional_Gan_Framework.png]]
+![[Lec10_Pg086_Conditional_Gan_Framework.png]]
+
 
 This is the **first GAN-based method for monocular gaze redirection**. It uses a WGAN-GP framework with a **dual-purpose discriminator** that simultaneously judges realism and gaze correctness.
 
@@ -534,12 +608,16 @@ $$\mathcal{L}_s = \mathbb{E}_{x_r}\!\left[\sum_{j=1}^J \|f_j(G(x_r, d_g)) - f_j(
 Where $\psi_j$ is the $j$-th activation of a pretrained VGG-16, and $f_j$ is the Gram matrix (captures style/texture).
 
 ### Overall Objectives
+![[Lec10_Pg088_Overall_Objectives.png]]
+
 
 $$\mathcal{L}_G = -\mathcal{L}_{adv} + \lambda_p \mathcal{L}_p + \lambda_{gaze} \mathcal{L}^G_{gaze} + \lambda_{rec} \mathcal{L}_{rec}$$
 
 $$\mathcal{L}_D = \mathcal{L}_{adv} + \lambda_{gaze} \mathcal{L}^D_{gaze}$$
 
 ### Evaluation Metric: LPIPS
+![[Lec10_Pg090_Evaluation_Metric_Lpips.png]]
+
 
 Perceptual quality is evaluated using **LPIPS** (Learned Perceptual Image Patch Similarity, Zhang et al., 2018):
 
@@ -548,6 +626,8 @@ Perceptual quality is evaluated using **LPIPS** (Learned Perceptual Image Patch 
 - Better than pixel-wise metrics (PSNR, SSIM) for evaluating generated image quality
 
 ### Key Contributions
+![[Lec10_Pg084_Key_Contributions.png]]
+
 
 1. **First GAN-based method** for gaze redirection from monocular images
 2. **Novel dual-purpose discriminator** — judges both realism _and_ gaze direction

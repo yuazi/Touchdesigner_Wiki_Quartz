@@ -21,6 +21,8 @@ date: 2026-03-09
 ## Last Lecture Recap — VAEs and GANs
 
 ### Variational Autoencoders (VAEs)
+![[Lec12_Pg004_Variational_Autoencoders_Vaes.png]]
+
 
 - Probabilistic version of autoencoders.
 - Allows sampling from the learned model to generate new, unseen samples.
@@ -30,6 +32,10 @@ date: 2026-03-09
 **Example**: VAE trained on MNIST. Sample $z \sim \mathcal{N}(0, I)$ and decode it through $\mu_\theta(z)$ to get a plausible digit image — never seen during training.
 
 ### Generative Adversarial Networks (GANs)
+<!-- Review Needed: close slide match for 'Generative Adversarial Networks (GANs)' (p7: 0.508, p6: 0.471) -->
+![[Lec12_Pg007_Generative_Adversarial_Networks_Gans.png]]
+![[Lec12_Pg006_Generative_Adversarial_Networks_Gans.png]]
+
 
 - **Generator**: try to fool the discriminator by generating real-looking images.
 - **Discriminator**: try to distinguish between real and fake images.
@@ -43,6 +49,10 @@ date: 2026-03-09
 ---
 
 ## This Lecture — Generative Models III
+<!-- Review Needed: close slide match for 'This Lecture — Generative Models III' (p3: 0.610, p10: 0.610) -->
+![[Lec12_Pg003_This_Lecture_Generative_Models_Iii.png]]
+![[Lec12_Pg010_This_Lecture_Generative_Models_Iii.png]]
+
 
 1. Diffusion Models: Discrete Time
 2. Diffusion Models: Continuous Time
@@ -55,6 +65,8 @@ Diffusion models have **emerged as the most powerful generative models**, outper
 ## Diffusion Models: Discrete Time
 
 ### Basic Idea
+![[Lec12_Pg018_Basic_Idea.png]]
+
 
 Diffusion models define two processes:
 
@@ -71,6 +83,8 @@ Reverse:  x_T (noise) ──denoise──► x_{T-1} ──► ... ──denoise
 ---
 
 ### Forward Diffusion Process
+![[Lec12_Pg019_Forward_Diffusion_Process.png]]
+
 
 The forward process starts at $t = 0$ and **adds Gaussian noise incrementally** via a Markov chain:
 
@@ -85,6 +99,8 @@ The **joint distribution** over the entire forward trajectory:
 $$q(x_{1:T}|x_0) = \prod_{t=1}^{T} q(x_t|x_{t-1})$$
 
 #### Noise Schedule Intuition
+![[Lec12_Pg041_Noise_Schedule_Intuition.png]]
+
 
 | Timestep $t$ | Effect                                                           |
 | ------------ | ---------------------------------------------------------------- |
@@ -96,6 +112,8 @@ $$q(x_{1:T}|x_0) = \prod_{t=1}^{T} q(x_t|x_{t-1})$$
 ---
 
 ### Sampling from the Forward Distribution — Closed Form
+![[Lec12_Pg025_Sampling_From_The_Forward_Distribution_Closed.png]]
+
 
 You do **not** need to simulate step-by-step. The reparameterization trick gives a closed form:
 
@@ -122,6 +140,10 @@ def forward_sample(x0, t, alpha_bar):
 ---
 
 ### How Does the Distribution Change?
+<!-- Review Needed: close slide match for 'How Does the Distribution Change?' (p26: 0.667, p28: 0.659) -->
+![[Lec12_Pg026_How_Does_The_Distribution_Change.png]]
+![[Lec12_Pg028_How_Does_The_Distribution_Change.png]]
+
 
 During forward diffusion, the **marginal distribution** $q(x_t)$ is smoothed gradually toward $\mathcal{N}(0, I)$:
 
@@ -131,6 +153,10 @@ During forward diffusion, the **marginal distribution** $q(x_t)$ is smoothed gra
 ---
 
 ### Generative Learning by Reversing the Diffusion Process
+<!-- Review Needed: close slide match for 'Generative Learning by Reversing the Diffusion Process' (p30: 0.471, p34: 0.458) -->
+![[Lec12_Pg030_Generative_Learning_By_Reversing_The_Diffusion.png]]
+![[Lec12_Pg034_Generative_Learning_By_Reversing_The_Diffusion.png]]
+
 
 To generate data, start from noise and reverse:
 
@@ -146,6 +172,8 @@ $$q(x_{t-1}|x_t) = \frac{q(x_t|x_{t-1}) \cdot q(x_{t-1})}{q(x_t)}$$
 ---
 
 ### Parametric Reverse Model
+![[Lec12_Pg032_Parametric_Reverse_Model.png]]
+
 
 We use a **parametric model** $p_\theta$ to approximate the reverse process:
 
@@ -160,6 +188,8 @@ $$p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^{T} p_\theta(x_{t-1}|x_t)$$
 ---
 
 ### Reverse Conditional Gaussian and Training Objective
+![[Lec12_Pg037_Reverse_Conditional_Gaussian_And_Training_Objective.png]]
+
 
 The reverse conditional $q(x_{t-1}|x_t)$ has no analytical closed form. However, **Ho, Jain and Abbeel (2020)** derived the following approximation for the reverse mean:
 
@@ -196,6 +226,8 @@ for x0 in dataloader:
 ---
 
 ### Training Procedure — U-Net Architecture
+![[Lec12_Pg039_Training_Procedure_U_Net_Architecture.png]]
+
 
 The denoiser network $\theta(x_t, t)$ takes a noisy image and predicts an image (the noise).
 
@@ -227,6 +259,8 @@ Output: predicted noise (H × W × C)
 ---
 
 ### Diffusion Hyperparameters — The Noise Schedule
+![[Lec12_Pg040_Diffusion_Hyperparameters_The_Noise_Schedule.png]]
+
 
 Forward: $\mathcal{N}(x_t;\, \sqrt{1-\beta_t}\, x_{t-1},\, \beta_t I)$ — Reverse: $\mathcal{N}(x_{t-1};\, \mu_\theta(x_t, t),\, \sigma_t^2 I)$
 
@@ -247,6 +281,8 @@ alpha_bar = torch.cumprod(alpha, dim=0)        # ᾱ_t
 ---
 
 ### Connection to VAEs
+![[Lec12_Pg043_Connection_To_Vaes.png]]
+
 
 Diffusion models are a **special form of hierarchical VAEs**:
 
@@ -262,6 +298,8 @@ Diffusion models are a **special form of hierarchical VAEs**:
 ## Diffusion Models: Continuous Time
 
 ### SDE Formulation (Song et al., 2021)
+![[Lec12_Pg045_Sde_Formulation_Song_Et_Al_2021.png]]
+
 
 As the number of timesteps $T \to \infty$, the discrete Markov chain becomes a **Stochastic Differential Equation (SDE)**:
 
@@ -271,6 +309,8 @@ $$dx = f(x, t)\,dt + g(t)\,dw$$
 - $g(t)\,dw$: stochastic **diffusion** term (Brownian motion)
 
 ### Time Reversal
+![[Lec12_Pg046_Time_Reversal.png]]
+
 
 SDE time reversal yields an elegant analytical form for the **reverse (generative) SDE**:
 
@@ -285,12 +325,16 @@ The term $\nabla_x \log p_t(x)$ is the **score function** — the gradient of th
 ## Discussion: Advantages and Disadvantages
 
 ### Advantages
+![[Lec12_Pg047_Advantages.png]]
+
 
 - **High diversity**: covers the data distribution well, unlike mode-collapsing GANs.
 - **High quality**: samples are comparable to or better than GANs.
 - **Flexible conditioning**: easily conditioned on images, text, or class labels.
 
 ### Disadvantages
+![[Lec12_Pg047_Disadvantages.png]]
+
 
 - **Slow generation**: requires many forward passes through the network ($T = 1000$ steps by default).
 - **Less meaningful latents**: latent variables have the same dimensionality as the data — harder to interpret or manipulate.
@@ -298,6 +342,8 @@ The term $\nabla_x \log p_t(x)$ is the **score function** — the gradient of th
 ---
 
 ## The Generative Trilemma
+![[Lec12_Pg048_The_Generative_Trilemma.png]]
+
 
 Most generative models can excel at only **two of three** desirable properties:
 
@@ -327,6 +373,8 @@ DDPM sampling is high quality but slow: at inference time it often requires **$T
 DDIM (**Denoising Diffusion Implicit Models**) addresses this by introducing a **non-Markovian forward process** that keeps the same training objective but allows much faster and even **deterministic** sampling (Song et al., 2020).
 
 ### Key Idea: Skip Timesteps
+![[Lec12_Pg042_Key_Idea_Skip_Timesteps.png]]
+
 
 Instead of following every single reverse step
 
@@ -410,6 +458,10 @@ The essential trick is simple: define a shorter timestep schedule and denoise on
 ## Latent Diffusion Models (Rombach et al., 2022)
 
 ### Motivation — The Scaling Problem
+<!-- Review Needed: close slide match for 'Motivation — The Scaling Problem' (p53: 0.416, p50: 0.398) -->
+![[Lec12_Pg053_Motivation_The_Scaling_Problem.png]]
+![[Lec12_Pg050_Motivation_The_Scaling_Problem.png]]
+
 
 Diffusion models **do not scale well with image resolution**. A 512×512×3 pixel image has ~786K dimensions, making direct pixel-space diffusion computationally expensive.
 
@@ -441,6 +493,10 @@ x_0 →[VAE Enc]→ z_0 →[Noise]→ z_T →[U-Net]→ ẑ_0 →[VAE Dec]→ x�
 ```
 
 ### Two-Stage Training
+<!-- Review Needed: close slide match for 'Two-Stage Training' (p53: 0.525, p59: 0.496) -->
+![[Lec12_Pg053_Two_Stage_Training.png]]
+![[Lec12_Pg059_Two_Stage_Training.png]]
+
 
 Latent diffusion is trained in **two stages**:
 
@@ -450,6 +506,8 @@ Latent diffusion is trained in **two stages**:
 In the lecture slides, the first stage is not just plain reconstruction: a **patch-based adversarial discriminator** is added on top of the reconstruction / perceptual objective so the latent space keeps visually important details while staying compressed.
 
 ### Advantages of Latent Diffusion
+![[Lec12_Pg056_Advantages_Of_Latent_Diffusion.png]]
+
 
 | Benefit                      | Explanation                                                                                  |
 | ---------------------------- | -------------------------------------------------------------------------------------------- |
@@ -464,6 +522,8 @@ In the lecture slides, the first stage is not just plain reconstruction: a **pat
 ## Application: GLIDE (Nichol et al., 2022)
 
 ### Overview
+![[Lec12_Pg067_Overview.png]]
+
 
 **GLIDE** = Guided Language-to-Image Diffusion
 
@@ -471,6 +531,8 @@ In the lecture slides, the first stage is not just plain reconstruction: a **pat
 - Supports two guidance strategies: **CLIP guidance** and **classifier-free guidance**.
 
 ### CLIP Guidance (Radford et al., 2021)
+![[Lec12_Pg064_Clip_Guidance_Radford_Et_Al_2021.png]]
+
 
 CLIP is a large model that takes an image $x$ and a text $c$ and outputs a **similarity score**.
 
@@ -487,6 +549,8 @@ $$\nabla_x \mathcal{L} = \nabla_x \mathcal{L}_\text{data}(x_t, c) + s \cdot \nab
 > **Example**: When generating "a red apple on a wooden table", the CLIP gradient nudges each denoising step toward images whose visual features are more similar to that text description.
 
 ### GLIDE Training
+![[Lec12_Pg066_Glide_Training.png]]
+
 
 The lecture's training slide clarifies how **classifier-free guidance** is enabled: during training, GLIDE is randomly asked to denoise **with text conditioning** and **without text conditioning**. That means the same network learns both:
 
@@ -496,6 +560,8 @@ The lecture's training slide clarifies how **classifier-free guidance** is enabl
 The difference between these two predictions becomes the direction that is later amplified at inference time.
 
 ### Classifier-Free Guidance (Ho & Salimans, 2022)
+![[Lec12_Pg065_Classifier_Free_Guidance_Ho_Salimans_2022.png]]
+
 
 **Problem**: Conditional generation doesn't always follow the text prompt closely enough.
 
@@ -523,6 +589,8 @@ eps_guided = eps_uncond + w * (eps_cond - eps_uncond)  # guided prediction
 > - $w = 15$ → very strong adherence but may produce over-saturated artifacts.
 
 ### GLIDE Editing Results
+![[Lec12_Pg070_Glide_Editing_Results.png]]
+
 
 GLIDE is not only a text-to-image generator from scratch; the lecture's editing slide shows it can perform **text-guided local edits** while preserving the rest of the image. The examples include:
 
@@ -536,6 +604,8 @@ This is the same general diffusion machinery applied in an **editing / inpaintin
 ---
 
 ## Are We Done? — Open Challenges
+![[Lec12_Pg049_Are_We_Done_Open_Challenges.png]]
+
 
 - Research on key diffusion model elements is ongoing.
 - **Accelerating the diffusion process** remains a central challenge.

@@ -17,12 +17,16 @@ date: 2026-03-09
 
 ### The Human Eye
 
+![Lecture 02 slide page 6](/pictures/mpl/02/lecture-02-page-6.png)
+
 - Light passes through the **cornea** and **pupil**
 - The pupil adjusts light incidence; the **lens** focuses light onto the **retina**
 - The **fovea**: dense array of photoreceptors; receives light from objects looked at directly; area of highest visual acuity (hence saccades)
 - The **optic nerve** carries information from the retina on to the brain
 
 ### Retina
+![[Lec02_Pg007_Retina.png]]
+
 
 Hierarchy of cell layers:
 
@@ -33,12 +37,16 @@ Hierarchy of cell layers:
 - **Ganglion cells** form the optic nerve
 
 ### Cell Types
+![[Lec02_Pg008_Cell_Types.png]]
+
 
 **Photoreceptor cells** differ in sensitivity, number, location, response time, and wavelength.
 
 **Retinal ganglion cells** have different populations (M, P, and K cells; intrinsic photosensitive cells) with different responses to contrast, color, shape, texture, and motion.
 
 ### Photoreceptors
+![[Lec02_Pg009_Photoreceptors.png]]
+
 
 |                  | Rods      | Cones     |
 | ---------------- | --------- | --------- |
@@ -54,6 +62,8 @@ Hierarchy of cell layers:
 - **Cones**: colour vision and fine details
 
 ### Thalamus and the LGN
+![[Lec02_Pg010_Thalamus_And_The_Lgn.png]]
+
 
 Optic nerves terminate in two **lateral geniculate nuclei (LGN)**:
 
@@ -62,6 +72,8 @@ Optic nerves terminate in two **lateral geniculate nuclei (LGN)**:
 - Acts as a "relay station" between retina and the visual cortex
 
 ### Visual Cortex
+![[Lec02_Pg011_Visual_Cortex.png]]
+
 
 - Largest system in the brain: **40 × 10⁶ neurons**; active area of research, not fully understood
 - **Cortical hierarchy**: V1 (striate/primary visual cortex) → V2–V8 (secondary visual areas)
@@ -70,10 +82,14 @@ Optic nerves terminate in two **lateral geniculate nuclei (LGN)**:
 
 [Goodale and Milner, 1992; Norman, 2002]
 
+![Lecture 02 slide page 12](/pictures/mpl/02/lecture-02-page-12.png)
+
 - **Dorsal stream** (V1 → V2 → V5 → V6): the "where pathway" — visually guided action (eyes, head, limbs)
 - **Ventral stream** (V1 → V2 → V4 → IT): the "what pathway" — representation of the visual world, visual memory, object identification and recognition
 
 ### Specificity vs. Invariance
+![[Lec02_Pg015_Specificity_Vs_Invariance.png]]
+
 
 Goal: good classification performance requires a trade-off between:
 
@@ -86,20 +102,28 @@ This trade-off directly impacts generalisation ability.
 
 [Hubel and Wiesel, 1959, 1962]
 
+![Lecture 02 slide page 16](/pictures/mpl/02/lecture-02-page-16.png)
+
 - **Simple cells**: respond to oriented edges/bars at a specific location
 - **Complex cells**: respond to the same orientations regardless of exact location — position invariance
 
 ### Receptive Field
+![[Lec02_Pg018_Receptive_Field.png]]
+
 
 - All receptors synapsing with a particular cell collectively form its **receptive field**
 - Cells have excitatory/inhibitory regions → **on-center / off-center** cells
 - Sensitive to contrast and orientation of a bar, edge, or gratings
 
 ### Hierarchical Organisation
+![[Lec02_Pg019_Hierarchical_Organisation.png]]
+
 
 The visual system builds progressively more complex representations from low-level edge detectors to higher-level object descriptions.
 
 ### Invariance to Affine Transforms
+![[Lec02_Pg020_Invariance_To_Affine_Transforms.png]]
+
 
 Neurons in the inferior temporal cortex show invariance to position, scale, and view [Logothetis et al., 1995] — a property that CNNs aim to replicate.
 
@@ -110,6 +134,8 @@ Neurons in the inferior temporal cortex show invariance to position, scale, and 
 ### HMAX Model
 
 [Riesenhuber and Poggio, 2000; Serre et al., 2007]
+
+![Lecture 02 slide page 22](/pictures/mpl/02/lecture-02-page-22.png)
 
 - Models the "immediate object recognition" process (first few hundred milliseconds — before top-down influences such as attention shifts or eye movements)
 - Alternates between **S-units** and **C-units**; many iterations allow construction of complex objects from low-level features
@@ -131,15 +157,23 @@ $$y = \max_{j=1 \ldots n_{C_k}} x_j$$
 
 [Fukushima and Miyake, 1982] — an early CNN-like architecture with alternating S-layers and C-layers, directly implementing the Hubel-Wiesel hierarchy.
 
+![Lecture 02 slide page 29](/pictures/mpl/02/lecture-02-page-29.png)
+
 ### LeNet-5 (1998)
 
 [LeCun et al., 1998] — convolutional + pooling + fully-connected layers; **~60,000 parameters**; trained on handwritten digit recognition.
+
+![Lecture 02 slide page 30](/pictures/mpl/02/lecture-02-page-30.png)
 
 ### AlexNet (2012)
 
 [Krizhevsky et al., 2012] — **~60,000,000 parameters**, trained on two GPUs. Evaluated on the large-scale ImageNet dataset [Deng et al., 2009] and dramatically outperformed prior methods.
 
+![Lecture 02 slide page 31](/pictures/mpl/02/lecture-02-page-31.png)
+
 ### Fine-Grained Prediction
+![[Lec02_Pg033_Fine_Grained_Prediction.png]]
+
 
 Beyond classification, CNNs were extended to dense predictions — object detection [Ren et al., 2015; Girshick, 2015; He et al., 2017] and scene labelling [Farabet et al., 2012].
 
@@ -148,6 +182,8 @@ Beyond classification, CNNs were extended to dense predictions — object detect
 ## Deep Learning in a Nutshell
 
 ### Traditional Approach
+![[Lec02_Pg035_Traditional_Approach.png]]
+
 
 Image features were often:
 
@@ -155,12 +191,16 @@ Image features were often:
 - Too general (not task-specific enough), or too specific (do not generalise well to other tasks)
 
 ### Trainable Features
+![[Lec02_Pg037_Trainable_Features.png]]
+
 
 - **Parametrised feature extraction**: features are learned, not hand-coded
 - Features should be efficient to compute and efficient to train (differentiable)
 - **Joint training** of feature extraction and classification → "end-to-end system"
 
 ### Summary of Main Ideas
+![[Lec02_Pg038_Summary_Of_Main_Ideas.png]]
+
 
 1. **Learning of features** across many layers
 2. **Efficient and trainable systems** via differentiable building blocks
@@ -172,10 +212,14 @@ Image features were often:
 ## Convolutional Neural Networks
 
 ### Fully Connected Layer
+![[Lec02_Pg040_Fully_Connected_Layer.png]]
+
 
 A 32×32×3 image flattened to 3072×1 is fed into a dense layer. This ignores all spatial structure and scales poorly.
 
 ### Convolutional Layer
+
+![Lecture 02 slide page 41](/pictures/mpl/02/lecture-02-page-41.png)
 
 - A **filter** (kernel) slides across the spatial dimensions of the input
 - Filters always **extend the full depth** of the input volume
@@ -184,14 +228,21 @@ A 32×32×3 image flattened to 3072×1 is fed into a dense layer. This ignores a
 > **Example — vertical edge filter**: imagine a 3×3 kernel whose left column has positive weights and right column has negative weights. When it slides over a photo, it activates strongly on transitions like a door frame, a window border, or the outline of a dog's ear, but stays near zero on flat sky or wall regions.
 
 ### Multiple Activation Maps
+![[Lec02_Pg048_Multiple_Activation_Maps.png]]
+
 
 Using multiple filters in parallel produces multiple feature maps. For example, six 5×5 filters applied to a 32×32×3 input produce six separate activation maps of size 28×28, which stack into a volume of **28×28×6**.
 
 ### Key Idea
+<!-- Review Needed: close slide match for 'Key Idea' (p49: 0.827, p50: 0.827) -->
+![[Lec02_Pg050_Key_Idea.png]]
+
 
 CNNs are a **sequence of convolutional layers interspersed with activation functions**. Each layer learns increasingly abstract representations.
 
 ### Weight Sharing
+![[Lec02_Pg051_Weight_Sharing.png]]
+
 
 The same filter weights are applied at every spatial position. Advantages:
 
@@ -200,6 +251,10 @@ The same filter weights are applied at every spatial position. Advantages:
 - Makes feature search **insensitive to feature location**
 
 ### Visualisation
+<!-- Review Needed: close slide match for 'Visualisation' (p52: 0.656, p53: 0.653) -->
+![[Lec02_Pg052_Visualisation.png]]
+![[Lec02_Pg053_Visualisation.png]]
+
 
 [Zeiler and Fergus, 2014] — visualising what each filter responds to shows that:
 
@@ -207,6 +262,10 @@ The same filter weights are applied at every spatial position. Advantages:
 - **Later layers** learn more complex object parts and eventually whole objects
 
 ### Brain/Neuron View
+<!-- Review Needed: close slide match for 'Brain/Neuron View' (p54: 0.615, p55: 0.615) -->
+![[Lec02_Pg054_Brain_Neuron_View.png]]
+![[Lec02_Pg055_Brain_Neuron_View.png]]
+
 
 Each unit in a feature map is connected only to a local patch of the input (its **receptive field**). Units sharing a filter form a layer analogous to a sheet of simple cells in V1.
 
@@ -217,13 +276,20 @@ Each unit in a feature map is connected only to a local patch of the input (its 
 
 **Max pooling**: takes the maximum value in each pooling window — the most common form.
 
+![Lecture 02 slide page 58](/pictures/mpl/02/lecture-02-page-58.png)
+
 > **Example — max pooling**: if a 2×2 activation patch is $\begin{bmatrix}0.1 & 0.7 \\ 0.2 & 0.6\end{bmatrix}$, max pooling outputs `0.7`. If the strongest response shifts slightly within that same window, the pooled output stays almost unchanged, which is why pooling gives small translation invariance.
 
 ### Revolution of Depth
+<!-- Review Needed: close slide match for 'Revolution of Depth' (p60: 0.653, p62: 0.653) -->
+![[Lec02_Pg062_Revolution_Of_Depth.png]]
+
 
 Increasing network depth has been the primary driver of performance improvements in image recognition.
 
 ### Case Study: VGG
+![[Lec02_Pg061_Case_Study_Vgg.png]]
+
 
 [Simonyan and Zisserman, 2014]
 
@@ -235,12 +301,16 @@ Increasing network depth has been the primary driver of performance improvements
 
 [Szegedy et al., 2015]
 
+![Lecture 02 slide page 64](/pictures/mpl/02/lecture-02-page-64.png)
+
 - 22 layers; efficient **"Inception" module** — "network within a network"
 - No fully-connected layers; only **5 million parameters** (12× less than AlexNet)
 - **Naïve Inception module**: applies 1×1, 3×3, and 5×5 convolutions in parallel → continuous increase in dimensionality
 - **Final Inception module**: adds **1×1 convolutions for dimensionality reduction** (feature map pooling) before expensive convolutions
 
 ### Gradient Flow Problem
+![[Lec02_Pg067_Gradient_Flow_Problem.png]]
+
 
 Ensuring sufficient gradient flow through very deep networks was a key challenge:
 
@@ -252,6 +322,8 @@ Shortly afterwards, **batch normalisation** was invented, removing the need for 
 ### Case Study: ResNet
 
 [He et al., 2016]
+
+![Lecture 02 slide page 71](/pictures/mpl/02/lecture-02-page-71.png)
 
 A deeper network should perform at least as well as a shallower one — in theory, you could take a trained shallow network, copy its layers, and set the extra layers to the identity. But in practice, optimisers fail to find this.
 
@@ -274,6 +346,8 @@ Results:
 - Trained in 2–3 weeks on an 8-GPU machine; faster than VGG at runtime despite being 8× deeper
 
 ### Case Study: DenseNet / FractalNet
+![[Lec02_Pg077_Case_Study_Densenet_Fractalnet.png]]
+
 
 [Huang et al., 2017; Larsson et al., 2016]
 
@@ -282,6 +356,8 @@ Results:
 **FractalNet**: a fractal-structured network that achieves depth without residual connections.
 
 ### Further Architectures
+![[Lec02_Pg078_Further_Architectures.png]]
+
 
 - Wide ResNet [Zagoruyko and Komodakis, 2016]
 - ResNeXt [Xie et al., 2017]

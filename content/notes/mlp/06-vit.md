@@ -24,6 +24,8 @@ date: 2026-03-09
 ## Vision Transformer (ViT)
 
 ### Limitations of CNNs
+![[Lec06_Pg007_Limitations_Of_Cnns.png]]
+
 
 CNNs have several weaknesses that motivated looking at Transformer alternatives (Naseer et al., 2021):
 
@@ -34,6 +36,8 @@ CNNs have several weaknesses that motivated looking at Transformer alternatives 
 ---
 
 ### Replacing CNNs with Self-Attention (Ramachandran et al., 2019)
+![[Lec06_Pg008_Replacing_Cnns_With_Self_Attention_Ramachandran.png]]
+
 
 Before the full ViT, Ramachandran et al. (2019) showed that convolution layers can be replaced by **stand-alone self-attention** layers:
 
@@ -51,12 +55,18 @@ This allows the model to ask "how well do the pixel features match their neighbo
 ---
 
 ### Vision Transformer (ViT) — Main Workflow
+<!-- Review Needed: close slide match for 'Vision Transformer (ViT) — Main Workflow' (p12: 0.556, p13: 0.512) -->
+![[Lec06_Pg012_Vision_Transformer_Vit_Main_Workflow.png]]
+![[Lec06_Pg013_Vision_Transformer_Vit_Main_Workflow.png]]
+
 
 **Paper**: Dosovitskiy et al. _"An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale."_ ICLR 2021.
 
 The ViT processes images as a sequence of fixed-size patches fed into a standard Transformer encoder.
 
 #### Step 1: Image Patch and Position Embedding
+![[Lec06_Pg012_Step_1_Image_Patch_And_Position.png]]
+
 
 1. Split the image into **fixed-size 16×16 patches** (or 32×32) and flatten each patch into a vector
 2. Apply a **linear projection** to map each flattened patch to $d_{model}$ dimensions
@@ -82,6 +92,8 @@ Image (224×224×3)
 ```
 
 #### Step 2: Encoding and Classification
+![[Lec06_Pg013_Step_2_Encoding_And_Classification.png]]
+
 
 - Feed the 197-token sequence into a **standard Transformer encoder** (same architecture as L05)
 - MLP head: two dense layers with **GeLU** non-linearity (not ReLU — GeLU is smoother and empirically better for ViT)
@@ -96,6 +108,8 @@ Image (224×224×3)
 ---
 
 ### ViT Architecture Versions
+![[Lec06_Pg015_Vit_Architecture_Versions.png]]
+
 
 Three standard variants (Dosovitskiy et al., 2021):
 
@@ -110,6 +124,8 @@ Both 16×16 and 32×32 patch sizes are used. Smaller patches = more tokens = mor
 ---
 
 ### Data Requirements
+![[Lec06_Pg014_Data_Requirements.png]]
+
 
 ViTs have **fewer inductive biases** than CNNs (no built-in locality or translation equivariance) — so they require more data to learn these structures from scratch.
 
@@ -136,6 +152,8 @@ To improve performance on smaller datasets, three regularisation parameters help
 ---
 
 ### Attention Maps
+![[Lec06_Pg021_Attention_Maps.png]]
+
 
 ViT attention maps reveal what the model "looks at" when classifying an image. Visualization of last-layer [CLS] attention weights shows:
 
@@ -217,6 +235,8 @@ logits = model(img)  # (4, 1000)
 ## Object Detection with ViTs
 
 ### Recap: CNN-Based Object Detection
+![[Lec06_Pg024_Recap_Cnn_Based_Object_Detection.png]]
+
 
 Object detection requires:
 
@@ -234,6 +254,8 @@ Object detection requires:
 ---
 
 ### DETR — End-to-End Object Detection with Transformers
+![[Lec06_Pg026_Detr_End_To_End_Object_Detection.png]]
+
 
 **Paper**: Carion, Massa, Synnaeve, Usunier, Kirillov, Zagoruyko. _"End-to-End Object Detection with Transformers."_ ECCV 2020.
 
@@ -248,6 +270,10 @@ Object detection requires:
 ---
 
 ### DETR Architecture
+<!-- Review Needed: close slide match for 'DETR Architecture' (p29: 0.443, p28: 0.442) -->
+![[Lec06_Pg029_Detr_Architecture.png]]
+![[Lec06_Pg028_Detr_Architecture.png]]
+
 
 ```
 Image → [CNN Backbone] → feature map (H/32 × W/32 × 2048)
@@ -277,6 +303,8 @@ Image → [CNN Backbone] → feature map (H/32 × W/32 × 2048)
 ---
 
 ### Optimal Bipartite Matching
+![[Lec06_Pg032_Optimal_Bipartite_Matching.png]]
+
 
 During training, $N$ predictions must be matched to the (usually fewer) ground-truth objects. DETR solves this with **optimal bipartite matching**:
 
@@ -298,6 +326,8 @@ This is solved efficiently using the **Hungarian algorithm** (also used in Stewa
 ---
 
 ### Combined Loss Function (Hungarian Loss)
+![[Lec06_Pg034_Combined_Loss_Function_Hungarian_Loss.png]]
+
 
 After matching, the loss over all $N$ matched pairs:
 
@@ -312,6 +342,8 @@ $$\mathcal{L}_{\text{Hungarian}}(y, \hat{y}) = \sum_{i=1}^{N} \left[ -\log \hat{
 ---
 
 ### Panoptic Segmentation
+![[Lec06_Pg038_Panoptic_Segmentation.png]]
+
 
 With a minor modification, DETR produces **panoptic segmentation** (both "things" — countable objects — and "stuff" — amorphous regions like sky, grass):
 
@@ -324,6 +356,8 @@ This shows the modularity of the Transformer-based approach — segmentation req
 ---
 
 ### DETR — Results and Shortcomings
+![[Lec06_Pg035_Detr_Results_And_Shortcomings.png]]
+
 
 On COCO, DETR is not just conceptually elegant; it is also **competitive with strong Faster R-CNN baselines**. In the lecture comparison table:
 
@@ -346,6 +380,8 @@ The qualitative slides explain _why_ DETR feels different from proposal-based de
 ---
 
 ### Deformable DETR (Zhu et al., 2020)
+![[Lec06_Pg040_Deformable_Detr_Zhu_Et_Al_2020.png]]
+
 
 Two targeted fixes for DETR's shortcomings:
 
@@ -378,6 +414,8 @@ Two targeted fixes for DETR's shortcomings:
 ## Self-supervised Vision Transformers
 
 ### Motivation
+![[Lec06_Pg043_Motivation.png]]
+
 
 **Supervised learning challenge**: when labeled examples are clustered in feature space by their label, their apparent similarity is determined by the labels themselves — not by genuine visual similarity.
 
@@ -388,6 +426,8 @@ Two targeted fixes for DETR's shortcomings:
 ---
 
 ### Pretext Tasks in NLP
+![[Lec06_Pg045_Pretext_Tasks_In_Nlp.png]]
+
 
 Self-supervised learning in NLP defines **pretext tasks** where labels come automatically from the data:
 
@@ -399,6 +439,10 @@ These tasks forced the model to learn rich semantic representations without huma
 ---
 
 ### Pretext Tasks in Computer Vision
+<!-- Review Needed: close slide match for 'Pretext Tasks in Computer Vision' (p47: 0.643, p46: 0.624) -->
+![[Lec06_Pg047_Pretext_Tasks_In_Computer_Vision.png]]
+![[Lec06_Pg046_Pretext_Tasks_In_Computer_Vision.png]]
+
 
 Many analogous pretext tasks were proposed for vision (Li, cs231):
 
@@ -415,6 +459,8 @@ Many analogous pretext tasks were proposed for vision (Li, cs231):
 ---
 
 ### Self-Supervised Contrastive Learning
+![[Lec06_Pg053_Self_Supervised_Contrastive_Learning.png]]
+
 
 An alternative to pretext tasks: **contrastive learning** with augmented view pairs.
 
@@ -441,12 +487,16 @@ loss: bring z₁ and z₂ close together, push apart from all z_other
 ---
 
 ### DINO — Self-supervised Vision Transformers
+![[Lec06_Pg042_Dino_Self_Supervised_Vision_Transformers.png]]
+
 
 **Paper**: Caron, Touvron, Misra, Jégou, Mairal, Bojanowski, Joulin (2021). _"Emerging Properties in Self-Supervised Vision Transformers."_ ICCV 2021.
 
 ---
 
 #### Multi-Crop Strategy
+![[Lec06_Pg057_Multi_Crop_Strategy.png]]
+
 
 DINO uses **different crops** of one image to create multiple views:
 
@@ -460,6 +510,8 @@ This asymmetry forces the model to learn **local-to-global correspondence**: the
 ---
 
 #### Knowledge Distillation: Teacher-Student Framework
+![[Lec06_Pg059_Knowledge_Distillation_Teacher_Student_Framework.png]]
+
 
 DINO frames self-supervised learning as a **pseudo-classification problem** via knowledge distillation (inspired by He et al. [MoCo], 2020):
 
@@ -477,6 +529,10 @@ Objective: minimise H(Pₜ(x), Pₛ(x))  ← student learns to match teacher
 ---
 
 #### Loss Functions
+<!-- Review Needed: close slide match for 'Loss Functions' (p61: 0.420, p60: 0.415) -->
+![[Lec06_Pg061_Loss_Functions.png]]
+![[Lec06_Pg060_Loss_Functions.png]]
+
 
 **Student distribution** (softmax with temperature $\tau_s$):
 
@@ -504,6 +560,8 @@ $$\min_{\theta_s} \sum_{x \in \{x_1^g, x_2^g\}} \sum_{\substack{x' \in V \\ x' \
 ---
 
 #### Mode Collapse Problem
+![[Lec06_Pg064_Mode_Collapse_Problem.png]]
+
 
 **Mode collapse** occurs when the model outputs the same distribution for all inputs, making the loss trivially zero:
 
@@ -515,6 +573,8 @@ Both forms result in learned representations that carry no useful information.
 ---
 
 #### Centering to Prevent Mode Collapse
+![[Lec06_Pg065_Centering_To_Prevent_Mode_Collapse.png]]
+
 
 DINO prevents mode collapse with two complementary techniques:
 
@@ -579,6 +639,8 @@ DINO became the foundation for **DINOv2**, **SAM (Segment Anything Model)**, and
 ---
 
 ### The Field is Evolving Quickly
+![[Lec06_Pg069_The_Field_Is_Evolving_Quickly.png]]
+
 
 From the lecture's closing slide — notable models and frameworks as of WS 2025/2026:
 
