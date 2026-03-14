@@ -13,6 +13,28 @@ date: 2026-01-01
 
 ## Courses
 
-- [[notes/mlp/index|(y-) Machine Perception & Learning (MPL)]] with notes on CNNs, Transformers, ViT, GANs, Diffusion, RL, and XAI
+- [[notes/mlp/index|(y-) Machine Perception & Learning (MPL)]]
+
+## CLI & Tools
+
+- [[find-keywords|Find Keywords]]
+- [[ghostty|Ghostty]]
+- [[sioyek|Sioyek]]
+- [[yazi|Yazi]]
+
+## Taekwondo
+
+- [[taekwondo|Taekwondo]]
+- [[taekwondo-stances|Stances]]
+- [[taekwondo-combinations|Combinations]]
+
+## Math & Chaos
+
+- [[lorenz-attractor|The Lorenz Attractor]]
+
+## Random
+
+- [[motorcycles|Motorcycles]]
+- [[perfumes|Perfumes]]
 
 ---

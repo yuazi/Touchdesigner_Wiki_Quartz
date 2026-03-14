@@ -12,6 +12,8 @@ date: 2026-03-10
 
 This is my study hub for the MPL master's course. Each lecture gets its own page with explanations, key concepts, math, and examples I worked through to actually understand the material — not just memorize it.
 
+I use the [[find-keywords|Find Keywords]] tool I built to automatically align these notes with the lecture slides.
+
 [[notes/index|Return to Notes]] | [[index|Return to Home]]
 
 ---

@@ -19,6 +19,7 @@ A collection of projects, experiments, and professional work. These are things I
 
 ## Archive
 
+- **[[find-keywords|Find Keywords]]**: a Python automation script that contextually aligns lecture notes with slide visuals (TF-IDF + LaTeX alias matching).
 - **[[keyboardai|Keyboard AI]]**: a small Python CLI that learns from a text corpus and evolves keyboard layouts against an ergonomic scoring model.
 - **[[simplelorenzcss|simpleLorenzcss]]**: a small Quartz repo for the Lorenz and Halvorsen canvas background used in this garden.
 
