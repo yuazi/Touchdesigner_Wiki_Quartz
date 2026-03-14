@@ -82,7 +82,7 @@ Optic nerves terminate in two **lateral geniculate nuclei (LGN)**:
 
 [Goodale and Milner, 1992; Norman, 2002]
 
-![Lecture 02 slide page 12](/pictures/mpl/02/lecture-02-page-12.png)
+![Lecture 02 slide page 13](/pictures/mpl/02/lecture-02-page-13.png)
 
 - **Dorsal stream** (V1 → V2 → V5 → V6): the "where pathway" — visually guided action (eyes, head, limbs)
 - **Ventral stream** (V1 → V2 → V4 → IT): the "what pathway" — representation of the visual world, visual memory, object identification and recognition
