@@ -301,14 +301,14 @@ In `window1`: Operator → `../null_out`, match render resolution. Open Window o
 
 These numbers are from my machine — use them as a rough reference.
 
-| Setting              | Value                           |
-| -------------------- | ------------------------------- |
-| Starting point count | 4,000–6,000                     |
-| Safe target          | 20,000–40,000                   |
-| MediaPipe resolution | 640×480                         |
-| Cook mode            | Realtime                        |
-| Turn off             | All viewers during perform      |
-| TD build             | 2023+ recommended               |
+| Setting              | Value                      |
+| -------------------- | -------------------------- |
+| Starting point count | 4,000–6,000                |
+| Safe target          | 20,000–40,000              |
+| MediaPipe resolution | 640×480                    |
+| Cook mode            | Realtime                   |
+| Turn off             | All viewers during perform |
+| TD build             | 2023+ recommended          |
 
 If CPU spikes, reduce Points first, then lower dt a little. Add a Timer CHOP to run the Script CHOP at 30fps if you want to decouple tracking from render framerate. Keep `model_complexity=0` in MediaPipe.
 

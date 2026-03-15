@@ -25,7 +25,7 @@ AttractorMediaPipe shows one attractor at a time as a bright additive trail, but
 
 Some look airy and open. Others feel tighter, rougher, or more intense. So switching attractors does more than change the math in the background. It changes the mood of the whole piece.
 
-![[pictures/attractor_aizawa.png|Aizawa attractor with grain-texture background]] *A dense Aizawa attractor snapshot from the viewer, rendered as glowing trails against the project's grain-texture background.*
+![[pictures/attractor_aizawa.png|Aizawa attractor with grain-texture background]] _A dense Aizawa attractor snapshot from the viewer, rendered as glowing trails against the project's grain-texture background._
 
 There are also two ways to use it. With a webcam, it turns into a gesture-controlled interface. Without one, it still works well with keyboard and mouse, which makes it feel more like a real tool and less like a one-off experiment.
 

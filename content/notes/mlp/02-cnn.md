@@ -25,8 +25,8 @@ date: 2026-03-09
 - The **optic nerve** carries information from the retina on to the brain
 
 ### Retina
-![[Lec02_Pg007_Retina.png]]
 
+![[Lec02_Pg007_Retina.png]]
 
 Hierarchy of cell layers:
 
@@ -37,16 +37,16 @@ Hierarchy of cell layers:
 - **Ganglion cells** form the optic nerve
 
 ### Cell Types
-![[Lec02_Pg008_Cell_Types.png]]
 
+![[Lec02_Pg008_Cell_Types.png]]
 
 **Photoreceptor cells** differ in sensitivity, number, location, response time, and wavelength.
 
 **Retinal ganglion cells** have different populations (M, P, and K cells; intrinsic photosensitive cells) with different responses to contrast, color, shape, texture, and motion.
 
 ### Photoreceptors
-![[Lec02_Pg009_Photoreceptors.png]]
 
+![[Lec02_Pg009_Photoreceptors.png]]
 
 |                  | Rods      | Cones     |
 | ---------------- | --------- | --------- |
@@ -62,8 +62,8 @@ Hierarchy of cell layers:
 - **Cones**: colour vision and fine details
 
 ### Thalamus and the LGN
-![[Lec02_Pg010_Thalamus_And_The_Lgn.png]]
 
+![[Lec02_Pg010_Thalamus_And_The_Lgn.png]]
 
 Optic nerves terminate in two **lateral geniculate nuclei (LGN)**:
 
@@ -72,8 +72,8 @@ Optic nerves terminate in two **lateral geniculate nuclei (LGN)**:
 - Acts as a "relay station" between retina and the visual cortex
 
 ### Visual Cortex
-![[Lec02_Pg011_Visual_Cortex.png]]
 
+![[Lec02_Pg011_Visual_Cortex.png]]
 
 - Largest system in the brain: **40 × 10⁶ neurons**; active area of research, not fully understood
 - **Cortical hierarchy**: V1 (striate/primary visual cortex) → V2–V8 (secondary visual areas)
@@ -88,8 +88,8 @@ Optic nerves terminate in two **lateral geniculate nuclei (LGN)**:
 - **Ventral stream** (V1 → V2 → V4 → IT): the "what pathway" — representation of the visual world, visual memory, object identification and recognition
 
 ### Specificity vs. Invariance
-![[Lec02_Pg015_Specificity_Vs_Invariance.png]]
 
+![[Lec02_Pg015_Specificity_Vs_Invariance.png]]
 
 Goal: good classification performance requires a trade-off between:
 
@@ -108,22 +108,22 @@ This trade-off directly impacts generalisation ability.
 - **Complex cells**: respond to the same orientations regardless of exact location — position invariance
 
 ### Receptive Field
-![[Lec02_Pg018_Receptive_Field.png]]
 
+![[Lec02_Pg018_Receptive_Field.png]]
 
 - All receptors synapsing with a particular cell collectively form its **receptive field**
 - Cells have excitatory/inhibitory regions → **on-center / off-center** cells
 - Sensitive to contrast and orientation of a bar, edge, or gratings
 
 ### Hierarchical Organisation
-![[Lec02_Pg019_Hierarchical_Organisation.png]]
 
+![[Lec02_Pg019_Hierarchical_Organisation.png]]
 
 The visual system builds progressively more complex representations from low-level edge detectors to higher-level object descriptions.
 
 ### Invariance to Affine Transforms
-![[Lec02_Pg020_Invariance_To_Affine_Transforms.png]]
 
+![[Lec02_Pg020_Invariance_To_Affine_Transforms.png]]
 
 Neurons in the inferior temporal cortex show invariance to position, scale, and view [Logothetis et al., 1995] — a property that CNNs aim to replicate.
 
@@ -172,8 +172,8 @@ $$y = \max_{j=1 \ldots n_{C_k}} x_j$$
 ![Lecture 02 slide page 31](/pictures/mpl/02/lecture-02-page-31.png)
 
 ### Fine-Grained Prediction
-![[Lec02_Pg033_Fine_Grained_Prediction.png]]
 
+![[Lec02_Pg033_Fine_Grained_Prediction.png]]
 
 Beyond classification, CNNs were extended to dense predictions — object detection [Ren et al., 2015; Girshick, 2015; He et al., 2017] and scene labelling [Farabet et al., 2012].
 
@@ -182,8 +182,8 @@ Beyond classification, CNNs were extended to dense predictions — object detect
 ## Deep Learning in a Nutshell
 
 ### Traditional Approach
-![[Lec02_Pg035_Traditional_Approach.png]]
 
+![[Lec02_Pg035_Traditional_Approach.png]]
 
 Image features were often:
 
@@ -191,16 +191,16 @@ Image features were often:
 - Too general (not task-specific enough), or too specific (do not generalise well to other tasks)
 
 ### Trainable Features
-![[Lec02_Pg037_Trainable_Features.png]]
 
+![[Lec02_Pg037_Trainable_Features.png]]
 
 - **Parametrised feature extraction**: features are learned, not hand-coded
 - Features should be efficient to compute and efficient to train (differentiable)
 - **Joint training** of feature extraction and classification → "end-to-end system"
 
 ### Summary of Main Ideas
-![[Lec02_Pg038_Summary_Of_Main_Ideas.png]]
 
+![[Lec02_Pg038_Summary_Of_Main_Ideas.png]]
 
 1. **Learning of features** across many layers
 2. **Efficient and trainable systems** via differentiable building blocks
@@ -212,8 +212,8 @@ Image features were often:
 ## Convolutional Neural Networks
 
 ### Fully Connected Layer
-![[Lec02_Pg040_Fully_Connected_Layer.png]]
 
+![[Lec02_Pg040_Fully_Connected_Layer.png]]
 
 A 32×32×3 image flattened to 3072×1 is fed into a dense layer. This ignores all spatial structure and scales poorly.
 
@@ -228,21 +228,22 @@ A 32×32×3 image flattened to 3072×1 is fed into a dense layer. This ignores a
 > **Example — vertical edge filter**: imagine a 3×3 kernel whose left column has positive weights and right column has negative weights. When it slides over a photo, it activates strongly on transitions like a door frame, a window border, or the outline of a dog's ear, but stays near zero on flat sky or wall regions.
 
 ### Multiple Activation Maps
-![[Lec02_Pg048_Multiple_Activation_Maps.png]]
 
+![[Lec02_Pg048_Multiple_Activation_Maps.png]]
 
 Using multiple filters in parallel produces multiple feature maps. For example, six 5×5 filters applied to a 32×32×3 input produce six separate activation maps of size 28×28, which stack into a volume of **28×28×6**.
 
 ### Key Idea
-<!-- Review Needed: close slide match for 'Key Idea' (p49: 0.827, p50: 0.827) -->
-![[Lec02_Pg050_Key_Idea.png]]
 
+<!-- Review Needed: close slide match for 'Key Idea' (p49: 0.827, p50: 0.827) -->
+
+![[Lec02_Pg050_Key_Idea.png]]
 
 CNNs are a **sequence of convolutional layers interspersed with activation functions**. Each layer learns increasingly abstract representations.
 
 ### Weight Sharing
-![[Lec02_Pg051_Weight_Sharing.png]]
 
+![[Lec02_Pg051_Weight_Sharing.png]]
 
 The same filter weights are applied at every spatial position. Advantages:
 
@@ -251,10 +252,11 @@ The same filter weights are applied at every spatial position. Advantages:
 - Makes feature search **insensitive to feature location**
 
 ### Visualisation
+
 <!-- Review Needed: close slide match for 'Visualisation' (p52: 0.656, p53: 0.653) -->
+
 ![[Lec02_Pg052_Visualisation.png]]
 ![[Lec02_Pg053_Visualisation.png]]
-
 
 [Zeiler and Fergus, 2014] — visualising what each filter responds to shows that:
 
@@ -262,10 +264,11 @@ The same filter weights are applied at every spatial position. Advantages:
 - **Later layers** learn more complex object parts and eventually whole objects
 
 ### Brain/Neuron View
+
 <!-- Review Needed: close slide match for 'Brain/Neuron View' (p54: 0.615, p55: 0.615) -->
+
 ![[Lec02_Pg054_Brain_Neuron_View.png]]
 ![[Lec02_Pg055_Brain_Neuron_View.png]]
-
 
 Each unit in a feature map is connected only to a local patch of the input (its **receptive field**). Units sharing a filter form a layer analogous to a sheet of simple cells in V1.
 
@@ -281,15 +284,16 @@ Each unit in a feature map is connected only to a local patch of the input (its 
 > **Example — max pooling**: if a 2×2 activation patch is $\begin{bmatrix}0.1 & 0.7 \\ 0.2 & 0.6\end{bmatrix}$, max pooling outputs `0.7`. If the strongest response shifts slightly within that same window, the pooled output stays almost unchanged, which is why pooling gives small translation invariance.
 
 ### Revolution of Depth
-<!-- Review Needed: close slide match for 'Revolution of Depth' (p60: 0.653, p62: 0.653) -->
-![[Lec02_Pg062_Revolution_Of_Depth.png]]
 
+<!-- Review Needed: close slide match for 'Revolution of Depth' (p60: 0.653, p62: 0.653) -->
+
+![[Lec02_Pg062_Revolution_Of_Depth.png]]
 
 Increasing network depth has been the primary driver of performance improvements in image recognition.
 
 ### Case Study: VGG
-![[Lec02_Pg061_Case_Study_Vgg.png]]
 
+![[Lec02_Pg061_Case_Study_Vgg.png]]
 
 [Simonyan and Zisserman, 2014]
 
@@ -309,8 +313,8 @@ Increasing network depth has been the primary driver of performance improvements
 - **Final Inception module**: adds **1×1 convolutions for dimensionality reduction** (feature map pooling) before expensive convolutions
 
 ### Gradient Flow Problem
-![[Lec02_Pg067_Gradient_Flow_Problem.png]]
 
+![[Lec02_Pg067_Gradient_Flow_Problem.png]]
 
 Ensuring sufficient gradient flow through very deep networks was a key challenge:
 
@@ -346,8 +350,8 @@ Results:
 - Trained in 2–3 weeks on an 8-GPU machine; faster than VGG at runtime despite being 8× deeper
 
 ### Case Study: DenseNet / FractalNet
-![[Lec02_Pg077_Case_Study_Densenet_Fractalnet.png]]
 
+![[Lec02_Pg077_Case_Study_Densenet_Fractalnet.png]]
 
 [Huang et al., 2017; Larsson et al., 2016]
 
@@ -356,8 +360,8 @@ Results:
 **FractalNet**: a fractal-structured network that achieves depth without residual connections.
 
 ### Further Architectures
-![[Lec02_Pg078_Further_Architectures.png]]
 
+![[Lec02_Pg078_Further_Architectures.png]]
 
 - Wide ResNet [Zagoruyko and Komodakis, 2016]
 - ResNeXt [Xie et al., 2017]

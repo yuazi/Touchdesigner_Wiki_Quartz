@@ -39,12 +39,12 @@ Source POP → Solver POP → [output]
 
 Drop force nodes between the Source and Solver:
 
-| Node              | What it does                                            |
-| ----------------- | ------------------------------------------------------- |
+| Node              | What it does                                               |
+| ----------------- | ---------------------------------------------------------- |
 | **Force POP**     | Constant push in a direction — set Y to `-9.8` for gravity |
-| **Wind POP**      | Noise-based turbulence                                  |
-| **Attractor POP** | Pulls particles toward a point                          |
-| **Collision POP** | Bounces particles off a SOP surface                     |
+| **Wind POP**      | Noise-based turbulence                                     |
+| **Attractor POP** | Pulls particles toward a point                             |
+| **Collision POP** | Bounces particles off a SOP surface                        |
 
 ```
 Source POP → Force POP → Wind POP → Solver POP → output

@@ -41,8 +41,8 @@ where:
 - $\sigma$ = activation function
 
 ### Multi-Layer Perceptron (MLP)
-![[Lec01_Pg030_Multi_Layer_Perceptron_Mlp.png]]
 
+![[Lec01_Pg030_Multi_Layer_Perceptron_Mlp.png]]
 
 With $X^{(0)} = X$, for each layer $l = 1, \dots, L$:
 
@@ -51,9 +51,10 @@ $$X^{(l)} = \sigma\!\left(W^{(l)\top} X^{(l-1)} + b^{(l)}\right)$$
 The network output is $f(X;\, W, b) = X^{(L)}$.
 
 ### Why Activation Functions?
-<!-- Review Needed: close slide match for 'Why Activation Functions?' (p92: 0.476, p106: 0.473) -->
-![[Lec01_Pg092_Why_Activation_Functions.png]]
 
+<!-- Review Needed: close slide match for 'Why Activation Functions?' (p92: 0.476, p106: 0.473) -->
+
+![[Lec01_Pg092_Why_Activation_Functions.png]]
 
 Moving from a linear classifier $f = Wx$ to a 2-layer network:
 
@@ -77,8 +78,8 @@ Biological neurons ≠ artificial neurons:
 - Dendrites can perform complex non-linear computations
 
 ### Universal Approximation Theorem
-![[Lec01_Pg042_Universal_Approximation_Theorem.png]]
 
+![[Lec01_Pg042_Universal_Approximation_Theorem.png]]
 
 Given a non-linear (e.g. sigmoid) activation function $\sigma \in C^\infty(\mathbb{R})$, for any continuous function $f \in C(I^m)$ and any $\varepsilon > 0$, there exist $N$, constants $\nu_i, b_i \in \mathbb{R}$, and vectors $w_i \in \mathbb{R}^m$ such that:
 
@@ -100,16 +101,16 @@ _(Original proof: Hornik et al., 1989; formal statement: Cybenko, 1989)_
 ---
 
 ## Optimisation
-![[Lec01_Pg056_Optimisation.png]]
 
+![[Lec01_Pg056_Optimisation.png]]
 
 The loss function $L(W)$ quantifies the quality of any set of weights $W$. The goal of optimisation is to find $W$ that **minimises** $L(W)$.
 
 $$L(W) = \frac{1}{n} \sum_{i=1}^{n} L_i(W)$$
 
 ### Gradient Descent
-![[Lec01_Pg061_Gradient_Descent.png]]
 
+![[Lec01_Pg061_Gradient_Descent.png]]
 
 **Strategy 1 — Random search**: bad idea in practice.
 
@@ -130,8 +131,8 @@ while True:
 ```
 
 ### Numerical vs. Analytic Gradient
-![[Lec01_Pg074_Numerical_Vs_Analytic_Gradient.png]]
 
+![[Lec01_Pg074_Numerical_Vs_Analytic_Gradient.png]]
 
 | Type          | Description                                       | Properties                            |
 | ------------- | ------------------------------------------------- | ------------------------------------- |
@@ -141,9 +142,10 @@ while True:
 **In practice**: always use the **analytic gradient**, but verify your implementation with a **gradient check** using the numerical gradient.
 
 ### Batch Training
-<!-- Review Needed: close slide match for 'Batch Training' (p75: 0.612, p77: 0.607) -->
-![[Lec01_Pg075_Batch_Training.png]]
 
+<!-- Review Needed: close slide match for 'Batch Training' (p75: 0.612, p77: 0.607) -->
+
+![[Lec01_Pg075_Batch_Training.png]]
 
 Process **all** $n$ training samples, then update weights once based on $L(W) = \frac{1}{n}\sum_{i=1}^n L_i(W)$.
 
@@ -154,8 +156,8 @@ Process **all** $n$ training samples, then update weights once based on $L(W) = 
 | Separates prediction and update → parallelisable | Very slow for large datasets                    |
 
 ### Stochastic Gradient Descent (SGD)
-![[Lec01_Pg078_Stochastic_Gradient_Descent_Sgd.png]]
 
+![[Lec01_Pg078_Stochastic_Gradient_Descent_Sgd.png]]
 
 Randomly choose **one** training sample $x_i$, update weights based on $L_i(W)$.
 
@@ -183,14 +185,14 @@ Seeks a balance between the robustness of SGD and the efficiency of batch gradie
 | Doesn't require all data in memory                       |                                                    |
 
 ### Backpropagation
-![[Lec01_Pg084_Backpropagation.png]]
 
+![[Lec01_Pg084_Backpropagation.png]]
 
 How do we compute gradients for nodes in **hidden layers**? → **Backpropagation** applies the chain rule repeatedly from the output back to each parameter.
 
 ### Computational Graphs
-![[Lec01_Pg085_Computational_Graphs.png]]
 
+![[Lec01_Pg085_Computational_Graphs.png]]
 
 **Key idea**: decompose complex computations into a sequence of atomic assignments.
 
@@ -214,9 +216,10 @@ z ────────────┘
 - $\frac{\partial f}{\partial x} = \frac{\partial f}{\partial q} \cdot 1 = -4$; $\frac{\partial f}{\partial y} = -4$
 
 ### Patterns in Backward Flow
-<!-- Review Needed: close slide match for 'Patterns in Backward Flow' (p90: 0.793, p89: 0.755) -->
-![[Lec01_Pg090_Patterns_In_Backward_Flow.png]]
 
+<!-- Review Needed: close slide match for 'Patterns in Backward Flow' (p90: 0.793, p89: 0.755) -->
+
+![[Lec01_Pg090_Patterns_In_Backward_Flow.png]]
 
 | Gate         | Role                 | Behaviour                                                                         |
 | ------------ | -------------------- | --------------------------------------------------------------------------------- |
@@ -252,8 +255,8 @@ Squashes numbers to $[0, 1]$. Can be interpreted as a saturating "firing rate" o
 3. **`exp()` is computationally expensive**
 
 ### Tanh
-![[Lec01_Pg105_Tanh.png]]
 
+![[Lec01_Pg105_Tanh.png]]
 
 $$\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
 
@@ -280,8 +283,8 @@ _(Krizhevsky et al., 2012; Nair and Hinton, 2010)_
 **Fix for dead ReLU**: initialise ReLU neurons with slightly positive biases (e.g. 0.01).
 
 ### Leaky ReLU / PReLU
-![[Lec01_Pg112_Leaky_Relu_Prelu.png]]
 
+![[Lec01_Pg112_Leaky_Relu_Prelu.png]]
 
 $$f(x) = \max(0.01x,\; x)$$
 
@@ -292,9 +295,10 @@ _(Maas et al., 2013; He et al., 2015)_
 - **Parametric Rectifier (PReLU)**: replace the fixed $0.01$ slope with a learnable parameter $\alpha$: $\max(\alpha x, x)$
 
 ### ELU (Exponential Linear Unit)
-<!-- Review Needed: close slide match for 'ELU (Exponential Linear Unit)' (p114: 0.580, p115: 0.556) -->
-![[Lec01_Pg115_Elu_Exponential_Linear_Unit.png]]
 
+<!-- Review Needed: close slide match for 'ELU (Exponential Linear Unit)' (p114: 0.580, p115: 0.556) -->
+
+![[Lec01_Pg115_Elu_Exponential_Linear_Unit.png]]
 
 $$f(x) = \begin{cases} x & \text{if } x > 0 \\ \alpha(e^x - 1) & \text{if } x \le 0 \end{cases} \qquad (\text{default: } \alpha = 1)$$
 
@@ -306,9 +310,10 @@ _(Clevert et al., 2016)_
 - Computation requires `exp()` ✗
 
 ### Maxout
-<!-- Review Needed: close slide match for 'Maxout' (p118: 0.734, p117: 0.696) -->
-![[Lec01_Pg118_Maxout.png]]
 
+<!-- Review Needed: close slide match for 'Maxout' (p118: 0.734, p117: 0.696) -->
+
+![[Lec01_Pg118_Maxout.png]]
 
 $$f(x) = \max(w_1^\top x + b_1,\; w_2^\top x + b_2)$$
 
@@ -319,8 +324,8 @@ _(Goodfellow et al., 2013)_
 - Does **not** have the basic dot-product + non-linearity form → doubles the number of parameters ✗
 
 ### In Practice (TLDR)
-![[Lec01_Pg119_In_Practice_Tldr.png]]
 
+![[Lec01_Pg119_In_Practice_Tldr.png]]
 
 > - Use **ReLU**. Be careful with your learning rates.
 > - Try **Leaky ReLU**, **Maxout**, or **ELU** to squeeze out marginal gains.
@@ -331,14 +336,14 @@ _(Goodfellow et al., 2013)_
 ## Weight Initialisation
 
 ### All-Zero / Constant Init
-![[Lec01_Pg121_All_Zero_Constant_Init.png]]
 
+![[Lec01_Pg121_All_Zero_Constant_Init.png]]
 
 If all weights are the same value, all neurons compute **identical gradients** → they all update identically → the network never differentiates. This is the **symmetry problem**.
 
 ### Small Random Numbers — `W = 0.01 * randn(Din, Dout)`
-![[Lec01_Pg122_Small_Random_Numbers_W_0_01.png]]
 
+![[Lec01_Pg122_Small_Random_Numbers_W_0_01.png]]
 
 Works okay for small networks, but **not** for deep ones:
 
@@ -346,8 +351,8 @@ Works okay for small networks, but **not** for deep ones:
 - Gradients $\frac{\partial L}{\partial W} \to 0$ → **no learning**
 
 ### Larger Random Numbers — `W = 0.05 * randn(Din, Dout)` (with tanh)
-![[Lec01_Pg122_Larger_Random_Numbers_W_0_05.png]]
 
+![[Lec01_Pg122_Larger_Random_Numbers_W_0_05.png]]
 
 - Almost all neurons/activations **saturate** (outputs ≈ ±1)
 - Gradients are again ≈ 0 → **no learning**
@@ -381,15 +386,16 @@ Xavier breaks down for ReLU because ReLU is not zero-centred (it zeros out half 
 ---
 
 ## Batch Normalisation
-<!-- Review Needed: close slide match for 'Batch Normalisation' (p83: 0.404, p81: 0.366) -->
-![[Lec01_Pg081_Batch_Normalisation.png]]
 
+<!-- Review Needed: close slide match for 'Batch Normalisation' (p83: 0.404, p81: 0.366) -->
+
+![[Lec01_Pg081_Batch_Normalisation.png]]
 
 Batch Normalisation was introduced to make deep networks easier to optimise (Ioffe and Szegedy, 2015). The original motivation was to reduce **internal covariate shift**: as lower layers change during training, the distribution seen by higher layers also changes. In practice, BatchNorm also makes training **less sensitive to weight initialisation** and typically stabilises optimisation.
 
 ### BatchNorm Formula
-![[Lec01_Pg083_Batchnorm_Formula.png]]
 
+![[Lec01_Pg083_Batchnorm_Formula.png]]
 
 For a mini-batch $B = \{x_1, \dots, x_m\}$, BatchNorm computes
 
@@ -414,8 +420,8 @@ $$
 The parameters $\gamma$ and $\beta$ are learned, so the network can recover any useful mean or variance if needed.
 
 ### Train Time vs. Test Time
-![[Lec01_Pg083_Train_Time_Vs_Test_Time.png]]
 
+![[Lec01_Pg083_Train_Time_Vs_Test_Time.png]]
 
 | Phase         | Statistics used                                   | Behaviour                                             |
 | ------------- | ------------------------------------------------- | ----------------------------------------------------- |
@@ -436,8 +442,8 @@ BatchNorm often helps because it:
 > **Example**: A deep CNN that becomes unstable with a large learning rate can often train cleanly once each `Conv` layer is followed by BatchNorm.
 
 ### PyTorch Example
-![[Lec01_Pg013_Pytorch_Example.png]]
 
+![[Lec01_Pg013_Pytorch_Example.png]]
 
 ```python
 import torch.nn as nn

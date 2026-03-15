@@ -18,13 +18,13 @@ Five different ways to make particles in TD. Each one sits at a different point 
 
 ## Overview
 
-| #   | Method                     | Best For                                      | GPU?              |
-| --- | -------------------------- | --------------------------------------------- | ----------------- |
-| 1   | **Line MAT**               | Glowing stroke look, fast setup               | No (CPU)          |
-| 2   | **particlesGPU** (Palette) | GPU particles without building from scratch   | Yes               |
-| 3   | **Instancing via CHOPs**   | Audio reactive geometry, CHOP positions       | Yes               |
-| 4   | **Instancing via TOPs**    | Texture driven placement, very large counts   | Yes               |
-| 5   | **Particle SOP**           | Quick prototype, low count                    | No (CPU)          |
+| #   | Method                     | Best For                                    | GPU?     |
+| --- | -------------------------- | ------------------------------------------- | -------- |
+| 1   | **Line MAT**               | Glowing stroke look, fast setup             | No (CPU) |
+| 2   | **particlesGPU** (Palette) | GPU particles without building from scratch | Yes      |
+| 3   | **Instancing via CHOPs**   | Audio reactive geometry, CHOP positions     | Yes      |
+| 4   | **Instancing via TOPs**    | Texture driven placement, very large counts | Yes      |
+| 5   | **Particle SOP**           | Quick prototype, low count                  | No (CPU) |
 
 ---
 
@@ -88,6 +88,7 @@ Instancing renders one piece of geometry at many different positions in one draw
 4. Add Camera, Light, Render TOP.
 
 For audio reactivity:
+
 ```
 Audio Device In CHOP → Audio Spectrum CHOP → Analyze CHOP (RMS)
   → Math CHOP (To Range: 0.5 → 3.0)
@@ -115,12 +116,12 @@ Same idea as Method 3 but positions come from a texture instead of a CHOP. Each 
    - Translate X/Y/Z → R, G, B channels of the texture
 4. Adjust **Translate Range** to match your scene scale, e.g. `-2` to `2`.
 
-| | CHOP instancing | TOP instancing |
-|---|---|---|
-| Max count | ~10k–50k | Hundreds of thousands |
-| Position updates | Per sample | Per pixel on the GPU |
-| Audio reactivity | Easy | Needs extra routing |
-| Custom physics | Script CHOP | GLSL TOP |
+|                  | CHOP instancing | TOP instancing        |
+| ---------------- | --------------- | --------------------- |
+| Max count        | ~10k–50k        | Hundreds of thousands |
+| Position updates | Per sample      | Per pixel on the GPU  |
+| Audio reactivity | Easy            | Needs extra routing   |
+| Custom physics   | Script CHOP     | GLSL TOP              |
 
 You can also feed a `particlesGPU` component's internal state texture directly into the Instance OP — each pixel already encodes a particle position, so you get the simulation driving real 3D geometry with no extra work.
 

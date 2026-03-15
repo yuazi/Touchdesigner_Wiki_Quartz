@@ -23,8 +23,8 @@ date: 2026-03-09
 ---
 
 ## RNNs — Flexibility in Architecture
-![[Lec04_Pg004_Rnns_Flexibility_In_Architecture.png]]
 
+![[Lec04_Pg004_Rnns_Flexibility_In_Architecture.png]]
 
 Unlike feedforward networks, RNNs can model a wide range of relationships between variable- or fixed-length inputs and outputs. The architecture adapts to the task structure.
 
@@ -39,18 +39,19 @@ Unlike feedforward networks, RNNs can model a wide range of relationships betwee
 ---
 
 ## One-to-One: Vanilla Neural Networks
+
 <!-- Review Needed: close slide match for 'One-to-One: Vanilla Neural Networks' (p5: 0.513, p6: 0.511) -->
+
 ![[Lec04_Pg005_One_To_One_Vanilla_Neural_Networks.png]]
 ![[Lec04_Pg006_One_To_One_Vanilla_Neural_Networks.png]]
-
 
 A standard feedforward network — one fixed input, one fixed output. The classic example is **ImageNet classification** (Russakovsky et al., 2015): a single image in, a single class label out.
 
 ---
 
 ## One-to-Many: Image Captioning
-![[Lec04_Pg046_One_To_Many_Image_Captioning.png]]
 
+![[Lec04_Pg046_One_To_Many_Image_Captioning.png]]
 
 A single fixed-size input (an image) is used to **initialize the hidden state** of an RNN that then produces a variable-length output sequence (a caption).
 
@@ -63,8 +64,8 @@ Image → h_0 → [RNN] → "A" → [RNN] → "dog" → [RNN] → "on" → [RNN]
 ---
 
 ## Many-to-One: Sentiment Classification
-![[Lec04_Pg010_Many_To_One_Sentiment_Classification.png]]
 
+![[Lec04_Pg010_Many_To_One_Sentiment_Classification.png]]
 
 The entire input sequence is processed step-by-step. The **final hidden state** summarizes all context from the variable-length input.
 
@@ -83,10 +84,11 @@ The entire input sequence is processed step-by-step. The **final hidden state** 
 ---
 
 ## Many-to-Many (Sync): Video Classification
+
 <!-- Review Needed: close slide match for 'Many-to-Many (Sync): Video Classification' (p13: 0.504, p14: 0.500) -->
+
 ![[Lec04_Pg013_Many_To_Many_Sync_Video_Classification.png]]
 ![[Lec04_Pg014_Many_To_Many_Sync_Video_Classification.png]]
-
 
 An output is produced at **every time step**, aligned with the input. Each frame in a video gets its own label.
 
@@ -95,10 +97,11 @@ An output is produced at **every time step**, aligned with the input. Each frame
 ---
 
 ## Many-to-Many (Async): Machine Translation
+
 <!-- Review Needed: close slide match for 'Many-to-Many (Async): Machine Translation' (p28: 0.471, p12: 0.464) -->
+
 ![[Lec04_Pg028_Many_To_Many_Async_Machine_Translation.png]]
 ![[Lec04_Pg012_Many_To_Many_Async_Machine_Translation.png]]
-
 
 A **Sequence-to-Sequence** architecture — a combination of:
 
@@ -117,8 +120,8 @@ The final hidden state of the encoder "summarizes" the entire variable-sized inp
 ---
 
 ## The Vanilla RNN — How It Works
-![[Lec04_Pg021_The_Vanilla_Rnn_How_It_Works.png]]
 
+![[Lec04_Pg021_The_Vanilla_Rnn_How_It_Works.png]]
 
 The internal state of a vanilla RNN is a single **hidden vector** $h$. At each time step $t$:
 
@@ -133,8 +136,8 @@ $$y_t = W_{hy} h_t$$
 > **Critical property**: At every time step, the input to $f$ is a unique $h_{t-1}$ and $x_t$, but the **same weight matrix $W$** is reused at every step. This is parameter sharing across time.
 
 ### Character-Level Language Model (Karpathy)
-![[Lec04_Pg015_Character_Level_Language_Model_Karpathy.png]]
 
+![[Lec04_Pg015_Character_Level_Language_Model_Karpathy.png]]
 
 Andrej Karpathy's famous experiment trained a vanilla RNN character-by-character on text corpora. The progression shows what the model learns over training:
 
@@ -154,30 +157,31 @@ After enough training, the same RNN could generate plausible **Wikipedia markup*
 ## Computational Graphs
 
 ### Many-to-Many
-![[Lec04_Pg027_Many_To_Many.png]]
 
+![[Lec04_Pg027_Many_To_Many.png]]
 
 At every time step $t$, a class score $y_t$ is computed from $h_t$, and an intermediate loss $L_t$ is calculated against ground-truth labels. The **final loss** $L$ is the sum of all intermediate losses:
 
 $$L = \sum_{t=1}^{S} L_t$$
 
 ### Many-to-One
-![[Lec04_Pg028_Many_To_One.png]]
 
+![[Lec04_Pg028_Many_To_One.png]]
 
 The network runs through the full sequence but only the **final hidden state** is used, since it summarizes all prior context.
 
 ### One-to-Many
-![[Lec04_Pg029_One_To_Many.png]]
 
+![[Lec04_Pg029_One_To_Many.png]]
 
 A **fixed-size input** (e.g., an image feature vector) initializes $h_0$, and the model then produces a variable-length output.
 
 ### Sequence-to-Sequence
+
 <!-- Review Needed: close slide match for 'Sequence-to-Sequence' (p31: 0.645, p30: 0.630) -->
+
 ![[Lec04_Pg031_Sequence_To_Sequence.png]]
 ![[Lec04_Pg030_Sequence_To_Sequence.png]]
-
 
 Encoder (many-to-one) + Decoder (one-to-many):
 
@@ -190,8 +194,8 @@ x_1 → x_2 → x_3 → [Encoder → c] → y_1 → y_2 → y_3 → y_4
 ## Backpropagation Through Time (BPTT)
 
 ### Intuition
-![[Lec04_Pg034_Intuition.png]]
 
+![[Lec04_Pg034_Intuition.png]]
 
 **Idea**: Treat the unrolled RNN as a multi-layer network with an unbounded number of layers, then apply standard backpropagation through the entire unrolled graph.
 
@@ -202,8 +206,8 @@ $$\frac{\partial L}{\partial W} = \sum_{t=1}^{S} \frac{\partial L_t}{\partial W}
 Each $\frac{\partial L_t}{\partial W}$ requires propagating the error back through all previous time steps.
 
 ### The Gradient Product
-![[Lec04_Pg032_The_Gradient_Product.png]]
 
+![[Lec04_Pg032_The_Gradient_Product.png]]
 
 The temporal component that carries error through time is:
 
@@ -212,10 +216,11 @@ $$\frac{\partial h_t}{\partial h_k} = \prod_{i=k+1}^{t} \frac{\partial h_i}{\par
 This is a **product of $t - k$ matrices** — and that causes problems.
 
 ### Vanishing Gradients
+
 <!-- Review Needed: close slide match for 'Vanishing Gradients' (p40: 0.551, p41: 0.538) -->
+
 ![[Lec04_Pg040_Vanishing_Gradients.png]]
 ![[Lec04_Pg041_Vanishing_Gradients.png]]
-
 
 Let $\lambda_1$ be the largest singular value of $W_{hh}$.
 
@@ -228,8 +233,8 @@ Intuitively: if the repeated matrix multiplication shrinks vectors (eigenvalues 
 **Eigenvalue intuition**: With a linear model $h_t = W^T h_{t-1}$, after many steps $h_t = (W^t)^T h_0$. If $W = Q\Lambda Q^T$, then $h_t = Q^T \Lambda^t Q \cdot h_0$ — components along eigenvectors with $|\lambda| < 1$ vanish, components with $|\lambda| > 1$ explode.
 
 ### Exploding Gradients
-![[Lec04_Pg044_Exploding_Gradients.png]]
 
+![[Lec04_Pg044_Exploding_Gradients.png]]
 
 The symmetric problem: if $\lambda_1 > \frac{1}{\gamma}$, gradients grow exponentially, causing drastic overshooting in the loss landscape.
 
@@ -253,8 +258,8 @@ if total_norm > max_norm:
 ## Example Task: Image Captioning
 
 ### Papers
-![[Lec04_Pg046_Papers.png]]
 
+![[Lec04_Pg046_Papers.png]]
 
 - _Explain Images with Multimodal Recurrent Neural Networks_ — Mao et al., 2014
 - _Deep Visual-Semantic Alignments for Generating Image Descriptions_ — Karpathy & Fei-Fei, 2017
@@ -263,8 +268,8 @@ if total_norm > max_norm:
 - _Learning a Recurrent Visual Representation for Image Caption Generation_ — Chen & Zitnick, 2014
 
 ### Architecture
-![[Lec04_Pg047_Architecture.png]]
 
+![[Lec04_Pg047_Architecture.png]]
 
 1. **CNN** (e.g., VGG, ResNet) — "parses" the image into a fixed-size feature vector
 2. **RNN** — uses the CNN output to initialize $h_0$ and generates the caption word-by-word
@@ -280,8 +285,8 @@ Image → [CNN] → v (image vector)
 ```
 
 ### Generating Words
-![[Lec04_Pg058_Generating_Words.png]]
 
+![[Lec04_Pg058_Generating_Words.png]]
 
 At each step, the RNN computes a **distribution over all words in the vocabulary** (via a softmax over $y_t = W_{hy} h_t$), then samples from that distribution. Training maximizes the log-probability of the correct next word at each step.
 
@@ -325,10 +330,11 @@ class ImageCaptionRNN(nn.Module):
 ---
 
 ## Long Short-Term Memory (LSTM)
+
 <!-- Review Needed: close slide match for 'Long Short-Term Memory (LSTM)' (p68: 0.612, p71: 0.601) -->
+
 ![[Lec04_Pg068_Long_Short_Term_Memory_Lstm.png]]
 ![[Lec04_Pg071_Long_Short_Term_Memory_Lstm.png]]
-
 
 **Authors**: Hochreiter & Schmidhuber, 1997
 
@@ -339,8 +345,8 @@ Vanilla RNNs fail on long sequences because of vanishing gradients. The fix is t
 The key idea: introduce a **cell state** $c_t$ that runs alongside the hidden state $h_t$. The cell state is updated via **additive interactions** rather than repeated matrix multiplications, giving gradients a highway to flow through.
 
 ### The Four Gates
-![[Lec04_Pg070_The_Four_Gates.png]]
 
+![[Lec04_Pg070_The_Four_Gates.png]]
 
 The LSTM uses four learned gating vectors, all computed from $[h_{t-1}, x_t]$:
 
@@ -356,8 +362,8 @@ $$\begin{pmatrix} i \\ f \\ o \\ g \end{pmatrix} = \begin{pmatrix} \sigma \\ \si
 (In practice, $W$ is a single stacked weight matrix — this is why PyTorch computes all four gates in one matmul.)
 
 ### Cell State and Hidden State Update
-![[Lec04_Pg076_Cell_State_And_Hidden_State_Update.png]]
 
+![[Lec04_Pg076_Cell_State_And_Hidden_State_Update.png]]
 
 $$c_t = f \odot c_{t-1} + i \odot g \quad \text{(additive update)}$$
 $$h_t = o \odot \tanh(c_t)$$
@@ -365,8 +371,8 @@ $$h_t = o \odot \tanh(c_t)$$
 where $\odot$ is the Hadamard (element-wise) product.
 
 ### Intuition — Concrete Example
-![[Lec04_Pg070_Intuition_Concrete_Example.png]]
 
+![[Lec04_Pg070_Intuition_Concrete_Example.png]]
 
 > Parsing: _"The cats, which lived in Paris, were \_\_\_"_
 >
@@ -378,8 +384,8 @@ where $\odot$ is the Hadamard (element-wise) product.
 > A vanilla RNN "forgets" the subject after many steps. The LSTM's cell state preserves it.
 
 ### Why Gradient Flow is Better
-![[Lec04_Pg076_Why_Gradient_Flow_Is_Better.png]]
 
+![[Lec04_Pg076_Why_Gradient_Flow_Is_Better.png]]
 
 Three reasons gradients flow more easily through LSTMs (Fei-Fei, Justin Johnson, Serena Yeung):
 
@@ -433,8 +439,8 @@ criterion = nn.CrossEntropyLoss()
 ---
 
 ## GRU — Gated Recurrent Unit
-![[Lec04_Pg079_Gru_Gated_Recurrent_Unit.png]]
 
+![[Lec04_Pg079_Gru_Gated_Recurrent_Unit.png]]
 
 **Authors**: Cho et al., 2014
 
@@ -450,8 +456,8 @@ $$h_t = z_t \odot h_{t-1} + (1 - z_t) \odot \tilde{h}_t \quad \text{(new hidden 
 **Update gate $z_t$**: interpolates between the old hidden state and the candidate. When $z_t \approx 1$, the old state is copied (similar to LSTM's forget gate ≈ 1).
 
 ### GRU vs LSTM
-![[Lec04_Pg074_Gru_Vs_Lstm.png]]
 
+![[Lec04_Pg074_Gru_Vs_Lstm.png]]
 
 |                | GRU                    | LSTM                  |
 | -------------- | ---------------------- | --------------------- |
@@ -474,8 +480,8 @@ gru = nn.GRU(input_size=128, hidden_size=256, num_layers=2,
 ---
 
 ## Bidirectional LSTM (BiLSTM)
-![[Lec04_Pg082_Bidirectional_Lstm_Bilstm.png]]
 
+![[Lec04_Pg082_Bidirectional_Lstm_Bilstm.png]]
 
 **Authors**: Graves & Schmidhuber, 2005
 
@@ -498,8 +504,8 @@ $$\overrightarrow{c}_t = \overrightarrow{f}_t \odot \overrightarrow{c}_{t-1} + \
 $$\overrightarrow{h}_t = \overrightarrow{o}_t \odot \tanh(\overrightarrow{c}_t)$$
 
 ### Backward Pass Equations
-![[Lec04_Pg082_Backward_Pass_Equations.png]]
 
+![[Lec04_Pg082_Backward_Pass_Equations.png]]
 
 Same structure, but indices go from $T$ to $1$ and $h_{t-1}$ is replaced by $h_{t+1}$:
 

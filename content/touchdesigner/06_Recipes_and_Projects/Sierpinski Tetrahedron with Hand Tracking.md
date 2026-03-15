@@ -31,19 +31,19 @@ There are two ways to build this. **Method 1** is easier to understand visually,
 Instead of writing complex L-System rules, we use TouchDesigner's `Copy SOP` to recursively place smaller tetrahedrons onto the vertices of larger ones.
 
 1.  **Create the Base Geometry:**
-    *   Add a **Platonic Solids SOP** (Type: `Tetrahedron`). Name it `platonic1`. This is our "layout" with 4 points.
-    *   Add a second **Platonic Solids SOP** (Type: `Tetrahedron`). Name it `platonic2`.
-    *   Connect `platonic2` to a **Transform SOP** (Uniform Scale: `0.5`).
+    - Add a **Platonic Solids SOP** (Type: `Tetrahedron`). Name it `platonic1`. This is our "layout" with 4 points.
+    - Add a second **Platonic Solids SOP** (Type: `Tetrahedron`). Name it `platonic2`.
+    - Connect `platonic2` to a **Transform SOP** (Uniform Scale: `0.5`).
 2.  **The First Iteration:**
-    *   Add a **Copy SOP**.
-    *   Connect the **Transform SOP** to the _left_ input (Primitives to Copy).
-    *   Connect `platonic1` to the _right_ input (Template Point SOP).
+    - Add a **Copy SOP**.
+    - Connect the **Transform SOP** to the _left_ input (Primitives to Copy).
+    - Connect `platonic1` to the _right_ input (Template Point SOP).
 3.  **The Second Iteration (and beyond):**
-    *   Add a new **Transform SOP** after the `Copy SOP` (Uniform Scale: `0.5`).
-    *   Add a second **Copy SOP**.
-    *   Connect the new **Transform SOP** to the _left_ input.
-    *   Connect your original `platonic1` to the _right_ input.
-    *   Repeat this "Transform (0.5) → Copy" chain 1 or 2 more times.
+    - Add a new **Transform SOP** after the `Copy SOP` (Uniform Scale: `0.5`).
+    - Add a second **Copy SOP**.
+    - Connect the new **Transform SOP** to the _left_ input.
+    - Connect your original `platonic1` to the _right_ input.
+    - Repeat this "Transform (0.5) → Copy" chain 1 or 2 more times.
 
 ---
 
@@ -52,22 +52,20 @@ Instead of writing complex L-System rules, we use TouchDesigner's `Copy SOP` to 
 For more than 3 iterations, the Copy SOP will tank your framerate. **Instancing** is much faster because it tells the GPU to render one tetrahedron many times at different positions.
 
 1.  **Generate the Point Cloud:**
-    *   Follow the steps in Method 1, but instead of copying a `platonic2` tetrahedron, copy a single point (use an **Add SOP** with one point enabled).
-    *   This creates a fractal "cloud" of points where each tetrahedron should be.
+    - Follow the steps in Method 1, but instead of copying a `platonic2` tetrahedron, copy a single point (use an **Add SOP** with one point enabled).
+    - This creates a fractal "cloud" of points where each tetrahedron should be.
 2.  **Setup the Geo COMP:**
-    *   Connect your final `Copy SOP` (the point cloud) to a **Null SOP** named `OUT_points`.
-    *   Create a **Geometry COMP** (`geo1`).
-    *   Inside `geo1`, place one **Platonic Solids SOP** (Type: `Tetrahedron`) and a **Transform SOP** to set its base size.
+    - Connect your final `Copy SOP` (the point cloud) to a **Null SOP** named `OUT_points`.
+    - Create a **Geometry COMP** (`geo1`).
+    - Inside `geo1`, place one **Platonic Solids SOP** (Type: `Tetrahedron`) and a **Transform SOP** to set its base size.
 3.  **Enable Instancing:**
-    *   On the **Instance** page of `geo1`, set **Instancing** to `On`.
-    *   Set **Instance SOP** to `../../OUT_points` (or use a **SOP to CHOP** and use the CHOP).
-    *   Map **Translate X/Y/Z** to `P(0)`, `P(1)`, and `P(2)`.
+    - On the **Instance** page of `geo1`, set **Instancing** to `On`.
+    - Set **Instance SOP** to `../../OUT_points` (or use a **SOP to CHOP** and use the CHOP).
+    - Map **Translate X/Y/Z** to `P(0)`, `P(1)`, and `P(2)`.
 4.  **Set the Scale:**
-    *   Since each iteration halves the size, set the _Uniform Scale_ of the tetrahedron inside the Geo COMP to `0.5 ^ iterations`. For 4 iterations, that's `0.0625`.
+    - Since each iteration halves the size, set the _Uniform Scale_ of the tetrahedron inside the Geo COMP to `0.5 ^ iterations`. For 4 iterations, that's `0.0625`.
 
 ---
-
-## Part 2: Integrating MediaPipe for Hand Tracking
 
 ## Part 2: Integrating MediaPipe for Hand Tracking
 
@@ -127,6 +125,7 @@ To zoom, calculate the distance between the thumb tip and index finger tip.
   Name the Select CHOP `select_pinch` so the Script CHOP can reference it.
 
 > **Why not Expression CHOP?** The Expression CHOP runs one expression per output channel, so you can't combine four input channels into one distance value without referencing the source operator directly. A Script CHOP is cleaner for this kind of multi-channel math.
+
 - Connect that distance to another **Math CHOP** to remap the pinch range. For example, map _From Range_ `[0.05, 0.3]` (tight pinch vs. open hand) to a _To Range_ for the camera's Z translation, such as `[3, 10]`.
 - Add a **Filter CHOP** for smoothness, then a **Null CHOP**.
 - Drag the final distance channel to the _Translate Z_ (`tz`) parameter of the **Camera COMP**.

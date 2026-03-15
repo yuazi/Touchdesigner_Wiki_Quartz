@@ -17,10 +17,13 @@ The script "reads" my notes, finds the most relevant slide in the corresponding 
 I didn't want it to just guess based on titles, so I built a scoring system that uses a few different signals to find the right match.
 
 ### 1. Semantic Search (TF-IDF)
+
 At the core, it uses a **TF-IDF vectorizer** with `ngram_range=(1, 2)`. It converts the text in my notes (the 5 lines following a heading) and the text on every slide into vectors. It then calculates the **cosine similarity** between them to find the semantic match. This is weighted at **70%** of the total score.
 
 ### 2. Math & LaTeX Aliases
+
 Since these are ML notes, the math is often the most important part. I mapped common LaTeX symbols to their textual equivalents:
+
 - `\nabla` → "gradient", "grad", "∇"
 - `\sigma` → "sigmoid", "σ"
 - `\mathcal{L}` → "loss", "objective"
@@ -28,7 +31,9 @@ Since these are ML notes, the math is often the most important part. I mapped co
 The script scans for these symbols in my Markdown and gives a **Math Bonus** to any slide containing either the symbol or its alias.
 
 ### 3. Visual Density Heuristics
+
 I only want slides that actually show something useful (diagrams, graphs, etc.). The script uses `PyMuPDF` to count images and vector paths on a page. It calculates a **Visual Signal** score:
+
 - **Image Count**: Weighted at 0.35
 - **Drawing Count**: Weighted at 0.04
 - **Visual Area Ratio**: Total area of images/drawings vs. the page area.
@@ -36,6 +41,7 @@ I only want slides that actually show something useful (diagrams, graphs, etc.).
 If a slide is just a wall of text with no visual signal, it’s usually skipped.
 
 ### 4. Tie-breaking & Review
+
 If the gap between the top two slides is less than **0.045**, the script flags it for manual review. It inserts an HTML comment in the Markdown:
 `<!-- Review Needed: close slide match for 'Heading Text' (p12: 0.582, p13: 0.579) -->`
 
@@ -50,14 +56,14 @@ from sklearn.metrics.pairwise import cosine_similarity
 def find_best_slide(note_context, slides):
     # Vectorize both the note and all slides
     vectorizer = TfidfVectorizer(stop_words="english", ngram_range=(1, 2))
-    
+
     # Fit on all slides and transform the note context
     slide_matrix = vectorizer.fit_transform(slides)
     query_vec = vectorizer.transform([note_context])
-    
+
     # Calculate cosine similarity
     scores = cosine_similarity(query_vec, slide_matrix).ravel()
-    
+
     # Return index of the best match
     return scores.argmax(), scores.max()
 
@@ -75,7 +81,7 @@ print(f"Match: '{slides[idx]}' with score {score:.3f}")
 
 ## Usage
 
-I usually run it in "dry run" mode first to see what it *would* do without touching my files:
+I usually run it in "dry run" mode first to see what it _would_ do without touching my files:
 
 ```bash
 python find_keywords.py --dry-run
