@@ -10,24 +10,34 @@ date: 2026-03-01
 
 # Recipe: Particle System with POPs
 
-Want to create particle systems that can handle hundreds of thousands of particles without melting your CPU? That's exactly what POPs (Point Operators) are for - they run entirely on the GPU, letting you push insane amounts of particles with forces, colors, and all the good stuff while keeping your processor happy. This recipe builds you a solid foundation that you can extend in all sorts of creative directions.
+Want to create particle systems that can handle hundreds of thousands of particles without melting your CPU? That's exactly what **POPs (Point Operators)** are for—they run entirely on the GPU, letting you push insane amounts of particles with forces, colors, and all the good stuff while keeping your processor happy. 
 
-## How POPs fit into a network
-
-POPs work on point clouds — big sets of 3D points each carrying attributes like position, velocity, colour, and age. They live inside a **POP SOP**, which is the node that bridges the POP world and the SOP world inside a Geo COMP.
+> [!info] Operator Families in this Recipe
+> - **SOPs (Surface Operators):** 3D shapes like spheres and boxes.
+> - **POPs (Point Operators):** Particles and points on the GPU.
+> - **CHOPs (Channel Operators):** Numbers and audio signals.
+> - **COMPs (Components):** The 3D "world" container.
 
 ---
 
-## Part 1: Basic emitter
+## How POPs fit into a network
 
-1. Create a **`Geo COMP`** in your root network and enter it.
-2. Delete the default torus. Place a **`POP SOP`**.
-3. Double-click into the POP SOP to enter the POP network.
-4. Add a **`Source POP`**:
-   - **Source Type** → `Point`, or connect a SOP for surface emission
-   - **Emit Rate** → `1000` per second
-   - **Life Expectancy** → `3` seconds
-5. Add a **`Solver POP`** after it — without this, nothing moves.
+POPs work on **point clouds**—big sets of 3D points where each point has "attributes" like position, velocity, and color. 
+
+They live inside a **POP SOP**, which is the "bridge" node. It takes regular 3D shapes (SOPs), turns them into particles (POPs), and then brings them back into your 3D scene.
+
+---
+
+## Part 1: Basic Emitter
+
+1.  **The Container:** Create a **Geo COMP** in your root network and double-click to enter it.
+2.  **The Bridge:** Delete the default torus. Place a **POP SOP**.
+3.  **The Network:** Double-click into the POP SOP node to enter the "POP world."
+4.  **The Source:** Add a **Source POP**.
+    - **Source Type** → `Point`
+    - **Emit Rate** → `1000` (this creates 1,000 particles every second)
+    - **Life Expectancy** → `3` (particles disappear after 3 seconds)
+5.  **The Engine:** Add a **Solver POP** after the source. **Important:** Without a Solver, the particles won't move!
 
 ```
 Source POP → Solver POP → [output]
@@ -35,65 +45,57 @@ Source POP → Solver POP → [output]
 
 ---
 
-## Part 2: Forces
+## Part 2: Adding Forces
 
-Drop force nodes between the Source and Solver:
+To make the particles move in interesting ways, drop "force" nodes between the Source and the Solver:
 
 | Node              | What it does                                               |
 | ----------------- | ---------------------------------------------------------- |
-| **Force POP**     | Constant push in a direction — set Y to `-9.8` for gravity |
-| **Wind POP**      | Noise-based turbulence                                     |
-| **Attractor POP** | Pulls particles toward a point                             |
-| **Collision POP** | Bounces particles off a SOP surface                        |
-
-```
-Source POP → Force POP → Wind POP → Solver POP → output
-```
+| **Force POP**     | A constant push. Set **Force Y** to `-9.8` for gravity.    |
+| **Wind POP**      | Adds "Noise" or turbulence to make it look like smoke.     |
+| **Attractor POP** | Pulls particles toward a specific point.                   |
+| **Collision POP** | Makes particles bounce off another 3D shape (SOP).         |
 
 ---
 
-## Part 3: Colour over lifetime
+## Part 3: Colour Over Lifetime
 
-Use the **Color POP** to change colour as particles age:
+Let's make particles change color as they get older:
 
-1. Add a **`Color POP`** before the Solver.
-2. **Color Source** → `Ramp`
-3. Design a gradient — e.g. white at birth, orange in the middle, transparent at death.
-4. **Life Source** → `Normalized Life` so the ramp runs from 0 to 1 across the full lifespan.
-
-> If you've used Houdini, you might look for "colour-over-life" — that's not a TD term. In TD this is just the Color POP with Life Source set to Normalized Life.
+1.  Add a **Color POP** before the Solver.
+2.  **Color Source** → `Ramp`.
+3.  **Design your Gradient:** Click the Ramp parameter to design a color scheme (e.g., White at birth → Blue → Transparent at death).
+4.  **Life Source** → `Normalized Life`. This ensures the color ramp spans the particle's entire life (0.0 to 1.0).
 
 ---
 
-## Part 4: Rendering
+## Part 4: Rendering (Seeing the Result)
 
-The POP SOP outputs points. Back in the Geo COMP's SOP network, you need to render them.
+The POP SOP outputs "points," but we need to tell TouchDesigner *how* to draw them.
 
-**Sprites (simplest):** Connect POP SOP → **`Sprite SOP`** → `out1`. Assign a **`Point Sprite MAT`** on the Geo COMP. Each particle becomes a billboard quad facing the camera.
+*   **Option A: Sprites (Easiest)**
+    - Connect the POP SOP output to a **Sprite SOP**.
+    - Back in the main network, assign a **Point Sprite MAT** to the Geo COMP.
+    - Each particle becomes a glowing 2D "dot" facing the camera.
 
-**Instanced geometry:** Connect POP SOP to a **`Geometry COMP`** with Instancing on. Set the Instance CHOP/DAT to the POP SOP and map `tx ty tz` to the position attributes. Each particle renders as actual geometry.
-
----
-
-## Part 5: Audio reactivity
-
-```
-Audio Device In CHOP → Audio Spectrum CHOP → Analyze CHOP (RMS/Peak)
-  → Math CHOP (remap 0→1 to 100→5000)
-  → Source POP Emit Rate parameter
-```
+*   **Option B: Instanced Geometry (Advanced)**
+    - Follow the [[touchdesigner/06_Recipes_and_Projects/Audio Reactive Geometry|Instancing Recipe]] but use the POP SOP as your data source.
+    - Each particle becomes a full 3D shape (like a small box or sphere).
 
 ---
 
-## Common issues
+## Part 5: Audio Reactivity
 
-- **No particles showing** — check the Solver POP is in the chain.
-- **Particles shoot off screen** — add a Force POP with some gravity, or lower the initial velocity on the Source POP.
-- **Framerate tanks** — add a Kill POP to cull old or distant particles, or lower the POP SOP cook resolution.
-- **Colour not changing** — Life Source needs to be `Normalized Life`, not `Age`.
+1.  Create an **Audio File In CHOP** and an **Analyze CHOP** (set to RMS Power).
+2.  Use a **Math CHOP** to remap the volume (e.g., 0 to 0.1) to a high particle count (e.g., 100 to 5000).
+3.  **Bind** this value to the **Emit Rate** on your **Source POP**. Now, every kick drum will burst a cloud of particles!
 
-[[Index|Return to Recipes & Projects]]
+---
+
+## Troubleshooting
+
+*   **"I don't see anything!"** — Make sure the **Solver POP** is connected and the **Display Flag** (the circle icon in the bottom right) is on.
+*   **"Particles fly away too fast"** — Lower the **Initial Velocity** on the Source POP.
+*   **"The colors aren't changing"** — Check that **Life Source** is set to `Normalized Life`.
 
 [[touchdesigner/06_Recipes_and_Projects/index|Return to Recipes & Projects]] | [[touchdesigner/index|Return to TouchDesigner]]
-
----

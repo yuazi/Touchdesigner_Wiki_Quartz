@@ -10,34 +10,79 @@ date: 2026-03-02
 
 # Recipe: Audio Reactive Geometry
 
-This recipe details the implementation of audio-driven geometric transformations through direct coupling of spectral analysis data with geometry instancing parameters. The technique produces a canonical equalizer visualization where geometric properties respond in real-time to frequency domain audio characteristics.
+In this recipe, we'll create a classic 3D "Equalizer" visualization. You'll learn how to take a sound wave, break it into frequencies, and use those numbers to drive the height of thousands of 3D boxes.
+
+> [!important] Key Concept: Instancing
+> **Instancing** is a way to render hundreds or thousands of copies of a single shape (like a box) very efficiently. Instead of creating 100 separate nodes, we create *one* box and tell TouchDesigner: "Put a copy of this box at every point in this list of numbers."
+
+---
 
 ## 1. The Audio Analysis
 
-1. Create an `Audio File In CHOP` (or `Audio Device In` for live microphone).
-2. Connect it to an `Audio Spectrum CHOP`. This converts the waveform over time into frequency buckets (low bass on the left, high treble on the right).
-3. Connect that to a `Null CHOP` named `OUT_AUDIO`.
+First, we need to turn sound into data.
 
-_Optional:_ The raw spectrum might be too noisy. Place a `Filter CHOP` or `Lag CHOP` before the null to smooth out the jittery movement.
+1.  **Audio In:** Create an **Audio File In CHOP**. It comes with a default song.
+2.  **Break it down:** Connect it to an **Audio Spectrum CHOP**. 
+    - *What it does:* It performs an "FFT" (Fast Fourier Transform). It turns the sound wave into a graph where the left side is the **Bass** and the right side is the **Treble**.
+3.  **Smooth it out:** Connect the spectrum to a **Resample CHOP**. Set the "Method" to `New Rate, New Interval` and "End" to `40`. 
+    - *Why?* This reduces the hundreds of frequency bars down to just 40, which is easier to see.
+4.  **Finalize:** Connect to a **Null CHOP** and name it `OUT_AUDIO`.
 
-## 2. The Geometry Setup
+---
 
-1. Create a `Box SOP`. We want a thin, tall rectangle to act as an EQ bar.
-2. Connect it to a `Geometry COMP`.
-3. Create a `Camera COMP`, `Light COMP`, and `Render TOP` to view the 3D scene.
+## 2. The 3D Scene
+
+We need a "World" for our geometry to live in.
+
+1.  **The Shape:** Create a **Box SOP**.
+2.  **The Container:** Connect the Box SOP to a **Geometry COMP**.
+3.  **The View:** Add a **Camera COMP**, a **Light COMP**, and a **Render TOP**.
+    - Now you should see a single box in your `render1` viewer.
+
+---
 
 ## 3. The Instancing Magic
 
-1. Select your `Geometry COMP`.
-2. Go to the **Instance** page and turn _Instancing_ ON.
-3. Drag the `OUT_AUDIO` null onto the _Instance CHOP/DAT_ field.
-4. **The Layout:** We want the bars spread out horizontally. We don't have X coordinates yet, so we need to generate them.
-   - _Alternative setup:_ Before `OUT_AUDIO`, branch off a `Pattern CHOP` (Type: Ramp, 0 to 1) and merge it with the spectrum data using a `Merge CHOP`.
-   - Now in the Instance page, map the `tx` parameter to the pattern channel.
-5. **The Reaction:** Map the `ty` (or `sy` for scaling height) parameter to the audio channel coming from the spectrum (`chan1`).
+Now we tell the Geometry COMP to multiply that box.
 
-Now, you have a row of boxes whose heights (or Y-positions) dynamically spike with the frequencies of the playing song.
-
-[[touchdesigner/06_Recipes_and_Projects/index|Return to Recipes & Projects]] | [[touchdesigner/index|Return to TouchDesigner]]
+1.  Select the **Geometry COMP**. Go to the **Instance** tab in the parameters.
+2.  Turn **Instancing** → `On`.
+3.  **Define the Data:** Drag your `OUT_AUDIO` Null CHOP into the **Instance CHOP/DAT** field.
+    - *Wait!* The box disappeared or looks weird. This is because we haven't told TD *where* to put them yet.
 
 ---
+
+## 4. Layout (The Grid)
+
+We want the boxes to sit in a row, but our audio data only has "Height" (Y) values. We need "Position" (X) values.
+
+1.  **Generate X positions:** Branch off from your `OUT_AUDIO` node and add a **Pattern CHOP**.
+    - Set **Type** to `Ramp`.
+    - Set **Number of Samples** to `40` (to match our audio).
+    - Set **Amplitude** to `20` and **Offset** to `-10`. This spreads the values from -10 to +10.
+2.  **Merge them:** Use a **Merge CHOP** to combine the original audio channel (`chan1`) and your new pattern channel (`ramp1`). 
+3.  **Update the Geo:** Connect this Merge CHOP to your `OUT_AUDIO` Null.
+4.  **Map the Channels:**
+    - On the Geometry COMP **Instance** page, find **Translate X**. Select `ramp1` from the dropdown.
+    - Find **Scale Y** (to make them grow tall). Select `chan1` from the dropdown.
+
+> [!tip] Visualizing the Result
+> Look at your **Render TOP**. You should now see a row of 40 bars jumping up and down with the music!
+
+---
+
+## Troubleshooting
+
+*   **"The bars are too small/too big"** — Use a **Math CHOP** before the Null to multiply the audio values.
+*   **"The bars are jittery"** — Add a **Lag CHOP** or **Filter CHOP** before the Null to smooth the movement.
+*   **"I only see one bar"** — Check that your **Pattern CHOP** has the same "Number of Samples" as your audio spectrum.
+
+---
+
+## Next Steps
+
+*   **Add Color:** Use the audio data to drive the `Instance Color` parameters.
+*   **Change the Shape:** Replace the **Box SOP** with a **Sphere SOP** or **Tube SOP**.
+*   **3D Grid:** Use a **Noise TOP** to generate a 2D grid of boxes instead of a 1D row.
+
+[[touchdesigner/06_Recipes_and_Projects/index|Return to Recipes & Projects]] | [[touchdesigner/index|Return to TouchDesigner]]

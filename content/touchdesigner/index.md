@@ -5,6 +5,9 @@ date: 2026-02-01
 
 Welcome to your **TouchDesigner** learning wiki, a structured reference for visual programming with nodes and interactive media in real time.
 
+> [!tip] New to TouchDesigner?
+> If you've just installed the software, start with our **[[touchdesigner/06_Recipes_and_Projects/index#(y-1) Fundamentals|Level 1 Beginner Recipes]]**. They are designed to get you making visuals in under 10 minutes without needing deep technical knowledge.
+
 ---
 
 ## [[touchdesigner/01_Core_Concepts/index|y\ Core Concepts]]
