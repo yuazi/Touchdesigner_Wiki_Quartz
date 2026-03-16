@@ -11,20 +11,20 @@ tags:
 date: 2026-03-16
 ---
 
-This recipe creates real-time motion analysis using Motion History Images (MHI) and Optical Flow techniques in TouchDesigner. Perfect for interactive installations where you want to detect and visualize movement in a video stream. Optimized for Apple M1 Pro performance.
+Ever wanted to make your interactive installations really "see" what people are doing in front of them? This recipe shows you how to use Motion History Images and Optical Flow techniques in TouchDesigner to detect and visualize movement from a webcam or video file. It's perfect for creating responsive installations that react to how people move through space.
 
 > **Based on:** Combining computer vision techniques (MHI from OpenCV, Optical Flow from Farnebäck) with TouchDesigner's real-time processing capabilities
 
-## Overview
+## What You'll Build
 
-Build a motion analysis system that:
+We're putting together a motion analysis system that will:
 
-- Captures live video from webcam or video file
-- Computes Motion History Images to show movement over time
-- Calculates Optical Flow to detect direction and speed of motion
-- Visualizes both motion representations with color coding
-- Includes interactive thresholds and sensitivity controls
-- Optimized for real-time performance on Apple Silicon
+- Grab live video from your webcam (or use a video file if you prefer)
+- Create Motion History Images that show where movement has happened recently (with newer motion appearing brighter)
+- Calculate Optical Flow to figure out not just that something moved, but which direction and how fast
+- Color-code both representations so you can instantly "see" the motion in your visuals
+- Give you handy controls to tweak sensitivity and response to suit your installation
+- Run smoothly on Apple Silicon (we've optimized this specifically for M1 Pro)
 
 ## 1. Video Input Setup
 
@@ -191,6 +191,7 @@ Convert flow vectors to HSV color representation:
          fragColor = vec3(hue, saturation, value);
      }
      ```
+
 5. Connect to `HSV Adjust TOP` (set mode to HSV input)
 6. Connect to `Null TOP` (name it `NULL_OPTICAL_FLOW_VIS`)
 

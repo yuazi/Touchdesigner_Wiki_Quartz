@@ -10,7 +10,7 @@ date: 2026-03-02
 
 # Recipe: Basic A/B VJ Mixer
 
-This recipe demonstrates how to mix between two different generative scenes (or videos) using a single crossfader, which is the foundation of any live visual performance setup.
+This document details the implementation of a fundamental audio/video crossfader architecture in TouchDesigner utilizing the TOP-based Cross operator. The system enables linear transitions between two distinct visual sources, forming an essential component of live performance and installation visual pipelines.
 
 ## The Network Chain
 

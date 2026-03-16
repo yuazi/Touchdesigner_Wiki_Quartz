@@ -12,7 +12,7 @@ date: 2026-03-02
 
 > **Based on:** [5 Ways To Make Particles in TouchDesigner](https://www.youtube.com/watch?v=kNeSa7XivUs) by **anya maryina**
 
-Five different ways to make particles in TD. Each one sits at a different point on the effort/control spectrum — Line MAT takes five minutes, a GLSL feedback solver takes an afternoon. Pick based on what the project actually needs.
+TouchDesigner provides multiple distinct methodologies for particle system implementation, each characterized by different balances between setup complexity, computational efficiency, and parameter control granularity. Technique selection should be driven by specific project requirements regarding visual fidelity, particle count, and desired behavioral sophistication.
 
 ---
 

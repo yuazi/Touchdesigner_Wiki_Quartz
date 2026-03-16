@@ -12,19 +12,19 @@ tags:
 date: 2026-03-16
 ---
 
-This recipe demonstrates how to efficiently render thousands of 3D models using instancing with Physically Based Rendering (PBR) materials in TouchDesigner. Optimized for Apple M1 Pro performance.
+This document details the implementation of high-performance instanced rendering in TouchDesigner using Geometry COMP instances in conjunction with Physically Based Rendering (PBR) materials. The system enables efficient visualization of large numbers of 3D objects while maintaining physically accurate light interaction and material properties.
 
 > **Based on:** Combining TouchDesigner's official instancing tutorials, PBR workflow guides, and community best practices
 
-## Overview
+## What You'll Build
 
-Create a high-performance instanced rendering system that:
+We're putting together a system that lets you:
 
-- Uses Geometry COMP instancing to render thousands of models
-- Implements PBR materials for realistic lighting and shading
-- Supports per-instance variations (position, rotation, scale, color)
-- Optimized for Apple Silicon GPU performance
-- Includes techniques for managing large instance counts
+- Render tons of 3D models efficiently using Geometry COMP instancing (think forests, cities, particle systems made of actual geometry)
+- Use PBR materials for lighting that behaves like it does in the real world
+- Give each instance its own personality with variations in position, rotation, scale, and even color
+- Keep everything running smoothly on Apple Silicon (we've got specific optimizations for M1 Pro)
+- Handle large instance counts without choking your GPU
 
 ## 1. Model Preparation
 

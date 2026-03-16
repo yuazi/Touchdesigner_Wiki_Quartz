@@ -12,19 +12,19 @@ tags:
 date: 2026-03-16
 ---
 
-This recipe creates a real-time GPU-accelerated fluid simulation using TouchDesigner's Feedback TOP system. Based on the Jos Stam stable fluids algorithm adapted for TouchDesigner, this simulation runs efficiently on Apple M1 Pro hardware.
+This document details the implementation of a real-time GPU-accelerated fluid simulation system in TouchDesigner utilizing Feedback TOP operators. The approach adapts Jos Stam's stable fluids algorithm for execution entirely within TouchDesigner's nodal environment, leveraging GPU parallelism for computational efficiency.
 
 > **Based on:** GPU Fluid Simulation techniques adapted from Jos Stam's "Real-Time Fluid Dynamics for Games" and TouchDesigner feedback loop best practices
 
-## Overview
+## What You'll Build
 
-Build a responsive fluid simulation that:
+This fluid simulation will:
 
-- Simulates incompressible fluid dynamics entirely on the GPU
-- Uses Feedback TOPs for velocity and density fields
-- Includes forces, vorticity confinement, and dissipation controls
-- Optimized for real-time performance on Apple Silicon
-- Supports interactive forces (mouse, audio, etc.)
+- Run entirely on your GPU for buttery-smooth performance (optimized for M1 Pro)
+- Simulate how fluids move and interact using velocity and density fields
+- Include all the good stuff: forces to push the fluid around, vorticity confinement to keep those cool swirly details, and dissipation controls to prevent things from getting out of hand
+- Respond to interactive inputs like mouse movements or audio signals
+- Give you a foundation you can extend into fire, smoke, liquids, or whatever crazy fluid effect you're dreaming up
 
 ## 1. Field Setup
 
@@ -107,7 +107,7 @@ The fluid simulation uses two coupled feedback loops:
 2. **Create Force Sources:**
    - **Mouse Force:** Use `Mouse In CHOP` → Math CHOPs → Constant TOP
    - **Radial Force:** Noise TOP → Math TOP (for turbulence)
-   - **Buoyancy Force:** dens_field _ buoyancy_strength _ up_vector
+   - **Buoyancy Force:** dens*field * buoyancy*strength * up_vector
 
 ### 3.2 Velocity Advection
 

@@ -12,7 +12,7 @@ date: 2026-03-02
 
 > **Based on:** [Touch Designer Dreamscape Particle Cloud Tutorial](https://www.youtube.com/watch?v=4tOldYnNFV0) by **söla**
 
-A soft, glowing particle cloud that floats and breathes — the "dreamscape" aesthetic. This combines POPs for GPU-based particle movement with a feedback loop and post-processing to achieve the hazy, luminous look.
+This recipe details the implementation of a GPU-accelerated particle system utilizing TouchDesigner's Point Operators (POPs) for efficient particle simulation, coupled with a recursive feedback topology to generate persistent visual trails. The technique produces a characteristic volumetric aesthetic through strategic combination of noise-driven particle motion, point sprite rendering, and multi-stage post-processing.
 
 ---
 

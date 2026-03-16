@@ -10,7 +10,7 @@ date: 2026-03-01
 
 # Recipe: Particle System with POPs
 
-POPs (Point Operators) run on the GPU, so you can push hundreds of thousands of particles with forces and colour without the CPU breaking a sweat. This builds a basic system you can extend.
+Want to create particle systems that can handle hundreds of thousands of particles without melting your CPU? That's exactly what POPs (Point Operators) are for - they run entirely on the GPU, letting you push insane amounts of particles with forces, colors, and all the good stuff while keeping your processor happy. This recipe builds you a solid foundation that you can extend in all sorts of creative directions.
 
 ## How POPs fit into a network
 

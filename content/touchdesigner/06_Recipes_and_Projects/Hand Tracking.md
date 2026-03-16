@@ -20,9 +20,9 @@ date: 2026-03-01
 
 ## Overview
 
-A master class series on implementing real-time **hand tracking** in TouchDesigner using Google's **MediaPipe** framework, via Torin's open-source plugin. Covers setup through to a fully interactive, gesture-driven application — no ML code required.
+This tutorial series details the implementation of real-time hand tracking in TouchDesigner using Google's MediaPipe framework via Torin Blankensmith's open-source plugin. The series covers end-to-end development from initial setup through to fully interactive, gesture-driven visual applications, requiring no machine learning expertise from the implementer.
 
-> The plugin supports **all MediaPipe vision models** (except Interactive Segmentation and Image Embedding). The series focuses on hand tracking, but the same `.tox` pattern applies to the others.
+> Note: Although this series focuses on hand tracking, the underlying plugin supports the complete suite of MediaPipe vision models (excluding Interactive Segmentation and Image Embedding). Mastery of the techniques presented here enables straightforward adaptation to face tracking, pose estimation, and other supported models.
 
 ---
 

@@ -10,7 +10,7 @@ date: 2026-03-02
 
 # Recipe: Audio Reactive Geometry
 
-This recipe connects audio analysis directly to geometry instancing, creating a classic "EQ visualizer" effect where bars or shapes react to different frequencies.
+This recipe details the implementation of audio-driven geometric transformations through direct coupling of spectral analysis data with geometry instancing parameters. The technique produces a canonical equalizer visualization where geometric properties respond in real-time to frequency domain audio characteristics.
 
 ## 1. The Audio Analysis
 

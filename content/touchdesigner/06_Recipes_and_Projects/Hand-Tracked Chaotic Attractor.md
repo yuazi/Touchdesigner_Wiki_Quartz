@@ -21,7 +21,7 @@ date: 2026-03-08
 
 ## Overview
 
-Real-time Lorenz attractor driven by MediaPipe hand tracking over webcam. No plugin needed, everything runs through Python in a Script CHOP and Script SOP.
+Want to make your TouchDesigner projects react to your hand movements in real time, without installing any extra plugins? This tutorial shows you how to drive a mesmerizing Lorenz attractor (you know, that classic butterfly-shaped chaotic system) using nothing but Python scripts in TouchDesigner and your webcam. The best part? Everything runs natively, so you won't need to juggle external dependencies or worry about performance hits from plugins.
 
 ```
 Webcam → Script CHOP (MediaPipe) → Filter/Lag CHOPs → Math CHOPs

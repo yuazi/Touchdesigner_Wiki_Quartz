@@ -11,9 +11,9 @@ date: 2026-03-02
 
 # Recipe: GLSL Feedback Effect
 
-A **feedback loop** feeds a texture's own output back into itself as input, creating trails, echo effects, fluid-like smearing, and reaction-diffusion patterns. Combining this with a custom GLSL shader gives you GPU-speed procedural visuals.
+This document details the implementation of recursive texture processing systems in TouchDesigner using Feedback TOP operators in conjunction with custom GLSL shaders. Such configurations enable the generation of complex temporal visual phenomena including trajectory trails, recursive diffusion patterns, and evolving procedural textures - all executed with full GPU acceleration for real-time performance capabilities.
 
-This recipe builds a classic **feedback zoom + GLSL distortion** effect, the foundation of many VJ visuals.
+The specific implementation described herein focuses on a compound transformation feedback system incorporating spatial scaling, rotational transformation, and temporal decay parameters, establishing a foundational framework for advanced real-time visual synthesis applications.
 
 ---
 

@@ -11,19 +11,19 @@ tags:
 date: 2026-03-16
 ---
 
-This recipe creates a professional-grade real-time audio visualizer using TouchDesigner's Audio Spectrum CHOP, FFT analysis, and geometry instancing. Optimized for Apple M1 Pro with GPU acceleration.
+Want to make your visuals really pump with the music? This recipe shows you how to build a responsive audio visualizer that actually feels connected to the sound - not just slapping some basic bars on screen. We'll use TouchDesigner's Audio Spectrum CHOP to break down the audio into frequency bands, then map those to visual properties using efficient GPU instancing so you can push thousands of visual elements without breaking a sweat.
 
 > **Based on:** Combining techniques from TouchDesigner's official audio tutorials and community best practices
 
-## Overview
+## What You'll Build
 
-Build a responsive audio visualizer that:
+This audio visualizer will:
 
-- Analyzes live audio input using FFT (Fast Fourier Transform)
-- Maps frequency bands to visual parameters (height, color, rotation)
-- Uses efficient GPU instancing for thousands of visual elements
-- Includes smooth response curves and falloff for professional look
-- Optimized for real-time performance on Apple Silicon
+- Listen to live audio input and break it down by frequency using FFT analysis
+- Map different frequency ranges to visual properties like height, color, and rotation
+- Use GPU instancing to efficiently render thousands of visual elements
+- Include smoothing and falloff for that polished, professional look
+- Run smoothly on Apple Silicon (optimized for M1 Pro)
 
 ## 1. Audio Analysis Chain
 
