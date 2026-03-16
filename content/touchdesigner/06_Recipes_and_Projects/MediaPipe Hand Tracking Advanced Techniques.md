@@ -1,5 +1,5 @@
 ---
-title: "Recipe: MediaPipe Hand Tracking Advanced Techniques"
+title: "MediaPipe Hand Tracking Advanced Techniques"
 tags:
   - touchdesigner
   - td/recipes

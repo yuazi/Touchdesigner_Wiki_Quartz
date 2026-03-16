@@ -1,5 +1,5 @@
 ---
-title: "Recipe: Instanced 3D Models with PBR Materials"
+title: "Instanced 3D Models with PBR Materials"
 tags:
   - touchdesigner
   - td/recipes

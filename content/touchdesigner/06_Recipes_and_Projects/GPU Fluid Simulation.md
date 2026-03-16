@@ -1,5 +1,5 @@
 ---
-title: "Recipe: GPU Fluid Simulation with Feedback TOPs"
+title: "GPU Fluid Simulation with Feedback TOPs"
 tags:
   - touchdesigner
   - td/recipes

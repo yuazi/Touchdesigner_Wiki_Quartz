@@ -1,5 +1,5 @@
 ---
-title: "Recipe: MediaPipe Face Tracking"
+title: "MediaPipe Face Tracking"
 tags:
   - touchdesigner
   - td/recipes
@@ -22,7 +22,7 @@ Want to make a digital avatar that smiles when you do? This recipe shows you how
 ## 1. Setup the Plugin
 
 1.  **Extract the Zip:** Unzip the plugin and place the `toxes/` folder right next to your `.toe` project file.
-2.  **Add to TD:** 
+2.  **Add to TD:**
     - Press **Tab** and add a **Base COMP**. Name it `mediapipe_face`.
     - Inside, drag in `MediaPipe.tox` and `Face Tracking.tox`.
 3.  **Turn it on:**
@@ -60,28 +60,28 @@ Let's grab your smile and use it to control something!
 Let's make a circle that grows and changes color when you smile.
 
 1.  **The Circle:** Add a **Circle TOP**.
-2.  **Control the Size:** 
+2.  **Control the Size:**
     - Make the `MY_SMILE` Null active (click the + icon).
     - Drag the channel onto the **Radius** parameter of the Circle TOP.
     - Select **CHOP Bind**.
-3.  **Control the Color:** 
-    - Drag the same channel onto the **Color R** (Red) parameter. 
+3.  **Control the Color:**
+    - Drag the same channel onto the **Color R** (Red) parameter.
     - Now the circle will turn redder the more you smile!
 
 ---
 
 ## Troubleshooting
 
-*   **"The plugin is red/erroring."** — Make sure the `toxes/` folder is in the same folder as your project file.
-*   **"It's really slow."** — MediaPipe is heavy. Go to the MediaPipe COMP and make sure **Face Tracking** is the *only* model turned on.
-*   **"My face isn't being detected."** — Ensure you have good lighting! If your room is dark, the AI will struggle to find your features.
+- **"The plugin is red/erroring."** — Make sure the `toxes/` folder is in the same folder as your project file.
+- **"It's really slow."** — MediaPipe is heavy. Go to the MediaPipe COMP and make sure **Face Tracking** is the _only_ model turned on.
+- **"My face isn't being detected."** — Ensure you have good lighting! If your room is dark, the AI will struggle to find your features.
 
 ---
 
 ## Next Steps
 
-*   **Puppet an Avatar:** Map your jaw opening (`F1_jawOpen`) to a 3D character's mouth.
-*   **Eyebrow Control:** Use `F1_browInnerUp` to trigger a burst of particles.
-*   **3D Mesh:** Check out the `Face Mesh` output to see a full 3D wireframe of your face.
+- **Puppet an Avatar:** Map your jaw opening (`F1_jawOpen`) to a 3D character's mouth.
+- **Eyebrow Control:** Use `F1_browInnerUp` to trigger a burst of particles.
+- **3D Mesh:** Check out the `Face Mesh` output to see a full 3D wireframe of your face.
 
 [[touchdesigner/06_Recipes_and_Projects/index|Return to Recipes & Projects]] | [[touchdesigner/index|Return to TouchDesigner]]

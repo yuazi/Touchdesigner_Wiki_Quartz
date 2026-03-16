@@ -1,5 +1,5 @@
 ---
-title: "Recipe: Dreamscape Particle Cloud"
+title: "Dreamscape Particle Cloud"
 tags:
   - touchdesigner
   - td/recipes

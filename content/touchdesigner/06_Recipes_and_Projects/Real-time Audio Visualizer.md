@@ -1,5 +1,5 @@
 ---
-title: "Recipe: Real-time Audio Visualizer with FFT"
+title: "Real-time Audio Visualizer with FFT"
 tags:
   - touchdesigner
   - td/recipes
@@ -15,6 +15,7 @@ Want to make your visuals really "dance" to the music? This recipe shows you how
 
 > [!info] New to TouchDesigner?
 > If this is your first time, check out the [[Basic VJ Mixer]] first. We'll be using:
+>
 > - **CHOPs (Channel Operators):** For audio signals and numbers.
 > - **TOPs (Texture Operators):** For images and the final render.
 > - **SOPs (Surface Operators):** For 3D shapes.
@@ -27,13 +28,15 @@ Want to make your visuals really "dance" to the music? This recipe shows you how
 First, we need to listen to audio and turn it into numbers we can use.
 
 ### 1.1 Get the Audio
+
 1.  Add an **Audio Device In CHOP**. This grabs sound from your microphone or system audio.
 2.  Add an **Audio Spectrum CHOP** and connect the audio into it.
-    - *What it does:* This is called an **FFT**. It splits the sound into a graph where the left side is **Bass** and the right side is **Treble**.
+    - _What it does:_ This is called an **FFT**. It splits the sound into a graph where the left side is **Bass** and the right side is **Treble**.
 
 ### 1.2 Smooth and Prep
+
 1.  Connect the spectrum to a **Lag CHOP**.
-    - *Why?* Raw audio is very "jittery." A Lag of `0.05` makes the movement look smooth and organic rather than flickering.
+    - _Why?_ Raw audio is very "jittery." A Lag of `0.05` makes the movement look smooth and organic rather than flickering.
 2.  Connect to a **Math CHOP**. In the "Mult-Add" tab, set **Multiply** to `2.0`. This makes the visual more sensitive to quiet sounds.
 3.  Connect to a **Null CHOP** and name it `OUT_AUDIO`.
 
@@ -46,7 +49,7 @@ We need a 3D "world" to visualize the music.
 1.  **The Shape:** Create a **Box SOP**.
 2.  **The Container:** Connect the Box to a **Geometry COMP**.
 3.  **The Environment:** Add a **Camera COMP**, a **Light COMP**, and a **Render TOP**.
-    - *Tip:* You should now see a single box in the `render1` node.
+    - _Tip:_ You should now see a single box in the `render1` node.
 
 ---
 
@@ -55,6 +58,7 @@ We need a 3D "world" to visualize the music.
 We want to create a row of boxes that jump to different frequencies.
 
 ### 3.1 Create the Grid
+
 1.  Add a **Noise TOP**. Set its resolution to `32 x 1` (this gives us 32 points in a line).
 2.  Connect it to a **TOP to CHOP**. This converts the "image" of noise into a list of numbers.
 3.  Add a **Rename CHOP** and rename the channel `r` to `tx` (Translate X).
@@ -62,6 +66,7 @@ We want to create a row of boxes that jump to different frequencies.
 5.  Connect to a **Null CHOP** named `NULL_INSTANCES`.
 
 ### 3.2 Link to Audio
+
 1.  Go to your **Geometry COMP** → **Instance** tab.
 2.  Turn **Instancing** → `On`.
 3.  Drag `NULL_INSTANCES` into the **Instance CHOP** field.
@@ -77,24 +82,24 @@ Let's make it look professional with some glow.
 1.  Connect your **Render TOP** to a **Bloom TOP**.
     - Set **Threshold** to `0.5` and **Intensity** to `0.8`.
 2.  Connect to an **HSV Adjust TOP**.
-    - *Tip:* Use a Python expression in the **Hue Offset** parameter: `absTime.seconds * 5`. Now the colors will slowly shift over time!
+    - _Tip:_ Use a Python expression in the **Hue Offset** parameter: `absTime.seconds * 5`. Now the colors will slowly shift over time!
 3.  Finish with a **Null TOP** named `OUT`.
 
 ---
 
 ## Troubleshooting
 
-*   **"I don't hear/see anything!"** — Check the "Device" parameter on your **Audio Device In**. Make sure your mic isn't muted.
-*   **"The boxes are too tall."** — Use a **Math CHOP** after your audio spectrum to lower the **Multiply** value.
-*   **"The movement is too fast."** — Increase the **Lag** value (try `0.1` or `0.2`).
-*   **"Nothing is rendering."** — Ensure your **Render TOP** has the `geo1`, `cam1`, and `light1` paths set in its parameters.
+- **"I don't hear/see anything!"** — Check the "Device" parameter on your **Audio Device In**. Make sure your mic isn't muted.
+- **"The boxes are too tall."** — Use a **Math CHOP** after your audio spectrum to lower the **Multiply** value.
+- **"The movement is too fast."** — Increase the **Lag** value (try `0.1` or `0.2`).
+- **"Nothing is rendering."** — Ensure your **Render TOP** has the `geo1`, `cam1`, and `light1` paths set in its parameters.
 
 ---
 
 ## Next Steps
 
-*   **Change the Layout:** Use a `Grid SOP` instead of a `Noise TOP` to arrange the boxes in a 2D square.
-*   **Reactive Color:** Map the audio volume to the **Instance Color** parameters so it gets brighter on loud kicks.
-*   **Feedback Trails:** Add a [[touchdesigner/03_Rendering_and_Output/Feedback Loops|Feedback Loop]] for a trippy, trailing effect.
+- **Change the Layout:** Use a `Grid SOP` instead of a `Noise TOP` to arrange the boxes in a 2D square.
+- **Reactive Color:** Map the audio volume to the **Instance Color** parameters so it gets brighter on loud kicks.
+- **Feedback Trails:** Add a [[touchdesigner/03_Rendering_and_Output/Feedback Loops|Feedback Loop]] for a trippy, trailing effect.
 
 [[touchdesigner/06_Recipes_and_Projects/index|Return to Recipes & Projects]] | [[touchdesigner/index|Return to TouchDesigner]]

@@ -10,9 +10,10 @@ date: 2026-03-01
 
 # Recipe: Particle System with POPs
 
-Want to create particle systems that can handle hundreds of thousands of particles without melting your CPU? That's exactly what **POPs (Point Operators)** are for—they run entirely on the GPU, letting you push insane amounts of particles with forces, colors, and all the good stuff while keeping your processor happy. 
+Want to create particle systems that can handle hundreds of thousands of particles without melting your CPU? That's exactly what **POPs (Point Operators)** are for—they run entirely on the GPU, letting you push insane amounts of particles with forces, colors, and all the good stuff while keeping your processor happy.
 
 > [!info] Operator Families in this Recipe
+>
 > - **SOPs (Surface Operators):** 3D shapes like spheres and boxes.
 > - **POPs (Point Operators):** Particles and points on the GPU.
 > - **CHOPs (Channel Operators):** Numbers and audio signals.
@@ -22,7 +23,7 @@ Want to create particle systems that can handle hundreds of thousands of particl
 
 ## How POPs fit into a network
 
-POPs work on **point clouds**—big sets of 3D points where each point has "attributes" like position, velocity, and color. 
+POPs work on **point clouds**—big sets of 3D points where each point has "attributes" like position, velocity, and color.
 
 They live inside a **POP SOP**, which is the "bridge" node. It takes regular 3D shapes (SOPs), turns them into particles (POPs), and then brings them back into your 3D scene.
 
@@ -49,12 +50,12 @@ Source POP → Solver POP → [output]
 
 To make the particles move in interesting ways, drop "force" nodes between the Source and the Solver:
 
-| Node              | What it does                                               |
-| ----------------- | ---------------------------------------------------------- |
-| **Force POP**     | A constant push. Set **Force Y** to `-9.8` for gravity.    |
-| **Wind POP**      | Adds "Noise" or turbulence to make it look like smoke.     |
-| **Attractor POP** | Pulls particles toward a specific point.                   |
-| **Collision POP** | Makes particles bounce off another 3D shape (SOP).         |
+| Node              | What it does                                            |
+| ----------------- | ------------------------------------------------------- |
+| **Force POP**     | A constant push. Set **Force Y** to `-9.8` for gravity. |
+| **Wind POP**      | Adds "Noise" or turbulence to make it look like smoke.  |
+| **Attractor POP** | Pulls particles toward a specific point.                |
+| **Collision POP** | Makes particles bounce off another 3D shape (SOP).      |
 
 ---
 
@@ -71,16 +72,16 @@ Let's make particles change color as they get older:
 
 ## Part 4: Rendering (Seeing the Result)
 
-The POP SOP outputs "points," but we need to tell TouchDesigner *how* to draw them.
+The POP SOP outputs "points," but we need to tell TouchDesigner _how_ to draw them.
 
-*   **Option A: Sprites (Easiest)**
-    - Connect the POP SOP output to a **Sprite SOP**.
-    - Back in the main network, assign a **Point Sprite MAT** to the Geo COMP.
-    - Each particle becomes a glowing 2D "dot" facing the camera.
+- **Option A: Sprites (Easiest)**
+  - Connect the POP SOP output to a **Sprite SOP**.
+  - Back in the main network, assign a **Point Sprite MAT** to the Geo COMP.
+  - Each particle becomes a glowing 2D "dot" facing the camera.
 
-*   **Option B: Instanced Geometry (Advanced)**
-    - Follow the [[touchdesigner/06_Recipes_and_Projects/Audio Reactive Geometry|Instancing Recipe]] but use the POP SOP as your data source.
-    - Each particle becomes a full 3D shape (like a small box or sphere).
+- **Option B: Instanced Geometry (Advanced)**
+  - Follow the [[touchdesigner/06_Recipes_and_Projects/Audio Reactive Geometry|Instancing Recipe]] but use the POP SOP as your data source.
+  - Each particle becomes a full 3D shape (like a small box or sphere).
 
 ---
 
@@ -94,8 +95,8 @@ The POP SOP outputs "points," but we need to tell TouchDesigner *how* to draw th
 
 ## Troubleshooting
 
-*   **"I don't see anything!"** — Make sure the **Solver POP** is connected and the **Display Flag** (the circle icon in the bottom right) is on.
-*   **"Particles fly away too fast"** — Lower the **Initial Velocity** on the Source POP.
-*   **"The colors aren't changing"** — Check that **Life Source** is set to `Normalized Life`.
+- **"I don't see anything!"** — Make sure the **Solver POP** is connected and the **Display Flag** (the circle icon in the bottom right) is on.
+- **"Particles fly away too fast"** — Lower the **Initial Velocity** on the Source POP.
+- **"The colors aren't changing"** — Check that **Life Source** is set to `Normalized Life`.
 
 [[touchdesigner/06_Recipes_and_Projects/index|Return to Recipes & Projects]] | [[touchdesigner/index|Return to TouchDesigner]]
