@@ -629,6 +629,57 @@ Image    ───────────────────────�
 
 > **Example**: _"How many red things are left of the large sphere?"_ is fed to the program generator, which proposes `count(filter[red](relate[left-of](find[large-sphere])))` — without explicit parse annotation. The executor runs this on the image and returns a count.
 
+### PyTorch Implementation: Prototypical Networks (Few-Shot)
+
+Prototypical Networks learn a metric space where classification is performed by computing distances to **prototypes** (mean representations) of each class.
+
+```python
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+class ProtoNet(nn.Module):
+    def __init__(self, encoder):
+        super().__init__()
+        # The encoder is typically a CNN that maps images to a feature vector
+        self.encoder = encoder 
+
+    def forward(self, support_images, query_images, n_way, n_support):
+        """
+        Args:
+            support_images: labeled examples (n_way * n_support, C, H, W)
+            query_images: unlabeled examples to classify (n_query, C, H, W)
+            n_way: number of classes in the current task
+            n_support: number of examples per class (the 'k' in k-shot)
+        """
+        # 1. Get embeddings for both support and query sets
+        # Concatenate them to run the encoder only once for efficiency
+        x = torch.cat([support_images, query_images], 0)
+        z = self.encoder(x) # (Total_images, Feature_dim)
+        z_dim = z.size(-1)
+        
+        # 2. Extract prototypes
+        # Reshape support embeddings to (n_way, n_support, Feature_dim)
+        z_support = z[:n_way*n_support].view(n_way, n_support, z_dim)
+        # Compute the mean vector for each class -> this is the PROTOTYPE
+        prototypes = z_support.mean(1) # Result: (n_way, Feature_dim)
+        
+        # 3. Classify Query Images
+        z_query = z[n_way*n_support:] # Embeddings of the images we want to label
+        # Compute Squared Euclidean distance from every query to every prototype
+        # dists[i, j] is distance from query 'i' to prototype 'j'
+        dists = torch.cdist(z_query, prototypes, p=2)**2
+        
+        # 4. Return log-probabilities
+        # We use negative distance because closer = more probable
+        return F.log_softmax(-dists, dim=1)
+```
+
+**Key Few-Shot Concepts:**
+- **n-way, k-shot**: A task where you must choose between `n` classes, and you only have `k` labeled examples per class to learn from.
+- **The Prototype**: The central assumption is that there exists a single representative point for each class in the embedding space.
+- **Metric Learning**: Unlike standard classifiers, the model isn't learning a fixed decision boundary; it's learning an embedding space where similar things are close together.
+
 ---
 
 ## Summary
@@ -698,7 +749,5 @@ The shared embedding space from CLIP is foundational for [[notes/mlp/12-diffusio
 - Ngiam et al. (2011). _Multimodal deep learning._ ICML.
 - Srivastava & Salakhutdinov (2012). _Multimodal learning with deep Boltzmann machines._ NeurIPS.
 - Pham et al. (2019). _Found in translation: Learning robust joint representations by cyclic translations between modalities._ AAAI.
-
----
 
 [[notes/mlp/06-vit|Previous: L06: ViT]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/08-iml|Next: Interactive ML]]

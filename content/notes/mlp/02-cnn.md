@@ -372,6 +372,68 @@ Fully convolutional networks for dense prediction:
 - HourGlass [Newell et al., 2016]
 - U-Net [Ronneberger et al., 2015]
 
+### PyTorch Implementation: LeNet-5
+
+LeNet-5 is a classic CNN architecture for digit recognition. Below is its implementation in PyTorch.
+
+```python
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+# 1. Define the LeNet-5 Architecture
+# Inheriting from nn.Module allows PyTorch to track parameters
+class LeNet5(nn.Module):
+    def __init__(self):
+        super().__init__()
+        
+        # --- FEATURE EXTRACTION (Convolutional Layers) ---
+        
+        # Layer 1: Conv2d(in_channels=1, out_channels=6, kernel_size=5)
+        # Input: 28x28 grayscale image (1 channel)
+        # Output: 6 feature maps, each 24x24 (due to no padding)
+        self.conv1 = nn.Conv2d(1, 6, kernel_size=5) 
+        
+        # Layer 2: Conv2d(in_channels=6, out_channels=16, kernel_size=5)
+        # Input: 6 feature maps from previous layer (after pooling)
+        # Output: 16 feature maps
+        self.conv2 = nn.Conv2d(6, 16, kernel_size=5)
+        
+        # --- CLASSIFICATION (Fully Connected Layers) ---
+        
+        # After two 2x2 pooling layers, a 28x28 image becomes 4x4
+        # Flattened input features = channels (16) * height (4) * width (4) = 256
+        self.fc1 = nn.Linear(16 * 4 * 4, 120)
+        self.fc2 = nn.Linear(120, 84)
+        # Output layer: 10 neurons for the 10 digits (0-9)
+        self.fc3 = nn.Linear(84, 10) 
+
+    def forward(self, x):
+        # Apply first convolution, then ReLU activation, then Max Pooling (2x2)
+        # Resulting size: (28-5+1)/2 = 12x12
+        x = F.max_pool2d(F.relu(self.conv1(x)), 2) 
+        
+        # Apply second convolution, ReLU, and Max Pooling
+        # Resulting size: (12-5+1)/2 = 4x4
+        x = F.max_pool2d(F.relu(self.conv2(x)), 2)
+        
+        # Flatten: transform 4D tensor (Batch, 16, 4, 4) -> 2D (Batch, 256)
+        x = x.view(-1, 16 * 4 * 4) 
+        
+        # Standard fully connected feed-forward passes
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        
+        # Final output (logits) - CrossEntropyLoss will apply Softmax internally
+        return self.fc3(x)
+```
+
+**Key PyTorch CNN Functions:**
+- **`nn.Conv2d`**: Learns spatial filters. It preserves the local relationship between pixels.
+- **`F.max_pool2d`**: Selects the maximum value in a small window, reducing spatial size and providing robustness to small translations.
+- **`x.view(-1, ...)`**: Used to "flatten" the 2D feature maps into a 1D vector before passing them to traditional linear layers.
+
+
 ---
 
 [[notes/mlp/01-introduction|Previous: L01: Introduction]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/03-vision-cnn|Next: Vision CNNs]]

@@ -454,6 +454,70 @@ The qualitative Mask R-CNN result slide makes the distinction from semantic segm
 - **FCN, U-Net**: encoder–decoder models with learnable upsampling and skip connections
 - **Mask R-CNN**: Faster R-CNN extended with an object segmentation branch + ROI Align
 
+### PyTorch Implementation: ResNet
+
+ResNet uses skip connections to allow training of very deep networks. Below is an implementation of a **Residual Block**, the fundamental building block of ResNet.
+
+```python
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+class ResidualBlock(nn.Module):
+    def __init__(self, in_channels, out_channels, stride=1):
+        """
+        Args:
+            in_channels: Number of input feature maps
+            out_channels: Number of output feature maps
+            stride: Stride for the first convolution (used for downsampling)
+        """
+        super().__init__()
+        
+        # --- MAIN PATH ---
+        # First 3x3 convolution
+        self.conv1 = nn.Conv2d(in_channels, out_channels, kernel_size=3, 
+                               stride=stride, padding=1, bias=False)
+        self.bn1 = nn.BatchNorm2d(out_channels)
+        
+        # Second 3x3 convolution
+        self.conv2 = nn.Conv2d(out_channels, out_channels, kernel_size=3, 
+                               stride=1, padding=1, bias=False)
+        self.bn2 = nn.BatchNorm2d(out_channels)
+
+        # --- SKIP CONNECTION (Shortcut) ---
+        self.shortcut = nn.Sequential()
+        
+        # If the input shape doesn't match the output (due to stride or channels),
+        # we apply a 1x1 convolution to the shortcut path to match dimensions.
+        if stride != 1 or in_channels != out_channels:
+            self.shortcut = nn.Sequential(
+                nn.Conv2d(in_channels, out_channels, kernel_size=1, 
+                          stride=stride, bias=False),
+                nn.BatchNorm2d(out_channels)
+            )
+
+    def forward(self, x):
+        # 1. Save the input for the identity connection
+        identity = self.shortcut(x)
+        
+        # 2. Compute the main convolutional path
+        out = F.relu(self.bn1(self.conv1(x)))
+        out = self.bn2(self.conv2(out))
+        
+        # 3. ADD the identity (residual) to the output
+        # This is the "Skip Connection" that allows gradients to flow easily
+        out += identity
+        
+        # 4. Apply final activation after the addition
+        return F.relu(out)
+```
+
+**Key ResNet Concepts:**
+- **Identity Mapping**: By adding the input `x` to the output $F(x)$, the network only needs to learn the "residual" difference. If a layer isn't needed, it can easily learn to set its weights to zero, effectively becoming an identity function.
+- **Gradient Flow**: During backpropagation, the gradient can flow directly through the addition gate back to earlier layers, mitigating the vanishing gradient problem in very deep networks (e.g., ResNet-152).
+- **`nn.BatchNorm2d`**: Essential for stabilizing the distribution of activations, allowing for higher learning rates and faster convergence.
+
+
 ---
 
 ## References

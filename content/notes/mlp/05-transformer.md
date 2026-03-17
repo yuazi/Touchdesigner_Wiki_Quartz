@@ -854,6 +854,55 @@ There are two common ways to adapt GPT models:
 
 In short: **BERT** is mainly a bidirectional encoder for representation learning, while **GPT** is mainly a decoder-only model for autoregressive generation and prompting.
 
+### PyTorch Implementation: Transformer
+
+The Transformer architecture completely replaces recurrence with Multi-Head Attention. Below is a simplified implementation using PyTorch's built-in `nn.Transformer` module.
+
+```python
+import torch
+import torch.nn as nn
+
+class TransformerModel(nn.Module):
+    def __init__(self, src_vocab_size, tgt_vocab_size, d_model=512, nhead=8, num_layers=6):
+        super().__init__()
+        # 1. Embeddings: Convert discrete word IDs into dense vectors
+        self.embedding_src = nn.Embedding(src_vocab_size, d_model)
+        self.embedding_tgt = nn.Embedding(tgt_vocab_size, d_model)
+        
+        # 2. The Core Transformer: Handles both Encoder and Decoder logic
+        # d_model: number of features in input vectors
+        # nhead: number of parallel attention heads
+        # num_layers: number of sub-layers in both encoder and decoder
+        self.transformer = nn.Transformer(d_model, nhead, num_layers, num_layers)
+        
+        # 3. Final Linear Layer: Projects model output back to vocabulary size
+        self.fc_out = nn.Linear(d_model, tgt_vocab_size)
+
+    def forward(self, src, tgt):
+        """
+        Args:
+            src: Source sequence indices, shape (S, N)
+            tgt: Target sequence indices, shape (T, N)
+            (S = Source length, T = Target length, N = Batch size)
+        """
+        # Embed the source and target tokens
+        src_emb = self.embedding_src(src)
+        tgt_emb = self.embedding_tgt(tgt)
+        
+        # PyTorch Transformer expects input shape: (Seq_Len, Batch, Embed_Dim)
+        # It performs self-attention on src, self-attention on tgt, 
+        # and cross-attention between them automatically.
+        out = self.transformer(src_emb, tgt_emb)
+        
+        # Project the resulting features to get logits for each vocabulary word
+        return self.fc_out(out)
+```
+
+**Key Transformer Concepts:**
+- **`nn.Transformer`**: A black-box implementation of the entire Vaswani et al. (2017) architecture. It is highly optimized for performance.
+- **Permutation Invariance**: Notice that without "Positional Encodings" (omitted here for simplicity), the Transformer doesn't know the order of words. In practice, you must add sinusoidal or learned vectors to the embeddings.
+- **Parallelism**: Unlike RNNs, the entire source sequence `src` is processed in one step, making Transformers much faster to train on modern hardware.
+
 ---
 
 ## Summary
@@ -905,7 +954,5 @@ From the lecture's closing slide:
 - Radford et al. (2019) — Language models are unsupervised multitask learners. _OpenAI technical report_.
 - Vaswani et al. (2017) — Attention is all you need. _NeurIPS_, pp. 5998–6008.
 - Xu et al. (2015) — Show, attend and tell: Neural image caption generation with visual attention. _ICML_, pp. 2048–2057.
-
----
 
 [[notes/mlp/04-rnn|Previous: L04: RNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/06-vit|Next: ViT]]

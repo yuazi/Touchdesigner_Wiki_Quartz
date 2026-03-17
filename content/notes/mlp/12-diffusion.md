@@ -637,6 +637,54 @@ This is the same general diffusion machinery applied in an **editing / inpaintin
 | **Classifier-free guidance** | Train with and without text, then amplify $(\varepsilon_\text{cond} - \varepsilon_\text{uncond})$ by scale $w$ |
 | **GLIDE editing**            | Text-guided masked edits preserve global scene context while changing selected regions                         |
 
+### PyTorch Implementation: Denoising Diffusion Probabilistic Models (DDPM)
+
+DDPM works by gradually adding noise to data (forward) and then learning to reverse this process (backward) using a neural network.
+
+```python
+import torch
+import torch.nn as nn
+
+class DDPM(nn.Module):
+    def __init__(self, denoiser_net, T=1000):
+        super().__init__()
+        self.denoiser = denoiser_net # Usually a U-Net architecture
+        self.T = T
+        
+        # 1. Setup the Linear Noise Schedule
+        # betas: amount of noise added at each step t
+        self.betas = torch.linspace(1e-4, 0.02, T)
+        self.alphas = 1. - self.betas
+        # alphas_cumprod (alpha_bar): the product of all alphas up to step t
+        # This allows jumping from x_0 to x_t in one step
+        self.alphas_cumprod = torch.cumprod(self.alphas, axis=0)
+
+    def forward_diffusion(self, x_0, t):
+        """
+        Forward Process: Add noise to the clean data x_0 at timestep t.
+        Mathematically: x_t = sqrt(alpha_bar) * x_0 + sqrt(1 - alpha_bar) * noise
+        """
+        noise = torch.randn_like(x_0)
+        # Reshape alpha_bar to match image dimensions (Batch, 1, 1, 1)
+        alpha_bar = self.alphas_cumprod[t].view(-1, 1, 1, 1)
+        
+        # Linearly combine the clean image and random noise
+        x_t = torch.sqrt(alpha_bar) * x_0 + torch.sqrt(1 - alpha_bar) * noise
+        return x_t, noise
+
+    def denoise(self, x_t, t):
+        """
+        Backward Process: Use the trained network to predict the noise 
+        that was added to x_t at timestep t.
+        """
+        return self.denoiser(x_t, t)
+```
+
+**Key Diffusion Concepts:**
+- **The "One-Shot" Forward Pass**: Thanks to the `alpha_bar` trick, we don't have to simulate 1000 steps of noise to train the model. We can pick any `t` and calculate `x_t` directly.
+- **Predicting the Noise**: Interestingly, it is easier for the network to predict the *noise* $\epsilon$ than to predict the clean image $x_0$ directly.
+- **U-Net with Time Embedding**: Since the network is shared across all 1000 steps, it needs to know *which* step it's working on. Timestep `t` is usually converted into a vector and added to the network's features.
+
 ---
 
 ## References

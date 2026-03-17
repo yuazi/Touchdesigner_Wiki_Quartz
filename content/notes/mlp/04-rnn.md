@@ -548,6 +548,72 @@ class BiLSTMNER(nn.Module):
 # Each token in the sentence gets a prediction using both left and right context
 ```
 
+### PyTorch Implementation: RNN and Seq2Seq
+
+Below is an implementation of a basic **Sequence-to-Sequence** (Seq2Seq) model, commonly used for tasks like Machine Translation.
+
+```python
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+# 1. The ENCODER: reads the source sequence and compresses it
+class Encoder(nn.Module):
+    def __init__(self, vocab_size, embed_dim, hidden_dim):
+        super().__init__()
+        # nn.Embedding converts word indices into dense vectors
+        self.embedding = nn.Embedding(vocab_size, embed_dim)
+        
+        # GRU (Gated Recurrent Unit) processes the sequence
+        # hidden_dim is the size of the "memory" or context vector
+        self.gru = nn.GRU(embed_dim, hidden_dim)
+
+    def forward(self, x):
+        # x: Input indices of shape (seq_len, batch_size)
+        embedded = self.embedding(x)
+        
+        # output: all hidden states for every step in the sequence
+        # hidden: the FINAL hidden state (the "context vector")
+        output, hidden = self.gru(embedded)
+        
+        # We only need the final hidden state to initialize the decoder
+        return output, hidden
+
+# 2. The DECODER: generates the target sequence one step at a time
+class Decoder(nn.Module):
+    def __init__(self, vocab_size, embed_dim, hidden_dim):
+        super().__init__()
+        self.embedding = nn.Embedding(vocab_size, embed_dim)
+        self.gru = nn.GRU(embed_dim, hidden_dim)
+        
+        # Maps the GRU hidden state back to the vocabulary size
+        # to predict the probability of each possible word
+        self.out = nn.Linear(hidden_dim, vocab_size)
+
+    def forward(self, x, hidden):
+        """
+        Args:
+            x: The single previous predicted word index (1, batch_size)
+            hidden: The previous hidden state (context)
+        """
+        # Embed the single input token
+        embedded = F.relu(self.embedding(x))
+        
+        # Process one step using the GRU
+        output, hidden = self.gru(embedded, hidden)
+        
+        # Transform the GRU output into log-probabilities over the vocabulary
+        # output[0] removes the sequence length dimension (which is 1)
+        output = F.log_softmax(self.out(output[0]), dim=1)
+        
+        return output, hidden
+```
+
+**Key Seq2Seq Concepts:**
+- **The Bottleneck**: The encoder's final hidden state must contain *everything* about the source sentence. This is the "context vector" that the decoder uses to start its generation.
+- **Teacher Forcing**: During training, we often feed the *actual* correct word from the target sentence as the next input to the decoder, rather than its own (potentially wrong) prediction.
+- **Autoregressive Generation**: During inference, the decoder is called repeatedly. Its prediction at time $t$ becomes its input for time $t+1$.
+
 ---
 
 ## Summary
@@ -591,7 +657,5 @@ From the lecture's closing slide:
 - Russakovsky et al. (2015) — ImageNet large scale visual recognition challenge. _IJCV_, 115:211–252.
 - Vinyals et al. (2015) — Show and tell: A neural image caption generator. _CVPR_.
 - Wu et al. (2016) — Google's neural machine translation system. _arXiv:1609.08144_.
-
----
 
 [[notes/mlp/03-vision-cnn|Previous: L03: Vision CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/05-transformer|Next: Transformers]]

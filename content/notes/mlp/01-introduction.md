@@ -58,7 +58,7 @@ The network output is $f(X;\, W, b) = X^{(L)}$.
 
 Moving from a linear classifier $f = Wx$ to a 2-layer network:
 
-$$f = W_2 \max(0,\, W_1 x), \quad x \in \mathbb{R}^D,\; W_1 \in \mathbb{R}^{H \times D},\; W_2 \in \mathbb{R}^{C \times H}$$
+$$f = W_2 \max(0,\, W_1 x), \quad x \in \mathbb{R}^D,\; W_1 \in \mathbb{R}^H \times D,\; W_2 \in \mathbb{R}^C \times H$$
 
 Or a 3-layer network:
 
@@ -495,6 +495,19 @@ $$
 
 Unlike L2, L1 encourages many weights to become exactly zero, so it tends to produce **sparser** models.
 
+### PyTorch: Weight Decay and Early Stopping
+
+```python
+# 1. Weight Decay (L2 Regularization)
+# Added directly as a parameter in the optimizer.
+# This penalizes large weight values to improve generalization.
+optimizer = torch.optim.Adam(model.parameters(), lr=0.01, weight_decay=1e-3)
+```
+
+**Explanation:**
+- **`weight_decay`**: In PyTorch optimizers, this parameter implements **L2 Regularization** by adding a penalty proportional to the squared magnitude of weights to the loss, preventing them from growing too large.
+- **Early Stopping**: A heuristic that stops training when validation performance stops improving for a fixed number of epochs (`patience`).
+
 ### Dropout
 
 Dropout randomly zeros activations during training (Srivastava et al., 2014). If $h$ is a hidden representation and $m_i \sim \text{Bernoulli}(1-p)$, then
@@ -537,6 +550,94 @@ A good default recipe is:
 - **data augmentation** for vision tasks
 
 In practice, **weight decay + dropout** is a strong baseline regularisation combination.
+
+### PyTorch Implementation: Multi-Layer Perceptron (MLP)
+
+Below is a practical implementation of a simple MLP in PyTorch.
+
+```python
+import torch
+import torch.nn as nn
+
+# 1. Define the MLP Architecture
+# All PyTorch models must inherit from nn.Module
+class MLP(nn.Module):
+    def __init__(self, n_inputs=1):
+        super().__init__()
+        # nn.Sequential executes layers in the order they are added
+        self.net = nn.Sequential(
+            # Linear layer: computes out = x * weight^T + bias
+            # Maps input features to 10 hidden features
+            nn.Linear(n_inputs, 10), 
+            
+            # Tanh activation function provides non-linearity
+            nn.Tanh(),               
+            
+            # Output layer: maps 10 hidden features back to 1 output
+            nn.Linear(10, 1),        
+        )
+
+    def forward(self, x):
+        # Defines the computation performed at every call
+        return self.net(x)
+
+# 2. Setup Training
+model = MLP()
+# Adam is an adaptive optimizer; lr is the learning rate
+optimizer = torch.optim.Adam(model.parameters(), lr=0.01) 
+# MSELoss (Mean Squared Error) is the standard loss for regression
+criterion = nn.MSELoss() 
+
+# 3. Training Loop
+model.train() # Set the model to training mode
+for epoch in range(200):
+    # STEP 1: Clear existing gradients from the last step
+    optimizer.zero_grad()      
+    
+    # STEP 2: Forward pass - get model predictions
+    outputs = model(x)         
+    
+    # STEP 3: Compute the loss (error)
+    loss = criterion(outputs, targets) 
+    
+    # STEP 4: Backpropagation - calculate gradients for all parameters
+    loss.backward()            
+    
+    # STEP 5: Optimization - update weights based on gradients
+    optimizer.step()           
+```
+
+**Key PyTorch Concepts:**
+- **`nn.Module`**: The base class for all neural network modules. Your model must inherit from it to utilize PyTorch's parameter tracking.
+- **`nn.Sequential`**: A container that wraps layers in a sequence, automatically passing the output of one to the next.
+- **`forward()`**: Defines the computation performed at every call. You don't call this directly; use `model(x)`.
+- **`optimizer.zero_grad()`**: Crucial step to clear gradients from the previous iteration; otherwise, they accumulate across batches.
+- **`loss.backward()`**: Triggers **Autograd** to compute the gradient of the loss with respect to all model parameters using the chain rule.
+
+### Logistic Regression (Scikit-Learn)
+
+While not PyTorch, **Scikit-Learn** is the industry standard for traditional ML baselines.
+
+```python
+from sklearn.linear_model import LogisticRegression
+
+# 1. Create the Model
+# max_iter is the limit on solver iterations for convergence
+model = LogisticRegression(max_iter=1000)
+
+# 2. Train the Model (fit to data)
+# X_train: features, y_train: labels
+model.fit(X_train, y_train)
+
+# 3. Evaluate Performance
+# returns the mean accuracy on the test data
+accuracy = model.score(X_test, y_test)
+```
+
+**Concepts:**
+- **`fit()`**: The standard Scikit-Learn method for training a model on data.
+- **`score()`**: Returns the mean accuracy on the given test data and labels.
+
 
 ---
 

@@ -424,104 +424,80 @@ A VAE trained on handwriting samples can:
 
 A VAE trained on hand pose data learns a smooth, compact manifold of valid hand configurations. Sampling from the manifold always produces a valid (anatomically plausible) hand pose — useful for 3D pose estimation from noisy depth sensors.
 
----
+### PyTorch Implementation: Convolutional VAE
 
-## Code: VAE in PyTorch (MNIST)
+Below is a convolutional implementation of a Variational Autoencoder (VAE). This architecture is much more effective than a simple MLP for generating images.
 
 ```python
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.utils.data import DataLoader
-from torchvision import datasets, transforms
 
-# ── Model ──────────────────────────────────────────────────
-class VAE(nn.Module):
-    def __init__(self, input_dim=784, hidden_dim=400, latent_dim=20):
+# 1. The ENCODER: compresses image into (mean, log_variance)
+class Encoder(nn.Module):
+    def __init__(self, latent_dim):
         super().__init__()
-        # Encoder: x → (μ, log σ²)
-        self.fc1 = nn.Linear(input_dim, hidden_dim)
-        self.fc_mu = nn.Linear(hidden_dim, latent_dim)
-        self.fc_logvar = nn.Linear(hidden_dim, latent_dim)
-        # Decoder: z → x̂
-        self.fc3 = nn.Linear(latent_dim, hidden_dim)
-        self.fc4 = nn.Linear(hidden_dim, input_dim)
+        # Convolutional layers extract hierarchical spatial features
+        self.conv1 = nn.Conv2d(1, 6, 5) 
+        self.conv2 = nn.Conv2d(6, 16, 5)
+        
+        # Two parallel linear heads: one for mean, one for log-variance
+        # These represent the distribution of the latent code 'z'
+        self.fc_mu = nn.Linear(16 * 4 * 4, latent_dim)
+        self.fc_logvar = nn.Linear(16 * 4 * 4, latent_dim)
+        
+    def forward(self, x):
+        x = F.max_pool2d(F.relu(self.conv1(x)), 2)
+        x = F.max_pool2d(F.relu(self.conv2(x)), 2)
+        x = x.view(x.size(0), -1) # Flatten for linear layers
+        return self.fc_mu(x), self.fc_logvar(x)
 
-    def encode(self, x):
-        h = F.relu(self.fc1(x))
-        return self.fc_mu(h), self.fc_logvar(h)
+# 2. The DECODER: reconstructs the image from a latent sample
+class Decoder(nn.Module):
+    def __init__(self, latent_dim):
+        super().__init__()
+        self.fc = nn.Linear(latent_dim, 16 * 7 * 7)
+        # Transposed convolutions (deconvolutions) upsample the features
+        # back to the original image resolution (28x28)
+        self.deconv1 = nn.ConvTranspose2d(16, 6, 4, stride=2, padding=1)
+        self.deconv2 = nn.ConvTranspose2d(6, 1, 4, stride=2, padding=1)
+
+    def forward(self, z):
+        x = F.relu(self.fc(z)).view(-1, 16, 7, 7) # Reshape back to 4D
+        x = F.relu(self.deconv1(x))
+        # Sigmoid ensures output pixels are in range [0, 1]
+        return torch.sigmoid(self.deconv2(x))
+
+# 3. The VAE WRAPPER: combines encoder, decoder, and sampling trick
+class VAE(nn.Module):
+    def __init__(self, latent_dim=20):
+        super().__init__()
+        self.encoder = Encoder(latent_dim)
+        self.decoder = Decoder(latent_dim)
 
     def reparameterize(self, mu, logvar):
-        # z = μ + σ⊙ε,  ε ~ N(0, I)
+        """
+        The Reparameterization Trick:
+        Sample z = mu + std * epsilon, where epsilon is random noise.
+        This allows gradients to flow back through the mu and logvar heads.
+        """
         std = torch.exp(0.5 * logvar)
-        eps = torch.randn_like(std)   # external noise — gradients do NOT flow here
-        return mu + eps * std         # but DO flow through μ and σ
-
-    def decode(self, z):
-        h = F.relu(self.fc3(z))
-        return torch.sigmoid(self.fc4(h))
+        eps = torch.randn_like(std)
+        return mu + eps * std
 
     def forward(self, x):
-        mu, logvar = self.encode(x.view(-1, 784))
+        # 1. Get distribution parameters from image
+        mu, logvar = self.encoder(x)
+        # 2. Sample a code 'z' from that distribution
         z = self.reparameterize(mu, logvar)
-        return self.decode(z), mu, logvar
-
-# ── Loss = Reconstruction + KL ──────────────────────────────
-def elbo_loss(x_hat, x, mu, logvar):
-    # Reconstruction: binary cross-entropy summed over pixels
-    recon = F.binary_cross_entropy(x_hat, x.view(-1, 784), reduction='sum')
-    # KL: -½ Σ(1 + log σ² - μ² - σ²)
-    kl = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
-    return recon + kl
-
-# ── Training loop ───────────────────────────────────────────
-mnist = datasets.MNIST('.', download=True, transform=transforms.ToTensor())
-loader = DataLoader(mnist, batch_size=128, shuffle=True)
-
-model = VAE()
-optimiser = torch.optim.Adam(model.parameters(), lr=1e-3)
-
-for epoch in range(20):
-    total_loss = 0
-    for x, _ in loader:
-        x_hat, mu, logvar = model(x)
-        loss = elbo_loss(x_hat, x, mu, logvar)
-        optimiser.zero_grad()
-        loss.backward()
-        optimiser.step()
-        total_loss += loss.item()
-    print(f"Epoch {epoch+1:02d} | Loss: {total_loss/len(mnist):.2f}")
-
-# ── Generation (only decoder needed) ───────────────────────
-with torch.no_grad():
-    z = torch.randn(16, 20)          # sample from prior N(0, I)
-    samples = model.decode(z)        # decode to image space
-    samples = samples.view(16, 1, 28, 28)
+        # 3. Reconstruct image from the sample
+        return self.decoder(z), mu, logvar
 ```
 
-### Example: Latent Space Interpolation
-
-```python
-import torch
-
-def interpolate(model, z_a, z_b, steps=10):
-    """Linearly interpolate between two latent codes."""
-    alphas = torch.linspace(0, 1, steps)
-    frames = []
-    with torch.no_grad():
-        for alpha in alphas:
-            z = (1 - alpha) * z_a + alpha * z_b
-            frames.append(model.decode(z))
-    return torch.stack(frames)   # shape: (steps, 784)
-
-# Encode two MNIST digits into their latent means
-x_a, x_b = mnist[0][0], mnist[7][0]
-mu_a, _ = model.encode(x_a.view(1, -1))
-mu_b, _ = model.encode(x_b.view(1, -1))
-
-frames = interpolate(model, mu_a, mu_b)
-# Plotting `frames` shows a smooth morph between the two digits
-```
+**Key VAE Concepts:**
+- **The Sampling Trick**: By sampling `z` this way, the randomness is externalized. During the backward pass, PyTorch can differentiate through the `mu` and `logvar` parameters.
+- **Latent Space Continuity**: The KL-divergence loss (used in training) forces the `z` codes to cluster around $\mathcal{N}(0, 1)$. This ensures there are no large "gaps" in the latent space, making it easy to sample new, valid images.
+- **Transposed Convolution**: Unlike normal convolution that reduces resolution, `ConvTranspose2d` learns how to fill in pixels to increase the image size.
 
 ---
 

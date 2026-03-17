@@ -688,6 +688,75 @@ Lower FID means the generated distribution is closer to the real one. FID captur
 
 GANs have largely been superseded by diffusion models for highest-quality generation, but adversarial training and discriminators remain influential — appearing in perceptual loss networks, data augmentation pipelines, and as discriminators in hybrid models.
 
+### PyTorch Implementation: DCGAN
+
+Deep Convolutional GANs (DCGAN) replaced the standard MLPs of the original GAN with convolutional layers, greatly improving stability and image quality.
+
+```python
+import torch
+import torch.nn as nn
+
+# 1. The GENERATOR: Maps noise 'z' to an Image
+class Generator(nn.Module):
+    def __init__(self, nz=100, ngf=64, nc=1):
+        super().__init__()
+        self.main = nn.Sequential(
+            # Input is noise z, shape (Batch, 100, 1, 1)
+            # ConvTranspose2d performs UPSAMPLING
+            nn.ConvTranspose2d(nz, ngf * 4, 4, 1, 0, bias=False),
+            nn.BatchNorm2d(ngf * 4),
+            nn.ReLU(True),
+            
+            # Upsample to 8x8
+            nn.ConvTranspose2d(ngf * 4, ngf * 2, 4, 2, 1, bias=False),
+            nn.BatchNorm2d(ngf * 2),
+            nn.ReLU(True),
+            
+            # Upsample to 16x16
+            nn.ConvTranspose2d(ngf * 2, ngf, 4, 2, 1, bias=False),
+            nn.BatchNorm2d(ngf),
+            nn.ReLU(True),
+            
+            # Final layer maps to 32x32 image (nc=3 for RGB, 1 for Grayscale)
+            nn.ConvTranspose2d(ngf, nc, 4, 2, 1, bias=False),
+            # Tanh scales output pixels to [-1, 1]
+            nn.Tanh() 
+        )
+
+    def forward(self, x):
+        return self.main(x)
+
+# 2. The DISCRIMINATOR: Maps an Image to a Probability [0, 1]
+class Discriminator(nn.Module):
+    def __init__(self, nc=1, ndf=64):
+        super().__init__()
+        self.main = nn.Sequential(
+            # Standard Conv2d performs DOWNSAMPLING
+            # Input: (Batch, nc, 32, 32)
+            nn.Conv2d(nc, ndf, 4, 2, 1, bias=False),
+            # LeakyReLU is standard for GAN discriminators
+            nn.LeakyReLU(0.2, inplace=True),
+            
+            nn.Conv2d(ndf, ndf * 2, 4, 2, 1, bias=False),
+            nn.BatchNorm2d(ndf * 2),
+            nn.LeakyReLU(0.2, inplace=True),
+            
+            # Final convolution reduces to a 1x1 scalar
+            nn.Conv2d(ndf * 2, 1, 7, 1, 0, bias=False),
+            # Sigmoid outputs probability of image being REAL
+            nn.Sigmoid() 
+        )
+
+    def forward(self, x):
+        # Flatten the output to a single dimension (Batch_size,)
+        return self.main(x).view(-1)
+```
+
+**Key GAN Concepts:**
+- **Upsampling vs. Downsampling**: The Generator uses `ConvTranspose2d` to turn a small noise vector into a large image. The Discriminator uses standard `Conv2d` to condense an image into a single "real or fake" score.
+- **Binary Cross-Entropy (BCE)**: GANs are typically trained with BCE. The Discriminator wants to output 1 for real images and 0 for fake ones. The Generator wants to trick it into outputting 1 for fakes.
+- **Batch Normalization**: Essential for preventing the GAN from collapsing into a single output mode early in training.
+
 ---
 
 ## Further Reading
@@ -712,7 +781,5 @@ GANs have largely been superseded by diffusion models for highest-quality genera
 - Zhang, Sugano, Fritz, Bulling (2015). _Appearance-Based Gaze Estimation in the Wild._ CVPR.
 - Krafka, Khosla, Kellnhofer et al. (2016). _Eye Tracking for Everyone._ CVPR.
 - Zhang, Park, Beeler, Bradley, Tang, Hilliges (2020). _ETH-XGaze: A Large Scale Dataset for Gaze Estimation under Extreme Head Pose and Gaze Variation._ ECCV.
-
----
 
 [[notes/mlp/09-vae|Previous: L09: VAE]] | [[notes/mlp/index|Back to MLP Index]] | [[notes/mlp/11-rl|Next: Reinforcement Learning]]

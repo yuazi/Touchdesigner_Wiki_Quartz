@@ -612,6 +612,71 @@ Uncertainty alone grabs near-duplicates; diversity alone ignores which regions a
 | **BatchBALD**                    | Joint MI maximisation for batch acquisition         | Computationally intensive                   |
 | **Semi-supervised (soft cuts)**  | Harmonic label propagation on unlabeled data        | Requires compatible distribution assumption |
 
+### PyTorch Implementation: Graph Neural Network (Sudoku Solver)
+
+Graph Neural Networks (GNNs) solve combinatorial problems by treating cells as nodes and constraints (rows, columns, boxes) as edges.
+
+```python
+import torch
+import torch.nn as nn
+
+class GNN(nn.Module):
+    def __init__(self, n_iters=7, n_node_features=10):
+        super().__init__()
+        self.n_iters = n_iters # Number of message-passing "reasoning" steps
+        
+        # 1. Message network: learns how nodes should talk to each other
+        # Takes concatenated states of two connected nodes as input
+        self.msg_net = nn.Sequential(
+            nn.Linear(2 * n_node_features, 64),
+            nn.ReLU(),
+            nn.Linear(64, 11) # Outputs a 'message' vector of 11 features
+        )
+        
+        # 2. State update network: uses messages to update node belief
+        # GRUCell is used to maintain a "memory" of the node state across iterations
+        self.gru = nn.GRUCell(9 + 11, n_node_features) # Input = (digit_ID + message)
+        
+        # 3. Output head: maps final node state to 9 digit probabilities
+        self.fc_out = nn.Linear(n_node_features, 9)
+
+    def forward(self, node_inputs, src_ids, dst_ids):
+        """
+        Args:
+            node_inputs: Initial clues for each Sudoku cell (n_nodes, 9)
+            src_ids, dst_ids: Indices defining which cells are in the same row/col/box
+        """
+        n_nodes = node_inputs.size(0)
+        # Initialize node states to zeros
+        node_states = torch.zeros(n_nodes, 10)
+        
+        # Iterate to allow information to flow across the entire Sudoku board
+        for _ in range(self.n_iters):
+            # STEP 1: Message Passing
+            # Gather states of source nodes and destination nodes for every edge
+            msg_in = torch.cat([node_states[src_ids], node_states[dst_ids]], 1)
+            messages = self.msg_net(msg_in)
+            
+            # STEP 2: Aggregation
+            # Sum all incoming messages for each destination node
+            # index_add_ is crucial for handle variable numbers of neighbors
+            agg_msg = torch.zeros(n_nodes, 11)
+            agg_msg.index_add_(0, dst_ids, messages)
+            
+            # STEP 3: State Update
+            # Combine original clue (node_inputs) with new info (agg_msg) to update state
+            node_states = self.gru(torch.cat([node_inputs, agg_msg], 1), node_states)
+            
+        # Final prediction for each cell after reasoning steps
+        return self.fc_out(node_states)
+```
+
+**Key GNN Concepts:**
+- **Local to Global**: In one iteration, a cell only knows about its immediate neighbors (same row/col). After multiple iterations, information from the other side of the board can reach it.
+- **Permutation Invariance**: The `index_add_` (sum) operation ensures that the order in which we process neighbors doesn't change the result.
+- **Relational Reasoning**: The model isn't just looking at pixel values; it's learning the *rules* of Sudoku encoded in the graph structure.
+
+
 ---
 
 [[notes/mlp/07-multimodal|Previous: L07: Multimodal Learning]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/09-vae|Next: VAE]]
