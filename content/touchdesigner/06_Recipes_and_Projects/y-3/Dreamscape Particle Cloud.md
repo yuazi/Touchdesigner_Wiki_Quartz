@@ -185,5 +185,45 @@ For a fully 3D version with a moving camera, replace the Point Sprite MAT with a
 
 ---
 
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+## Network Architecture
+
+To visualize how the data flows, here is a map of the final network:
+
+```text
+[ SIMULATION SOURCE ]          [ POP NETWORK ]
+Sphere SOP (50x50) ────────▶ SOP to POP (Seed Position)
+                                   │
+                                   ▼
+[ FORCES ]                         │
+Noise POP (Alligator) ───────────▶ │
+Force POP (Point Attractor) ─────▶ │
+                                   ▼
+[ SIMULATION OUTPUT ]          Limit POP (Bounding Box)
+                                   │
+                                   ▼
+[ RENDERING ]                  POP SOP (Points to SOP) ──▶ Sprite SOP
+                                   │                           │
+                                   ▼                           ▼
+[ Render TOP ] ◀─────────── [ Geo COMP ] ◀───────── [ Point Sprite MAT ]
+      │
+      ▼
+[ FEEDBACK TOP CHAIN ] ◀───────────────────┐
+      │                                    │ (Feedback)
+      ▼                                    │
+Composite TOP (Add/Screen) ──▶ Level TOP ──▶ Blur TOP
+      │
+      ▼
+   [ OUT ]
+```
+
+### Data Flow Explanation
+1.  **Sourcing:** The `Sphere SOP` defines the points where particles begin. 
+2.  **GPU Simulation:** All motion happens in the **POP Network** (Point Operators). The `Noise POP` moves particles randomly, while the `Force POP` pulls them back to the center.
+3.  **Containment:** The `Limit POP` prevents particles from flying off to infinity by "looping" them back to the other side. 
+4.  **Point Splitting:** The `Sprite SOP` and `Point Sprite MAT` turn simple points into glowing, camera-facing dots.
+5.  **Dreamy Trails:** The **Feedback TOP Chain** is where the magic happens. Every frame, the previous frame is blurred, dimmed, and added back to the current frame, creating persistent visual trails.
+
+---
+
+[[../index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

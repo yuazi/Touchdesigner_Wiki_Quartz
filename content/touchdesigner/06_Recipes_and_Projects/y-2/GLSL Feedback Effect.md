@@ -151,6 +151,34 @@ Kick drums push the zoom, creating the classic "zoom-in-on-beat" VJ effect.
 
 ---
 
+## Network Architecture
+
+To visualize how the data flows, here is a map of the final network:
+
+```text
+[ SOURCE ]
+Noise TOP (Seed) ──┐
+                   │ (Input 0)
+                   ▼
+[ FEEDBACK LOOP ] ──▶ [ GLSL TOP ] ──▶ [ Null TOP (OUT) ]
+       ▲           (Input 1)  │
+       │                      │
+       └──── [ Feedback TOP ] ◄┘
+                   ▲
+                   │ (Target: glsl1)
+[ CONTROL ]        │
+Audio In ──▶ Analyze ──▶ Math ──▶ [ uZoom Parameter ]
+```
+
+### Data Flow Explanation
+1.  **Dual Input:** The `GLSL TOP` is the brain. It takes the current frame from the `Noise TOP` (Input 0) and the previous frame from the `Feedback TOP` (Input 1).
+2.  **Shader Logic:** Inside the GLSL code, we transform the feedback texture (rotate/zoom/offset) and then "mix" or "max" it with the fresh source.
+3.  **Recursive Loop:** The `Feedback TOP` is set to "target" the GLSL TOP. This means every frame, it grabs the output of the shader and feeds it back into Input 1 for the *next* frame.
+4.  **Decay:** The `uDecay` parameter in the shader multiplies the feedback by a value like 0.97. This ensures that old trails eventually fade to black rather than staying on screen forever.
+5.  **Audio Link:** By mapping audio energy to `uZoom`, the entire feedback "pulses" outward on every beat.
+
+---
+
 [[Index|(y) Return to Recipes & Projects]]
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+[[../index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

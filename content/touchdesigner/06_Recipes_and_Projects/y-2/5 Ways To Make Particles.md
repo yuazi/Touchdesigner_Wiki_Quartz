@@ -167,5 +167,53 @@ Quick prototype, don't care about GPU? → Method 5 (Particle SOP)
 
 ---
 
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+## Network Architecture
+
+Because this guide covers 5 different methods, here are the simplified maps for each:
+
+### Method 1: Line MAT (CPU Edge Rendering)
+```text
+Grid SOP (10x10) ──▶ Noise SOP (Animate Offset) ──▶ Geo COMP ──▶ [ Line MAT ]
+                                                       │
+                                                       ▼
+[ Camera ] ──▶ [ Light ] ───────────────────────▶ [ Render TOP ]
+```
+
+### Method 2: particlesGPU (Palette Plugin)
+```text
+[ Palette: particlesGPU ] ──▶ [ Render Output ] ──▶ [ Level/Blur TOPs ]
+          ▲
+          │ (Reference)
+    [ Analyze CHOP ] ──▶ [ Audio In ]
+```
+
+### Method 3: Instancing via CHOPs (Geometry-per-Sample)
+```text
+[ Noise CHOP ] (tx, ty, tz) ──┐
+                              ▼
+[ Sphere SOP ] ────────▶ [ Geo COMP ] (Instancing On) ──▶ [ Render TOP ]
+```
+
+### Method 4: Instancing via TOPs (Geometry-per-Pixel)
+```text
+[ Noise TOP ] (RGBA / 32-bit) ┐
+                              ▼
+[ Sphere SOP ] ────────▶ [ Geo COMP ] (Instancing On) ──▶ [ Render TOP ]
+```
+
+### Method 5: Particle SOP (Classic CPU Simulation)
+```text
+[ Grid SOP ] (Emitter) ──▶ [ Particle SOP ] ──▶ [ Geo COMP ] ──▶ [ Constant MAT ]
+```
+
+### Data Flow Explanation
+1.  **Method 1 (Lines):** We aren't moving "particles," we are moving the vertices of a grid. The `Line MAT` simply draws a stroke between those moving points.
+2.  **Method 2 (Plugin):** A pre-built "black box" that uses GLSL under the hood. You drive it via its top-level parameters.
+3.  **Method 3 (CHOPs):** Every "sample" in the CHOP represents one particle. 500 samples = 500 boxes.
+4.  **Method 4 (TOPs):** Every "pixel" represents one particle. A 256x256 image = 65,536 boxes. The Red/Green/Blue values of the pixel are mapped to the X/Y/Z position of the box.
+5.  **Method 5 (SOPs):** The oldest method. The CPU calculates physics (velocity, life, collision) for every point. Simple but slow for high counts.
+
+---
+
+[[../index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

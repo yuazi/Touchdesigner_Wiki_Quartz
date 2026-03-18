@@ -469,6 +469,50 @@ From here you can extend the rig by:
 
 ---
 
+## Network Architecture
+
+To visualize how the data flows, here is a map of the final rig and the two sub-projects (Brush & Architecture):
+
+```text
+[ INPUT ]                       [ MEDIAPIPE PLUGIN ]
+Webcam TOP ──────────────────▶ [ MediaPipe.tox ]
+                                      │
+                                      ▼
+[ DATA BRIDGE ]                [ Hand Tracking.tox ]
+                                      │
+                                      ▼
+[ PROCESSING ]                 [ Select CHOP ] (H1_index_*)
+                                      │
+                                      ▼
+                                [ Math CHOP ] (Remap 0-1 to -0.5-0.5)
+                                      │
+                                      ▼
+                                [ Lag CHOP ] (Smooth Jitter)
+                                      │
+                                      ▼
+[ EXPORT ]                     [ Null CHOP (null_hand_pos) ]
+                                      │
+      ┌───────────────────────────────┼──────────────────────────────┐
+      ▼                               ▼                              ▼
+[ 1. WATERCOLOR BRUSH ]      [ 2. GENERATIVE ARCH ]        [ 3. GESTURE LOGIC ]
+Circle TOP (Pos = Hand)      Box SOP                       Expression CHOP
+      │                        │                             │ (Confidence > 0.8)
+      ▼                        ▼                             ▼
+Feedback TOP Loop            Geo COMP (Instancing)         Count CHOP (Switch Mode)
+      │                        │                             │
+      ▼                        ▼                             ▼
+   [ OVER ] ◀──────────────── [ RENDER ]                 [ Switch TOP ]
+```
+
+### Data Flow Explanation
+1.  **Plugin Layer:** The `MediaPipe.tox` is an embedded browser that runs Google's vision models. It sends raw joint data (21 points per hand) into TouchDesigner via WebSockets.
+2.  **Normalization:** Raw data is 0-1 (top-left origin). We use the `Math CHOP` to remap this to TouchDesigner's centered coordinate system (-0.5 to 0.5) and the `Lag CHOP` to remove "shaking" from the webcam signal.
+3.  **The Brush:** The `Circle TOP` uses the X/Y channels of the index finger to move. The `Feedback TOP` preserves the circle's path, "painting" it onto a persistent canvas.
+4.  **The Architecture:** We use `Instancing` on a `Geo COMP`. Each building's height is driven by the `H1_pinch_distance` channel. As you open/close your fingers, the "city" grows and shrinks.
+5.  **Logic:** The `Expression CHOP` looks for specific gestures (like a thumbs-up). When the confidence is high, it sends a trigger to the `Count CHOP` to change the brush color or architectural style.
+
+---
+
 [[Hand Tracking|(y) Return to Hand Tracking]]
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+[[../index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

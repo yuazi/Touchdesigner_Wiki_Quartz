@@ -58,5 +58,5 @@ This tutorial series details the implementation of real-time hand tracking in To
 
 ---
 
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+[[../index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

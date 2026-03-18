@@ -141,5 +141,34 @@ To zoom, calculate the distance between the thumb tip and index finger tip.
 
 ---
 
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+## Network Architecture
+
+To visualize how the fractal geometry and hand tracking interact, here is the final network map:
+
+```text
+[ FRACTAL ENGINE ]               [ HAND TRACKING (MediaPipe) ]
+Platonic Solids (Tetrahedron)    Webcam ──▶ [ MediaPipe Plugin ]
+       │                                       │
+       ▼                                       ▼
+[ Copy SOP Chain ] ───────────┐          [ Select CHOP ] (Wrist/Tips)
+(Method 1 or 2)               │                │
+       │                      │                ▼
+       ▼                      │          [ Math / Script CHOP ]
+[ Geo COMP (geo1) ] ◀─────────┤          (Calculate Pinch & Remap)
+       │                      │                │
+       ▼                      ▼                ▼
+[ Render TOP ] ◀───────── [ Camera COMP ] ◀─── [ Filter / Null CHOP ]
+                                               (Smooth Data)
+```
+
+### Data Flow Explanation
+1.  **Fractal Generation:** The `Platonic Solids SOP` provides the base shape. The `Copy SOP` chain (Method 1) or `Instancing` (Method 2) creates the recursive Sierpinski structure.
+2.  **Tracking:** The `MediaPipe Plugin` processes the webcam feed and outputs 3D landmark data. 
+3.  **Coordinate Remapping:** We use a `Select CHOP` to grab specific joints (wrist and fingertips). The `Math CHOP` then scales these values from normalized vision space (0-1) to 3D rotation degrees (-180 to 180).
+4.  **Pinch Math:** The `Script CHOP` performs a Euclidean distance calculation between the thumb and index finger. This distance is then remapped to drive the camera's `Translate Z`.
+5.  **Smoothing:** The `Filter CHOP` is essential here — it prevents the geometry from "jumping" when the webcam loses track of the hand for a single frame.
+
+---
+
+[[../index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

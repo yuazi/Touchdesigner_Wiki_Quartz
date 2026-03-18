@@ -97,5 +97,28 @@ You can insert effects between the `Cross TOP` and your `OUT` node to make it mo
 
 ---
 
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+## Network Architecture
+
+To visualize how the data flows, here is a map of the final network:
+
+```text
+[ VIDEO SOURCES ]             [ CONTROL ]
+Noise TOP (Source A) ──┐      Slider COMP
+Movie In TOP (Source B) ─┤           │
+                       ▼             ▼
+                  Cross TOP ◀─── [ CHOP Bind ]
+                       │
+                       ▼
+                    Null TOP (OUT) ──▶ [ Display Flag ]
+```
+
+### Data Flow Explanation
+1.  **Sources:** `Noise TOP` and `Movie In TOP` generate pixel data. This is "Video Data."
+2.  **Mixing:** The `Cross TOP` takes both inputs. Its `Cross` parameter determines the blend (0 = Source A, 1 = Source B).
+3.  **Control:** The `Slider COMP` generates a number (0.0 to 1.0) based on your mouse movement. This is "Channel Data."
+4.  **Binding:** By **Binding** the slider to the Cross parameter, we bridge the gap between the user interface and the video processing.
+
+---
+
+[[../index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

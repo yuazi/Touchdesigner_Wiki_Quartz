@@ -86,5 +86,35 @@ Let's make a visual where your motion "paints" trails on the screen.
 
 ---
 
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+## Network Architecture
+
+To visualize how the motion and optical flow data flows, here is the final network map:
+
+```text
+[ VIDEO INPUT ]                  [ MOTION DETECTION ]
+Video Device In ──▶ Blur TOP ──▶ Subtract TOP (Current - Previous)
+                      │             │
+                      ▼             ▼
+[ OPTICAL FLOW ]               [ Feedback TOP Loop ]
+Optical Flow TOP ──────────────▶ Level TOP (Fade 0.95)
+      │                             │
+      ▼                             ▼
+[ DIRECTION DATA ]             [ MOTION MASK ]
+(Vector RG Channels)           (Luma / Heatmap)
+      │                             │
+      └───────────────┬─────────────┘
+                      ▼
+[ COMPOSITE ] ──▶ [ Add TOP ] ──▶ [ HSV Adjust ] ──▶ [ OUT ]
+```
+
+### Data Flow Explanation
+1.  **Preparation:** The `Blur TOP` is our first step. It removes high-frequency digital noise from the webcam that would otherwise trigger "false" motion.
+2.  **Difference Engine:** The `Subtract TOP` compares the current frame to the one just before it. If a pixel's color changed, it means something moved there!
+3.  **Temporal Memory:** The `Feedback TOP` creates the "history." By adding the previous motion back into the current frame at 95% opacity, we see a trailing trail of where you were.
+4.  **Vector Mapping:** The `Optical Flow TOP` calculates the *velocity* of pixels. It outputs this as a two-channel texture where Red = Horizontal speed and Green = Vertical speed.
+5.  **Final Mix:** We combine the original video, the motion "heat map," and the optical flow "direction colors" to create a single interactive visual.
+
+---
+
+[[../index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

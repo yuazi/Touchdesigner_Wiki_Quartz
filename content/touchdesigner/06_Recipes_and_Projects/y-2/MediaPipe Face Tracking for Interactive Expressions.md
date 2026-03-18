@@ -86,5 +86,41 @@ Let's make a circle that grows and changes color when you smile.
 
 ---
 
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+## Network Architecture
+
+To visualize how the face tracking data flows, here is the final network map:
+
+```text
+[ VIDEO INPUT ]                  [ MEDIAPIPE PLUGIN ]
+Webcam TOP ──────────────────▶ [ MediaPipe.tox ]
+                                      │
+                                      ▼
+[ DATA DECODING ]              [ Face Tracking.tox ]
+                                      │
+                                      ▼
+[ EXPRESSIONS ]                [ Select CHOP ] (F1_mouthSmile*)
+                                      │
+                                      ▼
+[ SMOOTHING ]                  [ Lag / Filter CHOP ]
+                                      │
+                                      ▼
+[ EXPORT ]                     [ Null CHOP (MY_SMILE) ]
+                                      │
+                                      ▼
+[ VISUALS ]                    [ Circle TOP ] ◀──────────────┐
+                               (Radius Bind)                 │
+                                      │                      │
+[ RENDERING ]                  [ Bloom TOP ] ──▶ [ HSV Adjust ] ──▶ [ OUT ]
+```
+
+### Data Flow Explanation
+1.  **Plugin Layer:** `MediaPipe.tox` is the engine. It runs the "Face Mesh" model in an embedded browser and sends the 468 landmark points into TouchDesigner.
+2.  **Blend Shapes:** The `Face Tracking.tox` component decodes those 468 points into high-level "Blend Shapes" (e.g., `mouthSmile`, `eyeBlink`, `jawOpen`).
+3.  **Data Extraction:** We use a `Select CHOP` to grab just the `mouthSmileLeft` channel. This gives us a 0.0 to 1.0 value representing the intensity of your smile.
+4.  **The Bridge:** By **Binding** this CHOP value to the `Radius` of a `Circle TOP`, we bridge the physical world (your face) to the digital world (the circle).
+5.  **Polishing:** The `Bloom TOP` adds a glow that intensifies as you smile wider, creating a direct visual feedback loop for the user.
+
+---
+
+[[../index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

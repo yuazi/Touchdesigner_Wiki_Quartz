@@ -87,5 +87,31 @@ We want the boxes to sit in a row, but our audio data only has "Height" (Y) valu
 
 ---
 
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+## Network Architecture
+
+To visualize how the data flows, here is a map of the final network:
+
+```text
+[ AUDIO PROCESSING ]            [ 3D SCENE ]
+Audio File In CHOP             Box SOP 
+       │                          │
+       ▼                          ▼
+Audio Spectrum CHOP (FFT)      Geometry COMP (Instancing On)
+       │                          │
+       ▼                 ┌────────┘
+Resample CHOP (40 pts) ──┤ Map chan1 to Scale Y
+       │                 └─ Map ramp1 to Translate X
+       ▼
+Pattern CHOP (Ramp) ──▶ Merge CHOP ──▶ Null (OUT_AUDIO)
+```
+
+### Data Flow Explanation
+1.  **Analysis:** The `Audio Spectrum CHOP` performs an **FFT**, converting time-based sound into frequency-based height. 
+2.  **Sampling:** We use the `Resample CHOP` to reduce the high frequency detail into a specific number (40). This matches our visual goal.
+3.  **Layout:** The `Pattern CHOP` creates the "grid" (X positions). Without it, all 40 boxes would sit at the same X position (0). 
+4.  **Instancing:** The `Geometry COMP` takes our 40 numbers and spawns 40 copies of the `Box SOP`. The `Y Scale` of each box is driven by its corresponding audio frequency.
+
+---
+
+[[../index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

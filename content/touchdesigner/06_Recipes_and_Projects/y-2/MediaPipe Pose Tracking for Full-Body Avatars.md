@@ -89,5 +89,44 @@ Let's make two spheres that follow your hands in 3D space.
 
 ---
 
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+## Network Architecture
+
+To visualize how the pose tracking data flows, here is the final network map:
+
+```text
+[ VIDEO INPUT ]                  [ MEDIAPIPE PLUGIN ]
+Webcam TOP ──────────────────▶ [ MediaPipe.tox ]
+                                      │
+                                      ▼
+[ SKELETON DECODING ]          [ Pose Tracking.tox ]
+                                      │
+                                      ▼
+[ JOINTS ]                     [ Select CHOP ] (P1_wrist_*)
+                                      │
+                                      ▼
+[ COORDINATE REMAP ]           [ Math CHOP ] (0-1 to -1-1)
+                                      │
+                                      ▼
+[ SMOOTHING ]                  [ Lag / Filter CHOP ]
+                                      │
+                                      ▼
+[ EXPORT ]                     [ Null CHOP (HAND_DATA) ]
+                                      │
+                                      ▼
+[ 3D PUPPET ]                  [ Geo COMP ] ◀──────────────┐
+                               (Instancing On)             │
+                                      │                    │
+[ RENDERING ]                  [ Sphere SOP ] ────────▶ [ Render TOP ]
+```
+
+### Data Flow Explanation
+1.  **Plugin Layer:** `MediaPipe.tox` is the engine. It runs the "BlazePose" model in an embedded browser and sends the 33 3D landmark points into TouchDesigner.
+2.  **Joint Decoding:** The `Pose Tracking.tox` component decodes those 33 points into named channels for every joint (shoulders, elbows, wrists, etc.).
+3.  **Data Extraction:** We use a `Select CHOP` to grab just the `wrist` channels. This gives us the X, Y, and Z positions of both your hands.
+4.  **The Bridge (Instancing):** The `Geo COMP` takes the `HAND_DATA` CHOP and uses it to "spawn" two `Sphere SOPs` on the GPU — one for each hand.
+5.  **Coordinate Remap:** Because MediaPipe uses a 0-1 (top-left) origin, we use a `Math CHOP` to remap this to TouchDesigner's centered 3D space (-1.0 to 1.0), ensuring the spheres move logically on screen.
+
+---
+
+[[../index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

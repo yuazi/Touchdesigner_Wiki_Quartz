@@ -334,5 +334,38 @@ Create a control panel with:
 
 ---
 
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+## Network Architecture
+
+Fluid simulations are complex "coupled" feedback loops. Here is the high-level data flow for the two main fields:
+
+```text
+[ VELOCITY LOOP ]                [ DENSITY LOOP ]
+Constant (RG32) ──┐              Constant (R32) ──┐
+                  │ (Input 0)                     │ (Input 0)
+                  ▼                               ▼
+[ Add Forces ] ──▶ [ Math TOP ]    [ Add Sources ] ──▶ [ Math TOP ]
+       │                                  │
+       ▼                                  ▼
+[ Advection ] ──▶ [ SLTOP ]        [ Advection ] ──▶ [ SLTOP ]
+       │                                  │ (Velocity Drives Advection)
+       ▼                                  ▼
+[ Projection ] ──▶ [ Jacobi Loops ] ─▶ [ Dissipation ] ──▶ [ Level TOP ]
+       │                                  │
+       ▼                                  ▼
+[ Feedback TOP ] ◄───────────────── [ Feedback TOP ] ◄─────────┘
+       │                                  │
+       ▼                                  ▼
+[ vel_field ] ────────────────────▶ [ dens_field ] ──▶ [ OUT ]
+```
+
+### Data Flow Explanation
+1.  **Dual Simulations:** The `Velocity Field` (where is the fluid going?) and the `Density Field` (what is the fluid carrying?) run in parallel. The velocity field is the "driver."
+2.  **Advection (The SLTOP):** This is the most critical step. The `SLTOP` (Semi-Lagrangian) looks at the current velocity and "moves" the values in the fields. It asks: "Where was the fluid at this point one frame ago?" and fetches that value.
+3.  **Incompressibility (Jacobi):** The `Pressure Projection` uses a series of math loops to ensure that fluid doesn't "pile up" in one spot. It forces the velocity to always flow in a way that respects physics.
+4.  **Decay:** The `Level TOP` at the end of each loop slightly dims the fields every frame. This simulates the natural friction (viscosity) and the fading of smoke over time.
+5.  **Rendering:** Finally, the `dens_field` is colorized and output. The velocity field is invisible but controls all the "swirls" you see.
+
+---
+
+[[../index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

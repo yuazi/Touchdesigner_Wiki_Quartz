@@ -302,5 +302,34 @@ TouchDesigner instancing limits:
 
 ---
 
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+## Network Architecture
+
+To visualize how the 3D models and instancing data flow, here is the final network map:
+
+```text
+[ INSTANCE DATA (CHOPs) ]        [ 3D GEOMETRY ]
+Noise TOP (Position) ──┐         External Model (.fbx/.obj)
+Noise TOP (Rotation) ──┤              │
+Noise TOP (Scale)    ──┤              ▼
+                       ▼         [ Geo COMP (geo_instances) ]
+[ DATA PROCESSING ]    │              │ (Instancing On)
+TOP to CHOP ──────────▶│◀─────────────┤
+                       ▼              ▼
+Merge CHOP ────────▶ [ Null (NULL_INSTANCES) ]
+                       │              ▲
+                       │              │
+[ MATERIAL ]           │        [ PBR MAT ] ──▶ [ Env Light ]
+                       └──────────────┘
+```
+
+### Data Flow Explanation
+1.  **Data Generation:** We use `Noise TOPs` to generate random-but-smooth values for every instance. A 64x64 Noise TOP creates 4096 unique values (one per pixel).
+2.  **CHOP Conversion:** The `TOP to CHOP` node converts those 4096 pixels into 4096 CHOP samples. Each sample contains the `tx, ty, tz` (translation) and `rx, ry, rz` (rotation) for one specific 3D model.
+3.  **Instancing Engine:** The `Geo COMP` is the "multiplier." It takes the one 3D model you imported and spawns 4096 copies of it on the GPU, using the `NULL_INSTANCES` CHOP as a coordinate map.
+4.  **Physically Based Rendering:** The `PBR MAT` handles the look. Unlike simpler materials, it requires an `Environment Light` (with an HDR image) to calculate realistic reflections and "metalness."
+5.  **Optimization:** Because the positions and rotations are processed on the GPU via the Instance tab, the CPU remains free to handle other logic, keeping the framerate high even with complex models.
+
+---
+
+[[../index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

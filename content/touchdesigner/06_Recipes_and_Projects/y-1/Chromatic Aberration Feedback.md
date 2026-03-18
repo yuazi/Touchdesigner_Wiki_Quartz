@@ -68,5 +68,34 @@ To make the visuals "bloom" and grow over time:
 
 ---
 
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+## Network Architecture
+
+To visualize how the data flows, here is a map of the final network:
+
+```text
+[ INPUT ]
+Render TOP
+    │
+    ▼
+[ Cache TOP ] (Size 20)
+    │
+    ├─▶ [ Select TOP ] (Index 0) ──┐
+    ├─▶ [ Select TOP ] (Index -5) ─┼─▶ [ Reorder TOP ] (R, G, B Split)
+    └─▶ [ Select TOP ] (Index -10) ┘           │
+                                              ▼
+[ TOP FEEDBACK LOOP ] ◀───────────────────────┘
+    │
+    ▼
+[ Feedback TOP ] ──▶ [ Transform TOP ] ──▶ [ Level TOP ] ──▶ [ Composite TOP ]
+```
+
+### Data Flow Explanation
+1.  **Caching:** The `Cache TOP` stores a short "history" of the last 20 frames. 
+2.  **Splitting:** The `Select TOPs` grab frames from different moments in time (current, 5 frames ago, 10 frames ago). 
+3.  **Colorizing:** The `Reorder TOP` puts these different moments back together, but assigns them to the Red, Green, and Blue channels. This creates the "time-based" RGB split.
+4.  **Feedback:** The `Transform TOP` inside the loop scales the image slightly up, which makes the "trails" expand outward in every frame, creating a blooming effect.
+
+---
+
+[[../index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

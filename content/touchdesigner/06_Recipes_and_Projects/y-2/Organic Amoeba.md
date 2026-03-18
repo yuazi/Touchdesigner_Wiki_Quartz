@@ -70,5 +70,37 @@ Add a **Luma Blur TOP** at the end of your chain to create a depth-of-field effe
 
 ---
 
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+## Network Architecture
+
+To visualize how the data flows, here is a map of the final network:
+
+```text
+[ POP NETWORK ]
+Circle POP (500 Divs) 
+      │
+      ▼
+Noise POP (Simplex 3D) ───[ Animate Transform Z ]
+      │
+      ▼
+Attribute POP (Pos to Color)
+      │
+      ▼
+[ POP SOP ] ───▶ [ Convert SOP ] ───▶ [ Geo COMP ] ───▶ [ Render TOP ]
+                                                             │
+                                                             ▼
+[ TOP FEEDBACK LOOP ] ◀──────────────────────────────────────┘
+      │
+      ▼
+[ Feedback TOP ] ──▶ [ Displace TOP ] ──▶ [ Level TOP ] ──▶ [ Composite TOP (Screen) ]
+```
+
+### Data Flow Explanation
+1.  **Generation:** The `Circle POP` creates the raw point data on the GPU. 
+2.  **Displacement:** The `Noise POP` moves these points in 3D space. Because it's a POP, it can handle thousands of points with zero lag.
+3.  **Shading:** The `Attribute POP` calculates a color for every point based on its current position. As the "amoeba" moves, its color changes.
+4.  **Feedback:** The `Render TOP` output is fed into a `Feedback TOP`. The `Displace TOP` inside the loop uses a noise texture to "warp" the trails, creating the oily liquid look characteristic of the [Okamirufu style](https://www.youtube.com/@OkamirufuV).
+
+---
+
+[[../index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

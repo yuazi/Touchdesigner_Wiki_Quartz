@@ -331,5 +331,43 @@ If CPU spikes, reduce Points first, then lower dt a little. Add a Timer CHOP to 
 
 ---
 
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+## Network Architecture
+
+This project uses a "native" Python approach without external plugins. Here is the data flow:
+
+```text
+[ COMPUTER VISION ]              [ PARAMETER MAPPING ]
+Webcam ──────────────────────▶ [ Script CHOP ] (MediaPipe Python)
+                                      │
+                                      ▼
+[ SMOOTHING ]                  [ Filter / Lag CHOPs ]
+                                      │
+                                      ▼
+[ DATA EXPORT ]                [ Null CHOP (null_ctrl) ]
+                                      │
+      ┌───────────────────────────────┴──────────────────────────────┐
+      ▼ (Sigma)                       ▼ (Rho)                        ▼ (Beta)
+[ Math CHOP X ]                [ Math CHOP Y ]                [ Math CHOP Pinch ]
+      │                               │                              │
+      └───────────────────────────────┼──────────────────────────────┘
+                                      ▼
+[ CHAOS ENGINE ]               [ Script SOP (Lorenz) ]
+                                      │ (Loops & Math)
+                                      ▼
+[ RENDERING ]                  [ Geo COMP ] ──▶ [ Render TOP ]
+                                      │
+                                      ▼
+[ POST FX ]                    [ Feedback TOP Loop ] ──▶ [ Bloom TOP ]
+```
+
+### Data Flow Explanation
+1.  **Vision Layer:** The `Script CHOP` runs a Python script that uses `cv2` (OpenCV) to grab the webcam and `mediapipe` to find hand landmarks. It outputs raw X, Y, and Pinch values as channels.
+2.  **Smoothing:** We use `Filter` and `Lag` CHOPs because raw vision data is "noisy." This ensures the attractor moves fluidly rather than snapping.
+3.  **Mapping:** The `Math CHOPs` take normalized 0-1 values and remap them to the specific mathematical constants needed for the Lorenz system (Sigma, Rho, Beta).
+4.  **Geometry:** The `Script SOP` is the heart of the project. It runs a `for` loop that calculates the next 6000 points of the Lorenz attractor based on the current constants from the hand.
+5.  **Persistence:** The `Feedback TOP` creates the "ghostly" trails. By adding the previous frame back into the current one at a lower opacity, we see the history of the attractor's movement.
+
+---
+
+[[../index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

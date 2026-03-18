@@ -101,5 +101,41 @@ The POP SOP outputs "points," but we need to tell TouchDesigner _how_ to draw th
 
 ---
 
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+## Network Architecture
+
+To visualize how the GPU particles and data flows, here is the final network map:
+
+```text
+[ POP NETWORK (Inside POP SOP) ]
+Source POP (1000/sec) ──┐
+                        ▼
+[ FORCES ]          [ Force POP ] (Gravity)
+                        │
+                        ▼
+                    [ Wind POP ] (Turbulence)
+                        │
+                        ▼
+[ ATTRIBUTES ]      [ Color POP ] (Ramp by Life)
+                        │
+                        ▼
+[ SIMULATION ]      [ Solver POP ] (The Engine)
+                        │
+      ┌─────────────────┘
+      ▼
+[ POP SOP (Bridge) ] ──▶ [ Sprite SOP ] ──▶ [ Geo COMP ] ◀── [ Point Sprite MAT ]
+                                               │
+                                               ▼
+[ AUDIO DRIVE ] ──▶ [ Analyze CHOP ] ──▶ [ Render TOP ]
+```
+
+### Data Flow Explanation
+1.  **Emission:** The `Source POP` generates the initial points on the GPU. Unlike SOPs, these aren't "geometry" yet; they are just data points.
+2.  **Forces & Physics:** The `Force` and `Wind` POPs apply mathematical vectors to every point's velocity attribute. The `Solver POP` then uses those velocities to update the points' positions every frame.
+3.  **Attribute Mapping:** The `Color POP` looks at each particle's `Normalized Life` (0 to 1) and assigns a color from a ramp. As a particle gets older, it changes color automatically.
+4.  **The Bridge:** The `POP SOP` acts as the bridge, bringing those GPU points back into TouchDesigner's main network so they can be rendered.
+5.  **Rendering:** We use the `Sprite SOP` and `Point Sprite MAT` to draw each point as a 2D "glow" that always faces the camera.
+
+---
+
+[[../index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]
