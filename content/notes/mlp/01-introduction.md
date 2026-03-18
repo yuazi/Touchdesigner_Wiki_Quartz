@@ -231,6 +231,7 @@ z ────────────┘
 ## Activation Functions
 
 ### Sigmoid
+![[Lecture01_Pg102_Sigmoid_Clean.png]]
 
 $$\sigma(x) = \frac{1}{1 + e^{-x}} = \frac{e^x}{e^x + 1}$$
 
@@ -252,6 +253,7 @@ Squashes numbers to $[0, 1]$. Can be interpreted as a saturating "firing rate" o
 3. **`exp()` is computationally expensive**
 
 ### Tanh
+![[Lecture01_Pg105_Tanh_Clean.png]]
 
 $$\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
 
@@ -261,7 +263,7 @@ $$\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
 
 ### ReLU
 
-![[Lecture01_Pg106_Relu.png]]
+![[Lecture01_Pg108_Relu_Clean.png]]
 
 $$f(x) = \max(0, x)$$
 
