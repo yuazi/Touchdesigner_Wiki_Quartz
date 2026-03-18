@@ -19,7 +19,7 @@ It is a standalone Python viewer that combines **ModernGL rendering**, **MediaPi
 
 ## The Core Concept
 
-To make the attractors move smoothly, the tool solves differential equations using **Runge Kutta 4 (RK4)**. This allows for high precision simulation even at high speeds. 
+To make the attractors move smoothly, the tool solves differential equations using **Runge Kutta 4 (RK4)**. This allows for high precision simulation even at high speeds.
 
 Here is a simplified version of an RK4 step for a Lorenz attractor:
 
@@ -43,14 +43,17 @@ def rk4_step(state, dt):
 The project is built to handle the tension between fast, interactive discovery and high resolution artistic exports.
 
 ### 1. Real Time Simulation
+
 The tool supports 9 different attractors like **Aizawa, Chen, and Thomas**. Each is implemented as a class that uses **Numba compiled CPU paths** for stability and **GLSL GPU shaders** for rendering high frame rate trails.
 
 ![[pictures/attractor_aizawa.png|Aizawa attractor with grain-texture background]] _A dense Aizawa attractor snapshot from the viewer, rendered as glowing trails against the projects grain texture background._
 
 ### 2. Gesture Control
+
 Using **MediaPipe**, the tool maps hand landmarks to scene controls. Your left hand handles **speed and luminosity**, while your right hand controls **yaw, pitch, and zoom**. This makes the interface feel like a performance tool rather than a simple script.
 
 ### 3. High Res Snapshot Pipeline
+
 When you find a view you like, you can trigger an export. Instead of just saving the screen, the tool uses **Datashader** to generate dense 8K snapshots with millions of points, using inferno inspired density coloring.
 
 ---
@@ -69,11 +72,13 @@ The project is modular and supports both gesture and traditional keyboard contro
 ## Usage & Controls
 
 Run the viewer with your webcam:
+
 ```bash
 python main.py
 ```
 
 Run in keyboard and mouse mode without a camera:
+
 ```bash
 python main.py --no-camera
 ```

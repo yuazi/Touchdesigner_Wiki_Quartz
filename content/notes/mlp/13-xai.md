@@ -77,7 +77,7 @@ Saliency helps us catch models that are "right for the wrong reasons."
 
 Both LIME and SHAP give you feature importance, but they do it very differently.
 
-- **LIME (Local Proxy):** LIME says, "I don't know how the whole model works, but *right here* in this tiny neighborhood, it acts like a simple linear equation." It's like approximating a complex curve with a straight line. It's fast and easy to understand, but it's only a rough approximation.
+- **LIME (Local Proxy):** LIME says, "I don't know how the whole model works, but _right here_ in this tiny neighborhood, it acts like a simple linear equation." It's like approximating a complex curve with a straight line. It's fast and easy to understand, but it's only a rough approximation.
 - **SHAP (Game Theory):** SHAP is more principled. It asks: "If the features were players in a team, how much does each player truly deserve to be credited for the win?" It's mathematically "fair" (satisfying axioms of consistency and local accuracy), but it's much more computationally expensive to calculate.
 
 **In short:** LIME is a quick "good enough" sketch; SHAP is a rigorous "mathematically proven" audit.

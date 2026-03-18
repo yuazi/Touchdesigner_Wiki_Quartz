@@ -69,7 +69,7 @@ If we fed every pixel into a Transformer, a 224x224 image would have **50,176 to
 Why do CNNs beat ViT on small datasets, but ViT wins on huge datasets?
 
 1.  **Inductive Bias (The "Cheat Code"):** CNNs "know" that images have local structure (pixels near each other are related) and that a cat is a cat whether it's on the left or right (translation equivariance). This knowledge is a "cheat code" that helps the model learn faster with less data.
-2.  **The Transformer "Tabula Rasa":** ViT starts with almost no assumptions. It doesn't even know that patches are arranged in a grid! It has to *learn* the spatial relationships from scratch.
+2.  **The Transformer "Tabula Rasa":** ViT starts with almost no assumptions. It doesn't even know that patches are arranged in a grid! It has to _learn_ the spatial relationships from scratch.
 3.  **The Result:** On a small dataset (ImageNet-1K), the "cheat code" (CNN) wins. But on a massive dataset (JFT-300M), the assumptions of the CNN actually become a **limitation**. The Transformer, free of those assumptions, can learn more complex, flexible representations that eventually surpass the CNN.
 
 ---

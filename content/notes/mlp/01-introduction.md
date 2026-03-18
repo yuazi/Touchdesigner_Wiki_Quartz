@@ -226,10 +226,11 @@ Imagine you are at the top of a mountain (the current loss) at night. You can't 
 During the backward pass, each gate acts as a "gradient router":
 
 1.  **Add Gate (+):** It is a **Distributor**. It sends the same gradient to both branches.
-2.  **Mul Gate (*):** It is a **Scaler**. It scales the gradient by the value of the *other* branch.
+2.  **Mul Gate (\*):** It is a **Scaler**. It scales the gradient by the value of the _other_ branch.
 3.  **Max Gate:** It is a **Switch**. It sends all the gradient to the branch that won, and zero to the others.
 
 **Why is this helpful?**
+
 - If your gradient is vanishing, you can look at your multiplication gates. If one branch is very small, it will kill the signal for the other branch.
 - This is exactly why we normalize weights and use BatchNorm: to keep the values in a range where the "Scalers" (multiplication gates) don't shrink the signal to zero.
 
@@ -250,6 +251,7 @@ During the backward pass, each gate acts as a "gradient router":
 ## Activation Functions
 
 ### Sigmoid
+
 ![[Lecture01_Pg102_Sigmoid_Clean.png]]
 
 $$\sigma(x) = \frac{1}{1 + e^{-x}} = \frac{e^x}{e^x + 1}$$
@@ -272,6 +274,7 @@ Squashes numbers to $[0, 1]$. Can be interpreted as a saturating "firing rate" o
 3. **`exp()` is computationally expensive**
 
 ### Tanh
+
 ![[Lecture01_Pg105_Tanh_Clean.png]]
 
 $$\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$

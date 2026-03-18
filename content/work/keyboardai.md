@@ -13,7 +13,7 @@ tags:
 date: 2026-03-11
 ---
 
-Standard keyboard layouts like QWERTY were designed to prevent mechanical typewriter jams, not for modern ergonomics. Most "improved" layouts like Dvorak or Colemak are better, but they are still one size fits all. I wanted a way to find a layout that was perfectly optimized for *my* specific typing patterns, so I built **Keyboard AI**.
+Standard keyboard layouts like QWERTY were designed to prevent mechanical typewriter jams, not for modern ergonomics. Most "improved" layouts like Dvorak or Colemak are better, but they are still one size fits all. I wanted a way to find a layout that was perfectly optimized for _my_ specific typing patterns, so I built **Keyboard AI**.
 
 Keyboard AI is a Python CLI tool that learns character patterns from a text corpus and uses an evolutionary algorithm to search for the most ergonomic layout possible for that specific body of writing.
 
@@ -33,7 +33,7 @@ def evolve_layout(current_layout, corpus_stats):
     new_layout = current_layout.copy()
     a, b = random.sample(range(len(new_layout)), 2)
     new_layout[a], new_layout[b] = new_layout[b], new_layout[a]
-    
+
     # Keep it only if it scores better
     if score(new_layout, corpus_stats) < score(current_layout, corpus_stats):
         return new_layout
@@ -52,10 +52,13 @@ for generation in range(10000):
 To find a truly ergonomic layout, the tool needs to understand both the language and the human hand.
 
 ### 1. Linguistic Analysis
+
 The tool builds **unigram, bigram, and trigram** statistics from your provided text. It knows which letters you use most, which pairs appear together (like "th" or "er"), and which sequences are common. This allows the optimizer to place frequent letters in the easiest spots.
 
 ### 2. The Ergonomic Model
+
 The scoring engine accounts for several physical factors:
+
 - **Key Effort**: How hard is it to reach a specific key from the home row?
 - **Finger Penalties**: Index fingers are stronger than pinkies.
 - **Hand Alternation**: It is faster to type when you switch hands between letters.
@@ -63,6 +66,7 @@ The scoring engine accounts for several physical factors:
 - **Row Jumps**: Avoid moves where a finger has to jump over the home row.
 
 ### 3. Evolutionary Search
+
 Instead of checking every possible layout (which is mathematically impossible), the tool uses a population search with **elites, crossover, and mutation**. It keeps the best performers from each generation and mixes their "DNA" to find even better combinations.
 
 ---
@@ -82,11 +86,13 @@ The tool is built as a modular Python package with clear separation of concerns:
 ## CLI Usage
 
 Train a new model from a text file:
+
 ```bash
 keyboard-ai train --corpus my_writing.txt --output my_model.json
 ```
 
 Score an existing layout (like Colemak) against your stats:
+
 ```bash
 keyboard-ai score --layout colemak --model my_model.json
 ```

@@ -224,7 +224,7 @@ By embedding images into word-vector space, the model gains **semantic structure
 Think of CLIP not as an image classifier, but as a translator between two languages: **Vision** and **English**.
 
 - If you show CLIP a picture of a "golden retriever" and the text "golden retriever", they should both map to the **same point** in a hidden mathematical space.
-- Because CLIP was trained on *millions* of different concepts (not just "cat" and "dog", but also "a sunset in Paris", "a broken glass", "a blueprint of a house"), it has a very rich understanding of the world.
+- Because CLIP was trained on _millions_ of different concepts (not just "cat" and "dog", but also "a sunset in Paris", "a broken glass", "a blueprint of a house"), it has a very rich understanding of the world.
 
 This is why CLIP is the "brain" behind tools like DALL-E and Stable Diffusion â€” it's the bridge that tells the generator what a text prompt should actually look like.
 
@@ -235,6 +235,7 @@ This is why CLIP is the "brain" behind tools like DALL-E and Stable Diffusion â€
 In standard classification (e.g., ImageNet), the model is only told: "This image is a dog."
 
 In **Contrastive Learning** (like CLIP), the model is told two things:
+
 1. "This image matches this text." (The Positive)
 2. "**And it definitely does NOT match these other 32,000 texts in this batch.**" (The Negatives)
 

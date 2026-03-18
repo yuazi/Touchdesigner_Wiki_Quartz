@@ -402,6 +402,7 @@ You might wonder why we don't just use the dot product $QK^\top$ directly.
 For $d_k = 512$, the values in $QK^\top$ can be very large. When you pass these large values into **Softmax**, the function becomes extremely "peaked" (one value near 1, others near 0).
 
 **The Consequence:**
+
 1.  **Vanishing Gradients:** The derivative of softmax in the flat regions is nearly zero. If the attention is too peaked, the model stops learning because gradients can't flow back.
 2.  **Lack of Nuance:** The model forced to pick only one token, losing the ability to blend context.
 
@@ -660,7 +661,8 @@ The secret isn't a different formula; it's **FlashAttention**.
 
 **The Problem:** Standard attention is "Memory Bound." The GPU spends 90% of its time just moving the giant $n \times n$ attention matrix back and forth between its slow memory (HBM) and its fast memory (SRAM).
 
-**The Solution:** FlashAttention uses a technique called **Tiling**. 
+**The Solution:** FlashAttention uses a technique called **Tiling**.
+
 - It breaks the giant matrix into small "tiles" that fit perfectly into the GPU's fast SRAM.
 - It computes the attention for each tile and "stitches" them together without ever writing the full $n \times n$ matrix to slow memory.
 - **Result:** It is much faster and uses far less memory, even though the final answer is exactly the same!

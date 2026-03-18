@@ -28,7 +28,7 @@ With $\sigma = 10$, $\rho = 28$, $\beta = \frac{8}{3}$, the system never settles
 
 ## Why I find it fascinating
 
-The thing that really gets me is how a tiny difference in starting position, something almost too small to measure, sends the system on a completely different path. It is fully deterministic. No randomness, no dice rolls. And yet you cannot predict where it ends up without running the whole simulation. That gap between *deterministic* and *predictable* hits different when you see it actually playing out on screen.
+The thing that really gets me is how a tiny difference in starting position, something almost too small to measure, sends the system on a completely different path. It is fully deterministic. No randomness, no dice rolls. And yet you cannot predict where it ends up without running the whole simulation. That gap between _deterministic_ and _predictable_ hits different when you see it actually playing out on screen.
 
 It is a good reminder that "having rules" does not mean "being in control." A lot of things in life work like that.
 

@@ -23,18 +23,20 @@ The background is not a video or a pre rendered image. It is a live simulation r
 Here is the core update logic for a Lorenz attractor in TypeScript:
 
 ```typescript
-const dt = 0.005;
-const sigma = 10, rho = 28, beta = 8/3;
+const dt = 0.005
+const sigma = 10,
+  rho = 28,
+  beta = 8 / 3
 
 // Calculate the change in position
-dx = sigma * (y - x) * dt;
-dy = (x * (rho - z) - y) * dt;
-dz = (x * y - beta * z) * dt;
+dx = sigma * (y - x) * dt
+dy = (x * (rho - z) - y) * dt
+dz = (x * y - beta * z) * dt
 
 // Update the coordinates
-x += dx; 
-y += dy; 
-z += dz;
+x += dx
+y += dy
+z += dz
 ```
 
 ---
@@ -44,14 +46,18 @@ z += dz;
 The system is designed to be atmospheric rather than distracting. It stays in the background and only draws attention when you want it to.
 
 ### 1. Multi Attractor System
+
 The simulation runs three distinct systems simultaneously:
+
 - A **Lorenz attractor** stays centered to provide a focal point.
 - Two **Halvorsen attractors** run on the left and right edges to fill the periphery.
 
 ### 2. Interactive Settings
+
 A hidden gear button opens a settings panel where you can tune the math live. You can adjust constants like **sigma** and **rho**, change the simulation speed, or increase the particle count for a denser look.
 
 ### 3. Quartz Integration
+
 The project is built specifically for **Quartz 4**. It hooks into the single page application routing to ensure the animation survives page transitions without restarting. It also reads the saved theme to automatically swap between light and dark palettes.
 
 ---

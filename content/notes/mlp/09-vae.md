@@ -163,11 +163,11 @@ Fitting a simple Gaussian $f(x) \sim \mathcal{N}(\hat\mu, \hat\sigma I)$ over th
 
 Think of a normal Autoencoder as a librarian who remembers the exact shelf and position for every book. If you ask for a book at a random position, they won't know what to do.
 
-A **VAE** is like a librarian who remembers the *general area* where each book is (e.g., "The History books are in that corner cloud").
+A **VAE** is like a librarian who remembers the _general area_ where each book is (e.g., "The History books are in that corner cloud").
 
 - When the VAE encodes an image, it doesn't just output one point ($z$).
 - It outputs a **mean** (the center of the cloud) and a **standard deviation** (the size of the cloud).
-- During training, we sample a point from this cloud. This forces the model to ensure that *every* point in that general area decodes to something meaningful.
+- During training, we sample a point from this cloud. This forces the model to ensure that _every_ point in that general area decodes to something meaningful.
 
 This "fuzziness" is what makes the latent space continuous and allows us to sample new, realistic images.
 

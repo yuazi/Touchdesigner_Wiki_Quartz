@@ -362,7 +362,7 @@ During the forward max-pool, record the **switch positions** (which location hel
 When we want to make an image larger (upsample), we have two main choices:
 
 1.  **Bilinear/Nearest Interpolation:** This is a fixed mathematical formula. It's fast, but it often results in "blurry" or "blocky" edges because it doesn't "know" what it's looking at.
-2.  **Transposed Convolution:** This is a **learnable** upsampling. The network learns a set of weights that decide *how* to fill in the gaps. 
+2.  **Transposed Convolution:** This is a **learnable** upsampling. The network learns a set of weights that decide _how_ to fill in the gaps.
     - **Pro:** It can learn to reconstruct fine details (like the sharp edge of a road or a person's silhouette).
     - **Con:** It can sometimes produce "checkerboard artifacts" if the kernel size and stride aren't perfectly aligned.
 

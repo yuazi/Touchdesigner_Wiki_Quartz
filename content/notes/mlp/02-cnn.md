@@ -249,8 +249,8 @@ Using multiple filters in parallel produces multiple feature maps. For example, 
 
 Imagine you are looking for a face in a photo.
 
-- **Fully Connected Approach (Flattening):** You treat the photo like a giant list of numbers. To recognize a face, you have to learn what a face looks like at *every single possible pixel location*. If the face moves one pixel to the left, the whole list of numbers changes, and the network might not recognize it anymore.
-- **Convolutional Approach:** You use a small "Face Detector" (the filter) and slide it across the image. The detector only cares what a face looks like *locally*. If it finds a face anywhere, it shouts "Found one!". This makes the network much more efficient and robust.
+- **Fully Connected Approach (Flattening):** You treat the photo like a giant list of numbers. To recognize a face, you have to learn what a face looks like at _every single possible pixel location_. If the face moves one pixel to the left, the whole list of numbers changes, and the network might not recognize it anymore.
+- **Convolutional Approach:** You use a small "Face Detector" (the filter) and slide it across the image. The detector only cares what a face looks like _locally_. If it finds a face anywhere, it shouts "Found one!". This makes the network much more efficient and robust.
 
 ---
 
@@ -259,8 +259,9 @@ Imagine you are looking for a face in a photo.
 One of the biggest strengths of CNNs is **Translation Invariance** (or Equivariance).
 
 **How it works:**
-1.  **Weight Sharing:** Because the same filter is used everywhere, if an edge exists in the top-left or bottom-right, the *same* weights will detect it.
-2.  **Pooling:** Max pooling takes a small region (e.g., 2x2) and picks the strongest signal. If a feature moves slightly within that 2x2 area, the output of the pooling layer stays *exactly the same*.
+
+1.  **Weight Sharing:** Because the same filter is used everywhere, if an edge exists in the top-left or bottom-right, the _same_ weights will detect it.
+2.  **Pooling:** Max pooling takes a small region (e.g., 2x2) and picks the strongest signal. If a feature moves slightly within that 2x2 area, the output of the pooling layer stays _exactly the same_.
 
 This is why a CNN can recognize a "cat" regardless of whether the cat is in the corner of the image or right in the middle.
 

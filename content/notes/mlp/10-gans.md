@@ -109,7 +109,7 @@ Imagine the counterfeiter discovers that the detective is currently very bad at 
 
 Instead of trying to learn how to make all types of money, the counterfeiter might decide to **only make €10 bills**. Even if they produce millions of identical €10 bills, they are "winning" the game because the detective is fooled.
 
-**In Machine Learning:** A GAN trained on cats and dogs might "collapse" and only produce one specific, high-quality image of a cat. It has "solved" the problem of fooling the discriminator, but it has failed at its true goal: learning the *full diversity* of the data distribution.
+**In Machine Learning:** A GAN trained on cats and dogs might "collapse" and only produce one specific, high-quality image of a cat. It has "solved" the problem of fooling the discriminator, but it has failed at its true goal: learning the _full diversity_ of the data distribution.
 
 ---
 

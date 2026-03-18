@@ -117,7 +117,7 @@ The "ruler" in Sioyek is called the **visual mark**. It highlights the current l
 | `ruler_padding`                   | `1.0`             | Vertical padding added above or below the highlighted line                         |
 | `ruler_x_padding`                 | `5.0`             | Horizontal padding added to the left or right of the highlighted line              |
 | `visual_mark_next_page_fraction`  | `0.75`            | Where on screen the mark sits when it triggers a page scroll (0 = top, 1 = center) |
-| `visual_mark_next_page_threshold` | `0.25`            | How close to the bottom the mark must get before the page auto scrolls              |
+| `visual_mark_next_page_threshold` | `0.25`            | How close to the bottom the mark must get before the page auto scrolls             |
 
 ### Marks
 

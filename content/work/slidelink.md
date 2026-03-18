@@ -56,13 +56,17 @@ print(f"Match: '{slides[idx]}' with score {score:.3f}")
 To make it robust enough for real world academic use, SlideLink uses a scoring system that combines three distinct signals.
 
 ### 1. Semantic Search (TF-IDF)
+
 At the core, it uses a **TF-IDF vectorizer** with `ngram_range=(1, 2)`. It converts the text in your notes (the context following a heading) and the text on every slide into vectors. It then calculates the **cosine similarity** between them to find the semantic match.
 
 ### 2. Math & LaTeX Aliases
+
 Since many technical notes rely on math, SlideLink includes a **LaTeX alias system**. It maps common symbols to their textual equivalents (e.g., `\nabla` → "gradient"). The tool scans for these symbols in the Markdown and applies a **Math Bonus** to any slide containing either the symbol or its alias.
 
 ### 3. Visual Density Heuristics
+
 To avoid matching slides that are just walls of text, SlideLink uses `PyMuPDF` to count images and vector paths on a page. It calculates a **Visual Signal** score based on:
+
 - **Image Count**: Direct presence of figures.
 - **Drawing Count**: Presence of vector graphics or diagrams.
 - **Visual Area Ratio**: The total area occupied by visuals vs. the page area.
@@ -71,7 +75,7 @@ To avoid matching slides that are just walls of text, SlideLink uses `PyMuPDF` t
 
 ## Workflow & Safety
 
-SlideLink is designed to be safe to run on an existing vault. 
+SlideLink is designed to be safe to run on an existing vault.
 
 - **Dry Runs**: Use `--dry-run` to preview changes without modifying any files.
 - **Safety Flags**: If the gap between the top two slides is too narrow, SlideLink flags it for manual review.
@@ -80,11 +84,13 @@ SlideLink is designed to be safe to run on an existing vault.
 ### CLI Usage
 
 Process a subject directory:
+
 ```bash
 slidelink-run --subject "mpl" --notes "./content/notes/mpl" --pdfs "./slides"
 ```
 
 Revert changes:
+
 ```bash
 slidelink-revert --notes "./content/notes/mpl"
 ```

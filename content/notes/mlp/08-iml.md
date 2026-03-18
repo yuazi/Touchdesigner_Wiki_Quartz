@@ -21,7 +21,7 @@ date: 2026-03-09
 Imagine a student studying for an exam.
 
 - **Passive Learning:** The student reads the entire 500-page textbook from cover to cover. It's thorough, but very slow, and they might spend hours reading things they already know.
-- **Active Learning (iML):** The student skim-reads the textbook, identifies the 10 most confusing problems, and asks the teacher (the **Oracle**) to explain *only* those 10.
+- **Active Learning (iML):** The student skim-reads the textbook, identifies the 10 most confusing problems, and asks the teacher (the **Oracle**) to explain _only_ those 10.
 
 By asking the "right" questions, the student learns much faster and with much less effort from the teacher. In ML, this teacher is the human expert, and their time is the most expensive resource we have.
 

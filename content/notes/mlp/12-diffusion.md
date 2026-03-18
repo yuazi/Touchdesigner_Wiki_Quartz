@@ -182,9 +182,9 @@ $$q(x_{t-1}|x_t) = \frac{q(x_t|x_{t-1}) \cdot q(x_{t-1})}{q(x_t)}$$
 Diffusion models are like a search for where the data "lives".
 
 - **The Forward Process:** You start with a clear photo and walk away into a dense fog (adding noise) until you are completely lost.
-- **The Reverse Process (Learning):** The model is like a compass. It learns to point in the direction where the photo *used to be*.
+- **The Reverse Process (Learning):** The model is like a compass. It learns to point in the direction where the photo _used to be_.
 
-By predicting the noise, the model is actually telling you: "If you want to find the real image, move in *this* direction." If you follow that compass 1000 times, you'll walk out of the fog and end up at a high-quality photo.
+By predicting the noise, the model is actually telling you: "If you want to find the real image, move in _this_ direction." If you follow that compass 1000 times, you'll walk out of the fog and end up at a high-quality photo.
 
 ---
 
@@ -574,8 +574,9 @@ If you've ever used a tool like Stable Diffusion and adjusted the "Guidance Scal
 **The Goal:** We want the model to follow our text prompt $c$ as closely as possible.
 
 **The Solution:** During training, we randomly "drop out" the text prompt (e.g., 10% of the time, we show the model an empty string $\varnothing$). This teaches the model two things:
+
 1.  **$p(x_t | c)$:** How to generate an image based on a prompt.
-2.  **$p(x_t)$:** How to generate *any* random image.
+2.  **$p(x_t)$:** How to generate _any_ random image.
 
 **At Inference:** We calculate the noise for both the prompt and the empty prompt. We then "amplify" the difference:
 $$\epsilon_{\text{final}} = \epsilon_{\text{uncond}} + w \cdot (\epsilon_{\text{cond}} - \epsilon_{\text{uncond}})$$
