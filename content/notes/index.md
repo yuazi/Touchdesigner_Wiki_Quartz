@@ -17,7 +17,7 @@ date: 2026-01-01
 
 ## CLI & Tools
 
-- [[find-keywords|Find Keywords]]
+- [[work/slidelink|SlideLink]]
 - [[ghostty|Ghostty]]
 - [[sioyek|Sioyek]]
 - [[yazi|Yazi]]
