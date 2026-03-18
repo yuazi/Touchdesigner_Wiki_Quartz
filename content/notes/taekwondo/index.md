@@ -1,5 +1,5 @@
 ---
-title: Taekwondo
+title: y\ Taekwondo
 tags:
   - taekwondo
   - note
@@ -7,7 +7,6 @@ tags:
 date: 2026-03-05
 ---
 
-## Taekwondo
 The "Do" in motion. Documenting the path from white-belt basics to the tactical chaos of sparring and spinning hook kicks.
 
 ---
@@ -16,7 +15,7 @@ I like kicking and spinning, looks really cool. Honestly I just saw someone do a
 
 ---
 
-## Basic Kicks
+## y\ Basic Kicks
 
 These are the kicks I have been drilling. Some feel natural, some still feel like my leg has never been attached to my body.
 
@@ -38,7 +37,7 @@ These are the kicks I have been drilling. Some feel natural, some still feel lik
 
 ---
 
-## Poomsae Commands
+## y\ Poomsae Commands
 
 Poomsae (patterns / forms) practice has its own vocabulary. Knowing what the instructor says means you are not the person looking around confused after everyone else bowed.
 
@@ -59,8 +58,6 @@ Poomsae (patterns / forms) practice has its own vocabulary. Knowing what the ins
 | Sunbae         | Sun beh       | Senior student                                         |
 | Gamsahamnida   | Gamsahamnida  | Thank you                                              |
 
-General commands you will hear constantly during class too.
-
 ---
 
-[[notes/index|Return to Notes]] | [[notes/taekwondo/stances|Stances]] | [[notes/taekwondo/combinations|Combinations]] | [[notes/taekwondo/sparring|Sparring]] | [[notes/taekwondo/stretching|Stretching]] | [[notes/taekwondo/philosophy|Philosophy]]
+[[notes/index|Return to Notes]] | [[notes/taekwondo/stances|(y-) Stances]] | [[notes/taekwondo/combinations|(y-) Combinations]] | [[notes/taekwondo/sparring|(y-) Sparring]] | [[notes/taekwondo/stretching|(y-) Stretching]] | [[notes/taekwondo/philosophy|(y-) Philosophy]]

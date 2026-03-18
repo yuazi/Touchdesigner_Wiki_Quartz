@@ -1,5 +1,5 @@
 ---
-title: Random Notes
+title: y\ Random
 tags:
   - random
   - notes
@@ -12,8 +12,10 @@ The sensory and the mathematical. A mix of strange attractors, the visceral focu
 
 ---
 
-- [[notes/random/lorenz-attractor|The Lorenz Attractor]] — Exploring chaos and strange attractors.
-- [[notes/random/motorcycles|Motorcycles]] — Notes on riding and the focus it brings.
-- [[notes/random/perfumes|Perfumes]] — A different kind of sensory exploration.
+## y\ Exploration
+
+- [[notes/random/lorenz-attractor|(y-) The Lorenz Attractor]] — Exploring chaos and strange attractors.
+- [[notes/random/motorcycles|(y-) Motorcycles]] — Notes on riding and the focus it brings.
+- [[notes/random/perfumes|(y-) Perfumes]] — A different kind of sensory exploration.
 
 ---

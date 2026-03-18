@@ -1,5 +1,5 @@
 ---
-title: CLI & Tools
+title: y\ CLI & Tools
 tags:
   - tools
   - cli
@@ -13,10 +13,10 @@ Optimized for speed. A curated list of the terminal-centric tools I use to stay 
 
 ---
 
-## Tool Notes
+## y\ Tool Notes
 
-- [[notes/tools/ghostty|Ghostty]] — A fast, native terminal emulator in Zig.
-- [[notes/tools/sioyek|Sioyek]] — Keyboard-driven PDF viewer for researchers.
-- [[notes/tools/yazi|Yazi]] — Blazing fast terminal file manager in Rust.
+- [[notes/tools/ghostty|(y-) Ghostty]] — A fast, native terminal emulator in Zig.
+- [[notes/tools/sioyek|(y-) Sioyek]] — Keyboard-driven PDF viewer for researchers.
+- [[notes/tools/yazi|(y-) Yazi]] — Blazing fast terminal file manager in Rust.
 
 ---
