@@ -196,6 +196,17 @@ Eliminates the external region proposal step by adding a **Region Proposal Netwo
 - **Output**: list of $p$ proposals + "objectness" score; output size $p \times 6$
 - **Approach**: slide a small (mini) net over the feature map; at each position evaluate $k$ different window sizes for objectness → $\approx W \times H \times k$ proposals
 
+### 💡 Intuition: Anchors as "Starting Guesses"
+
+Imagine you are looking for objects in a foggy field. Instead of searching every square inch, you place a few differently sized hula-hoops (Anchors) at fixed spots on the ground.
+
+- **The Question:** "Does anything in this hula-hoop look like an object?"
+- **The Adjustment:** If the answer is "yes", you don't just take the hula-hoop as it is. You "nudge" it (Bounding Box Regression) to fit the object perfectly.
+
+This is much faster than trying to draw a new box from scratch at every single pixel.
+
+---
+
 **Anchors**:
 
 - Initial reference boxes defined by aspect ratio and scale, centred at each sliding window position
@@ -345,6 +356,17 @@ During the forward max-pool, record the **switch positions** (which location hel
 - Insert zeros between input values (stride > 1 in the "input space"), then apply a learned convolution kernel
 - The network **learns** how to upsample — can produce sharp, detailed outputs
 - Also called "deconvolution" (though mathematically it is not a true deconvolution)
+
+### 🧠 Deep Dive: Transposed Conv vs. Interpolation
+
+When we want to make an image larger (upsample), we have two main choices:
+
+1.  **Bilinear/Nearest Interpolation:** This is a fixed mathematical formula. It's fast, but it often results in "blurry" or "blocky" edges because it doesn't "know" what it's looking at.
+2.  **Transposed Convolution:** This is a **learnable** upsampling. The network learns a set of weights that decide *how* to fill in the gaps. 
+    - **Pro:** It can learn to reconstruct fine details (like the sharp edge of a road or a person's silhouette).
+    - **Con:** It can sometimes produce "checkerboard artifacts" if the kernel size and stride aren't perfectly aligned.
+
+---
 
 > **Example — stride-2 transposed conv**: a 2×2 input becomes 4×4 after inserting zeros between each input value, then a 3×3 learned filter sweeps over it.
 

@@ -217,6 +217,20 @@ $$\frac{\partial h_t}{\partial h_k} = \prod_{i=k+1}^{t} \frac{\partial h_i}{\par
 
 This is a **product of $t - k$ matrices** — and that causes problems.
 
+### 🧠 Deep Dive: Why do Gradients Vanish?
+
+Think of the backward pass in an RNN as a long game of "Telephone."
+
+1.  The loss is calculated at the very end of the sequence.
+2.  The gradient (the signal) has to travel backward through every time step to reach the beginning.
+3.  At each step, the signal is multiplied by the weight matrix $W$.
+    - If the values in $W$ are slightly smaller than 1 (specifically, if the largest eigenvalue is < 1), the signal shrinks.
+    - By the time the signal travels back 50 or 100 steps, it has been multiplied by a small number 100 times. $0.9^{100} \approx 0.00002$.
+
+**The Consequence:** The network "forgets" the beginning of the sentence because the learning signal never makes it back that far. It can't learn that a word at step 1 affects a word at step 100.
+
+---
+
 ### Vanishing Gradients
 
 <!-- Review Needed: close slide match for 'Vanishing Gradients' (p40: 0.579, p41: 0.540) -->
@@ -345,6 +359,20 @@ class ImageCaptionRNN(nn.Module):
 Vanilla RNNs fail on long sequences because of vanishing gradients. The fix is to **change the RNN architecture** to improve gradient flow.
 
 The key idea: introduce a **cell state** $c_t$ that runs alongside the hidden state $h_t$. The cell state is updated via **additive interactions** rather than repeated matrix multiplications, giving gradients a highway to flow through.
+
+### 💡 Intuition: LSTM as a "Managed" Memory
+
+A vanilla RNN is like a notebook where you have to erase the whole page and rewrite it every time you hear a new word. You quickly lose track of what happened at the start.
+
+An **LSTM** is more like a professional filing system (the **Cell State**):
+
+- **Forget Gate:** "Is this old information (e.g., the subject of the previous sentence) still relevant? If not, shred it."
+- **Input Gate:** "Is this new word important enough to write down in our permanent record?"
+- **Output Gate:** "What parts of our internal files should we actually tell the next layer right now?"
+
+Because information can stay in the "files" (Cell State) without being modified, it can travel across hundreds of steps perfectly intact.
+
+---
 
 ### The Four Gates
 

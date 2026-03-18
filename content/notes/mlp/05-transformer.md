@@ -379,46 +379,33 @@ $$\text{Attention}(Q, K, V) = \text{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}}\r
 3. Apply softmax — produces attention weights that sum to 1 per row
 4. Weighted sum of values $V$ — produces the output
 
-**Why scale?** In high dimensions $d_k$, dot products of random unit vectors grow as $\sqrt{d_k}$. Without scaling, softmax becomes extremely peaked, gradients vanish.
+---
 
-**Example**:
+### 💡 Intuition: Self-Attention as a "Soft" Database Query
 
-_"The animal didn't cross the street because it was too tired."_
+Think of self-attention like a database search, but instead of getting one exact result, you get a "blurry" mixture of several results.
 
-When computing the contextual embedding of "it", self-attention assigns high weight to "animal":
+- **Query ($Q$):** What I am looking for (e.g., "I am the word 'it', I need to know which noun I refer to").
+- **Key ($K$):** What I contain (e.g., "I am the word 'apple', I am a fruit/noun").
+- **Value ($V$):** What I actually contribute (e.g., the semantic meaning of "apple").
 
-```
-The     → 0.01
-animal  → 0.72   ← correctly resolves the pronoun
-didn't  → 0.02
-cross   → 0.01
-...
-it      → 0.05
-tired   → 0.19
-```
+When "it" (Query) looks at "apple" (Key), they match well. The attention mechanism then takes a large "sip" of the Value of "apple" and mixes it into the representation of "it".
 
-The resulting vector for "it" now encodes that it refers to the animal — something impossible in word2vec.
+---
 
-```python
-import torch
-import torch.nn.functional as F
-import math
+### 🧠 Deep Dive: Why the $1/\sqrt{d_k}$ scaling?
 
-def scaled_dot_product_attention(Q, K, V, mask=None):
-    d_k = Q.size(-1)
-    scores = torch.matmul(Q, K.transpose(-2, -1)) / math.sqrt(d_k)
-    if mask is not None:
-        scores = scores.masked_fill(mask == 0, float('-inf'))
-    weights = F.softmax(scores, dim=-1)
-    return torch.matmul(weights, V), weights
+You might wonder why we don't just use the dot product $QK^\top$ directly.
 
-# Example: 2 tokens, d_k=4
-Q = torch.randn(1, 2, 4)
-K = torch.randn(1, 2, 4)
-V = torch.randn(1, 2, 4)
-output, attn_weights = scaled_dot_product_attention(Q, K, V)
-print(attn_weights)  # (1, 2, 2) — each row sums to 1
-```
+**The Problem:** As the dimension $d_k$ grows, the magnitude of the dot product grows too. If $q$ and $k$ are independent random variables with mean 0 and variance 1, then their dot product $q \cdot k = \sum_{i=1}^{d_k} q_i k_i$ has mean 0 and **variance $d_k$**.
+
+For $d_k = 512$, the values in $QK^\top$ can be very large. When you pass these large values into **Softmax**, the function becomes extremely "peaked" (one value near 1, others near 0).
+
+**The Consequence:**
+1.  **Vanishing Gradients:** The derivative of softmax in the flat regions is nearly zero. If the attention is too peaked, the model stops learning because gradients can't flow back.
+2.  **Lack of Nuance:** The model forced to pick only one token, losing the ability to blend context.
+
+**The Solution:** By dividing by $\sqrt{d_k}$, we push the variance of the dot product back to **1**, keeping the softmax in a "warm" region where gradients are healthy and the model can attend to multiple tokens.
 
 ---
 
@@ -465,6 +452,18 @@ One attention head learns one type of relationship. **Multi-head attention** run
 $$\text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h) W^O$$
 
 $$\text{head}_i = \text{Attention}(Q W_i^Q,\; K W_i^K,\; V W_i^V)$$
+
+### 💡 Intuition: Multi-Head Attention as "Multiple Perspectives"
+
+Imagine you are reading a mystery novel.
+
+- **Head 1:** Focuses on the **names** of the suspects (the "Who").
+- **Head 2:** Focuses on the **times** and **locations** (the "When" and "Where").
+- **Head 3:** Focuses on the **tone** of the dialogue (is the person lying?).
+
+If you only had one "perspective", you might miss a crucial detail. By using **multiple heads**, the Transformer can "see" the sentence in many different ways at the same time. One head might focus on grammar, while another focuses on the emotional meaning.
+
+---
 
 where:
 
@@ -649,7 +648,24 @@ The embedding weight matrix (dimension $d_{model} \times |V|$) is often **shared
 | Self-Attention | $O(n^2 \cdot d)$ — quadratic in sequence length |
 | FFN            | $O(n \cdot d^2)$ — linear in sequence length    |
 
-**The $O(n^2)$ cost is the main scalability bottleneck** for long sequences. For $n = 512$ (BERT) it is fine; for $n = 100\text{k}$ it is not. Solutions: FlashAttention (memory-efficient exact attention), sparse attention, linear attention approximations.
+**The $O(n^2)$ cost is the main scalability bottleneck** for long sequences. For $n = 512$ (BERT) it is fine; for $n = 100\text{k}$ it is not.
+
+---
+
+### 🧠 Deep Dive: FlashAttention (The Memory Trick)
+
+If the math of attention is $O(n^2)$, how do modern models like Claude or GPT-4 handle 100,000+ words at once?
+
+The secret isn't a different formula; it's **FlashAttention**.
+
+**The Problem:** Standard attention is "Memory Bound." The GPU spends 90% of its time just moving the giant $n \times n$ attention matrix back and forth between its slow memory (HBM) and its fast memory (SRAM).
+
+**The Solution:** FlashAttention uses a technique called **Tiling**. 
+- It breaks the giant matrix into small "tiles" that fit perfectly into the GPU's fast SRAM.
+- It computes the attention for each tile and "stitches" them together without ever writing the full $n \times n$ matrix to slow memory.
+- **Result:** It is much faster and uses far less memory, even though the final answer is exactly the same!
+
+---
 
 ---
 

@@ -211,14 +211,33 @@ z ────────────┘
 - $\frac{\partial f}{\partial z} = q = 3$; $\frac{\partial f}{\partial q} = z = -4$
 - $\frac{\partial f}{\partial x} = \frac{\partial f}{\partial q} \cdot 1 = -4$; $\frac{\partial f}{\partial y} = -4$
 
+### 💡 Intuition: Finding Your Way in the Dark
+
+Imagine you are at the top of a mountain (the current loss) at night. You can't see the bottom, but you can feel the slope of the ground under your feet.
+
+- **The Gradient:** The direction of the steepest slope.
+- **Gradient Descent:** Taking a small step in the opposite direction (downward).
+- **Learning Rate:** How big your step is.
+  - Too small? It takes forever to get home.
+  - Too large? You might jump over the valley and end up on another mountain peak.
+
+### 🧠 Deep Dive: Backpropagation Pattern Intuition
+
+During the backward pass, each gate acts as a "gradient router":
+
+1.  **Add Gate (+):** It is a **Distributor**. It sends the same gradient to both branches.
+2.  **Mul Gate (*):** It is a **Scaler**. It scales the gradient by the value of the *other* branch.
+3.  **Max Gate:** It is a **Switch**. It sends all the gradient to the branch that won, and zero to the others.
+
+**Why is this helpful?**
+- If your gradient is vanishing, you can look at your multiplication gates. If one branch is very small, it will kill the signal for the other branch.
+- This is exactly why we normalize weights and use BatchNorm: to keep the values in a range where the "Scalers" (multiplication gates) don't shrink the signal to zero.
+
+---
+
 ### Patterns in Backward Flow
 
-<!-- Review Needed: close slide match for 'Patterns in Backward Flow' (p88: 0.752, p89: 0.738) -->
-
-![[Lecture01_Pg088_Patterns_In_Backward_Flow.png]]
 ![[Lecture01_Pg089_Patterns_In_Backward_Flow.png]]
-
-<!-- Review Needed: close slide match for 'Patterns in Backward Flow' (p90: 0.793, p89: 0.755) -->
 
 | Gate         | Role                 | Behaviour                                                                         |
 | ------------ | -------------------- | --------------------------------------------------------------------------------- |

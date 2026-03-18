@@ -177,6 +177,27 @@ $$q(x_{t-1}|x_t) = \frac{q(x_t|x_{t-1}) \cdot q(x_{t-1})}{q(x_t)}$$
 
 ---
 
+### 💡 Intuition: Denoising as "Climbing the Mountain of Data"
+
+Diffusion models are like a search for where the data "lives".
+
+- **The Forward Process:** You start with a clear photo and walk away into a dense fog (adding noise) until you are completely lost.
+- **The Reverse Process (Learning):** The model is like a compass. It learns to point in the direction where the photo *used to be*.
+
+By predicting the noise, the model is actually telling you: "If you want to find the real image, move in *this* direction." If you follow that compass 1000 times, you'll walk out of the fog and end up at a high-quality photo.
+
+---
+
+### 🧠 Deep Dive: The Score Function
+
+In continuous-time diffusion, we talk about the **Score Function** $\nabla_x \log p_t(x)$.
+
+**The Problem:** We want to know how to move from a noisy image $x$ to a more realistic image. If we knew the probability distribution $p(x)$ of all real images, we would just move in the direction where the probability increases the fastest (the gradient).
+
+**The Solution:** The denoiser network $\varepsilon_\theta(x_t, t)$ is mathematically related to this score. When you train a network to predict noise, you are implicitly teaching it the **Score Function**. It learns the "shape" of the data distribution and can push random noise toward the peaks of that distribution — which are the realistic images.
+
+---
+
 ### Parametric Reverse Model
 
 We use a **parametric model** $p_\theta$ to approximate the reverse process:
@@ -545,6 +566,24 @@ $$\nabla_x \mathcal{L} = \nabla_x \mathcal{L}_\text{data}(x_t, c) + s \cdot \nab
 - $f$ = image encoder, $g$ = text encoder.
 
 > **Example**: When generating "a red apple on a wooden table", the CLIP gradient nudges each denoising step toward images whose visual features are more similar to that text description.
+
+### 🧠 Deep Dive: Classifier-Free Guidance (CFG)
+
+If you've ever used a tool like Stable Diffusion and adjusted the "Guidance Scale" or "CFG Scale," this is what's happening under the hood.
+
+**The Goal:** We want the model to follow our text prompt $c$ as closely as possible.
+
+**The Solution:** During training, we randomly "drop out" the text prompt (e.g., 10% of the time, we show the model an empty string $\varnothing$). This teaches the model two things:
+1.  **$p(x_t | c)$:** How to generate an image based on a prompt.
+2.  **$p(x_t)$:** How to generate *any* random image.
+
+**At Inference:** We calculate the noise for both the prompt and the empty prompt. We then "amplify" the difference:
+$$\epsilon_{\text{final}} = \epsilon_{\text{uncond}} + w \cdot (\epsilon_{\text{cond}} - \epsilon_{\text{uncond}})$$
+
+- **Low $w$ (e.g., 1.0):** The model is "creative" and might ignore parts of your prompt.
+- **High $w$ (e.g., 7.5 - 15):** The model is "forced" to follow the prompt very strictly. This often leads to much sharper images but can sometimes "fry" the colors if the scale is too high.
+
+---
 
 ### GLIDE Training
 

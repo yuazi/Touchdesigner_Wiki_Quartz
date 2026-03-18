@@ -54,6 +54,26 @@ This allows the model to ask "how well do the pixel features match their neighbo
 
 ---
 
+### 💡 Intuition: Why Patches? (The "Pixel vs. Word" Analogy)
+
+In a sentence, a **word** is a meaningful unit. In an image, a single **pixel** is almost meaningless.
+
+If we fed every pixel into a Transformer, a 224x224 image would have **50,176 tokens**. Because attention is $O(n^2)$, this would be impossible to compute ($50,176^2 \approx 2.5 \text{ billion}$ operations per layer!).
+
+**The Solution:** By grouping pixels into **16x16 patches**, we treat each patch like a "word". Now we only have **196 tokens**, which is a sequence length Transformers can handle easily.
+
+---
+
+### 🧠 Deep Dive: The Data-Inductive Bias Tradeoff
+
+Why do CNNs beat ViT on small datasets, but ViT wins on huge datasets?
+
+1.  **Inductive Bias (The "Cheat Code"):** CNNs "know" that images have local structure (pixels near each other are related) and that a cat is a cat whether it's on the left or right (translation equivariance). This knowledge is a "cheat code" that helps the model learn faster with less data.
+2.  **The Transformer "Tabula Rasa":** ViT starts with almost no assumptions. It doesn't even know that patches are arranged in a grid! It has to *learn* the spatial relationships from scratch.
+3.  **The Result:** On a small dataset (ImageNet-1K), the "cheat code" (CNN) wins. But on a massive dataset (JFT-300M), the assumptions of the CNN actually become a **limitation**. The Transformer, free of those assumptions, can learn more complex, flexible representations that eventually surpass the CNN.
+
+---
+
 ### Vision Transformer (ViT) — Main Workflow
 
 <!-- Review Needed: close slide match for 'Vision Transformer (ViT) — Main Workflow' (p12: 0.552, p13: 0.522) -->

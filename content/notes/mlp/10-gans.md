@@ -92,6 +92,27 @@ Finding a two-sample test objective in high dimensions is hard, so we:
 
 ---
 
+### 💡 Intuition: The Counterfeiter and the Detective
+
+The GAN is a two-player game between:
+
+- **The Generator (The Counterfeiter):** Their goal is to create fake banknotes that are so good, nobody can tell they aren't real. They never see real money; they only hear from the detective whether their latest batch was caught.
+- **The Discriminator (The Detective):** Their goal is to look at a banknote and decide if it's real or fake. They study real money to learn what it looks like, and then try to catch the counterfeiter.
+
+As the detective gets better at spotting flaws, the counterfeiter is forced to fix those specific flaws. Eventually, the fakes become indistinguishable from the real thing.
+
+---
+
+### 🧠 Deep Dive: Mode Collapse (The "Easy Way Out")
+
+Imagine the counterfeiter discovers that the detective is currently very bad at spotting fake €10 bills, but very good at spotting €50 bills.
+
+Instead of trying to learn how to make all types of money, the counterfeiter might decide to **only make €10 bills**. Even if they produce millions of identical €10 bills, they are "winning" the game because the detective is fooled.
+
+**In Machine Learning:** A GAN trained on cats and dogs might "collapse" and only produce one specific, high-quality image of a cat. It has "solved" the problem of fooling the discriminator, but it has failed at its true goal: learning the *full diversity* of the data distribution.
+
+---
+
 ## The Adversarial Framework
 
 ![[Lecture10_Pg028_The_Adversarial_Framework.png]]

@@ -225,13 +225,46 @@ A 32×32×3 image flattened to 3072×1 is fed into a dense layer. This ignores a
 - Filters always **extend the full depth** of the input volume
 - The filter computes a dot product at each spatial position → produces an **activation map** (also called a **feature map**)
 
-> **Example — vertical edge filter**: imagine a 3×3 kernel whose left column has positive weights and right column has negative weights. When it slides over a photo, it activates strongly on transitions like a door frame, a window border, or the outline of a dog's ear, but stays near zero on flat sky or wall regions.
+#### 💡 Example: The Sobel Filter (Edge Detection)
+
+A CNN doesn't "know" it's looking at a cat. It first learns to find edges. One of the most famous examples is the **Sobel Filter** for finding vertical edges:
+
+$$K = \begin{bmatrix} -1 & 0 & 1 \\ -2 & 0 & 2 \\ -1 & 0 & 1 \end{bmatrix}$$
+
+- If you slide this over a **solid white area**, the result is $0$.
+- If you slide this over a **vertical edge** (white on left, black on right), the result is a **large positive number**.
+- If you slide this over a **horizontal edge**, the result is $0$.
+
+In a CNN, we don't hard-code these numbers. The network **learns** them during training!
+
+---
 
 ### Multiple Activation Maps
 
 ![[Lecture02_Pg048_Multiple_Activation_Maps.png]]
 
 Using multiple filters in parallel produces multiple feature maps. For example, six 5×5 filters applied to a 32×32×3 input produce six separate activation maps of size 28×28, which stack into a volume of **28×28×6**.
+
+### 💡 Intuition: Convolution vs. Flattening (The "Face" Example)
+
+Imagine you are looking for a face in a photo.
+
+- **Fully Connected Approach (Flattening):** You treat the photo like a giant list of numbers. To recognize a face, you have to learn what a face looks like at *every single possible pixel location*. If the face moves one pixel to the left, the whole list of numbers changes, and the network might not recognize it anymore.
+- **Convolutional Approach:** You use a small "Face Detector" (the filter) and slide it across the image. The detector only cares what a face looks like *locally*. If it finds a face anywhere, it shouts "Found one!". This makes the network much more efficient and robust.
+
+---
+
+### 🧠 Deep Dive: Translation Invariance
+
+One of the biggest strengths of CNNs is **Translation Invariance** (or Equivariance).
+
+**How it works:**
+1.  **Weight Sharing:** Because the same filter is used everywhere, if an edge exists in the top-left or bottom-right, the *same* weights will detect it.
+2.  **Pooling:** Max pooling takes a small region (e.g., 2x2) and picks the strongest signal. If a feature moves slightly within that 2x2 area, the output of the pooling layer stays *exactly the same*.
+
+This is why a CNN can recognize a "cat" regardless of whether the cat is in the corner of the image or right in the middle.
+
+---
 
 ### Key Idea
 

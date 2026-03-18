@@ -60,6 +60,30 @@ Train a powerful black-box model first, then explain its predictions after the f
 
 ---
 
+### 💡 Intuition: Saliency as "Model Gaze"
+
+When a human looks at a picture of a cat, their eyes jump to the ears, the whiskers, and the tail.
+
+**Saliency Maps** tell us where the model is "looking".
+
+- If the model correctly identifies a "cat" because it looked at the ears — we trust it.
+- If the model correctly identifies a "cat" because it looked at a "Cat Food" bowl in the background — we know it's cheating!
+
+Saliency helps us catch models that are "right for the wrong reasons."
+
+---
+
+### 🧠 Deep Dive: LIME vs. SHAP (Accuracy vs. Fairness)
+
+Both LIME and SHAP give you feature importance, but they do it very differently.
+
+- **LIME (Local Proxy):** LIME says, "I don't know how the whole model works, but *right here* in this tiny neighborhood, it acts like a simple linear equation." It's like approximating a complex curve with a straight line. It's fast and easy to understand, but it's only a rough approximation.
+- **SHAP (Game Theory):** SHAP is more principled. It asks: "If the features were players in a team, how much does each player truly deserve to be credited for the win?" It's mathematically "fair" (satisfying axioms of consistency and local accuracy), but it's much more computationally expensive to calculate.
+
+**In short:** LIME is a quick "good enough" sketch; SHAP is a rigorous "mathematically proven" audit.
+
+---
+
 ## Local vs. Global Explanations
 
 ![[Lecture13_Pg020_Local_Vs_Global_Explanations.png]]

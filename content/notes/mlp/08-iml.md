@@ -16,6 +16,29 @@ date: 2026-03-09
 
 ## Introduction
 
+### 💡 Intuition: Active Learning as "Smart Questioning"
+
+Imagine a student studying for an exam.
+
+- **Passive Learning:** The student reads the entire 500-page textbook from cover to cover. It's thorough, but very slow, and they might spend hours reading things they already know.
+- **Active Learning (iML):** The student skim-reads the textbook, identifies the 10 most confusing problems, and asks the teacher (the **Oracle**) to explain *only* those 10.
+
+By asking the "right" questions, the student learns much faster and with much less effort from the teacher. In ML, this teacher is the human expert, and their time is the most expensive resource we have.
+
+---
+
+### 🧠 Deep Dive: The Labeling Bottleneck
+
+Why do we need iML at all?
+
+1.  **Cost:** Labeling a single medical scan might take a radiologist 10 minutes and cost €50. We cannot afford to label 100,000 of them.
+2.  **Expertise:** You can't just hire someone on MTurk to label a Higgs-Boson particle track in a physics experiment. You need a physicist.
+3.  **Dynamic Data:** If you are building a fraud detector, the "rules" of fraud change every day. You need to constantly update the model with new, relevant examples.
+
+Interactive ML is the bridge that makes it possible to build high-quality models in these "data-starved" or "expert-heavy" domains.
+
+---
+
 ### Automatic vs. Interactive ML
 
 ![[Lecture08_Pg006_Automatic_Vs_Interactive_Ml.png]]
