@@ -47,4 +47,12 @@ In modern Taekwondo, the punch is often underused. Use powerful straight body sh
 
 ---
 
-[[notes/taekwondo/index|Return to Taekwondo]] | [[notes/index|Return to Notes]]
+## Sources
+
+- [World Taekwondo (WT) Competition Rules](http://www.worldtaekwondo.org/wt-competition-rules/)
+- [CJ Nickolas (Team USA Profile)](https://www.teamusa.com/profiles/cj-nickolas)
+- [USA Taekwondo (USATKD)](https://www.usatkd.org/)
+
+---
+
+[[notes/taekwondo/index|(y) Return to Taekwondo]] | [[notes/index|(y) Return to Notes]]

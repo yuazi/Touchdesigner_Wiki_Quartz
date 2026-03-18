@@ -98,4 +98,4 @@ You can insert effects between the `Cross TOP` and your `OUT` node to make it mo
 - [[touchdesigner/06_Recipes_and_Projects/Audio Reactive Geometry|Drive the mixer with Audio]] instead of a manual slider.
 - [[touchdesigner/03_Rendering_and_Output/Feedback Loops|Add a Feedback Loop]] for psychedelic trails.
 
-[[touchdesigner/06_Recipes_and_Projects/index|Return to Recipes & Projects]] | [[touchdesigner/index|Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

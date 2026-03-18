@@ -14,33 +14,10 @@ A digital garden is intentionally unfinished. You'll find notes at different sta
 
 ## What's growing here
 
-### [[touchdesigner/index|y\ TouchDesigner Wiki]]
-
-A structured wiki on visual programming with nodes and interactive media in real time. It covers operators, scripting, shaders, rendering, and complete project recipes.
-
-> Operator families · Python scripting · GLSL shaders · Audio reactivity · Connectivity protocols
-
----
-
-### [[calendar/index|y\ Calendar]]
-
-A running log of what I've been working on and learning, ordered by time.
-
----
-
-### [[notes/index|y\ Notes]]
-
-Short notes and references on things I find interesting.
-
-- [[notes/random/lorenz-attractor|(y-) The Lorenz Attractor]]
-- [[notes/tools/sioyek|(y-) Sioyek, a Keyboard Driven PDF Reader]]
-- [[notes/taekwondo/index|(y-) Taekwondo]]
-
----
-
-### [[work/index|y\ Work]]
-
-Projects, experiments, and things I've shipped, both personal and professional.
+- [[touchdesigner/index|(y) TouchDesigner Wiki]] — Structured reference for real-time visual programming.
+- [[calendar/index|(y) Calendar]] — A running log of learning and building.
+- [[notes/index|(y) Notes]] — Short notes and references on research and hobbies.
+- [[work/index|(y) Work]] — Projects, experiments, and shipped products.
 
 ---
 

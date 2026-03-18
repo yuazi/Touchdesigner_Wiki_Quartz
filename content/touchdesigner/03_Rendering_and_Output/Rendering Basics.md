@@ -31,6 +31,6 @@ The **Render TOP** has several crucial parameters on its setup pages:
 - **Pixel Format:** 8-bit, 16-bit float, or 32-bit float. Use higher bit depths for HDR imaging, feedback loops, or precise depth passes.
 - **Anti-alias:** Smooths the jagged edges of geometry. Higher values cost more performance.
 
-[[touchdesigner/03_Rendering_and_Output/index|Return to Rendering & Output]] | [[touchdesigner/index|Return to TouchDesigner]]
+[[touchdesigner/03_Rendering_and_Output/index|(y) Return to Rendering & Output]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
 
 ---

@@ -328,6 +328,6 @@ Enable multiple users to interact with the same system:
 - [[Particle System with POPs|(y-) Particle System with POPs]] — Advanced particle systems driven by hands
 - [[GPU Fluid Simulation|(y-) GPU Fluid Simulation]] — Use hands to control fluid parameters
 
-[[touchdesigner/06_Recipes_and_Projects/index|Return to Recipes & Projects]] | [[touchdesigner/index|Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
 
 ---

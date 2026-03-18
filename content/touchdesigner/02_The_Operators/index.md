@@ -1,5 +1,5 @@
 ---
-title: "02. The Operators"
+title: "(y2) The Operators"
 tags:
   - touchdesigner
   - td/operators
@@ -29,6 +29,6 @@ This module covers TouchDesigner's fundamental building blocks: Operators (or No
 - **[[Geo COMP|(y-) Geo COMP]]**: Placing 3D geometry in the scene — transforms, materials, and instancing.
 - **[[Render TOP|(y-) Render TOP]]**: Converting 3D scenes into 2D textures for display and processing.
 
-[[touchdesigner/index|Return to TouchDesigner]]
+[[touchdesigner/index|(y) Return to TouchDesigner]]
 
 ---

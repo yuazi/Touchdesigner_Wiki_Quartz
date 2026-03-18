@@ -23,6 +23,6 @@ Here is a List of my favs
 | Emporio Armani Stronger with You Intensely | Sweet, spicy oriental with gourmand warmth, bold and cozy                                           | Fall/Winter        | Pink Pepper, Juniper, Violet                | Toffee, Cinnamon, Lavender, Sage                  | Vanilla, Amber, Tonka Bean, Suede                  | [Fragrantica](https://www.fragrantica.com/perfume/Giorgio-Armani/Emporio-Armani-Stronger-With-You-Intensely-52802.html) |
 | Tom Ford Oud Voyager                       | Woody-floral with a luminous, "futuristic" blend of oud and velvety florals                         | Fall/Winter        | Geranium Absolute, Pink Pepper, Citrus      | Living Red Peony™ Accord, Cardamom, Saffron       | Oud (Agarwood), Cypriol, Vetiver, Patchouli, Musk  | [Fragrantica](https://www.fragrantica.com/perfume/Tom-Ford/Oud-Voyager-111206.html)                                     |
 
-[[notes/index|Return to Notes]]
+[[notes/index|(y) Return to Notes]]
 
 ---

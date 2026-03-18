@@ -6,16 +6,17 @@ date: 2026-02-01
 Welcome to your **TouchDesigner** learning wiki, a structured reference for visual programming with nodes and interactive media in real time.
 
 > [!tip] New to TouchDesigner?
-> If you've just installed the software, start with our **[[touchdesigner/06_Recipes_and_Projects/index#(y-1) Fundamentals|Level 1 Beginner Recipes]]**. They are designed to get you making visuals in under 10 minutes without needing deep technical knowledge.
+> If you've just installed the software, start with our **[[touchdesigner/06_Recipes_and_Projects/index#(y-1) Fundamentals|(y-1) Beginner Recipes]]**. They are designed to get you making visuals in under 10 minutes without needing deep technical knowledge.
 
 ---
 
-## [[touchdesigner/01_Core_Concepts/index|y\ Core Concepts]]
+## (y1) Core Concepts
 
 The fundamentals: interface, navigation, and workflow.
 
 | Page                                                                                           | Description                         |
 | ---------------------------------------------------------------------------------------------- | ----------------------------------- |
+| [[touchdesigner/01_Core_Concepts/index|(y) Index: Core Concepts]]                                | Chapter hub                         |
 | [[touchdesigner/01_Core_Concepts/What is TouchDesigner\|(y-) What is TouchDesigner]]           | Overview of TD and its use cases    |
 | [[touchdesigner/01_Core_Concepts/Interface Overview\|(y-) Interface Overview]]                 | Panels, panes, and the main UI      |
 | [[touchdesigner/01_Core_Concepts/Network Editor\|(y-) Network Editor]]                         | Working in the node graph           |
@@ -27,12 +28,13 @@ The fundamentals: interface, navigation, and workflow.
 
 ---
 
-## [[touchdesigner/02_The_Operators/index|y\ The Operators]]
+## (y2) The Operators
 
 The six operator families are the building blocks of every network.
 
 | Family                                                     | Role                                  |
 | ---------------------------------------------------------- | ------------------------------------- |
+| [[touchdesigner/02_The_Operators/index|(y) Index: The Operators]]                               | Chapter hub                         |
 | [[touchdesigner/02_The_Operators/TOPs/index\|(y-) TOPs]]   | 2D image & video processing (GPU)     |
 | [[touchdesigner/02_The_Operators/CHOPs/index\|(y-) CHOPs]] | Numeric signals, audio & control data |
 | [[touchdesigner/02_The_Operators/SOPs/index\|(y-) SOPs]]   | 3D geometry (CPU)                     |
@@ -43,12 +45,13 @@ The six operator families are the building blocks of every network.
 
 ---
 
-## [[touchdesigner/03_Rendering_and_Output/index|y\ Rendering & Output]]
+## (y3) Rendering & Output
 
 Generating and compositing visuals.
 
 | Page                                                                                  | Description                                |
 | ------------------------------------------------------------------------------------- | ------------------------------------------ |
+| [[touchdesigner/03_Rendering_and_Output/index|(y) Index: Rendering & Output]]                       | Chapter hub                         |
 | [[touchdesigner/03_Rendering_and_Output/Rendering Basics\|(y-) Rendering Basics]]     | The Render TOP pipeline                    |
 | [[touchdesigner/03_Rendering_and_Output/Cameras and Lights\|(y-) Cameras and Lights]] | Setting up a 3D scene                      |
 | [[touchdesigner/03_Rendering_and_Output/Instancing\|(y-) Instancing]]                 | Rendering thousands of objects efficiently |
@@ -56,12 +59,13 @@ Generating and compositing visuals.
 
 ---
 
-## [[touchdesigner/04_Scripting_and_Architecture/index|y\ Scripting & Architecture]]
+## (y4) Scripting & Architecture
 
 Python, project structure, and performance.
 
 | Page                                                                                                    | Description                         |
 | ------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| [[touchdesigner/04_Scripting_and_Architecture/index|(y) Index: Scripting & Architecture]]                 | Chapter hub                         |
 | [[touchdesigner/04_Scripting_and_Architecture/Python in TD\|(y-) Python in TD]]                         | Writing Python inside TouchDesigner |
 | [[touchdesigner/04_Scripting_and_Architecture/The op and me objects\|(y-) The op and me objects]]       | Navigating the network with code    |
 | [[touchdesigner/04_Scripting_and_Architecture/Custom Parameters\|(y-) Custom Parameters]]               | Adding your own parameters to COMPs |
@@ -72,12 +76,13 @@ Python, project structure, and performance.
 
 ---
 
-## [[touchdesigner/05_Connectivity_and_Shaders/index|y\ Connectivity & Shaders]]
+## (y5) Connectivity & Shaders
 
 External I/O, protocols, and GPU programming.
 
 | Page                                                                                          | Description                            |
 | --------------------------------------------------------------------------------------------- | -------------------------------------- |
+| [[touchdesigner/05_Connectivity_and_Shaders/index|(y) Index: Connectivity & Shaders]]                   | Chapter hub                         |
 | [[touchdesigner/05_Connectivity_and_Shaders/OSC and MIDI\|(y-) OSC and MIDI]]                 | Sending and receiving control messages |
 | [[touchdesigner/05_Connectivity_and_Shaders/NDI and Syphon\|(y-) NDI and Syphon]]             | Sharing video between applications     |
 | [[touchdesigner/05_Connectivity_and_Shaders/DMX and Art-Net\|(y-) DMX and Art-Net]]           | Lighting control protocols             |
@@ -86,12 +91,13 @@ External I/O, protocols, and GPU programming.
 
 ---
 
-## [[touchdesigner/06_Recipes_and_Projects/index|y\ Recipes & Projects]]
+## (y6) Recipes & Projects
 
 Practical examples from start to finish.
 
 | Page                                                                                                                                       | Description                                                                                                 |
 | ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| [[touchdesigner/06_Recipes_and_Projects/index|(y) Index: Recipes & Projects]]                               | Chapter hub                         |
 | [[touchdesigner/06_Recipes_and_Projects/Basic VJ Mixer\|(y-) Basic VJ Mixer]]                                                              | A simple live video mixer                                                                                   |
 | [[touchdesigner/06_Recipes_and_Projects/Audio Reactive Geometry\|(y-) Audio Reactive Geometry]]                                            | Geometry driven by audio                                                                                    |
 | [[touchdesigner/06_Recipes_and_Projects/GLSL Feedback Effect\|(y-) GLSL Feedback Effect]]                                                  | Feedback loop built with shaders                                                                            |
@@ -109,10 +115,10 @@ Practical examples from start to finish.
 
 ---
 
-## [[touchdesigner/07_Tutorials_and_Links/index|y\ Tutorials & Links]]
+## (y7) Tutorials & Links
 
 Curated external resources, including YouTube channels, courses, and community forums.
 
-[[index|Return to Home]]
+[[index|(y) Return to Home]]
 
 ---

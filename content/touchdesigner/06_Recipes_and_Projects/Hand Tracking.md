@@ -56,6 +56,6 @@ This tutorial series details the implementation of real-time hand tracking in To
 - [[Particle System with POPs]] — driving particles from hand position
 - [[Hand-Tracked Chaotic Attractor]] — Lorenz attractor driven by a custom Script CHOP (no plugin)
 
-[[touchdesigner/06_Recipes_and_Projects/index|Return to Recipes & Projects]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
 
 ---

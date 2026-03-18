@@ -1,5 +1,5 @@
 ---
-title: y\ Machine Perception & Learning (MPL)
+title: Machine Perception & Learning (MPL)
 tags:
   - mlp
   - machine-learning
@@ -12,11 +12,11 @@ This is my study hub for the MPL master's course. Each lecture gets its own page
 
 I use the [[work/slidelink|SlideLink]] tool I built to automatically align these notes with the lecture slides.
 
-[[notes/index|Return to Notes]] | [[index|Return to Home]]
+[[notes/index|(y) Return to Notes]] | [[index|(y) Return to Home]]
 
 ---
 
-## y\ Lectures
+## Lectures
 
 | #   | Topic                                     | Core Idea                                      |
 | --- | ----------------------------------------- | ---------------------------------------------- |
@@ -36,7 +36,7 @@ I use the [[work/slidelink|SlideLink]] tool I built to automatically align these
 
 ---
 
-## y\ How to Use These Notes
+## How to Use These Notes
 
 - **Reading linearly** works well — each lecture builds on the previous.
 - Each page has a **mental model** section (big picture first), then details.
@@ -45,7 +45,7 @@ I use the [[work/slidelink|SlideLink]] tool I built to automatically align these
 
 ---
 
-## y\ Quick Reference: Key Concepts
+## Quick Reference: Key Concepts
 
 | Concept           | Where It Appears                                                 |
 | ----------------- | ---------------------------------------------------------------- |

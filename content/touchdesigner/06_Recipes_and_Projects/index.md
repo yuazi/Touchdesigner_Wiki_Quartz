@@ -1,8 +1,9 @@
 ---
-title: "06. Recipes & Projects"
+title: "(y6) Recipes & Projects"
 tags:
   - touchdesigner
   - td/recipes
+date: 2026-03-01
 ---
 
 Welcome to the **Recipes & Projects** module! This is where we put theory into practice. These tutorials combine techniques from all previous chapters into functional networks you can use in live shows, installations, or as starting points for your own experiments.
@@ -55,6 +56,4 @@ _Deep dives into fluid dynamics, motion tracking, and complex math._
 - **[[GPU Fluid Simulation|(y-) GPU Fluid Simulation]]**: A complex TOP-based feedback system for smoke and liquid dynamics.
 - **[[Dreamscape Particle Cloud|(y-) Dreamscape Particle Cloud]]**: A stylized, glowing particle system with feedback-based bloom.
 
----
-
-[[touchdesigner/index|Return to TouchDesigner]]
+[[touchdesigner/index|(y) Return to TouchDesigner]]

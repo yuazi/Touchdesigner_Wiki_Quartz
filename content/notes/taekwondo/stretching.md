@@ -59,4 +59,12 @@ Recent research (2025) on high-level martial artists found that **core stability
 
 ---
 
-[[notes/taekwondo/index|Return to Taekwondo]] | [[notes/index|Return to Notes]]
+## Sources
+
+- [National Strength and Conditioning Association (NSCA)](https://www.nsca.com/)
+- [American College of Sports Medicine (ACSM)](https://www.acsm.org/)
+- [Science of Taekwondo (Academic Studies)](https://www.google.com/search?q=taekwondo+sports+science+studies)
+
+---
+
+[[notes/taekwondo/index|(y) Return to Taekwondo]] | [[notes/index|(y) Return to Notes]]

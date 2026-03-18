@@ -333,6 +333,6 @@ If CPU spikes, reduce Points first, then lower dt a little. Add a Timer CHOP to 
 - [[touchdesigner/02_The_Operators/SOPs/index|(y-) SOPs]]
 - [[touchdesigner/02_The_Operators/CHOPs/index|(y-) CHOPs]]
 
-[[touchdesigner/06_Recipes_and_Projects/index|Return to Recipes & Projects]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
 
 ---

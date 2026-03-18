@@ -1,5 +1,5 @@
 ---
-title: y\ Taekwondo
+title: (y) Taekwondo
 tags:
   - taekwondo
   - note
@@ -15,7 +15,7 @@ I like kicking and spinning, looks really cool. Honestly I just saw someone do a
 
 ---
 
-## y\ Basic Kicks
+## (y-) Basic Kicks
 
 These are the kicks I have been drilling. Some feel natural, some still feel like my leg has never been attached to my body.
 
@@ -37,7 +37,7 @@ These are the kicks I have been drilling. Some feel natural, some still feel lik
 
 ---
 
-## y\ Poomsae Commands
+## (y-) Poomsae Commands
 
 Poomsae (patterns / forms) practice has its own vocabulary. Knowing what the instructor says means you are not the person looking around confused after everyone else bowed.
 
@@ -60,4 +60,12 @@ Poomsae (patterns / forms) practice has its own vocabulary. Knowing what the ins
 
 ---
 
-[[notes/index|Return to Notes]] | [[notes/taekwondo/stances|(y-) Stances]] | [[notes/taekwondo/combinations|(y-) Combinations]] | [[notes/taekwondo/sparring|(y-) Sparring]] | [[notes/taekwondo/stretching|(y-) Stretching]] | [[notes/taekwondo/philosophy|(y-) Philosophy]]
+## Sources
+
+- [Kukkiwon (World Taekwondo Headquarters)](http://www.kukkiwon.or.kr/)
+- [World Taekwondo (WT)](http://www.worldtaekwondo.org/)
+- [USA Taekwondo (USATKD)](https://www.usatkd.org/)
+
+---
+
+[[notes/index|(y) Return to Notes]] | [[notes/taekwondo/stances|(y-) Stances]] | [[notes/taekwondo/combinations|(y-) Combinations]] | [[notes/taekwondo/sparring|(y-) Sparring]] | [[notes/taekwondo/stretching|(y-) Stretching]] | [[notes/taekwondo/philosophy|(y-) Philosophy]]

@@ -459,7 +459,7 @@ From here you can extend the rig by:
 
 ## Related
 
-- [[Hand Tracking|Return to Hand Tracking]] — video links and series overview
+- [[Hand Tracking|(y) Return to Hand Tracking]] — video links and series overview
 - [[Sierpinski Tetrahedron with Hand Tracking]] — fractal geometry project using the same MediaPipe rig
 - [[Hand-Tracked Chaotic Attractor]] — Lorenz attractor driven by a custom Script CHOP (no plugin)
 - [[touchdesigner/04_Scripting_and_Architecture/Python in TD|(y-) Python in TD]]
@@ -467,6 +467,6 @@ From here you can extend the rig by:
 - [[touchdesigner/03_Rendering_and_Output/Instancing|(y-) Instancing]]
 - [[Particle System with POPs]]
 
-[[Hand Tracking|Return to Hand Tracking]]
+[[Hand Tracking|(y) Return to Hand Tracking]]
 
 ---

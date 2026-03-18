@@ -20,6 +20,6 @@ date: 2026-03-01
 
 In TouchDesigner, data flows from left to right through connections (wires). Each operator performs a specific task on the data.
 
-[[touchdesigner/01_Core_Concepts/index|Return to Core Concepts]] | [[touchdesigner/index|Return to TouchDesigner]]
+[[touchdesigner/01_Core_Concepts/index|(y) Return to Core Concepts]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
 
 ---

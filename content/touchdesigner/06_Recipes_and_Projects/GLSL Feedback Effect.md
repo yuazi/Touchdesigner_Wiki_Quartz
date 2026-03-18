@@ -149,8 +149,8 @@ Kick drums push the zoom, creating the classic "zoom-in-on-beat" VJ effect.
 - [[Feedback Loops]] — pure TOP-based feedback without GLSL
 - [[Introduction to GLSL]] — GLSL fundamentals in TouchDesigner
 
-[[Index|Return to Recipes & Projects]]
+[[Index|(y) Return to Recipes & Projects]]
 
-[[touchdesigner/06_Recipes_and_Projects/index|Return to Recipes & Projects]] | [[touchdesigner/index|Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
 
 ---

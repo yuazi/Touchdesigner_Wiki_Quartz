@@ -82,6 +82,6 @@ theme = nord
 
 Ghostty automatically integrates with common shells (bash, zsh, fish). It tracks the current working directory, marks prompt zones, and reports exit codes. No manual setup required for supported shells.
 
-[[notes/index|Return to Notes]]
+[[notes/index|(y) Return to Notes]]
 
 ---

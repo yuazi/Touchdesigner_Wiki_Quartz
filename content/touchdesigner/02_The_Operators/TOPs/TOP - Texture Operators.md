@@ -45,6 +45,6 @@ To use TOPs effectively:
 5. **Viewing Output:** Click the 'Viewer Active' toggle (bottom right of the node) to interact with the image or background-click 'Display' to set it as the network's backdrop.
 6. **Exporting and Converting:** You can pass TOP data to other families using conversion nodes like `TOP to CHOP` to convert pixel color values into channel data streams.
 
-[[touchdesigner/02_The_Operators/TOPs/index|Return to TOPs]] | [[touchdesigner/02_The_Operators/index|Return to The Operators]] | [[touchdesigner/index|Return to TouchDesigner]]
+[[touchdesigner/02_The_Operators/TOPs/index|(y) Return to TOPs]] | [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
 
 ---

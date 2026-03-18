@@ -2,23 +2,56 @@
 title: About
 tags:
   - me
-date: 2026-03-01
+date: 2026-03-18
 ---
 
-## (Who Am I)
+## Who am I?
 
-Hey, I'm **Yusuf**.
+Hey, I'm **Yusuf**
 
-I'm a master's student in _Wirtschaftsinformatik_. It feels like a mix of computer science nerdiness and economics energy. Basically, I'm a nerd in a suit ^^
+I am a **Wirtschaftsinformatik (Business Informatics) Master's student** at the University of Stuttgart. I live at the intersection of technical depth and business strategy—effectively a **"Nerd in a Suit."**
 
-This website is basically my second brain. I learn best when I can _see_ things: diagrams, connections, visual structures. This space grew out of that habit. Visualizing things helps me remember better, and I hope it helps you too.
-
-You'll find notes on creative tech, visual programming, tools I use, and whatever else has been occupying my brain lately. Nothing here is finished. That's intentional.
-
----
-
-_The garden is never finished. Neither am I._
+This space, the **(y)usage Garden**, is my second brain. It’s where I map connections, visualize chaotic systems, and document my path through machine learning, creative tech, and physical discipline.
 
 ---
 
-[[index|Return to Garden]]
+## The Stack
+
+I build tools that bridge the gap between complex data and intuitive interfaces.
+
+- **Languages:** Python, TypeScript, Java, Lua
+- **AI/ML:** PyTorch, MediaPipe, Constraint Propagation
+- **Creative:** TouchDesigner, GLSL, Strange Attractors
+- **Environment:** Ghostty + Neovim + Yazi (Keyboard-driven workflow)
+
+---
+
+## Currently
+
+- **Building:** [SlideLink](./work/slidelink)—automating the bridge between lecture slides and Quartz notes.
+- **Studying:** Machine Perception & Learning (MPL).
+- **Training:** Taekwondo—focusing on high-pressure sparring and PNF mobility.
+- **Exploring:** The intersection of generative AI and real-time visual systems.
+
+---
+
+## Beyond the Screen
+
+- **Taekwondo:** A white-to-black belt journey fueled by a love for spinning kicks.
+- **Motorcycles:** Pure focus. No distractions, just the bike and the road.
+- **Scents:** Exploring the sensory world of niche perfumery.
+- **Chaos:** obsessed with the math of the [Lorenz Attractor](./notes/random/lorenz-attractor).
+
+---
+
+## Contact
+
+Feel free to reach out if you want to talk about data science, creative coding, or why the front-leg "cancel" is the most important move in sparring.
+
+- **GitHub:** [yuazi](https://github.com/yuazi)
+
+---
+
+> _"The garden is never finished. Neither am I."_
+
+[[index|(y) Return to Garden]]

@@ -1,5 +1,5 @@
 ---
-title: Calendar
+title: (y) Calendar
 tags:
   - calendar
   - log
@@ -35,6 +35,6 @@ A running log of what I've been working on, learning, and building, ordered by t
 
 Each entry is a brief note on what I shipped, read, or explored that week. It isn't a diary. It's more like a changelog for my brain.
 
-[[index|Return to Home]]
+[[index|(y) Return to Home]]
 
 ---

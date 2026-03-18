@@ -1,5 +1,5 @@
 ---
-title: y\ CLI & Tools
+title: CLI & Tools
 tags:
   - tools
   - cli
@@ -9,11 +9,11 @@ date: 2026-03-18
 
 Optimized for speed. A curated list of the terminal-centric tools I use to stay in flow and keep my hands on the home row.
 
-[[notes/index|Return to Notes]] | [[index|Return to Home]]
+[[notes/index|(y) Return to Notes]] | [[index|(y) Return to Home]]
 
 ---
 
-## y\ Tool Notes
+## Tool Notes
 
 - [[notes/tools/ghostty|(y-) Ghostty]] — A fast, native terminal emulator in Zig.
 - [[notes/tools/sioyek|(y-) Sioyek]] — Keyboard-driven PDF viewer for researchers.

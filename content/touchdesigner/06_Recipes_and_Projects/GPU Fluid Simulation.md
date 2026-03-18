@@ -332,6 +332,6 @@ Create a control panel with:
 - [[GLSL Feedback Effect|(y-) GLSL Feedback Effect]] — simpler feedback applications
 - [[Hand Tracking Tutorial|(y-) Hand Tracking Tutorial]] — for interactive fluid control
 
-[[touchdesigner/06_Recipes_and_Projects/index|Return to Recipes & Projects]] | [[touchdesigner/index|Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
 
 ---

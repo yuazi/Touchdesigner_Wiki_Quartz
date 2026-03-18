@@ -29,4 +29,11 @@ These are the core values every student is expected to live by:
 
 ---
 
-[[notes/taekwondo/index|Return to Taekwondo]] | [[notes/index|Return to Notes]]
+## Sources
+
+- [Kukkiwon: Philosophy of Taekwondo](http://www.kukkiwon.or.kr/front/pageView.do?pageId=010101&m_pId=0101)
+- [World Taekwondo (WT)](http://www.worldtaekwondo.org/wt-philosophy/)
+
+---
+
+[[notes/taekwondo/index|(y) Return to Taekwondo]] | [[notes/index|(y) Return to Notes]]

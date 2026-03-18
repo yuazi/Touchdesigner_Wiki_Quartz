@@ -45,6 +45,6 @@ To use Components effectively in your network:
 4. **Connecting:** COMPs typically connect to other COMPs (like wire connections between Geometry COMPs and a Render COMP). They have special inputs/outputs depending on their type, and can pass internal data outside using In/Out components inside them.
 5. **Custom Parameters Interface:** Right-click the COMP and select "Customize Component" to add your own parameters, creating a clean modular interface for complex internal mechanics.
 
-[[touchdesigner/02_The_Operators/COMPs/index|Return to COMPs]] | [[touchdesigner/02_The_Operators/index|Return to The Operators]] | [[touchdesigner/index|Return to TouchDesigner]]
+[[touchdesigner/02_The_Operators/COMPs/index|(y) Return to COMPs]] | [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
 
 ---

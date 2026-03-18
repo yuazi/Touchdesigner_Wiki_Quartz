@@ -84,4 +84,4 @@ Let's make a visual where your motion "paints" trails on the screen.
 - **Particle Trails:** Use the Optical Flow colors to push particles in the direction of your arm's movement.
 - **Interactive Mask:** Use the Motion History as an alpha mask to only show a 3D scene where someone is moving.
 
-[[touchdesigner/06_Recipes_and_Projects/index|Return to Recipes & Projects]] | [[touchdesigner/index|Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

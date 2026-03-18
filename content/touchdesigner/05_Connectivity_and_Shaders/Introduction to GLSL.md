@@ -63,6 +63,6 @@ The biggest advantage of GLSL in TD is how easily you can pass data _into_ the s
 - **Uniforms:** If you have an oscillating LFO CHOP channel, you can map it to a Uniform Variable on the "Vectors" page of the GLSL TOP/MAT. Your shader can then read that float, vec2, or vec3 directly.
 - **Samplers:** You can connect up to 30 Input TOPs (images, noises, videos) to a GLSL TOP. In the shader, you reference them using standard sampler functions (like `texture(sTD2DInputs[0], uv)`).
 
-[[touchdesigner/05_Connectivity_and_Shaders/index|Return to Connectivity & Shaders]] | [[touchdesigner/index|Return to TouchDesigner]]
+[[touchdesigner/05_Connectivity_and_Shaders/index|(y) Return to Connectivity & Shaders]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
 
 ---

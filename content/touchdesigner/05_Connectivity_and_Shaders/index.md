@@ -1,24 +1,22 @@
 ---
-title: "05. Connectivity & Shaders"
+title: "(y5) Connectivity & Shaders"
 tags:
   - touchdesigner
   - td/connectivity
+  - td/shaders
 date: 2026-02-26
 ---
 
-This module covers advanced hardware I/O, network protocols, and custom GPU programming.
+This module covers external communication protocols and custom GPU programming with GLSL.
 
-## Connectivity & Protocols
+## Contents
 
-- **[[OSC and MIDI|(y-) OSC and MIDI]]**: Sending and receiving control data.
-- **[[NDI and Syphon|(y-) NDI and Syphon]]**: Streaming real-time video across networks or between applications on the same machine.
-- **[[DMX and Art-Net|(y-) DMX and Art-Net]]**: Controlling physical lighting fixtures and LEDs.
-- **[[Audio Reactivity|(y-) Audio Reactivity]]**: Analyzing sound streams to drive generative visuals.
+- **[[OSC and MIDI|(y-) OSC and MIDI]]**: Sending and receiving control messages.
+- **[[NDI and Syphon|(y-) NDI and Syphon]]**: Sharing real-time video between applications.
+- **[[DMX and Art-Net|(y-) DMX and Art-Net]]**: Lighting control and hardware integration.
+- **[[Audio Reactivity|(y-) Audio Reactivity]]**: Driving visuals from real-time audio signals.
+- **[[Introduction to GLSL|(y-) Introduction to GLSL]]**: Writing custom vertex and pixel shaders.
 
-## Custom Shaders
-
-- **[[Introduction to GLSL|(y-) Introduction to GLSL]]**: Writing custom vertex and pixel shaders in TouchDesigner to bypass node overhead and execute native GPU code.
-
-[[touchdesigner/index|Return to TouchDesigner]]
+[[touchdesigner/index|(y) Return to TouchDesigner]]
 
 ---

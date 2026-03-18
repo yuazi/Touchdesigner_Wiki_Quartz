@@ -84,4 +84,4 @@ Let's make a circle that grows and changes color when you smile.
 - **Eyebrow Control:** Use `F1_browInnerUp` to trigger a burst of particles.
 - **3D Mesh:** Check out the `Face Mesh` output to see a full 3D wireframe of your face.
 
-[[touchdesigner/06_Recipes_and_Projects/index|Return to Recipes & Projects]] | [[touchdesigner/index|Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

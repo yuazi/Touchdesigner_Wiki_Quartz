@@ -29,5 +29,14 @@ Combinations are where it starts to actually feel like Taekwondo. Single kicks a
 | 6     | Right baldum → right baldum → pandae dollyo chagi → right baldum → right baldum → dora baldum |
 | 6     | Right baldum → right baldum → right baldum → dwi chagi → pandae dollyo chagi → dora baldum    |
 
-[[notes/index|Return to Notes]]
-[[notes/taekwondo/index|Return to Taekwondo]]
+---
+
+## Sources
+
+- [Kukkiwon (World Taekwondo Headquarters)](http://www.kukkiwon.or.kr/)
+- [World Taekwondo (WT)](http://www.worldtaekwondo.org/)
+
+---
+
+[[notes/index|(y) Return to Notes]]
+[[notes/taekwondo/index|(y) Return to Taekwondo]]
