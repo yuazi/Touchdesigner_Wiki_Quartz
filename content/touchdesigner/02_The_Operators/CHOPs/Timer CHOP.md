@@ -39,6 +39,9 @@ When you create a Timer CHOP, it usually comes attached to a Text DAT full of Py
 This is incredibly powerful. You can write Python code that _only executes_ when those specific events happen. For example, triggering a sound effect using `onStart()`, and loading a new level using `onDone()`.
 
 ---
+
+[[touchdesigner/02_The_Operators/COMPs/index|(y-) Next Chapter: COMPs]]
+
 [[touchdesigner/02_The_Operators/CHOPs/index|(y) Return to CHOPs]]
 [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

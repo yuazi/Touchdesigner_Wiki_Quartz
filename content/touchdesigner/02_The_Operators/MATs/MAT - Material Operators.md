@@ -32,6 +32,9 @@ MATs are essential for giving your 3D geometry (SOPs) an actual surface appearan
 4. **Lighting:** Most materials (like Phong or PBR) require a `Light COMP` in the network to be visible in the render. Without a light, geometry with these materials might appear completely black.
 
 ---
+
+[[touchdesigner/02_The_Operators/POPs/index|(y-) Next Chapter: POPs]]
+
 [[touchdesigner/02_The_Operators/MATs/index|(y) Return to MATs]]
 [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

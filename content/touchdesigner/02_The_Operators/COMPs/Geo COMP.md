@@ -110,6 +110,9 @@ The Geo COMP does not have its own surface look — you must assign a MAT:
 - [[Instancing]] — duplicating geometry efficiently
 
 ---
+
+[[touchdesigner/02_The_Operators/DATs/index|(y-) Next Chapter: DATs]]
+
 [[touchdesigner/02_The_Operators/COMPs/index|(y) Return to COMPs]]
 [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

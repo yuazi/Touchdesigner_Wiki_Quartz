@@ -46,6 +46,9 @@ SOPs are the traditional way of modeling and manipulating 3D data in TouchDesign
    - This places your SOP data inside an object that can be rendered using a `Render TOP`, along with a `Camera COMP` and a `Light COMP`.
 
 ---
+
+[[touchdesigner/02_The_Operators/TOPs/index|(y-) Next Chapter: TOPs]]
+
 [[touchdesigner/02_The_Operators/SOPs/index|(y) Return to SOPs]]
 [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

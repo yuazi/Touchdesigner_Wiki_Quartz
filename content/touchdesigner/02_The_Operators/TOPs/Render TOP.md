@@ -96,6 +96,9 @@ For effects that require separation (e.g. rendering geometry and particles separ
 - [[Rendering Basics]] — full rendering workflow walkthrough
 
 ---
+
+[[touchdesigner/03_Rendering_and_Output/index|(y-) Next Chapter: Rendering & Output]]
+
 [[touchdesigner/02_The_Operators/TOPs/index|(y) Return to TOPs]]
 [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

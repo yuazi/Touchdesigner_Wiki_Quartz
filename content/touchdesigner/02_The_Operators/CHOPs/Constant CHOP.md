@@ -88,6 +88,9 @@ Place a Constant and an LFO side-by-side, feed both into a **Switch CHOP**, and 
 - [[Math CHOP]] — combine and remap constant values
 
 ---
+
+[[LFO CHOP|(y-) Next Page: LFO CHOP]]
+
 [[touchdesigner/02_The_Operators/CHOPs/index|(y) Return to CHOPs]]
 [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

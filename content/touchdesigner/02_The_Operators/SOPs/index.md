@@ -21,5 +21,8 @@ SOPs are TouchDesigner's **3D geometry** operators. They run on the CPU and let 
 - [[SOP - Surface Operators|(y-) SOP - Surface Operators]]
 
 ---
+
+[[SOP - Surface Operators|(y-) Next Page: SOP - Surface Operators]]
+
 [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

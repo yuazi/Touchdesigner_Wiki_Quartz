@@ -45,6 +45,9 @@ DATs manage anything text or script-related in TouchDesigner.
    - DATs easily convert to other families. `DAT to CHOP` is incredibly useful for turning numerical table data into CHOP channels, while `CHOP to DAT` turns signals into a historical table of values.
 
 ---
+
+[[touchdesigner/02_The_Operators/MATs/index|(y-) Next Chapter: MATs]]
+
 [[touchdesigner/02_The_Operators/DATs/index|(y) Return to DATs]]
 [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

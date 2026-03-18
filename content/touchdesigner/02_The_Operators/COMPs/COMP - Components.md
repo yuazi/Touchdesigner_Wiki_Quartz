@@ -46,6 +46,9 @@ To use Components effectively in your network:
 5. **Custom Parameters Interface:** Right-click the COMP and select "Customize Component" to add your own parameters, creating a clean modular interface for complex internal mechanics.
 
 ---
+
+[[Geo COMP|(y-) Next Page: Geo COMP]]
+
 [[touchdesigner/02_The_Operators/COMPs/index|(y) Return to COMPs]]
 [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

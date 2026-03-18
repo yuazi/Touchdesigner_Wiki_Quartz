@@ -34,6 +34,9 @@ Instead of routing long, messy wires across your network (or between different C
 There is an equivalent **Select TOP** that works exactly the same way, but for grabbing 2D image data/textures from another part of your network without drawing long wires.
 
 ---
+
+[[Timer CHOP|(y-) Next Page: Timer CHOP]]
+
 [[touchdesigner/02_The_Operators/CHOPs/index|(y) Return to CHOPs]]
 [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]
