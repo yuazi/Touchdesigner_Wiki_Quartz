@@ -21,6 +21,6 @@ COMPs are the **structural backbone** of a TouchDesigner project. They act as co
 - [[COMP - Components|(y-) COMP - Components]]
 - [[Geo COMP|(y-) Geo COMP]]
 
-[[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
-
 ---
+[[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
+[[touchdesigner/index|(y) Return to TouchDesigner]]

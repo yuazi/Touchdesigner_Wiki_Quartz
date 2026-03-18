@@ -43,6 +43,7 @@ To make the noise evolve over time:
 - **Noise CHOP:** Driving the rotation of geometry, instancing coordinates, simulating wind/wobble on parameters.
 - **Noise TOP:** Building procedural clouds, water textures, or displacement maps. Using it over a generic geometry gives it an organic, undulating feel.
 
-[[touchdesigner/02_The_Operators/CHOPs/index|(y) Return to CHOPs]] | [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
-
 ---
+[[touchdesigner/02_The_Operators/CHOPs/index|(y) Return to CHOPs]]
+[[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
+[[touchdesigner/index|(y) Return to TouchDesigner]]

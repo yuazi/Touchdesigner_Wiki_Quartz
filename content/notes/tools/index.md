@@ -1,5 +1,5 @@
 ---
-title: CLI & Tools
+title: (y) CLI & Tools
 tags:
   - tools
   - cli

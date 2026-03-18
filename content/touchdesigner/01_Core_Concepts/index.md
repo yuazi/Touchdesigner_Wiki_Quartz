@@ -19,6 +19,5 @@ Welcome to the Core Concepts module! This folder contains everything you need to
 - **[[Expressions and Parameters|(y-) Expressions and Parameters]]**: Python expressions, time references, `me`, `parent()`, and useful patterns.
 - **[[Viewer Active Mode|(y-) Viewer Active Mode]]**: How to interact directly with node outputs.
 
-[[touchdesigner/index|(y) Return to TouchDesigner]]
-
 ---
+[[touchdesigner/index|(y) Return to TouchDesigner]]

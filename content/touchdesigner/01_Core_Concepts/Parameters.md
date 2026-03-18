@@ -22,6 +22,6 @@ Every operator has a **Parameter Window** (Press `P` to toggle). This is where y
 - Use **CHOP Exports** for high-performance data driving (it's faster than expressions for many channels).
 - Use **Binding** when building user interfaces or custom components, allowing parameters to be controlled by a script, a CHOP, or a UI element simultaneously.
 
-[[touchdesigner/01_Core_Concepts/index|(y) Return to Core Concepts]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
-
 ---
+[[touchdesigner/01_Core_Concepts/index|(y) Return to Core Concepts]]
+[[touchdesigner/index|(y) Return to TouchDesigner]]

@@ -25,6 +25,6 @@ The TouchDesigner interface is a large, infinite canvas called the **Network Edi
 - **U:** Go up to the parent level.
 - **I:** Go into the selected component.
 
-[[touchdesigner/01_Core_Concepts/index|(y) Return to Core Concepts]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
-
 ---
+[[touchdesigner/01_Core_Concepts/index|(y) Return to Core Concepts]]
+[[touchdesigner/index|(y) Return to TouchDesigner]]

@@ -100,6 +100,7 @@ Let's make it look professional with some glow.
 
 - **Change the Layout:** Use a `Grid SOP` instead of a `Noise TOP` to arrange the boxes in a 2D square.
 - **Reactive Color:** Map the audio volume to the **Instance Color** parameters so it gets brighter on loud kicks.
-- **Feedback Trails:** Add a [[touchdesigner/03_Rendering_and_Output/Feedback Loops|Feedback Loop]] for a trippy, trailing effect.
 
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+---
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+[[touchdesigner/index|(y) Return to TouchDesigner]]

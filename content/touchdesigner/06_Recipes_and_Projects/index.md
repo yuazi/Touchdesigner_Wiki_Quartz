@@ -56,4 +56,5 @@ _Deep dives into fluid dynamics, motion tracking, and complex math._
 - **[[GPU Fluid Simulation|(y-) GPU Fluid Simulation]]**: A complex TOP-based feedback system for smoke and liquid dynamics.
 - **[[Dreamscape Particle Cloud|(y-) Dreamscape Particle Cloud]]**: A stylized, glowing particle system with feedback-based bloom.
 
+---
 [[touchdesigner/index|(y) Return to TouchDesigner]]

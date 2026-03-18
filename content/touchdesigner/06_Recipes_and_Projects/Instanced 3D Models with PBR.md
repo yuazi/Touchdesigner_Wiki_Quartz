@@ -300,6 +300,6 @@ TouchDesigner instancing limits:
 - [[Hand Tracking Tutorial|(y-) Hand Tracking Tutorial]] — Interactive instance control
 - [[Real-time Audio Visualizer|(y-) Real-time Audio Visualizer]] — Audio-driven visuals
 
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
-
 ---
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+[[touchdesigner/index|(y) Return to TouchDesigner]]

@@ -165,6 +165,6 @@ Quick prototype, don't care about GPU? → Method 5 (Particle SOP)
 - [[Dreamscape Particle Cloud|(y-) Recipe: Dreamscape Particle Cloud]]
 - [[GLSL Feedback Effect|(y-) Recipe: GLSL Feedback Effect]]
 
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
-
 ---
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+[[touchdesigner/index|(y) Return to TouchDesigner]]

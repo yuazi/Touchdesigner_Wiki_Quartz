@@ -99,4 +99,6 @@ The POP SOP outputs "points," but we need to tell TouchDesigner _how_ to draw th
 - **"Particles fly away too fast"** — Lower the **Initial Velocity** on the Source POP.
 - **"The colors aren't changing"** — Check that **Life Source** is set to `Normalized Life`.
 
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+---
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+[[touchdesigner/index|(y) Return to TouchDesigner]]

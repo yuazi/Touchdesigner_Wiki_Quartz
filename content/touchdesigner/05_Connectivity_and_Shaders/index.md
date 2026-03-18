@@ -17,6 +17,5 @@ This module covers external communication protocols and custom GPU programming w
 - **[[Audio Reactivity|(y-) Audio Reactivity]]**: Driving visuals from real-time audio signals.
 - **[[Introduction to GLSL|(y-) Introduction to GLSL]]**: Writing custom vertex and pixel shaders.
 
-[[touchdesigner/index|(y) Return to TouchDesigner]]
-
 ---
+[[touchdesigner/index|(y) Return to TouchDesigner]]

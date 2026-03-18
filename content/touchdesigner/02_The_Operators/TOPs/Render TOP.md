@@ -95,6 +95,7 @@ For effects that require separation (e.g. rendering geometry and particles separ
 - [[MAT - Material Operators|(y-) MAT]] — shaders applied to geometry
 - [[Rendering Basics]] — full rendering workflow walkthrough
 
-[[touchdesigner/02_The_Operators/TOPs/index|(y) Return to TOPs]] | [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
-
 ---
+[[touchdesigner/02_The_Operators/TOPs/index|(y) Return to TOPs]]
+[[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
+[[touchdesigner/index|(y) Return to TouchDesigner]]

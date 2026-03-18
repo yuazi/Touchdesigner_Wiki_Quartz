@@ -467,6 +467,7 @@ From here you can extend the rig by:
 - [[touchdesigner/03_Rendering_and_Output/Instancing|(y-) Instancing]]
 - [[Particle System with POPs]]
 
-[[Hand Tracking|(y) Return to Hand Tracking]]
-
 ---
+[[Hand Tracking|(y) Return to Hand Tracking]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
+[[touchdesigner/index|(y) Return to TouchDesigner]]

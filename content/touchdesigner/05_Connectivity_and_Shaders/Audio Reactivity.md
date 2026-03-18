@@ -28,6 +28,6 @@ Often, raw audio data is too jittery or "spiky" for smooth visuals. You should s
 - **Lag CHOP:** Limits how fast a value can rise or fall. Great for trailing audio envelopes.
 - **Envelope CHOP:** Extracts the overall volume curve of a waveform, discarding the microscopic high-frequency oscillation, giving you a clean curve to drive a parameter like scale.
 
-[[touchdesigner/05_Connectivity_and_Shaders/index|(y) Return to Connectivity & Shaders]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
-
 ---
+[[touchdesigner/05_Connectivity_and_Shaders/index|(y) Return to Connectivity & Shaders]]
+[[touchdesigner/index|(y) Return to TouchDesigner]]

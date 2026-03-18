@@ -48,6 +48,7 @@ POPs are the modern, high-performance way to handle particle systems and massive
    - Use a `Render POP` or convert the POP data back into a texture (`POP to TOP`) or geometry (`POP to SOP`) depending on how you wish to visualize the point cloud. Rendering as a texture (TOP) and using instancing is usually the most performant workflow.
 5. **System Requirements:** Note that POPs require a modern GPU and TouchDesigner 2023.11290 or later.
 
-[[touchdesigner/02_The_Operators/POPs/index|(y) Return to POPs]] | [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
-
 ---
+[[touchdesigner/02_The_Operators/POPs/index|(y) Return to POPs]]
+[[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
+[[touchdesigner/index|(y) Return to TouchDesigner]]
