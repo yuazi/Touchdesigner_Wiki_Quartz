@@ -119,6 +119,10 @@ Practical examples from start to finish.
 
 Curated external resources, including YouTube channels, courses, and community forums.
 
+| Page                                                              | Description                        | Role       |
+| :---------------------------------------------------------------- | :--------------------------------- | :--------- |
+| [[touchdesigner/07_Tutorials_and_Links/index\|(y) Tutorials & Links Index]] | Chapter hub for curated resources | Navigation |
+
 [[index|(y) Return to Home]]
 
 ---
