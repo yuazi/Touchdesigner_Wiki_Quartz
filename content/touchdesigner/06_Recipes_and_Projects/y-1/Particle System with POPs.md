@@ -1,4 +1,5 @@
 ---
+title: "Particle System with POPs"
 tags:
   - touchdesigner
   - td/recipes
@@ -7,8 +8,6 @@ tags:
   - recipes
 date: 2026-03-01
 ---
-
-# Recipe: Particle System with POPs
 
 Want to create particle systems that can handle hundreds of thousands of particles without melting your CPU? That's exactly what **POPs (Point Operators)** are for—they run entirely on the GPU, letting you push insane amounts of particles with forces, colors, and all the good stuff while keeping your processor happy.
 

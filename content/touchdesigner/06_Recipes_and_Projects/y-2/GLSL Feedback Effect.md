@@ -1,4 +1,5 @@
 ---
+title: "GLSL Feedback Effect"
 tags:
   - touchdesigner
   - td/recipes
@@ -8,8 +9,6 @@ tags:
   - shader
 date: 2026-03-02
 ---
-
-# Recipe: GLSL Feedback Effect
 
 This document details the implementation of recursive texture processing systems in TouchDesigner using Feedback TOP operators in conjunction with custom GLSL shaders. Such configurations enable the generation of complex temporal visual phenomena including trajectory trails, recursive diffusion patterns, and evolving procedural textures - all executed with full GPU acceleration for real-time performance capabilities.
 

@@ -1,4 +1,5 @@
 ---
+title: "Organic Amoeba (Fluid Point Geometry)"
 tags:
   - touchdesigner
   - td/recipes
@@ -8,7 +9,7 @@ tags:
 date: 2026-03-18
 ---
 
-# Recipe: Organic Amoeba (Fluid Point Geometry)
+> **Inspired by:** [Okamirufu Vizualizer](https://www.youtube.com/@OkamirufuV)
 
 Inspired by the biomechanical and organic aesthetics of [Okamirufu Vizualizer](https://www.youtube.com/@OkamirufuV), this recipe shows you how to create a "living," pulsating point cloud that looks like a microscopic organism or a floating amoeba.
 

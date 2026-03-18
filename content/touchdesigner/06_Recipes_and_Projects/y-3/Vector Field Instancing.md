@@ -1,4 +1,5 @@
 ---
+title: "Vector Field Instancing"
 tags:
   - touchdesigner
   - td/recipes
@@ -9,7 +10,7 @@ tags:
 date: 2026-03-18
 ---
 
-# Recipe: Vector Field Instancing
+> **Inspired by:** [Okamirufu Vizualizer](https://www.youtube.com/@OkamirufuV)
 
 Create a dense, swirling 3D field where millions of individual points follow a fluid-like path. This is the foundation of many generative art "vortex" effects.
 

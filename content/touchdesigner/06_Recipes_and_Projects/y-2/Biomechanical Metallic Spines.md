@@ -1,4 +1,5 @@
 ---
+title: "Biomechanical Metallic Spines"
 tags:
   - touchdesigner
   - td/recipes
@@ -8,7 +9,7 @@ tags:
 date: 2026-03-18
 ---
 
-# Recipe: Biomechanical Metallic Spines
+> **Inspired by:** [Okamirufu Vizualizer](https://www.youtube.com/@OkamirufuV)
 
 This recipe covers the creation of vertebral or rib-like structures using mathematical patterns and point rotation, a staple of the [Okamirufu Vizualizer](https://www.youtube.com/@OkamirufuV) aesthetic.
 

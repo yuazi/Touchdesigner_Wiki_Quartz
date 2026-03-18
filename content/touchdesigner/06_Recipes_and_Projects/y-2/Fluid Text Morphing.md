@@ -1,4 +1,5 @@
 ---
+title: "Fluid Text Morphing"
 tags:
   - touchdesigner
   - td/recipes
@@ -9,7 +10,7 @@ tags:
 date: 2026-03-18
 ---
 
-# Recipe: Fluid Text Morphing
+> **Inspired by:** [Okamirufu Vizualizer](https://www.youtube.com/@OkamirufuV)
 
 Transform 2D text into a dynamic, 3D point cloud that "melts," "morphs," and "dissolves" with a liquid-like fluidity. This technique bridges the 2D TOP world with the 3D POP world.
 

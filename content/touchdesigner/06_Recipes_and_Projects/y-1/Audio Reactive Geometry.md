@@ -1,4 +1,5 @@
 ---
+title: "Audio Reactive Geometry"
 tags:
   - touchdesigner
   - td/recipes
@@ -7,8 +8,6 @@ tags:
   - recipes
 date: 2026-03-02
 ---
-
-# Recipe: Audio Reactive Geometry
 
 In this recipe, we'll create a classic 3D "Equalizer" visualization. You'll learn how to take a sound wave, break it into frequencies, and use those numbers to drive the height of thousands of 3D boxes.
 

@@ -1,4 +1,5 @@
 ---
+title: "Basic A/B VJ Mixer"
 tags:
   - touchdesigner
   - td/recipes
@@ -7,8 +8,6 @@ tags:
   - vj
 date: 2026-03-02
 ---
-
-# Recipe: Basic A/B VJ Mixer
 
 This recipe walks you through building a fundamental **A/B Crossfader**—the backbone of any live visual performance. You will learn how to take two different video sources and smoothly blend between them using a slider.
 

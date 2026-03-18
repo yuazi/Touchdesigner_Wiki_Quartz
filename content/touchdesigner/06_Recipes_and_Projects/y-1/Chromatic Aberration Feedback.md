@@ -1,4 +1,5 @@
 ---
+title: "Chromatic Aberration Feedback"
 tags:
   - touchdesigner
   - td/recipes
@@ -8,7 +9,7 @@ tags:
 date: 2026-03-18
 ---
 
-# Recipe: Chromatic Aberration Feedback
+> **Inspired by:** [Okamirufu Vizualizer](https://www.youtube.com/@OkamirufuV)
 
 The signature post-processing technique used by [Okamirufu Vizualizer](https://www.youtube.com/@OkamirufuV) to give generative visuals a "rendered," high-end feel. It uses time-delayed RGB splitting to create movement-based color separation.
 
