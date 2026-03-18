@@ -71,7 +71,7 @@ Feet wider than shoulder width, toes forward, knees bent outward, weight low and
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Dwitbal_sogi.svg" alt="Dwitbal Seogi" height="280">
 
-Around 90% of weight on the rear leg, front foot resting lightly on the ball. Also called cat stance. The unweighted front foot allows immediate kicking without a weight shift. Used both defensively and as a pre-kick position.
+Around 90% of weight on the rear leg, front foot resting lightly on the ball. Also called cat stance. The unweighted front foot allows immediate kicking without a weight shift. Used both defensively and as a pre kick position.
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Sioyek – Keyboard-Driven PDF Reader
+title: "Sioyek: PDF navigation with a keyboard"
 tags:
   - tools
   - productivity
@@ -7,7 +7,7 @@ tags:
 date: 2026-03-06
 ---
 
-[Sioyek](https://sioyek.info/) is a fast, keyboard-driven PDF viewer designed for reading research papers and technical documents. It focuses on distraction-free reading with powerful navigation, smart highlights, and deep linking features that most PDF readers lack.
+[Sioyek](https://sioyek.info/) is a fast PDF viewer driven by the keyboard and designed for reading research papers and technical documents. It focuses on a reading experience free from distraction with powerful navigation, smart highlights, and deep linking features that most PDF readers lack.
 
 ## Installation
 
@@ -23,20 +23,20 @@ Or download the latest release from [github.com/ahrm/sioyek/releases](https://gi
 
 ## Key Features
 
-- **Keyboard-first navigation** — nearly every action has a keybind, no mouse required
-- **Smart jump / portal system** — create persistent two-way links between locations in a document (or across documents)
-- **Marks** — set named single-character bookmarks and jump back instantly
-- **Highlights** — annotate text with color-coded highlights that persist across sessions
-- **Search** — full-text search across the open document with chapter scoping
+- **Keyboard first navigation** — nearly every action has a keybind, no mouse required
+- **Smart jump and portal system** — create persistent links in both directions between locations in a document
+- **Marks** — set named one character bookmarks and jump back instantly
+- **Highlights** — annotate text with color coded highlights that persist across sessions
+- **Search** — full text search across the open document with chapter scoping
 - **Table of contents sidebar** — quickly jump to any chapter or section
-- **Link following** — keyboard-activate hyperlinks and footnote references inside PDFs
+- **Link following** — keyboard activate hyperlinks and footnote references inside PDFs
 - **Overview window** — peek at a link target in a floating overlay without losing your current place
-- **Visual mark (ruler)** — right-click to place a reading ruler that highlights the current line and masks everything above/below; move it line-by-line with `j`/`k`
+- **Visual mark ruler** — right click to place a reading ruler that highlights the current line and masks everything above or below; move it line by line with `j` or `k`
 - **Presentation mode** — pages snap to fill the screen; movement keys advance whole pages
-- **Synctex support** — bidirectional sync with LaTeX editors (jump from PDF to source and back)
+- **Synctex support** — bidirectional sync with LaTeX editors to jump from PDF to source and back
 - **Multiple windows** — open several documents or views simultaneously
-- **Custom keybinds** — fully remappable via a plain-text `keys_user.config` file
-- **Dark mode / custom colors** — invert colors or define custom background/foreground themes
+- **Custom keybinds** — fully remappable via a plain text `keys_user.config` file
+- **Dark mode and custom colors** — invert colors or define custom background and foreground themes
 
 ---
 
@@ -57,9 +57,9 @@ Or download the latest release from [github.com/ahrm/sioyek/releases](https://gi
 | `Home`                           | Open "go to page" number prompt                             |
 | `gc`                             | Go to the next chapter                                      |
 | `gC`                             | Go to the previous chapter                                  |
-| `^`                              | Jump to left side of page (ignoring white margins)          |
-| `$`                              | Jump to right side of page (ignoring white margins)         |
-| `zz`                             | Jump to top-right of page (useful for two-column documents) |
+| `^`                              | Jump to left side of page ignoring white margins            |
+| `$`                              | Jump to right side of page ignoring white margins           |
+| `zz`                             | Jump to top right of page (useful for two column documents) |
 | `+`                              | Zoom in                                                     |
 | `-`                              | Zoom out                                                    |
 | `=` / `F9`                       | Fit page to screen width                                    |
@@ -69,7 +69,7 @@ Or download the latest release from [github.com/ahrm/sioyek/releases](https://gi
 | `Ctrl+PageDown`                  | Next page (one full page forward)                           |
 | `Ctrl+PageUp`                    | Previous page (one full page back)                          |
 | `r`                              | Rotate document clockwise                                   |
-| `R`                              | Rotate document counter-clockwise                           |
+| `R`                              | Rotate document counter clockwise                           |
 | `Ctrl+T`                         | Open a new Sioyek window                                    |
 | `Ctrl+W`                         | Close the current Sioyek window                             |
 
@@ -97,13 +97,13 @@ The "ruler" in Sioyek is called the **visual mark**. It highlights the current l
 
 **How to use it:**
 
-1. **Right-click** anywhere on the PDF to place the visual mark on that line.
-2. Press `j` / `↓` to move it down one line, `k` / `↑` to move it up.
-3. Press `F7` to toggle **visual scroll mode** — in this mode the mouse wheel also moves the visual mark line-by-line instead of scrolling the page.
+1. **Right click** anywhere on the PDF to place the visual mark on that line.
+2. Press `j` or `↓` to move it down one line, `k` or `↑` to move it up.
+3. Press `F7` to toggle **visual scroll mode** — in this mode the mouse wheel also moves the visual mark line by line instead of scrolling the page.
 
 | Key         | Action                                                         |
 | ----------- | -------------------------------------------------------------- |
-| Right-click | Place visual mark on that line                                 |
+| Right click | Place visual mark on that line                                 |
 | `j` / `↓`   | Move visual mark down one line                                 |
 | `k` / `↑`   | Move visual mark up one line                                   |
 | `F7`        | Toggle visual scroll mode (mouse wheel drives the visual mark) |
@@ -114,10 +114,10 @@ The "ruler" in Sioyek is called the **visual mark**. It highlights the current l
 | --------------------------------- | ----------------- | ---------------------------------------------------------------------------------- |
 | `visual_mark_color`               | `0.0 0.0 0.0 0.1` | RGBA color of the dimming mask                                                     |
 | `ruler_mode`                      | `1`               | `1` = mask above **and** below the line; `0` = mask only below                     |
-| `ruler_padding`                   | `1.0`             | Vertical padding (in points) added above/below the highlighted line                |
-| `ruler_x_padding`                 | `5.0`             | Horizontal padding added to the left/right of the highlighted line                 |
+| `ruler_padding`                   | `1.0`             | Vertical padding added above or below the highlighted line                         |
+| `ruler_x_padding`                 | `5.0`             | Horizontal padding added to the left or right of the highlighted line              |
 | `visual_mark_next_page_fraction`  | `0.75`            | Where on screen the mark sits when it triggers a page scroll (0 = top, 1 = center) |
-| `visual_mark_next_page_threshold` | `0.25`            | How close to the bottom the mark must get before the page auto-scrolls             |
+| `visual_mark_next_page_threshold` | `0.25`            | How close to the bottom the mark must get before the page auto scrolls              |
 
 ### Marks
 
@@ -150,7 +150,7 @@ Select text with the mouse first, then press the shortcut.
 
 ### Portals (Persistent Links)
 
-Portals are two-way spatial links between locations — useful for jumping between a figure and the text that references it, or linking across documents.
+Portals are bidirectional spatial links between locations — useful for jumping between a figure and the text that references it, or linking across documents.
 
 | Key                | Action                                                             |
 | ------------------ | ------------------------------------------------------------------ |
@@ -164,7 +164,7 @@ Portals are two-way spatial links between locations — useful for jumping betwe
 
 | Key      | Action                                                                           |
 | -------- | -------------------------------------------------------------------------------- |
-| `f`      | Enter link-follow mode — highlights all links on the page for keyboard selection |
+| `f`      | Enter link follow mode — highlights all links on the page for keyboard selection |
 | `F`      | Smart jump — follow the most semantically relevant link under cursor             |
 | `v`      | Select text using the keyboard                                                   |
 | `l`      | Open definition overview (in visual scroll mode)                                 |
@@ -186,7 +186,7 @@ Portals are two-way spatial links between locations — useful for jumping betwe
 | `Ctrl+C` | Copy selected text to clipboard                                              |
 | `s`      | Search selected text in external search engine (Google Scholar by default)   |
 | `F1`     | Toggle PDF link highlighting                                                 |
-| `F4`     | Toggle SyncTeX mode (right-click jumps to LaTeX source)                      |
+| `F4`     | Toggle SyncTeX mode (right click jumps to LaTeX source)                      |
 | `F5`     | Toggle presentation mode (pages fit full screen, movement skips whole pages) |
 | `F6`     | Toggle mouse drag mode (drag pans the view instead of selecting text)        |
 | `F7`     | Toggle visual scroll mode (scroll wheel moves the visual mark line by line)  |
@@ -234,7 +234,7 @@ See the full list of action names in the [official documentation](https://github
 
 ## SyncTeX (LaTeX Integration)
 
-Sioyek supports bidirectional SyncTeX. To jump from PDF → source, set your inverse-search command in `prefs.config`:
+Sioyek supports bidirectional SyncTeX. To jump from PDF to source, set your inverse search command in `prefs.config`:
 
 ```
 # For Neovim via neovim-remote:
@@ -247,5 +247,3 @@ inverse_search_command  code --goto "%1:%2"
 Then `Ctrl+Click` on any text in the PDF to jump to the corresponding source line.
 
 [[notes/index|Return to Notes]]
-
----
