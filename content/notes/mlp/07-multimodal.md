@@ -26,7 +26,7 @@ date: 2026-03-09
 
 ### What is Multimodal?
 
-![[Lec07_Pg009_What_Is_Multimodal.png]]
+![[Lecture07_Pg009_What_Is_Multimodal.png]]
 
 **Modality** refers to the way in which something is expressed or perceived (sight, sound, text, touch, …). **Multimodal** means using multiple modalities together.
 
@@ -42,7 +42,7 @@ Three definitions of increasing scope (Baltrušaitis et al., 2018 / Morency, CMU
 
 ### Heterogeneity of Modalities
 
-![[Lec07_Pg010_Heterogeneity_Of_Modalities.png]]
+![[Lecture07_Pg010_Heterogeneity_Of_Modalities.png]]
 
 Information in different modalities shows diverse qualities, structures, and noise levels:
 
@@ -55,7 +55,7 @@ This heterogeneity is both a challenge and an opportunity — each modality carr
 
 ### Real-World Multimodal Tasks
 
-![[Lec07_Pg014_Real_World_Multimodal_Tasks.png]]
+![[Lecture07_Pg014_Real_World_Multimodal_Tasks.png]]
 
 | Category                   | Examples                                                 |
 | -------------------------- | -------------------------------------------------------- |
@@ -72,13 +72,13 @@ This heterogeneity is both a challenge and an opportunity — each modality carr
 
 ## 2. Core Multimodal Challenges
 
-![[Lec07_Pg016_2_Core_Multimodal_Challenges.png]]
+![[Lecture07_Pg016_2_Core_Multimodal_Challenges.png]]
 
 Baltrušaitis et al. (2018) define **five fundamental challenges** for multimodal machine learning:
 
 ### Challenge 1: Representation
 
-![[Lec07_Pg019_Challenge_1_Representation.png]]
+![[Lecture07_Pg019_Challenge_1_Representation.png]]
 
 **Definition**: Learning representations that reflect cross-modal interactions between individual elements across different modalities.
 
@@ -101,7 +101,7 @@ Early examples:
 
 ### Challenge 2: Alignment
 
-![[Lec07_Pg023_Challenge_2_Alignment.png]]
+![[Lecture07_Pg023_Challenge_2_Alignment.png]]
 
 **Definition**: Identify the direct relations between (sub)elements from two or more different modalities.
 
@@ -118,7 +118,7 @@ Use cases for implicit alignment: Machine Translation, Cross-modal retrieval, Im
 
 ### Challenge 3: Translation
 
-![[Lec07_Pg026_Challenge_3_Translation.png]]
+![[Lecture07_Pg026_Challenge_3_Translation.png]]
 
 **Definition**: Change ("translate") data from one modality to another; the translation relationship is often open-ended or subjective.
 
@@ -133,10 +133,9 @@ Use cases for implicit alignment: Machine Translation, Cross-modal retrieval, Im
 
 ### Challenge 4: Fusion
 
-<!-- Review Needed: close slide match for 'Challenge 4: Fusion' (p28: 0.725, p29: 0.724) -->
+![[Lecture07_Pg028_Challenge_4_Fusion.png]]
 
-![[Lec07_Pg028_Challenge_4_Fusion.png]]
-![[Lec07_Pg029_Challenge_4_Fusion.png]]
+<!-- Review Needed: close slide match for 'Challenge 4: Fusion' (p28: 0.725, p29: 0.724) -->
 
 **Definition**: Join information from two or more modalities to perform a prediction task.
 
@@ -150,7 +149,7 @@ Model-based techniques include kernel-based methods, graphical models, and deep 
 
 #### Tensor Fusion Network (Zadeh et al., 2017)
 
-![[Lec07_Pg038_Tensor_Fusion_Network_Zadeh_Et_Al.png]]
+![[Lecture07_Pg038_Tensor_Fusion_Network_Zadeh_Et_Al.png]]
 
 Captures unimodal, bimodal, and trimodal interactions via outer products. For two modalities:
 
@@ -168,7 +167,7 @@ Appending $1$ to each unimodal vector means the outer product encodes all subset
 
 ### Challenge 5: Co-Learning
 
-![[Lec07_Pg032_Challenge_5_Co_Learning.png]]
+![[Lecture07_Pg032_Challenge_5_Co_Learning.png]]
 
 **Definition**: Transfer knowledge between modalities, including their representations and predictive models.
 
@@ -197,7 +196,7 @@ Joint (fusion)                Coordinated
 
 ### DeViSE — Deep Visual-Semantic Embedding (Frome et al., 2013)
 
-![[Lec07_Pg039_Devise_Deep_Visual_Semantic_Embedding_Frome.png]]
+![[Lecture07_Pg039_Devise_Deep_Visual_Semantic_Embedding_Frome.png]]
 
 The earliest work on multimodal representation learning.
 
@@ -214,10 +213,9 @@ By embedding images into word-vector space, the model gains **semantic structure
 
 ### CLIP — Contrastive Language-Image Pre-training (Radford et al., 2021)
 
-<!-- Review Needed: close slide match for 'CLIP — Contrastive Language-Image Pre-training (Radford et al., 2021)' (p46: 0.446, p41: 0.442) -->
+![[Lecture07_Pg046_Clip_Contrastive_Language_Image_Pre_Training.png]]
 
-![[Lec07_Pg046_Clip_Contrastive_Language_Image_Pre_Training.png]]
-![[Lec07_Pg041_Clip_Contrastive_Language_Image_Pre_Training.png]]
+<!-- Review Needed: close slide match for 'CLIP — Contrastive Language-Image Pre-training (Radford et al., 2021)' (p46: 0.446, p41: 0.442) -->
 
 **The landmark multimodal representation model.**
 
@@ -242,7 +240,7 @@ Both projected to the same d=512 dimensional space.
 
 #### Contrastive Pre-Training Loss
 
-![[Lec07_Pg063_Contrastive_Pre_Training_Loss.png]]
+![[Lecture07_Pg063_Contrastive_Pre_Training_Loss.png]]
 
 Given a batch of $N$ (image, text) pairs, form an $N \times N$ similarity matrix $S$ where $S_{ij} = \text{cosim}(i_i, t_j)$:
 
@@ -319,7 +317,7 @@ image(red car) − image(car) + text("boat") ≈ image(red boat)
 
 #### GLIP — Grounded Language-Image Pre-training (Li et al., 2022)
 
-![[Lec07_Pg046_Glip_Grounded_Language_Image_Pre_Training.png]]
+![[Lecture07_Pg046_Glip_Grounded_Language_Image_Pre_Training.png]]
 
 - Extends CLIP to **object detection**: instead of image-level contrastive loss, GLIP aligns language phrases with bounding boxes
 - Enables **zero-shot object detection** (open vocabulary)
@@ -329,7 +327,7 @@ image(red car) − image(car) + text("boat") ≈ image(red boat)
 
 #### LSeg — Language-Driven Semantic Segmentation (Li et al., 2022)
 
-![[Lec07_Pg047_Lseg_Language_Driven_Semantic_Segmentation_Li.png]]
+![[Lecture07_Pg047_Lseg_Language_Driven_Semantic_Segmentation_Li.png]]
 
 - Extends CLIP to **pixel-level semantic segmentation**
 - **Freezes** the CLIP text encoder; supervises the image encoder + decoder to produce segmentation maps aligned with text embeddings
@@ -343,7 +341,7 @@ image(red car) − image(car) + text("boat") ≈ image(red boat)
 
 ### Motivation
 
-![[Lec07_Pg049_Motivation.png]]
+![[Lecture07_Pg049_Motivation.png]]
 
 **Goal**: Find relationships/correspondences between elements of two or more modalities.
 
@@ -354,10 +352,12 @@ image(red car) − image(car) + text("boat") ≈ image(red boat)
 
 ### Cross-Modal Transformer (Tsai et al., 2019)
 
-<!-- Review Needed: close slide match for 'Cross-Modal Transformer (Tsai et al., 2019)' (p53: 0.523, p52: 0.504) -->
+<!-- Review Needed: close slide match for 'Cross-Modal Transformer (Tsai et al., 2019)' (p53: 0.573, p52: 0.541) -->
 
-![[Lec07_Pg053_Cross_Modal_Transformer_Tsai_Et_Al.png]]
-![[Lec07_Pg052_Cross_Modal_Transformer_Tsai_Et_Al.png]]
+![[Lecture07_Pg053_Cross_Modal_Transformer_Tsai_Et_Al.png]]
+![[Lecture07_Pg052_Cross_Modal_Transformer_Tsai_Et_Al.png]]
+
+<!-- Review Needed: close slide match for 'Cross-Modal Transformer (Tsai et al., 2019)' (p53: 0.523, p52: 0.504) -->
 
 In standard self-attention, $Q$, $K$, $V$ all come from the same sequence. In a **cross-modal** attention module, the **query comes from one modality** and the **key/value from another**:
 
@@ -371,7 +371,7 @@ This allows modality A to selectively read information from modality B.
 
 ### Case Study: VisualBERT (Li et al., 2019)
 
-![[Lec07_Pg054_Case_Study_Visualbert_Li_Et_Al.png]]
+![[Lecture07_Pg054_Case_Study_Visualbert_Li_Et_Al.png]]
 
 - Concatenate **text tokens** (BERT tokeniser) and **visual embeddings** (one per bounding region from Faster R-CNN), then feed jointly to a standard BERT Transformer
 - Self-attention can attend **across modalities** — the model **implicitly discovers** useful alignments
@@ -392,7 +392,7 @@ $$f = f_o + f_s + f_p$$
 
 ### Case Study: ViLBERT (Lu et al., 2019)
 
-![[Lec07_Pg056_Case_Study_Vilbert_Lu_Et_Al.png]]
+![[Lecture07_Pg056_Case_Study_Vilbert_Lu_Et_Al.png]]
 
 - **Two-stream** architecture: separate Transformer for image and text, connected via **co-attention layers**
 - Co-attention: image tokens attend to all text tokens; text tokens attend to all image tokens — simultaneously
@@ -407,10 +407,12 @@ $$f = f_o + f_s + f_p$$
 
 ### Case Study: HowTo100M + MIL-NCE (Miech et al., 2019/2020)
 
-<!-- Review Needed: close slide match for 'Case Study: HowTo100M + MIL-NCE (Miech et al., 2019/2020)' (p59: 0.566, p57: 0.534) -->
+<!-- Review Needed: close slide match for 'Case Study: HowTo100M + MIL-NCE (Miech et al., 2019/2020)' (p57: 0.523, p58: 0.505) -->
 
-![[Lec07_Pg059_Case_Study_Howto100m_Mil_Nce_Miech.png]]
-![[Lec07_Pg057_Case_Study_Howto100m_Mil_Nce_Miech.png]]
+![[Lecture07_Pg057_Case_Study_Howto100m_Mil_Nce_Miech.png]]
+![[Lecture07_Pg058_Case_Study_Howto100m_Mil_Nce_Miech.png]]
+
+<!-- Review Needed: close slide match for 'Case Study: HowTo100M + MIL-NCE (Miech et al., 2019/2020)' (p59: 0.566, p57: 0.534) -->
 
 - **HowTo100M**: 100M instructional video clips from YouTube with ASR-generated subtitles
 - Captions are **weakly aligned** — the subtitle at second $t$ may describe something at $t - 5$
@@ -429,7 +431,7 @@ Input: 3.2-second video clip (32 frames at 10 FPS) + up to 16 subtitle words.
 
 ### Case Study: ViLT — Vision-and-Language Transformer (Kim et al., 2021)
 
-![[Lec07_Pg060_Case_Study_Vilt_Vision_And_Language.png]]
+![[Lecture07_Pg060_Case_Study_Vilt_Vision_And_Language.png]]
 
 - **No region features, no object detectors**. Uses raw **patch embeddings** (ViT-style) + text token embeddings, fed jointly into one Transformer
 - **60× faster** than VisualBERT at inference (no Faster R-CNN bottleneck)
@@ -446,7 +448,7 @@ Input: 3.2-second video clip (32 frames at 10 FPS) + up to 16 subtitle words.
 
 ### ALBEF — Align Before Fuse (Li et al., 2021)
 
-![[Lec07_Pg062_Albef_Align_Before_Fuse_Li_Et.png]]
+![[Lecture07_Pg062_Albef_Align_Before_Fuse_Li_Et.png]]
 
 **Key insight**: explicitly align image and text embeddings _before_ fusing them — so the fusion module gets clean aligned inputs rather than having to align and fuse simultaneously.
 
@@ -454,7 +456,7 @@ Integrates MoCo (He et al., 2020) momentum encoder + ViT + BERT.
 
 #### Loss Components
 
-![[Lec07_Pg063_Loss_Components.png]]
+![[Lecture07_Pg063_Loss_Components.png]]
 
 | Loss                                | Purpose                                               |
 | ----------------------------------- | ----------------------------------------------------- |
@@ -470,7 +472,7 @@ Integrates MoCo (He et al., 2020) momentum encoder + ViT + BERT.
 
 ### BLIP — Bootstrapping Language-Image Pre-training (Li et al., 2022)
 
-![[Lec07_Pg064_Blip_Bootstrapping_Language_Image_Pre_Training.png]]
+![[Lecture07_Pg064_Blip_Bootstrapping_Language_Image_Pre_Training.png]]
 
 An improved version of ALBEF with two innovations:
 
@@ -488,10 +490,12 @@ An improved version of ALBEF with two innovations:
 
 ### Visual Question Answering (VQA)
 
-<!-- Review Needed: close slide match for 'Visual Question Answering (VQA)' (p68: 0.530, p69: 0.530) -->
+<!-- Review Needed: close slide match for 'Visual Question Answering (VQA)' (p68: 0.556, p69: 0.556) -->
 
-![[Lec07_Pg068_Visual_Question_Answering_Vqa.png]]
-![[Lec07_Pg069_Visual_Question_Answering_Vqa.png]]
+![[Lecture07_Pg068_Visual_Question_Answering_Vqa.png]]
+![[Lecture07_Pg069_Visual_Question_Answering_Vqa.png]]
+
+<!-- Review Needed: close slide match for 'Visual Question Answering (VQA)' (p68: 0.530, p69: 0.530) -->
 
 **Task**: Given an image and a natural language question, produce a natural language answer.
 
@@ -506,7 +510,7 @@ An improved version of ALBEF with two innovations:
 
 ### Hierarchical Co-Attention (Lu et al., 2016)
 
-![[Lec07_Pg072_Hierarchical_Co_Attention_Lu_Et_Al.png]]
+![[Lecture07_Pg072_Hierarchical_Co_Attention_Lu_Et_Al.png]]
 
 Two parallel attention streams, each conditioned on the other:
 
@@ -529,7 +533,7 @@ Computed at three levels of granularity:
 
 ### Stacked Attention Networks (Yang et al., 2016)
 
-![[Lec07_Pg073_Stacked_Attention_Networks_Yang_Et_Al.png]]
+![[Lecture07_Pg073_Stacked_Attention_Networks_Yang_Et_Al.png]]
 
 Use **multiple hops** of attention — each hop refines image attention based on the partial answer from the previous hop:
 
@@ -546,7 +550,7 @@ Final: Q + v̂_K → answer prediction
 
 ### Other Attention-Based Models
 
-![[Lec07_Pg074_Other_Attention_Based_Models.png]]
+![[Lecture07_Pg074_Other_Attention_Based_Models.png]]
 
 | Model                                                        | Key Idea                                                                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
@@ -560,7 +564,7 @@ Open research questions: how to make attention more interpretable? Can we levera
 
 ### Neural Module Networks — V1 (Andreas et al., 2015)
 
-![[Lec07_Pg076_Neural_Module_Networks_V1_Andreas_Et.png]]
+![[Lecture07_Pg076_Neural_Module_Networks_V1_Andreas_Et.png]]
 
 **Key insight**: decompose the question into a _program_ (a composition of neural modules), then execute it over the image.
 
@@ -588,7 +592,7 @@ Example modules:
 
 ### CLEVR — A Dataset for Visual Reasoning (Johnson et al., 2017)
 
-![[Lec07_Pg078_Clevr_A_Dataset_For_Visual_Reasoning.png]]
+![[Lecture07_Pg078_Clevr_A_Dataset_For_Visual_Reasoning.png]]
 
 A synthetic benchmark for **compositional visual reasoning**:
 
@@ -606,10 +610,12 @@ Example questions:
 
 ### Neural Module Networks — V2: End-to-End Learning (Hu et al., 2017)
 
-<!-- Review Needed: close slide match for 'Neural Module Networks — V2: End-to-End Learning (Hu et al., 2017)' (p80: 0.609, p79: 0.593) -->
+<!-- Review Needed: close slide match for 'Neural Module Networks — V2: End-to-End Learning (Hu et al., 2017)' (p80: 0.651, p79: 0.606) -->
 
-![[Lec07_Pg080_Neural_Module_Networks_V2_End_To.png]]
-![[Lec07_Pg079_Neural_Module_Networks_V2_End_To.png]]
+![[Lecture07_Pg080_Neural_Module_Networks_V2_End_To.png]]
+![[Lecture07_Pg079_Neural_Module_Networks_V2_End_To.png]]
+
+<!-- Review Needed: close slide match for 'Neural Module Networks — V2: End-to-End Learning (Hu et al., 2017)' (p80: 0.609, p79: 0.593) -->
 
 Removes the rule-based parser from V1:
 
@@ -642,7 +648,7 @@ class ProtoNet(nn.Module):
     def __init__(self, encoder):
         super().__init__()
         # The encoder is typically a CNN that maps images to a feature vector
-        self.encoder = encoder 
+        self.encoder = encoder
 
     def forward(self, support_images, query_images, n_way, n_support):
         """
@@ -657,25 +663,26 @@ class ProtoNet(nn.Module):
         x = torch.cat([support_images, query_images], 0)
         z = self.encoder(x) # (Total_images, Feature_dim)
         z_dim = z.size(-1)
-        
+
         # 2. Extract prototypes
         # Reshape support embeddings to (n_way, n_support, Feature_dim)
         z_support = z[:n_way*n_support].view(n_way, n_support, z_dim)
         # Compute the mean vector for each class -> this is the PROTOTYPE
         prototypes = z_support.mean(1) # Result: (n_way, Feature_dim)
-        
+
         # 3. Classify Query Images
         z_query = z[n_way*n_support:] # Embeddings of the images we want to label
         # Compute Squared Euclidean distance from every query to every prototype
         # dists[i, j] is distance from query 'i' to prototype 'j'
         dists = torch.cdist(z_query, prototypes, p=2)**2
-        
+
         # 4. Return log-probabilities
         # We use negative distance because closer = more probable
         return F.log_softmax(-dists, dim=1)
 ```
 
 **Key Few-Shot Concepts:**
+
 - **n-way, k-shot**: A task where you must choose between `n` classes, and you only have `k` labeled examples per class to learn from.
 - **The Prototype**: The central assumption is that there exists a single representative point for each class in the embedding space.
 - **Metric Learning**: Unlike standard classifiers, the model isn't learning a fixed decision boundary; it's learning an embedding space where similar things are close together.
@@ -685,6 +692,8 @@ class ProtoNet(nn.Module):
 ## Summary
 
 ### Representation Learning Models
+
+![[Lecture07_Pg039_Representation_Learning_Models.png]]
 
 | Model         | Vision encoder | Text encoder      | Interaction          | Key contribution                                         |
 | ------------- | -------------- | ----------------- | -------------------- | -------------------------------------------------------- |
@@ -705,8 +714,6 @@ class ProtoNet(nn.Module):
 | BLIP (2022)                   | Unified enc.+dec.     | CapFilt bootstrapping; generation + understanding |
 
 ### Reasoning Models
-
-![[Lec07_Pg074_Reasoning_Models.png]]
 
 | Model                                | Key Idea                                                         |
 | ------------------------------------ | ---------------------------------------------------------------- |

@@ -18,7 +18,7 @@ date: 2026-03-09
 
 ### Automatic vs. Interactive ML
 
-![[Lec08_Pg006_Automatic_Vs_Interactive_Ml.png]]
+![[Lecture08_Pg006_Automatic_Vs_Interactive_Ml.png]]
 
 Most ML today is **automatic machine learning (aML)**: algorithms that interact with agents and optimize their learning _without_ human involvement during training. This works great when you have large, clean, labeled datasets.
 
@@ -32,7 +32,7 @@ But sometimes you **still need a human in the loop**:
 
 ### Definition
 
-![[Lec08_Pg017_Definition.png]]
+![[Lecture08_Pg017_Definition.png]]
 
 > **Interactive Machine Learning (iML)** := algorithms that interact with agents (which can be humans) and that can optimise their learning behaviour through this interaction. — Holzinger, 2015
 
@@ -42,10 +42,9 @@ This matters especially in **health informatics** and other high-stakes settings
 
 ### Types of ML on a Spectrum
 
-<!-- Review Needed: close slide match for 'Types of ML on a Spectrum' (p22: 0.388, p23: 0.372) -->
+![[Lecture08_Pg022_Types_Of_Ml_On_A_Spectrum.png]]
 
-![[Lec08_Pg022_Types_Of_Ml_On_A_Spectrum.png]]
-![[Lec08_Pg023_Types_Of_Ml_On_A_Spectrum.png]]
+<!-- Review Needed: close slide match for 'Types of ML on a Spectrum' (p22: 0.388, p23: 0.372) -->
 
 | Type                  | Labels                       | Human Role                               |
 | --------------------- | ---------------------------- | ---------------------------------------- |
@@ -56,7 +55,7 @@ This matters especially in **health informatics** and other high-stakes settings
 
 ### Who Can Be "In the Loop"?
 
-![[Lec08_Pg021_Who_Can_Be_In_The_Loop.png]]
+![[Lecture08_Pg021_Who_Can_Be_In_The_Loop.png]]
 
 - A **single expert** (e.g. a radiologist annotating cancer scans)
 - A **crowd** (e.g. Amazon Mechanical Turk workers)
@@ -64,8 +63,6 @@ This matters especially in **health informatics** and other high-stakes settings
 - **Nature-inspired agents** (evolutionary algorithms, etc.)
 
 ### Limits of Pure aML and of Human Interaction
-
-![[Lec08_Pg015_Limits_Of_Pure_Aml_And_Of.png]]
 
 The lecture also highlights two complementary cautions:
 
@@ -78,16 +75,15 @@ The lecture also highlights two complementary cautions:
 
 #### Example 1: k-Anonymisation of Medical Data
 
-![[Lec08_Pg027_Example_1_K_Anonymisation_Of_Medical.png]]
+![[Lecture08_Pg027_Example_1_K_Anonymisation_Of_Medical.png]]
 
 87% of the US population can be **uniquely re-identified** by zip-code, gender, and date of birth (Sweeney, 2002). k-Anonymity requires transforming data so each record is indistinguishable from at least k−1 others. Finding the optimal transformation is NP-hard — a human expert can guide the search interactively.
 
 #### Example 2: Protein Folding
 
-<!-- Review Needed: close slide match for 'Example 2: Protein Folding' (p31: 0.537, p28: 0.495) -->
+![[Lecture08_Pg031_Example_2_Protein_Folding.png]]
 
-![[Lec08_Pg031_Example_2_Protein_Folding.png]]
-![[Lec08_Pg028_Example_2_Protein_Folding.png]]
+<!-- Review Needed: close slide match for 'Example 2: Protein Folding' (p31: 0.537, p28: 0.495) -->
 
 Proteins are the building blocks of life; their 3D structure is determined by their amino acid sequence. Predicting that structure from sequence is an old, extremely hard problem. As of 2015, automatic ML methods did not work well enough. A human-in-the-loop could guide structure search.
 
@@ -95,10 +91,12 @@ Proteins are the building blocks of life; their 3D structure is determined by th
 
 #### Example 3: Subspace Clustering
 
-<!-- Review Needed: close slide match for 'Example 3: Subspace Clustering' (p35: 0.652, p34: 0.636) -->
+<!-- Review Needed: close slide match for 'Example 3: Subspace Clustering' (p35: 0.655, p34: 0.633) -->
 
-![[Lec08_Pg035_Example_3_Subspace_Clustering.png]]
-![[Lec08_Pg034_Example_3_Subspace_Clustering.png]]
+![[Lecture08_Pg035_Example_3_Subspace_Clustering.png]]
+![[Lecture08_Pg034_Example_3_Subspace_Clustering.png]]
+
+<!-- Review Needed: close slide match for 'Example 3: Subspace Clustering' (p35: 0.652, p34: 0.636) -->
 
 Patterns in high-dimensional data often live in **subsets of dimensions** (subspaces). Clustering in subspaces is non-convex and NP-hard, data is often noisy, and there's little prior knowledge about the low-dimensional structure. Human experts can:
 
@@ -111,8 +109,6 @@ Patterns in high-dimensional data often live in **subsets of dimensions** (subsp
 
 ### Setup
 
-![[Lec08_Pg038_Setup.png]]
-
 Given:
 
 - $S_l = (x_1, y_1), (x_2, y_2), \ldots, (x_m, y_m)$ — labeled examples drawn i.i.d. from distribution $D$, with $y_i = c^*(x_i)$
@@ -122,7 +118,7 @@ Given:
 
 ### Key Insight
 
-![[Lec08_Pg039_Key_Insight.png]]
+![[Lecture08_Pg039_Key_Insight.png]]
 
 Unlabeled data is useful **only if** we have a belief not just about the form of the target function, but also about its **relationship with the underlying data distribution**.
 
@@ -136,7 +132,7 @@ _(Zhu and Goldberg, 2009)_
 
 ### Fundamental Questions (General Discriminative Model)
 
-![[Lec08_Pg040_Fundamental_Questions_General_Discriminative_Model.png]]
+![[Lecture08_Pg040_Fundamental_Questions_General_Discriminative_Model.png]]
 
 - How much unlabeled data is needed? — depends on complexity of $H$ and the compatibility notion
 - Can unlabeled data reduce the number of labeled examples needed?
@@ -150,7 +146,7 @@ _(Zhu and Goldberg, 2009)_
 
 ### Batch vs. Selective Sampling (Stream)
 
-![[Lec08_Pg044_Batch_Vs_Selective_Sampling_Stream.png]]
+![[Lecture08_Pg044_Batch_Vs_Selective_Sampling_Stream.png]]
 
 | Mode                               | Description                                                                         |
 | ---------------------------------- | ----------------------------------------------------------------------------------- |
@@ -161,7 +157,7 @@ In both cases the **goal** is to use far fewer labeled examples than passive (ra
 
 ### Can Adaptive Querying Actually Help?
 
-![[Lec08_Pg047_Can_Adaptive_Querying_Actually_Help.png]]
+![[Lecture08_Pg047_Can_Adaptive_Querying_Actually_Help.png]]
 
 **Yes — exponentially so (sometimes).**
 
@@ -190,7 +186,7 @@ Passive learning needs 1/ε queries to get the same ε accuracy.
 
 ### Active SVM — Uncertainty Sampling in Practice
 
-![[Lec08_Pg048_Active_Svm_Uncertainty_Sampling_In_Practice.png]]
+![[Lecture08_Pg048_Active_Svm_Uncertainty_Sampling_In_Practice.png]]
 
 A common and effective technique (Tong & Koller, 2001; Schohn & Cohn, 2000):
 
@@ -220,7 +216,7 @@ for _ in range(num_rounds):
 
 #### ⚠️ Sampling Bias Warning
 
-![[Lec08_Pg054_Sampling_Bias_Warning.png]]
+![[Lecture08_Pg054_Sampling_Bias_Warning.png]]
 
 Uncertainty sampling is **myopic and greedy**. Over time the queried sample becomes **less representative** of the true data distribution — the model excels near the boundary but may fail elsewhere. (Dasgupta, 2011)
 
@@ -230,7 +226,7 @@ Uncertainty sampling is **myopic and greedy**. Over time the queried sample beco
 
 ### Version Spaces
 
-![[Lec08_Pg056_Version_Spaces.png]]
+![[Lecture08_Pg056_Version_Spaces.png]]
 
 **Definition** (Mitchell, 1982):
 
@@ -251,7 +247,7 @@ The version space is bounded by:
 
 ### Region of Disagreement
 
-![[Lec08_Pg059_Region_Of_Disagreement.png]]
+![[Lecture08_Pg059_Region_Of_Disagreement.png]]
 
 **Definition** (Cohn et al., 1992):
 
@@ -265,7 +261,7 @@ Outside the region of disagreement, **all hypotheses agree** — labeling such a
 
 ### Disagreement-Based Active Learning
 
-![[Lec08_Pg061_Disagreement_Based_Active_Learning.png]]
+![[Lecture08_Pg061_Disagreement_Based_Active_Learning.png]]
 
 **Algorithm** (CAL — Cohn et al., 1992):
 
@@ -288,7 +284,7 @@ Outside the region of disagreement, **all hypotheses agree** — labeling such a
 
 ### Agnostic Active Learner — A² Algorithm
 
-![[Lec08_Pg065_Agnostic_Active_Learner_A_Algorithm.png]]
+![[Lecture08_Pg065_Agnostic_Active_Learner_A_Algorithm.png]]
 
 What if $c^* \notin H$? (The realistic case — noise, model mismatch.)
 
@@ -308,7 +304,7 @@ What if $c^* \notin H$? (The realistic case — noise, model mismatch.)
 
 ### Theoretical Guarantees — What to Retain
 
-![[Lec08_Pg068_Theoretical_Guarantees_What_To_Retain.png]]
+![[Lecture08_Pg068_Theoretical_Guarantees_What_To_Retain.png]]
 
 The lecture's theory slides emphasise that disagreement-based active learning is attractive because it comes with **explicit guarantees**, not just heuristics:
 
@@ -323,10 +319,9 @@ The lecture's theory slides emphasise that disagreement-based active learning is
 
 ### 1. Uncertainty Sampling
 
-<!-- Review Needed: close slide match for '1. Uncertainty Sampling' (p70: 0.424, p90: 0.410) -->
+![[Lecture08_Pg070_1_Uncertainty_Sampling.png]]
 
-![[Lec08_Pg070_1_Uncertainty_Sampling.png]]
-![[Lec08_Pg090_1_Uncertainty_Sampling.png]]
+<!-- Review Needed: close slide match for '1. Uncertainty Sampling' (p70: 0.424, p90: 0.410) -->
 
 Query the example the model is **least confident** about.
 
@@ -343,7 +338,7 @@ $$x^* = \arg\max_x - \sum_c P(c \mid x) \log P(c \mid x)$$
 
 ### 2. Maximal Diversity Sampling
 
-![[Lec08_Pg071_2_Maximal_Diversity_Sampling.png]]
+![[Lecture08_Pg071_2_Maximal_Diversity_Sampling.png]]
 
 Select a **batch** of points that maximally covers the feature space, so no two queries are near-duplicates. Useful when you must query a whole batch at once.
 
@@ -351,7 +346,7 @@ $$\text{select } B \text{ points s.t. every unlabeled point is close to at least
 
 ### 3. Ensemble-Based Possibilities (Query by Committee)
 
-![[Lec08_Pg072_3_Ensemble_Based_Possibilities_Query_By.png]]
+![[Lecture08_Pg072_3_Ensemble_Based_Possibilities_Query_By.png]]
 
 Train multiple diverse models (a "committee"). Query the example where they **disagree most**.
 
@@ -371,7 +366,7 @@ query_idx = np.argmax(disagreement)
 
 ### 4. Density-Based Sampling
 
-![[Lec08_Pg073_4_Density_Based_Sampling.png]]
+![[Lecture08_Pg073_4_Density_Based_Sampling.png]]
 
 Don't just query uncertain points — query uncertain points that are also **representative** of the distribution. An uncertain but isolated point is not worth querying.
 
@@ -385,8 +380,6 @@ The second term is the average similarity to all unlabeled points — a proxy fo
 
 ### Core Idea
 
-![[Lec08_Pg076_Core_Idea.png]]
-
 Assume a **pairwise similarity function** exists and that very similar examples probably share the same label.
 
 - Many **labeled** points → Nearest-Neighbour classifier
@@ -398,7 +391,7 @@ This graph view is particularly useful when the geometry of the unlabeled data i
 
 ### Building the Graph
 
-![[Lec08_Pg077_Building_The_Graph.png]]
+![[Lecture08_Pg077_Building_The_Graph.png]]
 
 - **Nodes**: all examples (labeled + unlabeled)
 - **Edges**: between very similar examples ($k$-NN or $\varepsilon$-ball with Gaussian similarity weights)
@@ -408,7 +401,7 @@ Often used in a **transductive** setting: given $L \cup U$, output predictions o
 
 ### Graph Partitioning Algorithms
 
-![[Lec08_Pg078_Graph_Partitioning_Algorithms.png]]
+![[Lecture08_Pg078_Graph_Partitioning_Algorithms.png]]
 
 | Method                                              | Description                                                            |
 | --------------------------------------------------- | ---------------------------------------------------------------------- |
@@ -418,7 +411,7 @@ Often used in a **transductive** setting: given $L \cup U$, output predictions o
 
 ### Semi-supervised Learning with Soft Cuts (Zhu et al., 2003)
 
-![[Lec08_Pg079_Semi_Supervised_Learning_With_Soft_Cuts.png]]
+![[Lecture08_Pg079_Semi_Supervised_Learning_With_Soft_Cuts.png]]
 
 Solve for a label function $f(x) \in [0, 1]$ that minimises:
 
@@ -430,10 +423,12 @@ This is a **harmonic equation**: labels spread outward from labeled nodes, weigh
 
 ### Active Learning with Label Propagation
 
-<!-- Review Needed: close slide match for 'Active Learning with Label Propagation' (p82: 0.537, p84: 0.521) -->
+<!-- Review Needed: close slide match for 'Active Learning with Label Propagation' (p80: 0.554, p82: 0.551) -->
 
-![[Lec08_Pg082_Active_Learning_With_Label_Propagation.png]]
-![[Lec08_Pg084_Active_Learning_With_Label_Propagation.png]]
+![[Lecture08_Pg080_Active_Learning_With_Label_Propagation.png]]
+![[Lecture08_Pg082_Active_Learning_With_Label_Propagation.png]]
+
+<!-- Review Needed: close slide match for 'Active Learning with Label Propagation' (p82: 0.537, p84: 0.521) -->
 
 **Naïve approach**: query the node with $f(x) \approx 0.5$ (most uncertain).
 
@@ -455,7 +450,7 @@ This approach performs well for **video segmentation** (Fathi et al., 2011) wher
 
 ## Deep Active Learning
 
-![[Lec08_Pg086_Deep_Active_Learning.png]]
+![[Lecture08_Pg086_Deep_Active_Learning.png]]
 
 Deep active learning is best viewed as a **continuation of the classical ideas**, not a separate topic. The same goals remain:
 
@@ -478,7 +473,7 @@ Classical active learning theory assumes a fixed, well-understood hypothesis cla
 
 ### MC Dropout — Bayesian Approximation
 
-![[Lec08_Pg088_Mc_Dropout_Bayesian_Approximation.png]]
+![[Lecture08_Pg088_Mc_Dropout_Bayesian_Approximation.png]]
 
 (Gal et al., 2017) In a Bayesian neural network, every weight is a distribution. Integrating over all parameters is intractable:
 
@@ -514,7 +509,7 @@ query_indices = entropy.argsort()[-batch_size:]
 
 ### BALD — Bayesian Active Learning by Disagreement
 
-![[Lec08_Pg091_Bald_Bayesian_Active_Learning_By_Disagreement.png]]
+![[Lecture08_Pg091_Bald_Bayesian_Active_Learning_By_Disagreement.png]]
 
 (Gal et al., 2017) — more principled than pure entropy:
 
@@ -538,10 +533,12 @@ $$I \approx -\sum_c \left(\frac{1}{T}\sum_t p^t_c\right)\log\left(\frac{1}{T}\su
 
 ### Learning Loss for Active Learning
 
-<!-- Review Needed: close slide match for 'Learning Loss for Active Learning' (p93: 0.650, p92: 0.641) -->
+<!-- Review Needed: close slide match for 'Learning Loss for Active Learning' (p92: 0.668, p93: 0.662) -->
 
-![[Lec08_Pg093_Learning_Loss_For_Active_Learning.png]]
-![[Lec08_Pg092_Learning_Loss_For_Active_Learning.png]]
+![[Lecture08_Pg092_Learning_Loss_For_Active_Learning.png]]
+![[Lecture08_Pg093_Learning_Loss_For_Active_Learning.png]]
+
+<!-- Review Needed: close slide match for 'Learning Loss for Active Learning' (p93: 0.650, p92: 0.641) -->
 
 (Yoo & Kweon, 2019) — **predict which examples the model will get wrong**.
 
@@ -561,7 +558,7 @@ $$I \approx -\sum_c \left(\frac{1}{T}\sum_t p^t_c\right)\log\left(\frac{1}{T}\su
 
 ### Mode Collapse in Active Learning
 
-![[Lec08_Pg095_Mode_Collapse_In_Active_Learning.png]]
+![[Lecture08_Pg095_Mode_Collapse_In_Active_Learning.png]]
 
 A critical failure mode: the uncertainty-based strategy keeps selecting the **same hard class**, resulting in a severely imbalanced training set.
 
@@ -571,7 +568,7 @@ A critical failure mode: the uncertainty-based strategy keeps selecting the **sa
 
 ### Batch-Aware Methods — Uncertainty vs. Diversity (BatchBALD)
 
-![[Lec08_Pg096_Batch_Aware_Methods_Uncertainty_Vs_Diversity.png]]
+![[Lecture08_Pg096_Batch_Aware_Methods_Uncertainty_Vs_Diversity.png]]
 
 (Kirsch, van Amersfoort, Gal — NeurIPS 2019)
 
@@ -589,7 +586,7 @@ Uncertainty alone grabs near-duplicates; diversity alone ignores which regions a
 
 ### Short Summary
 
-![[Lec08_Pg085_Short_Summary.png]]
+![[Lecture08_Pg085_Short_Summary.png]]
 
 - Active learning can deliver **exponential improvements** in label complexity, both in theory and practice
 - Common heuristics (uncertainty sampling, active SVM) work but **beware of sampling bias**
@@ -624,7 +621,7 @@ class GNN(nn.Module):
     def __init__(self, n_iters=7, n_node_features=10):
         super().__init__()
         self.n_iters = n_iters # Number of message-passing "reasoning" steps
-        
+
         # 1. Message network: learns how nodes should talk to each other
         # Takes concatenated states of two connected nodes as input
         self.msg_net = nn.Sequential(
@@ -632,11 +629,11 @@ class GNN(nn.Module):
             nn.ReLU(),
             nn.Linear(64, 11) # Outputs a 'message' vector of 11 features
         )
-        
+
         # 2. State update network: uses messages to update node belief
         # GRUCell is used to maintain a "memory" of the node state across iterations
         self.gru = nn.GRUCell(9 + 11, n_node_features) # Input = (digit_ID + message)
-        
+
         # 3. Output head: maps final node state to 9 digit probabilities
         self.fc_out = nn.Linear(n_node_features, 9)
 
@@ -649,33 +646,33 @@ class GNN(nn.Module):
         n_nodes = node_inputs.size(0)
         # Initialize node states to zeros
         node_states = torch.zeros(n_nodes, 10)
-        
+
         # Iterate to allow information to flow across the entire Sudoku board
         for _ in range(self.n_iters):
             # STEP 1: Message Passing
             # Gather states of source nodes and destination nodes for every edge
             msg_in = torch.cat([node_states[src_ids], node_states[dst_ids]], 1)
             messages = self.msg_net(msg_in)
-            
+
             # STEP 2: Aggregation
             # Sum all incoming messages for each destination node
             # index_add_ is crucial for handle variable numbers of neighbors
             agg_msg = torch.zeros(n_nodes, 11)
             agg_msg.index_add_(0, dst_ids, messages)
-            
+
             # STEP 3: State Update
             # Combine original clue (node_inputs) with new info (agg_msg) to update state
             node_states = self.gru(torch.cat([node_inputs, agg_msg], 1), node_states)
-            
+
         # Final prediction for each cell after reasoning steps
         return self.fc_out(node_states)
 ```
 
 **Key GNN Concepts:**
+
 - **Local to Global**: In one iteration, a cell only knows about its immediate neighbors (same row/col). After multiple iterations, information from the other side of the board can reach it.
 - **Permutation Invariance**: The `index_add_` (sum) operation ensures that the order in which we process neighbors doesn't change the result.
-- **Relational Reasoning**: The model isn't just looking at pixel values; it's learning the *rules* of Sudoku encoded in the graph structure.
-
+- **Relational Reasoning**: The model isn't just looking at pixel values; it's learning the _rules_ of Sudoku encoded in the graph structure.
 
 ---
 

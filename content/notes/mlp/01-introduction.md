@@ -29,8 +29,6 @@ This course is **in-depth, hands-on, and advanced** — it assumes prior exposur
 
 The basic unit of a neural network:
 
-![Lecture 01 slide page 28](/pictures/mpl/01/lecture-01-page-28.png)
-
 $$y = \sigma(w^\top x + b)$$
 
 where:
@@ -42,7 +40,7 @@ where:
 
 ### Multi-Layer Perceptron (MLP)
 
-![[Lec01_Pg030_Multi_Layer_Perceptron_Mlp.png]]
+![[Lecture01_Pg030_Multi_Layer_Perceptron_Mlp.png]]
 
 With $X^{(0)} = X$, for each layer $l = 1, \dots, L$:
 
@@ -52,9 +50,7 @@ The network output is $f(X;\, W, b) = X^{(L)}$.
 
 ### Why Activation Functions?
 
-<!-- Review Needed: close slide match for 'Why Activation Functions?' (p92: 0.476, p106: 0.473) -->
-
-![[Lec01_Pg092_Why_Activation_Functions.png]]
+![[Lecture01_Pg066_Why_Activation_Functions_Clean.png]]
 
 Moving from a linear classifier $f = Wx$ to a 2-layer network:
 
@@ -68,9 +64,9 @@ $$f = W_3 \max(0,\, W_2 \max(0,\, W_1 x))$$
 
 ### Brain Analogy — Be Careful
 
-Biological neurons ≠ artificial neurons:
+![[Lecture01_Pg040_Brain_Analogy_Be_Careful.png]]
 
-![Lecture 01 slide page 38](/pictures/mpl/01/lecture-01-page-38.png)
+Biological neurons ≠ artificial neurons:
 
 - There are many different types of biological neurons
 - Synapses are not a single weight but a complex non-linear dynamical system
@@ -79,7 +75,7 @@ Biological neurons ≠ artificial neurons:
 
 ### Universal Approximation Theorem
 
-![[Lec01_Pg042_Universal_Approximation_Theorem.png]]
+![[Lecture01_Pg042_Universal_Approximation_Theorem.png]]
 
 Given a non-linear (e.g. sigmoid) activation function $\sigma \in C^\infty(\mathbb{R})$, for any continuous function $f \in C(I^m)$ and any $\varepsilon > 0$, there exist $N$, constants $\nu_i, b_i \in \mathbb{R}$, and vectors $w_i \in \mathbb{R}^m$ such that:
 
@@ -102,7 +98,7 @@ _(Original proof: Hornik et al., 1989; formal statement: Cybenko, 1989)_
 
 ## Optimisation
 
-![[Lec01_Pg056_Optimisation.png]]
+![[Lecture01_Pg056_Optimisation.png]]
 
 The loss function $L(W)$ quantifies the quality of any set of weights $W$. The goal of optimisation is to find $W$ that **minimises** $L(W)$.
 
@@ -110,7 +106,7 @@ $$L(W) = \frac{1}{n} \sum_{i=1}^{n} L_i(W)$$
 
 ### Gradient Descent
 
-![[Lec01_Pg061_Gradient_Descent.png]]
+![[Lecture01_Pg061_Gradient_Descent.png]]
 
 **Strategy 1 — Random search**: bad idea in practice.
 
@@ -132,7 +128,7 @@ while True:
 
 ### Numerical vs. Analytic Gradient
 
-![[Lec01_Pg074_Numerical_Vs_Analytic_Gradient.png]]
+![[Lecture01_Pg074_Numerical_Vs_Analytic_Gradient.png]]
 
 | Type          | Description                                       | Properties                            |
 | ------------- | ------------------------------------------------- | ------------------------------------- |
@@ -143,9 +139,9 @@ while True:
 
 ### Batch Training
 
-<!-- Review Needed: close slide match for 'Batch Training' (p75: 0.612, p77: 0.607) -->
+![[Lecture01_Pg075_Batch_Training.png]]
 
-![[Lec01_Pg075_Batch_Training.png]]
+<!-- Review Needed: close slide match for 'Batch Training' (p75: 0.612, p77: 0.607) -->
 
 Process **all** $n$ training samples, then update weights once based on $L(W) = \frac{1}{n}\sum_{i=1}^n L_i(W)$.
 
@@ -157,7 +153,7 @@ Process **all** $n$ training samples, then update weights once based on $L(W) = 
 
 ### Stochastic Gradient Descent (SGD)
 
-![[Lec01_Pg078_Stochastic_Gradient_Descent_Sgd.png]]
+![[Lecture01_Pg078_Stochastic_Gradient_Descent_Sgd.png]]
 
 Randomly choose **one** training sample $x_i$, update weights based on $L_i(W)$.
 
@@ -170,9 +166,9 @@ Randomly choose **one** training sample $x_i$, update weights based on $L_i(W)$.
 
 ### Mini-Batch Training
 
-Process a **subset** $M \subset \{1, \dots, n\}$ of samples:
+![[Lecture01_Pg081_Mini_Batch_Training.png]]
 
-![Lecture 01 slide page 82](/pictures/mpl/01/lecture-01-page-82.png)
+Process a **subset** $M \subset \{1, \dots, n\}$ of samples:
 
 $$L_M(W) = \frac{1}{|M|} \sum_{i \in M} L_i(W)$$
 
@@ -186,13 +182,13 @@ Seeks a balance between the robustness of SGD and the efficiency of batch gradie
 
 ### Backpropagation
 
-![[Lec01_Pg084_Backpropagation.png]]
+![[Lecture01_Pg084_Backpropagation.png]]
 
 How do we compute gradients for nodes in **hidden layers**? → **Backpropagation** applies the chain rule repeatedly from the output back to each parameter.
 
 ### Computational Graphs
 
-![[Lec01_Pg085_Computational_Graphs.png]]
+![[Lecture01_Pg085_Computational_Graphs.png]]
 
 **Key idea**: decompose complex computations into a sequence of atomic assignments.
 
@@ -217,9 +213,12 @@ z ────────────┘
 
 ### Patterns in Backward Flow
 
-<!-- Review Needed: close slide match for 'Patterns in Backward Flow' (p90: 0.793, p89: 0.755) -->
+<!-- Review Needed: close slide match for 'Patterns in Backward Flow' (p88: 0.752, p89: 0.738) -->
 
-![[Lec01_Pg090_Patterns_In_Backward_Flow.png]]
+![[Lecture01_Pg088_Patterns_In_Backward_Flow.png]]
+![[Lecture01_Pg089_Patterns_In_Backward_Flow.png]]
+
+<!-- Review Needed: close slide match for 'Patterns in Backward Flow' (p90: 0.793, p89: 0.755) -->
 
 | Gate         | Role                 | Behaviour                                                                         |
 | ------------ | -------------------- | --------------------------------------------------------------------------------- |
@@ -234,8 +233,6 @@ z ────────────┘
 ### Sigmoid
 
 $$\sigma(x) = \frac{1}{1 + e^{-x}} = \frac{e^x}{e^x + 1}$$
-
-![Lecture 01 slide page 95](/pictures/mpl/01/lecture-01-page-95.png)
 
 Squashes numbers to $[0, 1]$. Can be interpreted as a saturating "firing rate" of a neuron.
 
@@ -256,8 +253,6 @@ Squashes numbers to $[0, 1]$. Can be interpreted as a saturating "firing rate" o
 
 ### Tanh
 
-![[Lec01_Pg105_Tanh.png]]
-
 $$\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
 
 - Squashes numbers to $[-1, 1]$ → **zero-centred** ✓
@@ -266,9 +261,9 @@ $$\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
 
 ### ReLU
 
-$$f(x) = \max(0, x)$$
+![[Lecture01_Pg106_Relu.png]]
 
-![Lecture 01 slide page 108](/pictures/mpl/01/lecture-01-page-108.png)
+$$f(x) = \max(0, x)$$
 
 _(Krizhevsky et al., 2012; Nair and Hinton, 2010)_
 
@@ -284,7 +279,7 @@ _(Krizhevsky et al., 2012; Nair and Hinton, 2010)_
 
 ### Leaky ReLU / PReLU
 
-![[Lec01_Pg112_Leaky_Relu_Prelu.png]]
+![[Lecture01_Pg112_Leaky_Relu_Prelu.png]]
 
 $$f(x) = \max(0.01x,\; x)$$
 
@@ -296,9 +291,9 @@ _(Maas et al., 2013; He et al., 2015)_
 
 ### ELU (Exponential Linear Unit)
 
-<!-- Review Needed: close slide match for 'ELU (Exponential Linear Unit)' (p114: 0.580, p115: 0.556) -->
+![[Lecture01_Pg114_Elu_Exponential_Linear_Unit.png]]
 
-![[Lec01_Pg115_Elu_Exponential_Linear_Unit.png]]
+<!-- Review Needed: close slide match for 'ELU (Exponential Linear Unit)' (p114: 0.580, p115: 0.556) -->
 
 $$f(x) = \begin{cases} x & \text{if } x > 0 \\ \alpha(e^x - 1) & \text{if } x \le 0 \end{cases} \qquad (\text{default: } \alpha = 1)$$
 
@@ -311,9 +306,12 @@ _(Clevert et al., 2016)_
 
 ### Maxout
 
-<!-- Review Needed: close slide match for 'Maxout' (p118: 0.734, p117: 0.696) -->
+<!-- Review Needed: close slide match for 'Maxout' (p117: 0.533, p118: 0.512) -->
 
-![[Lec01_Pg118_Maxout.png]]
+![[Lecture01_Pg117_Maxout.png]]
+![[Lecture01_Pg118_Maxout.png]]
+
+<!-- Review Needed: close slide match for 'Maxout' (p118: 0.734, p117: 0.696) -->
 
 $$f(x) = \max(w_1^\top x + b_1,\; w_2^\top x + b_2)$$
 
@@ -325,7 +323,7 @@ _(Goodfellow et al., 2013)_
 
 ### In Practice (TLDR)
 
-![[Lec01_Pg119_In_Practice_Tldr.png]]
+![[Lecture01_Pg119_In_Practice_Tldr.png]]
 
 > - Use **ReLU**. Be careful with your learning rates.
 > - Try **Leaky ReLU**, **Maxout**, or **ELU** to squeeze out marginal gains.
@@ -337,13 +335,13 @@ _(Goodfellow et al., 2013)_
 
 ### All-Zero / Constant Init
 
-![[Lec01_Pg121_All_Zero_Constant_Init.png]]
+![[Lecture01_Pg121_All_Zero_Constant_Init.png]]
 
 If all weights are the same value, all neurons compute **identical gradients** → they all update identically → the network never differentiates. This is the **symmetry problem**.
 
 ### Small Random Numbers — `W = 0.01 * randn(Din, Dout)`
 
-![[Lec01_Pg122_Small_Random_Numbers_W_0_01.png]]
+![[Lecture01_Pg122_Small_Random_Numbers_W_0_01.png]]
 
 Works okay for small networks, but **not** for deep ones:
 
@@ -352,14 +350,14 @@ Works okay for small networks, but **not** for deep ones:
 
 ### Larger Random Numbers — `W = 0.05 * randn(Din, Dout)` (with tanh)
 
-![[Lec01_Pg122_Larger_Random_Numbers_W_0_05.png]]
+![[Lecture01_Pg122_Larger_Random_Numbers_W_0_05.png]]
 
 - Almost all neurons/activations **saturate** (outputs ≈ ±1)
 - Gradients are again ≈ 0 → **no learning**
 
 ### Xavier / Glorot Initialisation (2010)
 
-![Lecture 01 slide page 131](/pictures/mpl/01/lecture-01-page-131.png)
+![[Lecture01_Pg155_Xavier_Glorot_Initialisation_2010.png]]
 
 $$\text{std} = \frac{1}{\sqrt{D_\text{in}}}$$
 
@@ -375,7 +373,10 @@ Activations are nicely scaled across all layers. **Assumes a zero-centred activa
 
 ### Kaiming / MSRA Initialisation — for ReLU (He et al., 2015)
 
-![Lecture 01 slide page 151](/pictures/mpl/01/lecture-01-page-151.png)
+<!-- Review Needed: close slide match for 'Kaiming / MSRA Initialisation — for ReLU (He et al., 2015)' (p137: 0.479, p138: 0.478) -->
+
+![[Lecture01_Pg137_Kaiming_Msra_Initialisation_For_Relu_He.png]]
+![[Lecture01_Pg138_Kaiming_Msra_Initialisation_For_Relu_He.png]]
 
 $$\text{std} = \sqrt{\frac{2}{D_\text{in}}}$$
 
@@ -389,13 +390,9 @@ Xavier breaks down for ReLU because ReLU is not zero-centred (it zeros out half 
 
 <!-- Review Needed: close slide match for 'Batch Normalisation' (p83: 0.404, p81: 0.366) -->
 
-![[Lec01_Pg081_Batch_Normalisation.png]]
-
 Batch Normalisation was introduced to make deep networks easier to optimise (Ioffe and Szegedy, 2015). The original motivation was to reduce **internal covariate shift**: as lower layers change during training, the distribution seen by higher layers also changes. In practice, BatchNorm also makes training **less sensitive to weight initialisation** and typically stabilises optimisation.
 
 ### BatchNorm Formula
-
-![[Lec01_Pg083_Batchnorm_Formula.png]]
 
 For a mini-batch $B = \{x_1, \dots, x_m\}$, BatchNorm computes
 
@@ -421,8 +418,6 @@ The parameters $\gamma$ and $\beta$ are learned, so the network can recover any 
 
 ### Train Time vs. Test Time
 
-![[Lec01_Pg083_Train_Time_Vs_Test_Time.png]]
-
 | Phase         | Statistics used                                   | Behaviour                                             |
 | ------------- | ------------------------------------------------- | ----------------------------------------------------- |
 | **Training**  | Mean/variance of the current mini-batch           | Adds some noise, which can act as mild regularisation |
@@ -442,8 +437,6 @@ BatchNorm often helps because it:
 > **Example**: A deep CNN that becomes unstable with a large learning rate can often train cleanly once each `Conv` layer is followed by BatchNorm.
 
 ### PyTorch Example
-
-![[Lec01_Pg013_Pytorch_Example.png]]
 
 ```python
 import torch.nn as nn
@@ -505,6 +498,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=0.01, weight_decay=1e-3)
 ```
 
 **Explanation:**
+
 - **`weight_decay`**: In PyTorch optimizers, this parameter implements **L2 Regularization** by adding a penalty proportional to the squared magnitude of weights to the loss, preventing them from growing too large.
 - **Early Stopping**: A heuristic that stops training when validation performance stops improving for a fixed number of epochs (`patience`).
 
@@ -553,6 +547,8 @@ In practice, **weight decay + dropout** is a strong baseline regularisation comb
 
 ### PyTorch Implementation: Multi-Layer Perceptron (MLP)
 
+![[Lecture01_Pg030_Pytorch_Implementation_Multi_Layer_Perceptron_Mlp.png]]
+
 Below is a practical implementation of a simple MLP in PyTorch.
 
 ```python
@@ -568,13 +564,13 @@ class MLP(nn.Module):
         self.net = nn.Sequential(
             # Linear layer: computes out = x * weight^T + bias
             # Maps input features to 10 hidden features
-            nn.Linear(n_inputs, 10), 
-            
+            nn.Linear(n_inputs, 10),
+
             # Tanh activation function provides non-linearity
-            nn.Tanh(),               
-            
+            nn.Tanh(),
+
             # Output layer: maps 10 hidden features back to 1 output
-            nn.Linear(10, 1),        
+            nn.Linear(10, 1),
         )
 
     def forward(self, x):
@@ -584,30 +580,31 @@ class MLP(nn.Module):
 # 2. Setup Training
 model = MLP()
 # Adam is an adaptive optimizer; lr is the learning rate
-optimizer = torch.optim.Adam(model.parameters(), lr=0.01) 
+optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
 # MSELoss (Mean Squared Error) is the standard loss for regression
-criterion = nn.MSELoss() 
+criterion = nn.MSELoss()
 
 # 3. Training Loop
 model.train() # Set the model to training mode
 for epoch in range(200):
     # STEP 1: Clear existing gradients from the last step
-    optimizer.zero_grad()      
-    
+    optimizer.zero_grad()
+
     # STEP 2: Forward pass - get model predictions
-    outputs = model(x)         
-    
+    outputs = model(x)
+
     # STEP 3: Compute the loss (error)
-    loss = criterion(outputs, targets) 
-    
+    loss = criterion(outputs, targets)
+
     # STEP 4: Backpropagation - calculate gradients for all parameters
-    loss.backward()            
-    
+    loss.backward()
+
     # STEP 5: Optimization - update weights based on gradients
-    optimizer.step()           
+    optimizer.step()
 ```
 
 **Key PyTorch Concepts:**
+
 - **`nn.Module`**: The base class for all neural network modules. Your model must inherit from it to utilize PyTorch's parameter tracking.
 - **`nn.Sequential`**: A container that wraps layers in a sequence, automatically passing the output of one to the next.
 - **`forward()`**: Defines the computation performed at every call. You don't call this directly; use `model(x)`.
@@ -635,9 +632,9 @@ accuracy = model.score(X_test, y_test)
 ```
 
 **Concepts:**
+
 - **`fit()`**: The standard Scikit-Learn method for training a model on data.
 - **`score()`**: Returns the mean accuracy on the given test data and labels.
-
 
 ---
 
