@@ -16,6 +16,7 @@ _Perfect for your first hour in TouchDesigner. Focus on the core UI and basic op
 
 - **[[Basic VJ Mixer|(y-) Basic VJ Mixer]]**: Learn how to build a 2-channel crossfader. This covers the most important skill in TD: **Binding** (linking numbers to parameters).
 - **[[Audio Reactive Geometry|(y-) Audio Reactive Geometry]]**: A classic project. Learn how to turn sound into numbers and use **Instancing** to drive thousands of 3D shapes.
+- **[[Chromatic Aberration Feedback|(y-) Chromatic Aberration Feedback]]**: The "Okamirufu" signature. A simple but effective post-processing trick using time-delayed caching for movement-based RGB splitting.
 
 ---
 
@@ -28,11 +29,14 @@ _Requires a basic understanding of how data flows between TOPs, CHOPs, and SOPs.
 - **[[Real-time Audio Visualizer|(y-) Real-time Audio Visualizer with FFT]]**: A more "professional" version of the audio reactive recipe. Focuses on frequency analysis and clean layout.
 - **[[GLSL Feedback Effect|(y-) GLSL Feedback Effect]]**: Your first dip into **GLSL (Shaders)**. Learn how to create hypnotic trails, zooms, and rotations that respond to music.
 - **[[5 Ways To Make Particles|(y-) 5 Ways To Make Particles]]**: A comparison of every way to make particles in TD. Great for choosing the right tool for the job.
+- **[[Fluid Text Morphing|(y-) Fluid Text Morphing]]**: Liquid text effects bridging the 2D TOP world into 3D points that melt and dissolve.
 
 ### 3D & Rendering
 
 - **[[Instanced 3D Models with PBR|(y-) Instanced 3D Models with PBR]]**: Learn how to use high-quality **PBR Materials** (Physically Based Rendering) with thousands of 3D models.
 - **[[Particle System with POPs|(y-) Particle System with POPs]]**: Introduction to **POPs** (Point Operators) for massive GPU-accelerated particle systems.
+- **[[Organic Amoeba|(y-) Organic Amoeba]]**: Create a "living," pulsating point cloud using Noise POPs and iridescent position-to-color mapping.
+- **[[Biomechanical Metallic Spines|(y-) Biomechanical Metallic Spines]]**: Parametric vertebral structures using Revolve POPs and high-metallic PBR shaders.
 
 ---
 
@@ -55,6 +59,7 @@ _Deep dives into fluid dynamics, motion tracking, and complex math._
 
 - **[[GPU Fluid Simulation|(y-) GPU Fluid Simulation]]**: A complex TOP-based feedback system for smoke and liquid dynamics.
 - **[[Dreamscape Particle Cloud|(y-) Dreamscape Particle Cloud]]**: A stylized, glowing particle system with feedback-based bloom.
+- **[[Vector Field Instancing|(y-) Vector Field Instancing]]**: Millions of points following swirling vortex paths driven by a high-density 3D vector noise grid.
 
 ---
 

@@ -24,6 +24,7 @@ This module contains the best external resources for learning TouchDesigner, ran
 ### Intermediate to Advanced Generative Art
 
 - **[Paketa12](https://www.youtube.com/c/paketa12)**: The absolute master of geometry instancing, feedback loops, and complex vector math without writing code.
+- **[Okamirufu Vizualizer](https://www.youtube.com/@OkamirufuV)**: Specialized in biomechanical, organic, and Y2K aesthetics using the POP (Point Operator) family and high-performance GPU workflows.
 - **[The Interactive & Immersive HQ / Elburz Sorkhabi](https://www.youtube.com/c/TheInteractiveImmersiveHQ)**: Deep dives into Python integration, advanced UI components, and building sellable applications.
 - **[Matthew Ragan](https://matthewragan.com/teaching-resources/touchdesigner/)**: The original "Professor" of TouchDesigner. Highly academic, detailed breakdowns of Python, optimization, and complex systems.
 

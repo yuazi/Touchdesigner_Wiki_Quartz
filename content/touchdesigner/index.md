@@ -112,6 +112,11 @@ Practical examples from start to finish.
 | [[touchdesigner/06_Recipes_and_Projects/GPU Fluid Simulation\|(y-) GPU Fluid Simulation with Feedback TOPs]]                               | Real-time GPU-accelerated fluid simulation using Feedback TOP system for velocity and density fields        | Project    |
 | [[touchdesigner/06_Recipes_and_Projects/Instanced 3D Models with PBR\|(y-) Instanced 3D Models with PBR Materials]]                        | Efficiently render thousands of 3D models using instancing with Physically Based Rendering (PBR) materials  | Project    |
 | [[touchdesigner/06_Recipes_and_Projects/Real-time Motion History and Optical Flow\|(y-) Real-time Motion History Images and Optical Flow]] | Motion analysis using Motion History Images (MHI) and Optical Flow techniques for interactive installations | Project    |
+| [[touchdesigner/06_Recipes_and_Projects/Organic Amoeba\|(y-) Organic Amoeba]]                                                              | "Living," pulsating point clouds with iridescent mapping (Okamirufu Style)                                  | Recipe     |
+| [[touchdesigner/06_Recipes_and_Projects/Biomechanical Metallic Spines\|(y-) Biomechanical Metallic Spines]]                                | Parametric vertebral structures with PBR chrome finish (Okamirufu Style)                                    | Recipe     |
+| [[touchdesigner/06_Recipes_and_Projects/Fluid Text Morphing\|(y-) Fluid Text Morphing]]                                                    | Liquid text effects bridging TOPs and POPs (Okamirufu Style)                                                | Recipe     |
+| [[touchdesigner/06_Recipes_and_Projects/Vector Field Instancing\|(y-) Vector Field Instancing]]                                            | Millions of points following swirling vortex paths (Okamirufu Style)                                        | Recipe     |
+| [[touchdesigner/06_Recipes_and_Projects/Chromatic Aberration Feedback\|(y-) Chromatic Aberration Feedback]]                                | Movement-based RGB split post-processing (Okamirufu Style)                                                  | Recipe     |
 
 ---
 
