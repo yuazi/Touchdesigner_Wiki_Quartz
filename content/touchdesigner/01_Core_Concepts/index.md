@@ -20,4 +20,5 @@ Welcome to the Core Concepts module! This folder contains everything you need to
 - **[[Viewer Active Mode|(y-) Viewer Active Mode]]**: How to interact directly with node outputs.
 
 ---
+
 [[touchdesigner/index|(y) Return to TouchDesigner]]

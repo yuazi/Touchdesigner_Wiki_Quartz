@@ -29,5 +29,6 @@ Feedback loops can quickly blow out to pure white or decay to pure black.
 - Be mindful of pixel formats (using 16-bit or 32-bit float prevents early color clamping).
 
 ---
+
 [[touchdesigner/03_Rendering_and_Output/index|(y) Return to Rendering & Output]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

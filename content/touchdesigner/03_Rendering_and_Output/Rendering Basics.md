@@ -32,5 +32,6 @@ The **Render TOP** has several crucial parameters on its setup pages:
 - **Anti-alias:** Smooths the jagged edges of geometry. Higher values cost more performance.
 
 ---
+
 [[touchdesigner/03_Rendering_and_Output/index|(y) Return to Rendering & Output]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

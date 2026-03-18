@@ -88,5 +88,6 @@ Let's make two spheres that follow your hands in 3D space.
 - **Dance Visuals:** Use your movement speed (velocity) to drive the color of a background noise field.
 
 ---
+
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

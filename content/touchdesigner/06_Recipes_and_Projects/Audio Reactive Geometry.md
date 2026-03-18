@@ -86,5 +86,6 @@ We want the boxes to sit in a row, but our audio data only has "Height" (Y) valu
 - **3D Grid:** Use a **Noise TOP** to generate a 2D grid of boxes instead of a 1D row.
 
 ---
+
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

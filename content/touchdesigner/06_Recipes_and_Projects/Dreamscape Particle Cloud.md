@@ -184,5 +184,6 @@ For a fully 3D version with a moving camera, replace the Point Sprite MAT with a
 - **Color palettes:** Try `Add` mode in the Composite for an additive neon look, or `Screen` for softer pastels
 
 ---
+
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

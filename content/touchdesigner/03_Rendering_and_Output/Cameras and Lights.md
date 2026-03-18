@@ -38,5 +38,6 @@ To enable shadows:
 3. Soft shadows require adjusting the _Softness_ and _Resolution_ parameters for quality.
 
 ---
+
 [[touchdesigner/03_Rendering_and_Output/index|(y) Return to Rendering & Output]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

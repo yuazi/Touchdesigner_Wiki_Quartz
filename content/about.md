@@ -22,7 +22,7 @@ I build tools that bridge the gap between complex data and intuitive interfaces.
 - **Languages:** Python, TypeScript, Java, Lua
 - **AI/ML:** PyTorch, MediaPipe, Constraint Propagation
 - **Creative:** TouchDesigner, GLSL, Strange Attractors
-- **Environment:** Ghostty + Neovim + Yazi (Keyboard-driven workflow)
+- **Environment:** Ghostty + Neovim + Yazi (keyboard driven workflow)
 
 ---
 
@@ -30,14 +30,14 @@ I build tools that bridge the gap between complex data and intuitive interfaces.
 
 - **Building:** [SlideLink](./work/slidelink)—automating the bridge between lecture slides and Quartz notes.
 - **Studying:** Machine Perception & Learning (MPL).
-- **Training:** Taekwondo—focusing on high-pressure sparring and PNF mobility.
-- **Exploring:** The intersection of generative AI and real-time visual systems.
+- **Training:** Taekwondo—focusing on high pressure sparring and PNF mobility.
+- **Exploring:** The intersection of generative AI and real time visual systems.
 
 ---
 
 ## Beyond the Screen
 
-- **Taekwondo:** A white-to-black belt journey fueled by a love for spinning kicks.
+- **Taekwondo:** A white to black belt journey fueled by a love for spinning kicks.
 - **Motorcycles:** Pure focus. No distractions, just the bike and the road.
 - **Scents:** Exploring the sensory world of niche perfumery.
 - **Chaos:** obsessed with the math of the [Lorenz Attractor](./notes/random/lorenz-attractor).
@@ -46,7 +46,7 @@ I build tools that bridge the gap between complex data and intuitive interfaces.
 
 ## Contact
 
-Feel free to reach out if you want to talk about data science, creative coding, or why the front-leg "cancel" is the most important move in sparring.
+Feel free to reach out if you want to talk about data science, creative coding, or why the front leg "cancel" is the most important move in sparring.
 
 - **GitHub:** [yuazi](https://github.com/yuazi)
 

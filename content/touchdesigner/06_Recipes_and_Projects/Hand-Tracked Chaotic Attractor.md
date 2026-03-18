@@ -330,5 +330,6 @@ If CPU spikes, reduce Points first, then lower dt a little. Add a Timer CHOP to 
 - [[notes/random/lorenz-attractor|(y-) The Lorenz Attractor]]
 
 ---
+
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

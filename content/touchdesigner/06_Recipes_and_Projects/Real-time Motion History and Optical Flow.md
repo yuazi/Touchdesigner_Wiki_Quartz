@@ -85,5 +85,6 @@ Let's make a visual where your motion "paints" trails on the screen.
 - **Interactive Mask:** Use the Motion History as an alpha mask to only show a 3D scene where someone is moving.
 
 ---
+
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

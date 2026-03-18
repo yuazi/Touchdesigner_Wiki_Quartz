@@ -102,5 +102,6 @@ Let's make it look professional with some glow.
 - **Reactive Color:** Map the audio volume to the **Instance Color** parameters so it gets brighter on loud kicks.
 
 ---
+
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]
