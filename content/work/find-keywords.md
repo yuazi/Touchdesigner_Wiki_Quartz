@@ -8,7 +8,7 @@ tags:
 date: 2026-03-14
 ---
 
-Taking manual screenshots of lecture slides while writing notes is a massive waste of time. For the [[mlp/index|Machine Perception & Learning]] course, I have hundreds of slides across 13+ lectures. Clicking back and forth between a PDF and Obsidian just to crop and name images felt like busywork, so I wrote `find_keywords.py` to handle it for me.
+Taking manual screenshots of lecture slides while writing notes is a massive waste of time. For the [[notes/mlp/index|Machine Perception & Learning]] course, I have hundreds of slides across 13+ lectures. Clicking back and forth between a PDF and Obsidian just to crop and name images felt like busywork, so I wrote `find_keywords.py` to handle it for me.
 
 The script "reads" my notes, finds the most relevant slide in the corresponding PDF, renders it as a high-res PNG, and inserts the link automatically.
 
