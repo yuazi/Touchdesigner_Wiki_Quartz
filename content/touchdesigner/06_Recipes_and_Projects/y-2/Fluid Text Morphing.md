@@ -62,6 +62,15 @@ Transform 2D text into a dynamic, 3D point cloud that "melts," "morphs," and "di
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **Noise Amplitude** | Higher = more chaotic, "melting" distortion; Lower = text remains legible but wiggles. |
+| **Vertical Drip Speed** | Higher = text "melts" rapidly like water; Lower = slow, honey-like viscous flow. |
+| **Force Magnitude** | Higher = explosive, violent dissolution of the text; Lower = gentle drifting of points. |
+| **Bloom Intensity** | Higher = points become glowing embers; Lower = sharp, distinct digital pixels. |
+
 ## Network Architecture
 
 To visualize how the data flows, here is a map of the final network:

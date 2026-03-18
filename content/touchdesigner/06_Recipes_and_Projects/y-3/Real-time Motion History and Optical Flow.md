@@ -86,6 +86,15 @@ Let's make a visual where your motion "paints" trails on the screen.
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **Blur Amount** | Higher = filters out more noise (good for dark rooms); Lower = more sensitive to tiny motions. |
+| **Feedback Fade** | Higher (0.98) = very long, "ghostly" trails; Lower (0.85) = fast, responsive motion highlights. |
+| **Threshold** | Cuts out low-level movement/noise; Higher = only fast, big movements are tracked. |
+| **Optical Flow Sensitivity** | Higher = exaggerates the direction colors; Lower = subtle, realistic velocity mapping. |
+
 ## Network Architecture
 
 To visualize how the motion and optical flow data flows, here is the final network map:

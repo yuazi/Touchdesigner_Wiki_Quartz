@@ -70,6 +70,16 @@ Add a **Luma Blur TOP** at the end of your chain to create a depth-of-field effe
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **Circle Divisions** | Higher = ultra-smooth silhouette; Lower = jagged, crystal-like amoeba edges. |
+| **Noise Amplitude** | Higher = more violent, "stretching" distortions; Lower = calm, subtle pulsing. |
+| **Noise Z-Speed** | Higher = rapid shape-shifting; Lower = slow, lava-lamp-like evolution. |
+| **Feedback Blur** | Higher = softer, "glowing" ink trails; Lower = sharper, more defined liquid movement. |
+| **Displace Strength** | Higher = more "oily" turbulence in trails; Lower = straight, clean motion trails. |
+
 ## Network Architecture
 
 To visualize how the data flows, here is a map of the final network:

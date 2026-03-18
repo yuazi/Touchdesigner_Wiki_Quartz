@@ -68,6 +68,16 @@ To make the visuals "bloom" and grow over time:
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **Cache Index** | Higher negative values = more pronounced time-based color separation (ghosting). |
+| **Feedback Scale** | Higher = trails expand faster; Lower = tighter, more concentrated trails. |
+| **Feedback Rotation** | Higher = more spiral-like motion in trails; Zero = straight expansion. |
+| **Level Opacity** | Higher = trails persist longer (more "ghosting"); Lower = trails fade out quickly. |
+| **Blur Filter Size** | Higher = softer, glowier feedback; Lower = sharper, more defined trail edges. |
+
 ## Network Architecture
 
 To visualize how the data flows, here is a map of the final network:

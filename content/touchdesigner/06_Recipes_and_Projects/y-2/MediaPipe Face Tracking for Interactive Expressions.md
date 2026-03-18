@@ -86,6 +86,15 @@ Let's make a circle that grows and changes color when you smile.
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **mouthSmile intensity** | 0 to 1; drives how much the visual "reacts" to your happiness. |
+| **Math Multiplier** | Higher = makes the visual react to even a tiny smirk; Lower = requires a wide grin. |
+| **Lag / Smoothing** | Higher = visual reacts slowly and "fluidly"; Lower = visual is "twitchy" and instant. |
+| **Bloom Intensity** | Higher = smile becomes a blinding light; Lower = subtle, soft glow. |
+
 ## Network Architecture
 
 To visualize how the face tracking data flows, here is the final network map:

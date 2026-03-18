@@ -97,6 +97,16 @@ You can insert effects between the `Cross TOP` and your `OUT` node to make it mo
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **Cross (Mixer)** | 0 = Source A only; 1 = Source B only; 0.5 = Equal blend of both sources. |
+| **Level Brightness** | Higher = more intense light; Lower = darker, more moody visuals. |
+| **Edge Strength** | Higher = thicker, more visible outlines; Lower = subtler, thinner lines. |
+| **Blur Size** | Higher = dreamier, softer focus; Lower = sharp, clear details. |
+| **Lag (Smoothing)** | Higher = slower, more "weighted" transition; Lower = instant, "snappy" response. |
+
 ## Network Architecture
 
 To visualize how the data flows, here is a map of the final network:

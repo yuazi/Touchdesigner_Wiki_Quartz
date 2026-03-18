@@ -103,6 +103,16 @@ Let's make it look professional with some glow.
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **Lag (Smoothing)** | Higher (0.2) = smooth, liquid transitions; Lower (0.01) = sharp, snappy response to beats. |
+| **Math Multiply** | Higher = more reactive to quiet sounds; Lower = requires loud audio to trigger movement. |
+| **Bloom Intensity** | Higher = blinding, ethereal glow; Lower = subtle, clean highlights on the boxes. |
+| **Hue Offset Speed** | Higher = rapid, psychedelic color cycling; Lower = slow, majestic mood shifts. |
+| **Noise Grid Size** | Higher (64x1) = more boxes/finer frequency detail; Lower (8x1) = fewer, chunky bars. |
+
 ## Network Architecture
 
 To visualize how the audio and 3D data flows, here is the final network map:

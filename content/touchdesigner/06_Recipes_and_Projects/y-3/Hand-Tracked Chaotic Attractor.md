@@ -331,6 +331,16 @@ If CPU spikes, reduce Points first, then lower dt a little. Add a Timer CHOP to 
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **Sigma (X-Hand)** | Controls the "butterfly" wing spread; Higher = more chaotic horizontal oscillation. |
+| **Rho (Y-Hand)** | Controls the vertical "height" of the loops; Higher = more complex, layered patterns. |
+| **Beta (Pinch)** | Controls the "tightness" of the attractor core; Higher = more elongated, thinner loops. |
+| **Point Count** | Higher = longer, more complete trails; Lower = shorter, faster-moving "comet" effect. |
+| **Feedback Opacity** | Higher = persistent, "ghostly" history of the attractor; Lower = focus on the leading point. |
+
 ## Network Architecture
 
 This project uses a "native" Python approach without external plugins. Here is the data flow:

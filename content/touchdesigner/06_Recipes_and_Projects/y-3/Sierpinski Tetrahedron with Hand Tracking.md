@@ -141,6 +141,15 @@ To zoom, calculate the distance between the thumb tip and index finger tip.
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **Iterations** | Higher = more complex fractal detail (heavy on GPU/CPU); Lower = simpler geometric forms. |
+| **Rotation Range** | Higher = more sensitive hand-to-rotation mapping; Lower = stable, subtler orientation changes. |
+| **Filter Width** | Higher = smooth, "floaty" movement; Lower = raw, responsive (but potentially jittery) tracking. |
+| **Pinch Distance** | Determines the zoom range; a tight pinch vs. open hand maps to camera Z-depth. |
+
 ## Network Architecture
 
 To visualize how the fractal geometry and hand tracking interact, here is the final network map:

@@ -64,6 +64,16 @@ Instead of rendering simple points, we can instance 3D geometry onto every point
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **Grid Divisions** | Higher = more dense vortex (very high counts require GPU instancing); Lower = sparse field. |
+| **Noise Amplitude** | Higher = more violent, wide-sweeping swirls; Lower = tight, subtle movement. |
+| **Noise Period** | Higher = larger, lazier "wind" patterns; Lower = small, chaotic, "jittery" eddies. |
+| **Noise Speed** | Higher = faster evolution of the field; Lower = slow, hypnotic flow. |
+| **Audio Sensitivity** | Higher = field "vibrates" more intensely to sound; Lower = subtle, rhythmic pulsing. |
+
 ## Network Architecture
 
 To visualize how the data flows, here is a map of the final network:

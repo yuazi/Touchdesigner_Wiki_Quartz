@@ -151,6 +151,15 @@ Kick drums push the zoom, creating the classic "zoom-in-on-beat" VJ effect.
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **uZoom** | >1.0 = trails expand outward (tunnel effect); <1.0 = trails shrink toward center. |
+| **uRotation** | Higher = trails spiral rapidly; Zero = trails move in straight lines from the center. |
+| **uDecay** | Higher (0.99) = trails stay on screen for a long time; Lower (0.8) = trails vanish quickly. |
+| **uOffset** | Adds a directional "drift" to the feedback (e.g., trails always float upward). |
+
 ## Network Architecture
 
 To visualize how the data flows, here is a map of the final network:

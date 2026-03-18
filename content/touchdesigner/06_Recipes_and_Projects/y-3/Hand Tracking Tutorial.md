@@ -469,6 +469,16 @@ From here you can extend the rig by:
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **Pinch Distance** | Higher = larger brush strokes; Lower = fine, delicate lines. |
+| **Z-Depth Threshold** | Determines how close your hand needs to be to the camera to "start painting." |
+| **Feedback Blur** | Higher = softer, watercolor-like bleed; Lower = sharper, more defined paint edges. |
+| **Feedback Opacity** | Higher = paint stays on screen longer (longer memory); Lower = paint fades away quickly. |
+| **Lag / Smoothing** | Higher = fluid, graceful brush strokes; Lower = instant, "sketchy" response to hand jitter. |
+
 ## Network Architecture
 
 To visualize how the data flows, here is a map of the final rig and the two sub-projects (Brush & Architecture):

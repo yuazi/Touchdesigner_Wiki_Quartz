@@ -87,6 +87,15 @@ We want the boxes to sit in a row, but our audio data only has "Height" (Y) valu
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **Resample (Samples)** | Higher = more 3D bars (finer frequency detail); Lower = fewer, thicker bars. |
+| **Pattern Amplitude** | Higher = bars spread further apart across the screen; Lower = bars cluster together. |
+| **Math (Multiply)** | Higher = bars grow taller/more reactive to sound; Lower = subtler, shorter movement. |
+| **Lag/Filter** | Higher = smoother, "liquid" motion; Lower = raw, "jittery" real-time data response. |
+
 ## Network Architecture
 
 To visualize how the data flows, here is a map of the final network:

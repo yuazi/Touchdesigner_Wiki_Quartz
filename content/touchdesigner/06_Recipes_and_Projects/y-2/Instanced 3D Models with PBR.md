@@ -302,6 +302,16 @@ TouchDesigner instancing limits:
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **Instance Count** | Higher = denser field of objects (expensive on GPU); Lower = sparse, cleaner look. |
+| **Position Spread** | Higher = instances fill a larger volume of space; Lower = instances cluster at the center. |
+| **Rotation Range** | Higher = more chaotic, varied orientations; Zero = all instances face the same way. |
+| **Scale Range** | Higher = more dramatic size difference between instances; Lower = uniform sizing. |
+| **Audio Sensitivity** | Higher = more violent/obvious reaction to sound; Lower = subtle, "floating" response. |
+
 ## Network Architecture
 
 To visualize how the 3D models and instancing data flow, here is the final network map:

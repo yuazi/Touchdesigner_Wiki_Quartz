@@ -185,6 +185,16 @@ For a fully 3D version with a moving camera, replace the Point Sprite MAT with a
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **Noise Amplitude** | Higher = more "wild" drifting of particles; Lower = tight, structured cloud. |
+| **Force Strength** | Higher = particles are pulled more strongly to the center; Lower = particles drift freely. |
+| **Feedback Opacity** | Higher = longer, more persistent dreamy trails; Lower = shorter, faster-fading glow. |
+| **Blur Size** | Higher = softer, more "bloomy" dreamscape look; Lower = sharper, more distinct points. |
+| **Point Size** | Higher = large, soft "orbs" of light; Lower = tiny, sharp digital stars. |
+
 ## Network Architecture
 
 To visualize how the data flows, here is a map of the final network:

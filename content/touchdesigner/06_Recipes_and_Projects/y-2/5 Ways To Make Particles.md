@@ -167,6 +167,16 @@ Quick prototype, don't care about GPU? → Method 5 (Particle SOP)
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **Line Width (M1)** | Higher = thick, neon strokes; Lower = delicate, hair-like trails. |
+| **Emit Rate (M2)** | Higher = dense clouds/smoke; Lower = sparse, individual "dust" particles. |
+| **Noise Amplitude (M3/4)** | Higher = more turbulent, chaotic movement; Lower = straight, predictable motion. |
+| **Texture Resolution (M4)** | 256x256 = 65k particles; 512x512 = 262k particles (requires more GPU power). |
+| **Max Particles (M5)** | Limits CPU load; keep below 50,000 for stable performance. |
+
 ## Network Architecture
 
 Because this guide covers 5 different methods, here are the simplified maps for each:

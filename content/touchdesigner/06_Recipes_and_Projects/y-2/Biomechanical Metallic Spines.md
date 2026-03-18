@@ -64,6 +64,16 @@ This recipe covers the creation of vertebral or rib-like structures using mathem
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **Sine Amplitude** | Higher = deeper "ribs" and more extreme vertebral curves; Lower = smoother, tube-like spine. |
+| **Revolve Steps** | Higher = smoother, high-resolution geometry; Lower = faceted, low-poly "retro" look. |
+| **Metallic/Roughness** | 1.0/0.1 = polished chrome; 0.0/0.8 = matte plastic or bone-like texture. |
+| **Animation Phase** | Higher = faster "breathing" or pulsing motion; Lower = slow, majestic movement. |
+| **Noise Variance** | Higher = more "diseased" or organic irregular growth; Lower = perfect, mechanical symmetry. |
+
 ## Network Architecture
 
 To visualize how the data flows, here is a map of the final network:

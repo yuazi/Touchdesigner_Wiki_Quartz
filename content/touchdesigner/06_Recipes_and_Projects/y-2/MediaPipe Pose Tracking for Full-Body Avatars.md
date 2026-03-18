@@ -89,6 +89,15 @@ Let's make two spheres that follow your hands in 3D space.
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **Math Range (-1 to 1)** | Determines how much of the 3D screen your movements fill. |
+| **Lag / Smoothing** | Higher = puppet follows with "weight" and grace; Lower = puppet is "twitchy" and mirrors raw data. |
+| **Hip Y-Threshold** | Adjusts the "sensitivity" for detecting a jump or a crouch. |
+| **Sphere Scale** | Higher = large, bulbous joints; Lower = tiny, delicate points of light. |
+
 ## Network Architecture
 
 To visualize how the pose tracking data flows, here is the final network map:

@@ -330,6 +330,15 @@ Enable multiple users to interact with the same system:
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **Max Num Hands** | 1-4; tracking more hands requires more CPU/GPU resources. |
+| **Model Complexity** | 0 = fastest performance; 1 = highest accuracy for fine finger details. |
+| **Gesture Threshold** | Higher = requires a very clear hand shape to trigger; Lower = more "lenient" detection. |
+| **Interaction Distance** | Determines how close two hands need to be to trigger a "clap" or "merge" effect. |
+
 ## Network Architecture
 
 To visualize how the advanced multi-hand data flows, here is the final network map:

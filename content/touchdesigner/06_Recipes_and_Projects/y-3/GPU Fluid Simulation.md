@@ -334,6 +334,16 @@ Create a control panel with:
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **Viscosity (Vel Dissipation)** | Higher (0.999) = fluid flows like water; Lower (0.90) = fluid is thick like honey/oil. |
+| **Diffusion (Dens Dissipation)** | Higher = smoke lingers for a long time; Lower = smoke vanishes almost instantly. |
+| **Pressure Iterations** | Higher = more realistic, incompressible fluid; Lower = fluid may "compress" or look "springy." |
+| **Vorticity Confinement** | Higher = more small-scale swirls and "turbulent" detail; Lower = smooth, laminar flow. |
+| **Timestep (dt)** | Higher = faster simulation speed; Lower = more stable and accurate physics. |
+
 ## Network Architecture
 
 Fluid simulations are complex "coupled" feedback loops. Here is the high-level data flow for the two main fields:

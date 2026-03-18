@@ -101,6 +101,16 @@ The POP SOP outputs "points," but we need to tell TouchDesigner _how_ to draw th
 
 ---
 
+## Parameter Tuning & Behavior
+
+| Parameter | Behavior |
+| :--- | :--- |
+| **Emit Rate** | Higher = denser clouds of particles; Lower = sparse, individual points. |
+| **Life Expectancy** | Higher = particles stay on screen longer; Lower = quick "bursts" that vanish fast. |
+| **Force Y (Gravity)** | Positive = particles float up; Negative = particles fall down like rain/snow. |
+| **Wind Turbulence** | Higher = more chaotic, organic movement; Lower = straight, mechanical motion. |
+| **Color Ramp** | Determines the mood; changing the gradient changes the "story" of the particle's life. |
+
 ## Network Architecture
 
 To visualize how the GPU particles and data flows, here is the final network map:
