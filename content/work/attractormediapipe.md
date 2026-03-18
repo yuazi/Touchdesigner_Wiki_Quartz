@@ -94,4 +94,4 @@ pip install -r requirements.txt
 
 ## Related
 
-- [[notes/lorenz-attractor|The Lorenz Attractor]] — background on the math behind the simulation
+- [[notes/random/lorenz-attractor|The Lorenz Attractor]] — background on the math behind the simulation

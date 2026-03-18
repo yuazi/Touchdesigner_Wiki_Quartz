@@ -83,4 +83,4 @@ Around 90% of weight on the rear leg, front foot resting lightly on the ball. Al
 
 ---
 
-[[notes/taekwondo|Return to Taekwondo]] | [[notes/index|Return to Notes]]
+[[notes/taekwondo/index|Return to Taekwondo]] | [[notes/index|Return to Notes]]

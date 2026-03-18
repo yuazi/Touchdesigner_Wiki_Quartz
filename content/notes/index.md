@@ -11,30 +11,30 @@ date: 2026-01-01
 
 ---
 
-## Courses
+## [[notes/mlp/index|Courses]]
 
 - [[notes/mlp/index|(y-) Machine Perception & Learning (MPL)]]
 
-## CLI & Tools
+## [[notes/tools/index|CLI & Tools]]
 
+- [[notes/tools/ghostty|Ghostty]]
+- [[notes/tools/sioyek|Sioyek]]
+- [[notes/tools/yazi|Yazi]]
 - [[work/slidelink|SlideLink]]
-- [[ghostty|Ghostty]]
-- [[sioyek|Sioyek]]
-- [[yazi|Yazi]]
 
-## Taekwondo
+## [[notes/taekwondo/index|Taekwondo]]
 
-- [[taekwondo|Taekwondo]]
-- [[taekwondo-stances|Stances]]
-- [[taekwondo-combinations|Combinations]]
+- [[notes/taekwondo/index|Taekwondo Hub]]
+- [[notes/taekwondo/stances|Stances]]
+- [[notes/taekwondo/combinations|Combinations]]
+- [[notes/taekwondo/sparring|Sparring]]
+- [[notes/taekwondo/stretching|Stretching]]
+- [[notes/taekwondo/philosophy|Philosophy]]
 
-## Math & Chaos
+## [[notes/random/index|Random]]
 
-- [[lorenz-attractor|The Lorenz Attractor]]
-
-## Random
-
-- [[motorcycles|Motorcycles]]
-- [[perfumes|Perfumes]]
+- [[notes/random/lorenz-attractor|The Lorenz Attractor]]
+- [[notes/random/motorcycles|Motorcycles]]
+- [[notes/random/perfumes|Perfumes]]
 
 ---

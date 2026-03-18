@@ -78,4 +78,4 @@ git clone https://github.com/yuazi/simpleLorenzcss
 
 ## Related
 
-- [[notes/lorenz-attractor|The Lorenz Attractor]] — background on the math used in the center of the screen
+- [[notes/random/lorenz-attractor|The Lorenz Attractor]] — background on the math used in the center of the screen

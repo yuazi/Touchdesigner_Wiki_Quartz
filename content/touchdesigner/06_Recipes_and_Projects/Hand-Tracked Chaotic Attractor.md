@@ -28,7 +28,7 @@ Webcam → Script CHOP (MediaPipe) → Filter/Lag CHOPs → Math CHOPs
   → Script SOP (Lorenz) → Geo COMP → Render TOP → Post FX → Output
 ```
 
-See also: [[notes/lorenz-attractor|(y-) The Lorenz Attractor]] — the maths behind the system.
+See also: [[notes/random/lorenz-attractor|(y-) The Lorenz Attractor]] — the maths behind the system.
 
 ---
 
@@ -327,7 +327,7 @@ If CPU spikes, reduce Points first, then lower dt a little. Add a Timer CHOP to 
 - [[Hand Tracking Tutorial|(y-) Hand Tracking Tutorial]]
 - [[Hand Tracking|(y-) Hand Tracking]]
 - [[Sierpinski Tetrahedron with Hand Tracking|(y-) Sierpinski with Hand Tracking]]
-- [[notes/lorenz-attractor|(y-) The Lorenz Attractor]]
+- [[notes/random/lorenz-attractor|(y-) The Lorenz Attractor]]
 - [[touchdesigner/04_Scripting_and_Architecture/Python in TD|(y-) Python in TD]]
 - [[touchdesigner/03_Rendering_and_Output/Feedback Loops|(y-) Feedback Loops]]
 - [[touchdesigner/02_The_Operators/SOPs/index|(y-) SOPs]]

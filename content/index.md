@@ -32,9 +32,9 @@ A running log of what I've been working on and learning, ordered by time.
 
 Short notes and references on things I find interesting.
 
-- [[notes/lorenz-attractor|(y-) The Lorenz Attractor]]
-- [[notes/sioyek|(y-) Sioyek, a Keyboard Driven PDF Reader]]
-- [[notes/taekwondo|(y-) Taekwondo]]
+- [[notes/random/lorenz-attractor|(y-) The Lorenz Attractor]]
+- [[notes/tools/sioyek|(y-) Sioyek, a Keyboard Driven PDF Reader]]
+- [[notes/taekwondo/index|(y-) Taekwondo]]
 
 ---
 

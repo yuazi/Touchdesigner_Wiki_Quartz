@@ -7,7 +7,10 @@ tags:
 date: 2026-03-05
 ---
 
-## Why Taekwondo
+## Taekwondo
+The "Do" in motion. Documenting the path from white-belt basics to the tactical chaos of sparring and spinning hook kicks.
+
+---
 
 I like kicking and spinning, looks really cool. Honestly I just saw someone do a spinning hook kick in a Jackie Chan movie and thought "I need to learn that." That was enough motivation for me. No deep philosophical reason — just pure "that looks insane, I want to do it."
 
@@ -60,29 +63,4 @@ General commands you will hear constantly during class too.
 
 ---
 
-## Stretching
-
-Flexibility is the thing I am working the hardest on. My hips are not naturally open and it shows every time I try to throw a high kick. These are the stretches I do before and after practice.
-
-### Before Practice (Dynamic)
-
-- **Leg Swings (front to back)** — Hold a wall, swing one leg forward and back like a pendulum. Loosens up the hip flexors without holding a static stretch cold.
-- **Leg Swings (side to side)** — Same idea, swing across your body. Good for the inner thigh.
-- **Hip Circles** — Slow and controlled, big range of motion. Do both directions.
-- **High Knees** — Just march in place with exaggerated knee drive. Gets the blood moving.
-- **Butt Kicks** — Jog and flick your heels up to your glutes. Warms up the hamstrings.
-- **Lateral Lunges** — Step wide to one side and sink into it, keep the other leg straight. Great for groin opening.
-
-### After Practice (Static — hold 30 to 60 seconds)
-
-- **Standing Quad Stretch** — Balance on one foot, pull the other heel to your glute. Also doubles as balance work.
-- **Seated Hamstring Stretch** — Legs straight, reach for your feet. Do not round your back — hinge from the hip.
-- **Butterfly Stretch** — Sit with soles together, press knees toward the floor. The classic. Still hate how tight I am here.
-- **Pigeon Pose** — One leg folded in front, the other stretched behind. Best hip opener I have found.
-- **Straddle Stretch** — Legs wide, lean forward and try to get your chest to the floor. Deep breath in, relax on the exhale, go a little further.
-- **Standing Hip Flexor Stretch (Low Lunge)** — Drop one knee to the ground, push hips forward. You feel this immediately.
-- **Ankle Rotations** — Easy to forget but your ankles take a beating. Rotate both ways after every session.
-
-The goal eventually is to be able to throw kicks above shoulder height without it being a whole ordeal. Not there yet but getting closer.
-
-[[notes/index|Return to Notes]] | [[notes/taekwondo-stances|Stances]] | [[notes/taekwondo-combinations|Combination Kicks]]
+[[notes/index|Return to Notes]] | [[notes/taekwondo/stances|Stances]] | [[notes/taekwondo/combinations|Combinations]] | [[notes/taekwondo/sparring|Sparring]] | [[notes/taekwondo/stretching|Stretching]] | [[notes/taekwondo/philosophy|Philosophy]]
