@@ -14,6 +14,13 @@ date: 2026-03-09
 
 ---
 
+## Mental Model First
+
+- XAI is not one single thing: some methods explain **this prediction**, some summarize **global behavior**, and some propose **what would need to change**.
+- An explanation can feel convincing and still be misleading, so explanation quality has to be evaluated, not assumed.
+- In practice, XAI is most useful for debugging, auditing, trust calibration, and surfacing spurious shortcuts.
+- If one question guides this lecture, let it be: **what kind of explanation do I actually need for the decision I am trying to understand?**
+
 ## Motivation
 
 ![[Lecture13_Pg004_Motivation.png]]
@@ -30,7 +37,7 @@ Model understanding is critical in domains involving high-stakes decisions. With
 | **Trust calibration**  | Know when (and when not) to trust a prediction                     |
 | **Deployment vetting** | Assess whether a model is safe for real-world use                  |
 
-**Motivating example — Wolf vs. Husky classifier**: A model achieves 90% accuracy distinguishing wolves from huskies. LIME reveals the classifier is actually a _snow detector_ — wolves appear on snowy backgrounds and huskies on grass. The model learned a spurious correlation, not the actual concept. XAI exposes this before deployment.
+**Motivating example — Wolf vs. Husky classifier**: A canonical XAI cautionary tale is a classifier that appears to distinguish wolves from huskies, but explanation methods reveal that it is mostly reacting to snow in the background. The point of the example is that a model can be right for the wrong reason, and XAI can expose that before deployment.
 
 ---
 

@@ -21,6 +21,13 @@ date: 2026-03-09
 
 ---
 
+## Mental Model First
+
+- Transformers replace recurrent state with direct **information routing** between tokens.
+- Attention tells each token which other tokens are most useful right now; it is a dynamic weighted lookup, not a fixed local window.
+- Embeddings say what a token is, positional encodings say where it is, and attention decides what context to mix in.
+- If one question guides this lecture, let it be: **how can a model capture long-range dependencies without processing tokens one-by-one?**
+
 ## Embeddings
 
 ### Motivation
@@ -379,6 +386,24 @@ $$\text{Attention}(Q, K, V) = \text{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}}\r
 3. Apply softmax — produces attention weights that sum to 1 per row
 4. Weighted sum of values $V$ — produces the output
 
+### 💡 Intuition: What the Attention Matrix Really Stores
+
+The matrix
+
+$$A = \text{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}}\right)$$
+
+is easiest to read **row by row**.
+
+- Row $i$ tells you: "when token $i$ updates itself, how much should it borrow from every token $j$?"
+- Entry $A_{ij}$ is a weight between 0 and 1.
+- Because each row sums to 1, the new representation of token $i$ is a **weighted average** of the value vectors.
+
+So self-attention is not copying one token into another. It is building a **context-aware mixture**:
+
+$$\text{output}_i = \sum_j A_{ij} v_j$$
+
+This is why attention can express both sharp behaviors ("look almost entirely at one token") and soft behaviors ("blend information from several related tokens").
+
 ---
 
 ### 💡 Intuition: Self-Attention as a "Soft" Database Query
@@ -547,6 +572,22 @@ $$\text{FFN}(x) = \max(0,\; xW_1 + b_1) W_2 + b_2$$
 
 The FFN is where much of the model's "knowledge" is stored — it can be seen as associative memory using the key-value structure of attention for routing, and FFN for retrieval.
 
+### 💡 Intuition: Attention Lets Tokens Communicate, FFN Lets Them Think
+
+One very useful mental model is:
+
+- **Attention** = communication between positions
+- **FFN** = computation performed **inside each position**
+
+After attention, a token has gathered the context it needs from other tokens. The FFN then processes that enriched representation locally, without mixing it with neighboring positions again.
+
+So each Transformer block has a two-step rhythm:
+
+1. **Look around** with attention
+2. **Process what you learned** with the FFN
+
+This is why removing the FFN would make the model much weaker. Attention alone decides **where information should flow**, but the FFN helps transform that information into a better representation.
+
 ```python
 class FeedForward(nn.Module):
     def __init__(self, d_model, d_ff=2048):
@@ -578,6 +619,21 @@ $$\text{output} = \text{LayerNorm}(x + \text{sublayer}(x))$$
 $$\text{LayerNorm}(x) = \gamma \cdot \frac{x - \mu}{\sigma + \epsilon} + \beta$$
 
 where $\mu$ and $\sigma$ are computed over the $d_{model}$ features for each token independently.
+
+### 🧠 Deep Dive: Why Residuals and LayerNorm Matter So Much
+
+Without these two ingredients, deep Transformers are much harder to optimize.
+
+- **Residual connection** says: "don't destroy the old representation unless the sublayer has a good reason to change it."
+- **LayerNorm** says: "keep the scale of activations under control so later layers see numerically stable inputs."
+
+Together they make each sublayer behave more like a **correction** to the current representation than a total rewrite of it. That is a big reason deep stacks remain trainable.
+
+Another practical intuition:
+
+- attention can create very uneven activations depending on which tokens match strongly
+- FFNs can amplify some dimensions much more than others
+- LayerNorm re-centers and re-scales those outputs so the next block starts from a stable baseline
 
 ```python
 class TransformerBlock(nn.Module):
@@ -616,6 +672,19 @@ $$PE(pos, 2i+1) = \cos\!\left(\frac{pos}{10000^{2i/d_{model}}}\right)$$
 
 - **Learned positional embeddings**: treat position as a token ID and learn an embedding (used in BERT, GPT-2)
 - **RoPE** (Rotary Position Embedding): rotates Q and K vectors by their position before dot-product — used in LLaMA, GPT-NeoX
+
+### 💡 Intuition: Why Adding Position Vectors Is Enough
+
+At first, it can feel strange that we just **add** a positional vector instead of doing something more elaborate.
+
+The key idea is that the token embedding tells the model **what** the token is, while the positional encoding tells it **where** the token is. Adding them creates one combined vector that carries both pieces of information.
+
+For example, the embedding for the word "bank" can mean the same thing in both of these sequences:
+
+- "the bank approved the loan"
+- "we sat by the bank of the river"
+
+But once position and surrounding context are mixed in, attention can learn very different relationships for each occurrence. The original Transformer paper specifically chose sinusoidal encodings because fixed offsets can be represented linearly, which helps the model reason about **relative position** as well as absolute position.
 
 ```python
 import torch
@@ -720,6 +789,22 @@ Because `[MASK]` is seen during training but never at fine-tuning time, the 10% 
 
 Given two sentences A and B, predict whether B actually follows A in the corpus.
 
+### 💡 Intuition: Why BERT Needed MLM Instead of Next-Token Prediction
+
+The original BERT paper is built around one key idea: if you want a **bidirectional** encoder, ordinary next-token prediction is the wrong training objective.
+
+- In a causal LM, each token only sees the left context.
+- In a bidirectional encoder, each token can see both left and right context.
+
+But if we let a bidirectional model predict every token while seeing the whole sentence, the answer would leak trivially. MLM avoids that by hiding some tokens, forcing the model to reconstruct them from the surrounding context.
+
+That is why BERT's pretraining recipe combines:
+
+- **MLM** to learn deep bidirectional token representations
+- **NSP** to learn relationships between paired spans
+
+The BERT paper also emphasizes that the downstream architecture changes very little during fine-tuning, which is part of what made the approach so influential.
+
 ```
 Input:  [CLS] The cat sat on the mat. [SEP] It was a warm afternoon. [SEP]
 Label:  IsNext (True)
@@ -789,7 +874,7 @@ pred = logits.argmax(dim=-1)     # → 1 (positive)
 BERT set a new state-of-the-art across almost all NLP benchmarks when released and many variants followed:
 
 - **RoBERTa** (Liu et al., 2019): removes NSP objective, trains longer with larger batches, dynamic masking — significantly outperforms original BERT
-- **ModernBERT** (2024): adds FlashAttention for efficiency and extends context length; currently state-of-the-art encoder model
+- **ModernBERT** (2024): a recent encoder-focused variant emphasizing efficiency and longer context
 
 ---
 

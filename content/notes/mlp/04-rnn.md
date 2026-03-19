@@ -22,6 +22,13 @@ date: 2026-03-09
 
 ---
 
+## Mental Model First
+
+- RNNs are designed for data that arrives as a **sequence**, where earlier inputs can matter later.
+- The hidden state is best viewed as a running summary or working memory that gets updated at each timestep.
+- The main challenge is not defining the recurrence, but training it over long horizons without losing useful gradient signal.
+- If one question guides this lecture, let it be: **how can a model remember enough of the past to make a good decision now?**
+
 ## RNNs — Flexibility in Architecture
 
 ![[Lecture04_Pg004_Rnns_Flexibility_In_Architecture.png]]

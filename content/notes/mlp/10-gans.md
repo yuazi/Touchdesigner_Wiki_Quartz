@@ -15,6 +15,13 @@ date: 2026-03-09
 
 ---
 
+## Mental Model First
+
+- GANs learn to generate data through a **game** between a generator and a discriminator.
+- The discriminator acts like a learned training signal for realism, which is why GANs can produce very sharp samples.
+- The hard part is optimization: two networks are changing at once, so stability matters as much as model capacity.
+- If one question guides this lecture, let it be: **how can a model learn to sample realistic data without ever writing down an explicit density?**
+
 ## VAE Recap
 
 ![[Lecture10_Pg004_Vae_Recap.png]]

@@ -16,6 +16,13 @@ date: 2026-03-09
 
 ---
 
+## Mental Model First
+
+- A VAE is a **probabilistic autoencoder**: it wants to reconstruct data while also shaping the latent space so we can sample from it.
+- Plain autoencoders compress well, but their latent spaces are usually messy and unreliable for generation.
+- The KL term is what turns a useful compression model into a generative model with a smoother, more navigable latent space.
+- If one question guides this lecture, let it be: **how can we force a latent representation to be both informative for reconstruction and structured enough for sampling?**
+
 ## Introduction
 
 ### Supervised vs. Unsupervised Learning
@@ -245,6 +252,22 @@ Applying this with $f(z) = p_\theta(x,z)/q(z)$:
 
 $$\log p(x;\theta) \ge \mathbb{E}_{z \sim q(z)}\!\left[\log \frac{p_\theta(x,z)}{q(z)}\right] =: \mathcal{L}(x;\theta,\phi) \quad \text{(ELBO)}$$
 
+### 💡 Intuition: What Jensen's Inequality Is Buying Us
+
+The hard quantity is
+
+$$\log \int p_\theta(x,z)\, dz$$
+
+because the **log of a sum / integral** is awkward to optimize directly.
+
+Jensen's inequality gives us a workaround:
+
+- replace the hard exact objective with something we can actually compute
+- make that surrogate objective a **lower bound**
+- tighten the bound by choosing a good approximate posterior $q_\phi(z|x)$
+
+So the ELBO is not a random trick. It is the price we pay for turning an intractable marginal likelihood problem into a tractable optimization problem.
+
 ### Derivation via KL Divergence
 
 ![[Lecture09_Pg052_Derivation_Via_Kl_Divergence.png]]
@@ -289,6 +312,18 @@ For Gaussians ($q_\phi(z|x) = \mathcal{N}(\mu, \sigma^2 I)$, $p(z) = \mathcal{N}
 $$D_{KL} = -\frac{1}{2}\sum_{j=1}^{d}\left(1 + \log\sigma_j^2 - \mu_j^2 - \sigma_j^2\right)$$
 
 > **Intuition**: The KL term acts as a regularizer pushing each $z_j$ dimension toward $\mathcal{N}(0,1)$. Without it, the encoder can "cheat" by mapping every input to a very narrow distribution (basically the non-generative autoencoder), defeating the purpose.
+
+### 💡 Intuition: The ELBO Is a Negotiation Between Two Goals
+
+It helps to read the ELBO as a tug-of-war:
+
+- **Reconstruction term**: "keep enough information in $z$ so the decoder can rebuild the input"
+- **KL term**: "don't let each datapoint hide in its own weird corner of latent space"
+
+If reconstruction dominates, the model memorizes too much and generation becomes poor.
+If KL dominates, all posteriors collapse toward the prior and the decoder loses useful information.
+
+VAE training works when these two pressures balance: **compress, but not so aggressively that the latent code becomes useless; regularize, but not so strongly that every input looks the same.**
 
 ---
 
@@ -348,6 +383,23 @@ $$\nabla_\phi \mathbb{E}_{q_\phi}\!\big[r(z)\big] = \mathbb{E}_\varepsilon\!\big
 
 The randomness ($\varepsilon$) is now **external** — gradients flow back through $\mu_\phi$ and $\sigma_\phi$ via standard backpropagation.
 
+### 🧠 Deep Dive: Why Sampling Breaks Backprop
+
+Backprop needs each operation to be a differentiable function of the parameters.
+
+If we write only
+
+$$z \sim q_\phi(z|x)$$
+
+then the computational graph has a "gap": the sampled value $z$ changes when $\phi$ changes, but not through an explicit differentiable formula that autograd can trace.
+
+The reparameterization trick repairs that gap by rewriting sampling as:
+
+1. draw noise $\varepsilon \sim \mathcal{N}(0, I)$ from a fixed distribution
+2. transform it deterministically using $\mu_\phi(x)$ and $\sigma_\phi(x)$
+
+That is exactly the move used in the original AEVB paper: push the randomness into an auxiliary variable that does **not** depend on the learnable parameters, so gradient-based optimization becomes straightforward.
+
 ```
               ε ~ N(0,I)   ← external noise, no gradient
                   │
@@ -374,6 +426,21 @@ At **inference / generation time**: only the **decoder** is needed.
 
 The KL regularization ensures this works — because the encoder is trained to push $q_\phi(z|x) \approx \mathcal{N}(0,I)$, any random $z$ from the prior decodes to a plausible image.
 
+### 💡 Intuition: Why Sampling From the Prior Works at All
+
+The whole point of the KL term is to make the encoder's posterior clouds live in roughly the same region as the simple prior.
+
+So generation works because training tries to align two things:
+
+- where real datapoints get encoded
+- where random latent samples come from
+
+If those two regions overlap well, then drawing
+
+$$z \sim \mathcal{N}(0, I)$$
+
+lands you in territory the decoder has effectively been trained to understand.
+
 ---
 
 ## Latent Space Properties
@@ -393,6 +460,17 @@ z_A ─────────────────────────�
 ```
 
 With a standard autoencoder, decoding points between $z_A$ and $z_B$ would give noise. With a VAE, you get a smooth morphing sequence.
+
+### 💡 Intuition: Why Interpolation Is a Better Test Than Reconstruction
+
+Reconstruction only asks: "can the model copy training-like examples?"
+
+Interpolation asks something deeper:
+
+- does the latent space contain **meaningful paths** between examples?
+- do intermediate points still decode to valid data?
+
+That is why interpolation is such a good sanity check for VAEs. If the path between two encoded samples stays on the data manifold, the latent space is doing something genuinely useful rather than just memorizing isolated points.
 
 ### Latent Space Arithmetic
 
@@ -438,6 +516,22 @@ $$\mathcal{L}_\beta(x) = \mathbb{E}_{q_\phi(z|x)}\!\big[\log p_\theta(x|z)\big] 
 - $\beta > 1$: imposes a stronger constraint, encouraging independent latent dimensions (disentanglement) at the cost of reconstruction quality
 
 [Locatello et al., 2019] showed that unsupervised disentanglement is hard without inductive biases — there are many equally valid disentangled representations.
+
+### 🧠 Deep Dive: What $\beta > 1$ Is Really Buying You
+
+The beta-VAE paper frames $\beta$ as a knob that changes the balance between **reconstruction fidelity** and **latent factorization / channel capacity**.
+
+- With $\beta = 1$, we recover the standard VAE objective.
+- With $\beta > 1$, the model is penalized more strongly for encoding too much information in a tangled way.
+
+This creates pressure to use the latent dimensions more economically. In the best case, each dimension starts specializing in one interpretable factor such as pose, thickness, rotation, or lighting.
+
+The tradeoff is real, though:
+
+- stronger disentanglement pressure can improve interpretability
+- but reconstructions often get worse because the bottleneck becomes harsher
+
+So beta-VAE is not "strictly better VAE." It is a deliberate trade: **less raw fidelity, more structured latents**.
 
 ### Style Transfer (Text and Images)
 

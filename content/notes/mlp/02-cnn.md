@@ -13,6 +13,13 @@ date: 2026-03-09
 
 ---
 
+## Mental Model First
+
+- CNNs work because images have **local structure**: nearby pixels matter together, and the same kinds of patterns can appear in many locations.
+- A convolution filter is a small reusable detector that scans the image for a pattern such as an edge, corner, or texture.
+- Pooling and depth gradually trade exact location for **stronger semantic meaning**: edges become motifs, motifs become parts, and parts become objects.
+- If one question guides this lecture, let it be: **how can we recognise visual patterns without relearning the same detector at every pixel location?**
+
 ## Human Visual Perception
 
 ### The Human Eye
@@ -287,6 +294,21 @@ The same filter weights are applied at every spatial position. Advantages:
 - Reduces the number of weights that must be learned
 - Reduces model training time
 - Makes feature search **insensitive to feature location**
+
+### 🧠 Deep Dive: Why Many Small Filters Beat One Large Filter
+
+One design choice that became very influential was using mostly 3x3 filters instead of a few very large kernels.
+
+- A single 7x7 convolution sees a large area in one step, but it has many parameters.
+- Three stacked 3x3 convolutions produce a similar **effective receptive field** while inserting non-linearities between the layers.
+- Those extra non-linearities let the network learn more complex functions than one large linear filter could.
+
+Parameter count makes this concrete:
+
+- One 7x7 filter over $C$ channels needs $49C$ weights per output channel.
+- Three 3x3 filters need $27C$ weights per output channel in the simplest comparison.
+
+So stacking small filters is not only cheaper, it also gives the model **more depth, more expressiveness, and better gradient flow**.
 
 ### Visualisation
 

@@ -14,6 +14,13 @@ date: 2026-03-09
 
 ---
 
+## Mental Model First
+
+- Interactive ML starts from one practical fact: **human attention is expensive**, so we should spend it where it teaches the model the most.
+- Active learning is not about labeling more data; it is about labeling the **right** data.
+- Most of the lecture is really about query strategy: uncertainty, diversity, disagreement, and how to avoid biasing yourself with bad sample selection.
+- If one question guides this lecture, let it be: **when should a model ask for help, and which example is worth asking about next?**
+
 ## Introduction
 
 ### 💡 Intuition: Active Learning as "Smart Questioning"

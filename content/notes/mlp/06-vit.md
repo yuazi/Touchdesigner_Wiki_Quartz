@@ -21,6 +21,13 @@ date: 2026-03-09
 
 ---
 
+## Mental Model First
+
+- ViT treats an image as a **sequence of patches**, then applies the Transformer machinery from language.
+- CNNs bake in locality and translation bias; ViTs are more flexible but must learn more structure from data.
+- DETR shows that detection can be framed as set prediction, and DINO shows that strong visual representations can emerge even without labels.
+- If one question guides this lecture, let it be: **what changes when we stop treating vision as a grid of convolutions and start treating it as a sequence problem?**
+
 ## Vision Transformer (ViT)
 
 ### Limitations of CNNs

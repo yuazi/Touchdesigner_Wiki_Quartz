@@ -23,6 +23,13 @@ This course is **in-depth, hands-on, and advanced** — it assumes prior exposur
 
 ---
 
+## Mental Model First
+
+- This lecture introduces the full training loop: represent the input, measure how wrong the model is with a **loss**, then use gradients to improve the weights.
+- A hidden layer is best thought of as a **feature builder**. Early layers turn raw numbers into useful intermediate patterns; later layers combine those patterns into decisions.
+- Backpropagation is not "the network thinking backwards." It is just a systematic way of assigning **credit and blame** to each parameter.
+- If one question guides your reading, let it be this: **how do simple mathematical blocks become a trainable system that improves from data?**
+
 ## Refresher: Neural Networks
 
 ### The Perceptron
@@ -47,6 +54,16 @@ With $X^{(0)} = X$, for each layer $l = 1, \dots, L$:
 $$X^{(l)} = \sigma\!\left(W^{(l)\top} X^{(l-1)} + b^{(l)}\right)$$
 
 The network output is $f(X;\, W, b) = X^{(L)}$.
+
+### 💡 Intuition: What a Hidden Layer Is Really Doing
+
+A hidden layer is easier to understand if you stop thinking about "neurons" and think about **new coordinates**.
+
+- The raw input $x$ might be pixels, sensor values, or tabular features.
+- The first hidden layer asks many small questions about that input: "is there an edge here?", "is this value unusually large?", "do these two features occur together?"
+- The next layer works on those answers instead of the raw input directly.
+
+So the network is gradually **rewriting the problem into a space where the final decision becomes easier**. Classification is often hard in pixel space, but much easier in a learned feature space.
 
 ### Why Activation Functions?
 

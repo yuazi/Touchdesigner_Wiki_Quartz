@@ -15,6 +15,13 @@ date: 2026-03-09
 
 ---
 
+## Mental Model First
+
+- This lecture extends plain classification into **structured vision tasks** where we need to know not just what is present, but also **where** it is.
+- Object detection adds bounding boxes; semantic segmentation adds a class label to every pixel.
+- Most modern vision systems are really about designing a good tradeoff between **speed, precision, and output granularity**.
+- If one question guides this lecture, let it be: **how do CNN features get turned into spatial predictions instead of just one final class label?**
+
 ## Case Study: EfficientNet
 
 EfficientNet asked a simple scaling question: if we are allowed more compute, should we make a CNN **deeper**, **wider**, or feed it **higher-resolution** images? The key result was that these three dimensions should be scaled **together**, not independently (Tan and Le, 2019).

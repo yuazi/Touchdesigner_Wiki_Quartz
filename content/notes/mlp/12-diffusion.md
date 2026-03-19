@@ -18,6 +18,13 @@ date: 2026-03-09
 
 ---
 
+## Mental Model First
+
+- Diffusion models learn generation by solving many small **denoising** problems instead of one giant generation problem.
+- The forward process destroys structure gradually; the reverse model learns how to rebuild that structure step by step.
+- Their biggest strength is stable high-quality generation, while their biggest weakness is often sampling cost.
+- If one question guides this lecture, let it be: **why is reversing a noise process easier to train than generating a full image in one shot?**
+
 ## Last Lecture Recap — VAEs and GANs
 
 ### Variational Autoencoders (VAEs)
@@ -140,6 +147,24 @@ def forward_sample(x0, t, alpha_bar):
 
 > **Why this matters**: Training doesn't require running the full chain — sample a random $t$, perturb $x_0$ directly, and train on that.
 
+### 💡 Intuition: Every Noisy Sample Is Just "Signal + Noise"
+
+The closed-form equation
+
+$$x_t = \sqrt{\bar\alpha_t}\, x_0 + \sqrt{1 - \bar\alpha_t}\, \varepsilon$$
+
+is worth memorizing conceptually, even if not symbol by symbol.
+
+It says that any noisy sample $x_t$ is just:
+
+- a **shrunk copy** of the original data $x_0$
+- plus a **scaled amount of Gaussian noise**
+
+Early in the chain, $\sqrt{\bar\alpha_t}$ is still large, so the image structure dominates.
+Late in the chain, $\sqrt{1-\bar\alpha_t}$ dominates, so almost everything is noise.
+
+That is why denoising is possible at intermediate timesteps: the original signal has not fully disappeared yet.
+
 ---
 
 ### How Does the Distribution Change?
@@ -248,13 +273,25 @@ for x0 in dataloader:
 
 > **Intuition**: The model learns "what noise was added to get this blurry image?" By subtracting the predicted noise, it recovers a cleaner version — one step of denoising.
 
+### 🧠 Deep Dive: Why Predict the Noise Instead of the Clean Image?
+
+There are several equivalent parameterizations in diffusion models: predict $x_0$, predict the reverse-process mean, or predict the noise $\varepsilon$.
+
+The original DDPM paper shows why $\varepsilon$-prediction became the standard teaching version:
+
+- it simplifies the variational objective into a clean denoising loss
+- it connects directly to denoising score matching
+- empirically, Ho et al. report that predicting $x_0$ gave **worse sample quality early in their experiments**
+
+So "predict the noise" is not just a coding convenience. It is the parameterization that made the method both conceptually cleaner and empirically stronger.
+
 ---
 
 ### Training Procedure — U-Net Architecture
 
 ![[Lecture12_Pg039_Training_Procedure_U_Net_Architecture.png]]
 
-The denoiser network $\theta(x_t, t)$ takes a noisy image and predicts an image (the noise).
+The denoiser network $\theta(x_t, t)$ takes a noisy image and predicts the **added noise**.
 
 **The U-Net** (Ronneberger et al., 2015) is a natural choice:
 
@@ -317,6 +354,17 @@ Diffusion models are a **special form of hierarchical VAEs**:
 | Decoder               | Learned $p_\theta(x \mid z)$ | Shared network $p_\theta(x_{t-1} \mid x_t)$ across all $t$ |
 | Latent dimensionality | Smaller than input           | **Same** as input                                          |
 | Training objective    | ELBO                         | Very similar variational lower bound                       |
+
+### 💡 Intuition: Why People Say Diffusion Is "Like a VAE"
+
+The comparison is useful because both models can be read as latent-variable generative models trained with a variational objective.
+
+The big difference is **what counts as the latent code**:
+
+- in a standard VAE, one compact latent $z$ tries to summarize the whole example
+- in diffusion, the latent variables are the entire noisy trajectory $x_1, \dots, x_T$
+
+So diffusion spreads the generative problem across **many easy denoising steps** instead of asking one bottleneck vector to carry everything at once. That is one reason it tends to generate higher-quality samples than a plain VAE.
 
 ---
 
@@ -385,7 +433,7 @@ FAST SAMPLING ──────────── HIGH DIVERSITY
 | VAEs             | ⚠️ Blurry | ✅ Good              | ✅ 1 pass     |
 | Diffusion (DDPM) | ✅ High   | ✅ Full distribution | ❌ 1000 steps |
 
-Diffusion dominates quality and coverage but sacrifices speed — motivating DDIM, consistency models, and flow matching.
+Diffusion often offers strong quality and coverage, but usually sacrifices speed — motivating DDIM, consistency models, and flow matching.
 
 ## DDIM — Fast Sampling
 
@@ -444,11 +492,19 @@ $$
 
 So DDIM can be viewed as tracing a deterministic path through latent space when desired.
 
+### 💡 Intuition: Why DDIM Can Use the Same Training Objective
+
+The clever part of DDIM is that it changes the **sampling dynamics** without requiring a new model to be trained from scratch.
+
+The DDIM paper's core claim is exactly this: construct a non-Markovian process that preserves the same training objective as DDPM, but gives you a faster reverse process.
+
+So the model still learns the same kind of denoising prediction. What changes is the path you choose at inference time.
+
 > **Example**: Instead of denoising along `999 -> 998 -> 997 -> ... -> 0`, DDIM may use a much shorter path such as `999 -> 979 -> 959 -> ... -> 19 -> 0`.
 
 ### Why It Matters
 
-The practical result is that DDIM often achieves **roughly the same visual quality** with **50 steps instead of 1000**, making diffusion models much more usable at inference time.
+In practice, DDIM can retain useful sample quality with far fewer steps than DDPM, often making diffusion models much more usable at inference time.
 
 ### Code: Skipping Timesteps with a Stride
 
@@ -496,6 +552,27 @@ Two common strategies:
 1. Downsample → process at smaller scale → upsample.
 2. **Translate to latent space → run diffusion in latent space → decode back.**
 
+### 💡 Intuition: Latent Diffusion Is "Compress First, Generate Second"
+
+Latent diffusion works because not every pixel-level detail deserves equal generative effort.
+
+The autoencoder handles the low-level perceptual bookkeeping:
+
+- textures
+- local image detail
+- reconstruction back to pixel space
+
+Then the diffusion model can spend its capacity on the harder, more semantic question:
+
+- what objects are present?
+- how are they arranged?
+- what should the image mean overall?
+
+So latent diffusion is really a division of labor:
+
+- **autoencoder** for efficient perceptual compression
+- **diffusion model** for semantic generation in a smaller, cheaper space
+
 ### Architecture
 
 $$x_0 \xrightarrow{\text{VAE Encoder}} z_0 \xrightarrow{\text{Add noise}} z_T \xrightarrow{\text{Denoiser } \varepsilon_\theta(z_t, t, c)} \hat{z}_0 \xrightarrow{\text{VAE Decoder}} \hat{x}_0$$
@@ -521,6 +598,20 @@ Latent diffusion is trained in **two stages**:
 
 1. **Train the autoencoder first** so that $x \to z \to \hat{x}$ preserves perceptually relevant content
 2. **Train the diffusion model on latents** $z$ instead of pixels
+
+### 🧠 Deep Dive: Why Cross-Attention Became So Important in LDMs
+
+The latent diffusion paper highlights another major idea beyond compression: **cross-attention** turns diffusion into a flexible conditional generator.
+
+Why is cross-attention such a good fit for text-to-image?
+
+- the image latents keep their spatial structure
+- the text tokens stay as a sequence
+- cross-attention lets each spatial location query whichever words matter most
+
+That means the model does not have to squash the whole prompt into one vector. Different parts of the image can attend to different words such as "red", "apple", "wooden", or "table" at the same time.
+
+This is a big part of why latent diffusion became the foundation for systems like Stable Diffusion.
 
 In the lecture slides, the first stage is not just plain reconstruction: a **patch-based adversarial discriminator** is added on top of the reconstruction / perceptual objective so the latent space keeps visually important details while staying compressed.
 
@@ -578,11 +669,18 @@ If you've ever used a tool like Stable Diffusion and adjusted the "Guidance Scal
 1.  **$p(x_t | c)$:** How to generate an image based on a prompt.
 2.  **$p(x_t)$:** How to generate _any_ random image.
 
-**At Inference:** We calculate the noise for both the prompt and the empty prompt. We then "amplify" the difference:
-$$\epsilon_{\text{final}} = \epsilon_{\text{uncond}} + w \cdot (\epsilon_{\text{cond}} - \epsilon_{\text{uncond}})$$
+**At Inference:** We calculate the noise for both the prompt and the empty prompt, then amplify the gap between them.
 
-- **Low $w$ (e.g., 1.0):** The model is "creative" and might ignore parts of your prompt.
-- **High $w$ (e.g., 7.5 - 15):** The model is "forced" to follow the prompt very strictly. This often leads to much sharper images but can sometimes "fry" the colors if the scale is too high.
+The original classifier-free guidance paper writes this as:
+
+$$\tilde\varepsilon = (1+w)\,\varepsilon_{\text{cond}} - w\,\varepsilon_{\text{uncond}}$$
+
+Many practical codebases write an equivalent form using a guidance scale $s = w+1$:
+
+$$\tilde\varepsilon = \varepsilon_{\text{uncond}} + s \cdot (\varepsilon_{\text{cond}} - \varepsilon_{\text{uncond}})$$
+
+- **Low guidance**: more diverse, but weaker prompt adherence.
+- **High guidance**: stronger prompt adherence, but lower diversity and possible oversaturation artifacts.
 
 ---
 
@@ -607,9 +705,9 @@ The difference between these two predictions becomes the direction that is later
 
 $$\hat\varepsilon = \varepsilon_\theta(x_t, t, \varnothing) + w \cdot \left[\varepsilon_\theta(x_t, t, c) - \varepsilon_\theta(x_t, t, \varnothing)\right]$$
 
-- $w$ is the **guidance scale**.
-- $w = 1$: no guidance (pure conditional).
-- $w > 1$: amplify the conditional signal → stronger prompt adherence, less diversity.
+- In many implementations, $w$ is the **guidance scale**, where $w = 1$ recovers the ordinary conditional prediction and larger values add extrapolative guidance.
+- In the original Ho-Salimans paper, the coefficient is parameterized slightly differently; the paper's $w$ corresponds to `guidance_scale - 1` in the common implementation form above.
+- Larger guidance improves prompt adherence but usually reduces diversity.
 
 The lecture explicitly notes that **the best GLIDE results are obtained with classifier-free guidance**, rather than the external CLIP-guided variant.
 

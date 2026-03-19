@@ -22,6 +22,13 @@ date: 2026-03-09
 
 ---
 
+## Mental Model First
+
+- Multimodal learning is about getting very different data types to **talk to each other**.
+- The hard part is not only fusion; it is also representation, alignment, translation, and deciding when signals from different modalities agree or conflict.
+- Shared embedding spaces matter because they let the model compare images, text, audio, and other signals using one common geometry.
+- If one question guides this lecture, let it be: **how do we connect heterogeneous modalities without destroying the information that makes each one useful?**
+
 ## 1. Motivation of Multimodal Learning
 
 ### What is Multimodal?
