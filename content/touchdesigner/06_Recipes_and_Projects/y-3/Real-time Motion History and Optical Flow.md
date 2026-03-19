@@ -125,5 +125,5 @@ Optical Flow TOP ──────────────▶ Level TOP (Fade 0
 
 ---
 
-[[../index|(y) Return to Recipes & Projects]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

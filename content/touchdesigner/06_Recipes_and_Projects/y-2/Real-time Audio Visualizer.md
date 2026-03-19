@@ -141,5 +141,5 @@ Noise TOP ──▶ TOP to CHOP ──▶ [ Merge CHOP ] ───────�
 
 ---
 
-[[../index|(y) Return to Recipes & Projects]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]

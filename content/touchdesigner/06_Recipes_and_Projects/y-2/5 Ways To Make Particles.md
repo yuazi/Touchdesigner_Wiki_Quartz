@@ -225,5 +225,5 @@ Grid SOP (10x10) ──▶ Noise SOP (Animate Offset) ──▶ Geo COMP ──�
 
 ---
 
-[[../index|(y) Return to Recipes & Projects]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
 [[touchdesigner/index|(y) Return to TouchDesigner]]
