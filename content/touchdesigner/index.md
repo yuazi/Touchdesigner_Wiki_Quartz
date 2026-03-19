@@ -1,5 +1,5 @@
 ---
-title: "TouchDesigner Wiki"
+title: (y) TouchDesigner Wiki
 date: 2026-02-01
 ---
 
