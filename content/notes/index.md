@@ -7,7 +7,7 @@ date: 2026-01-01
 
 A collection of notes and random thoughts—seedlings, growing ideas, and evergreen knowledge.
 
-[[index|(y) Return to Home]]
+[[/index|(y) Return to Home]]
 
 ---
 

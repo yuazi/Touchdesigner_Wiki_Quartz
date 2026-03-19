@@ -99,4 +99,4 @@ Curated external resources and community links.
 
 ---
 
-[[index|(y) Return to Home]]
+[[/index|(y) Return to Home]]

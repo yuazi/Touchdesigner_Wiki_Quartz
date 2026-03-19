@@ -12,7 +12,7 @@ This is my study hub for the MPL master's course. Each lecture gets its own page
 
 I use the [[work/slidelink|SlideLink]] tool I built to automatically align these notes with the lecture slides.
 
-[[notes/index|(y) Return to Notes]] | [[index|(y) Return to Home]]
+[[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
 
 ---
 
@@ -57,4 +57,4 @@ I use the [[work/slidelink|SlideLink]] tool I built to automatically align these
 
 ---
 
-[[notes/index|(y) Return to Notes]] | [[index|(y) Return to Home]]
+[[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
