@@ -25,4 +25,4 @@ POPs (introduced in TouchDesigner 2023+) bring **massive GPU-accelerated particl
 [[POP - Point Operators|(y-) Next Page: POP - Point Operators]]
 
 ---
-[[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

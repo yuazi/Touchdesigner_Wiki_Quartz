@@ -37,4 +37,4 @@ Combinations are where it starts to actually feel like Taekwondo. Single kicks a
 - [World Taekwondo (WT)](http://www.worldtaekwondo.org/)
 
 ---
-[[notes/index|(y) Return to Notes]] | [[notes/taekwondo/index|(y) Return to Taekwondo]]
+[[notes/index|(y) Return to Notes]] | [[notes/taekwondo/index|(y) Return to Taekwondo]] | [[/index|(y) Return to Home]]

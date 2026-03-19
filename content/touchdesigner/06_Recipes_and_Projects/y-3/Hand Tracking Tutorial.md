@@ -522,4 +522,4 @@ Feedback TOP Loop            Geo COMP (Instancing)         Count CHOP (Switch Mo
 5.  **Logic:** The `Expression CHOP` looks for specific gestures (like a thumbs-up). When the confidence is high, it sends a trigger to the `Count CHOP` to change the brush color or architectural style.
 
 ---
-[[Hand Tracking|(y) Return to Hand Tracking]] | [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+[[Hand Tracking|(y) Return to Hand Tracking]] | [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

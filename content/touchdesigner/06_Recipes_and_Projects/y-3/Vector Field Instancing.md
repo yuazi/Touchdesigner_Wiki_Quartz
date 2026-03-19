@@ -104,4 +104,4 @@ Attribute POP (Velocity to Color)
 4.  **Scaling:** Because the Noise POP is animated, the "current" shifts, making all 125,000 spheres swirl in unison.
 
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

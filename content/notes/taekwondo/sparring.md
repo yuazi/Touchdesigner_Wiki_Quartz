@@ -63,4 +63,4 @@ In modern Taekwondo, the punch is often underused. Use powerful straight body sh
 - [USA Taekwondo (USATKD)](https://www.usatkd.org/)
 
 ---
-[[notes/taekwondo/index|(y) Return to Taekwondo]] | [[notes/index|(y) Return to Notes]]
+[[notes/taekwondo/index|(y) Return to Taekwondo]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

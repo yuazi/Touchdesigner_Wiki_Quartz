@@ -24,4 +24,4 @@ Mastering shortcuts will significantly speed up your workflow.
 | **Reset button** | Reset the timeline to frame 1 — use the **Reset** transport button in the Timeline bar (no keyboard shortcut exists for this) |
 
 ---
-[[touchdesigner/01_Core_Concepts/index|(y) Return to Core Concepts]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/01_Core_Concepts/index|(y) Return to Core Concepts]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

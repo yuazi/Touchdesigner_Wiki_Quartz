@@ -44,4 +44,4 @@ When your module needs complex logic or state management, loose script nodes bec
 - Avoid "spaghetti" wiring across levels (don't drag wires constantly in and out of COMPs). Use `Select` OPs, `In/Out` OPs, or **Global OP Shortcuts** to establish clear data highways between your modules.
 
 ---
-[[touchdesigner/04_Scripting_and_Architecture/index|(y) Return to Scripting & Architecture]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/04_Scripting_and_Architecture/index|(y) Return to Scripting & Architecture]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

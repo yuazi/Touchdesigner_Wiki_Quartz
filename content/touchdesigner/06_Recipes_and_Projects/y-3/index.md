@@ -33,4 +33,4 @@ Welcome to the **Advanced** module. These recipes involve deep dives into fluid 
 - **[[Hand-Tracked Chaotic Attractor|(y-) ★ Hand-Tracked Chaotic Attractor]]**: A math-heavy project using **Script CHOPs** to drive a Lorenz attractor system in real time, optimized for high framerates on modern hardware.
 
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

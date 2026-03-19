@@ -13,6 +13,8 @@ date: 2026-03-09
 
 [[notes/mlp/03-vision-cnn|Previous: L03: Vision CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/05-transformer|Next: Transformers]]
 
+---
+
 **This lecture covers:**
 
 - Recurrent Neural Networks
@@ -694,4 +696,5 @@ From the lecture's closing slide:
 - Vinyals et al. (2015) — Show and tell: A neural image caption generator. _CVPR_.
 - Wu et al. (2016) — Google's neural machine translation system. _arXiv:1609.08144_.
 
-[[notes/mlp/03-vision-cnn|Previous: L03: Vision CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/05-transformer|Next: Transformers]]
+---
+[[notes/mlp/03-vision-cnn|Previous: L03: Vision CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/05-transformer|Next: Transformers]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

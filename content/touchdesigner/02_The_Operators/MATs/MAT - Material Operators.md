@@ -36,4 +36,4 @@ MATs are essential for giving your 3D geometry (SOPs) an actual surface appearan
 [[touchdesigner/02_The_Operators/POPs/index|(y-) Next Chapter: POPs]]
 
 ---
-[[touchdesigner/02_The_Operators/MATs/index|(y) Return to MATs]] | [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/02_The_Operators/MATs/index|(y) Return to MATs]] | [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

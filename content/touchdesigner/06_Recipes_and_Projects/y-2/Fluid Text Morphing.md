@@ -105,4 +105,4 @@ Solver POP (Physics Engine)
 4.  **Polish:** The `Bloom TOP` at the end makes those points glow, emphasizing the liquid and neon aesthetic of the [Okamirufu style](https://www.youtube.com/@OkamirufuV).
 
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

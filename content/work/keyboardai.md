@@ -108,3 +108,6 @@ git clone https://github.com/yuazi/keyboard-AI
 cd keyboard-AI
 pip install -e .
 ```
+
+---
+[[work/index|(y) Return to Work]] | [[/index|(y) Return to Home]]

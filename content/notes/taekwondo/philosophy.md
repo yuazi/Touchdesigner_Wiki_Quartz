@@ -35,4 +35,4 @@ These are the core values every student is expected to live by:
 - [World Taekwondo (WT)](http://www.worldtaekwondo.org/wt-philosophy/)
 
 ---
-[[notes/taekwondo/index|(y) Return to Taekwondo]] | [[notes/index|(y) Return to Notes]]
+[[notes/taekwondo/index|(y) Return to Taekwondo]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

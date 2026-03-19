@@ -11,7 +11,9 @@ tags:
 date: 2026-03-09
 ---
 
-[[notes/mlp/06-vit|Previous: L06: ViT]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/08-iml|Next: Interactive ML]]
+The shared embedding space from CLIP is foundational for [[notes/mlp/12-diffusion|(y-) Diffusion models]] (Stable Diffusion's text conditioning), [[notes/mlp/13-xai|(y-) XAI]] (concept-based explanations), and modern vision-language systems such as LLaVA and GPT-4V.
+
+---
 
 **This lecture covers:**
 
@@ -755,7 +757,6 @@ class ProtoNet(nn.Module):
 | CLEVR (Johnson 2017)                 | Compositional reasoning benchmark; no statistical shortcuts      |
 | NMN V2 / E2E (Hu 2017)               | End-to-end learned program generation; no parser required        |
 
-The shared embedding space from CLIP is foundational for [[notes/mlp/12-diffusion|(y-) Diffusion models]] (Stable Diffusion's text conditioning), [[notes/mlp/13-xai|(y-) XAI]] (concept-based explanations), and modern vision-language systems such as LLaVA and GPT-4V.
 
 ---
 
@@ -788,4 +789,5 @@ The shared embedding space from CLIP is foundational for [[notes/mlp/12-diffusio
 - Srivastava & Salakhutdinov (2012). _Multimodal learning with deep Boltzmann machines._ NeurIPS.
 - Pham et al. (2019). _Found in translation: Learning robust joint representations by cyclic translations between modalities._ AAAI.
 
-[[notes/mlp/06-vit|Previous: L06: ViT]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/08-iml|Next: Interactive ML]]
+---
+The shared embedding space from CLIP is foundational for [[notes/mlp/12-diffusion|(y-) Diffusion models]] (Stable Diffusion's text conditioning), [[notes/mlp/13-xai|(y-) XAI]] (concept-based explanations), and modern vision-language systems such as LLaVA and GPT-4V. | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

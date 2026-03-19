@@ -553,4 +553,5 @@ class ResidualBlock(nn.Module):
 
 - Tan, Le (2019) — EfficientNet: Rethinking model scaling for convolutional neural networks. _ICML_.
 
-[[notes/mlp/02-cnn|Previous: L02: CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/04-rnn|Next: RNNs]]
+---
+[[notes/mlp/02-cnn|Previous: L02: CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/04-rnn|Next: RNNs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

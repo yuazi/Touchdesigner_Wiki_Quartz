@@ -13,6 +13,8 @@ date: 2026-03-09
 
 [[notes/mlp/05-transformer|Previous: L05: Transformers]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/07-multimodal|Next: Multimodal Learning]]
 
+---
+
 **This lecture covers:**
 
 - Vision Transformer (ViT)
@@ -709,4 +711,4 @@ From the lecture's closing slide — notable models and frameworks as of WS 2025
 - Zhu, Su, Lu, Li, Wang, Dai (2020) — Deformable DETR: Deformable transformers for end-to-end object detection. _arXiv:2010.04159_.
 
 ---
-[[notes/mlp/05-transformer|Previous: L05: Transformers]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/07-multimodal|Next: Multimodal Learning]]
+[[notes/mlp/05-transformer|Previous: L05: Transformers]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/07-multimodal|Next: Multimodal Learning]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

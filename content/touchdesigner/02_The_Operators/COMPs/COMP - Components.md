@@ -50,4 +50,4 @@ To use Components effectively in your network:
 [[Geo COMP|(y-) Next Page: Geo COMP]]
 
 ---
-[[touchdesigner/02_The_Operators/COMPs/index|(y) Return to COMPs]] | [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/02_The_Operators/COMPs/index|(y) Return to COMPs]] | [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

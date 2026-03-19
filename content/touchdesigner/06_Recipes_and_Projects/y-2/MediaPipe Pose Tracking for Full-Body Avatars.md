@@ -136,4 +136,4 @@ Webcam TOP ──────────────────▶ [ MediaPipe
 5.  **Coordinate Remap:** Because MediaPipe uses a 0-1 (top-left) origin, we use a `Math CHOP` to remap this to TouchDesigner's centered 3D space (-1.0 to 1.0), ensuring the spheres move logically on screen.
 
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

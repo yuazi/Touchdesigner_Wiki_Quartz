@@ -130,4 +130,4 @@ Webcam TOP ──────────────────▶ [ MediaPipe
 5.  **Polishing:** The `Bloom TOP` adds a glow that intensifies as you smile wider, creating a direct visual feedback loop for the user.
 
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

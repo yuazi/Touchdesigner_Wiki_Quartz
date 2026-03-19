@@ -178,4 +178,4 @@ Platonic Solids (Tetrahedron)    Webcam ──▶ [ MediaPipe Plugin ]
 5.  **Smoothing:** The `Filter CHOP` is essential here — it prevents the geometry from "jumping" when the webcam loses track of the hand for a single frame.
 
 ---
-[[Hand Tracking|(y) Return to Hand Tracking]] | [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+[[Hand Tracking|(y) Return to Hand Tracking]] | [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

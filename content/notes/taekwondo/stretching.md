@@ -72,4 +72,4 @@ Recent research (2025) on high-level martial artists found that **core stability
 - [Science of Taekwondo (Academic Studies)](https://www.google.com/search?q=taekwondo+sports+science+studies)
 
 ---
-[[notes/taekwondo/index|(y) Return to Taekwondo]] | [[notes/index|(y) Return to Notes]]
+[[notes/taekwondo/index|(y) Return to Taekwondo]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

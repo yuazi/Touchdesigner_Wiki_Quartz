@@ -24,4 +24,4 @@ In TouchDesigner, you build networks by connecting operators.
 - Use **In** and **Out** operators inside a Component (like a Base COMP) to define inputs/outputs on the Component node itself.
 
 ---
-[[touchdesigner/01_Core_Concepts/index|(y) Return to Core Concepts]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/01_Core_Concepts/index|(y) Return to Core Concepts]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

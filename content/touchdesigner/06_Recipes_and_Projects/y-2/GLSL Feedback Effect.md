@@ -186,4 +186,4 @@ Audio In ──▶ Analyze ──▶ Math ──▶ [ uZoom Parameter ]
 5.  **Audio Link:** By mapping audio energy to `uZoom`, the entire feedback "pulses" outward on every beat.
 
 ---
-[[Index|(y) Return to Recipes & Projects]] | [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+[[Index|(y) Return to Recipes & Projects]] | [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

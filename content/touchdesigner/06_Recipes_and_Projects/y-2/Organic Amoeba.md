@@ -112,4 +112,4 @@ Attribute POP (Pos to Color)
 4.  **Feedback:** The `Render TOP` output is fed into a `Feedback TOP`. The `Displace TOP` inside the loop uses a noise texture to "warp" the trails, creating the oily liquid look characteristic of the [Okamirufu style](https://www.youtube.com/@OkamirufuV).
 
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

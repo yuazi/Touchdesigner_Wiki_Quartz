@@ -25,4 +25,4 @@ DATs handle everything **text-based** in TouchDesigner — Python scripts, GLSL 
 [[DAT - Data Operators|(y-) Next Page: DAT - Data Operators]]
 
 ---
-[[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

@@ -140,4 +140,4 @@ Noise TOP ──▶ TOP to CHOP ──▶ [ Merge CHOP ] ───────�
 5.  **Post-Processing:** The `Bloom TOP` and `HSV Adjust TOP` are the final layers. They add a glow and a slow color cycle to make the visual feel alive.
 
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

@@ -9,7 +9,9 @@ tags:
 date: 2026-03-09
 ---
 
-[[notes/mlp/09-vae|Previous: L09: VAE]] | [[notes/mlp/index|Back to MLP Index]] | [[notes/mlp/11-rl|Next: Reinforcement Learning]]
+Before jumping into GANs, recall the key idea behind VAEs (covered in [[notes/mlp/09-vae|L09]]):
+
+---
 
 > _University of Stuttgart — Machine Perception and Learning for Collaborative Intelligent Systems, Prof. Dr. Andreas Bulling, WS 2025/2026_
 
@@ -26,7 +28,6 @@ date: 2026-03-09
 
 ![[Lecture10_Pg004_Vae_Recap.png]]
 
-Before jumping into GANs, recall the key idea behind VAEs (covered in [[notes/mlp/09-vae|L09]]):
 
 - VAEs are a **probabilistic version of autoencoders** that allow sampling to generate new, unseen samples.
 - A prior is placed on the latent code: $z \sim \mathcal{N}(0, I)$
@@ -805,4 +806,5 @@ class Discriminator(nn.Module):
 - Krafka, Khosla, Kellnhofer et al. (2016). _Eye Tracking for Everyone._ CVPR.
 - Zhang, Park, Beeler, Bradley, Tang, Hilliges (2020). _ETH-XGaze: A Large Scale Dataset for Gaze Estimation under Extreme Head Pose and Gaze Variation._ ECCV.
 
-[[notes/mlp/09-vae|Previous: L09: VAE]] | [[notes/mlp/index|Back to MLP Index]] | [[notes/mlp/11-rl|Next: Reinforcement Learning]]
+---
+Before jumping into GANs, recall the key idea behind VAEs (covered in [[notes/mlp/09-vae|L09]]): | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

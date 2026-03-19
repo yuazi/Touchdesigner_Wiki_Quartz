@@ -24,4 +24,4 @@ Here is a List of my favs
 | Tom Ford Oud Voyager                       | Woody-floral with a luminous, "futuristic" blend of oud and velvety florals                         | Fall/Winter        | Geranium Absolute, Pink Pepper, Citrus      | Living Red Peony™ Accord, Cardamom, Saffron       | Oud (Agarwood), Cypriol, Vetiver, Patchouli, Musk  | [Fragrantica](https://www.fragrantica.com/perfume/Tom-Ford/Oud-Voyager-111206.html)                                     |
 
 ---
-[[notes/index|(y) Return to Notes]]
+[[notes/index|(y) Return to Notes]] | [[notes/random/index|(y) Return to Random Hub]] | [[/index|(y) Return to Home]]

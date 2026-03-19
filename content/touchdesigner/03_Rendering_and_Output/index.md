@@ -16,4 +16,4 @@ This module covers the generation and compositing of visuals in TouchDesigner.
 - **[[Feedback Loops|(y-) Feedback Loops]]**: Feeding output back into itself for organic growth and motion effects.
 
 ---
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

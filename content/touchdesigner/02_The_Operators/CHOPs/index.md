@@ -31,4 +31,4 @@ CHOPs are the nervous system of a TouchDesigner network. They carry **numeric si
 [[CHOP - Channel Operators|(y-) Next Page: CHOP - Channel Operators]]
 
 ---
-[[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

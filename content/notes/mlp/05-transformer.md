@@ -12,6 +12,8 @@ date: 2026-03-09
 
 [[notes/mlp/04-rnn|Previous: L04: RNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/06-vit|Next: ViT]]
 
+---
+
 **This lecture covers:**
 
 - Embeddings
@@ -1061,4 +1063,5 @@ From the lecture's closing slide:
 - Vaswani et al. (2017) — Attention is all you need. _NeurIPS_, pp. 5998–6008.
 - Xu et al. (2015) — Show, attend and tell: Neural image caption generation with visual attention. _ICML_, pp. 2048–2057.
 
-[[notes/mlp/04-rnn|Previous: L04: RNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/06-vit|Next: ViT]]
+---
+[[notes/mlp/04-rnn|Previous: L04: RNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/06-vit|Next: ViT]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

@@ -340,4 +340,4 @@ Merge CHOP ────────▶ [ Null (NULL_INSTANCES) ]
 5.  **Optimization:** Because the positions and rotations are processed on the GPU via the Instance tab, the CPU remains free to handle other logic, keeping the framerate high even with complex models.
 
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

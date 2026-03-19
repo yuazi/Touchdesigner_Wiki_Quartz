@@ -234,4 +234,4 @@ Composite TOP (Add/Screen) ──▶ Level TOP ──▶ Blur TOP
 5.  **Dreamy Trails:** The **Feedback TOP Chain** is where the magic happens. Every frame, the previous frame is blurred, dimmed, and added back to the current frame, creating persistent visual trails.
 
 ---
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

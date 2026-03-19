@@ -13,6 +13,8 @@ date: 2026-03-09
 
 [[notes/mlp/11-rl|Previous: L11: RL]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/13-xai|Next: XAI]]
 
+---
+
 > **Course**: Machine Perception and Learning for Collaborative Intelligent Systems  
 > **Lecturer**: Prof. Dr. Andreas Bulling, University of Stuttgart, WS 2025/2026
 
@@ -822,4 +824,5 @@ class DDPM(nn.Module):
 
 - Song, Meng, Ermon (2020) — Denoising diffusion implicit models. _arXiv:2010.02502_.
 
-[[notes/mlp/11-rl|Previous: L11: RL]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/13-xai|Next: XAI]]
+---
+[[notes/mlp/11-rl|Previous: L11: RL]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/13-xai|Next: XAI]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

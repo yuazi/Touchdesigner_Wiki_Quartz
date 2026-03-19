@@ -20,4 +20,4 @@ Motorcycles have been one of those things that just clicked for me. There's some
 - **BMW F800** — understated and dead reliable. A bike you could ride across continents without thinking twice. I appreciate the engineering more the older I get.
 
 ---
-[[notes/index|(y) Return to Notes]]
+[[notes/index|(y) Return to Notes]] | [[notes/random/index|(y) Return to Random Hub]] | [[/index|(y) Return to Home]]
