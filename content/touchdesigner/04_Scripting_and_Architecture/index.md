@@ -19,5 +19,4 @@ This module covers Python integration, project organization, and performance opt
 - **[[Performance Monitoring|(y-) Performance Monitoring]]**: Finding and fixing slowdowns.
 
 ---
-
 [[touchdesigner/index|(y) Return to TouchDesigner]]

@@ -8,7 +8,6 @@ date: 2026-03-18
 
 The sensory and the mathematical. A mix of strange attractors, the visceral focus of motorcycles, and the curated world of scents.
 
-[[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
 
 ---
 
@@ -19,3 +18,4 @@ The sensory and the mathematical. A mix of strange attractors, the visceral focu
 - [[notes/random/perfumes|(y-) Perfumes]] — A different kind of sensory exploration.
 
 ---
+[[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

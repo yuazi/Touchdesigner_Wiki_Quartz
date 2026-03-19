@@ -40,5 +40,4 @@ This module contains the best external resources for learning TouchDesigner, ran
 - **[r/TouchDesigner](https://www.reddit.com/r/TouchDesigner/)**: Active Reddit community for questions, project sharing, and tutorials.
 
 ---
-
 [[touchdesigner/index|(y) Return to TouchDesigner]]

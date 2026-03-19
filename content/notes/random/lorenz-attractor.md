@@ -58,4 +58,5 @@ The single parameter $a$ controls the overall shape. Around $a = 1.4$ it settles
 
 There is a gear button in the bottom right corner of this site that lets you adjust both attractors in real time for σ, ρ, β for Lorenz and $a$ for Halvorsen, along with trail length, speed, and particle count. Try dragging ρ below 24 and the system collapses to a fixed point. Bring it back above 24.74 and the chaos returns. That threshold is called the **Hopf bifurcation**, the exact moment order tips into chaos.
 
+---
 [[notes/index|(y) Return to Notes]]

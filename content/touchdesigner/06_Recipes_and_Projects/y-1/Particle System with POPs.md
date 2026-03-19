@@ -145,6 +145,4 @@ Source POP (1000/sec) ──┐
 5.  **Rendering:** We use the `Sprite SOP` and `Point Sprite MAT` to draw each point as a 2D "glow" that always faces the camera.
 
 ---
-
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

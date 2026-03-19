@@ -224,6 +224,4 @@ Grid SOP (10x10) ──▶ Noise SOP (Animate Offset) ──▶ Geo COMP ──�
 5.  **Method 5 (SOPs):** The oldest method. The CPU calculates physics (velocity, life, collision) for every point. Simple but slow for high counts.
 
 ---
-
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

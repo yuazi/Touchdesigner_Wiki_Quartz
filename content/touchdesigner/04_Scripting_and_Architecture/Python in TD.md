@@ -40,6 +40,4 @@ Binding creates a bi-directional property link:
 - **Accessing Tables:** `op('table1')[row, col]`
 
 ---
-
-[[touchdesigner/04_Scripting_and_Architecture/index|(y) Return to Scripting & Architecture]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/04_Scripting_and_Architecture/index|(y) Return to Scripting & Architecture]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

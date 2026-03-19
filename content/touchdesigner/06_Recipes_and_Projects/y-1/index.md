@@ -18,6 +18,4 @@ Welcome to the **Fundamentals** sub-module. These recipes are designed for your 
 - **[[Particle System with POPs|(y-) Particle System with POPs]]**: An introduction to the **POP (Point Operator)** family. Learn how to create massive, GPU-accelerated particle systems that don't tax your CPU.
 
 ---
-
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

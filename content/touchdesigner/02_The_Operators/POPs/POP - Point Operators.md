@@ -52,6 +52,5 @@ POPs are the modern, high-performance way to handle particle systems and massive
 
 [[touchdesigner/02_The_Operators/SOPs/index|(y-) Next Chapter: SOPs]]
 
-[[touchdesigner/02_The_Operators/POPs/index|(y) Return to POPs]]
-[[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+---
+[[touchdesigner/02_The_Operators/POPs/index|(y) Return to POPs]] | [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

@@ -27,6 +27,4 @@ You can open this via the **Dialogs > Performance Monitor** menu. It breaks down
 - You can find it in your **Palette** panel under _Tools_, allowing you to observe performance live in the network editor.
 
 ---
-
-[[touchdesigner/04_Scripting_and_Architecture/index|(y) Return to Scripting & Architecture]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/04_Scripting_and_Architecture/index|(y) Return to Scripting & Architecture]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

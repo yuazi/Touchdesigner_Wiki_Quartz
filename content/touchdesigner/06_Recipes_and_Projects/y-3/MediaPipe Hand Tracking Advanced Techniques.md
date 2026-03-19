@@ -373,6 +373,4 @@ Webcam TOP ──────────────────▶ [ MediaPipe
 5.  **Particle Driving:** The `H1_pinch_midpoint` and `H2_pinch_midpoint` are used as emitter positions in a `POP Network`, allowing you to "spray" particles from your fingertips.
 
 ---
-
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

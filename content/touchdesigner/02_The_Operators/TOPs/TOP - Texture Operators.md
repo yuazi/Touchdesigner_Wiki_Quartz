@@ -49,6 +49,5 @@ To use TOPs effectively:
 
 [[Render TOP|(y-) Next Page: Render TOP]]
 
-[[touchdesigner/02_The_Operators/TOPs/index|(y) Return to TOPs]]
-[[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+---
+[[touchdesigner/02_The_Operators/TOPs/index|(y) Return to TOPs]] | [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

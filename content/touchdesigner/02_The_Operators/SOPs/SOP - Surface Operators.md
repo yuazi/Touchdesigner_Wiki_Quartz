@@ -49,6 +49,5 @@ SOPs are the traditional way of modeling and manipulating 3D data in TouchDesign
 
 [[touchdesigner/02_The_Operators/TOPs/index|(y-) Next Chapter: TOPs]]
 
-[[touchdesigner/02_The_Operators/SOPs/index|(y) Return to SOPs]]
-[[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+---
+[[touchdesigner/02_The_Operators/SOPs/index|(y) Return to SOPs]] | [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

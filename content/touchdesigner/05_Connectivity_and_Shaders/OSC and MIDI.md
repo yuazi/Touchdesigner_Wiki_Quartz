@@ -28,6 +28,4 @@ Standard protocol for music hardware and software controllers.
 - **MIDI Mapper:** Use the Dialogs > MIDI Device Mapper to connect your hardware.
 
 ---
-
-[[touchdesigner/05_Connectivity_and_Shaders/index|(y) Return to Connectivity & Shaders]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/05_Connectivity_and_Shaders/index|(y) Return to Connectivity & Shaders]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

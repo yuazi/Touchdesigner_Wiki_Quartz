@@ -19,6 +19,5 @@ Motorcycles have been one of those things that just clicked for me. There's some
 - **Yamaha R6** — probably the most rewarding bike to push hard on a track. The high-revving inline-four screams past 10k RPM and it just begs to be wrung out. Not friendly for commuting but it's a weapon on twisty roads.
 - **BMW F800** — understated and dead reliable. A bike you could ride across continents without thinking twice. I appreciate the engineering more the older I get.
 
-[[notes/index|(y) Return to Notes]]
-
 ---
+[[notes/index|(y) Return to Notes]]

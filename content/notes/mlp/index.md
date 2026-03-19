@@ -12,7 +12,6 @@ This is my study hub for the MPL master's course. Each lecture gets its own page
 
 I use the [[work/slidelink|SlideLink]] tool I built to automatically align these notes with the lecture slides.
 
-[[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
 
 ---
 
@@ -56,5 +55,4 @@ I use the [[work/slidelink|SlideLink]] tool I built to automatically align these
 | Generative Models | [[notes/mlp/09-vae\|L09]], [[notes/mlp/10-gans\|L10]], [[notes/mlp/12-diffusion\|L12]]         |
 
 ---
-
 [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

@@ -107,6 +107,4 @@ Render TOP
 4.  **Feedback:** The `Transform TOP` inside the loop scales the image slightly up, which makes the "trails" expand outward in every frame, creating a blooming effect.
 
 ---
-
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

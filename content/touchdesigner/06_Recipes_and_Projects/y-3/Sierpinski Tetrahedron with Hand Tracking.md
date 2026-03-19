@@ -12,7 +12,7 @@ tags:
 date: 2026-03-01
 ---
 
-**Related:** [[Hand Tracking Tutorial|(y-) Hand Tracking Tutorial]] · [[Hand Tracking|(y) Return to Hand Tracking]] · [[Hand-Tracked Chaotic Attractor|(y-) Hand-Tracked Chaotic Attractor]]
+**Related:** [[Hand Tracking Tutorial|(y-) Hand Tracking Tutorial]] ·  · [[Hand-Tracked Chaotic Attractor|(y-) Hand-Tracked Chaotic Attractor]]
 
 ---
 
@@ -178,6 +178,4 @@ Platonic Solids (Tetrahedron)    Webcam ──▶ [ MediaPipe Plugin ]
 5.  **Smoothing:** The `Filter CHOP` is essential here — it prevents the geometry from "jumping" when the webcam loses track of the hand for a single frame.
 
 ---
-
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+[[Hand Tracking|(y) Return to Hand Tracking]] | [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

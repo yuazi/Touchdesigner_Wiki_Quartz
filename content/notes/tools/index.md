@@ -9,7 +9,6 @@ date: 2026-03-18
 
 Optimized for speed. A curated list of the terminal-centric tools I use to stay in flow and keep my hands on the home row.
 
-[[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
 
 ---
 
@@ -20,3 +19,4 @@ Optimized for speed. A curated list of the terminal-centric tools I use to stay 
 - [[notes/tools/yazi|(y-) Yazi]] — Blazing fast terminal file manager in Rust.
 
 ---
+[[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

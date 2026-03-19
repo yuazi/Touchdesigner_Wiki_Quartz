@@ -30,5 +30,4 @@ This module covers TouchDesigner's fundamental building blocks: Operators (or No
 - **[[Render TOP|(y-) Render TOP]]**: Converting 3D scenes into 2D textures for display and processing.
 
 ---
-
 [[touchdesigner/index|(y) Return to TouchDesigner]]

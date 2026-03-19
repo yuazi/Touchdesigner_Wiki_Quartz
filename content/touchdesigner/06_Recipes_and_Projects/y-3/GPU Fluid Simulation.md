@@ -376,6 +376,4 @@ Constant (RG32) ──┐              Constant (R32) ──┐
 5.  **Rendering:** Finally, the `dens_field` is colorized and output. The velocity field is invisible but controls all the "swirls" you see.
 
 ---
-
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

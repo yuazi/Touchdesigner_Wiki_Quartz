@@ -378,6 +378,4 @@ Webcam ──────────────────────▶ [ S
 5.  **Persistence:** The `Feedback TOP` creates the "ghostly" trails. By adding the previous frame back into the current one at a lower opacity, we see the history of the attractor's movement.
 
 ---
-
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

@@ -98,5 +98,4 @@ Curated external resources and community links.
 - **[[touchdesigner/07_Tutorials_and_Links/index|(y) Tutorials & Links Index]]**: Chapter hub for curated resources.
 
 ---
-
 [[/index|(y) Return to Home]]

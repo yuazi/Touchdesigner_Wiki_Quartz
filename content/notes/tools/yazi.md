@@ -176,6 +176,5 @@ run = "noop"
 
 > **Reference:** [Official Yazi Quick Start](https://yazi-rs.github.io/docs/quick-start) · [Keymap Reference](https://yazi-rs.github.io/docs/configuration/keymap)
 
-[[notes/index|(y) Return to Notes]]
-
 ---
+[[notes/index|(y) Return to Notes]]

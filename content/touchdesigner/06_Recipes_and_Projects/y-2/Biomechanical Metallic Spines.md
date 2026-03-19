@@ -105,6 +105,4 @@ Noise POP (Fine Micro-texture)
 4.  **Rendering:** The `PBR MAT` and `Environment Light` are the most critical parts for the metallic look. The `Environment Light` provides the "reflections" that make the `PBR MAT` appear chrome-like.
 
 ---
-
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

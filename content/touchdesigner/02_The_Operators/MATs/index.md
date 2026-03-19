@@ -24,5 +24,5 @@ MATs give your 3D geometry its **surface appearance**. They are assigned to Geom
 
 [[MAT - Material Operators|(y-) Next Page: MAT - Material Operators]]
 
-[[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+---
+[[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

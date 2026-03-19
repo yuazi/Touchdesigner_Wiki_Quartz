@@ -46,6 +46,5 @@ If you receive MIDI velocity data from `0` to `127`, you almost always want to p
 
 [[Noise - CHOP and TOP|(y-) Next Page: Noise - CHOP and TOP]]
 
-[[touchdesigner/02_The_Operators/CHOPs/index|(y) Return to CHOPs]]
-[[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+---
+[[touchdesigner/02_The_Operators/CHOPs/index|(y) Return to CHOPs]] | [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

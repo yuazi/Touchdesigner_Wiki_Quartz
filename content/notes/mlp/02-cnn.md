@@ -504,5 +504,4 @@ class LeNet5(nn.Module):
 - **`x.view(-1, ...)`**: Used to "flatten" the 2D feature maps into a 1D vector before passing them to traditional linear layers.
 
 ---
-
 [[notes/mlp/01-introduction|Previous: L01: Introduction]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/03-vision-cnn|Next: Vision CNNs]]

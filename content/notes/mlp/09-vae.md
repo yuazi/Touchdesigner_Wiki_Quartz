@@ -664,5 +664,4 @@ class VAE(nn.Module):
 VAEs underpin many modern generative systems. Stable Diffusion, for instance, uses a **VAE** to compress images into a compact latent space and then runs the diffusion process there — combining stable VAE training with the sharpness of diffusion sampling. → [[notes/mlp/12-diffusion|Diffusion Models L12]]
 
 ---
-
 [[notes/mlp/08-iml|Previous: L08: Interactive ML]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/10-gans|Next: GANs]]

@@ -128,6 +128,4 @@ Movie In TOP (Source B) ─┤           │
 4.  **Binding:** By **Binding** the slider to the Cross parameter, we bridge the gap between the user interface and the video processing.
 
 ---
-
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

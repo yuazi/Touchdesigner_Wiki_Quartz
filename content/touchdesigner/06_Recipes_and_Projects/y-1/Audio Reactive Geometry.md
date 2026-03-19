@@ -120,6 +120,4 @@ Pattern CHOP (Ramp) ──▶ Merge CHOP ──▶ Null (OUT_AUDIO)
 4.  **Instancing:** The `Geometry COMP` takes our 40 numbers and spawns 40 copies of the `Box SOP`. The `Y Scale` of each box is driven by its corresponding audio frequency.
 
 ---
-
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

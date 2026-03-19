@@ -48,6 +48,5 @@ DATs manage anything text or script-related in TouchDesigner.
 
 [[touchdesigner/02_The_Operators/MATs/index|(y-) Next Chapter: MATs]]
 
-[[touchdesigner/02_The_Operators/DATs/index|(y) Return to DATs]]
-[[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+---
+[[touchdesigner/02_The_Operators/DATs/index|(y) Return to DATs]] | [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

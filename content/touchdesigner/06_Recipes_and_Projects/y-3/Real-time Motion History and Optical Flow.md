@@ -124,6 +124,4 @@ Optical Flow TOP ──────────────▶ Level TOP (Fade 0
 5.  **Final Mix:** We combine the original video, the motion "heat map," and the optical flow "direction colors" to create a single interactive visual.
 
 ---
-
-[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

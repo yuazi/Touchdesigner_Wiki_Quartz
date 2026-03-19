@@ -42,6 +42,4 @@ The golden rule of optimization is: **Only cook what is necessary when it is nec
 Avoid heavy nested logic during rendering. Cache static values and recompute only when variables genuinely change. Use **CHOP Execute** and **DAT Execute** scripts properly so Python only runs on specific value changes rather than every frame.
 
 ---
-
-[[touchdesigner/04_Scripting_and_Architecture/index|(y) Return to Scripting & Architecture]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+[[touchdesigner/04_Scripting_and_Architecture/index|(y) Return to Scripting & Architecture]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

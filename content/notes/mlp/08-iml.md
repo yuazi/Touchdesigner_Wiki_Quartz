@@ -705,5 +705,4 @@ class GNN(nn.Module):
 - **Relational Reasoning**: The model isn't just looking at pixel values; it's learning the _rules_ of Sudoku encoded in the graph structure.
 
 ---
-
 [[notes/mlp/07-multimodal|Previous: L07: Multimodal Learning]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/09-vae|Next: VAE]]

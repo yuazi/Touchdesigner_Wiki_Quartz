@@ -25,5 +25,5 @@ TOPs are TouchDesigner's **2D image and video processing** operators, running en
 
 [[TOP - Texture Operators|(y-) Next Page: TOP - Texture Operators]]
 
-[[touchdesigner/02_The_Operators/index|(y) Return to The Operators]]
-[[touchdesigner/index|(y) Return to TouchDesigner]]
+---
+[[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]]

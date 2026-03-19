@@ -698,5 +698,4 @@ accuracy = model.score(X_test, y_test)
 - Srivastava, Hinton, Krizhevsky, Sutskever, Salakhutdinov (2014) — Dropout: A simple way to prevent neural networks from overfitting. _JMLR_, 15:1929–1958.
 
 ---
-
 [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/02-cnn|Next: CNNs]]

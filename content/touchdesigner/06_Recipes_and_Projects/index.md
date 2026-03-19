@@ -61,5 +61,4 @@ _Deep dives into fluid dynamics, motion tracking, and complex math._
 - **[[touchdesigner/06_Recipes_and_Projects/y-3/Hand-Tracked Chaotic Attractor|(y-) ★ Hand-Tracked Chaotic Attractor]]**: A math-heavy project using **Script CHOPs** to drive a Lorenz attractor with hand data.
 
 ---
-
 [[touchdesigner/index|(y) Return to TouchDesigner]]
