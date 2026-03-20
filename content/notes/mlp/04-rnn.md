@@ -761,4 +761,4 @@ From the lecture's closing slide:
 - **LSTMs/GRUs**: Use **Gating mechanisms** (Forget, Input, Output gates) to explicitly decide what information to keep or discard, effectively solving the vanishing gradient issue.
 
 ---
-[[notes/mlp/03-vision-cnn|Previous: L03 — Vision CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/05-transformer|Next: (y-05) Transformers]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/mlp/03-vision-cnn|Previous: L03]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/05-transformer|Next: Transformers]]

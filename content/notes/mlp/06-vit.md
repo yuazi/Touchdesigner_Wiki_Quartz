@@ -10,7 +10,10 @@ tags:
   - neural-networks
 date: 2026-03-09
 ---
-[[notes/mlp/05-transformer|Previous: L05 — Transformers]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/07-multimodal|Next: (y-07) Multimodal]]
+
+[[notes/mlp/05-transformer|Previous: L05: Transformers]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/07-multimodal|Next: Multimodal Learning]]
+
+---
 
 **This lecture covers:**
 
@@ -767,4 +770,4 @@ From the lecture's closing slide — notable models and frameworks as of WS 2025
 - **Hybrid Models**: Often use a CNN backbone to extract features before passing them to a Transformer for global reasoning.
 
 ---
-[[notes/mlp/05-transformer|Previous: L05 — Transformers]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/07-multimodal|Next: (y-07) Multimodal]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/mlp/05-transformer|Previous: L05]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/07-multimodal|Next: Multimodal]]
