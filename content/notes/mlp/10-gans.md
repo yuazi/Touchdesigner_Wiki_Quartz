@@ -9,7 +9,7 @@ tags:
 date: 2026-03-09
 ---
 
-Before jumping into GANs, recall the key idea behind VAEs (covered in [[notes/mlp/09-vae|L09]]):
+[[notes/mlp/09-vae|Previous: L09]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/11-rl|Next: RL]]
 
 ---
 

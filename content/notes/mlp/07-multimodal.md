@@ -11,7 +11,7 @@ tags:
 date: 2026-03-09
 ---
 
-The shared embedding space from CLIP is foundational for [[notes/mlp/12-diffusion|(y-) Diffusion models]] (Stable Diffusion's text conditioning), [[notes/mlp/13-xai|(y-) XAI]] (concept-based explanations), and modern vision-language systems such as LLaVA and GPT-4V.
+[[notes/mlp/06-vit|Previous: L06]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/08-iml|Next: IML]]
 
 ---
 
