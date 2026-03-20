@@ -10,7 +10,10 @@ tags:
   - semantic-segmentation
 date: 2026-03-09
 ---
-[[notes/mlp/02-cnn|Previous: L02 — CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/04-rnn|Next: (y-04) RNNs]]
+
+[[notes/mlp/02-cnn|Previous: L02: CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/04-rnn|Next: RNNs]]
+
+---
 
 ## Mental Model First
 
@@ -607,4 +610,4 @@ class ResidualBlock(nn.Module):
 - **ResNet**: Solved the **degradation problem** in very deep networks using **Skip Connections** (Residual blocks), allowing gradients to flow unimpeded.
 
 ---
-[[notes/mlp/02-cnn|Previous: L02 — CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/04-rnn|Next: (y-04) RNNs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/mlp/02-cnn|Previous: L02]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/04-rnn|Next: RNNs]]
