@@ -13,7 +13,7 @@ A running log of what I've been working on, learning, and building, ordered by t
 
 ### March
 
-- **Mar 20, 2026**: Completed major updates across the work portfolio.
+- **Mar 11, 2026**: Completed major updates across the work portfolio.
   - **[[work/attractormediapipe|AttractorMediaPipe]]**: Expanded to 9 chaotic systems with a new hybrid rendering engine (ModernGL + Datashader) and snapshot-only CLI mode.
   - **[[work/sudokusolver|Sudoku Solver]]**: Finalized the Graph Neural Network (GNN) implementation for solving puzzles via node classification.
   - **[[work/keyboardai|Keyboard AI]]**: Refined the evolutionary algorithm and scoring model for ergonomic layout optimization.
