@@ -7,7 +7,7 @@ tags:
   - quartz
   - visual
   - chaos
-date: 2026-03-20
+date: 2026-03-11
 ---
 
 Most digital gardens use static colors or simple gradients for their backgrounds. I wanted something that felt "alive" and reflected my interest in chaotic systems, so I built **simpleLorenzcss**.

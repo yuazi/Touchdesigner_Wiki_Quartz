@@ -10,7 +10,7 @@ tags:
   - optimization
   - ergonomics
   - ai
-date: 2026-03-20
+date: 2026-03-11
 ---
 
 Standard keyboard layouts like QWERTY were designed to prevent mechanical typewriter jams, not for modern ergonomics. Most "improved" layouts like Dvorak or Colemak are better, but they are still one-size-fits-all. I wanted a way to find a layout that was perfectly optimized for _my_ specific typing patterns, so I built **Keyboard AI**.

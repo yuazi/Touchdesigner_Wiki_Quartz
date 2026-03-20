@@ -2,7 +2,7 @@
 title: (y) Notes
 tags:
   - notes
-date: 2026-03-20
+date: 2026-01-01
 ---
 
 A collection of notes and random thoughts—seedlings, growing ideas, and evergreen knowledge.

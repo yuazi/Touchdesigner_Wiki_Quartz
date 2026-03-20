@@ -6,7 +6,7 @@ tags:
   - mlp
   - automation
   - nlp
-date: 2026-03-15
+date: 2026-03-14
 ---
 
 Taking manual screenshots of lecture slides while writing notes is a massive waste of time. For the [[notes/mlp/index|Machine Perception & Learning]] course, I have hundreds of slides across 13+ lectures. Clicking back and forth between a PDF and Obsidian just to crop and name images felt like busywork, so I built **SlideLink** to handle it for me.

@@ -7,7 +7,7 @@ tags:
   - pytorch
   - gnn
   - ai
-date: 2026-03-20
+date: 2026-03-11
 ---
 
 Solving Sudoku is a classic constraint satisfaction problem usually handled by backtracking or constraint propagation. I wanted to see if a neural network could learn the underlying rules of the game without being explicitly programmed with them, so I built **Sudoku Solver**.
