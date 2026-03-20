@@ -1,23 +1,23 @@
 ---
-title: "How I automated my lecture notes with SlideLink"
+title: "SlideLink: Automating Lecture Notes"
 tags:
   - tools
   - python
   - mlp
   - automation
   - nlp
-date: 2026-03-14
+date: 2026-03-15
 ---
 
 Taking manual screenshots of lecture slides while writing notes is a massive waste of time. For the [[notes/mlp/index|Machine Perception & Learning]] course, I have hundreds of slides across 13+ lectures. Clicking back and forth between a PDF and Obsidian just to crop and name images felt like busywork, so I built **SlideLink** to handle it for me.
 
-SlideLink is a domain agnostic CLI tool that contextually aligns Markdown lecture notes with PDF course slides. It "reads" your notes, finds the most relevant slide in the corresponding PDF using NLP and visual heuristics, renders it as a high res PNG, and inserts the link automatically.
+SlideLink is a domain-agnostic CLI tool that contextually aligns Markdown lecture notes with PDF course slides. It "reads" your notes, finds the most relevant slide in the PDF using NLP and visual heuristics, renders it as a high-res PNG, and inserts the link automatically.
 
 ---
 
 ## The Core Concept
 
-If you want to build something similar without an LLM, the core idea is **Vectorization**—turning text into numbers to find the "distance" between your note's context and a list of slide texts. Here is a stripped down example of the matching logic using `scikit-learn`:
+If you want to build something similar without an LLM, the core idea is **Vectorization**—turning text into numbers to find the "distance" between your note's context and a list of slide texts. Here is a stripped-down example of the matching logic using `scikit-learn`:
 
 ```python
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -38,7 +38,7 @@ def find_best_slide(note_context, slides):
     return scores.argmax(), scores.max()
 
 # Example:
-note = "Implementing backpropagation in a multi layer perceptron"
+note = "Implementing backpropagation in a multi-layer perceptron"
 slides = [
     "Introduction to Neural Networks",
     "Backpropagation algorithm and chain rule for MLPs",
@@ -53,7 +53,7 @@ print(f"Match: '{slides[idx]}' with score {score:.3f}")
 
 ## The Deep Dive: How it works
 
-To make it robust enough for real world academic use, SlideLink uses a scoring system that combines three distinct signals.
+To make it robust enough for real-world academic use, SlideLink uses a scoring system that combines three distinct signals.
 
 ### 1. Semantic Search (TF-IDF)
 
@@ -67,11 +67,7 @@ Since many technical notes rely on math, SlideLink includes a **LaTeX alias syst
 
 ### 3. Visual Density Heuristics
 
-To avoid matching slides that are just walls of text, SlideLink uses `PyMuPDF` to count images and vector paths on a page. It calculates a **Visual Signal** score based on:
-
-- **Image Count**: Direct presence of figures.
-- **Drawing Count**: Presence of vector graphics or diagrams.
-- **Visual Area Ratio**: The total area occupied by visuals vs. the page area.
+To avoid matching slides that are just walls of text, SlideLink uses `PyMuPDF` to count images and vector paths on a page. It calculates a **Visual Signal** score based on image count, drawing count, and visual area ratio.
 
 ---
 
@@ -82,20 +78,6 @@ SlideLink is designed to be safe to run on an existing vault.
 - **Dry Runs**: Use `--dry-run` to preview changes without modifying any files.
 - **Safety Flags**: If the gap between the top two slides is too narrow, SlideLink flags it for manual review.
 - **Full Reversion**: A dedicated `slidelink-revert` command strips all inserted images if you want to start fresh.
-
-### CLI Usage
-
-Process a subject directory:
-
-```bash
-slidelink-run --subject "mpl" --notes "./content/notes/mpl" --pdfs "./slides"
-```
-
-Revert changes:
-
-```bash
-slidelink-revert --notes "./content/notes/mpl"
-```
 
 ---
 
@@ -108,3 +90,6 @@ git clone https://github.com/yuazi/SlideLink
 cd SlideLink
 pip install -e .
 ```
+
+---
+[[work/index|(y) Return to Work]] | [[/index|(y) Return to Home]]

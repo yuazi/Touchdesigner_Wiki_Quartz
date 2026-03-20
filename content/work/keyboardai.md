@@ -10,12 +10,12 @@ tags:
   - optimization
   - ergonomics
   - ai
-date: 2026-03-11
+date: 2026-03-20
 ---
 
-Standard keyboard layouts like QWERTY were designed to prevent mechanical typewriter jams, not for modern ergonomics. Most "improved" layouts like Dvorak or Colemak are better, but they are still one size fits all. I wanted a way to find a layout that was perfectly optimized for _my_ specific typing patterns, so I built **Keyboard AI**.
+Standard keyboard layouts like QWERTY were designed to prevent mechanical typewriter jams, not for modern ergonomics. Most "improved" layouts like Dvorak or Colemak are better, but they are still one-size-fits-all. I wanted a way to find a layout that was perfectly optimized for _my_ specific typing patterns, so I built **Keyboard AI**.
 
-Keyboard AI is a Python CLI tool that learns character patterns from a text corpus and uses an evolutionary algorithm to search for the most ergonomic layout possible for that specific body of writing.
+Keyboard AI is a self-learning Python CLI tool that uses n-gram statistics and an evolutionary algorithm to search for the most ergonomic layout possible for a specific body of writing.
 
 ---
 
@@ -75,7 +75,7 @@ Instead of checking every possible layout (which is mathematically impossible), 
 
 The tool is built as a modular Python package with clear separation of concerns:
 
-- **`corpus.py`**: Handles loading text and generating N gram statistics.
+- **`corpus.py`**: Handles loading text and generating N-gram statistics.
 - **`layout.py`**: Manages layout state, mutations, and crossovers.
 - **`scoring.py`**: The "brain" that calculates the ergonomic cost of a layout.
 - **`optimizer.py`**: The search engine that runs the evolutionary loop.

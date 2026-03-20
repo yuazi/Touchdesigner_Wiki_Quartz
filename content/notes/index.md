@@ -2,7 +2,7 @@
 title: (y) Notes
 tags:
   - notes
-date: 2026-01-01
+date: 2026-03-20
 ---
 
 A collection of notes and random thoughts—seedlings, growing ideas, and evergreen knowledge.
@@ -21,6 +21,7 @@ A collection of notes and random thoughts—seedlings, growing ideas, and evergr
 - [[notes/tools/sioyek|(y-) Sioyek]] — PDF viewer optimized for technical documents and research papers.
 - [[notes/tools/yazi|(y-) Yazi]] — Blazing fast terminal file manager with async I/O and image previews.
 - [[work/slidelink|(y-) SlideLink]] — Domain-agnostic tool for aligning lecture notes with PDF course slides.
+- [[work/sudokusolver|(y-) Sudoku Solver]] — GNN-based solver using node classification to solve Sudoku puzzles.
 
 ## Taekwondo
 

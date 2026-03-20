@@ -12,6 +12,25 @@ This is my study hub for the MPL master's course. Each lecture gets its own page
 
 I use the [[work/slidelink|SlideLink]] tool I built to automatically align these notes with the lecture slides.
 
+---
+
+## Applied MLP: Case Studies
+
+Applying the theoretical blocks of MLP to specific technical problems.
+
+### [[work/sudokusolver|(y-) Case Study: The Sudoku GNN]]
+
+**Core Idea:** Most neural networks work on **Euclidean data** (grids of pixels or sequences of text). Sudoku is better represented as a **Graph**, where the rules of the game define the edges (connections) between cells.
+
+#### **Mental Model: Message Passing as Constraint Propagation**
+
+- In traditional Sudoku solvers, you look at a cell and "propagate" the constraints from its row, column, and box to eliminate possibilities.
+- In a GNN, this is exactly what **Message Passing** does. Each node (cell) sends its current "state" (clues and predictions) to its neighbors. After a few rounds of updates, each node has "seen" enough of the board to make a classification.
+
+#### **💡 Intuition: Why use a Graph instead of a CNN?**
+
+- A **CNN** looks for spatial patterns in local neighborhoods (3x3 squares). While Sudoku has 3x3 boxes, a cell is also constrained by cells far away in the same row or column.
+- A **GNN** allows us to explicitly define these "far away" relationships as direct edges. The network doesn't have to "learn" that rows and columns matter; we give it that structure for free, allowing it to focus on learning the **logic** of the game.
 
 ---
 
