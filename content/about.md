@@ -22,7 +22,7 @@ I build tools that bridge the gap between complex data and intuitive interfaces.
 - **Languages:** Python, TypeScript, Java, Lua
 - **AI/ML:** PyTorch, MediaPipe, Constraint Propagation
 - **Creative:** TouchDesigner, GLSL, Strange Attractors
-- **Environment:** Ghostty + Neovim + Yazi (keyboard driven workflow)
+- **Environment:** Ghostty + Neovim + Yazi (keyboard-driven workflow)
 
 ---
 
@@ -37,10 +37,10 @@ I build tools that bridge the gap between complex data and intuitive interfaces.
 
 ## Beyond the Screen
 
-- **Taekwondo:** A white to black belt journey fueled by a love for spinning kicks.
+- **Taekwondo:** A white-to-black belt journey fueled by a love for spinning kicks.
 - **Motorcycles:** Pure focus. No distractions, just the bike and the road.
 - **Scents:** Exploring the sensory world of niche perfumery.
-- **Chaos:** obsessed with the math of the [Lorenz Attractor](./notes/random/lorenz-attractor).
+- **Chaos:** Obsessed with the math of the [Lorenz Attractor](./notes/random/lorenz-attractor).
 
 ---
 

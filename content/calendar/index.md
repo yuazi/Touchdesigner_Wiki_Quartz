@@ -13,6 +13,11 @@ A running log of what I've been working on, learning, and building, ordered by t
 
 ### March
 
+- **Mar 20, 2026**: Completed major updates across the work portfolio.
+  - **[[work/attractormediapipe|AttractorMediaPipe]]**: Expanded to 9 chaotic systems with a new hybrid rendering engine (ModernGL + Datashader) and snapshot-only CLI mode.
+  - **[[work/sudokusolver|Sudoku Solver]]**: Finalized the Graph Neural Network (GNN) implementation for solving puzzles via node classification.
+  - **[[work/keyboardai|Keyboard AI]]**: Refined the evolutionary algorithm and scoring model for ergonomic layout optimization.
+  - **Digital Garden**: Synced all project pages with latest GitHub updates and refined the internal linking structure.
 - Restructured this digital garden: moved TouchDesigner notes into their own subfolder, created the new homepage.
 - Set up Quartz 4 with a custom theme, Lorenz background, and graph view.
 - Added a BIOS-style boot sequence overlay so the garden opens with a short startup intro once per session.
