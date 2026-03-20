@@ -7,10 +7,13 @@ tags:
   - active-learning
   - human-in-the-loop
   - annotation
+---
 date: 2026-03-09
 ---
-[[notes/mlp/07-multimodal|Previous: L07 — Multimodal]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/09-vae|Next: (y-09) VAE]]
 
+[[notes/mlp/07-multimodal|Previous: L07: Multimodal Learning]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/09-vae|Next: VAE]]
+
+---
 ## Mental Model First
 
 - Interactive ML starts from one practical fact: **human attention is expensive**, so we should spend it where it teaches the model the most.
@@ -788,4 +791,4 @@ class GNN(nn.Module):
 - **GNN Iterations**: Each message-passing step increases the **receptive field** by one hop. To capture a whole Sudoku board, you need at least $T=9$ iterations.
 
 ---
-[[notes/mlp/07-multimodal|Previous: L07 — Multimodal]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/09-vae|Next: (y-09) VAE]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/mlp/07-multimodal|Previous: L07]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/09-vae|Next: VAE]]

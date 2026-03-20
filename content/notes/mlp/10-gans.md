@@ -8,8 +8,10 @@ tags:
   - neural-networks
 date: 2026-03-09
 ---
-[[notes/mlp/09-vae|Previous: L09 — Generative AI & Variational Autoencoders (VAE)]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/11-rl|Next: (y-11) Reinforcement Learning]]
 
+[[notes/mlp/09-vae|Previous: L09]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/11-rl|Next: RL]]
+
+---
 > _University of Stuttgart — Machine Perception and Learning for Collaborative Intelligent Systems, Prof. Dr. Andreas Bulling, WS 2025/2026_
 
 ---
@@ -873,5 +875,5 @@ class Discriminator(nn.Module):
 - **Mode Collapse**: Occurs when the Generator discovers a single "safe" output that fools the Discriminator and stops producing diverse samples.
 - **WGAN**: Uses the **Earth Mover (Wasserstein) Distance** to provide smoother gradients even when the real and fake distributions don't overlap.
 
----
-[[notes/mlp/09-vae|Previous: L09 — Generative AI & Variational Autoencoders (VAE)]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/11-rl|Next: (y-11) Reinforcement Learning]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+
+[[notes/mlp/09-vae|Previous: L09]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/11-rl|Next: (y-11) RL]]
