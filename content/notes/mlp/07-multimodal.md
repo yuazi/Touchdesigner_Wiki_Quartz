@@ -10,7 +10,7 @@ tags:
   - nlp
 date: 2026-03-09
 ---
-[[notes/mlp/06-vit|Previous: L06 — Vision Transformer (ViT)]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/08-iml|Next: (y-08) Interactive Machine Learning]]
+[[notes/mlp/06-vit|Previous: L06 — ViT]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/08-iml|Next: (y-08) IML]]
 
 The shared embedding space from CLIP is foundational for [[notes/mlp/12-diffusion|(y-) Diffusion models]] (Stable Diffusion's text conditioning), [[notes/mlp/13-xai|(y-) XAI]] (concept-based explanations), and modern vision-language systems such as LLaVA and GPT-4V.
 
@@ -867,4 +867,4 @@ class ProtoNet(nn.Module):
 - **Modality Gap**: Despite alignment, image and text features often occupy distinct clusters in the latent space, which is an ongoing research challenge.
 
 ---
-[[notes/mlp/06-vit|Previous: L06 — Vision Transformer (ViT)]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/08-iml|Next: (y-08) Interactive Machine Learning]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/mlp/06-vit|Previous: L06 — ViT]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/08-iml|Next: (y-08) IML]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
