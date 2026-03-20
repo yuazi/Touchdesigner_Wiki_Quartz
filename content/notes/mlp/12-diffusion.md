@@ -10,10 +10,7 @@ tags:
   - neural-networks
 date: 2026-03-09
 ---
-
-[[notes/mlp/11-rl|Previous: L11: RL]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/13-xai|Next: XAI]]
-
----
+[[notes/mlp/11-rl|Previous: L11 — Reinforcement Learning]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/13-xai|Next: (y-13) Explainable AI (XAI)]]
 
 > **Course**: Machine Perception and Learning for Collaborative Intelligent Systems  
 > **Lecturer**: Prof. Dr. Andreas Bulling, University of Stuttgart, WS 2025/2026
@@ -23,6 +20,7 @@ date: 2026-03-09
 ## Mental Model First
 
 - Diffusion models learn generation by solving many small **denoising** problems instead of one giant generation problem.
+- **Hierarchical Connection**: They can be viewed as a special form of hierarchical VAE with a fixed encoder. Modern systems like **Stable Diffusion** leverage this by using a VAE to compress images into a latent space first. → **[[notes/mlp/09-vae|Generative AI & VAE L09]]**
 - The forward process destroys structure gradually; the reverse model learns how to rebuild that structure step by step.
 - Their biggest strength is stable high-quality generation, while their biggest weakness is often sampling cost.
 - If one question guides this lecture, let it be: **why is reversing a noise process easier to train than generating a full image in one shot?**
@@ -880,5 +878,10 @@ class DDPM(nn.Module):
 
 - Song, Meng, Ermon (2020) — Denoising diffusion implicit models. _arXiv:2010.02502_.
 
+### Applied Exam Focus
+- **Forward Process**: Gradually adds Gaussian noise to an image until it is pure noise. This is fixed and has no learnable parameters.
+- **Reverse Process**: A **U-Net** is trained to predict the noise added at each step, effectively "undoing" the corruption to recover the image.
+- **Sampling**: Unlike VAEs or GANs (one-step), Diffusion requires **iterative refinement**, making it high-quality but slower to generate.
+
 ---
-[[notes/mlp/11-rl|Previous: L11: RL]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/13-xai|Next: XAI]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/mlp/11-rl|Previous: L11 — Reinforcement Learning]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/13-xai|Next: (y-13) Explainable AI (XAI)]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

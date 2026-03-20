@@ -8,10 +8,7 @@ tags:
   - neural-networks
 date: 2026-03-09
 ---
-
-[[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/02-cnn|Next: CNNs]]
-
----
+[[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/02-cnn|Next: (y-02) CNNs]]
 
 ## Introduction
 
@@ -758,5 +755,10 @@ accuracy = model.score(X_test, y_test)
 - Ioffe, Szegedy (2015) — Batch normalization: Accelerating deep network training by reducing internal covariate shift. _ICML_.
 - Srivastava, Hinton, Krizhevsky, Sutskever, Salakhutdinov (2014) — Dropout: A simple way to prevent neural networks from overfitting. _JMLR_, 15:1929–1958.
 
+### Applied Exam Focus
+- **Loss Functions**: Use **MSE** for regression and **Cross-Entropy** for classification. Cross-Entropy penalizes confident wrong answers more heavily.
+- **Activation Choice**: Default to **ReLU** for hidden layers. Avoid **Sigmoid/Tanh** in deep networks due to the **vanishing gradient** problem (gradients $\approx 0$ when saturated).
+- **Initialization**: Always use **Kaiming (He)** initialization when using ReLU to keep the variance of activations stable across layers.
+
 ---
-[[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/02-cnn|Next: CNNs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/02-cnn|Next: (y-02) CNNs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

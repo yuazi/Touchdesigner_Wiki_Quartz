@@ -9,10 +9,7 @@ tags:
   - annotation
 date: 2026-03-09
 ---
-
-[[notes/mlp/07-multimodal|Previous: L07: Multimodal Learning]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/09-vae|Next: VAE]]
-
----
+[[notes/mlp/07-multimodal|Previous: L07 — Multimodal Learning]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/09-vae|Next: (y-09) Generative AI & VAE]]
 
 ## Mental Model First
 
@@ -785,5 +782,10 @@ class GNN(nn.Module):
 - **Permutation Invariance**: The `index_add_` (sum) operation ensures result consistency regardless of neighbor order.
 - **Relational Reasoning**: The model learns the **rules** of Sudoku encoded in the graph structure.
 
+### Applied Exam Focus
+- **Uncertainty Sampling**: In Active Learning, query points where the model is least confident (e.g., **Highest Entropy** or **Smallest Margin** between top two classes).
+- **Label Propagation**: Uses a **Similarity Graph** to spread labels from a few points to many. It assumes that points close on the graph manifold share the same label.
+- **GNN Iterations**: Each message-passing step increases the **receptive field** by one hop. To capture a whole Sudoku board, you need at least $T=9$ iterations.
+
 ---
-[[notes/mlp/07-multimodal|Previous: L07: Multimodal Learning]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/09-vae|Next: VAE]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/mlp/07-multimodal|Previous: L07 — Multimodal Learning]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/09-vae|Next: (y-09) Generative AI & VAE]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

@@ -9,10 +9,7 @@ tags:
   - neural-networks
 date: 2026-03-09
 ---
-
-[[notes/mlp/08-iml|Previous: L08]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/10-gans|Next: GANs]]
-
----
+[[notes/mlp/08-iml|Previous: L08 — Interactive Machine Learning (IML)]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/10-gans|Next: (y-10) GANs]]
 
 > **Slide credits**: O. Hilliges @ ETHZ · Paul Liang & Louis-Philippe Morency @ CMU
 
@@ -21,6 +18,7 @@ date: 2026-03-09
 ## Mental Model First
 
 - A VAE is a **probabilistic autoencoder**: it wants to reconstruct data while also shaping the latent space so we can sample from it.
+- **Modern Context**: VAEs underpin many modern generative systems. **Stable Diffusion**, for instance, uses a VAE to compress images into a compact latent space and then runs the diffusion process there — combining stable VAE training with the sharpness of diffusion sampling. → **[[notes/mlp/12-diffusion|Diffusion Models L12]]**
 - Plain autoencoders compress well, but their latent spaces are usually messy and unreliable for generation.
 - The KL term is what turns a useful compression model into a generative model with a smoother, more navigable latent space.
 - If one question guides this lecture, let it be: **how can we force a latent representation to be both informative for reconstruction and structured enough for sampling?**
@@ -715,5 +713,10 @@ class VAE(nn.Module):
 | GAN         | Implicit               | Sharp, high quality | Unstable (mode collapse) |
 | Diffusion   | Hierarchical noise     | Excellent           | Stable                   |
 
+### Applied Exam Focus
+- **Reparameterization Trick**: Instead of sampling $z \sim \mathcal{N}(\mu, \sigma^2)$ directly (which is non-differentiable), sample $\epsilon \sim \mathcal{N}(0, 1)$ and compute $z = \mu + \sigma \odot \epsilon$. This allows **Backprop** to work.
+- **Latent Space**: The **KL-Divergence** term in the loss forces the latent space to be a smooth, continuous Gaussian, enabling meaningful interpolation.
+- **ELBO**: The Evidence Lower Bound is the training objective that balances reconstruction quality with latent space regularity.
+
 ---
-VAEs underpin many modern generative systems. Stable Diffusion, for instance, uses a **VAE** to compress images into a compact latent space and then runs the diffusion process there — combining stable VAE training with the sharpness of diffusion sampling. → [[notes/mlp/12-diffusion|Diffusion Models L12]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/mlp/08-iml|Previous: L08 — Interactive Machine Learning (IML)]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/10-gans|Next: (y-10) GANs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

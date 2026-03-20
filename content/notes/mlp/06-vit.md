@@ -10,10 +10,7 @@ tags:
   - neural-networks
 date: 2026-03-09
 ---
-
-[[notes/mlp/05-transformer|Previous: L05: Transformers]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/07-multimodal|Next: Multimodal Learning]]
-
----
+[[notes/mlp/05-transformer|Previous: L05 — Transformers]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/07-multimodal|Next: (y-07) Multimodal Learning]]
 
 **This lecture covers:**
 
@@ -764,5 +761,10 @@ From the lecture's closing slide — notable models and frameworks as of WS 2025
 - Caron, Touvron, Misra, Jégou, Mairal, Bojanowski, Joulin (2021) — Emerging properties in self-supervised vision transformers. _ICCV_.
 - Zhu, Su, Lu, Li, Wang, Dai (2020) — Deformable DETR: Deformable transformers for end-to-end object detection. _arXiv:2010.04159_.
 
+### Applied Exam Focus
+- **Patch Projection**: ViT treats an image as a sequence of $16 \times 16$ patches, effectively turning a Vision problem into an NLP problem.
+- **Inductive Bias**: ViT has **less inductive bias** than CNNs (no translation invariance or locality). This means it requires **much more data** to outperform CNNs.
+- **Hybrid Models**: Often use a CNN backbone to extract features before passing them to a Transformer for global reasoning.
+
 ---
-[[notes/mlp/05-transformer|Previous: L05: Transformers]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/07-multimodal|Next: Multimodal Learning]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/mlp/05-transformer|Previous: L05 — Transformers]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/07-multimodal|Next: (y-07) Multimodal Learning]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

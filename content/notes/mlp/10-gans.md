@@ -8,10 +8,7 @@ tags:
   - neural-networks
 date: 2026-03-09
 ---
-
-[[notes/mlp/09-vae|Previous: L09]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/11-rl|Next: RL]]
-
----
+[[notes/mlp/09-vae|Previous: L09 — Generative AI & Variational Autoencoders (VAE)]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/11-rl|Next: (y-11) Reinforcement Learning]]
 
 > _University of Stuttgart — Machine Perception and Learning for Collaborative Intelligent Systems, Prof. Dr. Andreas Bulling, WS 2025/2026_
 
@@ -871,5 +868,10 @@ class Discriminator(nn.Module):
 - Krafka, Khosla, Kellnhofer et al. (2016). _Eye Tracking for Everyone._ CVPR.
 - Zhang, Park, Beeler, Bradley, Tang, Hilliges (2020). _ETH-XGaze: A Large Scale Dataset for Gaze Estimation under Extreme Head Pose and Gaze Variation._ ECCV.
 
+### Applied Exam Focus
+- **Min-Max Game**: The Generator tries to fool the Discriminator, while the Discriminator tries to distinguish real from fake. This is a **Nash Equilibrium** problem.
+- **Mode Collapse**: Occurs when the Generator discovers a single "safe" output that fools the Discriminator and stops producing diverse samples.
+- **WGAN**: Uses the **Earth Mover (Wasserstein) Distance** to provide smoother gradients even when the real and fake distributions don't overlap.
+
 ---
-Before jumping into GANs, recall the key idea behind VAEs (covered in [[notes/mlp/09-vae|L09]]): | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/mlp/09-vae|Previous: L09 — Generative AI & Variational Autoencoders (VAE)]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/11-rl|Next: (y-11) Reinforcement Learning]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

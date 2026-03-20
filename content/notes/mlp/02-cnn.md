@@ -8,10 +8,7 @@ tags:
   - computer-vision
 date: 2026-03-09
 ---
-
-[[notes/mlp/01-introduction|Previous: L01: Introduction]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/03-vision-cnn|Next: Vision CNNs]]
-
----
+[[notes/mlp/01-introduction|Previous: L01 — Intro]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/03-vision-cnn|Next: (y-03) Vision CNNs]]
 
 ## Mental Model First
 
@@ -588,5 +585,10 @@ class LeNet5(nn.Module):
 - **`F.max_pool2d`**: Selects the maximum value in a small window, reducing spatial size and providing robustness to small translations.
 - **`x.view(-1, ...)`**: Used to "flatten" the 2D feature maps into a 1D vector before passing them to traditional linear layers.
 
+### Applied Exam Focus
+- **Dimension Formula**: Output size $= \frac{W - K + 2P}{S} + 1$. Remember this to calculate feature map shrinkage.
+- **Pooling**: **Max Pooling** provides local **translation invariance** and reduces the number of parameters (lowering overfitting risk).
+- **Receptive Field**: Each layer increases the 'view' of the original image. Deeper layers capture more global context but lose spatial precision.
+
 ---
-[[notes/mlp/01-introduction|Previous: L01: Introduction]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/03-vision-cnn|Next: Vision CNNs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/mlp/01-introduction|Previous: L01 — Intro]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/03-vision-cnn|Next: (y-03) Vision CNNs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

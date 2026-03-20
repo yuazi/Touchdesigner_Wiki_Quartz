@@ -10,10 +10,7 @@ tags:
   - nlp
 date: 2026-03-09
 ---
-
-[[notes/mlp/03-vision-cnn|Previous: L03: Vision CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/05-transformer|Next: Transformers]]
-
----
+[[notes/mlp/03-vision-cnn|Previous: L03 — Vision CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/05-transformer|Next: (y-05) Transformers]]
 
 **This lecture covers:**
 
@@ -758,5 +755,10 @@ From the lecture's closing slide:
 - Vinyals et al. (2015) — Show and tell: A neural image caption generator. _CVPR_.
 - Wu et al. (2016) — Google's neural machine translation system. _arXiv:1609.08144_.
 
+### Applied Exam Focus
+- **BPTT**: Backpropagation Through Time treats the unrolled RNN as a very deep MLP where weights are shared across timesteps.
+- **Vanishing Gradients**: Standard RNNs can't maintain long-term dependencies because gradients shrink exponentially over time.
+- **LSTMs/GRUs**: Use **Gating mechanisms** (Forget, Input, Output gates) to explicitly decide what information to keep or discard, effectively solving the vanishing gradient issue.
+
 ---
-[[notes/mlp/03-vision-cnn|Previous: L03: Vision CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/05-transformer|Next: Transformers]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/mlp/03-vision-cnn|Previous: L03 — Vision CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/05-transformer|Next: (y-05) Transformers]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

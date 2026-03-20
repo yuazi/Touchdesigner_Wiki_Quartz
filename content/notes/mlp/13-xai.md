@@ -9,10 +9,7 @@ tags:
   - deep-learning
 date: 2026-03-09
 ---
-
-[[notes/mlp/12-diffusion|Previous: L12: Diffusion]] | [[notes/mlp/index|Back to MPL Index]]
-
----
+[[notes/mlp/12-diffusion|Previous: L12 — Diffusion Models]] | [[notes/mlp/index|Back to MPL Index]]
 
 ## Mental Model First
 
@@ -814,5 +811,10 @@ Three evaluation goals [Doshi-Velez & Kim, 2017]:
 
 - Sundararajan, Taly, Yan (2017) — Axiomatic attribution for deep networks. _ICML_.
 
+### Applied Exam Focus
+- **Saliency Maps**: Gradient-based methods (like **Grad-CAM**) highlight which pixels most influenced the prediction. Note: they can be noisy and misleading.
+- **SHAP**: Based on **Shapley Values** from game theory. It is the only method that guarantees a fair distribution of "credit" among all input features.
+- **Local vs. Global**: LIME provides **Local** explanations (for one specific image), while TCAV provides **Global** explanations (for a whole concept like "stripes").
+
 ---
-[[notes/mlp/12-diffusion|Previous: L12: Diffusion]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/mlp/12-diffusion|Previous: L12 — Diffusion Models]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

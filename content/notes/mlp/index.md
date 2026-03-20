@@ -14,9 +14,38 @@ I use the [[work/slidelink|SlideLink]] tool I built to automatically align these
 
 ---
 
+## How to Use These Notes
+
+- **Reading linearly** works well — each lecture builds on the previous.
+- Each page has a **mental model** section (big picture first), then details.
+- Look for the **Example** blocks to build intuition.
+- Math is included where needed, but always paired with plain-English explanations.
+
+---
+
+## Lectures
+
+| Topic                                                               | Core Idea                                      | Example Model / Use Case                        |
+| :------------------------------------------------------------------ | :--------------------------------------------- | :---------------------------------------------- |
+| [[notes/mlp/01-introduction\|(y-01) Introduction]]                  | What is ML? Loss, optimization, training loops | Logistic Regression (Iris dataset)              |
+| [[notes/mlp/02-cnn\|(y-02) Convolutional Neural Networks]]          | Spatial feature extraction with filters        | Simple CNN (MNIST digit recognition)            |
+| [[notes/mlp/03-vision-cnn\|(y-03) Vision CNNs]]                     | AlexNet, VGG, ResNet, EfficientNet             | ResNet-50 (ImageNet classification)             |
+| [[notes/mlp/04-rnn\|(y-04) Recurrent Neural Networks]]              | Sequences, LSTMs, GRUs, vanishing gradients    | LSTM (Sentiment analysis / Stocks)              |
+| [[notes/mlp/05-transformer\|(y-05) Transformers]]                   | Attention is all you need                      | BERT / GPT (Machine Translation)                |
+| [[notes/mlp/06-vit\|(y-06) Vision Transformer (ViT)]]               | Patches + Transformers = vision                | ViT-Base (Large-scale visual recognition)       |
+| [[notes/mlp/07-multimodal\|(y-07) Multimodal Learning]]             | CLIP, image+text, cross-modal alignment        | CLIP (Zero-shot image classification)           |
+| [[notes/mlp/08-iml\|(y-08) Interactive Machine Learning]]           | Humans in the loop                             | Active Learning / GNN (Sudoku solver)           |
+| [[notes/mlp/09-vae\|(y-09) Generative AI & VAE]]                    | Latent spaces and variational inference        | VAE (Face generation / Reconstruction)          |
+| [[notes/mlp/10-gans\|(y-10) GANs]]                                  | Generator vs. Discriminator                    | StyleGAN (Synthetic high-res faces)             |
+| [[notes/mlp/11-rl\|(y-11) Reinforcement Learning]]                  | Rewards, policies, Q-learning                  | Q-Learning / PPO (Game playing / Atari)         |
+| [[notes/mlp/12-diffusion\|(y-12) Diffusion Models]]                 | Denoising as generation                        | Stable Diffusion (Text-to-image generation)     |
+| [[notes/mlp/13-xai\|(y-13) Explainable AI (XAI)]]                   | Why did the model decide that?                 | Grad-CAM / SHAP (Debugging model bias)          |
+
+---
+
 ## Applied MLP: Case Studies
 
-Applying the theoretical blocks of MLP to specific technical problems.
+Practical applications of theory to real-world technical problems.
 
 ### [[work/sudokusolver|(y-) Case Study: The Sudoku GNN]]
 
@@ -29,37 +58,8 @@ Applying the theoretical blocks of MLP to specific technical problems.
 
 #### **💡 Intuition: Why use a Graph instead of a CNN?**
 
-- A **CNN** looks for spatial patterns in local neighborhoods (3x3 squares). While Sudoku has 3x3 boxes, a cell is also constrained by cells far away in the same row or column.
-- A **GNN** allows us to explicitly define these "far away" relationships as direct edges. The network doesn't have to "learn" that rows and columns matter; we give it that structure for free, allowing it to focus on learning the **logic** of the game.
-
----
-
-## Lectures
-
-| #   | Topic                                                    | Core Idea                                      |
-| :-- | :------------------------------------------------------- | :--------------------------------------------- |
-| 01  | [[notes/mlp/01-introduction\|(y-) Introduction]]         | What is ML? Loss, optimization, training loops |
-| 02  | [[notes/mlp/02-cnn\|(y-) Convolutional Neural Networks]] | Spatial feature extraction with filters        |
-| 03  | [[notes/mlp/03-vision-cnn\|(y-) Vision CNNs]]            | AlexNet, VGG, ResNet, EfficientNet             |
-| 04  | [[notes/mlp/04-rnn\|(y-) Recurrent Neural Networks]]     | Sequences, LSTMs, GRUs, vanishing gradients    |
-| 05  | [[notes/mlp/05-transformer\|(y-) Transformers]]          | Attention is all you need                      |
-| 06  | [[notes/mlp/06-vit\|(y-) Vision Transformer (ViT)]]      | Patches + Transformers = vision                |
-| 07  | [[notes/mlp/07-multimodal\|(y-) Multimodal Learning]]    | CLIP, image+text, cross-modal alignment        |
-| 08  | [[notes/mlp/08-iml\|(y-) Interactive Machine Learning]]  | Humans in the loop                             |
-| 09  | [[notes/mlp/09-vae\|(y-) Generative AI & VAE]]           | Latent spaces and variational inference        |
-| 10  | [[notes/mlp/10-gans\|(y-) GANs]]                         | Generator vs. Discriminator                    |
-| 11  | [[notes/mlp/11-rl\|(y-) Reinforcement Learning]]         | Rewards, policies, Q-learning                  |
-| 12  | [[notes/mlp/12-diffusion\|(y-) Diffusion Models]]        | Denoising as generation                        |
-| 13  | [[notes/mlp/13-xai\|(y-) Explainable AI (XAI)]]          | Why did the model decide that?                 |
-
----
-
-## How to Use These Notes
-
-- **Reading linearly** works well — each lecture builds on the previous.
-- Each page has a **mental model** section (big picture first), then details.
-- Look for the **Example** blocks to build intuition.
-- Math is included where needed, but always paired with plain-English explanations.
+- A **CNN** is limited by its receptive field; it can only "see" a small 3x3 or 5x5 area at a time.
+- A **GNN** with explicit edges for rows and columns has a **receptive field of 1** for all constraints. This "shortcut" for relational reasoning makes the learning problem significantly easier.
 
 ---
 

@@ -10,10 +10,9 @@ tags:
   - nlp
 date: 2026-03-09
 ---
+[[notes/mlp/06-vit|Previous: L06 — Vision Transformer (ViT)]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/08-iml|Next: (y-08) Interactive Machine Learning]]
 
-[[notes/mlp/06-vit|Previous: L06]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/08-iml|Next: IML]]
-
----
+The shared embedding space from CLIP is foundational for [[notes/mlp/12-diffusion|(y-) Diffusion models]] (Stable Diffusion's text conditioning), [[notes/mlp/13-xai|(y-) XAI]] (concept-based explanations), and modern vision-language systems such as LLaVA and GPT-4V.
 
 **This lecture covers:**
 
@@ -862,5 +861,10 @@ class ProtoNet(nn.Module):
 - Srivastava & Salakhutdinov (2012). _Multimodal learning with deep Boltzmann machines._ NeurIPS.
 - Pham et al. (2019). _Found in translation: Learning robust joint representations by cyclic translations between modalities._ AAAI.
 
+### Applied Exam Focus
+- **CLIP**: Uses **Contrastive Learning** to align images and text in a shared latent space. The goal is to maximize the cosine similarity of matching pairs.
+- **Zero-Shot Transfer**: Because CLIP learns concepts (e.g., "a photo of a dog") rather than fixed labels, it can classify objects it was never explicitly trained on.
+- **Modality Gap**: Despite alignment, image and text features often occupy distinct clusters in the latent space, which is an ongoing research challenge.
+
 ---
-The shared embedding space from CLIP is foundational for [[notes/mlp/12-diffusion|(y-) Diffusion models]] (Stable Diffusion's text conditioning), [[notes/mlp/13-xai|(y-) XAI]] (concept-based explanations), and modern vision-language systems such as LLaVA and GPT-4V. | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/mlp/06-vit|Previous: L06 — Vision Transformer (ViT)]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/08-iml|Next: (y-08) Interactive Machine Learning]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

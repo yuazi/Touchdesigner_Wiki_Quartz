@@ -9,10 +9,7 @@ tags:
   - nlp
 date: 2026-03-09
 ---
-
-[[notes/mlp/04-rnn|Previous: L04: RNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/06-vit|Next: ViT]]
-
----
+[[notes/mlp/04-rnn|Previous: L04 — RNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/06-vit|Next: (y-06) ViT]]
 
 **This lecture covers:**
 
@@ -1141,5 +1138,10 @@ From the lecture's closing slide:
 - Vaswani et al. (2017) — Attention is all you need. _NeurIPS_, pp. 5998–6008.
 - Xu et al. (2015) — Show, attend and tell: Neural image caption generation with visual attention. _ICML_, pp. 2048–2057.
 
+### Applied Exam Focus
+- **Self-Attention**: Complexity is **$O(N^2)$** with respect to sequence length $N$. This is the primary scaling bottleneck.
+- **Multi-Head Attention**: Allows the model to attend to different parts of the sequence simultaneously (e.g., one head for syntax, another for semantics).
+- **Positional Encoding**: Crucial because Transformers have **no inherent sense of order** (unlike RNNs). Without it, the model treats the input as a "bag of words."
+
 ---
-[[notes/mlp/04-rnn|Previous: L04: RNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/06-vit|Next: ViT]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/mlp/04-rnn|Previous: L04 — RNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/06-vit|Next: (y-06) ViT]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
