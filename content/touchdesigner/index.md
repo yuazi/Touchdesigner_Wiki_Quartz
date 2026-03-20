@@ -91,7 +91,7 @@ Practical examples and projects categorized by difficulty.
 
 ---
 
-## (y7) Tutorials & Links
+## (y7) TouchDesigner Wiki Reference
 
 - **[[touchdesigner/Glossary|(y) Glossary]]**: Core concepts and terminology.
 - **[[touchdesigner/07_Tutorials_and_Links/index|(y) Tutorials & Links Index]]**: Chapter hub for curated resources.

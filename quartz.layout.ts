@@ -43,7 +43,15 @@ export const defaultContentPageLayout: PageLayout = {
     }),
   ],
   right: [
-    Component.Graph(),
+    Component.Graph({
+      localGraph: {
+        depth: 1,
+        repelForce: 0.5,
+      },
+      globalGraph: {
+        repelForce: 0.5,
+      },
+    }),
     Component.DesktopOnly(Component.TableOfContents()),
     Component.ConditionalRender({
       component: Component.Backlinks(),
@@ -72,7 +80,15 @@ export const defaultListPageLayout: PageLayout = {
     }),
   ],
   right: [
-    Component.Graph(),
+    Component.Graph({
+      localGraph: {
+        depth: 1,
+        repelForce: 0.5,
+      },
+      globalGraph: {
+        repelForce: 0.5,
+      },
+    }),
     Component.DesktopOnly(Component.TableOfContents()),
     Component.ConditionalRender({
       component: Component.Backlinks(),

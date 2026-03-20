@@ -36,6 +36,8 @@ The other reason is honestly just that it looks great. There is something about 
 
 I ended up putting it on the background of this site for that reason. It is a constant reminder that the most interesting things sit right at the edge between structure and unpredictability.
 
+> **Hands-on Interaction**: I built **[[work/attractormediapipe|AttractorMediaPipe]]**, a gestural instrument that lets you "touch" and rotate these mathematical attractors using real-time hand tracking.
+
 ## The Halvorsen attractor
 
 The side attractors on this site use the **Halvorsen system**, a cousin of the Lorenz system with three fold rotational symmetry:
@@ -57,6 +59,26 @@ The single parameter $a$ controls the overall shape. Around $a = 1.4$ it settles
 ## Tuning it
 
 There is a gear button in the bottom right corner of this site that lets you adjust both attractors in real time for σ, ρ, β for Lorenz and $a$ for Halvorsen, along with trail length, speed, and particle count. Try dragging ρ below 24 and the system collapses to a fixed point. Bring it back above 24.74 and the chaos returns. That threshold is called the **Hopf bifurcation**, the exact moment order tips into chaos.
+
+<button class="chaos-trigger" onclick="document.dispatchEvent(new CustomEvent('lorenz-chaos'))">Trigger Chaos Mode 🌀</button>
+
+<style>
+.chaos-trigger {
+  background: var(--secondary);
+  color: var(--light);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  margin-top: 1rem;
+  transition: transform 0.1s ease;
+}
+.chaos-trigger:active {
+  transform: scale(0.95);
+}
+</style>
 
 ---
 [[notes/index|(y) Return to Notes]] | [[notes/random/index|(y) Return to Random Hub]] | [[/index|(y) Return to Home]]

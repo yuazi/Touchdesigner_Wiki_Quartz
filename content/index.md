@@ -26,6 +26,7 @@ A digital garden is intentionally unfinished. You'll find notes at different sta
 - Use the **search bar** (top right) to jump to any topic
 - Follow **wikilinks** within notes to explore connections between ideas
 - Browse the **graph view** to see how concepts relate to one another
+- Explore the **[[tags/index|tags]]** to find notes by topic
 - The **table of contents** on each page helps with longer notes
 
 ---

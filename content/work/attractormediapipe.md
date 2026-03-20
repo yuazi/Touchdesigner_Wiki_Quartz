@@ -44,9 +44,15 @@ The project is built to handle the tension between fast, interactive discovery a
 
 ### 1. Real Time Simulation
 
-The tool supports 9 different attractors like **Aizawa, Chen, and Thomas**. Each is implemented as a class that uses **Numba compiled CPU paths** for stability and **GLSL GPU shaders** for rendering high frame rate trails.
+The tool handles the simulation of the **Lorenz System** and 8 other attractors like **Aizawa, Chen, and Thomas**. Each is implemented as a class that uses **Numba compiled CPU paths** for stability and **GLSL GPU shaders** for rendering high frame rate trails.
 
-![[pictures/attractor_aizawa.png|Aizawa attractor with grain-texture background]] _A dense Aizawa attractor snapshot from the viewer, rendered as glowing trails against the projects grain texture background._
+For more on the mathematical background and chaotic properties of these systems, see my note on **[[notes/random/lorenz-attractor|The Lorenz Attractor]]**.
+
+![[pictures/attractor_aizawa.png]]
+
+*Aizawa attractor with grain-texture background*
+
+_A dense Aizawa attractor snapshot from the viewer, rendered as glowing trails against the projects grain texture background._
 
 ### 2. Gesture Control
 

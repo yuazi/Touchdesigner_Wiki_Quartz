@@ -37,6 +37,8 @@ The shared embedding space from CLIP is foundational for [[notes/mlp/12-diffusio
 
 ![[Lecture07_Pg009_What_Is_Multimodal.png]]
 
+<p class="image-caption">Multimodal is just combining different data types like images, audio, and text.</p>
+
 **Modality** refers to the way in which something is expressed or perceived (sight, sound, text, touch, …). **Multimodal** means using multiple modalities together.
 
 From a probability perspective, _multimodal_ originally means multiple modes (local maxima) in a probability density — the term was adopted by the field to describe systems that handle multiple data types.
@@ -53,6 +55,8 @@ Three definitions of increasing scope (Baltrušaitis et al., 2018 / Morency, CMU
 
 ![[Lecture07_Pg010_Heterogeneity_Of_Modalities.png]]
 
+<p class="image-caption">Each modality has its own structure—think dense video frames versus discrete text tokens.</p>
+
 Information in different modalities shows diverse qualities, structures, and noise levels:
 
 - **Video**: spatial + temporal, high-dimensional, dense
@@ -65,6 +69,8 @@ This heterogeneity is both a challenge and an opportunity — each modality carr
 ### Real-World Multimodal Tasks
 
 ![[Lecture07_Pg014_Real_World_Multimodal_Tasks.png]]
+
+<p class="image-caption">Here are some common tasks where you'd actually use multimodal learning.</p>
 
 | Category                   | Examples                                                 |
 | -------------------------- | -------------------------------------------------------- |
@@ -83,11 +89,15 @@ This heterogeneity is both a challenge and an opportunity — each modality carr
 
 ![[Lecture07_Pg016_2_Core_Multimodal_Challenges.png]]
 
+<p class="image-caption">These are the five main hurdles we have to clear in multimodal ML.</p>
+
 Baltrušaitis et al. (2018) define **five fundamental challenges** for multimodal machine learning:
 
 ### Challenge 1: Representation
 
 ![[Lecture07_Pg019_Challenge_1_Representation.png]]
+
+<p class="image-caption">We can either fuse everything into one space or keep them separate but aligned.</p>
 
 **Definition**: Learning representations that reflect cross-modal interactions between individual elements across different modalities.
 
@@ -112,6 +122,8 @@ Early examples:
 
 ![[Lecture07_Pg023_Challenge_2_Alignment.png]]
 
+<p class="image-caption">Alignment is about finding which parts of the image match up with which words.</p>
+
 **Definition**: Identify the direct relations between (sub)elements from two or more different modalities.
 
 | Type                            | Purpose                                                 | Example                                                                         |
@@ -129,6 +141,8 @@ Use cases for implicit alignment: Machine Translation, Cross-modal retrieval, Im
 
 ![[Lecture07_Pg026_Challenge_3_Translation.png]]
 
+<p class="image-caption">Translation is how we map one data type directly to another.</p>
+
 **Definition**: Change ("translate") data from one modality to another; the translation relationship is often open-ended or subjective.
 
 | Type              | Description                                      | Example                                                   |
@@ -143,6 +157,8 @@ Use cases for implicit alignment: Machine Translation, Cross-modal retrieval, Im
 ### Challenge 4: Fusion
 
 ![[Lecture07_Pg028_Challenge_4_Fusion.png]]
+
+<p class="image-caption">Fusion is where we decide exactly when to mix the different signals.</p>
 
 <!-- Review Needed: close slide match for 'Challenge 4: Fusion' (p28: 0.725, p29: 0.724) -->
 
@@ -159,6 +175,8 @@ Model-based techniques include kernel-based methods, graphical models, and deep 
 #### Tensor Fusion Network (Zadeh et al., 2017)
 
 ![[Lecture07_Pg038_Tensor_Fusion_Network_Zadeh_Et_Al.png]]
+
+<p class="image-caption">Tensor Fusion picks up on all the interactions between modalities.</p>
 
 Captures unimodal, bimodal, and trimodal interactions via outer products. For two modalities:
 
@@ -177,6 +195,8 @@ Appending $1$ to each unimodal vector means the outer product encodes all subset
 ### Challenge 5: Co-Learning
 
 ![[Lecture07_Pg032_Challenge_5_Co_Learning.png]]
+
+<p class="image-caption">Co-learning lets us use a data-rich modality to help out a data-poor one.</p>
 
 **Definition**: Transfer knowledge between modalities, including their representations and predictive models.
 
@@ -207,6 +227,8 @@ Joint (fusion)                Coordinated
 
 ![[Lecture07_Pg039_Devise_Deep_Visual_Semantic_Embedding_Frome.png]]
 
+<p class="image-caption">DeViSE maps images into a semantic word-vector space.</p>
+
 The earliest work on multimodal representation learning.
 
 - **Vision encoder**: heavy (ResNet-like CNN)
@@ -223,6 +245,8 @@ By embedding images into word-vector space, the model gains **semantic structure
 ### CLIP — Contrastive Language-Image Pre-training (Radford et al., 2021)
 
 ![[Lecture07_Pg046_Clip_Contrastive_Language_Image_Pre_Training.png]]
+
+<p class="image-caption">CLIP uses two encoders to pull matching image-text pairs together.</p>
 
 <!-- Review Needed: close slide match for 'CLIP — Contrastive Language-Image Pre-training (Radford et al., 2021)' (p46: 0.446, p41: 0.442) -->
 
@@ -274,6 +298,8 @@ Both projected to the same d=512 dimensional space.
 #### Contrastive Pre-Training Loss
 
 ![[Lecture07_Pg063_Contrastive_Pre_Training_Loss.png]]
+
+<p class="image-caption">The goal is to make the diagonal of this matrix as large as possible.</p>
 
 Given a batch of $N$ (image, text) pairs, form an $N \times N$ similarity matrix $S$ where $S_{ij} = \text{cosim}(i_i, t_j)$:
 
@@ -352,6 +378,8 @@ image(red car) − image(car) + text("boat") ≈ image(red boat)
 
 ![[Lecture07_Pg046_Glip_Grounded_Language_Image_Pre_Training.png]]
 
+<p class="image-caption">GLIP extends CLIP's ideas down to individual object bounding boxes.</p>
+
 - Extends CLIP to **object detection**: instead of image-level contrastive loss, GLIP aligns language phrases with bounding boxes
 - Enables **zero-shot object detection** (open vocabulary)
 - Uses large-scale grounding datasets (COCO, Visual Genome, + web data)
@@ -361,6 +389,8 @@ image(red car) − image(car) + text("boat") ≈ image(red boat)
 #### LSeg — Language-Driven Semantic Segmentation (Li et al., 2022)
 
 ![[Lecture07_Pg047_Lseg_Language_Driven_Semantic_Segmentation_Li.png]]
+
+<p class="image-caption">LSeg takes it even further by aligning text labels with individual pixels.</p>
 
 - Extends CLIP to **pixel-level semantic segmentation**
 - **Freezes** the CLIP text encoder; supervises the image encoder + decoder to produce segmentation maps aligned with text embeddings
@@ -376,6 +406,8 @@ image(red car) − image(car) + text("boat") ≈ image(red boat)
 
 ![[Lecture07_Pg049_Motivation.png]]
 
+<p class="image-caption">We need alignment to know exactly what the model is looking at.</p>
+
 **Goal**: Find relationships/correspondences between elements of two or more modalities.
 
 | Alignment Type        | Purpose                                       | Example                                   |
@@ -388,7 +420,12 @@ image(red car) − image(car) + text("boat") ≈ image(red boat)
 <!-- Review Needed: close slide match for 'Cross-Modal Transformer (Tsai et al., 2019)' (p53: 0.573, p52: 0.541) -->
 
 ![[Lecture07_Pg053_Cross_Modal_Transformer_Tsai_Et_Al.png]]
+
+<p class="image-caption">Cross-modal transformers let one modality 'look' at another via attention.</p>
+
 ![[Lecture07_Pg052_Cross_Modal_Transformer_Tsai_Et_Al.png]]
+
+<p class="image-caption">The queries come from one modality while keys and values come from the other.</p>
 
 <!-- Review Needed: close slide match for 'Cross-Modal Transformer (Tsai et al., 2019)' (p53: 0.523, p52: 0.504) -->
 
@@ -405,6 +442,8 @@ This allows modality A to selectively read information from modality B.
 ### Case Study: VisualBERT (Li et al., 2019)
 
 ![[Lecture07_Pg054_Case_Study_Visualbert_Li_Et_Al.png]]
+
+<p class="image-caption">VisualBERT just throws everything into one big transformer stream.</p>
 
 - Concatenate **text tokens** (BERT tokeniser) and **visual embeddings** (one per bounding region from Faster R-CNN), then feed jointly to a standard BERT Transformer
 - Self-attention can attend **across modalities** — the model **implicitly discovers** useful alignments
@@ -427,6 +466,8 @@ $$f = f_o + f_s + f_p$$
 
 ![[Lecture07_Pg056_Case_Study_Vilbert_Lu_Et_Al.png]]
 
+<p class="image-caption">ViLBERT keeps two streams but lets them talk via co-attention.</p>
+
 - **Two-stream** architecture: separate Transformer for image and text, connected via **co-attention layers**
 - Co-attention: image tokens attend to all text tokens; text tokens attend to all image tokens — simultaneously
 - More flexible than VisualBERT's single stream; better at fine-grained cross-modal tasks
@@ -443,7 +484,12 @@ $$f = f_o + f_s + f_p$$
 <!-- Review Needed: close slide match for 'Case Study: HowTo100M + MIL-NCE (Miech et al., 2019/2020)' (p57: 0.523, p58: 0.505) -->
 
 ![[Lecture07_Pg057_Case_Study_Howto100m_Mil_Nce_Miech.png]]
+
+<p class="image-caption">MIL-NCE helps the model learn even when captions aren't perfectly timed.</p>
+
 ![[Lecture07_Pg058_Case_Study_Howto100m_Mil_Nce_Miech.png]]
+
+<p class="image-caption">Instead of one exact match, we treat a window of captions as potential positives.</p>
 
 <!-- Review Needed: close slide match for 'Case Study: HowTo100M + MIL-NCE (Miech et al., 2019/2020)' (p59: 0.566, p57: 0.534) -->
 
@@ -466,6 +512,8 @@ Input: 3.2-second video clip (32 frames at 10 FPS) + up to 16 subtitle words.
 
 ![[Lecture07_Pg060_Case_Study_Vilt_Vision_And_Language.png]]
 
+<p class="image-caption">ViLT skips the heavy object detector and just uses raw image patches.</p>
+
 - **No region features, no object detectors**. Uses raw **patch embeddings** (ViT-style) + text token embeddings, fed jointly into one Transformer
 - **60× faster** than VisualBERT at inference (no Faster R-CNN bottleneck)
 - Training losses: Masked Language Modelling (MLM) + Image Text Matching (ITM)
@@ -483,6 +531,8 @@ Input: 3.2-second video clip (32 frames at 10 FPS) + up to 16 subtitle words.
 
 ![[Lecture07_Pg062_Albef_Align_Before_Fuse_Li_Et.png]]
 
+<p class="image-caption">ALBEF makes sure features are aligned before it tries to fuse them.</p>
+
 **Key insight**: explicitly align image and text embeddings _before_ fusing them — so the fusion module gets clean aligned inputs rather than having to align and fuse simultaneously.
 
 Integrates MoCo (He et al., 2020) momentum encoder + ViT + BERT.
@@ -490,6 +540,8 @@ Integrates MoCo (He et al., 2020) momentum encoder + ViT + BERT.
 #### Loss Components
 
 ![[Lecture07_Pg063_Loss_Components.png]]
+
+<p class="image-caption">It uses three different losses to get the alignment and fusion right.</p>
 
 | Loss                                | Purpose                                               |
 | ----------------------------------- | ----------------------------------------------------- |
@@ -506,6 +558,8 @@ Integrates MoCo (He et al., 2020) momentum encoder + ViT + BERT.
 ### BLIP — Bootstrapping Language-Image Pre-training (Li et al., 2022)
 
 ![[Lecture07_Pg064_Blip_Bootstrapping_Language_Image_Pre_Training.png]]
+
+<p class="image-caption">BLIP cleans up messy web data by filtering and generating its own captions.</p>
 
 An improved version of ALBEF with two innovations:
 
@@ -526,7 +580,12 @@ An improved version of ALBEF with two innovations:
 <!-- Review Needed: close slide match for 'Visual Question Answering (VQA)' (p68: 0.556, p69: 0.556) -->
 
 ![[Lecture07_Pg068_Visual_Question_Answering_Vqa.png]]
+
+<p class="image-caption">Introduction to Visual Question Answering (VQA) tasks and examples</p>
+
 ![[Lecture07_Pg069_Visual_Question_Answering_Vqa.png]]
+
+<p class="image-caption">Comparing different types of questions in the VQA dataset</p>
 
 <!-- Review Needed: close slide match for 'Visual Question Answering (VQA)' (p68: 0.530, p69: 0.530) -->
 
@@ -544,6 +603,8 @@ An improved version of ALBEF with two innovations:
 ### Hierarchical Co-Attention (Lu et al., 2016)
 
 ![[Lecture07_Pg072_Hierarchical_Co_Attention_Lu_Et_Al.png]]
+
+<p class="image-caption">Architecture of Hierarchical Co-Attention for VQA across words, phrases, and sentences</p>
 
 Two parallel attention streams, each conditioned on the other:
 
@@ -568,6 +629,8 @@ Computed at three levels of granularity:
 
 ![[Lecture07_Pg073_Stacked_Attention_Networks_Yang_Et_Al.png]]
 
+<p class="image-caption">Architecture of Stacked Attention Networks using multi-hop refinement</p>
+
 Use **multiple hops** of attention — each hop refines image attention based on the partial answer from the previous hop:
 
 ```
@@ -585,6 +648,8 @@ Final: Q + v̂_K → answer prediction
 
 ![[Lecture07_Pg074_Other_Attention_Based_Models.png]]
 
+<p class="image-caption">Comparison of different attention-based models for VQA and captioning</p>
+
 | Model                                                        | Key Idea                                                                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
 | **Bottom-up and top-down attention** (Anderson et al., 2018) | Object-level representations from Faster R-CNN; top-down question-conditioned attention over detected objects |
@@ -598,6 +663,8 @@ Open research questions: how to make attention more interpretable? Can we levera
 ### Neural Module Networks — V1 (Andreas et al., 2015)
 
 ![[Lecture07_Pg076_Neural_Module_Networks_V1_Andreas_Et.png]]
+
+<p class="image-caption">Architecture of Neural Module Networks (V1) using a rule-based parser</p>
 
 **Key insight**: decompose the question into a _program_ (a composition of neural modules), then execute it over the image.
 
@@ -627,6 +694,8 @@ Example modules:
 
 ![[Lecture07_Pg078_Clevr_A_Dataset_For_Visual_Reasoning.png]]
 
+<p class="image-caption">Examples from the CLEVR dataset for compositional visual reasoning</p>
+
 A synthetic benchmark for **compositional visual reasoning**:
 
 - 3D-rendered scenes of simple objects (cubes, spheres, cylinders) in various colours, sizes, materials
@@ -646,7 +715,12 @@ Example questions:
 <!-- Review Needed: close slide match for 'Neural Module Networks — V2: End-to-End Learning (Hu et al., 2017)' (p80: 0.651, p79: 0.606) -->
 
 ![[Lecture07_Pg080_Neural_Module_Networks_V2_End_To.png]]
+
+<p class="image-caption">Architecture of Neural Module Networks (V2) with end-to-end program generation</p>
+
 ![[Lecture07_Pg079_Neural_Module_Networks_V2_End_To.png]]
+
+<p class="image-caption">Visualizing the program generator and executor in end-to-end NMNs</p>
 
 <!-- Review Needed: close slide match for 'Neural Module Networks — V2: End-to-End Learning (Hu et al., 2017)' (p80: 0.609, p79: 0.593) -->
 
@@ -669,8 +743,6 @@ Image    ───────────────────────�
 > **Example**: _"How many red things are left of the large sphere?"_ is fed to the program generator, which proposes `count(filter[red](relate[left-of](find[large-sphere])))` — without explicit parse annotation. The executor runs this on the image and returns a count.
 
 ### PyTorch Implementation: Prototypical Networks (Few-Shot)
-
-Prototypical Networks learn a metric space where classification is performed by computing distances to **prototypes** (mean representations) of each class.
 
 ```python
 import torch
@@ -728,6 +800,8 @@ class ProtoNet(nn.Module):
 
 ![[Lecture07_Pg039_Representation_Learning_Models.png]]
 
+<p class="image-caption">Comparison table of representation learning models: DeViSE, CLIP, GLIP, and LSeg</p>
+
 | Model         | Vision encoder | Text encoder      | Interaction          | Key contribution                                         |
 | ------------- | -------------- | ----------------- | -------------------- | -------------------------------------------------------- |
 | DeViSE (2013) | Heavy CNN      | Word2Vec          | Dot product          | Earliest visual-semantic embedding; semantic label space |
@@ -756,7 +830,6 @@ class ProtoNet(nn.Module):
 | NMN V1 (Andreas 2015)                | Program decomposition into interpretable neural modules          |
 | CLEVR (Johnson 2017)                 | Compositional reasoning benchmark; no statistical shortcuts      |
 | NMN V2 / E2E (Hu 2017)               | End-to-end learned program generation; no parser required        |
-
 
 ---
 

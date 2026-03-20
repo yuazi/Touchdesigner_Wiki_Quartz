@@ -59,6 +59,8 @@ To make it robust enough for real world academic use, SlideLink uses a scoring s
 
 At the core, it uses a **TF-IDF vectorizer** with `ngram_range=(1, 2)`. It converts the text in your notes (the context following a heading) and the text on every slide into vectors. It then calculates the **cosine similarity** between them to find the semantic match.
 
+The core logic leverages **Transformers** to align semantic meaning between text and visual slide content. See [[notes/mlp/05-transformer|L05: Transformers]] for the underlying architecture.
+
 ### 2. Math & LaTeX Aliases
 
 Since many technical notes rely on math, SlideLink includes a **LaTeX alias system**. It maps common symbols to their textual equivalents (e.g., `\nabla` → "gradient"). The tool scans for these symbols in the Markdown and applies a **Math Bonus** to any slide containing either the symbol or its alias.

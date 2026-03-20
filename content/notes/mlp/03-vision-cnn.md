@@ -81,12 +81,16 @@ At the time, EfficientNet achieved **better accuracy per FLOP** than many ResNet
 
 ![[Lecture03_Pg007_What_Is_It.png]]
 
+<p class="image-caption">Object detection is about both identifying what's in the image and where it is.</p>
+
 - **Localise** instances using a bounding box $(x, y, \text{width}, \text{height})$
 - **Classify** each bounding box (e.g., cat, tv)
 
 ### Why do we need it?
 
 ![[Lecture03_Pg008_Why_Do_We_Need_It.png]]
+
+<p class="image-caption">We use object detection for everything from self-driving cars to medical imaging.</p>
 
 Robotics, assistive systems, self-driving cars, surveillance, medical applications.
 
@@ -95,6 +99,8 @@ Robotics, assistive systems, self-driving cars, surveillance, medical applicatio
 ### Classification vs. Regression — Recap
 
 ![[Lecture03_Pg009_Classification_Vs_Regression_Recap.png]]
+
+<p class="image-caption">A quick refresher on the difference between classification and regression.</p>
 
 **Classification**: categorises data into a fixed set of classes (e.g., dog vs. cat). Common loss: categorical cross-entropy.
 
@@ -109,6 +115,8 @@ Robotics, assistive systems, self-driving cars, surveillance, medical applicatio
 
 ![[Lecture03_Pg010_Detection_As_A_Regression_Problem.png]]
 
+<p class="image-caption">Trying to treat object detection as a simple regression problem to find coordinates.</p>
+
 Use a regression model to detect objects — output: coordinates of the objects in the image.
 
 **Problem**: need variable-sized outputs (different images contain different numbers of objects).
@@ -118,6 +126,8 @@ Use a regression model to detect objects — output: coordinates of the objects 
 ### Detection as a Classification Problem
 
 ![[Lecture03_Pg014_Detection_As_A_Classification_Problem.png]]
+
+<p class="image-caption">Another way: treating detection as a classification task with a sliding window.</p>
 
 Use a **sliding window**:
 
@@ -137,6 +147,8 @@ Use a **sliding window**:
 
 ![[Lecture03_Pg015_Region_Proposal_Methods.png]]
 
+<p class="image-caption">A look at methods like Selective Search that suggest where objects might be.</p>
+
 - **Blob Detection**: look for "blob-like" regions via, e.g., simple thresholding, Laplacian of Gaussian (LoG), Difference of Gaussians (DoG)
 - **BING** (BInarised Normed Gradients) [Cheng et al., 2014]: uses gradient information and learned patterns; runs at 300 fps
 - **Selective Search** [Uijlings et al., 2013]: bottom-up hierarchical grouping
@@ -153,6 +165,8 @@ Use a **sliding window**:
 ### R-CNN [Girshick et al., 2014]
 
 ![[Lecture03_Pg020_R_Cnn_Girshick_Et_Al_2014.png]]
+
+<p class="image-caption">R-CNN: the first big model to use region proposals with a CNN.</p>
 
 **Region-based CNN** — only feeds proposed regions to a classifier.
 
@@ -172,6 +186,8 @@ The lecture's result slide makes the core contribution visible: once proposals a
 ### Fast R-CNN [Girshick, 2015]
 
 ![[Lecture03_Pg028_Fast_R_Cnn_Girshick_2015.png]]
+
+<p class="image-caption">Fast R-CNN made things way faster by sharing feature maps across all proposals.</p>
 
 <!-- Review Needed: close slide match for 'Fast R-CNN [Girshick, 2015]' (p28: 0.506, p29: 0.475) -->
 
@@ -193,11 +209,15 @@ The lecture's result slide makes the core contribution visible: once proposals a
 
 ![[Lecture03_Pg032_Faster_R_Cnn_Ren_Et_Al.png]]
 
+<p class="image-caption">Faster R-CNN brought region proposals directly into the network with the RPN.</p>
+
 Eliminates the external region proposal step by adding a **Region Proposal Network (RPN)** that runs on the same feature map as the detector.
 
 #### Region Proposal Network (RPN)
 
 ![[Lecture03_Pg033_Region_Proposal_Network_Rpn.png]]
+
+<p class="image-caption">A closer look at the RPN, the part of the network that "guesses" where objects are.</p>
 
 - **Input**: feature map from the backbone CNN of size $C \times W \times H$
 - **Output**: list of $p$ proposals + "objectness" score; output size $p \times 6$
@@ -261,6 +281,8 @@ The COCO qualitative examples in the PDF also show that the Faster R-CNN pipelin
 
 ![[Lecture03_Pg064_Segmentation_Extension_Mask_R_Cnn_He.png]]
 
+<p class="image-caption">Mask R-CNN takes Faster R-CNN a step further by adding per-pixel masks.</p>
+
 <!-- Review Needed: close slide match for 'Segmentation Extension: Mask R-CNN [He et al., 2017]' (p64: 0.587, p41: 0.570) -->
 
 Extends Faster R-CNN with an additional **instance-segmentation** head:
@@ -273,6 +295,8 @@ Extends Faster R-CNN with an additional **instance-segmentation** head:
 ### Single-Stage Detectors
 
 ![[Lecture03_Pg042_Single_Stage_Detectors.png]]
+
+<p class="image-caption">Single-stage detectors like SSD and YOLO are built for maximum speed.</p>
 
 Two-stage detectors are accurate but slow. Single-stage detectors skip the proposal step.
 
@@ -300,6 +324,8 @@ Two-stage detectors are accurate but slow. Single-stage detectors skip the propo
 
 ![[Lecture03_Pg046_What_Is_It.png]]
 
+<p class="image-caption">Semantic segmentation is all about giving every single pixel its own class label.</p>
+
 **Classification at pixel-level**: assign each pixel an object class label (e.g., road, sky, person). Does **not** distinguish different instances of the same class.
 
 > **Example — Pascal VOC**: an image with two people and a car would have every person-pixel labelled "person" and every car-pixel labelled "car" — both people share the same label colour.
@@ -319,6 +345,8 @@ It helps to separate the related tasks clearly:
 
 ![[Lecture03_Pg047_Sliding_Window_Approach.png]]
 
+<p class="image-caption">The old, slow way of doing segmentation with a sliding window.</p>
+
 Apply a patch classifier at every pixel location. **Problem**: inefficient — no sharing of computed features between overlapping patches; requires a multitude of forward passes.
 
 ---
@@ -326,6 +354,8 @@ Apply a patch classifier at every pixel location. **Problem**: inefficient — n
 ### Fully Convolutional Networks (FCN) [Long et al., 2015]
 
 ![[Lecture03_Pg048_Fully_Convolutional_Networks_Fcn_Long_Et.png]]
+
+<p class="image-caption">FCNs: networks that are convolutional all the way down for dense predictions.</p>
 
 - Convolution and pooling layers followed by **upsampling layers**
 - Output layer dimension: $H \times W \times \#\text{Classes}$
@@ -341,11 +371,15 @@ Apply a patch classifier at every pixel location. **Problem**: inefficient — n
 
 ![[Lecture03_Pg049_Unpooling_Nearest_Neighbour.png]]
 
+<p class="image-caption">Nearest-neighbor unpooling: a simple, but blocky, way to resize an image.</p>
+
 Simply repeat (or tile) each value into the larger grid. Fast but blocky — no learned content.
 
 #### Max Unpooling
 
 ![[Lecture03_Pg050_Max_Unpooling.png]]
+
+<p class="image-caption">Max unpooling uses "switches" from the pooling layer to put pixels back where they belong.</p>
 
 During the forward max-pool, record the **switch positions** (which location held the max). During unpooling, place values back at those positions; all other locations are set to 0.
 
@@ -356,7 +390,12 @@ During the forward max-pool, record the **switch positions** (which location hel
 <!-- Review Needed: close slide match for 'Transposed Convolution (Learnable Upsampling)' (p51: 0.663, p52: 0.663) -->
 
 ![[Lecture03_Pg051_Transposed_Convolution_Learnable_Upsampling.png]]
+
+<p class="image-caption">Transposed convolution lets the network learn the best way to upsample.</p>
+
 ![[Lecture03_Pg052_Transposed_Convolution_Learnable_Upsampling.png]]
+
+<p class="image-caption">Using a learned kernel to intelligently fill in the gaps when upsampling.</p>
 
 <!-- Review Needed: close slide match for 'Transposed Convolution (Learnable Upsampling)' (p51: 0.615, p52: 0.615) -->
 
@@ -383,6 +422,8 @@ When we want to make an image larger (upsample), we have two main choices:
 
 ![[Lecture03_Pg061_Learning_Deconvolution_Network_Noh_Et_Al.png]]
 
+<p class="image-caption">The Learning Deconvolution Network uses a nice, symmetric encoder-decoder structure.</p>
+
 - Multilayer network with alternating deconvolution and unpooling layers
 - The **deconvolution network is a mirrored version of the CNN** (encoder → decoder)
 - Two fully-connected layers join the encoder and decoder networks
@@ -392,6 +433,8 @@ When we want to make an image larger (upsample), we have two main choices:
 ### FCN Skip Connections
 
 ![[Lecture03_Pg062_Fcn_Skip_Connections.png]]
+
+<p class="image-caption">Skip connections combine high-level meaning with low-level detail for sharper masks.</p>
 
 **Goal**: retain fine-grained spatial information from upper (shallower) layers.
 
@@ -406,6 +449,8 @@ When we want to make an image larger (upsample), we have two main choices:
 ### U-Net [Ronneberger et al., 2015]
 
 ![[Lecture03_Pg063_U_Net_Ronneberger_Et_Al_2015.png]]
+
+<p class="image-caption">U-Net: the go-to architecture for medical imaging, using "concatenating" skip connections.</p>
 
 - Pre-trained backbone not applicable for every domain (U-Net was developed for medical image segmentation)
 - **Copies initial features to later network stages** (concatenation, not addition)
@@ -428,6 +473,8 @@ Conv → ReLU → MaxPool ──────────→ UpConv + [concatenat
 ### Mask R-CNN [He et al., 2017]
 
 ![[Lecture03_Pg064_Mask_R_Cnn_He_Et_Al.png]]
+
+<p class="image-caption">An overview of Mask R-CNN's parallel heads for boxes, classes, and masks.</p>
 
 Extends Faster R-CNN with a branch for predicting an object segmentation mask **in parallel** with classification and box regression.
 
@@ -453,6 +500,8 @@ The qualitative Mask R-CNN result slide makes the distinction from semantic segm
 
 ![[Lecture03_Pg068_Roi_Pooling_Vs_Roi_Align.png]]
 
+<p class="image-caption">Comparing RoI Pooling and RoI Align: why sub-pixel accuracy matters for masks.</p>
+
 **ROI Pooling problem**: the CNN predicts floating-point coordinates $(x, y, w, h)$. ROI Pooling must quantise these to integers → introduces pixel misalignment, which breaks accurate segmentation.
 
 **ROI Align** solution:
@@ -475,6 +524,8 @@ The qualitative Mask R-CNN result slide makes the distinction from semantic segm
 ## Take-Home Messages
 
 ![[Lecture03_Pg071_Take_Home_Messages.png]]
+
+<p class="image-caption">A quick wrap-up of the main methods for detection and segmentation.</p>
 
 - **Object Detection**: localise objects using bounding boxes
 - **Two-stage approaches** (region proposals + classification): R-CNN → Fast R-CNN → Faster R-CNN

@@ -637,6 +637,15 @@ function startLorenz(): void {
     }
   }
   document.addEventListener("nav", _lorenzNavHandler)
+
+  // Chaos event listener
+  document.addEventListener("lorenz-chaos", () => {
+    lorenzSigma = 10 + Math.random() * 20
+    lorenzRho = 28 + Math.random() * 20
+    lorenzBeta = 8 / 3 + Math.random() * 2
+    lorenzDt = 0.015 // high speed
+    rebuildLorenz()
+  })
 }
 
 startLorenz()

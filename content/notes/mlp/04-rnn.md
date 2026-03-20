@@ -35,6 +35,8 @@ date: 2026-03-09
 
 ![[Lecture04_Pg004_Rnns_Flexibility_In_Architecture.png]]
 
+<p class="image-caption">RNNs are super flexible—you can map one or many inputs to one or many outputs.</p>
+
 Unlike feedforward networks, RNNs can model a wide range of relationships between variable- or fixed-length inputs and outputs. The architecture adapts to the task structure.
 
 | Type                     | Input → Output                | Example                           |
@@ -51,6 +53,8 @@ Unlike feedforward networks, RNNs can model a wide range of relationships betwee
 
 ![[Lecture04_Pg005_One_To_One_Vanilla_Neural_Networks.png]]
 
+<p class="image-caption">A standard one-to-one setup, just like a classic feedforward network.</p>
+
 <!-- Review Needed: close slide match for 'One-to-One: Vanilla Neural Networks' (p5: 0.513, p6: 0.511) -->
 
 A standard feedforward network — one fixed input, one fixed output. The classic example is **ImageNet classification** (Russakovsky et al., 2015): a single image in, a single class label out.
@@ -60,6 +64,8 @@ A standard feedforward network — one fixed input, one fixed output. The classi
 ## One-to-Many: Image Captioning
 
 ![[Lecture04_Pg046_One_To_Many_Image_Captioning.png]]
+
+<p class="image-caption">Image captioning is a classic one-to-many problem: one image in, a whole sentence out.</p>
 
 A single fixed-size input (an image) is used to **initialize the hidden state** of an RNN that then produces a variable-length output sequence (a caption).
 
@@ -74,6 +80,8 @@ Image → h_0 → [RNN] → "A" → [RNN] → "dog" → [RNN] → "on" → [RNN]
 ## Many-to-One: Sentiment Classification
 
 ![[Lecture04_Pg010_Many_To_One_Sentiment_Classification.png]]
+
+<p class="image-caption">Sentiment analysis takes a full sequence of words and boils it down to a single label.</p>
 
 The entire input sequence is processed step-by-step. The **final hidden state** summarizes all context from the variable-length input.
 
@@ -95,6 +103,8 @@ The entire input sequence is processed step-by-step. The **final hidden state** 
 
 ![[Lecture04_Pg013_Many_To_Many_Sync_Video_Classification.png]]
 
+<p class="image-caption">In synchronous many-to-many, the model labels every single frame of a video as it goes.</p>
+
 <!-- Review Needed: close slide match for 'Many-to-Many (Sync): Video Classification' (p13: 0.504, p14: 0.500) -->
 
 An output is produced at **every time step**, aligned with the input. Each frame in a video gets its own label.
@@ -106,6 +116,8 @@ An output is produced at **every time step**, aligned with the input. Each frame
 ## Many-to-Many (Async): Machine Translation
 
 ![[Lecture04_Pg012_Many_To_Many_Async_Machine_Translation.png]]
+
+<p class="image-caption">Seq2Seq architectures handle translation by reading the whole sentence before starting to output.</p>
 
 <!-- Review Needed: close slide match for 'Many-to-Many (Async): Machine Translation' (p28: 0.471, p12: 0.464) -->
 
@@ -129,6 +141,8 @@ The final hidden state of the encoder "summarizes" the entire variable-sized inp
 
 ![[Lecture04_Pg021_The_Vanilla_Rnn_How_It_Works.png]]
 
+<p class="image-caption">A vanilla RNN uses its hidden state to keep a running memory of what it's seen.</p>
+
 The internal state of a vanilla RNN is a single **hidden vector** $h$. At each time step $t$:
 
 $$h_t = f_W(h_{t-1}, x_t)$$
@@ -144,6 +158,8 @@ $$y_t = W_{hy} h_t$$
 ### Character-Level Language Model (Karpathy)
 
 ![[Lecture04_Pg015_Character_Level_Language_Model_Karpathy.png]]
+
+<p class="image-caption">This model predicts the very next character based on everything it's read so far.</p>
 
 Andrej Karpathy's famous experiment trained a vanilla RNN character-by-character on text corpora. The progression shows what the model learns over training:
 
@@ -167,7 +183,12 @@ After enough training, the same RNN could generate plausible **Wikipedia markup*
 <!-- Review Needed: close slide match for 'Many-to-Many' (p27: 0.624, p26: 0.624) -->
 
 ![[Lecture04_Pg027_Many_To_Many.png]]
+
+<p class="image-caption">The computational graph for a many-to-many RNN, processing inputs and outputs step-by-step.</p>
+
 ![[Lecture04_Pg026_Many_To_Many.png]]
+
+<p class="image-caption">When you unroll the graph, you can see how the loss is calculated at every single timestep.</p>
 
 At every time step $t$, a class score $y_t$ is computed from $h_t$, and an intermediate loss $L_t$ is calculated against ground-truth labels. The **final loss** $L$ is the sum of all intermediate losses:
 
@@ -177,11 +198,15 @@ $$L = \sum_{t=1}^{S} L_t$$
 
 ![[Lecture04_Pg028_Many_To_One.png]]
 
+<p class="image-caption">For many-to-one tasks, we only care about the very last output of the sequence.</p>
+
 The network runs through the full sequence but only the **final hidden state** is used, since it summarizes all prior context.
 
 ### One-to-Many
 
 ![[Lecture04_Pg029_One_To_Many.png]]
+
+<p class="image-caption">In one-to-many setups, a single initial input kicks off the entire sequence generation.</p>
 
 A **fixed-size input** (e.g., an image feature vector) initializes $h_0$, and the model then produces a variable-length output.
 
@@ -190,7 +215,12 @@ A **fixed-size input** (e.g., an image feature vector) initializes $h_0$, and th
 <!-- Review Needed: close slide match for 'Sequence-to-Sequence' (p30: 0.645, p31: 0.631) -->
 
 ![[Lecture04_Pg030_Sequence_To_Sequence.png]]
+
+<p class="image-caption">The encoder's job is to read the entire input and compress it into a context vector.</p>
+
 ![[Lecture04_Pg031_Sequence_To_Sequence.png]]
+
+<p class="image-caption">The decoder then takes that context and expands it into a brand new sequence.</p>
 
 <!-- Review Needed: close slide match for 'Sequence-to-Sequence' (p31: 0.645, p30: 0.630) -->
 
@@ -208,6 +238,8 @@ x_1 → x_2 → x_3 → [Encoder → c] → y_1 → y_2 → y_3 → y_4
 
 ![[Lecture04_Pg034_Intuition.png]]
 
+<p class="image-caption">BPTT is basically just regular backprop applied to a network that’s been unrolled across time.</p>
+
 **Idea**: Treat the unrolled RNN as a multi-layer network with an unbounded number of layers, then apply standard backpropagation through the entire unrolled graph.
 
 The total gradient with respect to $W$ is the sum of the per-timestep gradients:
@@ -219,6 +251,8 @@ Each $\frac{\partial L_t}{\partial W}$ requires propagating the error back throu
 ### The Gradient Product
 
 ![[Lecture04_Pg032_The_Gradient_Product.png]]
+
+<p class="image-caption">This chain of multiplications is exactly why gradients can get messy in RNNs.</p>
 
 The temporal component that carries error through time is:
 
@@ -245,7 +279,12 @@ Think of the backward pass in an RNN as a long game of "Telephone."
 <!-- Review Needed: close slide match for 'Vanishing Gradients' (p40: 0.579, p41: 0.540) -->
 
 ![[Lecture04_Pg040_Vanishing_Gradients.png]]
+
+<p class="image-caption">When gradients vanish, the signal gets so weak that the model completely forgets the start of the sequence.</p>
+
 ![[Lecture04_Pg041_Vanishing_Gradients.png]]
+
+<p class="image-caption">You can see how the gradient norm drops off fast, making long-term learning almost impossible.</p>
 
 <!-- Review Needed: close slide match for 'Vanishing Gradients' (p40: 0.551, p41: 0.538) -->
 
@@ -262,6 +301,8 @@ Intuitively: if the repeated matrix multiplication shrinks vectors (eigenvalues 
 ### Exploding Gradients
 
 ![[Lecture04_Pg044_Exploding_Gradients.png]]
+
+<p class="image-caption">If gradients explode, the updates become so huge that the model's training just falls apart.</p>
 
 The symmetric problem: if $\lambda_1 > \frac{1}{\gamma}$, gradients grow exponentially, causing drastic overshooting in the loss landscape.
 
@@ -287,6 +328,8 @@ if total_norm > max_norm:
 ### Papers
 
 ![[Lecture04_Pg046_Papers.png]]
+
+<p class="image-caption">These are the key papers that really kicked off neural image captioning.</p>
 
 - _Explain Images with Multimodal Recurrent Neural Networks_ — Mao et al., 2014
 - _Deep Visual-Semantic Alignments for Generating Image Descriptions_ — Karpathy & Fei-Fei, 2017
@@ -357,7 +400,12 @@ class ImageCaptionRNN(nn.Module):
 <!-- Review Needed: close slide match for 'Long Short-Term Memory (LSTM)' (p71: 0.623, p72: 0.623) -->
 
 ![[Lecture04_Pg071_Long_Short_Term_Memory_Lstm.png]]
+
+<p class="image-caption">An LSTM adds a cell state and special gates to help information flow much more easily.</p>
+
 ![[Lecture04_Pg072_Long_Short_Term_Memory_Lstm.png]]
+
+<p class="image-caption">The input, forget, and output gates work together to manage what stays in memory.</p>
 
 <!-- Review Needed: close slide match for 'Long Short-Term Memory (LSTM)' (p68: 0.612, p71: 0.601) -->
 
@@ -387,6 +435,8 @@ Because information can stay in the "files" (Cell State) without being modified,
 
 ![[Lecture04_Pg070_The_Four_Gates.png]]
 
+<p class="image-caption">These four gates are the "management team" that controls the flow of information through an LSTM.</p>
+
 The LSTM uses four learned gating vectors, all computed from $[h_{t-1}, x_t]$:
 
 | Gate        | Symbol | Role                                            |
@@ -411,6 +461,8 @@ where $\odot$ is the Hadamard (element-wise) product.
 
 ![[Lecture04_Pg070_Intuition_Concrete_Example.png]]
 
+<p class="image-caption">LSTMs are great at remembering things like subject-verb agreement over long distances.</p>
+
 > Parsing: _"The cats, which lived in Paris, were \_\_\_"_
 >
 > 1. Read "cats" → **input gate** opens, writes "plural subject" into $c_t$
@@ -423,6 +475,8 @@ where $\odot$ is the Hadamard (element-wise) product.
 ### Why Gradient Flow is Better
 
 ![[Lecture04_Pg076_Why_Gradient_Flow_Is_Better.png]]
+
+<p class="image-caption">The cell state acts like a highway, letting gradients travel deep into the past without fading.</p>
 
 Three reasons gradients flow more easily through LSTMs (Fei-Fei, Justin Johnson, Serena Yeung):
 
@@ -479,6 +533,8 @@ criterion = nn.CrossEntropyLoss()
 
 ![[Lecture04_Pg079_Gru_Gated_Recurrent_Unit.png]]
 
+<p class="image-caption">A GRU simplifies things by merging gates and getting rid of the separate cell state.</p>
+
 **Authors**: Cho et al., 2014
 
 GRU simplifies LSTM by merging the forget and input gates into a single **update gate** and eliminating the separate cell state. There is no output gate.
@@ -495,6 +551,8 @@ $$h_t = z_t \odot h_{t-1} + (1 - z_t) \odot \tilde{h}_t \quad \text{(new hidden 
 ### GRU vs LSTM
 
 ![[Lecture04_Pg074_Gru_Vs_Lstm.png]]
+
+<p class="image-caption">Comparing the inner workings of GRUs and LSTMs—one is leaner, the other is more complex.</p>
 
 |                | GRU                    | LSTM                  |
 | -------------- | ---------------------- | --------------------- |
@@ -520,6 +578,8 @@ gru = nn.GRU(input_size=128, hidden_size=256, num_layers=2,
 
 ![[Lecture04_Pg082_Bidirectional_Lstm_Bilstm.png]]
 
+<p class="image-caption">Bidirectional LSTMs get the full picture by looking at the sequence from both ends at once.</p>
+
 **Authors**: Graves & Schmidhuber, 2005
 
 A standard RNN only uses **past context** — it cannot see future tokens when processing position $t$. A BiLSTM runs **two separate LSTMs** over the same sequence:
@@ -543,6 +603,8 @@ $$\overrightarrow{h}_t = \overrightarrow{o}_t \odot \tanh(\overrightarrow{c}_t)$
 ### Backward Pass Equations
 
 ![[Lecture04_Pg082_Backward_Pass_Equations.png]]
+
+<p class="image-caption">The backward pass uses its own set of parameters to learn from the future context.</p>
 
 Same structure, but indices go from $T$ to $1$ and $h_{t-1}$ is replaced by $h_{t+1}$:
 

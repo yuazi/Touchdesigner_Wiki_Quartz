@@ -19,7 +19,10 @@ date: 2026-03-09
 
 **Machine learning** provides systems with the ability to automatically learn and improve from experience **without being explicitly programmed**.
 
-This course is **in-depth, hands-on, and advanced** — it assumes prior exposure to machine learning, deep learning, reinforcement learning, or computer vision.
+I use the [[work/slidelink|SlideLink]] tool I built to automatically align these notes with the original lecture slides.
+
+This course is **in-depth, hands-on, and advanced**
+ — it assumes prior exposure to machine learning, deep learning, reinforcement learning, or computer vision.
 
 ---
 
@@ -49,6 +52,8 @@ where:
 
 ![[Lecture01_Pg030_Multi_Layer_Perceptron_Mlp.png]]
 
+<p class="image-caption">A basic MLP with layers stacked on top of each other.</p>
+
 With $X^{(0)} = X$, for each layer $l = 1, \dots, L$:
 
 $$X^{(l)} = \sigma\!\left(W^{(l)\top} X^{(l-1)} + b^{(l)}\right)$$
@@ -69,6 +74,8 @@ So the network is gradually **rewriting the problem into a space where the final
 
 ![[Lecture01_Pg066_Why_Activation_Functions_Clean.png]]
 
+<p class="image-caption">Nonlinear activations are what let us learn complex patterns.</p>
+
 Moving from a linear classifier $f = Wx$ to a 2-layer network:
 
 $$f = W_2 \max(0,\, W_1 x), \quad x \in \mathbb{R}^D,\; W_1 \in \mathbb{R}^H \times D,\; W_2 \in \mathbb{R}^C \times H$$
@@ -83,6 +90,8 @@ $$f = W_3 \max(0,\, W_2 \max(0,\, W_1 x))$$
 
 ![[Lecture01_Pg040_Brain_Analogy_Be_Careful.png]]
 
+<p class="image-caption">The brain analogy is a good start, but real neurons are way more complex.</p>
+
 Biological neurons ≠ artificial neurons:
 
 - There are many different types of biological neurons
@@ -93,6 +102,8 @@ Biological neurons ≠ artificial neurons:
 ### Universal Approximation Theorem
 
 ![[Lecture01_Pg042_Universal_Approximation_Theorem.png]]
+
+<p class="image-caption">The math says even a shallow network can model any continuous function.</p>
 
 Given a non-linear (e.g. sigmoid) activation function $\sigma \in C^\infty(\mathbb{R})$, for any continuous function $f \in C(I^m)$ and any $\varepsilon > 0$, there exist $N$, constants $\nu_i, b_i \in \mathbb{R}$, and vectors $w_i \in \mathbb{R}^m$ such that:
 
@@ -117,6 +128,8 @@ _(Original proof: Hornik et al., 1989; formal statement: Cybenko, 1989)_
 
 ![[Lecture01_Pg056_Optimisation.png]]
 
+<p class="image-caption">Optimizing is just about finding the weights that make the loss as small as possible.</p>
+
 The loss function $L(W)$ quantifies the quality of any set of weights $W$. The goal of optimisation is to find $W$ that **minimises** $L(W)$.
 
 $$L(W) = \frac{1}{n} \sum_{i=1}^{n} L_i(W)$$
@@ -124,6 +137,8 @@ $$L(W) = \frac{1}{n} \sum_{i=1}^{n} L_i(W)$$
 ### Gradient Descent
 
 ![[Lecture01_Pg061_Gradient_Descent.png]]
+
+<p class="image-caption">Gradient descent works by taking small steps downhill to find the minimum.</p>
 
 **Strategy 1 — Random search**: bad idea in practice.
 
@@ -147,6 +162,8 @@ while True:
 
 ![[Lecture01_Pg074_Numerical_Vs_Analytic_Gradient.png]]
 
+<p class="image-caption">Comparing numerical and analytic gradients for speed and accuracy.</p>
+
 | Type          | Description                                       | Properties                            |
 | ------------- | ------------------------------------------------- | ------------------------------------- |
 | **Numerical** | $\frac{f(W+h) - f(W)}{h}$, computed per dimension | Approximate, slow, easy to write      |
@@ -157,6 +174,8 @@ while True:
 ### Batch Training
 
 ![[Lecture01_Pg075_Batch_Training.png]]
+
+<p class="image-caption">Batch training looks at every single sample before making one update.</p>
 
 <!-- Review Needed: close slide match for 'Batch Training' (p75: 0.612, p77: 0.607) -->
 
@@ -172,6 +191,8 @@ Process **all** $n$ training samples, then update weights once based on $L(W) = 
 
 ![[Lecture01_Pg078_Stochastic_Gradient_Descent_Sgd.png]]
 
+<p class="image-caption">SGD updates the weights after every single example it sees.</p>
+
 Randomly choose **one** training sample $x_i$, update weights based on $L_i(W)$.
 
 | Upsides                                                    | Downsides                                               |
@@ -184,6 +205,8 @@ Randomly choose **one** training sample $x_i$, update weights based on $L_i(W)$.
 ### Mini-Batch Training
 
 ![[Lecture01_Pg081_Mini_Batch_Training.png]]
+
+<p class="image-caption">Mini-batches give us a nice balance between speed and stable updates.</p>
 
 Process a **subset** $M \subset \{1, \dots, n\}$ of samples:
 
@@ -201,11 +224,15 @@ Seeks a balance between the robustness of SGD and the efficiency of batch gradie
 
 ![[Lecture01_Pg084_Backpropagation.png]]
 
+<p class="image-caption">Backprop uses the chain rule to figure out how much each weight contributed to the error.</p>
+
 How do we compute gradients for nodes in **hidden layers**? → **Backpropagation** applies the chain rule repeatedly from the output back to each parameter.
 
 ### Computational Graphs
 
 ![[Lecture01_Pg085_Computational_Graphs.png]]
+
+<p class="image-caption">Computational graphs turn complex math into a sequence of simple, doable steps.</p>
 
 **Key idea**: decompose complex computations into a sequence of atomic assignments.
 
@@ -257,6 +284,8 @@ During the backward pass, each gate acts as a "gradient router":
 
 ![[Lecture01_Pg089_Patterns_In_Backward_Flow.png]]
 
+<p class="image-caption">Here’s how gradients flow through addition, multiplication, and max operations.</p>
+
 | Gate         | Role                 | Behaviour                                                                         |
 | ------------ | -------------------- | --------------------------------------------------------------------------------- |
 | **Add gate** | Gradient distributor | Passes the upstream gradient equally to **both** inputs                           |
@@ -270,6 +299,8 @@ During the backward pass, each gate acts as a "gradient router":
 ### Sigmoid
 
 ![[Lecture01_Pg102_Sigmoid_Clean.png]]
+
+<p class="image-caption">Sigmoid squashes everything between 0 and 1, but it can make gradients disappear.</p>
 
 $$\sigma(x) = \frac{1}{1 + e^{-x}} = \frac{e^x}{e^x + 1}$$
 
@@ -294,6 +325,8 @@ Squashes numbers to $[0, 1]$. Can be interpreted as a saturating "firing rate" o
 
 ![[Lecture01_Pg105_Tanh_Clean.png]]
 
+<p class="image-caption">Tanh is zero-centered, but it still has the same saturation problems as sigmoid.</p>
+
 $$\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
 
 - Squashes numbers to $[-1, 1]$ → **zero-centred** ✓
@@ -303,6 +336,8 @@ $$\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
 ### ReLU
 
 ![[Lecture01_Pg108_Relu_Clean.png]]
+
+<p class="image-caption">ReLU is fast and efficient, but watch out for "dead" neurons that stop learning.</p>
 
 $$f(x) = \max(0, x)$$
 
@@ -322,6 +357,8 @@ _(Krizhevsky et al., 2012; Nair and Hinton, 2010)_
 
 ![[Lecture01_Pg112_Leaky_Relu_Prelu.png]]
 
+<p class="image-caption">Leaky ReLU keeps a small slope for negative values so neurons never truly die.</p>
+
 $$f(x) = \max(0.01x,\; x)$$
 
 _(Maas et al., 2013; He et al., 2015)_
@@ -333,6 +370,8 @@ _(Maas et al., 2013; He et al., 2015)_
 ### ELU (Exponential Linear Unit)
 
 ![[Lecture01_Pg114_Elu_Exponential_Linear_Unit.png]]
+
+<p class="image-caption">ELU gives you the best of ReLU but with smoother activations for negative inputs.</p>
 
 <!-- Review Needed: close slide match for 'ELU (Exponential Linear Unit)' (p114: 0.580, p115: 0.556) -->
 
@@ -350,7 +389,12 @@ _(Clevert et al., 2016)_
 <!-- Review Needed: close slide match for 'Maxout' (p117: 0.533, p118: 0.512) -->
 
 ![[Lecture01_Pg117_Maxout.png]]
+
+<p class="image-caption">Maxout picks the best of several linear functions to create flexible activation shapes.</p>
+
 ![[Lecture01_Pg118_Maxout.png]]
+
+<p class="image-caption">Another way to see Maxout: it's piecewise-linear and never saturates.</p>
 
 <!-- Review Needed: close slide match for 'Maxout' (p118: 0.734, p117: 0.696) -->
 
@@ -366,6 +410,8 @@ _(Goodfellow et al., 2013)_
 
 ![[Lecture01_Pg119_In_Practice_Tldr.png]]
 
+<p class="image-caption">Some quick advice on which activation functions to use in practice.</p>
+
 > - Use **ReLU**. Be careful with your learning rates.
 > - Try **Leaky ReLU**, **Maxout**, or **ELU** to squeeze out marginal gains.
 > - **Don't use sigmoid or tanh** in hidden layers.
@@ -378,11 +424,15 @@ _(Goodfellow et al., 2013)_
 
 ![[Lecture01_Pg121_All_Zero_Constant_Init.png]]
 
+<p class="image-caption">Initializing everyone to the same value causes "symmetry" and breaks learning.</p>
+
 If all weights are the same value, all neurons compute **identical gradients** → they all update identically → the network never differentiates. This is the **symmetry problem**.
 
 ### Small Random Numbers — `W = 0.01 * randn(Din, Dout)`
 
 ![[Lecture01_Pg122_Small_Random_Numbers_W_0_01.png]]
+
+<p class="image-caption">Tiny initial weights can make the signal fade away as it goes deeper.</p>
 
 Works okay for small networks, but **not** for deep ones:
 
@@ -393,12 +443,16 @@ Works okay for small networks, but **not** for deep ones:
 
 ![[Lecture01_Pg122_Larger_Random_Numbers_W_0_05.png]]
 
+<p class="image-caption">Large initial weights will saturate your activations and stall the training.</p>
+
 - Almost all neurons/activations **saturate** (outputs ≈ ±1)
 - Gradients are again ≈ 0 → **no learning**
 
 ### Xavier / Glorot Initialisation (2010)
 
 ![[Lecture01_Pg155_Xavier_Glorot_Initialisation_2010.png]]
+
+<p class="image-caption">Xavier initialization keeps the signal steady as it passes through the network.</p>
 
 $$\text{std} = \frac{1}{\sqrt{D_\text{in}}}$$
 
@@ -417,7 +471,12 @@ Activations are nicely scaled across all layers. **Assumes a zero-centred activa
 <!-- Review Needed: close slide match for 'Kaiming / MSRA Initialisation — for ReLU (He et al., 2015)' (p137: 0.479, p138: 0.478) -->
 
 ![[Lecture01_Pg137_Kaiming_Msra_Initialisation_For_Relu_He.png]]
+
+<p class="image-caption">Kaiming initialization is the go-to choice when you’re using ReLU.</p>
+
 ![[Lecture01_Pg138_Kaiming_Msra_Initialisation_For_Relu_He.png]]
+
+<p class="image-caption">How Kaiming scaling keeps activations stable when half of them are zeroed out.</p>
 
 $$\text{std} = \sqrt{\frac{2}{D_\text{in}}}$$
 
@@ -589,6 +648,8 @@ In practice, **weight decay + dropout** is a strong baseline regularisation comb
 ### PyTorch Implementation: Multi-Layer Perceptron (MLP)
 
 ![[Lecture01_Pg030_Pytorch_Implementation_Multi_Layer_Perceptron_Mlp.png]]
+
+<p class="image-caption">A straightforward way to build an MLP using PyTorch.</p>
 
 Below is a practical implementation of a simple MLP in PyTorch.
 

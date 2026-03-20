@@ -26,6 +26,8 @@ date: 2026-03-09
 
 ![[Lecture02_Pg006_The_Human_Eye.png]]
 
+<p class="image-caption">A quick look at how the human eye is wired, from the retina to the photoreceptors.</p>
+
 - Light passes through the **cornea** and **pupil**
 - The pupil adjusts light incidence; the **lens** focuses light onto the **retina**
 - The **fovea**: dense array of photoreceptors; receives light from objects looked at directly; area of highest visual acuity (hence saccades)
@@ -34,6 +36,8 @@ date: 2026-03-09
 ### Retina
 
 ![[Lecture02_Pg007_Retina.png]]
+
+<p class="image-caption">The layers of cells in our retina that start processing light before it even hits the brain.</p>
 
 Hierarchy of cell layers:
 
@@ -47,6 +51,8 @@ Hierarchy of cell layers:
 
 ![[Lecture02_Pg008_Cell_Types.png]]
 
+<p class="image-caption">Comparing the different types of photoreceptor and ganglion cells in our eyes.</p>
+
 **Photoreceptor cells** differ in sensitivity, number, location, response time, and wavelength.
 
 **Retinal ganglion cells** have different populations (M, P, and K cells; intrinsic photosensitive cells) with different responses to contrast, color, shape, texture, and motion.
@@ -54,6 +60,8 @@ Hierarchy of cell layers:
 ### Photoreceptors
 
 ![[Lecture02_Pg009_Photoreceptors.png]]
+
+<p class="image-caption">The key differences between rods and cones, like how they handle light and color.</p>
 
 |                  | Rods      | Cones     |
 | ---------------- | --------- | --------- |
@@ -72,6 +80,8 @@ Hierarchy of cell layers:
 
 ![[Lecture02_Pg010_Thalamus_And_The_Lgn.png]]
 
+<p class="image-caption">The LGN acts like a relay station, sorting visual signals on their way to the cortex.</p>
+
 Optic nerves terminate in two **lateral geniculate nuclei (LGN)**:
 
 - Part of the central nervous system; function mostly unknown → temporal de-correlation? [Dong and Atick, 1995]
@@ -82,12 +92,16 @@ Optic nerves terminate in two **lateral geniculate nuclei (LGN)**:
 
 ![[Lecture02_Pg011_Visual_Cortex.png]]
 
+<p class="image-caption">The visual cortex is a hierarchy that starts with simple features in V1.</p>
+
 - Largest system in the brain: **40 × 10⁶ neurons**; active area of research, not fully understood
 - **Cortical hierarchy**: V1 (striate/primary visual cortex) → V2–V8 (secondary visual areas)
 
 ### Two-Streams Hypothesis
 
 ![[Lecture02_Pg013_Two_Streams_Hypothesis.png]]
+
+<p class="image-caption">The two main paths in the brain: one for "where" things are and one for "what" they are.</p>
 
 [Goodale and Milner, 1992; Norman, 2002]
 
@@ -97,6 +111,8 @@ Optic nerves terminate in two **lateral geniculate nuclei (LGN)**:
 ### Specificity vs. Invariance
 
 ![[Lecture02_Pg015_Specificity_Vs_Invariance.png]]
+
+<p class="image-caption">The constant tug-of-war between being specific enough to identify things and invariant enough to handle changes.</p>
 
 Goal: good classification performance requires a trade-off between:
 
@@ -109,6 +125,8 @@ This trade-off directly impacts generalisation ability.
 
 ![[Lecture02_Pg016_Simple_And_Complex_Cells.png]]
 
+<p class="image-caption">Simple cells care about exact location, while complex cells just want to see the right orientation.</p>
+
 [Hubel and Wiesel, 1959, 1962]
 
 - **Simple cells**: respond to oriented edges/bars at a specific location
@@ -118,6 +136,8 @@ This trade-off directly impacts generalisation ability.
 
 ![[Lecture02_Pg018_Receptive_Field.png]]
 
+<p class="image-caption">On-center and off-center fields show how our neurons react to contrast.</p>
+
 - All receptors synapsing with a particular cell collectively form its **receptive field**
 - Cells have excitatory/inhibitory regions → **on-center / off-center** cells
 - Sensitive to contrast and orientation of a bar, edge, or gratings
@@ -126,11 +146,15 @@ This trade-off directly impacts generalisation ability.
 
 ![[Lecture02_Pg019_Hierarchical_Organisation.png]]
 
+<p class="image-caption">The visual system builds up from simple edges to full object descriptions.</p>
+
 The visual system builds progressively more complex representations from low-level edge detectors to higher-level object descriptions.
 
 ### Invariance to Affine Transforms
 
 ![[Lecture02_Pg020_Invariance_To_Affine_Transforms.png]]
+
+<p class="image-caption">How our brain recognizes objects even when they move, change size, or turn.</p>
 
 Neurons in the inferior temporal cortex show invariance to position, scale, and view [Logothetis et al., 1995] — a property that CNNs aim to replicate.
 
@@ -141,6 +165,8 @@ Neurons in the inferior temporal cortex show invariance to position, scale, and 
 ### HMAX Model
 
 ![[Lecture02_Pg022_Hmax_Model.png]]
+
+<p class="image-caption">The HMAX model mimics the brain by switching between feature detection and pooling.</p>
 
 [Riesenhuber and Poggio, 2000; Serre et al., 2007]
 
@@ -164,11 +190,15 @@ $$y = \max_{j=1 \ldots n_{C_k}} x_j$$
 
 ![[Lecture02_Pg029_Neocognitron_1982.png]]
 
+<p class="image-caption">The Neocognitron was a huge early step towards the CNNs we use today.</p>
+
 [Fukushima and Miyake, 1982] — an early CNN-like architecture with alternating S-layers and C-layers, directly implementing the Hubel-Wiesel hierarchy.
 
 ### LeNet-5 (1998)
 
 ![[Lecture02_Pg030_Lenet_5_1998.png]]
+
+<p class="image-caption">LeNet-5, the classic network that first mastered handwritten digit recognition.</p>
 
 [LeCun et al., 1998] — convolutional + pooling + fully-connected layers; **~60,000 parameters**; trained on handwritten digit recognition.
 
@@ -176,11 +206,15 @@ $$y = \max_{j=1 \ldots n_{C_k}} x_j$$
 
 ![[Lecture02_Pg031_Alexnet_2012.png]]
 
+<p class="image-caption">AlexNet is the model that really kicked off the deep learning revolution in 2012.</p>
+
 [Krizhevsky et al., 2012] — **~60,000,000 parameters**, trained on two GPUs. Evaluated on the large-scale ImageNet dataset [Deng et al., 2009] and dramatically outperformed prior methods.
 
 ### Fine-Grained Prediction
 
 ![[Lecture02_Pg033_Fine_Grained_Prediction.png]]
+
+<p class="image-caption">CNNs aren't just for classification; they're great for detection and labeling too.</p>
 
 Beyond classification, CNNs were extended to dense predictions — object detection [Ren et al., 2015; Girshick, 2015; He et al., 2017] and scene labelling [Farabet et al., 2012].
 
@@ -192,6 +226,8 @@ Beyond classification, CNNs were extended to dense predictions — object detect
 
 ![[Lecture02_Pg035_Traditional_Approach.png]]
 
+<p class="image-caption">Before deep learning, we had to hand-craft every single visual feature.</p>
+
 Image features were often:
 
 - Handcrafted and fixed
@@ -201,6 +237,8 @@ Image features were often:
 
 ![[Lecture02_Pg037_Trainable_Features.png]]
 
+<p class="image-caption">Nowadays, we let the network learn the best features directly from the data.</p>
+
 - **Parametrised feature extraction**: features are learned, not hand-coded
 - Features should be efficient to compute and efficient to train (differentiable)
 - **Joint training** of feature extraction and classification → "end-to-end system"
@@ -208,6 +246,8 @@ Image features were often:
 ### Summary of Main Ideas
 
 ![[Lecture02_Pg038_Summary_Of_Main_Ideas.png]]
+
+<p class="image-caption">A quick wrap-up of the big ideas: hierarchies, differentiability, and end-to-end training.</p>
 
 1. **Learning of features** across many layers
 2. **Efficient and trainable systems** via differentiable building blocks
@@ -222,11 +262,15 @@ Image features were often:
 
 ![[Lecture02_Pg040_Fully_Connected_Layer.png]]
 
+<p class="image-caption">A fully connected layer treats an image like a flat list, losing all spatial info.</p>
+
 A 32×32×3 image flattened to 3072×1 is fed into a dense layer. This ignores all spatial structure and scales poorly.
 
 ### Convolutional Layer
 
 ![[Lecture02_Pg044_Convolutional_Layer.png]]
+
+<p class="image-caption">A convolution filter slides over the image to create a map of where it found a pattern.</p>
 
 - A **filter** (kernel) slides across the spatial dimensions of the input
 - Filters always **extend the full depth** of the input volume
@@ -249,6 +293,8 @@ In a CNN, we don't hard-code these numbers. The network **learns** them during t
 ### Multiple Activation Maps
 
 ![[Lecture02_Pg048_Multiple_Activation_Maps.png]]
+
+<p class="image-caption">Stacking maps from different filters gives us a rich "volume" of features.</p>
 
 Using multiple filters in parallel produces multiple feature maps. For example, six 5×5 filters applied to a 32×32×3 input produce six separate activation maps of size 28×28, which stack into a volume of **28×28×6**.
 
@@ -279,7 +325,12 @@ This is why a CNN can recognize a "cat" regardless of whether the cat is in the 
 <!-- Review Needed: close slide match for 'Key Idea' (p49: 0.765, p50: 0.765) -->
 
 ![[Lecture02_Pg049_Key_Idea.png]]
+
+<p class="image-caption">The core of a CNN is just a sequence of convolutions and activations.</p>
+
 ![[Lecture02_Pg050_Key_Idea.png]]
+
+<p class="image-caption">As we go deeper, the representations become more abstract and meaningful.</p>
 
 <!-- Review Needed: close slide match for 'Key Idea' (p49: 0.827, p50: 0.827) -->
 
@@ -288,6 +339,8 @@ CNNs are a **sequence of convolutional layers interspersed with activation funct
 ### Weight Sharing
 
 ![[Lecture02_Pg051_Weight_Sharing.png]]
+
+<p class="image-caption">Weight sharing means the same filter works everywhere, which is super efficient.</p>
 
 The same filter weights are applied at every spatial position. Advantages:
 
@@ -315,7 +368,12 @@ So stacking small filters is not only cheaper, it also gives the model **more de
 <!-- Review Needed: close slide match for 'Visualisation' (p52: 0.649, p53: 0.646) -->
 
 ![[Lecture02_Pg052_Visualisation.png]]
+
+<p class="image-caption">Early layers mostly look for simple things like edges and colors.</p>
+
 ![[Lecture02_Pg053_Visualisation.png]]
+
+<p class="image-caption">Later layers start recognizing complex parts and eventually whole objects.</p>
 
 <!-- Review Needed: close slide match for 'Visualisation' (p52: 0.656, p53: 0.653) -->
 
@@ -329,7 +387,12 @@ So stacking small filters is not only cheaper, it also gives the model **more de
 <!-- Review Needed: close slide match for 'Brain/Neuron View' (p54: 0.647, p55: 0.647) -->
 
 ![[Lecture02_Pg054_Brain_Neuron_View.png]]
+
+<p class="image-caption">CNN feature maps are actually very similar to how V1 cells work in our brains.</p>
+
 ![[Lecture02_Pg055_Brain_Neuron_View.png]]
+
+<p class="image-caption">Both real and artificial neurons only "see" a small, local patch of the world.</p>
 
 <!-- Review Needed: close slide match for 'Brain/Neuron View' (p54: 0.615, p55: 0.615) -->
 
@@ -338,6 +401,8 @@ Each unit in a feature map is connected only to a local patch of the input (its 
 ### Pooling Layer
 
 ![[Lecture02_Pg057_Pooling_Layer.png]]
+
+<p class="image-caption">Pooling layers shrink the data to make it more manageable and less sensitive to shifts.</p>
 
 - Makes representations **smaller and more manageable**
 - Operates over each activation map **independently**
@@ -351,7 +416,12 @@ Each unit in a feature map is connected only to a local patch of the input (its 
 <!-- Review Needed: close slide match for 'Revolution of Depth' (p60: 0.660, p62: 0.660) -->
 
 ![[Lecture02_Pg060_Revolution_Of_Depth.png]]
+
+<p class="image-caption">The "revolution of depth"—how networks have gotten way deeper over time.</p>
+
 ![[Lecture02_Pg062_Revolution_Of_Depth.png]]
+
+<p class="image-caption">How adding more layers has consistently slashed error rates on ImageNet.</p>
 
 <!-- Review Needed: close slide match for 'Revolution of Depth' (p60: 0.653, p62: 0.653) -->
 
@@ -360,6 +430,8 @@ Increasing network depth has been the primary driver of performance improvements
 ### Case Study: VGG
 
 ![[Lecture02_Pg061_Case_Study_Vgg.png]]
+
+<p class="image-caption">VGG showed that stacking lots of simple 3x3 filters is a winning strategy.</p>
 
 [Simonyan and Zisserman, 2014]
 
@@ -372,7 +444,12 @@ Increasing network depth has been the primary driver of performance improvements
 <!-- Review Needed: close slide match for 'Case Study: GoogLeNet' (p65: 0.772, p63: 0.727) -->
 
 ![[Lecture02_Pg065_Case_Study_Googlenet.png]]
+
+<p class="image-caption">The Inception module: a clever way to do multiple convolutions at once.</p>
+
 ![[Lecture02_Pg063_Case_Study_Googlenet.png]]
+
+<p class="image-caption">Comparing GoogLeNet's efficiency and depth against older models.</p>
 
 [Szegedy et al., 2015]
 
@@ -385,6 +462,8 @@ Increasing network depth has been the primary driver of performance improvements
 
 ![[Lecture02_Pg067_Gradient_Flow_Problem.png]]
 
+<p class="image-caption">The "vanishing gradient" problem that makes training very deep networks so hard.</p>
+
 Ensuring sufficient gradient flow through very deep networks was a key challenge:
 
 - **VGG**: first trained an 11-layer model to convergence, then added random layers in the middle
@@ -395,6 +474,8 @@ Shortly afterwards, **batch normalisation** was invented, removing the need for 
 ### Case Study: ResNet
 
 ![[Lecture02_Pg071_Case_Study_Resnet.png]]
+
+<p class="image-caption">ResNet's skip connections let the gradient flow through dozens or even hundreds of layers.</p>
 
 [He et al., 2016]
 
@@ -422,6 +503,8 @@ Results:
 
 ![[Lecture02_Pg077_Case_Study_Densenet_Fractalnet.png]]
 
+<p class="image-caption">DenseNet and FractalNet take feature reuse to the extreme.</p>
+
 [Huang et al., 2017; Larsson et al., 2016]
 
 **DenseNet**: layer $l_n$ receives feature maps from **all** preceding layers $l_0 \ldots l_{n-1}$ — maximises feature reuse and gradient flow.
@@ -431,6 +514,8 @@ Results:
 ### Further Architectures
 
 ![[Lecture02_Pg078_Further_Architectures.png]]
+
+<p class="image-caption">A quick look at some other popular architectures like Wide ResNet and ResNeXt.</p>
 
 - Wide ResNet [Zagoruyko and Komodakis, 2016]
 - ResNeXt [Xie et al., 2017]

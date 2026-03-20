@@ -32,7 +32,12 @@ VAEs underpin many modern generative systems. Stable Diffusion, for instance, us
 <!-- Review Needed: close slide match for 'Supervised vs. Unsupervised Learning' (p6: 0.756, p7: 0.756) -->
 
 ![[Lecture09_Pg006_Supervised_Vs_Unsupervised_Learning.png]]
+
+<p class="image-caption">Supervised vs. unsupervised: the difference between having labels and going it alone.</p>
+
 ![[Lecture09_Pg007_Supervised_Vs_Unsupervised_Learning.png]]
+
+<p class="image-caption">A quick look at the goals for supervised and unsupervised learning.</p>
 
 |              | Supervised                       | Unsupervised                       |
 | ------------ | -------------------------------- | ---------------------------------- |
@@ -43,6 +48,8 @@ VAEs underpin many modern generative systems. Stable Diffusion, for instance, us
 ### Generative Modelling
 
 ![[Lecture09_Pg008_Generative_Modelling.png]]
+
+<p class="image-caption">Generative modeling in a nutshell: learning to sample from our data distribution p(x).</p>
 
 Given training data, we want to learn a **model** of the data and be able to sample from the same distribution.
 
@@ -59,6 +66,8 @@ We may also want **conditional** generation $p(x|c)$, where $c$ is a category (e
 
 ![[Lecture09_Pg015_Latent_Variable_Models.png]]
 
+<p class="image-caption">Modeling those hidden factors of variation using latent variables.</p>
+
 Images have huge variability: gender, eye colour, hair colour, pose, lighting, etc. Unless annotated, these **factors of variation** are not explicitly available — they are **latent**.
 
 **Idea**: explicitly model these factors with latent variables $z$.
@@ -74,6 +83,8 @@ Images have huge variability: gender, eye colour, hair colour, pose, lighting, e
 
 ![[Lecture09_Pg019_Maximum_Likelihood_Estimation_Mle.png]]
 
+<p class="image-caption">MLE: the foundational goal for pretty much all deep learning models.</p>
+
 Likelihood as a function of model parameters:
 
 $$L(\theta) = \prod_i p(x_i | \theta) \quad \Longrightarrow \quad \log L(\theta) = \sum_i \log p(x_i | \theta)$$
@@ -83,6 +94,8 @@ MLE is the backbone of supervised deep learning — cross-entropy and least-squa
 ### Taxonomy of Generative Models
 
 ![[Lecture09_Pg014_Taxonomy_Of_Generative_Models.png]]
+
+<p class="image-caption">How we group generative models: explicit density vs. implicit ones.</p>
 
 ```
 Generative Models
@@ -105,6 +118,8 @@ Generative Models
 ## Mixture of Gaussians (MoG)
 
 ![[Lecture09_Pg024_Mixture_Of_Gaussians_Mog.png]]
+
+<p class="image-caption">A Mixture of Gaussians: a simple example of a latent variable model.</p>
 
 A simple but instructive latent variable model.
 
@@ -132,6 +147,8 @@ Combining simple Gaussians gives a much more expressive, multi-modal density.
 ### Architecture
 
 ![[Lecture09_Pg031_Architecture.png]]
+
+<p class="image-caption">The standard autoencoder: an encoder, a decoder, and that latent bottleneck.</p>
 
 An **autoencoder** = encoder $f$ + decoder $g$.
 
@@ -200,6 +217,8 @@ The model will force every single image into the exact same Gaussian cloud at th
 
 ![[Lecture09_Pg041_Variational_Autoencoders_Vae.png]]
 
+<p class="image-caption">The VAE architecture: encoding and decoding using probabilities.</p>
+
 **Paper**: Kingma & Welling, _Auto-Encoding Variational Bayes_ (2014)
 
 A **probabilistic** version of the autoencoder that allows genuine sampling of new, unseen data.
@@ -209,7 +228,12 @@ A **probabilistic** version of the autoencoder that allows genuine sampling of n
 <!-- Review Needed: close slide match for 'From GMMs to VAEs' (p45: 0.484, p42: 0.477) -->
 
 ![[Lecture09_Pg045_From_Gmms_To_Vaes.png]]
+
+<p class="image-caption">Moving from GMMs to VAEs by bringing in neural networks.</p>
+
 ![[Lecture09_Pg042_From_Gmms_To_Vaes.png]]
+
+<p class="image-caption">Comparing latent priors and likelihoods between MoGs and VAEs.</p>
 
 The VAE is essentially a MoG with a **neural network** replacing the fixed Gaussians:
 
@@ -238,7 +262,12 @@ The sum inside the log is **intractable** for continuous, high-dimensional $z$ �
 <!-- Review Needed: close slide match for 'Derivation via Jensen's Inequality' (p47: 0.564, p48: 0.538) -->
 
 ![[Lecture09_Pg047_Derivation_Via_Jensen_S_Inequality.png]]
+
+<p class="image-caption">Using Jensen's inequality to derive the ELBO.</p>
+
 ![[Lecture09_Pg048_Derivation_Via_Jensen_S_Inequality.png]]
+
+<p class="image-caption">Walking through the math to show how ELBO bounds our log-likelihood.</p>
 
 The log-likelihood with latent variables is hard:
 
@@ -274,6 +303,8 @@ So the ELBO is not a random trick. It is the price we pay for turning an intract
 
 ![[Lecture09_Pg052_Derivation_Via_Kl_Divergence.png]]
 
+<p class="image-caption">Another way to get the ELBO: using KL divergence between our posteriors.</p>
+
 Starting from:
 
 $$D_{KL}(q(z) \| p(z|x;\theta)) = -\sum_z q(z)\log p(z,x;\theta) + \log p(x;\theta) - H(q) \ge 0$$
@@ -293,6 +324,8 @@ The closer our chosen $q$ is to the true posterior $p(z|x)$, the tighter the ELB
 ### ELBO as Reconstruction + KL
 
 ![[Lecture09_Pg049_Elbo_As_Reconstruction_Kl.png]]
+
+<p class="image-caption">Breaking down the ELBO into reconstruction loss and KL regularization.</p>
 
 Expanding the ELBO with $q_\phi(z|x)$ as the encoder:
 
@@ -333,6 +366,8 @@ VAE training works when these two pressures balance: **compress, but not so aggr
 
 ![[Lecture09_Pg055_Variational_Inference.png]]
 
+<p class="image-caption">Fitting a simple distribution q to a messy, intractable posterior.</p>
+
 We introduce an **approximate posterior** $q_\phi(z|x)$ (the encoder) — a tractable distribution parametrised by $\phi$, e.g. a diagonal Gaussian:
 
 $$q_\phi(z|x) = \mathcal{N}(\phi_1(x),\, \phi_2(x))$$
@@ -348,6 +383,8 @@ The key insight of VAEs is to **amortise** this inference: instead of running op
 ## Learning the Parameters
 
 ![[Lecture09_Pg058_Learning_The_Parameters.png]]
+
+<p class="image-caption">Training a VAE by optimizing the encoder and decoder together through the ELBO.</p>
 
 We jointly optimise decoder parameters $\theta$ and encoder parameters $\phi$ by maximising the ELBO:
 
@@ -478,6 +515,8 @@ That is why interpolation is such a good sanity check for VAEs. If the path betw
 
 ![[Lecture09_Pg030_Latent_Space_Arithmetic.png]]
 
+<p class="image-caption">Semantic arithmetic: doing math in the latent space to transform images.</p>
+
 Like word2vec arithmetic (`king − man + woman ≈ queen`), VAE latent codes support semantic arithmetic:
 
 ```
@@ -506,7 +545,12 @@ z("smiling woman") − z("neutral woman") + z("neutral man") ≈ z("smiling man"
 <!-- Review Needed: close slide match for 'Disentangled Representation Learning' (p79: 0.456, p77: 0.433) -->
 
 ![[Lecture09_Pg079_Disentangled_Representation_Learning.png]]
+
+<p class="image-caption">Using beta-VAE to pull apart independent factors of variation.</p>
+
 ![[Lecture09_Pg077_Disentangled_Representation_Learning.png]]
+
+<p class="image-caption">Entangled vs. disentangled latent spaces for better control.</p>
 
 **Goal**: learn a latent space where each dimension controls an independent, interpretable factor (e.g. one dimension = pose, another = lighting).
 
@@ -539,6 +583,8 @@ So beta-VAE is not "strictly better VAE." It is a deliberate trade: **less raw f
 
 ![[Lecture09_Pg082_Style_Transfer_Text_And_Images.png]]
 
+<p class="image-caption">Using VAEs for style transfer in both images and text.</p>
+
 VAEs disentangle **style** from **content** in the latent space. Applications:
 
 - **Image style transfer**: given content image $x_1$ and style $c$, generate $p(x_2 | x_1, c)$. [Gatys et al., 2016]
@@ -547,6 +593,8 @@ VAEs disentangle **style** from **content** in the latent space. Applications:
 ### Handwriting Synthesis (Aksan et al., 2018)
 
 ![[Lecture09_Pg086_Handwriting_Synthesis_Aksan_Et_Al_2018.png]]
+
+<p class="image-caption">Editing and generating synthetic handwriting on a VAE manifold.</p>
 
 A VAE trained on handwriting samples can:
 
@@ -557,6 +605,8 @@ A VAE trained on handwriting samples can:
 ### Hand Pose Manifold (Tagliasacchi et al., 2015)
 
 ![[Lecture09_Pg083_Hand_Pose_Manifold_Tagliasacchi_Et_Al.png]]
+
+<p class="image-caption">Mapping hand poses to a smooth manifold for better pose estimation.</p>
 
 A VAE trained on hand pose data learns a smooth, compact manifold of valid hand configurations. Sampling from the manifold always produces a valid (anatomically plausible) hand pose — useful for 3D pose estimation from noisy depth sensors.
 
@@ -641,6 +691,8 @@ class VAE(nn.Module):
 ## Summary of VAEs
 
 ![[Lecture09_Pg087_Summary_Of_Vaes.png]]
+
+<p class="image-caption">A wrap-up of VAEs: they're principled and smooth, but can be a bit blurry.</p>
 
 | Aspect            | Detail                                                                                                                      |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------- |

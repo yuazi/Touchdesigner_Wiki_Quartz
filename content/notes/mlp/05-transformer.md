@@ -36,6 +36,8 @@ date: 2026-03-09
 
 ![[Lecture05_Pg006_Motivation.png]]
 
+<p class="image-caption">Embeddings are the secret sauce for handling categorical data in machine learning.</p>
+
 Many machine learning algorithms cannot work with **categorical data** directly — it must be converted to numeric values first.
 
 **Naïve approach**: convert categories to integers (cat=1, dog=2, kitten=3).  
@@ -47,9 +49,11 @@ Many machine learning algorithms cannot work with **categorical data** directly 
 
 ---
 
-### One-Hot Encoding
+### One-hot Encoding
 
 ![[Lecture05_Pg008_One_Hot_Encoding.png]]
+
+<p class="image-caption">A quick look at how one-hot encoding represents words as sparse vectors.</p>
 
 Encode each word as a **sparse binary vector** of length $|V|$ (vocabulary size):
 
@@ -64,6 +68,8 @@ $$\text{rabbit} = [0, 0, 1, 0, \ldots]$$
 ### Learned Embeddings
 
 ![[Lecture05_Pg009_Learned_Embeddings.png]]
+
+<p class="image-caption">Learned embeddings map words into a dense vector space where similar meanings sit close together.</p>
 
 Instead of a sparse binary vector, map each word to a **dense real-valued vector** in a shared vector space. These vectors are learned from data.
 
@@ -84,7 +90,12 @@ This property reflects that the difference between gendered word pairs is captur
 <!-- Review Needed: close slide match for 'How to Learn Embeddings: CBOW and Skip-gram' (p12: 0.715, p13: 0.699) -->
 
 ![[Lecture05_Pg012_How_To_Learn_Embeddings_Cbow_And.png]]
+
+<p class="image-caption">CBOW predicts a target word just by looking at the words surrounding it.</p>
+
 ![[Lecture05_Pg013_How_To_Learn_Embeddings_Cbow_And.png]]
+
+<p class="image-caption">Skip-gram does the opposite: it uses one word to predict all the neighbors.</p>
 
 <!-- Review Needed: close slide match for 'How to Learn Embeddings: CBOW and Skip-gram' (p12: 0.730, p13: 0.713) -->
 
@@ -106,6 +117,8 @@ Skip-gram: "cat"               →  [the, sat, on, mat]
 ### Word2Vec (Mikolov et al., 2013)
 
 ![[Lecture05_Pg015_Word2vec_Mikolov_Et_Al_2013.png]]
+
+<p class="image-caption">Word2Vec maps words into a space where relationships like "king - man + woman = queen" actually work.</p>
 
 Word2Vec is a family of shallow neural network models that learn word embeddings from a large corpus.
 
@@ -137,6 +150,8 @@ print(model.wv.similarity("cat", "table"))  # low
 
 ![[Lecture05_Pg017_Glove_Pennington_Et_Al_2014.png]]
 
+<p class="image-caption">GloVe takes a global view, looking at how often words appear together across the whole dataset.</p>
+
 GloVe (Global Vectors) uses statistics from the **entire corpus** rather than a local window. It trains a weighted least-squares model on **co-occurrence probabilities**:
 
 $$J = \sum_{i,j} f(X_{ij}) \left( w_i^\top \tilde{w}_j + b_i + \tilde{b}_j - \log X_{ij} \right)^2$$
@@ -162,7 +177,12 @@ father → mother
 <!-- Review Needed: close slide match for 'Contextual vs. Non-Contextual Embeddings' (p20: 0.631, p19: 0.612) -->
 
 ![[Lecture05_Pg020_Contextual_Vs_Non_Contextual_Embeddings.png]]
+
+<p class="image-caption">Comparing classic embeddings with contextual ones—static vs. dynamic meanings.</p>
+
 ![[Lecture05_Pg019_Contextual_Vs_Non_Contextual_Embeddings.png]]
+
+<p class="image-caption">The word "bank" can mean very different things; contextual embeddings finally help us tell them apart.</p>
 
 <!-- Review Needed: close slide match for 'Contextual vs. Non-Contextual Embeddings' (p20: 0.654, p19: 0.634) -->
 
@@ -185,6 +205,8 @@ The word "left" (past tense of leave) and "left" (spatial direction) are differe
 
 ![[Lecture05_Pg022_How_Contextual_Are_Contextual_Embeddings_Ethayarajh.png]]
 
+<p class="image-caption">As you go deeper into the Transformer, the embeddings get more and more specific to their context.</p>
+
 Ethayarajh (2019) compared BERT, ELMo, and GPT-2 using three new measures: self-similarity, intra-sentence similarity, and **Maximum Explainable Variance (MEV)** — the proportion of variance in a word's representations that can be explained by its first principal component.
 
 **Findings**:
@@ -204,7 +226,12 @@ Ethayarajh (2019) compared BERT, ELMo, and GPT-2 using three new measures: self-
 <!-- Review Needed: close slide match for 'Motivation: RNN Weaknesses' (p24: 0.616, p25: 0.614) -->
 
 ![[Lecture05_Pg024_Motivation_Rnn_Weaknesses.png]]
+
+<p class="image-caption">RNNs struggle with long sequences because they process everything one step at a time.</p>
+
 ![[Lecture05_Pg025_Motivation_Rnn_Weaknesses.png]]
+
+<p class="image-caption">The "bottleneck" happens when you try to squeeze a whole sentence into a single fixed-size vector.</p>
 
 <!-- Review Needed: close slide match for 'Motivation: RNN Weaknesses' (p24: 0.628, p25: 0.626) -->
 
@@ -223,6 +250,8 @@ RNNs have several fundamental weaknesses that motivated the development of atten
 
 ![[Lecture05_Pg026_Inspiration_From_Human_Attention.png]]
 
+<p class="image-caption">Just like our eyes focus on specific parts of a scene, attention lets models focus on the most relevant data.</p>
+
 Neural attention is loosely inspired by **human visual attention**:
 
 - Humans perceive with high acuity only within ~2 degrees of visual angle (foveal vision)
@@ -238,7 +267,12 @@ Neural attention is loosely inspired by **human visual attention**:
 <!-- Review Needed: close slide match for 'Attention in Machine Learning (Bahdanau et al., 2015)' (p32: 0.497, p33: 0.493) -->
 
 ![[Lecture05_Pg032_Attention_In_Machine_Learning_Bahdanau_Et.png]]
+
+<p class="image-caption">Bahdanau attention lets the decoder "look back" at the encoder's states at every step.</p>
+
 ![[Lecture05_Pg033_Attention_In_Machine_Learning_Bahdanau_Et.png]]
+
+<p class="image-caption">You can actually see which words the model is focusing on as it translates from one language to another.</p>
 
 <!-- Review Needed: close slide match for 'Attention in Machine Learning (Bahdanau et al., 2015)' (p32: 0.479, p33: 0.475) -->
 
@@ -264,6 +298,8 @@ This is a weighted sum over **all encoder states** $h_j$, where $\alpha_{ij}$ ar
 
 ![[Lecture05_Pg039_Computing_The_Attention_Weights.png]]
 
+<p class="image-caption">This is the step-by-step process of how we calculate those all-important attention weights.</p>
+
 $$\alpha_{ij} = \frac{\exp(e_{ij})}{\sum_{k=1}^{T_x} \exp(e_{ik})}$$
 
 (softmax to ensure they sum to 1)
@@ -281,6 +317,8 @@ This is a small **feed-forward network** that scores, given the current decoder 
 ### Soft vs. Hard Attention (Xu et al., 2015)
 
 ![[Lecture05_Pg041_Soft_Vs_Hard_Attention_Xu_Et.png]]
+
+<p class="image-caption">Soft attention is smooth and differentiable, while hard attention picks one spot and sticks to it.</p>
 
 <!-- Review Needed: close slide match for 'Soft vs. Hard Attention (Xu et al., 2015)' (p40: 0.552, p41: 0.535) -->
 
@@ -300,6 +338,8 @@ When generating the word "bird", soft attention weights the entire image with a 
 
 ![[Lecture05_Pg042_Global_Vs_Local_Attention_Luong_Et.png]]
 
+<p class="image-caption">Global attention looks at everything, while local attention focuses on a small window of tokens.</p>
+
 |           | Global Attention           | Local Attention           |
 | --------- | -------------------------- | ------------------------- |
 | Scope     | All encoder hidden states  | Subset of hidden states   |
@@ -317,6 +357,8 @@ For the output word "Wirtschaftszone", global attention correctly puts weight on
 
 ![[Lecture05_Pg045_Advantages_Of_Attention.png]]
 
+<p class="image-caption">A quick recap of why attention is such a game-changer for neural networks.</p>
+
 <!-- Review Needed: close slide match for 'Advantages of Attention' (p46: 0.445, p45: 0.444) -->
 
 1. **Flexibility**: handles variable-length inputs without a fixed-size bottleneck
@@ -330,6 +372,8 @@ For the output word "Wirtschaftszone", global attention correctly puts weight on
 ## Attention Is All You Need
 
 ![[Lecture05_Pg050_Attention_Is_All_You_Need.png]]
+
+<p class="image-caption">The landmark paper that introduced the world to the Transformer architecture.</p>
 
 **Paper**: Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser, Polosukhin. _"Attention Is All You Need."_ NeurIPS 2017. (202k+ citations)
 
@@ -353,6 +397,8 @@ The Transformer is an **encoder-decoder** architecture:
 #### Sublayers in each block
 
 ![[Lecture05_Pg054_Sublayers_In_Each_Block.png]]
+
+<p class="image-caption">The internal structure of a Transformer block—the building block of modern LLMs.</p>
 
 1. **Multi-Head Attention** (self-attention or cross-attention)
 2. **Feed-Forward Networks**
@@ -378,6 +424,8 @@ For a sequence of $n$ tokens, each token attends to all $n$ tokens simultaneousl
 ### Scaled Dot-Product Attention
 
 ![[Lecture05_Pg063_Scaled_Dot_Product_Attention.png]]
+
+<p class="image-caption">Scaled dot-product attention is the engine under the hood, using Queries, Keys, and Values.</p>
 
 $$\text{Attention}(Q, K, V) = \text{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}}\right) V$$
 
@@ -441,6 +489,8 @@ For $d_k = 512$, the values in $QK^\top$ can be very large. When you pass these 
 
 ![[Lecture05_Pg064_Masked_Self_Attention.png]]
 
+<p class="image-caption">Causal masking ensures the model can't "cheat" by looking at future words during training.</p>
+
 In the decoder, when generating token $t$, the model must not see future tokens $t+1, t+2, \ldots$ — otherwise it would "cheat" by looking at the answer.
 
 **Fix**: set entries in the upper triangle of the attention score matrix to $-\infty$ before softmax. After softmax, they become 0.
@@ -472,6 +522,8 @@ mask = causal_mask(4)
 ### Multi-Head Attention
 
 ![[Lecture05_Pg054_Multi_Head_Attention.png]]
+
+<p class="image-caption">Multi-head attention lets the model attend to different types of information in parallel.</p>
 
 <!-- Review Needed: close slide match for 'Multi-Head Attention' (p54: 0.415, p67: 0.374) -->
 
@@ -545,7 +597,12 @@ class MultiHeadAttention(nn.Module):
 <!-- Review Needed: close slide match for 'Summary of Multi-Head Attention Usage' (p74: 0.565, p72: 0.564) -->
 
 ![[Lecture05_Pg074_Summary_Of_Multi_Head_Attention_Usage.png]]
+
+<p class="image-caption">Self-attention looks within the sequence, while cross-attention links the encoder and decoder.</p>
+
 ![[Lecture05_Pg072_Summary_Of_Multi_Head_Attention_Usage.png]]
+
+<p class="image-caption">A bird's-eye view of how different attention mechanisms are used throughout the model.</p>
 
 <!-- Review Needed: close slide match for 'Summary of Multi-Head Attention Usage' (p73: 0.679, p74: 0.674) -->
 
@@ -562,7 +619,12 @@ class MultiHeadAttention(nn.Module):
 <!-- Review Needed: close slide match for 'Feed-Forward Networks (FFN)' (p76: 0.590, p77: 0.589) -->
 
 ![[Lecture05_Pg076_Feed_Forward_Networks_Ffn.png]]
+
+<p class="image-caption">The feed-forward network adds some much-needed non-linearity after the attention layers.</p>
+
 ![[Lecture05_Pg077_Feed_Forward_Networks_Ffn.png]]
+
+<p class="image-caption">The FFN is applied to every token separately, which makes it very efficient for parallel processing.</p>
 
 Each encoder/decoder block also contains a **position-wise feed-forward network** — a two-layer MLP applied _independently_ to each position:
 
@@ -609,6 +671,8 @@ class FeedForward(nn.Module):
 ### Residual Connections and Layer Normalisation
 
 ![[Lecture05_Pg080_Residual_Connections_And_Layer_Normalisation.png]]
+
+<p class="image-caption">Residual connections and layer norm keep the training stable and the gradients flowing.</p>
 
 Each sublayer (attention or FFN) uses a **residual connection**:
 
@@ -657,6 +721,8 @@ class TransformerBlock(nn.Module):
 ### Positional Encoding
 
 ![[Lecture05_Pg081_Positional_Encoding.png]]
+
+<p class="image-caption">Since Transformers don't have recurrence, we use these sine waves to tell the model where each word is.</p>
 
 The Transformer architecture is **permutation-invariant** — self-attention treats the input as a set, not a sequence. To inject order information, a **positional encoding** is _added_ to the input embeddings before the first layer.
 
@@ -752,6 +818,8 @@ BERT is an **encoder-only** Transformer that produces contextual representations
 
 ![[Lecture05_Pg086_Architecture.png]]
 
+<p class="image-caption">BERT uses a stack of Transformer encoders to understand context from both directions at once.</p>
+
 | Variant    | Layers | Attention Heads | Parameters  |
 | ---------- | ------ | --------------- | ----------- |
 | BERT-base  | 12     | 12              | 110 million |
@@ -764,6 +832,8 @@ BERT is an **encoder-only** Transformer that produces contextual representations
 #### 1. Masked Language Model (MLM)
 
 ![[Lecture05_Pg088_1_Masked_Language_Model_Mlm.png]]
+
+<p class="image-caption">BERT learns by trying to fill in the blanks of sentences where some words are hidden.</p>
 
 Randomly mask **15%** of input tokens, then predict the original tokens. Of the selected 15%:
 
@@ -788,6 +858,8 @@ Because `[MASK]` is seen during training but never at fine-tuning time, the 10% 
 #### 2. Next Sentence Prediction (NSP)
 
 ![[Lecture05_Pg090_2_Next_Sentence_Prediction_Nsp.png]]
+
+<p class="image-caption">The NSP task helps BERT understand the relationship between two different sentences.</p>
 
 Given two sentences A and B, predict whether B actually follows A in the corpus.
 
@@ -819,9 +891,11 @@ Label:  NotNext (False)
 
 ---
 
-### Self-Supervised Learning
+### Self-supervised Learning
 
 ![[Lecture05_Pg089_Self_Supervised_Learning.png]]
+
+<p class="image-caption">Self-supervised learning lets us train on massive amounts of raw text without needing manual labels.</p>
 
 BERT is trained with **self-supervised learning** — the labels (masked tokens, next sentence pairs) are derived automatically from unlabeled text, with no human annotation required. This allows training on massive datasets.
 
@@ -894,6 +968,8 @@ GPT ("Generative Pre-trained Transformer") takes the opposite design choice from
 ### Causal Self-Attention Only
 
 ![[Lecture05_Pg074_Causal_Self_Attention_Only.png]]
+
+<p class="image-caption">GPT-style models use causal attention to predict the next word in a sequence, one by one.</p>
 
 A GPT block uses only **masked self-attention**. There is **no encoder** and, in the plain language-model setting, **no cross-attention**. Token $t$ may only attend to tokens at positions $\leq t$.
 
@@ -1025,6 +1101,8 @@ From the lecture's closing slide:
 - **Transformer architecture** uses only attention — no recurrence — enabling full parallelisation
 - **BERT and its variants** are the current SOTA for encoder representations
 - Training transformers takes a **lot** of training data, GPU memory, and time — a significant disadvantage compared to RNNs for small datasets
+
+> **Real-World Application**: The semantic understanding of Transformers is the core engine behind [[work/slidelink|SlideLink]], a tool I built to contextually align lecture notes with PDF slides.
 
 | Component             | Key Point                                                                                   |
 | --------------------- | ------------------------------------------------------------------------------------------- |

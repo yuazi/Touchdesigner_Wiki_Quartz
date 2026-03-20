@@ -25,6 +25,8 @@ date: 2026-03-09
 
 ![[Lecture13_Pg004_Motivation.png]]
 
+<p class="image-caption">This is why we need XAI—especially when the model is making high-stakes decisions.</p>
+
 Model understanding is critical in domains involving high-stakes decisions. Without it, models remain opaque black boxes that can fail silently and destructively.
 
 **Why model understanding matters**:
@@ -49,6 +51,8 @@ Two approaches exist:
 
 ![[Lecture13_Pg010_Approach_1_Inherently_Interpretable_Models.png]]
 
+<p class="image-caption">Some models, like decision trees, are actually pretty easy to understand right out of the box.</p>
+
 Build a model that is interpretable by design: decision trees, rule lists, linear classifiers, scoring systems [Letham et al., 2015; Lakkaraju et al., 2016].
 
 - _If Education ≤ High School → Salary ≤ 50k_ (a rule list)
@@ -57,6 +61,8 @@ Build a model that is interpretable by design: decision trees, rule lists, linea
 ### Approach 2 — Post-hoc Explanations
 
 ![[Lecture13_Pg015_Approach_2_Post_Hoc_Explanations.png]]
+
+<p class="image-caption">If the model is a black box, we have to use post-hoc methods to figure out what's going on inside.</p>
 
 Train a powerful black-box model first, then explain its predictions after the fact [Ribeiro et al., 2016, 2018].
 
@@ -95,6 +101,8 @@ Both LIME and SHAP give you feature importance, but they do it very differently.
 
 ![[Lecture13_Pg020_Local_Vs_Global_Explanations.png]]
 
+<p class="image-caption">It's helpful to compare local explanations for one instance versus global ones for the whole model.</p>
+
 |                | Local                                                                  | Global                                                         |
 | -------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------- |
 | **Scope**      | One prediction                                                         | Entire model behaviour                                         |
@@ -124,6 +132,8 @@ Post-hoc Explainability
 ## Feature Importances — LIME
 
 ![[Lecture13_Pg031_Feature_Importances_Lime.png]]
+
+<p class="image-caption">LIME basically builds a simple, local model to approximate how the big black box is behaving.</p>
 
 **Authors**: Ribeiro et al. (2016)
 
@@ -173,7 +183,12 @@ image_exp, mask = explanation.get_image_and_mask(
 <!-- Review Needed: close slide match for 'Rule-Based Explanations — Anchors' (p36: 0.470, p35: 0.456) -->
 
 ![[Lecture13_Pg036_Rule_Based_Explanations_Anchors.png]]
+
+<p class="image-caption">Anchors give us those "if-then" rules that act as sufficient conditions for a prediction.</p>
+
 ![[Lecture13_Pg035_Rule_Based_Explanations_Anchors.png]]
+
+<p class="image-caption">Check out these anchor examples—they're basically high-precision rules for specific local areas.</p>
 
 **Authors**: Ribeiro et al. (2018)
 
@@ -197,7 +212,12 @@ The anchor is interpretable as a human-readable condition that _reliably_ reprod
 <!-- Review Needed: close slide match for 'Saliency Maps' (p38: 0.714, p39: 0.689) -->
 
 ![[Lecture13_Pg038_Saliency_Maps.png]]
+
+<p class="image-caption">Saliency maps are great for highlighting exactly which pixels or features the model is leaning on.</p>
+
 ![[Lecture13_Pg039_Saliency_Maps.png]]
+
+<p class="image-caption">Heatmaps are a classic way to visualize which features are getting the most credit.</p>
 
 Saliency maps answer: _"Which parts of the input were most relevant for the model's prediction?"_
 
@@ -208,7 +228,12 @@ Also called: feature attribution maps, heatmaps.
 <!-- Review Needed: close slide match for '1. Input Gradient (Vanilla Saliency)' (p42: 0.553, p40: 0.550) -->
 
 ![[Lecture13_Pg042_1_Input_Gradient_Vanilla_Saliency.png]]
+
+<p class="image-caption">Vanilla saliency maps just look at the raw input gradients to see what's influential.</p>
+
 ![[Lecture13_Pg040_1_Input_Gradient_Vanilla_Saliency.png]]
+
+<p class="image-caption">Using gradients is a direct way to see how much each feature contributes to the final score.</p>
 
 Compute the gradient of the class-specific logit $F_i(x)$ with respect to the input $x$:
 
@@ -233,6 +258,8 @@ saliency = x.grad.data.abs().max(dim=0).values  # collapse channels
 
 ![[Lecture13_Pg043_2_Smoothgrad.png]]
 
+<p class="image-caption">SmoothGrad helps clean things up by averaging the gradients over some noisy copies of the input.</p>
+
 Average the input gradient over $N$ noisy copies of the input to reduce noise:
 
 $$\text{SmoothGrad}(x) = \frac{1}{N} \sum_{i=1}^N \nabla_{x+\epsilon_i} F(x + \epsilon_i)$$
@@ -242,6 +269,8 @@ where $\epsilon_i \sim \mathcal{N}(0, \sigma^2)$. Produces cleaner, more interpr
 ### 3. Integrated Gradients
 
 ![[Lecture13_Pg089_3_Integrated_Gradients.png]]
+
+<p class="image-caption">Integrated Gradients is a bit more robust—it avoids saturation and satisfies that completeness axiom.</p>
 
 Vanilla input gradients only measure the **local slope** at the input $x$. This creates a problem in saturated regions: the gradient can be near zero even when a feature was crucial for the prediction. Integrated Gradients was proposed to address this and to satisfy the **completeness axiom**, i.e. the attributions should sum to the prediction difference between the input and a baseline (Sundararajan et al., 2017).
 
@@ -317,6 +346,8 @@ which is the desired completeness property.
 
 ![[Lecture13_Pg044_4_Gradient_Input.png]]
 
+<p class="image-caption">Multiplying the gradient by the input helps us account for the actual scale of each feature.</p>
+
 Element-wise product of the input gradient and the input itself:
 
 $$\text{GradInput}(x) = \nabla_x F(x) \odot x$$
@@ -327,6 +358,8 @@ Accounts for the magnitude of the input feature, not just its sensitivity.
 
 ![[Lecture13_Pg048_5_Guided_Backpropagation.png]]
 
+<p class="image-caption">Guided Backprop gives us much sharper maps by being more selective about which gradients it passes back.</p>
+
 Modify the backward pass through ReLUs: zero out gradient entries that are either _negative_ OR whose forward activation was _negative_:
 
 $$R^l_i = (f^l_i > 0) \cdot (R^{l+1}_i > 0) \cdot R^{l+1}_i$$
@@ -336,6 +369,8 @@ This produces sharper, less noisy maps compared to vanilla gradients.
 ### 6. Layer-wise Relevance Propagation (LRP)
 
 ![[Lecture13_Pg049_6_Layer_Wise_Relevance_Propagation_Lrp.png]]
+
+<p class="image-caption">LRP is all about redistributing the output score back through the layers in a conservative way.</p>
 
 Propagate a "relevance" score from the output back through the network iteratively, using conservation rules. Different propagation rules can be specified per layer type. Heatmapping.org provides visualisations.
 
@@ -392,6 +427,8 @@ def grad_cam(model, x, target_class):
 
 ![[Lecture13_Pg053_Prototypes_Example_Based_Explanations.png]]
 
+<p class="image-caption">Sometimes it's easier to explain things using actual examples, like prototypes or influential samples from the training set.</p>
+
 **Key idea**: Explain a model not with feature weights but with _example inputs_ — real or synthetic — that illuminate its behaviour.
 
 Key questions:
@@ -409,6 +446,8 @@ Identify which training examples had the most influence on a given test predicti
 ### Activation Maximisation / Feature Visualisation
 
 ![[Lecture13_Pg058_Activation_Maximisation_Feature_Visualisation.png]]
+
+<p class="image-caption">We can visualize what a neuron likes by optimizing an image to maximize its activation.</p>
 
 Starting from random noise, optimise an image via gradient descent to maximally activate a specific neuron or class output [Olah et al., 2017]:
 
@@ -445,6 +484,8 @@ Counterfactuals are fundamentally different from saliency: saliency says _"this 
 
 ![[Lecture13_Pg063_1_Minimum_Distance_Counterfactuals_Wachter_Et.png]]
 
+<p class="image-caption">Minimum distance counterfactuals tell you the smallest change needed to flip the outcome—super useful for recourse.</p>
+
 $$x^{CF} = \arg\min_{x'} \; d(x, x') \quad \text{s.t.} \quad f(x') = y'$$
 
 Using **normalised Manhattan distance** penalises the total number of changes, favouring small perturbations over many large ones. The candidate CF1 vs. CF2 choice depends on which direction $A$ or $B$ you move $x$ along — the metric governs this.
@@ -454,6 +495,7 @@ Using **normalised Manhattan distance** penalises the total number of changes, f
 <!-- Review Needed: close slide match for '2. Feasible and Least-Cost Counterfactuals [Ustun et al., 2019]' (p64: 0.603, p66: 0.582) -->
 
 ![[Lecture13_Pg064_2_Feasible_And_Least_Cost_Counterfactuals.png]]
+
 ![[Lecture13_Pg066_2_Feasible_And_Least_Cost_Counterfactuals.png]]
 
 A bare minimum-distance counterfactual can suggest impossible changes (e.g., "change your race"). Adding actionability constraints:
@@ -492,6 +534,8 @@ Implementation: solve via a variational autoencoder; requires access to model gr
 
 ![[Lecture13_Pg076_Collection_Of_Local_Explanations_Sp_Lime.png]]
 
+<p class="image-caption">SP-LIME picks a representative set of local explanations to give you a global sense of the model.</p>
+
 **Problem**: LIME explains one prediction at a time. You can't manually inspect thousands of local explanations.
 
 **SP-LIME** (Submodular Pick LIME) selects $k$ representative and diverse local explanations to summarise the model's global behaviour.
@@ -515,6 +559,8 @@ All instances → LIME for each → explanation matrix (N × F)
 
 ![[Lecture13_Pg079_Representation_Based_Network_Dissection_Bau_Et.png]]
 
+<p class="image-caption">Network Dissection helps us map internal neurons to human-readable concepts like "stripes" or "wheels".</p>
+
 Determine what human-interpretable concepts are encoded by individual neurons (convolutional filters).
 
 **Procedure**:
@@ -528,6 +574,8 @@ Determine what human-interpretable concepts are encoded by individual neurons (c
 ### Representational Similarity
 
 ![[Lecture13_Pg081_Representational_Similarity.png]]
+
+<p class="image-caption">Checking representational similarity helps us see how different layers or models compare to each other.</p>
 
 Key questions: How similar are representations across layers of the same model? How similar are representations across different models?
 
@@ -628,6 +676,8 @@ If a _linear_ probe achieves high accuracy, the concept is **linearly decodable*
 
 ![[Lecture13_Pg085_Structured_Tabular_Data.png]]
 
+<p class="image-caption">Explaining tabular data has its own set of challenges, like dealing with mixed types and discrete values.</p>
+
 Common in: disease diagnosis (weight, age, glucose), credit scoring (income, previous crimes), recommender systems.
 
 **Challenges**:
@@ -643,7 +693,12 @@ Common in: disease diagnosis (weight, age, glucose), credit scoring (income, pre
 <!-- Review Needed: close slide match for 'Computer Vision' (p89: 0.552, p90: 0.521) -->
 
 ![[Lecture13_Pg089_Computer_Vision.png]]
+
+<p class="image-caption">In computer vision, we have a ton of great tools for visualizing what the model sees.</p>
+
 ![[Lecture13_Pg090_Computer_Vision.png]]
+
+<p class="image-caption">Heatmaps and saliency maps help confirm if the model is focusing on the right visual cues.</p>
 
 Applicable methods: all gradient-based saliency (Input Gradient, Guided Backprop, Integrated Gradients, Grad-CAM), TCAV for concept-level explanations.
 
@@ -652,6 +707,8 @@ Applicable methods: all gradient-based saliency (Input Gradient, Guided Backprop
 ### Natural Language Processing
 
 ![[Lecture13_Pg093_Natural_Language_Processing.png]]
+
+<p class="image-caption">NLP is trickier because of the discrete nature of text, but we still have some solid interpretability methods.</p>
 
 **Challenges**:
 
@@ -667,6 +724,8 @@ Applicable methods: all gradient-based saliency (Input Gradient, Guided Backprop
 
 ![[Lecture13_Pg095_Evaluation_Of_Explanations.png]]
 
+<p class="image-caption">At the end of the day, we need to evaluate whether these explanations are actually helpful for humans.</p>
+
 How do we know if an explanation is _good_? This is non-trivial — explanations exist for human consumers, so evaluation requires human studies.
 
 Three evaluation goals [Doshi-Velez & Kim, 2017]:
@@ -676,7 +735,12 @@ Three evaluation goals [Doshi-Velez & Kim, 2017]:
 <!-- Review Needed: close slide match for '1. Understand Behaviour' (p100: 0.517, p99: 0.472) -->
 
 ![[Lecture13_Pg100_1_Understand_Behaviour.png]]
+
+<p class="image-caption">One goal is just to understand the model's behavior—like seeing which features it really depends on.</p>
+
 ![[Lecture13_Pg099_1_Understand_Behaviour.png]]
+
+<p class="image-caption">Tests like deletion and insertion help us measure how much each feature actually impacts the output.</p>
 
 **Deletion / Insertion tests** [Qi et al., 2020]: Remove (or add) features in order of importance and measure the change in model prediction. A good explanation should identify features whose removal causes a sharp accuracy drop.
 
@@ -692,7 +756,12 @@ Three evaluation goals [Doshi-Velez & Kim, 2017]:
 <!-- Review Needed: close slide match for '2. Useful for Debugging' (p106: 0.484, p104: 0.471) -->
 
 ![[Lecture13_Pg106_2_Useful_For_Debugging.png]]
+
+<p class="image-caption">XAI is a lifesaver for debugging, helping us catch when a model is right for the wrong reasons.</p>
+
 ![[Lecture13_Pg104_2_Useful_For_Debugging.png]]
+
+<p class="image-caption">Explanations can help us spot bugs or biases that might be hidden in the model's performance metrics.</p>
 
 - **Detecting bugs**: Create a deliberately buggy classifier; check if users can identify the bug given explanations [Ribeiro et al., 2016]
 - **Comparing classifiers**: Given two explanations, can users correctly identify which model is better?
@@ -702,6 +771,8 @@ Three evaluation goals [Doshi-Velez & Kim, 2017]:
 ### 3. Help Make Decisions
 
 ![[Lecture13_Pg108_3_Help_Make_Decisions.png]]
+
+<p class="image-caption">Finally, explanations should actually help us make better decisions when collaborating with AI.</p>
 
 **Human-AI collaboration**: Are explanations useful for tasks where the algorithm alone is unreliable?
 
