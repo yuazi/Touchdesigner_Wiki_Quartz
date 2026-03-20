@@ -9,7 +9,10 @@ tags:
   - nlp
 date: 2026-03-09
 ---
-[[notes/mlp/04-rnn|Previous: L04 — RNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/06-vit|Next: (y-06) ViT]]
+
+[[notes/mlp/04-rnn|Previous: L04: RNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/06-vit|Next: ViT]]
+
+---
 
 **This lecture covers:**
 
@@ -1144,4 +1147,4 @@ From the lecture's closing slide:
 - **Positional Encoding**: Crucial because Transformers have **no inherent sense of order** (unlike RNNs). Without it, the model treats the input as a "bag of words."
 
 ---
-[[notes/mlp/04-rnn|Previous: L04 — RNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/06-vit|Next: (y-06) ViT]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/mlp/04-rnn|Previous: L04]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/06-vit|Next: ViT]]
