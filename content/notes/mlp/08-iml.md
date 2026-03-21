@@ -7,13 +7,10 @@ tags:
   - active-learning
   - human-in-the-loop
   - annotation
----
 date: 2026-03-09
 ---
+[[notes/mlp/07-multimodal|Previous: L07 — Multimodal]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/09-vae|Next: (y-09) VAE]]
 
-[[notes/mlp/07-multimodal|Previous: L07: Multimodal Learning]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/09-vae|Next: VAE]]
-
----
 ## Mental Model First
 
 - Interactive ML starts from one practical fact: **human attention is expensive**, so we should spend it where it teaches the model the most.
@@ -70,7 +67,7 @@ But sometimes you **still need a human in the loop**:
 
 > **Interactive Machine Learning (iML)** := algorithms that interact with agents (which can be humans) and that can optimise their learning behaviour through this interaction. — Holzinger, 2015
 
-The human is seen as an agent involved in the **actual learning phase**, influencing measures such as distance or cost functions step by step — not just checking results at the end.
+The human is seen as an agent involved in the **actual learning phase**, influencing years such as distance or cost functions step by step — not just checking results at the end.
 
 This matters especially in **health informatics** and other high-stakes settings, where decision making can be viewed as a search problem in a very large hypothesis space under tight time constraints. A "good" decision is not only about raw prediction accuracy; it is about **expected utility** under domain-specific costs, risks, and failure modes.
 
@@ -612,7 +609,7 @@ $$I(y; \omega \mid x, \mathcal{D}) = \underbrace{H(y \mid x, \mathcal{D})}_{\tex
 - **First term**: high if the _average_ model output is uncertain
 - **Second term**: penalises cases where _individual_ models are also uncertain — we want models that are individually confident but _disagree_ with each other
 
-$$x^* = \arg\max_x \; I(y; \omega \mid x, \mathcal{D})$$
+$$x^* = \arg\max_x \; I(y; \omega \mid x, \mathcal{D}$$
 
 In practice with MC Dropout:
 
@@ -791,4 +788,4 @@ class GNN(nn.Module):
 - **GNN Iterations**: Each message-passing step increases the **receptive field** by one hop. To capture a whole Sudoku board, you need at least $T=9$ iterations.
 
 ---
-[[notes/mlp/07-multimodal|Previous: L07]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/09-vae|Next: VAE]]
+[[notes/mlp/07-multimodal|Previous: L07 — Multimodal]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/09-vae|Next: (y-09) VAE]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

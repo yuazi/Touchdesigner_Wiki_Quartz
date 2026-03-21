@@ -9,7 +9,7 @@ tags:
   - deep-learning
 date: 2026-03-09
 ---
-[[notes/mlp/12-diffusion|Previous: L12 — Diffusion Models]] | [[notes/mlp/index|Back to MPL Index]]
+[[notes/mlp/12-diffusion|Previous: L12 — Diffusion]] | [[notes/mlp/index|Back to MPL Index]]
 
 ## Mental Model First
 
@@ -817,4 +817,5 @@ Three evaluation goals [Doshi-Velez & Kim, 2017]:
 - **Local vs. Global**: LIME provides **Local** explanations (for one specific image), while TCAV provides **Global** explanations (for a whole concept like "stripes").
 
 ---
-[[notes/mlp/12-diffusion|Previous: L12 — Diffusion Models]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/mlp/12-diffusion|Previous: L12 — Diffusion]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+

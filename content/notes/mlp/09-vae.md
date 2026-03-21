@@ -9,10 +9,8 @@ tags:
   - neural-networks
 date: 2026-03-09
 ---
+[[notes/mlp/08-iml|Previous: L08 — IML]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/10-gans|Next: (y-10) GANs]]
 
-[[notes/mlp/08-iml|Previous: L08]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/10-gans|Next: GANs]]
-
----
 > **Slide credits**: O. Hilliges @ ETHZ · Paul Liang & Louis-Philippe Morency @ CMU
 
 ---
@@ -719,5 +717,5 @@ class VAE(nn.Module):
 - **Latent Space**: The **KL-Divergence** term in the loss forces the latent space to be a smooth, continuous Gaussian, enabling meaningful interpolation.
 - **ELBO**: The Evidence Lower Bound is the training objective that balances reconstruction quality with latent space regularity.
 
-
-[[notes/mlp/08-iml|Previous: L08]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/10-gans|Next: (y-10) GANs]]
+---
+[[notes/mlp/08-iml|Previous: L08 — IML]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/10-gans|Next: (y-10) GANs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

@@ -8,10 +8,7 @@ tags:
   - computer-vision
 date: 2026-03-09
 ---
-
-[[notes/mlp/01-introduction|Previous: L01: Introduction]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/03-vision-cnn|Next: Vision CNNs]]
-
----
+[[notes/mlp/01-introduction|Previous: L01 — Intro]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/03-vision-cnn|Next: (y-03) Vision CNNs]]
 
 ## Mental Model First
 
@@ -594,4 +591,4 @@ class LeNet5(nn.Module):
 - **Receptive Field**: Each layer increases the 'view' of the original image. Deeper layers capture more global context but lose spatial precision.
 
 ---
-[[notes/mlp/01-introduction|Previous: L01]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/03-vision-cnn|Next: Vision CNNs]]
+[[notes/mlp/01-introduction|Previous: L01 — Intro]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/03-vision-cnn|Next: (y-03) Vision CNNs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

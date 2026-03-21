@@ -10,10 +10,7 @@ tags:
   - neural-networks
 date: 2026-03-09
 ---
-
-[[notes/mlp/05-transformer|Previous: L05: Transformers]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/07-multimodal|Next: Multimodal Learning]]
-
----
+[[notes/mlp/05-transformer|Previous: L05 — Transformers]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/07-multimodal|Next: (y-07) Multimodal]]
 
 **This lecture covers:**
 
@@ -136,9 +133,9 @@ Image (224×224×3)
 
 #### Step 2: Encoding and Classification
 
-![[Lecture06_Pg013_Step_2_Encoding_And_Classification.png|Step 2: Transformer encoding and [CLS] token classification]]
+![[Lecture06_Pg013_Step_2_Encoding_And_Classification.png]]
 
-*Step 2: Transformer encoding and [CLS] token classification*
+<p class="image-caption">Step 2: Transformer encoding and [CLS] token classification</p>
 
 - Feed the 197-token sequence into a **standard Transformer encoder** (same architecture as L05)
 - MLP head: two dense layers with **GeLU** non-linearity (not ReLU — GeLU is smoother and empirically better for ViT)
@@ -770,4 +767,4 @@ From the lecture's closing slide — notable models and frameworks as of WS 2025
 - **Hybrid Models**: Often use a CNN backbone to extract features before passing them to a Transformer for global reasoning.
 
 ---
-[[notes/mlp/05-transformer|Previous: L05]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/07-multimodal|Next: Multimodal]]
+[[notes/mlp/05-transformer|Previous: L05 — Transformers]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/07-multimodal|Next: (y-07) Multimodal]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

@@ -9,10 +9,7 @@ tags:
   - nlp
 date: 2026-03-09
 ---
-
-[[notes/mlp/04-rnn|Previous: L04: RNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/06-vit|Next: ViT]]
-
----
+[[notes/mlp/04-rnn|Previous: L04 — RNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/06-vit|Next: (y-06) ViT]]
 
 **This lecture covers:**
 
@@ -69,7 +66,7 @@ $$\text{rabbit} = [0, 0, 1, 0, \ldots]$$
 
 ![[Lecture05_Pg009_Learned_Embeddings.png]]
 
-<p class="image-caption">Learned embeddings map words into a dense vector space where similar meanings sit close together.</p>
+<p class="image-caption">Learned embeddings map words into a space where similar meanings sit close together.</p>
 
 Instead of a sparse binary vector, map each word to a **dense real-valued vector** in a shared vector space. These vectors are learned from data.
 
@@ -207,7 +204,7 @@ The word "left" (past tense of leave) and "left" (spatial direction) are differe
 
 <p class="image-caption">As you go deeper into the Transformer, the embeddings get more and more specific to their context.</p>
 
-Ethayarajh (2019) compared BERT, ELMo, and GPT-2 using three new measures: self-similarity, intra-sentence similarity, and **Maximum Explainable Variance (MEV)** — the proportion of variance in a word's representations that can be explained by its first principal component.
+Ethayarajh (2019) compared BERT, ELMo, and GPT-2 using three new years: self-similarity, intra-sentence similarity, and **Maximum Explainable Variance (MEV)** — the proportion of variance in a word's representations that can be explained by its first principal component.
 
 **Findings**:
 
@@ -1147,4 +1144,4 @@ From the lecture's closing slide:
 - **Positional Encoding**: Crucial because Transformers have **no inherent sense of order** (unlike RNNs). Without it, the model treats the input as a "bag of words."
 
 ---
-[[notes/mlp/04-rnn|Previous: L04]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/06-vit|Next: ViT]]
+[[notes/mlp/04-rnn|Previous: L04 — RNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/06-vit|Next: (y-06) ViT]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

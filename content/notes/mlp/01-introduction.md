@@ -18,8 +18,7 @@ date: 2026-03-09
 
 I use the [[work/slidelink|SlideLink]] tool I built to automatically align these notes with the original lecture slides.
 
-This course is **in-depth, hands-on, and advanced**
- — it assumes prior exposure to machine learning, deep learning, reinforcement learning, or computer vision.
+This course is **in-depth, hands-on, and advanced** — it assumes prior exposure to machine learning, deep learning, reinforcement learning, or computer vision.
 
 ---
 
@@ -173,8 +172,6 @@ while True:
 ![[Lecture01_Pg075_Batch_Training.png]]
 
 <p class="image-caption">Batch training looks at every single sample before making one update.</p>
-
-<!-- Review Needed: close slide match for 'Batch Training' (p75: 0.612, p77: 0.607) -->
 
 Process **all** $n$ training samples, then update weights once based on $L(W) = \frac{1}{n}\sum_{i=1}^n L_i(W)$.
 
@@ -370,8 +367,6 @@ _(Maas et al., 2013; He et al., 2015)_
 
 <p class="image-caption">ELU gives you the best of ReLU but with smoother activations for negative inputs.</p>
 
-<!-- Review Needed: close slide match for 'ELU (Exponential Linear Unit)' (p114: 0.580, p115: 0.556) -->
-
 $$f(x) = \begin{cases} x & \text{if } x > 0 \\ \alpha(e^x - 1) & \text{if } x \le 0 \end{cases} \qquad (\text{default: } \alpha = 1)$$
 
 _(Clevert et al., 2016)_
@@ -383,8 +378,6 @@ _(Clevert et al., 2016)_
 
 ### Maxout
 
-<!-- Review Needed: close slide match for 'Maxout' (p117: 0.533, p118: 0.512) -->
-
 ![[Lecture01_Pg117_Maxout.png]]
 
 <p class="image-caption">Maxout picks the best of several linear functions to create flexible activation shapes.</p>
@@ -392,8 +385,6 @@ _(Clevert et al., 2016)_
 ![[Lecture01_Pg118_Maxout.png]]
 
 <p class="image-caption">Another way to see Maxout: it's piecewise-linear and never saturates.</p>
-
-<!-- Review Needed: close slide match for 'Maxout' (p118: 0.734, p117: 0.696) -->
 
 $$f(x) = \max(w_1^\top x + b_1,\; w_2^\top x + b_2)$$
 
@@ -465,8 +456,6 @@ Activations are nicely scaled across all layers. **Assumes a zero-centred activa
 
 ### Kaiming / MSRA Initialisation — for ReLU (He et al., 2015)
 
-<!-- Review Needed: close slide match for 'Kaiming / MSRA Initialisation — for ReLU (He et al., 2015)' (p137: 0.479, p138: 0.478) -->
-
 ![[Lecture01_Pg137_Kaiming_Msra_Initialisation_For_Relu_He.png]]
 
 <p class="image-caption">Kaiming initialization is the go-to choice when you’re using ReLU.</p>
@@ -484,8 +473,6 @@ Xavier breaks down for ReLU because ReLU is not zero-centred (it zeros out half 
 ---
 
 ## Batch Normalisation
-
-<!-- Review Needed: close slide match for 'Batch Normalisation' (p83: 0.404, p81: 0.366) -->
 
 Batch Normalisation was introduced to make deep networks easier to optimise (Ioffe and Szegedy, 2015). The original motivation was to reduce **internal covariate shift**: as lower layers change during training, the distribution seen by higher layers also changes. In practice, BatchNorm also makes training **less sensitive to weight initialisation** and typically stabilises optimisation.
 

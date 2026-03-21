@@ -10,7 +10,7 @@ tags:
   - neural-networks
 date: 2026-03-09
 ---
-[[notes/mlp/11-rl|Previous: L11 — Reinforcement Learning]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/13-xai|Next: (y-13) Explainable AI (XAI)]]
+[[notes/mlp/11-rl|Previous: L11 — RL]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/13-xai|Next: (y-13) XAI]]
 
 > **Course**: Machine Perception and Learning for Collaborative Intelligent Systems  
 > **Lecturer**: Prof. Dr. Andreas Bulling, University of Stuttgart, WS 2025/2026
@@ -884,4 +884,5 @@ class DDPM(nn.Module):
 - **Sampling**: Unlike VAEs or GANs (one-step), Diffusion requires **iterative refinement**, making it high-quality but slower to generate.
 
 ---
-[[notes/mlp/11-rl|Previous: L11 — Reinforcement Learning]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/13-xai|Next: (y-13) Explainable AI (XAI)]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/mlp/11-rl|Previous: L11 — RL]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/13-xai|Next: (y-13) XAI]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+
