@@ -19,18 +19,32 @@ I’ve been looking for a way to actually "see" the concepts from my [[notes/mlp
 
 ---
 
-## Part 1: Parameters & Setup
+## Part 1: Setup & Models
 
-The first step involves setting up a way to swap models without diving into the code every time.
+The first step is hooking up your camera and pointing TouchDesigner to the right model file.
 
-1.  **Script TOP:** Drop a **Script TOP** into your network.
-2.  **Custom Page:** Open the script callbacks and add a file parameter in the `onSetupParameters` function.
+1.  **Video Device In TOP:** This is your "eye." It pulls the feed from your MacBook's webcam. 
+2.  **Script TOP:** Create a **Script TOP** and connect your camera to its input. This acts as the Python bridge.
+3.  **Model Selection:** You'll need a pre-trained `.onnx` file. You can grab these from the [ONNX Model Zoo](https://github.com/onnx/models) under the **Vision > Image Manipulation** section (look for "Fast Neural Style Transfer"). 
+
+> [!tip] Hugging Face
+> Many models from the ONNX Zoo have moved to [Hugging Face](https://huggingface.co/onnxmodelzoo). If the GitHub link is down, check there for the latest `.onnx` versions.
+
+### Recommended Models
+Different models have different "personalities." Here are the ones that work best for real-time:
+- **`mosaic`**: Very strong, geometric textures. Great for high-contrast scenes.
+- **`udnie`**: A mix of sharp lines and muted colors. Very "painterly."
+- **`rain-princess`**: Bright, vibrant blues and yellows. Very expressive.
+- **`candy`**: High-saturation, smooth shapes. Great for colorful lighting.
+- **`pointilism`**: Soft, dotted textures. Perfect for subtle, dreamy looks.
+
+4.  **Custom Page:** Open the script callbacks and add a file parameter in the `onSetupParameters` function.
     ```python
     def onSetupParameters(scriptOp):
         page = scriptOp.appendCustomPage('Style')
         page.appendFile('Modelpath', label='ONNX Model Path')
     ```
-3.  **Model Selection:** Point the new **Model Path** parameter to your `.onnx` file (I usually find mine in the [ONNX Model Zoo](https://github.com/onnx/models)).
+5.  **Assign Model:** Point the new **Model Path** parameter to your downloaded `.onnx` file.
 
 ---
 
