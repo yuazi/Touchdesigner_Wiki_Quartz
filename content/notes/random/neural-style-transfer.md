@@ -48,6 +48,19 @@ Different models have different "personalities." Here are the ones that work bes
 
 ---
 
+## Part 1.5: How Model Paths Work
+
+When the code asks for a **Model Path**, it’s looking for the literal address of the `.onnx` file on your MacBook's hard drive.
+
+- **The Address:** Something like `/Users/yourname/Downloads/mosaic.onnx`.
+- **The Shortcut:** Instead of typing it out, you can click the **folder icon** next to the **Model Path** parameter or simply **drag and drop** the file from your Finder directly onto the parameter field in TouchDesigner.
+- **The Code Logic:** The script uses `scriptOp.par.Modelpath.eval()` to grab that address and pass it to OpenCV. If the path is wrong, the network won't load and you'll get a black screen.
+
+> [!tip] Troubleshooting Paths
+> If it's not working, open the **Textport** (`Alt+T`). If you see an error like `cv2.error: ... can't open file`, it means the path is pointing to a file that doesn't exist or is in a folder TouchDesigner can't access.
+
+---
+
 ## Part 2: The Inference Loop
 
 The `onCook` callback handles the data flow: taking pixels from the input, running them through the neural net, and copying them back to the TOP.
