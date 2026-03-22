@@ -357,6 +357,10 @@ For the output word "Wirtschaftszone", global attention correctly puts weight on
 
 ### Architecture Overview
 
+![[Lecture05_Pg051_Attention_Is_All_You_Need_Overview.png]]
+
+<p class="image-caption">The main architecture diagram showing the Transformer encoder and decoder stacks.</p>
+
 The Transformer is an **encoder-decoder** architecture:
 
 - **Encoder**: several identical encoder modules stacked (e.g., 6 in the original paper)
@@ -377,6 +381,10 @@ The Transformer is an **encoder-decoder** architecture:
 ---
 
 ### Self-Attention and Contextual Embeddings
+
+![[Lecture05_Pg059_Self_Attention_QKV.png]]
+
+<p class="image-caption">Self-attention splits each token into a Query, Key, and Value vector to dynamically route information.</p>
 
 Self-attention is what makes embeddings **contextual**. Each token produces three vectors from its embedding:
 

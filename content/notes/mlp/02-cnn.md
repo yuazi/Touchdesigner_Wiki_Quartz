@@ -445,6 +445,10 @@ Shortly afterwards, **batch normalisation** was invented, removing the need for 
 
 ### Case Study: ResNet
 
+![[Lecture02_Pg069_Case_Study_Resnet_Block.png]]
+
+<p class="image-caption">The fundamental building block of ResNet, showing the crucial skip connection that bypasses the non-linear layers.</p>
+
 ![[Lecture02_Pg075_Case_Study_Resnet.png]]
 
 <p class="image-caption">ResNet's skip connections let the gradient flow through dozens or even hundreds of layers.</p>

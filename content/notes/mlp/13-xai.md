@@ -119,6 +119,11 @@ Both LIME and SHAP give you feature importance, but they do it very differently.
 
 ## Taxonomy of Post-hoc Explanation Methods
 
+![[Lecture13_Pg026_Post_Hoc_Explainability_Overview.png]]
+
+<p class="image-caption">Added missing architecture/summary slide.</p>
+
+
 ```
 Post-hoc Explainability
 ├── Local

@@ -172,6 +172,11 @@ After enough training, the same RNN could generate plausible **Wikipedia markup*
 
 ## Computational Graphs
 
+![[Lecture04_Pg022_Recurrent_Neural_Networks_Computational_Graph.png]]
+
+<p class="image-caption">Added missing architecture/summary slide.</p>
+
+
 ### Many-to-Many
 
 

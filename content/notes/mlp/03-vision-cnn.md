@@ -211,6 +211,11 @@ Eliminates the external region proposal step by adding a **Region Proposal Netwo
 
 #### Region Proposal Network (RPN)
 
+![[Lecture03_Pg033_Region_Proposal_Network_Rpn.png]]
+
+<p class="image-caption">Added missing architecture/summary slide.</p>
+
+
 ![[Lecture03_Pg035_Region_Proposal_Network_Rpn.png]]
 
 <p class="image-caption">A closer look at the RPN, the part of the network that "guesses" where objects are.</p>

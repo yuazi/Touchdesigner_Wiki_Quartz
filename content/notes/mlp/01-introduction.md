@@ -31,6 +31,11 @@ This course is **in-depth, hands-on, and advanced** — it assumes prior exposur
 
 ## Refresher: Neural Networks
 
+![[Lecture01_Pg041_Refresher_Neural_Networks_Architectures.png]]
+
+<p class="image-caption">Added missing architecture/summary slide.</p>
+
+
 ### The Perceptron
 
 The basic unit of a neural network:

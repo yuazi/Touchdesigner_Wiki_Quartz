@@ -36,7 +36,12 @@ $$p_\theta(x) = \int p_\theta(z)\, p_\theta(x|z)\, dz$$
 
 - Since this can't be optimised directly, we derive and optimise a **lower bound (ELBO)** on the likelihood.
 
-### Summary of VAEs
+#
+
+![[Lecture10_Pg034_Generative_Adversarial_Networks_Gans_Training_Gans_Pseudocode.png]]
+
+<p class="image-caption">Added missing architecture/summary slide.</p>
+## Summary of VAEs
 
 ![[Lecture10_Pg008_Summary_Of_Vaes.png]]
 
@@ -729,6 +734,11 @@ Lower FID means the generated distribution is closer to the real one. FID captur
 
 ---
 
+
+
+![[Lecture10_Pg034_Generative_Adversarial_Networks_Gans_Training_Gans_Pseudocode.png]]
+
+<p class="image-caption">Added missing architecture/summary slide.</p>
 ## Summary: GAN Variants
 
 | GAN Variant        | Key Innovation                                | Paper                   |

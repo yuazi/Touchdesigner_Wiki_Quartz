@@ -301,7 +301,12 @@ Object detection requires:
 
 ---
 
-### DETR — End-to-End Object Detection with Transformers
+### DETR
+
+![[Lecture06_Pg027_Object_Detection_With_Vits_Detr_Architecture.png]]
+
+<p class="image-caption">Added missing architecture/summary slide.</p>
+ — End-to-End Object Detection with Transformers
 
 ![[Lecture06_Pg026_Detr_End_To_End_Object_Detection.png]]
 
@@ -319,7 +324,12 @@ Object detection requires:
 
 ---
 
-### DETR Architecture
+### DETR
+
+![[Lecture06_Pg027_Object_Detection_With_Vits_Detr_Architecture.png]]
+
+<p class="image-caption">Added missing architecture/summary slide.</p>
+ Architecture
 
 
 ```
@@ -408,7 +418,12 @@ This shows the modularity of the Transformer-based approach — segmentation req
 
 ---
 
-### DETR — Results and Shortcomings
+### DETR
+
+![[Lecture06_Pg027_Object_Detection_With_Vits_Detr_Architecture.png]]
+
+<p class="image-caption">Added missing architecture/summary slide.</p>
+ — Results and Shortcomings
 
 On COCO, DETR is not just conceptually elegant; it is also **competitive with strong Faster R-CNN baselines**. In the lecture comparison table:
 

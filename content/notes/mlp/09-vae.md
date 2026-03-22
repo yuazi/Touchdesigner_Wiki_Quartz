@@ -673,6 +673,11 @@ class VAE(nn.Module):
 
 ---
 
+
+
+![[Lecture09_Pg061_Variational_Autoencoders_Training_Vaes.png]]
+
+<p class="image-caption">Added missing architecture/summary slide.</p>
 ## Summary of VAEs
 
 ![[Lecture09_Pg088_Summary_Of_Vaes.png]]

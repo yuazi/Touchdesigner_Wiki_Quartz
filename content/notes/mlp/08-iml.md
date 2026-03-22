@@ -184,6 +184,11 @@ _(Zhu and Goldberg, 2009)_
 
 ## Active Learning
 
+![[Lecture08_Pg045_Active_Learning_What_Makes_A_Good_Active_Learning_Algorithm.png]]
+
+<p class="image-caption">Added missing architecture/summary slide.</p>
+
+
 ### Batch vs. Selective Sampling (Stream)
 
 ![[Lecture08_Pg044_Batch_Vs_Selective_Sampling_Stream.png]]
@@ -491,7 +496,12 @@ This is a **harmonic equation**: labels spread outward from labeled nodes, weigh
 
 > **Example**: A document graph where edges connect articles sharing many keywords. Label 3 articles in a "sports" cluster as positive and 2 articles in a "finance" cluster as negative. Label propagation will assign positive labels to all sports articles and negative to all finance articles, flowing through the keyword-similarity edges.
 
-### Active Learning with Label Propagation
+### Active Learning
+
+![[Lecture08_Pg045_Active_Learning_What_Makes_A_Good_Active_Learning_Algorithm.png]]
+
+<p class="image-caption">Added missing architecture/summary slide.</p>
+ with Label Propagation
 
 
 ![[Lecture08_Pg083_Active_Learning_With_Label_Propagation.png]]

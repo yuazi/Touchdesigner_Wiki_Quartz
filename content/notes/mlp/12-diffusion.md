@@ -299,6 +299,12 @@ So "predict the noise" is not just a coding convenience. It is the parameterizat
 
 ---
 
+### Training and Sampling Algorithms
+
+![[Lecture12_Pg038_Training_And_Sampling_Algorithms.png]]
+
+<p class="image-caption">The core training and sampling algorithms for Denoising Diffusion Probabilistic Models (DDPM).</p>
+
 ### Training Procedure — U-Net Architecture
 
 ![[Lecture12_Pg039_Training_Procedure_U_Net_Architecture.png]]
@@ -563,7 +569,12 @@ The essential trick is simple: define a shorter timestep schedule and denoise on
 
 ---
 
-## Latent Diffusion Models (Rombach et al., 2022)
+## Latent Diffusion Models
+
+![[Lecture12_Pg058_Latent_Diffusion_Models_Overview_Rombach_Et_Al_2022.png]]
+
+<p class="image-caption">Added missing architecture/summary slide.</p>
+ (Rombach et al., 2022)
 
 ### Motivation — The Scaling Problem
 
