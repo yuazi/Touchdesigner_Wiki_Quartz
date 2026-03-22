@@ -554,7 +554,7 @@ x_0 →[VAE Enc]→ z_0 →[Noise]→ z_T →[U-Net]→ ẑ_0 →[VAE Dec]→ x�
 
 ### Two-Stage Training
 
-![[Lecture12_Pg039_Two_Stage_Training.png]]
+![[Lecture12_Pg060_Two_Stage_Training.png]]
 
 <p class="image-caption">The trick with Latent Diffusion is to compress the image first, then do all the heavy lifting in that smaller space.</p>
 
@@ -580,7 +580,7 @@ This is a big part of why latent diffusion became the foundation for systems lik
 
 In the lecture slides, the first stage is not just plain reconstruction: a **patch-based adversarial discriminator** is added on top of the reconstruction / perceptual objective so the latent space keeps visually important details while staying compressed.
 
-![[Lecture12_Pg059_Adversarial_Patch_Based_Discriminator.png]]
+![[Lecture12_Pg061_Adversarial_Patch_Based_Discriminator.png]]
 
 <p class="image-caption">Stage 1 of latent diffusion couples the autoencoder with a patch discriminator so compression keeps perceptually important detail.</p>
 
@@ -604,7 +604,7 @@ In the lecture slides, the first stage is not just plain reconstruction: a **pat
 
 ### Overview
 
-![[Lecture12_Pg067_Overview.png]]
+![[Lecture12_Pg063_Overview.png]]
 
 <p class="image-caption">GLIDE lets us both generate new images and edit existing ones just by typing a prompt.</p>
 
@@ -821,7 +821,7 @@ Diffusion often offers strong quality and coverage, but usually sacrifices speed
 
 
 
-![[Lecture12_Pg063_Text_Guided_Diffusion_Models.png]]
+![[Lecture12_Pg067_Text_Guided_Diffusion_Models.png]]
 
 <p class="image-caption">This recap slide ties together text conditioning, latent diffusion, and guided generation for modern image models.</p>
 ## Summary

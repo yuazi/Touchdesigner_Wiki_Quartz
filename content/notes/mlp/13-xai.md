@@ -57,7 +57,7 @@ Build a model that is interpretable by design: decision trees, rule lists, linea
 
 ### Approach 2 — Post-hoc Explanations
 
-![[Lecture13_Pg073_Approach_2_Post_Hoc_Explanations.png]]
+![[Lecture13_Pg015_Approach_2_Post_Hoc_Explanations.png]]
 
 <p class="image-caption">If the model is a black box, we have to use post-hoc methods to figure out what's going on inside.</p>
 

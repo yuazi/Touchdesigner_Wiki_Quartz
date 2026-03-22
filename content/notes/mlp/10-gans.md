@@ -68,7 +68,7 @@ This motivates **implicit density** models — we don't write down $p(x)$ at all
 
 ### The Two-Sample Test Intuition
 
-![[Lecture10_Pg029_The_Two_Sample_Test_Intuition.png]]
+![[Lecture10_Pg019_The_Two_Sample_Test_Intuition.png]]
 
 <p class="image-caption">The two-sample test: can you tell the real samples from the generated ones?</p>
 
@@ -88,7 +88,7 @@ The test statistic $T$ compares $S_1$ and $S_2$ in terms of means and variance. 
 
 ### The GAN Idea
 
-![[Lecture10_Pg031_The_Gan_Idea.png]]
+![[Lecture10_Pg027_The_Gan_Idea.png]]
 
 <p class="image-caption">The core of GANs: learning to transform noise z into data samples x.</p>
 
@@ -128,7 +128,7 @@ Instead of trying to learn how to make all types of money, the counterfeiter mig
 
 ## The Adversarial Framework
 
-![[Lecture10_Pg029_The_Adversarial_Framework.png]]
+![[Lecture10_Pg026_The_Adversarial_Framework.png]]
 
 <p class="image-caption">The GAN architecture: a generator and a discriminator in a constant battle.</p>
 
@@ -232,7 +232,7 @@ $$\min_{\Theta_g} \; \mathbb{E}_{z \sim p_z}[\log(1 - D_{\Theta_d}(G_{\Theta_g}(
 
 ### The Gradient Problem
 
-![[Lecture10_Pg029_The_Gradient_Problem.png]]
+![[Lecture10_Pg038_The_Gradient_Problem.png]]
 
 <p class="image-caption">The vanishing gradient problem in the standard GAN setup.</p>
 
@@ -291,7 +291,7 @@ for real_batch in dataloader:
 
 ### 1. Training Instability (Nash Equilibrium)
 
-![[Lecture10_Pg028_1_Training_Instability_Nash_Equilibrium.png]]
+![[Lecture10_Pg042_1_Training_Instability_Nash_Equilibrium.png]]
 
 <p class="image-caption">GAN training is unstable—it's tough to find that perfect Nash equilibrium.</p>
 
@@ -301,7 +301,7 @@ Additionally, the generator can learn to exploit statistical properties of the d
 
 ### 2. Mode Collapse
 
-![[Lecture10_Pg092_2_Mode_Collapse.png]]
+![[Lecture10_Pg043_2_Mode_Collapse.png]]
 
 <p class="image-caption">Mode collapse: when the generator just keeps making the same few things.</p>
 
