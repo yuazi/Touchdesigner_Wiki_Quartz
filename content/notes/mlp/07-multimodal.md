@@ -277,12 +277,19 @@ In **Contrastive Learning** (like CLIP), the model is told two things:
 
 #### Architecture
 
-```
-Image → [Vision Encoder: ViT-B/32 or ResNet] → image embedding (d)
-Text  → [Text Encoder: Transformer]           → text  embedding (d)
+```text
+image -----------------> [vision encoder] ----> e_img --\
+                                                         \
+                                                          > cosine similarity matrix
+                                                         /
+text ------------------> [text encoder] ------> e_txt --/
 
-Both projected to the same d=512 dimensional space.
+training goal: push matched pairs up the diagonal, push mismatched pairs down
 ```
+
+<p class="image-caption">ASCII view: CLIP learns one shared embedding space by comparing every image embedding against every text embedding in the batch.</p>
+
+Both branches are projected into the same shared embedding space (typically $d = 512$).
 
 | Component            | Weight                               |
 | -------------------- | ------------------------------------ |
@@ -425,6 +432,18 @@ image(red car) − image(car) + text("boat") ≈ image(red boat)
 In standard self-attention, $Q$, $K$, $V$ all come from the same sequence. In a **cross-modal** attention module, the **query comes from one modality** and the **key/value from another**:
 
 $$\text{CrossAttn}(Q_A, K_B, V_B) = \text{softmax}\!\left(\frac{Q_A K_B^\top}{\sqrt{d_k}}\right) V_B$$
+
+```text
+text tokens ----------> queries Q_text
+image regions --------> keys K_img, values V_img
+
+each text token asks:
+"which image regions matter for me?"
+
+cross-attention output = text features updated with visual evidence
+```
+
+<p class="image-caption">ASCII view: cross-modal attention lets one modality actively read from another instead of forcing both into a single undifferentiated stream.</p>
 
 This allows modality A to selectively read information from modality B.
 
@@ -589,12 +608,14 @@ An improved version of ALBEF with two innovations:
 
 Two parallel attention streams, each conditioned on the other:
 
-```
+```text
 Question encodings ──► Q-guided Image Attention  ──► attended image v̂
 Image encodings    ──► V-guided Question Attention ──► attended question q̂
 
 [v̂ ; q̂] ──► prediction head
 ```
+
+<p class="image-caption">ASCII view: co-attention lets the question highlight image regions while the image simultaneously highlights the most relevant parts of the question.</p>
 
 Computed at three levels of granularity:
 

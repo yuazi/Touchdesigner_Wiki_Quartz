@@ -147,6 +147,24 @@ Patterns in high-dimensional data often live in **subsets of dimensions** (subsp
 
 <p class="image-caption">This overview frames active learning as a query strategy: which unlabeled example is most worth paying to annotate next?</p>
 
+```text
+unlabeled pool
+     |
+     v
+[query strategy]
+     |
+     v
+ most informative sample x*
+     |
+     v
+[human / oracle] -> label y*
+     |
+     v
+labeled set grows -> retrain model -> repeat
+```
+
+<p class="image-caption">ASCII view: active learning repeatedly asks for the single label that is expected to improve the model the most.</p>
+
 
 ### Batch vs. Selective Sampling (Stream)
 
@@ -465,6 +483,19 @@ query_indices = entropy.argsort()[-batch_size:]
 
 **High entropy** → every dropout run is confident about a _different_ class → very uncertain → good to query.
 
+```text
+same unlabeled sample x
+   |
+   +--> dropout mask 1 -> prediction p1
+   +--> dropout mask 2 -> prediction p2
+   +--> ...
+   +--> dropout mask T -> prediction pT
+
+large disagreement across runs = model uncertainty
+```
+
+<p class="image-caption">ASCII view: MC Dropout treats repeated stochastic forward passes as a cheap committee and measures how much they disagree.</p>
+
 ---
 
 ### BALD — Bayesian Active Learning by Disagreement
@@ -658,6 +689,18 @@ This is a **harmonic equation**: labels spread outward from labeled nodes, weigh
 **Problem**: The uncertain node might be nearly **isolated** (just one edge) — labeling it won't propagate much information.
 
 **Better — 1-step lookahead heuristic** (Fathi et al., 2011):
+
+```text
+labeled nodes:    (+) ------- (+)
+                     \       /
+unlabeled nodes:      (?)
+                     /   \
+negative nodes:    (-)   (-)
+
+good graph queries are uncertain nodes that can spread information to many neighbors
+```
+
+<p class="image-caption">ASCII view: in graph-based active learning, the best query is not just uncertain, but also strategically placed to influence many nearby unlabeled nodes.</p>
 
 For each candidate node $s$ with current soft label $p$:
 

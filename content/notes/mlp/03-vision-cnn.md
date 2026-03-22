@@ -167,6 +167,27 @@ Eliminates the external region proposal step by adding a **Region Proposal Netwo
 
 <p class="image-caption">A closer look at the RPN, the part of the network that "guesses" where objects are.</p>
 
+```text
+image
+  |
+  v
+backbone CNN -> feature map
+                  |
+                  v
+          for each location:
+          [anchor 1] [anchor 2] [anchor 3] ...
+               |         |         |
+          objectness + box offsets
+                  |
+                  v
+            top region proposals
+                  |
+                  v
+              ROI classifier
+```
+
+<p class="image-caption">ASCII view: the RPN turns one shared feature map into many anchored box guesses, then forwards the best proposals to the detector.</p>
+
 - **Input**: feature map from the backbone CNN of size $C \times W \times H$
 - **Output**: list of $p$ proposals + "objectness" score; output size $p \times 6$
 - **Approach**: slide a small (mini) net over the feature map; at each position evaluate $k$ different window sizes for objectness → $\approx W \times H \times k$ proposals
@@ -273,7 +294,7 @@ Two-stage detectors are accurate but slow. Single-stage detectors skip the propo
 
 ### What is it?
 
-![[Lecture03_Pg007_What_Is_It.png]]
+![[Lecture03_Pg041_Semantic_Segmentation.png]]
 
 <p class="image-caption">Semantic segmentation is all about giving every single pixel its own class label.</p>
 
@@ -411,6 +432,8 @@ Conv → ReLU → MaxPool ──────────→ UpConv + [concatenat
 - The decoder progressively restores spatial size, using concatenated encoder features for precise localisation
 - Designed for settings with **very limited training data** (biomedical imaging)
 
+<p class="image-caption">ASCII view: U-Net mirrors an encoder with a decoder and stitches matching-resolution features across the gap for precise localization.</p>
+
 > **Example**: in retinal vessel segmentation, the encoder path may halve spatial dims 4 times (from 572×572 to 36×36), while the decoder restores back to 388×388, concatenating high-res encoder activations at each step so the output mask retains vessel boundary detail.
 
 ---
@@ -455,6 +478,18 @@ The qualitative Mask R-CNN result slide makes the distinction from semantic segm
 - For each bin, set 4 sample points at regular subpixel intervals
 - **Bilinear interpolate** the feature values at each of the 4 points
 - Max or average pool the 4 points to get the bin value
+
+```text
+ROI Pooling:
+floating box -> round to integer bins -> pool
+               small coordinate errors become hard shifts
+
+ROI Align:
+floating box -> sample exact sub-pixel points -> interpolate
+               keep spatial alignment for the mask head
+```
+
+<p class="image-caption">ASCII view: ROI Pooling snaps boxes to a coarse grid, while ROI Align samples at exact floating-point locations to keep masks aligned.</p>
 
 > **Example**: a proposal at $(10.7, 20.3, 5.6, 8.2)$ would be rounded to $(11, 20, 6, 8)$ in ROI Pooling, introducing quantisation error. ROI Align samples at the exact floating-point coordinates using bilinear interpolation, preserving pixel-to-pixel alignment — critical for mask quality.
 

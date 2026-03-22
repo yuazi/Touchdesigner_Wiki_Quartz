@@ -89,6 +89,16 @@ Saliency helps us catch models that are "right for the wrong reasons."
 
 <p class="image-caption">It's helpful to compare local explanations for one instance versus global ones for the whole model.</p>
 
+```text
+single prediction x_i ----------> why did the model decide this?
+                                   = local explanation
+
+many predictions / whole model --> what patterns does the model rely on overall?
+                                   = global explanation
+```
+
+<p class="image-caption">ASCII view: local explanations zoom in on one decision, while global explanations summarize behavior across many decisions.</p>
+
 |                | Local                                                                  | Global                                                         |
 | -------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------- |
 | **Scope**      | One prediction                                                         | Entire model behaviour                                         |
@@ -449,6 +459,18 @@ This reveals what _concept_ each neuron is detecting. See [distill.pub/2017/feat
 ## Counterfactual Explanations
 
 **Key question**: _"What is the minimum change to the input to flip the model's decision?"_
+
+```text
+current input x --------> model says: reject
+      |
+small actionable change
+      v
+counterfactual x_cf ---> model says: approve
+
+goal: change as little as possible, but in a feasible direction
+```
+
+<p class="image-caption">ASCII view: a counterfactual explanation asks for the smallest realistic change that would flip the model's output.</p>
 
 This provides **recourse** — actionable feedback to individuals affected by a model's decision.
 

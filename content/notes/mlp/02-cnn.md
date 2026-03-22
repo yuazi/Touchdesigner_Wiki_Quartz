@@ -273,6 +273,23 @@ A 32×32×3 image flattened to 3072×1 is fed into a dense layer. This ignores a
 
 <p class="image-caption">A deeper look at the sliding window: moving the filter dot-product across the input volume.</p>
 
+```text
+input image
+   |
+   v
+[small filter 3x3xC]
+   |
+slide over every spatial location
+   |
+dot product at each position
+   |
+feature map
+   |
+stack many maps -> feature volume
+```
+
+<p class="image-caption">ASCII view: convolution reuses one local detector everywhere, then stacks the resulting maps into a feature volume.</p>
+
 - A **filter** (kernel) slides across the spatial dimensions of the input
 - Filters always **extend the full depth** of the input volume
 - The filter computes a dot product at each spatial position → produces an **activation map** (also called a **feature map**)
@@ -318,6 +335,18 @@ One of the biggest strengths of CNNs is **Translation Invariance** (or Equivaria
 2.  **Pooling:** Max pooling takes a small region (e.g., 2x2) and picks the strongest signal. If a feature moves slightly within that 2x2 area, the output of the pooling layer stays _exactly the same_.
 
 This is why a CNN can recognize a "cat" regardless of whether the cat is in the corner of the image or right in the middle.
+
+```text
+feature map before pooling:   after 2x2 max-pool:
+[0.1 0.8 0.0 0.0]            [0.8 0.0]
+[0.0 0.2 0.0 0.0]     --->   [0.0 0.0]
+[0.0 0.0 0.7 0.1]
+[0.0 0.0 0.3 0.2]
+
+small shifts inside one pooling window keep the strongest response almost unchanged
+```
+
+<p class="image-caption">ASCII view: pooling preserves the strongest local response, so small translations do not drastically change the downstream representation.</p>
 
 ---
 
@@ -460,6 +489,17 @@ A deeper network should perform at least as well as a shallower one — in theor
 **Residual connections** fix this:
 
 $$y = F(x) + x$$
+
+```text
+x -----------------------------> (+) ------> y
+ \                               ^
+  \                              |
+   -> [conv -> nonlinearity -> conv] = F(x)
+
+the block learns a correction F(x) instead of relearning the whole mapping
+```
+
+<p class="image-caption">ASCII view: a ResNet block gives the signal a direct shortcut, while the residual branch only has to learn a correction.</p>
 
 $F(x)$ is a **residual mapping** w.r.t. identity.
 

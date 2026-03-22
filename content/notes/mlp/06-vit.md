@@ -51,9 +51,9 @@ CNNs have several weaknesses that motivated looking at Transformer alternatives 
 
 Before the full ViT, Ramachandran et al. (2019) showed that convolution layers can be replaced by **stand-alone self-attention** layers:
 
-![[Lecture06_Pg012_Patch_Projection.png]]
+![[Lecture06_Pg009_Vision_Transformer_Replacing_Cnns_With_Self_Attention.png]]
 
-<p class="image-caption">Visualizing how local self-attention can replace convolutions by attending over a neighborhood.</p>
+<p class="image-caption">Relative position embeddings let local self-attention preserve where neighboring pixels sit in the image grid.</p>
 
 In a convolution, each output pixel $y_{ij}$ is a weighted sum over a local neighbourhood. In self-attention form:
 
@@ -119,7 +119,7 @@ For a 224×224 image with 16×16 patches:
 
 > **Example — patchifying a photo**: a 224×224 RGB image of a dog becomes 196 patch tokens. Some tokens mostly contain grass, some contain the dog's face, and others contain background sky. After patchification, the Transformer reasons over a 197-token sequence (`[CLS]` + 196 patches), not over the original pixel grid directly.
 
-```
+```text
 Image (224×224×3)
     ↓ split into non-overlapping 16×16 patches
 196 patches, each 768-dimensional
@@ -128,6 +128,8 @@ Image (224×224×3)
     ↓ prepend [CLS] token + add positional embeddings
 197 tokens of dimension 768
 ```
+
+<p class="image-caption">ASCII view: ViT turns the image into a token sequence before handing it to a standard Transformer encoder.</p>
 
 #### Step 2: Encoding and Classification
 
@@ -139,9 +141,11 @@ Image (224×224×3)
 - MLP head: two dense layers with **GeLU** non-linearity (not ReLU — GeLU is smoother and empirically better for ViT)
 - Use the **[CLS] token** output to make the final class prediction
 
-```
+```text
 197 tokens → [Transformer Encoder × L layers] → [CLS] output → [MLP head] → class logits
 ```
+
+<p class="image-caption">ASCII view: only the final [CLS] representation is routed to the classification head.</p>
 
 **Why [CLS]?** The [CLS] token has no patch-specific meaning — it aggregates global information from all patches via attention over all layers. This idea is borrowed directly from BERT.
 
@@ -330,7 +334,7 @@ Object detection requires:
 <p class="image-caption">Each learned object query produces either a class-and-box prediction or an explicit “no object” output.</p>
 
 
-```
+```text
 Image → [CNN Backbone] → feature map (H/32 × W/32 × 2048)
                 ↓ flatten to 1D + positional encoding
          H×W sequence of spatial tokens
@@ -343,6 +347,8 @@ Image → [CNN Backbone] → feature map (H/32 × W/32 × 2048)
                 ↓ shared FFN per query
          N predictions: (class | ∅, bounding box)
 ```
+
+<p class="image-caption">ASCII view: DETR converts the image into one encoder memory and lets a fixed set of learned object queries pull out the final detections.</p>
 
 **Components**:
 
@@ -377,6 +383,16 @@ The matching cost $\mathcal{L}_{\text{match}}$ considers:
 This is solved efficiently using the **Hungarian algorithm** (also used in Stewart et al. [2016] for people detection in crowded scenes).
 
 **Key benefit**: unlike NMS, the matching is unique — every ground-truth object is matched to exactly one prediction.
+
+```text
+predictions:   q1   q2   q3   q4
+ground truth: dog bike  empty empty
+
+Hungarian matching picks one best one-to-one assignment
+duplicate predictions get matched to "no object" and penalized
+```
+
+<p class="image-caption">ASCII view: DETR trains all query slots at once, then uses one-to-one matching so duplicates are explicitly pushed toward the no-object class.</p>
 
 > **Example — one dog, one bicycle, four queries**: suppose an image contains one dog and one bicycle, but DETR outputs four slots: `dog (0.93)`, `bicycle (0.88)`, `dog duplicate (0.81)`, and `empty (0.97)`. Hungarian matching assigns one slot to the dog and one to the bicycle; the duplicate dog prediction is matched to $\emptyset$ and explicitly penalized during training.
 

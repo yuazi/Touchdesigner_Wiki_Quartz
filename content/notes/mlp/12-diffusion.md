@@ -54,10 +54,12 @@ Diffusion models define two processes:
 - **Forward diffusion**: gradually add noise to the input until only white noise remains.
 - **Reverse denoising**: learn to generate data by iteratively denoising.
 
-```
+```text
 Forward:  x_0 (real) ──noise──► x_1 ──noise──► ... ──noise──► x_T (pure noise)
 Reverse:  x_T (noise) ──denoise──► x_{T-1} ──► ... ──denoise──► x_0 (generated)
 ```
+
+<p class="image-caption">ASCII view: diffusion is a long corruption chain paired with a learned reverse chain that reconstructs data from noise.</p>
 
 > **Example**: Start with a photo of a dog. After T=1000 Gaussian noise steps, the image becomes indistinguishable from random Gaussian noise. A neural network trained to reverse this process can then go from noise back to a realistic dog photo.
 
@@ -542,11 +544,13 @@ $$x_0 \xrightarrow{\text{VAE Encoder}} z_0 \xrightarrow{\text{Add noise}} z_T \x
 - A patch-based adversarial discriminator is added on top of the reconstruction loss for **perceptual compression**.
 - The VAE decoder reconstructs the final image from the denoised latent.
 
-```
+```text
 Text Prompt c ─────────────────────────────── (cross-attention)
                                                       │
 x_0 →[VAE Enc]→ z_0 →[Noise]→ z_T →[U-Net]→ ẑ_0 →[VAE Dec]→ x̂_0
 ```
+
+<p class="image-caption">ASCII view: latent diffusion compresses first, denoises in latent space, and injects conditioning through cross-attention.</p>
 
 ### Two-Stage Training
 

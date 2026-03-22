@@ -564,9 +564,21 @@ StyleGAN generates high-resolution photorealistic images (e.g., human faces at 1
 
 #### 1. Mapping Network
 
-![[Lecture10_Pg015_1_Mapping_Network.png]]
+```text
+z ~ N(0, I)
+    |
+    v
+[8-layer MLP]
+    |
+    v
+w in disentangled latent space
+    |
+    +--> affine -> style for 4x4 block
+    +--> affine -> style for 8x8 block
+    +--> affine -> style for ...
+```
 
-<p class="image-caption">The StyleGAN mapping network: turning noise z into a better latent space w.</p>
+<p class="image-caption">ASCII view: StyleGAN first remaps random noise into a cleaner latent space, then reuses that latent to control multiple synthesis layers.</p>
 
 $z \sim \mathcal{N}(0, I)$ → **8-layer MLP** → $w$ (disentangled latent space)
 
@@ -574,10 +586,16 @@ The $w$-space is more linearly disentangled than $z$-space — individual dimens
 
 #### 2. Adaptive Instance Normalization (AdaIN)
 
-![[Lecture10_Pg096_2_Adaptive_Instance_Normalization_Adain.png]]
+```text
+feature map x --------> normalize channel-wise --------\
+                                                       +--> scale by y_s
+w ------------------> affine layers -> (y_s, y_b) -----+--> shift by y_b
+                                                       |
+                                                       v
+                                               style-controlled features
+```
 
-<p class="image-caption">AdaIN: how we inject style directly into the generator.</p>
-
+<p class="image-caption">ASCII view: AdaIN normalizes the current features, then uses style parameters derived from w to rescale and shift them.</p>
 
 Style is injected at each resolution by modulating intermediate features:
 
@@ -587,13 +605,33 @@ Where $y_s, y_b$ are learned affine transforms of $w$. This is how "style" (colo
 
 #### 3. Progressive Growing
 
-![[Lecture10_Pg073_3_Progressive_Growing.png]]
+```text
+start small:   4x4
+                  \
+add layers --->   8x8
+                    \
+add layers ----->   16x16
+                      \
+add layers -------->  ...
+                        \
+final resolution ----> 1024x1024
+```
 
-<p class="image-caption">Progressive growing: starting small and getting bigger for more stable GANs.</p>
+<p class="image-caption">ASCII view: StyleGAN training grows the generator from coarse low-resolution structure to fine high-resolution detail.</p>
 
 Training starts at low resolution (4×4) and progressively adds layers for higher resolutions (4×4 → 8×8 → 16×16 → … → 1024×1024). This produces stable, high-quality training by starting with easy, coarse structure before refining fine details.
 
 #### 4. Style Mixing
+
+```text
+w1 -> coarse layers  -> pose / face shape
+w2 -> middle layers  -> facial features
+w2 -> fine layers    -> color / texture
+
+mixed output = structure from w1 + detail from w2
+```
+
+<p class="image-caption">ASCII view: style mixing uses different latent codes at different resolutions so coarse structure and fine detail can come from different sources.</p>
 
 At inference, use $w_1$ for early (coarse) layers and $w_2$ for later (fine) layers. This creates hybrid outputs — e.g., the face shape and pose of person A combined with the hair colour and skin texture of person B.
 

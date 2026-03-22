@@ -55,6 +55,24 @@ where:
 
 <p class="image-caption">A basic MLP with layers stacked on top of each other.</p>
 
+```text
+raw input x
+    |
+    v
+[Layer 1: simple features]
+    |
+    v
+[Layer 2: feature combinations]
+    |
+    v
+[Output layer]
+    |
+    v
+prediction y_hat
+```
+
+<p class="image-caption">ASCII view: an MLP keeps rewriting the input into more useful features until the final prediction becomes easy.</p>
+
 With $X^{(0)} = X$, for each layer $l = 1, \dots, L$:
 
 $$X^{(l)} = \sigma\!\left(W^{(l)\top} X^{(l-1)} + b^{(l)}\right)$$
@@ -157,6 +175,24 @@ In multiple dimensions, the gradient is the vector of partial derivatives along 
 Update rule (starting from $W_0$):
 $$W_{t+1} = W_t - \alpha_t \nabla f(W_t)$$
 
+```text
+current weights W_t
+      |
+      v
+compute loss L(W_t)
+      |
+      v
+compute gradient grad L(W_t)
+      |
+      v
+take small step in the opposite direction
+      |
+      v
+updated weights W_(t+1)
+```
+
+<p class="image-caption">ASCII view: each gradient-descent step measures the current slope, then nudges the weights a little downhill.</p>
+
 ```python
 while True:
     weights_grad = evaluate_gradient(loss_fun, data, weights)
@@ -247,12 +283,14 @@ How do we compute gradients for nodes in **hidden layers**? → **Backpropagatio
 
 Example: $f(x, y, z) = (x + y) \cdot z$
 
-```
+```text
 x ──┐
     +──→ q ──┐
 y ──┘         * ──→ f
 z ────────────┘
 ```
+
+<p class="image-caption">ASCII view: computational graphs turn one complicated expression into simple local operations that each know how to pass gradients backward.</p>
 
 - **Forward pass**: takes a training sample $(x, y)$ as input and computes loss $L = -\log p_\text{model}(y \mid x, w)$
 - **Backward pass**: computes gradients $\nabla_w L$ via the chain rule
@@ -610,6 +648,18 @@ Intuition:
 - each mini-batch sees a slightly different sub-network
 - neurons cannot rely too strongly on any single other neuron
 - this reduces co-adaptation and improves generalisation
+
+```text
+training pass 1:  [x] -> [h1] [h2] [h3] [h4] -> y
+                           X         X
+
+training pass 2:  [x] -> [h1] [h2] [h3] [h4] -> y
+                      X              X
+
+different units are dropped each time, so no hidden unit can become a crutch
+```
+
+<p class="image-caption">ASCII view: dropout exposes the model to a different thinned sub-network on each pass, which discourages brittle co-adaptation.</p>
 
 Classically, activations are scaled at test time by $(1-p)$. In modern libraries such as PyTorch, **inverted dropout** is used instead: activations are scaled during training, so evaluation needs no extra rescaling.
 

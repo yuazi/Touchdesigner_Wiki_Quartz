@@ -325,6 +325,18 @@ $$= \mathbb{E}_{q_\phi(z|x)}\!\Big[\log p_\theta(x|z)\Big] - D_{KL}\!\Big(q_\phi
 
 $$= \underbrace{\mathbb{E}_{q(z|x)}[\log p_\theta(x|z)]}_{\text{Reconstruction}} - \underbrace{D_{KL}(q_\phi(z|x) \| p(z))}_{\text{Regularisation}}$$
 
+```text
+ELBO =
+  reconstruction reward
+  - KL penalty
+
+good VAE training means:
+  decode x well from z
+  while keeping q(z|x) close to N(0, I)
+```
+
+<p class="image-caption">ASCII view: the ELBO rewards faithful reconstruction but subtracts a penalty when the posterior drifts too far from the prior.</p>
+
 **Term 1 — Reconstruction loss**: how well does the decoder recover $x$ from $z$?
 
 - Continuous data ($x \in \mathbb{R}^d$): $\|x - \hat{x}\|^2$ (MSE / Gaussian likelihood)
@@ -377,6 +389,25 @@ The key insight of VAEs is to **amortise** this inference: instead of running op
 ![[Lecture09_Pg072_Reparametrisation_Trick.png]]
 
 <p class="image-caption">The Reparameterization Trick shifts the random sampling out of the main computational graph so gradients can flow freely into the encoder.</p>
+
+```text
+x
+|
+v
+[encoder]
+  |------> mu(x)
+  |------> sigma(x)
+                 \
+eps ~ N(0, I) ----> z = mu + sigma * eps
+                          |
+                          v
+                       [decoder]
+                          |
+                          v
+                         x_hat
+```
+
+<p class="image-caption">ASCII view: the randomness is isolated in an external noise variable, so the encoder-to-decoder path stays differentiable.</p>
 
 **Solution**: express the sample as a **deterministic** function of $(\phi, \varepsilon)$ where $\varepsilon$ is noise that doesn't depend on the parameters:
 
@@ -463,6 +494,20 @@ At **inference / generation time**: only the **decoder** is needed.
 
 The KL regularization ensures this works — because the encoder is trained to push $q_\phi(z|x) \approx \mathcal{N}(0,I)$, any random $z$ from the prior decodes to a plausible image.
 
+```text
+sample z ~ N(0, I)
+        |
+        v
+    [decoder]
+        |
+        v
+generated x_hat
+
+training tries to make this random latent region overlap with where encoded data lives
+```
+
+<p class="image-caption">ASCII view: generation works because the decoder is trained to understand latent codes drawn from the same prior used at sampling time.</p>
+
 ### 💡 Intuition: Why Sampling From the Prior Works at All
 
 The whole point of the KL term is to make the encoder's posterior clouds live in roughly the same region as the simple prior.
@@ -490,11 +535,13 @@ Because the KL term regularizes $z$ toward $\mathcal{N}(0,I)$, the latent space 
 
 ### Example: Face Interpolation
 
-```
+```text
 α = 0.0       α = 0.25      α = 0.50      α = 0.75      α = 1.0
 z_A ──────────────────────────────────────────────────────→ z_B
 [face A] → [blend 25%] → [blend 50%] → [blend 75%] → [face B]
 ```
+
+<p class="image-caption">ASCII view: interpolation checks whether the latent space contains smooth semantic paths between examples rather than isolated memorized points.</p>
 
 With a standard autoencoder, decoding points between $z_A$ and $z_B$ would give noise. With a VAE, you get a smooth morphing sequence.
 

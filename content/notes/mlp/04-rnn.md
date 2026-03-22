@@ -147,6 +147,20 @@ $$h_t = \tanh(W_{hh} h_{t-1} + W_{xh} x_t)$$
 
 $$y_t = W_{hy} h_t$$
 
+```text
+x1 ---> [RNN cell] ---> h1 ---> y1
+          ^  |
+          |  v
+x2 ---> [RNN cell] ---> h2 ---> y2
+          ^  |
+          |  v
+x3 ---> [RNN cell] ---> h3 ---> y3
+
+same recurrent weights are reused at every time step
+```
+
+<p class="image-caption">ASCII view: an RNN reuses the same cell over time, passing forward a hidden state that acts as running memory.</p>
+
 > **Critical property**: At every time step, the input to $f$ is a unique $h_{t-1}$ and $x_t$, but the **same weight matrix $W$** is reused at every step. This is parameter sharing across time.
 
 ### Character-Level Language Model (Karpathy)
@@ -235,6 +249,17 @@ The total gradient with respect to $W$ is the sum of the per-timestep gradients:
 $$\frac{\partial L}{\partial W} = \sum_{t=1}^{S} \frac{\partial L_t}{\partial W}$$
 
 Each $\frac{\partial L_t}{\partial W}$ requires propagating the error back through all previous time steps.
+
+```text
+x1 -> h1 -> h2 -> h3 -> h4 -> loss
+      ^     ^     ^     ^
+      |     |     |     |
+grad <- ---- ---- ---- --
+
+backpropagation through time = run the gradient through the whole unrolled chain
+```
+
+<p class="image-caption">ASCII view: BPTT treats the unrolled RNN like a deep network over time and sends the gradient backward through every step.</p>
 
 ### The Gradient Product
 
@@ -639,7 +664,7 @@ class Decoder(nn.Module):
 1. **CNN** (e.g., VGG, ResNet) — "parses" the image into a fixed-size feature vector
 2. **RNN** — uses the CNN output to initialize $h_0$ and generates the caption word-by-word
 
-```
+```text
 Image → [CNN] → v (image vector)
                  ↓
                h_0 = v
@@ -648,6 +673,8 @@ Image → [CNN] → v (image vector)
                h_3 = tanh(W_hh * h_2 + W_xh * "dog")     → y_3 = "on"
                ...                                         → y_n = <END>
 ```
+
+<p class="image-caption">ASCII view: image captioning uses a CNN to seed the initial hidden state, then lets the RNN decode one word at a time.</p>
 
 ### Generating Words
 

@@ -409,6 +409,24 @@ For a sequence of $n$ tokens, each token attends to all $n$ tokens simultaneousl
 
 $$\text{Attention}(Q, K, V) = \text{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}}\right) V$$
 
+```text
+token i -----------------> query q_i
+all tokens --------------> keys k_j, values v_j
+
+q_i · k_1   q_i · k_2   ...   q_i · k_n
+      \        |                  /
+       \       |                 /
+        ---- scale + softmax ----
+                    |
+                    v
+     attention weights a_i1 ... a_in
+                    |
+                    v
+      output_i = sum_j a_ij * v_j
+```
+
+<p class="image-caption">ASCII view: one token uses its query to score every key, then blends the value vectors using the resulting attention weights.</p>
+
 **Step-by-step**:
 
 1. Compute dot products: $Q K^\top$ — shape $(n \times n)$, entry $(i, j)$ scores how relevant token $j$ is to token $i$
@@ -475,13 +493,15 @@ In the decoder, when generating token $t$, the model must not see future tokens 
 
 **Fix**: set entries in the upper triangle of the attention score matrix to $-\infty$ before softmax. After softmax, they become 0.
 
-```
+```text
 Scores (before masking):       After masking (upper tri → -∞):
 [s11  s12  s13  s14]           [s11  -∞   -∞   -∞ ]
 [s21  s22  s23  s24]    →      [s21  s22  -∞   -∞ ]
 [s31  s32  s33  s34]           [s31  s32  s33  -∞ ]
 [s41  s42  s43  s44]           [s41  s42  s43  s44]
 ```
+
+<p class="image-caption">ASCII view: causal masking zeros out future positions so each token can only attend to itself and the past.</p>
 
 After softmax, each row sums to 1, with zero weight on all future positions.
 
@@ -531,6 +551,23 @@ where:
 - $W_i^V \in \mathbb{R}^{d_{model} \times d_v}$
 
 In the original paper: $d_{model} = 512$, $h = 8$, so $d_k = d_v = 64$.
+
+```text
+input tokens
+   |
+   +--> head 1: project Q,K,V -> attend -> h1
+   +--> head 2: project Q,K,V -> attend -> h2
+   +--> ...
+   +--> head h: project Q,K,V -> attend -> hh
+   |
+concat [h1 | h2 | ... | hh]
+   |
+linear projection W^O
+   |
+final mixed representation
+```
+
+<p class="image-caption">ASCII view: multi-head attention lets the model process the same sequence through several attention subspaces, then recombine them.</p>
 
 **Why multi-head?** Different heads can jointly attend to information from different representation subspaces at different positions. One head may track subject-verb agreement; another may track co-reference; another may track syntactic dependency.
 
@@ -584,6 +621,20 @@ class MultiHeadAttention(nn.Module):
 | **Self-attention (encoder)**  | Every encoder position attends to every other encoder position                                   |
 | **Self-attention (decoder)**  | Every decoder position attends to all _previous_ decoder positions (masked)                      |
 | **Cross-attention (decoder)** | Every decoder position attends to every encoder position ($K, V$ from encoder, $Q$ from decoder) |
+
+```text
+encoder tokens ----self-attend----> encoder memory
+
+decoder prefix ---masked self-attend---> decoder state
+                                         |
+                                         v
+                              cross-attend to encoder memory
+                                         |
+                                         v
+                                  next-token prediction
+```
+
+<p class="image-caption">ASCII view: the decoder first reasons over its own generated prefix, then reads from the encoder memory before predicting the next token.</p>
 
 ---
 
