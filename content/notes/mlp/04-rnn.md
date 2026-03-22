@@ -305,78 +305,6 @@ if total_norm > max_norm:
 
 ---
 
-## Example Task: Image Captioning
-
-### Papers
-
-![[Lecture04_Pg046_Papers.png]]
-
-<p class="image-caption">These are the key papers that really kicked off neural image captioning.</p>
-
-- _Explain Images with Multimodal Recurrent Neural Networks_ — Mao et al., 2014
-- _Deep Visual-Semantic Alignments for Generating Image Descriptions_ — Karpathy & Fei-Fei, 2017
-- _Show and Tell: A Neural Image Caption Generator_ — Vinyals et al., 2015
-- _Long-term Recurrent Convolutional Networks_ — Donahue et al., 2015
-- _Learning a Recurrent Visual Representation for Image Caption Generation_ — Chen & Zitnick, 2014
-
-### Architecture
-
-1. **CNN** (e.g., VGG, ResNet) — "parses" the image into a fixed-size feature vector
-2. **RNN** — uses the CNN output to initialize $h_0$ and generates the caption word-by-word
-
-```
-Image → [CNN] → v (image vector)
-                 ↓
-               h_0 = v
-               h_1 = tanh(W_hh * h_0 + W_xh * <START>)  → y_1 = "A"
-               h_2 = tanh(W_hh * h_1 + W_xh * "A")       → y_2 = "dog"
-               h_3 = tanh(W_hh * h_2 + W_xh * "dog")     → y_3 = "on"
-               ...                                         → y_n = <END>
-```
-
-### Generating Words
-
-At each step, the RNN computes a **distribution over all words in the vocabulary** (via a softmax over $y_t = W_{hy} h_t$), then samples from that distribution. Training maximizes the log-probability of the correct next word at each step.
-
-### Code: Minimal Image Captioning RNN
-
-```python
-import torch
-import torch.nn as nn
-import torchvision.models as models
-
-class ImageCaptionRNN(nn.Module):
-    def __init__(self, embed_dim, hidden_dim, vocab_size):
-        super().__init__()
-        # CNN encoder (use pretrained ResNet, drop final classifier)
-        resnet = models.resnet50(pretrained=True)
-        self.cnn = nn.Sequential(*list(resnet.children())[:-1])  # (B, 2048, 1, 1)
-        self.cnn_proj = nn.Linear(2048, hidden_dim)
-
-        # RNN decoder
-        self.embed = nn.Embedding(vocab_size, embed_dim)
-        self.rnn = nn.LSTMCell(embed_dim, hidden_dim)
-        self.out = nn.Linear(hidden_dim, vocab_size)
-
-    def forward(self, image, captions):
-        # image: (B, 3, H, W)
-        # captions: (B, T) — token ids
-        feat = self.cnn(image).squeeze(-1).squeeze(-1)   # (B, 2048)
-        h = self.cnn_proj(feat)                           # (B, hidden_dim)
-        c = torch.zeros_like(h)
-
-        outputs = []
-        for t in range(captions.size(1)):
-            x = self.embed(captions[:, t])               # (B, embed_dim)
-            h, c = self.rnn(x, (h, c))
-            logits = self.out(h)                         # (B, vocab_size)
-            outputs.append(logits)
-
-        return torch.stack(outputs, dim=1)               # (B, T, vocab_size)
-```
-
----
-
 ## Long Short-Term Memory (LSTM)
 
 
@@ -689,6 +617,78 @@ class Decoder(nn.Module):
 - **The Bottleneck**: The encoder's final hidden state must contain _everything_ about the source sentence. This is the "context vector" that the decoder uses to start its generation.
 - **Teacher Forcing**: During training, we often feed the _actual_ correct word from the target sentence as the next input to the decoder, rather than its own (potentially wrong) prediction.
 - **Autoregressive Generation**: During inference, the decoder is called repeatedly. Its prediction at time $t$ becomes its input for time $t+1$.
+
+---
+
+## Example Task: Image Captioning
+
+### Papers
+
+![[Lecture04_Pg046_Papers.png]]
+
+<p class="image-caption">These are the key papers that really kicked off neural image captioning.</p>
+
+- _Explain Images with Multimodal Recurrent Neural Networks_ — Mao et al., 2014
+- _Deep Visual-Semantic Alignments for Generating Image Descriptions_ — Karpathy & Fei-Fei, 2017
+- _Show and Tell: A Neural Image Caption Generator_ — Vinyals et al., 2015
+- _Long-term Recurrent Convolutional Networks_ — Donahue et al., 2015
+- _Learning a Recurrent Visual Representation for Image Caption Generation_ — Chen & Zitnick, 2014
+
+### Architecture
+
+1. **CNN** (e.g., VGG, ResNet) — "parses" the image into a fixed-size feature vector
+2. **RNN** — uses the CNN output to initialize $h_0$ and generates the caption word-by-word
+
+```
+Image → [CNN] → v (image vector)
+                 ↓
+               h_0 = v
+               h_1 = tanh(W_hh * h_0 + W_xh * <START>)  → y_1 = "A"
+               h_2 = tanh(W_hh * h_1 + W_xh * "A")       → y_2 = "dog"
+               h_3 = tanh(W_hh * h_2 + W_xh * "dog")     → y_3 = "on"
+               ...                                         → y_n = <END>
+```
+
+### Generating Words
+
+At each step, the RNN computes a **distribution over all words in the vocabulary** (via a softmax over $y_t = W_{hy} h_t$), then samples from that distribution. Training maximizes the log-probability of the correct next word at each step.
+
+### Code: Minimal Image Captioning RNN
+
+```python
+import torch
+import torch.nn as nn
+import torchvision.models as models
+
+class ImageCaptionRNN(nn.Module):
+    def __init__(self, embed_dim, hidden_dim, vocab_size):
+        super().__init__()
+        # CNN encoder (use pretrained ResNet, drop final classifier)
+        resnet = models.resnet50(pretrained=True)
+        self.cnn = nn.Sequential(*list(resnet.children())[:-1])  # (B, 2048, 1, 1)
+        self.cnn_proj = nn.Linear(2048, hidden_dim)
+
+        # RNN decoder
+        self.embed = nn.Embedding(vocab_size, embed_dim)
+        self.rnn = nn.LSTMCell(embed_dim, hidden_dim)
+        self.out = nn.Linear(hidden_dim, vocab_size)
+
+    def forward(self, image, captions):
+        # image: (B, 3, H, W)
+        # captions: (B, T) — token ids
+        feat = self.cnn(image).squeeze(-1).squeeze(-1)   # (B, 2048)
+        h = self.cnn_proj(feat)                           # (B, hidden_dim)
+        c = torch.zeros_like(h)
+
+        outputs = []
+        for t in range(captions.size(1)):
+            x = self.embed(captions[:, t])               # (B, embed_dim)
+            h, c = self.rnn(x, (h, c))
+            logits = self.out(h)                         # (B, vocab_size)
+            outputs.append(logits)
+
+        return torch.stack(outputs, dim=1)               # (B, T, vocab_size)
+```
 
 ---
 

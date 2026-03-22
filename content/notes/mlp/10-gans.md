@@ -319,22 +319,6 @@ Illustrated by a "saddle point in dual energy landscape" — the generator finds
 
 ---
 
-## GANs vs VAEs
-
-![[Lecture10_Pg021_Gans_Vs_Vaes.png]]
-
-<p class="image-caption">Comparing VAEs and GANs: training, quality, and how we evaluate density.</p>
-
-
-| Property           | VAE                            | GAN                                                       |
-| ------------------ | ------------------------------ | --------------------------------------------------------- |
-| Training           | Relatively easier              | Requires many optimisation tricks, prone to mode collapse |
-| Inference          | Explicit $q(z \mid x)$         | Implicit (no encoder; unless BiGAN)                       |
-| Image quality      | Blurrier (reconstruction loss) | Sharper (discriminator signal)                            |
-| Density evaluation | Lower bound via ELBO           | Not possible — likelihood-free                            |
-
----
-
 ## Issues with Jensen-Shannon Divergence
 
 ![[Lecture10_Pg045_Issues_With_Jensen_Shannon_Divergence.png]]
@@ -751,6 +735,22 @@ Lower FID means the generated distribution is closer to the real one. FID captur
 | **CycleGAN**       | Unpaired translation via cycle-consistency    | Zhu et al., 2017        |
 | **GauGAN / SPADE** | Spatially-adaptive normalization              | Park et al., 2019       |
 | **StyleGAN**       | Disentangled $w$-space, AdaIN                 | Karras et al., 2019     |
+
+## GANs vs VAEs
+
+![[Lecture10_Pg021_Gans_Vs_Vaes.png]]
+
+<p class="image-caption">Comparing VAEs and GANs: training, quality, and how we evaluate density.</p>
+
+
+| Property           | VAE                            | GAN                                                       |
+| ------------------ | ------------------------------ | --------------------------------------------------------- |
+| Training           | Relatively easier              | Requires many optimisation tricks, prone to mode collapse |
+| Inference          | Explicit $q(z \mid x)$         | Implicit (no encoder; unless BiGAN)                       |
+| Image quality      | Blurrier (reconstruction loss) | Sharper (discriminator signal)                            |
+| Density evaluation | Lower bound via ELBO           | Not possible — likelihood-free                            |
+
+---
 
 ## Final Comparison: VAEs vs GANs
 

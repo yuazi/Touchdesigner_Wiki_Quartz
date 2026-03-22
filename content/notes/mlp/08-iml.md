@@ -141,47 +141,6 @@ Patterns in high-dimensional data often live in **subsets of dimensions** (subsp
 
 ---
 
-## Semi-supervised Learning
-
-### Setup
-
-Given:
-
-- $S_l = (x_1, y_1), (x_2, y_2), \ldots, (x_m, y_m)$ — labeled examples drawn i.i.d. from distribution $D$, with $y_i = c^*(x_i)$
-- $S_u = x_1, \ldots, x_{m_u}$ — unlabeled examples drawn i.i.d. from $D$
-
-**Goal**: find a classifier with small generalization error $\text{err}_D(h) = P(h(x) \neq c^*(x))$
-
-### Key Insight
-
-![[Lecture08_Pg039_Key_Insight.png]]
-
-<p class="image-caption">Unlabeled data helps by shrinking the search space and biasing our function.</p>
-
-Unlabeled data is useful **only if** we have a belief not just about the form of the target function, but also about its **relationship with the underlying data distribution**.
-
-Unlabeled data can:
-
-- Reduce the search space
-- Re-order functions in the search space according to our belief
-- Bias the search toward functions consistent with the data manifold
-
-_(Zhu and Goldberg, 2009)_
-
-### Fundamental Questions (General Discriminative Model)
-
-![[Lecture08_Pg040_Fundamental_Questions_General_Discriminative_Model.png]]
-
-<p class="image-caption">The big questions for discriminative models when dealing with unlabeled data.</p>
-
-- How much unlabeled data is needed? — depends on complexity of $H$ and the compatibility notion
-- Can unlabeled data reduce the number of labeled examples needed?
-- Is the target function _compatible_ with the data distribution? — helpfulness depends on this
-
-> **Example**: Two concentric rings of data points (inner ring = class A, outer ring = class B). With only labeled data you might draw the wrong boundary; with unlabeled data you can "see" the ring structure and place the boundary between the rings.
-
----
-
 ## Active Learning
 
 ![[Lecture08_Pg045_Active_Learning_What_Makes_A_Good_Active_Learning_Algorithm.png]]
@@ -445,89 +404,6 @@ The second term is the average similarity to all unlabeled points — a proxy fo
 
 ---
 
-## Graph-Based Active and Semi-supervised Methods
-
-### Core Idea
-
-Assume a **pairwise similarity function** exists and that very similar examples probably share the same label.
-
-- Many **labeled** points → Nearest-Neighbour classifier
-- Many **unlabeled** points → use them as "stepping stones" via **label propagation**
-
-Unlabeled data can help **"glue" objects of the same class together** even when there is no direct edge between labeled points of the same class.
-
-This graph view is particularly useful when the geometry of the unlabeled data is more informative than individual feature vectors: once the graph captures the manifold or cluster structure, labels can propagate through the unlabeled region instead of relying only on isolated supervised points.
-
-### Building the Graph
-
-![[Lecture08_Pg075_Building_The_Graph.png]]
-
-<p class="image-caption">Building a similarity graph to propagate labels between nodes.</p>
-
-- **Nodes**: all examples (labeled + unlabeled)
-- **Edges**: between very similar examples ($k$-NN or $\varepsilon$-ball with Gaussian similarity weights)
-- Labeled nodes have fixed labels; unlabeled nodes get soft labels via propagation
-
-Often used in a **transductive** setting: given $L \cup U$, output predictions on $U$ (not required to generalize to brand-new test points).
-
-### Graph Partitioning Algorithms
-
-![[Lecture08_Pg078_Graph_Partitioning_Algorithms.png]]
-
-<p class="image-caption">Comparing graph partitioning: min-cut, soft-cut, and spectral methods.</p>
-
-| Method                                              | Description                                                            |
-| --------------------------------------------------- | ---------------------------------------------------------------------- |
-| **Minimum cut** (Blum & Chawla, 2001)               | Hard partition: minimize total weight of cut edges                     |
-| **Soft cut / Label propagation** (Zhu et al., 2003) | Smooth label function minimizing $\sum_{ij} w_{ij}(f(x_i) - f(x_j))^2$ |
-| **Spectral partitioning**                           | Eigenvectors of the graph Laplacian                                    |
-
-### Semi-supervised Learning with Soft Cuts (Zhu et al., 2003)
-
-![[Lecture08_Pg079_Semi_Supervised_Learning_With_Soft_Cuts.png]]
-
-<p class="image-caption">Label propagation works like a harmonic function spreading through the graph.</p>
-
-Solve for a label function $f(x) \in [0, 1]$ that minimises:
-
-$$\min_f \sum_{i,j} w_{ij}(f(x_i) - f(x_j))^2 \quad \text{subject to } f(x_i) = y_i \text{ for labeled nodes}$$
-
-This is a **harmonic equation**: labels spread outward from labeled nodes, weighted by edge similarity. The solution can be found by solving a sparse linear system.
-
-> **Example**: A document graph where edges connect articles sharing many keywords. Label 3 articles in a "sports" cluster as positive and 2 articles in a "finance" cluster as negative. Label propagation will assign positive labels to all sports articles and negative to all finance articles, flowing through the keyword-similarity edges.
-
-### Active Learning
-
-![[Lecture08_Pg045_Active_Learning_What_Makes_A_Good_Active_Learning_Algorithm.png]]
-
-<p class="image-caption">The same active-learning framework is reused here as the bridge into graph-based querying with label propagation.</p>
-
-### Active Learning with Label Propagation
-
-
-![[Lecture08_Pg083_Active_Learning_With_Label_Propagation.png]]
-
-<p class="image-caption">An active learning strategy for graphs: query nodes that spread the most info.</p>
-
-
-**Naïve approach**: query the node with $f(x) \approx 0.5$ (most uncertain).
-
-**Problem**: The uncertain node might be nearly **isolated** (just one edge) — labeling it won't propagate much information.
-
-**Better — 1-step lookahead heuristic** (Fathi et al., 2011):
-
-For each candidate node $s$ with current soft label $p$:
-
-1. Assume the oracle answers $1$ with probability $p$, answers $0$ with probability $1 - p$
-2. Run label propagation for each outcome, compute **average confidence** across all nodes
-3. Query the node that maximises expected confidence:
-
-$$\text{score}(s) = p \cdot \frac{1}{n}\sum_i \max(f_1(x_i), 1-f_1(x_i)) + (1-p) \cdot \frac{1}{n}\sum_i \max(f_0(x_i), 1-f_0(x_i))$$
-
-This approach performs well for **video segmentation** (Fathi et al., 2011) where frames are nodes and edge weights come from visual similarity.
-
----
-
 ## Deep Active Learning
 
 ![[Lecture08_Pg087_Deep_Active_Learning.png]]
@@ -668,6 +544,130 @@ A critical failure mode: the uncertainty-based strategy keeps selecting the **sa
 $$x_1^*, \ldots, x_B^* = \arg\max \; I(y_1, \ldots, y_B; \omega \mid x_1, \ldots, x_B, \mathcal{D})$$
 
 Uncertainty alone grabs near-duplicates; diversity alone ignores which regions are actually uncertain. BatchBALD balances both.
+
+---
+
+## Semi-supervised Learning
+
+### Setup
+
+Given:
+
+- $S_l = (x_1, y_1), (x_2, y_2), \ldots, (x_m, y_m)$ — labeled examples drawn i.i.d. from distribution $D$, with $y_i = c^*(x_i)$
+- $S_u = x_1, \ldots, x_{m_u}$ — unlabeled examples drawn i.i.d. from $D$
+
+**Goal**: find a classifier with small generalization error $\text{err}_D(h) = P(h(x) \neq c^*(x))$
+
+### Key Insight
+
+![[Lecture08_Pg039_Key_Insight.png]]
+
+<p class="image-caption">Unlabeled data helps by shrinking the search space and biasing our function.</p>
+
+Unlabeled data is useful **only if** we have a belief not just about the form of the target function, but also about its **relationship with the underlying data distribution**.
+
+Unlabeled data can:
+
+- Reduce the search space
+- Re-order functions in the search space according to our belief
+- Bias the search toward functions consistent with the data manifold
+
+_(Zhu and Goldberg, 2009)_
+
+### Fundamental Questions (General Discriminative Model)
+
+![[Lecture08_Pg040_Fundamental_Questions_General_Discriminative_Model.png]]
+
+<p class="image-caption">The big questions for discriminative models when dealing with unlabeled data.</p>
+
+- How much unlabeled data is needed? — depends on complexity of $H$ and the compatibility notion
+- Can unlabeled data reduce the number of labeled examples needed?
+- Is the target function _compatible_ with the data distribution? — helpfulness depends on this
+
+> **Example**: Two concentric rings of data points (inner ring = class A, outer ring = class B). With only labeled data you might draw the wrong boundary; with unlabeled data you can "see" the ring structure and place the boundary between the rings.
+
+---
+
+## Graph-Based Active and Semi-supervised Methods
+
+### Core Idea
+
+Assume a **pairwise similarity function** exists and that very similar examples probably share the same label.
+
+- Many **labeled** points → Nearest-Neighbour classifier
+- Many **unlabeled** points → use them as "stepping stones" via **label propagation**
+
+Unlabeled data can help **"glue" objects of the same class together** even when there is no direct edge between labeled points of the same class.
+
+This graph view is particularly useful when the geometry of the unlabeled data is more informative than individual feature vectors: once the graph captures the manifold or cluster structure, labels can propagate through the unlabeled region instead of relying only on isolated supervised points.
+
+### Building the Graph
+
+![[Lecture08_Pg075_Building_The_Graph.png]]
+
+<p class="image-caption">Building a similarity graph to propagate labels between nodes.</p>
+
+- **Nodes**: all examples (labeled + unlabeled)
+- **Edges**: between very similar examples ($k$-NN or $\varepsilon$-ball with Gaussian similarity weights)
+- Labeled nodes have fixed labels; unlabeled nodes get soft labels via propagation
+
+Often used in a **transductive** setting: given $L \cup U$, output predictions on $U$ (not required to generalize to brand-new test points).
+
+### Graph Partitioning Algorithms
+
+![[Lecture08_Pg078_Graph_Partitioning_Algorithms.png]]
+
+<p class="image-caption">Comparing graph partitioning: min-cut, soft-cut, and spectral methods.</p>
+
+| Method                                              | Description                                                            |
+| --------------------------------------------------- | ---------------------------------------------------------------------- |
+| **Minimum cut** (Blum & Chawla, 2001)               | Hard partition: minimize total weight of cut edges                     |
+| **Soft cut / Label propagation** (Zhu et al., 2003) | Smooth label function minimizing $\sum_{ij} w_{ij}(f(x_i) - f(x_j))^2$ |
+| **Spectral partitioning**                           | Eigenvectors of the graph Laplacian                                    |
+
+### Semi-supervised Learning with Soft Cuts (Zhu et al., 2003)
+
+![[Lecture08_Pg079_Semi_Supervised_Learning_With_Soft_Cuts.png]]
+
+<p class="image-caption">Label propagation works like a harmonic function spreading through the graph.</p>
+
+Solve for a label function $f(x) \in [0, 1]$ that minimises:
+
+$$\min_f \sum_{i,j} w_{ij}(f(x_i) - f(x_j))^2 \quad \text{subject to } f(x_i) = y_i \text{ for labeled nodes}$$
+
+This is a **harmonic equation**: labels spread outward from labeled nodes, weighted by edge similarity. The solution can be found by solving a sparse linear system.
+
+> **Example**: A document graph where edges connect articles sharing many keywords. Label 3 articles in a "sports" cluster as positive and 2 articles in a "finance" cluster as negative. Label propagation will assign positive labels to all sports articles and negative to all finance articles, flowing through the keyword-similarity edges.
+
+### Active Learning
+
+![[Lecture08_Pg045_Active_Learning_What_Makes_A_Good_Active_Learning_Algorithm.png]]
+
+<p class="image-caption">The same active-learning framework is reused here as the bridge into graph-based querying with label propagation.</p>
+
+### Active Learning with Label Propagation
+
+
+![[Lecture08_Pg083_Active_Learning_With_Label_Propagation.png]]
+
+<p class="image-caption">An active learning strategy for graphs: query nodes that spread the most info.</p>
+
+
+**Naïve approach**: query the node with $f(x) \approx 0.5$ (most uncertain).
+
+**Problem**: The uncertain node might be nearly **isolated** (just one edge) — labeling it won't propagate much information.
+
+**Better — 1-step lookahead heuristic** (Fathi et al., 2011):
+
+For each candidate node $s$ with current soft label $p$:
+
+1. Assume the oracle answers $1$ with probability $p$, answers $0$ with probability $1 - p$
+2. Run label propagation for each outcome, compute **average confidence** across all nodes
+3. Query the node that maximises expected confidence:
+
+$$\text{score}(s) = p \cdot \frac{1}{n}\sum_i \max(f_1(x_i), 1-f_1(x_i)) + (1-p) \cdot \frac{1}{n}\sum_i \max(f_0(x_i), 1-f_0(x_i))$$
+
+This approach performs well for **video segmentation** (Fathi et al., 2011) where frames are nodes and edge weights come from visual similarity.
 
 ---
 

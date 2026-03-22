@@ -370,30 +370,6 @@ The key insight of VAEs is to **amortise** this inference: instead of running op
 
 ---
 
-## Learning the Parameters
-
-![[Lecture09_Pg060_Learning_The_Parameters.png]]
-
-<p class="image-caption">Training a VAE by optimizing the encoder and decoder together through the ELBO.</p>
-
-We jointly optimise decoder parameters $\theta$ and encoder parameters $\phi$ by maximising the ELBO:
-
-$$\mathcal{L}(x;\theta,\phi) = \mathbb{E}_{q_\phi(z|x)}\!\Big[\log p_\theta(x|z)\Big] - D_{KL}\!\Big(q_\phi(z|x) \| p(z)\Big)$$
-
-**Gradient w.r.t. $\theta$** (decoder — straightforward):
-
-$$\nabla_\theta \mathcal{L} = \nabla_\theta \mathbb{E}_{q_\phi(z|x)}\!\big[\log p_\theta(x|z)\big] = \mathbb{E}_{q_\phi(z|x)}\!\big[\nabla_\theta \log p_\theta(x|z)\big] \approx \frac{1}{n}\sum_{i=1}^n \nabla_\theta \log p_\theta(x|z_i;\theta)$$
-
-Since $\theta$ does not appear inside the expectation distribution, we can move the gradient inside freely.
-
-**Gradient w.r.t. $\phi$** (encoder — tricky):
-
-$$\nabla_\phi \mathcal{L} = \nabla_\phi \mathbb{E}_{q_\phi(z|x)}\!\big[\log p_\theta(x|z)\big] - \nabla_\phi D_{KL}$$
-
-The expectation itself depends on $\phi$ (it is the distribution we sample $z$ from), so we cannot naively move $\nabla_\phi$ inside. This requires the **reparameterization trick**.
-
----
-
 ## The Reparameterization Trick
 
 **Problem**: $z \sim q_\phi(z|x)$ is a stochastic sampling step — gradients cannot flow through it.
@@ -445,6 +421,30 @@ x ──→ Encoder ──→ μ, σ
 ```
 
 > **Example**: without reparameterization, training a VAE on MNIST wouldn't converge — the KL term would not receive gradients back to the encoder. With reparameterization, the encoder learns to produce posteriors that both reconstruct well _and_ stay close to $\mathcal{N}(0,I)$.
+
+---
+
+## Learning the Parameters
+
+![[Lecture09_Pg060_Learning_The_Parameters.png]]
+
+<p class="image-caption">Training a VAE by optimizing the encoder and decoder together through the ELBO.</p>
+
+We jointly optimise decoder parameters $\theta$ and encoder parameters $\phi$ by maximising the ELBO:
+
+$$\mathcal{L}(x;\theta,\phi) = \mathbb{E}_{q_\phi(z|x)}\!\Big[\log p_\theta(x|z)\Big] - D_{KL}\!\Big(q_\phi(z|x) \| p(z)\Big)$$
+
+**Gradient w.r.t. $\theta$** (decoder — straightforward):
+
+$$\nabla_\theta \mathcal{L} = \nabla_\theta \mathbb{E}_{q_\phi(z|x)}\!\big[\log p_\theta(x|z)\big] = \mathbb{E}_{q_\phi(z|x)}\!\big[\nabla_\theta \log p_\theta(x|z)\big] \approx \frac{1}{n}\sum_{i=1}^n \nabla_\theta \log p_\theta(x|z_i;\theta)$$
+
+Since $\theta$ does not appear inside the expectation distribution, we can move the gradient inside freely.
+
+**Gradient w.r.t. $\phi$** (encoder — tricky):
+
+$$\nabla_\phi \mathcal{L} = \nabla_\phi \mathbb{E}_{q_\phi(z|x)}\!\big[\log p_\theta(x|z)\big] - \nabla_\phi D_{KL}$$
+
+The expectation itself depends on $\phi$ (it is the distribution we sample $z$ from), so we cannot naively move $\nabla_\phi$ inside. This requires the **reparameterization trick**.
 
 ---
 

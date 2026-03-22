@@ -17,6 +17,42 @@ date: 2026-03-09
 - Pooling and depth gradually trade exact location for **stronger semantic meaning**: edges become motifs, motifs become parts, and parts become objects.
 - If one question guides this lecture, let it be: **how can we recognise visual patterns without relearning the same detector at every pixel location?**
 
+## Deep Learning in a Nutshell
+
+### Traditional Approach
+
+![[Lecture02_Pg035_Traditional_Approach.png]]
+
+<p class="image-caption">Before deep learning, we had to hand-craft every single visual feature.</p>
+
+Image features were often:
+
+- Handcrafted and fixed
+- Too general (not task-specific enough), or too specific (do not generalise well to other tasks)
+
+### Trainable Features
+
+![[Lecture02_Pg037_Trainable_Features.png]]
+
+<p class="image-caption">Nowadays, we let the network learn the best features directly from the data.</p>
+
+- **Parametrised feature extraction**: features are learned, not hand-coded
+- Features should be efficient to compute and efficient to train (differentiable)
+- **Joint training** of feature extraction and classification → "end-to-end system"
+
+### Summary of Main Ideas
+
+![[Lecture02_Pg038_Summary_Of_Main_Ideas.png]]
+
+<p class="image-caption">A quick wrap-up of the big ideas: hierarchies, differentiability, and end-to-end training.</p>
+
+1. **Learning of features** across many layers
+2. **Efficient and trainable systems** via differentiable building blocks
+3. **Composition of deep architectures** via non-linear modules
+4. **"End-to-end" training**: no differentiation between feature extraction and classification
+
+---
+
 ## Human Visual Perception
 
 ### The Human Eye
@@ -214,42 +250,6 @@ $$y = \max_{j=1 \ldots n_{C_k}} x_j$$
 <p class="image-caption">CNNs aren't just for classification; they're great for detection and labeling too.</p>
 
 Beyond classification, CNNs were extended to dense predictions — object detection [Ren et al., 2015; Girshick, 2015; He et al., 2017] and scene labelling [Farabet et al., 2012].
-
----
-
-## Deep Learning in a Nutshell
-
-### Traditional Approach
-
-![[Lecture02_Pg035_Traditional_Approach.png]]
-
-<p class="image-caption">Before deep learning, we had to hand-craft every single visual feature.</p>
-
-Image features were often:
-
-- Handcrafted and fixed
-- Too general (not task-specific enough), or too specific (do not generalise well to other tasks)
-
-### Trainable Features
-
-![[Lecture02_Pg037_Trainable_Features.png]]
-
-<p class="image-caption">Nowadays, we let the network learn the best features directly from the data.</p>
-
-- **Parametrised feature extraction**: features are learned, not hand-coded
-- Features should be efficient to compute and efficient to train (differentiable)
-- **Joint training** of feature extraction and classification → "end-to-end system"
-
-### Summary of Main Ideas
-
-![[Lecture02_Pg038_Summary_Of_Main_Ideas.png]]
-
-<p class="image-caption">A quick wrap-up of the big ideas: hierarchies, differentiability, and end-to-end training.</p>
-
-1. **Learning of features** across many layers
-2. **Efficient and trainable systems** via differentiable building blocks
-3. **Composition of deep architectures** via non-linear modules
-4. **"End-to-end" training**: no differentiation between feature extraction and classification
 
 ---
 

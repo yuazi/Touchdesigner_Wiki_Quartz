@@ -10,6 +10,13 @@ date: 2026-03-09
 ---
 [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/02-cnn|Next: (y-02) CNNs]]
 
+## Mental Model First
+
+- This lecture introduces the full training loop: represent the input, measure how wrong the model is with a **loss**, then use gradients to improve the weights.
+- A hidden layer is best thought of as a **feature builder**. Early layers turn raw numbers into useful intermediate patterns; later layers combine those patterns into decisions.
+- Backpropagation is not "the network thinking backwards." It is just a systematic way of assigning **credit and blame** to each parameter.
+- If one question guides your reading, let it be this: **how do simple mathematical blocks become a trainable system that improves from data?**
+
 ## Introduction
 
 **Machine perception** is the capability of a computer system to interpret data in a manner similar to the way humans use their senses to relate to the world around them.
@@ -21,13 +28,6 @@ I use the [[work/slidelink|SlideLink]] tool I built to automatically align these
 This course is **in-depth, hands-on, and advanced** — it assumes prior exposure to machine learning, deep learning, reinforcement learning, or computer vision.
 
 ---
-
-## Mental Model First
-
-- This lecture introduces the full training loop: represent the input, measure how wrong the model is with a **loss**, then use gradients to improve the weights.
-- A hidden layer is best thought of as a **feature builder**. Early layers turn raw numbers into useful intermediate patterns; later layers combine those patterns into decisions.
-- Backpropagation is not "the network thinking backwards." It is just a systematic way of assigning **credit and blame** to each parameter.
-- If one question guides your reading, let it be this: **how do simple mathematical blocks become a trainable system that improves from data?**
 
 ## Refresher: Neural Networks
 
