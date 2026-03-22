@@ -25,42 +25,7 @@ date: 2026-03-09
 - Their biggest strength is stable high-quality generation, while their biggest weakness is often sampling cost.
 - If one question guides this lecture, let it be: **why is reversing a noise process easier to train than generating a full image in one shot?**
 
-## Last Lecture Recap — VAEs and GANs
-
-### Variational Autoencoders (VAEs)
-
-![[Lecture12_Pg005_Variational_Autoencoders_Vaes.png]]
-
-<p class="image-caption">The VAE setup: it's all about mapping data to that latent space and back.</p>
-
-- Probabilistic version of autoencoders.
-- Allows sampling from the learned model to generate new, unseen samples.
-- Puts a prior on the latent $z$: $z \sim \mathcal{N}(0, I)$
-- Decoder: $p(x|z) = \mathcal{N}(\mu_\theta(z),\, \Sigma_\theta(z))$ where $\mu_\theta$ and $\Sigma_\theta$ are neural networks.
-
-**Example**: VAE trained on MNIST. Sample $z \sim \mathcal{N}(0, I)$ and decode it through $\mu_\theta(z)$ to get a plausible digit image — never seen during training.
-
-### Generative Adversarial Networks (GANs)
-
-
-![[Lecture12_Pg006_Generative_Adversarial_Networks_Gans.png]]
-
-<p class="image-caption">Here's how GANs work—the Generator and Discriminator constantly trying to outsmart each other.</p>
-
-
-- **Generator**: try to fool the discriminator by generating real-looking images.
-- **Discriminator**: try to distinguish between real and fake images.
-
-|               | VAEs                              | GANs                                                      |
-| ------------- | --------------------------------- | --------------------------------------------------------- |
-| Training      | Relatively easier                 | Many tricks needed (mode collapse, adversarial objective) |
-| Inference     | Explicit encoder $q(z \mid x)$    | Implicit generative model                                 |
-| Image quality | More blurry (reconstruction loss) | Sharper (discriminator loss)                              |
-
----
-
 ## This Lecture — Generative Models III
----
 
 ![[Lecture12_Pg014_This_Lecture_Generative_Models_Iii.png]]
 
@@ -71,6 +36,8 @@ date: 2026-03-09
 3. Diffusion Model Application: GLIDE (Nichol et al., 2022)
 
 Diffusion models have **emerged as the most powerful generative models**, outperforming GANs across image synthesis, super-resolution, text-to-image, video, 3D, and molecule generation.
+
+We start with the diffusion mechanism itself and return to VAEs and GANs later only to position diffusion in the broader generative-model landscape.
 
 ---
 
@@ -423,57 +390,6 @@ The term $\nabla_x \log p_t(x)$ is the **score function** — the gradient of th
 
 ---
 
-## Discussion: Advantages and Disadvantages
-
-### Advantages
-
-- **High diversity**: covers the data distribution well, unlike mode-collapsing GANs.
-- **High quality**: samples are comparable to or better than GANs.
-- **Flexible conditioning**: easily conditioned on images, text, or class labels.
-
-### Disadvantages
-
-- **Slow generation**: requires many forward passes through the network ($T = 1000$ steps by default).
-- **Less meaningful latents**: latent variables have the same dimensionality as the data — harder to interpret or manipulate.
-
----
-
-### ⚠️ Common Pitfalls: Why Diffusion Can Fail
-
-1.  **The Sampling Bottleneck**: Unlike GANs which are "one-and-done," Diffusion requires iterative refinement. This makes them significantly slower for real-time applications unless you use distillation or DDIM.
-2.  **Schedule Sensitivity**: If the noise schedule ($\beta_t$) is too aggressive, the signal is destroyed too early for the model to learn meaningful structure. If it's too gentle, the reverse process starts from something that isn't true Gaussian noise, leading to artifacts.
-3.  **High-Res Instability**: Running diffusion directly in pixel space for high resolutions often leads to "grid-like" artifacts or extremely long training times. This is exactly why **Latent Diffusion** (LDMs) was invented—to compress the problem first.
-4.  **Prompt Adherence vs. Quality**: Over-using **Classifier-Free Guidance (CFG)** can make images look "deep-fried" or oversaturated. There is a sweet spot (usually scale 7-10) where the model follows the prompt without ruining the image aesthetics.
-
----
-
-### The Generative Trilemma
-
-![[Lecture12_Pg048_The_Generative_Trilemma.png]]
-
-<p class="image-caption">The classic generative trilemma: you're always balancing quality, sampling speed, and diversity.</p>
-
-Most generative models can excel at only **two of three** desirable properties:
-
-```
-             HIGH QUALITY
-                  △
-                 /|\
-                / | \
-               /  |  \
-              /   |   \
-FAST SAMPLING ──────────── HIGH DIVERSITY
-                             (mode coverage)
-```
-
-| Model            | Quality   | Diversity            | Speed         |
-| ---------------- | --------- | -------------------- | ------------- |
-| GANs             | ✅ High   | ❌ Mode collapse     | ✅ 1 pass     |
-| VAEs             | ⚠️ Blurry | ✅ Good              | ✅ 1 pass     |
-| Diffusion (DDPM) | ✅ High   | ✅ Full distribution | ❌ 1000 steps |
-
-Diffusion often offers strong quality and coverage, but usually sacrifices speed — motivating DDIM, consistency models, and flow matching.
-
 ## DDIM — Fast Sampling
 
 DDPM sampling is high quality but slow: at inference time it often requires **$T = 1000$ denoising steps**. This is one of the main practical bottlenecks of diffusion models.
@@ -799,6 +715,93 @@ GLIDE is not only a text-to-image generator from scratch; the lecture's editing 
 This is the same general diffusion machinery applied in an **editing / inpainting-style** setting: keep most of the scene fixed, but regenerate the masked region so it becomes consistent with the prompt.
 
 ---
+
+## Generative Models in Context — VAEs and GANs
+
+Now that the diffusion pipeline is in place, the comparison to earlier generative models is easier to interpret.
+
+### Variational Autoencoders (VAEs)
+
+![[Lecture12_Pg005_Variational_Autoencoders_Vaes.png]]
+
+<p class="image-caption">The VAE setup: it's all about mapping data to that latent space and back.</p>
+
+- Probabilistic version of autoencoders.
+- Allows sampling from the learned model to generate new, unseen samples.
+- Puts a prior on the latent $z$: $z \sim \mathcal{N}(0, I)$
+- Decoder: $p(x|z) = \mathcal{N}(\mu_\theta(z),\, \Sigma_\theta(z))$ where $\mu_\theta$ and $\Sigma_\theta$ are neural networks.
+
+**Example**: VAE trained on MNIST. Sample $z \sim \mathcal{N}(0, I)$ and decode it through $\mu_\theta(z)$ to get a plausible digit image — never seen during training.
+
+### Generative Adversarial Networks (GANs)
+
+
+![[Lecture12_Pg006_Generative_Adversarial_Networks_Gans.png]]
+
+<p class="image-caption">Here's how GANs work—the Generator and Discriminator constantly trying to outsmart each other.</p>
+
+
+- **Generator**: try to fool the discriminator by generating real-looking images.
+- **Discriminator**: try to distinguish between real and fake images.
+
+|               | VAEs                              | GANs                                                      |
+| ------------- | --------------------------------- | --------------------------------------------------------- |
+| Training      | Relatively easier                 | Many tricks needed (mode collapse, adversarial objective) |
+| Inference     | Explicit encoder $q(z \mid x)$    | Implicit generative model                                 |
+| Image quality | More blurry (reconstruction loss) | Sharper (discriminator loss)                              |
+
+---
+
+## Discussion: Advantages and Disadvantages
+
+### Advantages
+
+- **High diversity**: covers the data distribution well, unlike mode-collapsing GANs.
+- **High quality**: samples are comparable to or better than GANs.
+- **Flexible conditioning**: easily conditioned on images, text, or class labels.
+
+### Disadvantages
+
+- **Slow generation**: requires many forward passes through the network ($T = 1000$ steps by default).
+- **Less meaningful latents**: latent variables have the same dimensionality as the data — harder to interpret or manipulate.
+
+---
+
+### ⚠️ Common Pitfalls: Why Diffusion Can Fail
+
+1.  **The Sampling Bottleneck**: Unlike GANs which are "one-and-done," Diffusion requires iterative refinement. This makes them significantly slower for real-time applications unless you use distillation or DDIM.
+2.  **Schedule Sensitivity**: If the noise schedule ($\beta_t$) is too aggressive, the signal is destroyed too early for the model to learn meaningful structure. If it's too gentle, the reverse process starts from something that isn't true Gaussian noise, leading to artifacts.
+3.  **High-Res Instability**: Running diffusion directly in pixel space for high resolutions often leads to "grid-like" artifacts or extremely long training times. This is exactly why **Latent Diffusion** (LDMs) was invented—to compress the problem first.
+4.  **Prompt Adherence vs. Quality**: Over-using **Classifier-Free Guidance (CFG)** can make images look "deep-fried" or oversaturated. There is a sweet spot (usually scale 7-10) where the model follows the prompt without ruining the image aesthetics.
+
+---
+
+### The Generative Trilemma
+
+![[Lecture12_Pg048_The_Generative_Trilemma.png]]
+
+<p class="image-caption">The classic generative trilemma: you're always balancing quality, sampling speed, and diversity.</p>
+
+Most generative models can excel at only **two of three** desirable properties:
+
+```
+             HIGH QUALITY
+                  △
+                 /|\
+                / | \
+               /  |  \
+              /   |   \
+FAST SAMPLING ──────────── HIGH DIVERSITY
+                             (mode coverage)
+```
+
+| Model            | Quality   | Diversity            | Speed         |
+| ---------------- | --------- | -------------------- | ------------- |
+| GANs             | ✅ High   | ❌ Mode collapse     | ✅ 1 pass     |
+| VAEs             | ⚠️ Blurry | ✅ Good              | ✅ 1 pass     |
+| Diffusion (DDPM) | ✅ High   | ✅ Full distribution | ❌ 1000 steps |
+
+Diffusion often offers strong quality and coverage, but usually sacrifices speed — motivating DDIM, consistency models, and flow matching.
 
 ## Are We Done? — Open Challenges
 

@@ -83,26 +83,6 @@ Saliency helps us catch models that are "right for the wrong reasons."
 
 ---
 
-### ⚠️ Common Pitfalls: The Limits of Explainability
-
-1.  **Confirmation Bias**: Humans tend to look at an explanation and find a reason why it "makes sense," even if the explanation is random noise. This is why automated evaluation (like deletion/insertion tests) is essential.
-2.  **Explanation Hacking**: It is possible to train a model that is intentionally biased but provides "fair-looking" explanations. This is why we need **Axiomatic** methods like SHAP or Integrated Gradients that have mathematical guarantees.
-3.  **Fragility of Saliency**: Many saliency methods (like Vanilla Gradient) are incredibly sensitive to tiny, imperceptible changes in the input. If your explanation changes because you added 1% noise, it's not a reliable window into the model's logic.
-4.  **Local vs. Global Blindness**: A model can be perfectly fair on one specific person (Local) while being systematically biased against their entire demographic (Global). Never rely on a single local explanation to vet a model for deployment.
-
----
-
-### 🧠 Deep Dive: LIME vs. SHAP (Accuracy vs. Fairness)
-
-Both LIME and SHAP give you feature importance, but they do it very differently.
-
-- **LIME (Local Proxy):** LIME says, "I don't know how the whole model works, but _right here_ in this tiny neighborhood, it acts like a simple linear equation." It's like approximating a complex curve with a straight line. It's fast and easy to understand, but it's only a rough approximation.
-- **SHAP (Game Theory):** SHAP is more principled. It asks: "If the features were players in a team, how much does each player truly deserve to be credited for the win?" It's mathematically "fair" (satisfying axioms of consistency and local accuracy), but it's much more computationally expensive to calculate.
-
-**In short:** LIME is a quick "good enough" sketch; SHAP is a rigorous "mathematically proven" audit.
-
----
-
 ## Local vs. Global Explanations
 
 ![[Lecture13_Pg020_Local_Vs_Global_Explanations.png]]
@@ -755,6 +735,26 @@ Three evaluation goals [Doshi-Velez & Kim, 2017]:
 **Human-AI collaboration**: Are explanations useful for tasks where the algorithm alone is unreliable?
 
 > **Deception detection example** [Lai & Tan, 2019]: Classify fake online reviews. Humans alone perform modestly; AI alone has its own error pattern. Do explanations improve decision accuracy when humans act on AI recommendations?
+
+---
+
+### ⚠️ Common Pitfalls: The Limits of Explainability
+
+1.  **Confirmation Bias**: Humans tend to look at an explanation and find a reason why it "makes sense," even if the explanation is random noise. This is why automated evaluation (like deletion/insertion tests) is essential.
+2.  **Explanation Hacking**: It is possible to train a model that is intentionally biased but provides "fair-looking" explanations. This is why we need **Axiomatic** methods like SHAP or Integrated Gradients that have mathematical guarantees.
+3.  **Fragility of Saliency**: Many saliency methods (like Vanilla Gradient) are incredibly sensitive to tiny, imperceptible changes in the input. If your explanation changes because you added 1% noise, it's not a reliable window into the model's logic.
+4.  **Local vs. Global Blindness**: A model can be perfectly fair on one specific person (Local) while being systematically biased against their entire demographic (Global). Never rely on a single local explanation to vet a model for deployment.
+
+---
+
+### 🧠 Deep Dive: LIME vs. SHAP (Accuracy vs. Fairness)
+
+Both LIME and SHAP give you feature importance, but they do it very differently.
+
+- **LIME (Local Proxy):** LIME says, "I don't know how the whole model works, but _right here_ in this tiny neighborhood, it acts like a simple linear equation." It's like approximating a complex curve with a straight line. It's fast and easy to understand, but it's only a rough approximation.
+- **SHAP (Game Theory):** SHAP is more principled. It asks: "If the features were players in a team, how much does each player truly deserve to be credited for the win?" It's mathematically "fair" (satisfying axioms of consistency and local accuracy), but it's much more computationally expensive to calculate.
+
+**In short:** LIME is a quick "good enough" sketch; SHAP is a rigorous "mathematically proven" audit.
 
 ---
 

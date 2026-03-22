@@ -13,10 +13,11 @@ date: 2026-03-09
 
 **This lecture covers:**
 
-- Embeddings
 - Attention Mechanisms
+- Embeddings and Positional Encoding
 - Attention is All You Need (Vaswani et al., 2017)
 - BERT
+- GPT
 
 ---
 
@@ -26,6 +27,144 @@ date: 2026-03-09
 - Attention tells each token which other tokens are most useful right now; it is a dynamic weighted lookup, not a fixed local window.
 - Embeddings say what a token is, positional encodings say where it is, and attention decides what context to mix in.
 - If one question guides this lecture, let it be: **how can a model capture long-range dependencies without processing tokens one-by-one?**
+
+The teaching flow follows that question directly: first the seq2seq bottleneck that motivates attention, then the token representations Transformers operate on, and only then the full architecture and its model families.
+
+## Attention Mechanisms
+
+### Motivation: RNN Weaknesses
+
+
+![[Lecture05_Pg026_Motivation_Rnn_Weaknesses.png]]
+
+<p class="image-caption">RNNs struggle with long sequences because they process everything one step at a time.</p>
+
+
+RNNs have several fundamental weaknesses that motivated the development of attention:
+
+- **Slow training speed**: computation is inherently sequential — step $t$ depends on step $t-1$
+- **Long-distance temporal dependencies**: vanishing gradients prevent learning relationships between distant tokens
+- **Difficulty with long input sequences**: performance degrades on sequences longer than those seen during training
+- **Fixed-size bottleneck**: the encoder must compress an entire sequence into one vector
+
+**Solution**: attention mechanisms!
+
+---
+
+### Inspiration from Human Attention
+
+![[Lecture05_Pg030_Inspiration_From_Human_Attention.png]]
+
+<p class="image-caption">Just like our eyes focus on specific parts of a scene, attention lets models focus on the most relevant data.</p>
+
+Neural attention is loosely inspired by **human visual attention**:
+
+- Humans perceive with high acuity only within ~2 degrees of visual angle (foveal vision)
+- We don't perceive a whole image at once — we focus on different parts sequentially (scanpaths of eye fixations)
+- Neurons associated with the attended stimulus fire more synchronously
+
+> "Attention is the flexible control of limited computational resources." — Lindsay, 2020
+
+---
+
+### Attention in Machine Learning (Bahdanau et al., 2015)
+
+
+![[Lecture05_Pg034_Attention_In_Machine_Learning_Bahdanau_Et.png]]
+
+<p class="image-caption">Bahdanau attention lets the decoder "look back" at the encoder's states at every step.</p>
+
+
+The original neural attention mechanism was introduced for **machine translation** (seq2seq). The problem: when decoding, you can only use the last encoder hidden state $h_T$ — a bottleneck for long sentences.
+
+**Before** (standard seq2seq):
+
+$$p(y_i \mid y_1, \ldots, y_{i-1}, x) = g(y_{i-1}, s_i, z)$$
+
+where $z = h_T$ is just the final encoder state.
+
+**After** (with attention):
+
+$$p(y_i \mid y_1, \ldots, y_{i-1}, x) = g(y_{i-1}, s_i, z_i)$$
+
+A **different context vector** $z_i$ is computed at each decoding step:
+
+$$z_i = \sum_{j=1}^{T_x} \alpha_{ij} h_j$$
+
+This is a weighted sum over **all encoder states** $h_j$, where $\alpha_{ij}$ are the attention weights.
+
+#### Computing the Attention Weights
+
+![[Lecture05_Pg034_Computing_The_Attention_Weights.png]]
+
+<p class="image-caption">This is the step-by-step process of how we calculate those all-important attention weights.</p>
+
+$$\alpha_{ij} = \frac{\exp(e_{ij})}{\sum_{k=1}^{T_x} \exp(e_{ik})}$$
+
+(softmax to ensure they sum to 1)
+
+where:
+
+$$e_{ij} = v^\top \sigma(W s_{i-1} + U h_j)$$
+
+This is a small **feed-forward network** that scores, given the current decoder state $s_{i-1}$, how important each encoder output $h_j$ is. The parameters $v, W, U$ are learned jointly with the rest of the model.
+
+**Intuition**: to generate the French word "zone", the decoder can look back and put high attention on the English word "area" — directly, without having to "remember" it through a chain of hidden states.
+
+---
+
+### Soft vs. Hard Attention (Xu et al., 2015)
+
+![[Lecture05_Pg040_Soft_Vs_Hard_Attention_Xu_Et.png]]
+
+<p class="image-caption">Soft attention is smooth and differentiable, while hard attention picks one spot and sticks to it.</p>
+
+
+|                   | Soft Attention                        | Hard Attention                  |
+| ----------------- | ------------------------------------- | ------------------------------- |
+| Method            | Weighted average of all positions     | Samples a single position       |
+| Differentiability | Differentiable (end-to-end)           | Stochastic (requires REINFORCE) |
+| Behaviour         | "Looks" everywhere with varying focus | "Looks" at one area at a time   |
+| Human similarity  | Less similar                          | More similar to human gaze      |
+
+**Example — visual captioning** (Xu et al., 2015 — "Show, Attend and Tell"):  
+When generating the word "bird", soft attention weights the entire image with a peak around the bird. Hard attention samples one patch — the bird's location — and attends only there.
+
+---
+
+### Global vs. Local Attention (Luong et al., 2015)
+
+![[Lecture05_Pg042_Global_Vs_Local_Attention_Luong_Et.png]]
+
+<p class="image-caption">Global attention looks at everything, while local attention focuses on a small window of tokens.</p>
+
+|           | Global Attention           | Local Attention           |
+| --------- | -------------------------- | ------------------------- |
+| Scope     | All encoder hidden states  | Subset of hidden states   |
+| Cost      | Expensive, $O(n)$ per step | Cheaper, $O(k)$ per step  |
+| Practical | OK for short sequences     | Better for long sequences |
+
+In **local attention**, the model first predicts the "aligned position" $p_t$ for each decoder step, then attends only within a window $[p_t - D, p_t + D]$.
+
+**Example — English-to-German translation** (Luong et al., 2015):  
+For the output word "Wirtschaftszone", global attention correctly puts weight on "economic" and "zone" in the source. Local attention achieves similar alignment but at a fraction of the cost for long documents.
+
+---
+
+### Advantages of Attention
+
+![[Lecture05_Pg046_Advantages_Of_Attention.png]]
+
+<p class="image-caption">A quick recap of why attention is such a game-changer for neural networks.</p>
+
+
+1. **Flexibility**: handles variable-length inputs without a fixed-size bottleneck
+2. **Performance**: significantly better on long sequences where RNNs degrade
+3. **Interpretability**: the attention weights $\alpha_{ij}$ are observable — you can visualise what the model is "looking at"
+
+**But**: attention combined with RNNs is still slow due to sequential computation. The key insight of the Transformer: **use attention only** — remove recurrence entirely!
+
+---
 
 ## Embeddings
 
@@ -199,142 +338,6 @@ Ethayarajh (2019) compared BERT, ELMo, and GPT-2 using three new years: self-sim
 - Models contextualise words very differently from one another
 - Less than **5% of the variance** of a word's contextualised representations can be explained by a static embedding
 - Static embeddings created from the first principal component of a lower layer can **outperform GloVe and FastText**
-
----
-
-## Attention Mechanisms
-
-### Motivation: RNN Weaknesses
-
-
-![[Lecture05_Pg026_Motivation_Rnn_Weaknesses.png]]
-
-<p class="image-caption">RNNs struggle with long sequences because they process everything one step at a time.</p>
-
-
-RNNs have several fundamental weaknesses that motivated the development of attention:
-
-- **Slow training speed**: computation is inherently sequential — step $t$ depends on step $t-1$
-- **Long-distance temporal dependencies**: vanishing gradients prevent learning relationships between distant tokens
-- **Difficulty with long input sequences**: performance degrades on sequences longer than those seen during training
-- **Fixed-size bottleneck**: the encoder must compress an entire sequence into one vector
-
-**Solution**: attention mechanisms!
-
----
-
-### Inspiration from Human Attention
-
-![[Lecture05_Pg030_Inspiration_From_Human_Attention.png]]
-
-<p class="image-caption">Just like our eyes focus on specific parts of a scene, attention lets models focus on the most relevant data.</p>
-
-Neural attention is loosely inspired by **human visual attention**:
-
-- Humans perceive with high acuity only within ~2 degrees of visual angle (foveal vision)
-- We don't perceive a whole image at once — we focus on different parts sequentially (scanpaths of eye fixations)
-- Neurons associated with the attended stimulus fire more synchronously
-
-> "Attention is the flexible control of limited computational resources." — Lindsay, 2020
-
----
-
-### Attention in Machine Learning (Bahdanau et al., 2015)
-
-
-![[Lecture05_Pg034_Attention_In_Machine_Learning_Bahdanau_Et.png]]
-
-<p class="image-caption">Bahdanau attention lets the decoder "look back" at the encoder's states at every step.</p>
-
-
-The original neural attention mechanism was introduced for **machine translation** (seq2seq). The problem: when decoding, you can only use the last encoder hidden state $h_T$ — a bottleneck for long sentences.
-
-**Before** (standard seq2seq):
-
-$$p(y_i \mid y_1, \ldots, y_{i-1}, x) = g(y_{i-1}, s_i, z)$$
-
-where $z = h_T$ is just the final encoder state.
-
-**After** (with attention):
-
-$$p(y_i \mid y_1, \ldots, y_{i-1}, x) = g(y_{i-1}, s_i, z_i)$$
-
-A **different context vector** $z_i$ is computed at each decoding step:
-
-$$z_i = \sum_{j=1}^{T_x} \alpha_{ij} h_j$$
-
-This is a weighted sum over **all encoder states** $h_j$, where $\alpha_{ij}$ are the attention weights.
-
-#### Computing the Attention Weights
-
-![[Lecture05_Pg034_Computing_The_Attention_Weights.png]]
-
-<p class="image-caption">This is the step-by-step process of how we calculate those all-important attention weights.</p>
-
-$$\alpha_{ij} = \frac{\exp(e_{ij})}{\sum_{k=1}^{T_x} \exp(e_{ik})}$$
-
-(softmax to ensure they sum to 1)
-
-where:
-
-$$e_{ij} = v^\top \sigma(W s_{i-1} + U h_j)$$
-
-This is a small **feed-forward network** that scores, given the current decoder state $s_{i-1}$, how important each encoder output $h_j$ is. The parameters $v, W, U$ are learned jointly with the rest of the model.
-
-**Intuition**: to generate the French word "zone", the decoder can look back and put high attention on the English word "area" — directly, without having to "remember" it through a chain of hidden states.
-
----
-
-### Soft vs. Hard Attention (Xu et al., 2015)
-
-![[Lecture05_Pg040_Soft_Vs_Hard_Attention_Xu_Et.png]]
-
-<p class="image-caption">Soft attention is smooth and differentiable, while hard attention picks one spot and sticks to it.</p>
-
-
-|                   | Soft Attention                        | Hard Attention                  |
-| ----------------- | ------------------------------------- | ------------------------------- |
-| Method            | Weighted average of all positions     | Samples a single position       |
-| Differentiability | Differentiable (end-to-end)           | Stochastic (requires REINFORCE) |
-| Behaviour         | "Looks" everywhere with varying focus | "Looks" at one area at a time   |
-| Human similarity  | Less similar                          | More similar to human gaze      |
-
-**Example — visual captioning** (Xu et al., 2015 — "Show, Attend and Tell"):  
-When generating the word "bird", soft attention weights the entire image with a peak around the bird. Hard attention samples one patch — the bird's location — and attends only there.
-
----
-
-### Global vs. Local Attention (Luong et al., 2015)
-
-![[Lecture05_Pg042_Global_Vs_Local_Attention_Luong_Et.png]]
-
-<p class="image-caption">Global attention looks at everything, while local attention focuses on a small window of tokens.</p>
-
-|           | Global Attention           | Local Attention           |
-| --------- | -------------------------- | ------------------------- |
-| Scope     | All encoder hidden states  | Subset of hidden states   |
-| Cost      | Expensive, $O(n)$ per step | Cheaper, $O(k)$ per step  |
-| Practical | OK for short sequences     | Better for long sequences |
-
-In **local attention**, the model first predicts the "aligned position" $p_t$ for each decoder step, then attends only within a window $[p_t - D, p_t + D]$.
-
-**Example — English-to-German translation** (Luong et al., 2015):  
-For the output word "Wirtschaftszone", global attention correctly puts weight on "economic" and "zone" in the source. Local attention achieves similar alignment but at a fraction of the cost for long documents.
-
----
-
-### Advantages of Attention
-
-![[Lecture05_Pg046_Advantages_Of_Attention.png]]
-
-<p class="image-caption">A quick recap of why attention is such a game-changer for neural networks.</p>
-
-
-1. **Flexibility**: handles variable-length inputs without a fixed-size bottleneck
-2. **Performance**: significantly better on long sequences where RNNs degrade
-3. **Interpretability**: the attention weights $\alpha_{ij}$ are observable — you can visualise what the model is "looking at"
-
-**But**: attention combined with RNNs is still slow due to sequential computation. The key insight of the Transformer: **use attention only** — remove recurrence entirely!
 
 ---
 
