@@ -45,7 +45,7 @@ Interactive ML is the bridge that makes it possible to build high-quality models
 
 ### Automatic vs. Interactive ML
 
-![[Lecture08_Pg006_Automatic_Vs_Interactive_Ml.png]]
+![[Lecture08_Pg004_Automatic_Vs_Interactive_Ml.png]]
 
 <p class="image-caption">Traditional ML vs. Interactive ML—here's where the human comes in.</p>
 
@@ -73,11 +73,10 @@ This matters especially in **health informatics** and other high-stakes settings
 
 ### Types of ML on a Spectrum
 
-![[Lecture08_Pg022_Types_Of_Ml_On_A_Spectrum.png]]
+![[Lecture08_Pg040_Types_Of_Ml_On_A_Spectrum.png]]
 
 <p class="image-caption">The ML spectrum, ranging from totally unsupervised to fully interactive.</p>
 
-<!-- Review Needed: close slide match for 'Types of ML on a Spectrum' (p22: 0.388, p23: 0.372) -->
 
 | Type                  | Labels                       | Human Role                               |
 | --------------------- | ---------------------------- | ---------------------------------------- |
@@ -88,7 +87,7 @@ This matters especially in **health informatics** and other high-stakes settings
 
 ### Who Can Be "In the Loop"?
 
-![[Lecture08_Pg021_Who_Can_Be_In_The_Loop.png]]
+![[Lecture08_Pg018_Who_Can_Be_In_The_Loop.png]]
 
 <p class="image-caption">The different agents we can have in the loop, from experts to the crowd.</p>
 
@@ -122,7 +121,6 @@ The lecture also highlights two complementary cautions:
 
 <p class="image-caption">How human guidance can help tackle the complex protein folding problem.</p>
 
-<!-- Review Needed: close slide match for 'Example 2: Protein Folding' (p31: 0.537, p28: 0.495) -->
 
 Proteins are the building blocks of life; their 3D structure is determined by their amino acid sequence. Predicting that structure from sequence is an old, extremely hard problem. As of 2015, automatic ML methods did not work well enough. A human-in-the-loop could guide structure search.
 
@@ -130,17 +128,11 @@ Proteins are the building blocks of life; their 3D structure is determined by th
 
 #### Example 3: Subspace Clustering
 
-<!-- Review Needed: close slide match for 'Example 3: Subspace Clustering' (p35: 0.655, p34: 0.633) -->
-
-![[Lecture08_Pg035_Example_3_Subspace_Clustering.png]]
-
-<p class="image-caption">Spotting positive and negative clusters in subspace clustering.</p>
 
 ![[Lecture08_Pg034_Example_3_Subspace_Clustering.png]]
 
-<p class="image-caption">Patterns in high-dimensional data often hide within these subspaces.</p>
+<p class="image-caption">Spotting positive and negative clusters in subspace clustering.</p>
 
-<!-- Review Needed: close slide match for 'Example 3: Subspace Clustering' (p35: 0.655, p34: 0.633) -->
 
 Patterns in high-dimensional data often live in **subsets of dimensions** (subspaces). Clustering in subspaces is non-convex and NP-hard, data is often noisy, and there's little prior knowledge about the low-dimensional structure. Human experts can:
 
@@ -238,7 +230,7 @@ Passive learning needs 1/ε queries to get the same ε accuracy.
 
 ### Active SVM — Uncertainty Sampling in Practice
 
-![[Lecture08_Pg048_Active_Svm_Uncertainty_Sampling_In_Practice.png]]
+![[Lecture08_Pg054_Active_Svm_Uncertainty_Sampling_In_Practice.png]]
 
 <p class="image-caption">Active SVM in action: we query the points right on the decision boundary.</p>
 
@@ -282,7 +274,7 @@ Uncertainty sampling is **myopic and greedy**. Over time the queried sample beco
 
 ### Version Spaces
 
-![[Lecture08_Pg056_Version_Spaces.png]]
+![[Lecture08_Pg058_Version_Spaces.png]]
 
 <p class="image-caption">The Version Space, bounded by our most general and most specific hypotheses.</p>
 
@@ -368,7 +360,7 @@ What if $c^* \notin H$? (The realistic case — noise, model mismatch.)
 
 ### Theoretical Guarantees — What to Retain
 
-![[Lecture08_Pg068_Theoretical_Guarantees_What_To_Retain.png]]
+![[Lecture08_Pg067_Theoretical_Guarantees_What_To_Retain.png]]
 
 <p class="image-caption">Theoretical guarantees and safety for disagreement-based active learning.</p>
 
@@ -385,11 +377,10 @@ The lecture's theory slides emphasise that disagreement-based active learning is
 
 ### 1. Uncertainty Sampling
 
-![[Lecture08_Pg070_1_Uncertainty_Sampling.png]]
+![[Lecture08_Pg054_1_Uncertainty_Sampling.png]]
 
 <p class="image-caption">A few ways to sample by uncertainty: least confidence, margin, and entropy.</p>
 
-<!-- Review Needed: close slide match for '1. Uncertainty Sampling' (p70: 0.424, p90: 0.410) -->
 
 Query the example the model is **least confident** about.
 
@@ -465,7 +456,7 @@ This graph view is particularly useful when the geometry of the unlabeled data i
 
 ### Building the Graph
 
-![[Lecture08_Pg077_Building_The_Graph.png]]
+![[Lecture08_Pg075_Building_The_Graph.png]]
 
 <p class="image-caption">Building a similarity graph to propagate labels between nodes.</p>
 
@@ -503,17 +494,11 @@ This is a **harmonic equation**: labels spread outward from labeled nodes, weigh
 
 ### Active Learning with Label Propagation
 
-<!-- Review Needed: close slide match for 'Active Learning with Label Propagation' (p80: 0.554, p82: 0.551) -->
 
-![[Lecture08_Pg080_Active_Learning_With_Label_Propagation.png]]
+![[Lecture08_Pg083_Active_Learning_With_Label_Propagation.png]]
 
 <p class="image-caption">An active learning strategy for graphs: query nodes that spread the most info.</p>
 
-![[Lecture08_Pg082_Active_Learning_With_Label_Propagation.png]]
-
-<p class="image-caption">The 1-step lookahead heuristic for picking the best nodes to label.</p>
-
-<!-- Review Needed: close slide match for 'Active Learning with Label Propagation' (p82: 0.537, p84: 0.521) -->
 
 **Naïve approach**: query the node with $f(x) \approx 0.5$ (most uncertain).
 
@@ -535,7 +520,7 @@ This approach performs well for **video segmentation** (Fathi et al., 2011) wher
 
 ## Deep Active Learning
 
-![[Lecture08_Pg086_Deep_Active_Learning.png]]
+![[Lecture08_Pg087_Deep_Active_Learning.png]]
 
 <p class="image-caption">Deep Active Learning: it's tricky with softmax confidence and batching.</p>
 
@@ -560,7 +545,7 @@ Classical active learning theory assumes a fixed, well-understood hypothesis cla
 
 ### MC Dropout — Bayesian Approximation
 
-![[Lecture08_Pg088_Mc_Dropout_Bayesian_Approximation.png]]
+![[Lecture08_Pg089_Mc_Dropout_Bayesian_Approximation.png]]
 
 <p class="image-caption">Approximating Bayesian uncertainty using MC Dropout at test time.</p>
 
@@ -624,17 +609,11 @@ $$I \approx -\sum_c \left(\frac{1}{T}\sum_t p^t_c\right)\log\left(\frac{1}{T}\su
 
 ### Learning Loss for Active Learning
 
-<!-- Review Needed: close slide match for 'Learning Loss for Active Learning' (p92: 0.668, p93: 0.662) -->
 
 ![[Lecture08_Pg092_Learning_Loss_For_Active_Learning.png]]
 
 <p class="image-caption">Learning to predict loss with an extra module to help pick samples.</p>
 
-![[Lecture08_Pg093_Learning_Loss_For_Active_Learning.png]]
-
-<p class="image-caption">Using pairwise ranking to keep the loss prediction module training stable.</p>
-
-<!-- Review Needed: close slide match for 'Learning Loss for Active Learning' (p93: 0.650, p92: 0.641) -->
 
 (Yoo & Kweon, 2019) — **predict which examples the model will get wrong**.
 

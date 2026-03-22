@@ -87,7 +87,7 @@ Optic nerves terminate in two **lateral geniculate nuclei (LGN)**:
 
 ### Visual Cortex
 
-![[Lecture02_Pg011_Visual_Cortex.png]]
+![[Lecture02_Pg014_Visual_Cortex.png]]
 
 <p class="image-caption">The visual cortex is a hierarchy that starts with simple features in V1.</p>
 
@@ -96,7 +96,7 @@ Optic nerves terminate in two **lateral geniculate nuclei (LGN)**:
 
 ### Two-Streams Hypothesis
 
-![[Lecture02_Pg013_Two_Streams_Hypothesis.png]]
+![[Lecture02_Pg005_Two_Streams_Hypothesis.png]]
 
 <p class="image-caption">The two main paths in the brain: one for "where" things are and one for "what" they are.</p>
 
@@ -120,7 +120,7 @@ This trade-off directly impacts generalisation ability.
 
 ### Simple and Complex Cells
 
-![[Lecture02_Pg016_Simple_And_Complex_Cells.png]]
+![[Lecture02_Pg017_Simple_And_Complex_Cells.png]]
 
 <p class="image-caption">Simple cells care about exact location, while complex cells just want to see the right orientation.</p>
 
@@ -161,7 +161,7 @@ Neurons in the inferior temporal cortex show invariance to position, scale, and 
 
 ### HMAX Model
 
-![[Lecture02_Pg022_Hmax_Model.png]]
+![[Lecture02_Pg025_Hmax_Model.png]]
 
 <p class="image-caption">The HMAX model mimics the brain by switching between feature detection and pooling.</p>
 
@@ -265,7 +265,7 @@ A 32×32×3 image flattened to 3072×1 is fed into a dense layer. This ignores a
 
 ### Convolutional Layer
 
-![[Lecture02_Pg044_Convolutional_Layer.png]]
+![[Lecture02_Pg045_Convolutional_Layer.png]]
 
 <p class="image-caption">A convolution filter slides over the image to create a map of where it found a pattern.</p>
 
@@ -289,7 +289,7 @@ In a CNN, we don't hard-code these numbers. The network **learns** them during t
 
 ### Multiple Activation Maps
 
-![[Lecture02_Pg048_Multiple_Activation_Maps.png]]
+![[Lecture02_Pg047_Multiple_Activation_Maps.png]]
 
 <p class="image-caption">Stacking maps from different filters gives us a rich "volume" of features.</p>
 
@@ -319,17 +319,11 @@ This is why a CNN can recognize a "cat" regardless of whether the cat is in the 
 
 ### Key Idea
 
-<!-- Review Needed: close slide match for 'Key Idea' (p49: 0.765, p50: 0.765) -->
-
-![[Lecture02_Pg049_Key_Idea.png]]
-
-<p class="image-caption">The core of a CNN is just a sequence of convolutions and activations.</p>
 
 ![[Lecture02_Pg050_Key_Idea.png]]
 
-<p class="image-caption">As we go deeper, the representations become more abstract and meaningful.</p>
+<p class="image-caption">The core of a CNN is just a sequence of convolutions and activations.</p>
 
-<!-- Review Needed: close slide match for 'Key Idea' (p49: 0.827, p50: 0.827) -->
 
 CNNs are a **sequence of convolutional layers interspersed with activation functions**. Each layer learns increasingly abstract representations.
 
@@ -362,17 +356,11 @@ So stacking small filters is not only cheaper, it also gives the model **more de
 
 ### Visualisation
 
-<!-- Review Needed: close slide match for 'Visualisation' (p52: 0.649, p53: 0.646) -->
 
 ![[Lecture02_Pg052_Visualisation.png]]
 
 <p class="image-caption">Early layers mostly look for simple things like edges and colors.</p>
 
-![[Lecture02_Pg053_Visualisation.png]]
-
-<p class="image-caption">Later layers start recognizing complex parts and eventually whole objects.</p>
-
-<!-- Review Needed: close slide match for 'Visualisation' (p52: 0.656, p53: 0.653) -->
 
 [Zeiler and Fergus, 2014] — visualising what each filter responds to shows that:
 
@@ -381,17 +369,11 @@ So stacking small filters is not only cheaper, it also gives the model **more de
 
 ### Brain/Neuron View
 
-<!-- Review Needed: close slide match for 'Brain/Neuron View' (p54: 0.647, p55: 0.647) -->
 
-![[Lecture02_Pg054_Brain_Neuron_View.png]]
+![[Lecture02_Pg056_Brain_Neuron_View.png]]
 
 <p class="image-caption">CNN feature maps are actually very similar to how V1 cells work in our brains.</p>
 
-![[Lecture02_Pg055_Brain_Neuron_View.png]]
-
-<p class="image-caption">Both real and artificial neurons only "see" a small, local patch of the world.</p>
-
-<!-- Review Needed: close slide match for 'Brain/Neuron View' (p54: 0.615, p55: 0.615) -->
 
 Each unit in a feature map is connected only to a local patch of the input (its **receptive field**). Units sharing a filter form a layer analogous to a sheet of simple cells in V1.
 
@@ -410,17 +392,11 @@ Each unit in a feature map is connected only to a local patch of the input (its 
 
 ### Revolution of Depth
 
-<!-- Review Needed: close slide match for 'Revolution of Depth' (p60: 0.660, p62: 0.660) -->
 
 ![[Lecture02_Pg060_Revolution_Of_Depth.png]]
 
 <p class="image-caption">The "revolution of depth"—how networks have gotten way deeper over time.</p>
 
-![[Lecture02_Pg062_Revolution_Of_Depth.png]]
-
-<p class="image-caption">How adding more layers has consistently slashed error rates on ImageNet.</p>
-
-<!-- Review Needed: close slide match for 'Revolution of Depth' (p60: 0.653, p62: 0.653) -->
 
 Increasing network depth has been the primary driver of performance improvements in image recognition.
 
@@ -438,15 +414,10 @@ Increasing network depth has been the primary driver of performance improvements
 
 ### Case Study: GoogLeNet
 
-<!-- Review Needed: close slide match for 'Case Study: GoogLeNet' (p65: 0.772, p63: 0.727) -->
 
 ![[Lecture02_Pg065_Case_Study_Googlenet.png]]
 
 <p class="image-caption">The Inception module: a clever way to do multiple convolutions at once.</p>
-
-![[Lecture02_Pg063_Case_Study_Googlenet.png]]
-
-<p class="image-caption">Comparing GoogLeNet's efficiency and depth against older models.</p>
 
 [Szegedy et al., 2015]
 
@@ -470,7 +441,7 @@ Shortly afterwards, **batch normalisation** was invented, removing the need for 
 
 ### Case Study: ResNet
 
-![[Lecture02_Pg071_Case_Study_Resnet.png]]
+![[Lecture02_Pg075_Case_Study_Resnet.png]]
 
 <p class="image-caption">ResNet's skip connections let the gradient flow through dozens or even hundreds of layers.</p>
 

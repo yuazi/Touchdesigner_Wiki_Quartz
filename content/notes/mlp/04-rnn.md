@@ -30,7 +30,7 @@ date: 2026-03-09
 
 ## RNNs — Flexibility in Architecture
 
-![[Lecture04_Pg004_Rnns_Flexibility_In_Architecture.png]]
+![[Lecture04_Pg069_Rnns_Flexibility_In_Architecture.png]]
 
 <p class="image-caption">RNNs are super flexible—you can map one or many inputs to one or many outputs.</p>
 
@@ -48,11 +48,10 @@ Unlike feedforward networks, RNNs can model a wide range of relationships betwee
 
 ## One-to-One: Vanilla Neural Networks
 
-![[Lecture04_Pg005_One_To_One_Vanilla_Neural_Networks.png]]
+![[Lecture04_Pg006_One_To_One_Vanilla_Neural_Networks.png]]
 
 <p class="image-caption">A standard one-to-one setup, just like a classic feedforward network.</p>
 
-<!-- Review Needed: close slide match for 'One-to-One: Vanilla Neural Networks' (p5: 0.513, p6: 0.511) -->
 
 A standard feedforward network — one fixed input, one fixed output. The classic example is **ImageNet classification** (Russakovsky et al., 2015): a single image in, a single class label out.
 
@@ -60,7 +59,7 @@ A standard feedforward network — one fixed input, one fixed output. The classi
 
 ## One-to-Many: Image Captioning
 
-![[Lecture04_Pg046_One_To_Many_Image_Captioning.png]]
+![[Lecture04_Pg008_One_To_Many_Image_Captioning.png]]
 
 <p class="image-caption">Image captioning is a classic one-to-many problem: one image in, a whole sentence out.</p>
 
@@ -98,11 +97,10 @@ The entire input sequence is processed step-by-step. The **final hidden state** 
 
 ## Many-to-Many (Sync): Video Classification
 
-![[Lecture04_Pg013_Many_To_Many_Sync_Video_Classification.png]]
+![[Lecture04_Pg014_Many_To_Many_Sync_Video_Classification.png]]
 
 <p class="image-caption">In synchronous many-to-many, the model labels every single frame of a video as it goes.</p>
 
-<!-- Review Needed: close slide match for 'Many-to-Many (Sync): Video Classification' (p13: 0.504, p14: 0.500) -->
 
 An output is produced at **every time step**, aligned with the input. Each frame in a video gets its own label.
 
@@ -116,7 +114,6 @@ An output is produced at **every time step**, aligned with the input. Each frame
 
 <p class="image-caption">Seq2Seq architectures handle translation by reading the whole sentence before starting to output.</p>
 
-<!-- Review Needed: close slide match for 'Many-to-Many (Async): Machine Translation' (p28: 0.471, p12: 0.464) -->
 
 A **Sequence-to-Sequence** architecture — a combination of:
 
@@ -154,7 +151,7 @@ $$y_t = W_{hy} h_t$$
 
 ### Character-Level Language Model (Karpathy)
 
-![[Lecture04_Pg015_Character_Level_Language_Model_Karpathy.png]]
+![[Lecture04_Pg066_Character_Level_Language_Model_Karpathy.png]]
 
 <p class="image-caption">This model predicts the very next character based on everything it's read so far.</p>
 
@@ -177,15 +174,10 @@ After enough training, the same RNN could generate plausible **Wikipedia markup*
 
 ### Many-to-Many
 
-<!-- Review Needed: close slide match for 'Many-to-Many' (p27: 0.624, p26: 0.624) -->
 
-![[Lecture04_Pg027_Many_To_Many.png]]
+![[Lecture04_Pg029_Many_To_Many.png]]
 
 <p class="image-caption">The computational graph for a many-to-many RNN, processing inputs and outputs step-by-step.</p>
-
-![[Lecture04_Pg026_Many_To_Many.png]]
-
-<p class="image-caption">When you unroll the graph, you can see how the loss is calculated at every single timestep.</p>
 
 At every time step $t$, a class score $y_t$ is computed from $h_t$, and an intermediate loss $L_t$ is calculated against ground-truth labels. The **final loss** $L$ is the sum of all intermediate losses:
 
@@ -193,7 +185,7 @@ $$L = \sum_{t=1}^{S} L_t$$
 
 ### Many-to-One
 
-![[Lecture04_Pg028_Many_To_One.png]]
+![[Lecture04_Pg029_Many_To_One.png]]
 
 <p class="image-caption">For many-to-one tasks, we only care about the very last output of the sequence.</p>
 
@@ -209,17 +201,11 @@ A **fixed-size input** (e.g., an image feature vector) initializes $h_0$, and th
 
 ### Sequence-to-Sequence
 
-<!-- Review Needed: close slide match for 'Sequence-to-Sequence' (p30: 0.645, p31: 0.631) -->
-
-![[Lecture04_Pg030_Sequence_To_Sequence.png]]
-
-<p class="image-caption">The encoder's job is to read the entire input and compress it into a context vector.</p>
 
 ![[Lecture04_Pg031_Sequence_To_Sequence.png]]
 
-<p class="image-caption">The decoder then takes that context and expands it into a brand new sequence.</p>
+<p class="image-caption">The encoder's job is to read the entire input and compress it into a context vector.</p>
 
-<!-- Review Needed: close slide match for 'Sequence-to-Sequence' (p31: 0.645, p30: 0.630) -->
 
 Encoder (many-to-one) + Decoder (one-to-many):
 
@@ -247,7 +233,7 @@ Each $\frac{\partial L_t}{\partial W}$ requires propagating the error back throu
 
 ### The Gradient Product
 
-![[Lecture04_Pg032_The_Gradient_Product.png]]
+![[Lecture04_Pg039_The_Gradient_Product.png]]
 
 <p class="image-caption">This chain of multiplications is exactly why gradients can get messy in RNNs.</p>
 
@@ -273,17 +259,11 @@ Think of the backward pass in an RNN as a long game of "Telephone."
 
 ### Vanishing Gradients
 
-<!-- Review Needed: close slide match for 'Vanishing Gradients' (p40: 0.579, p41: 0.540) -->
 
-![[Lecture04_Pg040_Vanishing_Gradients.png]]
+![[Lecture04_Pg039_Vanishing_Gradients.png]]
 
 <p class="image-caption">When gradients vanish, the signal gets so weak that the model completely forgets the start of the sequence.</p>
 
-![[Lecture04_Pg041_Vanishing_Gradients.png]]
-
-<p class="image-caption">You can see how the gradient norm drops off fast, making long-term learning almost impossible.</p>
-
-<!-- Review Needed: close slide match for 'Vanishing Gradients' (p40: 0.551, p41: 0.538) -->
 
 Let $\lambda_1$ be the largest singular value of $W_{hh}$.
 
@@ -297,7 +277,7 @@ Intuitively: if the repeated matrix multiplication shrinks vectors (eigenvalues 
 
 ### Exploding Gradients
 
-![[Lecture04_Pg044_Exploding_Gradients.png]]
+![[Lecture04_Pg039_Exploding_Gradients.png]]
 
 <p class="image-caption">If gradients explode, the updates become so huge that the model's training just falls apart.</p>
 
@@ -394,17 +374,11 @@ class ImageCaptionRNN(nn.Module):
 
 ## Long Short-Term Memory (LSTM)
 
-<!-- Review Needed: close slide match for 'Long Short-Term Memory (LSTM)' (p71: 0.623, p72: 0.623) -->
 
-![[Lecture04_Pg071_Long_Short_Term_Memory_Lstm.png]]
+![[Lecture04_Pg069_Long_Short_Term_Memory_Lstm.png]]
 
 <p class="image-caption">An LSTM adds a cell state and special gates to help information flow much more easily.</p>
 
-![[Lecture04_Pg072_Long_Short_Term_Memory_Lstm.png]]
-
-<p class="image-caption">The input, forget, and output gates work together to manage what stays in memory.</p>
-
-<!-- Review Needed: close slide match for 'Long Short-Term Memory (LSTM)' (p68: 0.612, p71: 0.601) -->
 
 **Authors**: Hochreiter & Schmidhuber, 1997
 
@@ -430,7 +404,7 @@ Because information can stay in the "files" (Cell State) without being modified,
 
 ### The Four Gates
 
-![[Lecture04_Pg070_The_Four_Gates.png]]
+![[Lecture04_Pg082_The_Four_Gates.png]]
 
 <p class="image-caption">These four gates are the "management team" that controls the flow of information through an LSTM.</p>
 
@@ -456,7 +430,7 @@ where $\odot$ is the Hadamard (element-wise) product.
 
 ### Intuition — Concrete Example
 
-![[Lecture04_Pg070_Intuition_Concrete_Example.png]]
+![[Lecture04_Pg046_Intuition_Concrete_Example.png]]
 
 <p class="image-caption">LSTMs are great at remembering things like subject-verb agreement over long distances.</p>
 
@@ -471,7 +445,7 @@ where $\odot$ is the Hadamard (element-wise) product.
 
 ### Why Gradient Flow is Better
 
-![[Lecture04_Pg076_Why_Gradient_Flow_Is_Better.png]]
+![[Lecture04_Pg078_Why_Gradient_Flow_Is_Better.png]]
 
 <p class="image-caption">The cell state acts like a highway, letting gradients travel deep into the past without fading.</p>
 
@@ -528,7 +502,7 @@ criterion = nn.CrossEntropyLoss()
 
 ## GRU — Gated Recurrent Unit
 
-![[Lecture04_Pg079_Gru_Gated_Recurrent_Unit.png]]
+![[Lecture04_Pg010_Gru_Gated_Recurrent_Unit.png]]
 
 <p class="image-caption">A GRU simplifies things by merging gates and getting rid of the separate cell state.</p>
 
@@ -547,7 +521,7 @@ $$h_t = z_t \odot h_{t-1} + (1 - z_t) \odot \tilde{h}_t \quad \text{(new hidden 
 
 ### GRU vs LSTM
 
-![[Lecture04_Pg074_Gru_Vs_Lstm.png]]
+![[Lecture04_Pg082_Gru_Vs_Lstm.png]]
 
 <p class="image-caption">Comparing the inner workings of GRUs and LSTMs—one is leaner, the other is more complex.</p>
 

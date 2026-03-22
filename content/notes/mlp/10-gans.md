@@ -23,7 +23,7 @@ date: 2026-03-09
 
 ## VAE Recap
 
-![[Lecture10_Pg004_Vae_Recap.png]]
+![[Lecture10_Pg007_Vae_Recap.png]]
 
 <p class="image-caption">A quick recap of VAEs and their probabilistic bits.</p>
 
@@ -68,7 +68,7 @@ This motivates **implicit density** models — we don't write down $p(x)$ at all
 
 ### The Two-Sample Test Intuition
 
-![[Lecture10_Pg016_The_Two_Sample_Test_Intuition.png]]
+![[Lecture10_Pg029_The_Two_Sample_Test_Intuition.png]]
 
 <p class="image-caption">The two-sample test: can you tell the real samples from the generated ones?</p>
 
@@ -88,11 +88,10 @@ The test statistic $T$ compares $S_1$ and $S_2$ in terms of means and variance. 
 
 ### The GAN Idea
 
-![[Lecture10_Pg021_The_Gan_Idea.png]]
+![[Lecture10_Pg031_The_Gan_Idea.png]]
 
 <p class="image-caption">The core of GANs: learning to transform noise z into data samples x.</p>
 
-<!-- Review Needed: close slide match for 'The GAN Idea' (p24: 0.394, p23: 0.382) -->
 
 Instead of hand-designing a test statistic, **learn one**:
 
@@ -129,7 +128,7 @@ Instead of trying to learn how to make all types of money, the counterfeiter mig
 
 ## The Adversarial Framework
 
-![[Lecture10_Pg028_The_Adversarial_Framework.png]]
+![[Lecture10_Pg029_The_Adversarial_Framework.png]]
 
 <p class="image-caption">The GAN architecture: a generator and a discriminator in a constant battle.</p>
 
@@ -225,11 +224,10 @@ $$\min_{\Theta_g} \; \mathbb{E}_{z \sim p_z}[\log(1 - D_{\Theta_d}(G_{\Theta_g}(
 
 ### The Gradient Problem
 
-![[Lecture10_Pg037_The_Gradient_Problem.png]]
+![[Lecture10_Pg029_The_Gradient_Problem.png]]
 
 <p class="image-caption">The vanishing gradient problem in the standard GAN setup.</p>
 
-<!-- Review Needed: close slide match for 'The Gradient Problem' (p37: 0.445, p36: 0.441) -->
 
 Minimising $\log(1 - D(G(z)))$ causes a **vanishing gradient** early in training:
 
@@ -285,7 +283,7 @@ for real_batch in dataloader:
 
 ### 1. Training Instability (Nash Equilibrium)
 
-![[Lecture10_Pg042_1_Training_Instability_Nash_Equilibrium.png]]
+![[Lecture10_Pg028_1_Training_Instability_Nash_Equilibrium.png]]
 
 <p class="image-caption">GAN training is unstable—it's tough to find that perfect Nash equilibrium.</p>
 
@@ -295,7 +293,7 @@ Additionally, the generator can learn to exploit statistical properties of the d
 
 ### 2. Mode Collapse
 
-![[Lecture10_Pg043_2_Mode_Collapse.png]]
+![[Lecture10_Pg092_2_Mode_Collapse.png]]
 
 <p class="image-caption">Mode collapse: when the generator just keeps making the same few things.</p>
 
@@ -315,11 +313,10 @@ Illustrated by a "saddle point in dual energy landscape" — the generator finds
 
 ## GANs vs VAEs
 
-![[Lecture10_Pg044_Gans_Vs_Vaes.png]]
+![[Lecture10_Pg021_Gans_Vs_Vaes.png]]
 
 <p class="image-caption">Comparing VAEs and GANs: training, quality, and how we evaluate density.</p>
 
-<!-- Review Needed: close slide match for 'GANs vs VAEs' (p92: 0.435, p44: 0.409) -->
 
 | Property           | VAE                            | GAN                                                       |
 | ------------------ | ------------------------------ | --------------------------------------------------------- |
@@ -349,31 +346,20 @@ More fundamentally: if $p_{data}$ and $p_G$ have **non-overlapping supports** (c
 
 ## Wasserstein Distance and WGAN
 
-<!-- Review Needed: close slide match for 'Wasserstein Distance and WGAN' (p50: 0.517, p51: 0.500) -->
 
-![[Lecture10_Pg050_Wasserstein_Distance_And_Wgan.png]]
+![[Lecture10_Pg048_Wasserstein_Distance_And_Wgan.png]]
 
 <p class="image-caption">Wasserstein distance: a much more stable objective for training GANs.</p>
 
-![[Lecture10_Pg051_Wasserstein_Distance_And_Wgan.png]]
-
-<p class="image-caption">Comparing gradients: JSD vs. Wasserstein distance when things are disjoint.</p>
-
-<!-- Review Needed: close slide match for 'Wasserstein Distance and WGAN' (p50: 0.523, p51: 0.506) -->
 
 _Arjovsky et al., 2017_
 
 ### Earth Mover's Distance
 
-<!-- Review Needed: close slide match for 'Earth Mover's Distance' (p51: 0.561, p49: 0.532) -->
-
-![[Lecture10_Pg051_Earth_Mover_S_Distance.png]]
-
-<p class="image-caption">Visualizing Earth Mover's Distance as the cost of optimal transport between distributions</p>
 
 ![[Lecture10_Pg049_Earth_Mover_S_Distance.png]]
 
-<p class="image-caption">Intuition for Wasserstein distance using the earth mover's analogy for sand piles</p>
+<p class="image-caption">Visualizing Earth Mover's Distance as the cost of optimal transport between distributions</p>
 
 Instead of JSD, use the **Wasserstein-1 (Earth Mover's) Distance**:
 
@@ -390,7 +376,6 @@ Where $\Pi(P, Q)$ is the set of all joint distributions $\gamma(x, y)$ whose mar
 
 ### WGAN Objective
 
-<!-- Review Needed: close slide match for 'WGAN Objective' (p51: 0.419, p50: 0.402) -->
 
 By the Kantorovich-Rubinstein duality, the Wasserstein distance can be computed as:
 
@@ -487,17 +472,11 @@ Input image x ──→ [Generator (U-Net)] ──→ output image ŷ
 
 ### CycleGAN — Unpaired Image-to-Image Translation
 
-<!-- Review Needed: close slide match for 'CycleGAN — Unpaired Image-to-Image Translation' (p60: 0.534, p61: 0.534) -->
-
-![[Lecture10_Pg060_Cyclegan_Unpaired_Image_To_Image_Translation.png]]
-
-<p class="image-caption">CycleGAN: unpaired translation using cycle-consistency.</p>
 
 ![[Lecture10_Pg061_Cyclegan_Unpaired_Image_To_Image_Translation.png]]
 
-<p class="image-caption">Cycle-consistency: from horse to zebra and all the way back to horse.</p>
+<p class="image-caption">CycleGAN: unpaired translation using cycle-consistency.</p>
 
-<!-- Review Needed: close slide match for 'CycleGAN — Unpaired Image-to-Image Translation' (p60: 0.534, p61: 0.534) -->
 
 _Zhu et al., 2017_
 
@@ -541,7 +520,7 @@ y (zebra) ──→ F ──→ x̂ (fake horse) ──→ G ──→ ŷ (recon
 
 ### GauGAN / SPADE — Spatially-Adaptive Normalization
 
-![[Lecture10_Pg066_Gaugan_Spade_Spatially_Adaptive_Normalization.png]]
+![[Lecture10_Pg071_Gaugan_Spade_Spatially_Adaptive_Normalization.png]]
 
 <p class="image-caption">GauGAN: using SPADE to create images from segmentation masks.</p>
 
@@ -581,7 +560,7 @@ StyleGAN generates high-resolution photorealistic images (e.g., human faces at 1
 
 #### 1. Mapping Network
 
-![[Lecture10_Pg073_1_Mapping_Network.png]]
+![[Lecture10_Pg015_1_Mapping_Network.png]]
 
 <p class="image-caption">The StyleGAN mapping network: turning noise z into a better latent space w.</p>
 
@@ -591,11 +570,10 @@ The $w$-space is more linearly disentangled than $z$-space — individual dimens
 
 #### 2. Adaptive Instance Normalization (AdaIN)
 
-![[Lecture10_Pg073_2_Adaptive_Instance_Normalization_Adain.png]]
+![[Lecture10_Pg096_2_Adaptive_Instance_Normalization_Adain.png]]
 
 <p class="image-caption">AdaIN: how we inject style directly into the generator.</p>
 
-<!-- Review Needed: close slide match for '2. Adaptive Instance Normalization (AdaIN)' (p73: 0.440, p74: 0.403) -->
 
 Style is injected at each resolution by modulating intermediate features:
 
@@ -647,7 +625,7 @@ Appearance-based gaze estimation requires large datasets annotated with ground-t
 
 ### Task Definition
 
-![[Lecture10_Pg082_Task_Definition.png]]
+![[Lecture10_Pg081_Task_Definition.png]]
 
 <p class="image-caption">What is gaze redirection? Transforming eyes to look where we want.</p>
 
@@ -662,17 +640,11 @@ Two requirements:
 
 ### Conditional GAN Framework
 
-<!-- Review Needed: close slide match for 'Conditional GAN Framework' (p86: 0.485, p85: 0.476) -->
 
-![[Lecture10_Pg086_Conditional_Gan_Framework.png]]
+![[Lecture10_Pg087_Conditional_Gan_Framework.png]]
 
 <p class="image-caption">The conditional GAN setup for gaze redirection with a dual-purpose discriminator.</p>
 
-![[Lecture10_Pg085_Conditional_Gan_Framework.png]]
-
-<p class="image-caption">The losses we use for gaze redirection: adversarial, gaze, reconstruction, and perceptual.</p>
-
-<!-- Review Needed: close slide match for 'Conditional GAN Framework' (p86: 0.485, p85: 0.476) -->
 
 This is the **first GAN-based method for monocular gaze redirection**. It uses a WGAN-GP framework with a **dual-purpose discriminator** that simultaneously judges realism and gaze correctness.
 

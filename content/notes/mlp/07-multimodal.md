@@ -32,7 +32,7 @@ date: 2026-03-09
 
 ### What is Multimodal?
 
-![[Lecture07_Pg009_What_Is_Multimodal.png]]
+![[Lecture07_Pg007_What_Is_Multimodal.png]]
 
 <p class="image-caption">Multimodal is just combining different data types like images, audio, and text.</p>
 
@@ -65,7 +65,7 @@ This heterogeneity is both a challenge and an opportunity — each modality carr
 
 ### Real-World Multimodal Tasks
 
-![[Lecture07_Pg014_Real_World_Multimodal_Tasks.png]]
+![[Lecture07_Pg015_Real_World_Multimodal_Tasks.png]]
 
 <p class="image-caption">Here are some common tasks where you'd actually use multimodal learning.</p>
 
@@ -92,7 +92,7 @@ Baltrušaitis et al. (2018) define **five fundamental challenges** for multimoda
 
 ### Challenge 1: Representation
 
-![[Lecture07_Pg019_Challenge_1_Representation.png]]
+![[Lecture07_Pg018_Challenge_1_Representation.png]]
 
 <p class="image-caption">We can either fuse everything into one space or keep them separate but aligned.</p>
 
@@ -153,11 +153,10 @@ Use cases for implicit alignment: Machine Translation, Cross-modal retrieval, Im
 
 ### Challenge 4: Fusion
 
-![[Lecture07_Pg028_Challenge_4_Fusion.png]]
+![[Lecture07_Pg030_Challenge_4_Fusion.png]]
 
 <p class="image-caption">Fusion is where we decide exactly when to mix the different signals.</p>
 
-<!-- Review Needed: close slide match for 'Challenge 4: Fusion' (p28: 0.725, p29: 0.724) -->
 
 **Definition**: Join information from two or more modalities to perform a prediction task.
 
@@ -191,7 +190,7 @@ Appending $1$ to each unimodal vector means the outer product encodes all subset
 
 ### Challenge 5: Co-Learning
 
-![[Lecture07_Pg032_Challenge_5_Co_Learning.png]]
+![[Lecture07_Pg016_Challenge_5_Co_Learning.png]]
 
 <p class="image-caption">Co-learning lets us use a data-rich modality to help out a data-poor one.</p>
 
@@ -241,11 +240,14 @@ By embedding images into word-vector space, the model gains **semantic structure
 
 ### CLIP — Contrastive Language-Image Pre-training (Radford et al., 2021)
 
-![[Lecture07_Pg046_Clip_Contrastive_Language_Image_Pre_Training.png]]
+![[Lecture07_Pg040_Clip_Training_Diagonal.png]]
 
-<p class="image-caption">CLIP uses two encoders to pull matching image-text pairs together.</p>
+<p class="image-caption">CLIP training: Pull matching pairs together and push all others apart.</p>
 
-<!-- Review Needed: close slide match for 'CLIP — Contrastive Language-Image Pre-training (Radford et al., 2021)' (p46: 0.446, p41: 0.442) -->
+![[Lecture07_Pg041_Clip_Prediction_Phase.png]]
+
+<p class="image-caption">CLIP prediction: Use the learned space to classify unseen images without any training labels.</p>
+
 
 **The landmark multimodal representation model.**
 
@@ -294,7 +296,7 @@ Both projected to the same d=512 dimensional space.
 
 #### Contrastive Pre-Training Loss
 
-![[Lecture07_Pg063_Contrastive_Pre_Training_Loss.png]]
+![[Lecture07_Pg040_Contrastive_Pre_Training_Loss.png]]
 
 <p class="image-caption">The goal is to make the diagonal of this matrix as large as possible.</p>
 
@@ -401,7 +403,7 @@ image(red car) − image(car) + text("boat") ≈ image(red boat)
 
 ### Motivation
 
-![[Lecture07_Pg049_Motivation.png]]
+![[Lecture07_Pg023_Motivation.png]]
 
 <p class="image-caption">We need alignment to know exactly what the model is looking at.</p>
 
@@ -414,17 +416,11 @@ image(red car) − image(car) + text("boat") ≈ image(red boat)
 
 ### Cross-Modal Transformer (Tsai et al., 2019)
 
-<!-- Review Needed: close slide match for 'Cross-Modal Transformer (Tsai et al., 2019)' (p53: 0.573, p52: 0.541) -->
 
 ![[Lecture07_Pg053_Cross_Modal_Transformer_Tsai_Et_Al.png]]
 
 <p class="image-caption">Cross-modal transformers let one modality 'look' at another via attention.</p>
 
-![[Lecture07_Pg052_Cross_Modal_Transformer_Tsai_Et_Al.png]]
-
-<p class="image-caption">The queries come from one modality while keys and values come from the other.</p>
-
-<!-- Review Needed: close slide match for 'Cross-Modal Transformer (Tsai et al., 2019)' (p53: 0.523, p52: 0.504) -->
 
 In standard self-attention, $Q$, $K$, $V$ all come from the same sequence. In a **cross-modal** attention module, the **query comes from one modality** and the **key/value from another**:
 
@@ -478,17 +474,11 @@ $$f = f_o + f_s + f_p$$
 
 ### Case Study: HowTo100M + MIL-NCE (Miech et al., 2019/2020)
 
-<!-- Review Needed: close slide match for 'Case Study: HowTo100M + MIL-NCE (Miech et al., 2019/2020)' (p57: 0.523, p58: 0.505) -->
-
-![[Lecture07_Pg057_Case_Study_Howto100m_Mil_Nce_Miech.png]]
-
-<p class="image-caption">MIL-NCE helps the model learn even when captions aren't perfectly timed.</p>
 
 ![[Lecture07_Pg058_Case_Study_Howto100m_Mil_Nce_Miech.png]]
 
-<p class="image-caption">Instead of one exact match, we treat a window of captions as potential positives.</p>
+<p class="image-caption">MIL-NCE helps the model learn even when captions aren't perfectly timed.</p>
 
-<!-- Review Needed: close slide match for 'Case Study: HowTo100M + MIL-NCE (Miech et al., 2019/2020)' (p59: 0.566, p57: 0.534) -->
 
 - **HowTo100M**: 100M instructional video clips from YouTube with ASR-generated subtitles
 - Captions are **weakly aligned** — the subtitle at second $t$ may describe something at $t - 5$
@@ -554,7 +544,7 @@ Integrates MoCo (He et al., 2020) momentum encoder + ViT + BERT.
 
 ### BLIP — Bootstrapping Language-Image Pre-training (Li et al., 2022)
 
-![[Lecture07_Pg064_Blip_Bootstrapping_Language_Image_Pre_Training.png]]
+![[Lecture07_Pg065_Blip_Bootstrapping_Language_Image_Pre_Training.png]]
 
 <p class="image-caption">BLIP cleans up messy web data by filtering and generating its own captions.</p>
 
@@ -574,17 +564,11 @@ An improved version of ALBEF with two innovations:
 
 ### Visual Question Answering (VQA)
 
-<!-- Review Needed: close slide match for 'Visual Question Answering (VQA)' (p68: 0.556, p69: 0.556) -->
 
-![[Lecture07_Pg068_Visual_Question_Answering_Vqa.png]]
+![[Lecture07_Pg071_Visual_Question_Answering_Vqa.png]]
 
 <p class="image-caption">Introduction to Visual Question Answering (VQA) tasks and examples</p>
 
-![[Lecture07_Pg069_Visual_Question_Answering_Vqa.png]]
-
-<p class="image-caption">Comparing different types of questions in the VQA dataset</p>
-
-<!-- Review Needed: close slide match for 'Visual Question Answering (VQA)' (p68: 0.530, p69: 0.530) -->
 
 **Task**: Given an image and a natural language question, produce a natural language answer.
 
@@ -709,17 +693,11 @@ Example questions:
 
 ### Neural Module Networks — V2: End-to-End Learning (Hu et al., 2017)
 
-<!-- Review Needed: close slide match for 'Neural Module Networks — V2: End-to-End Learning (Hu et al., 2017)' (p80: 0.651, p79: 0.606) -->
 
-![[Lecture07_Pg080_Neural_Module_Networks_V2_End_To.png]]
+![[Lecture07_Pg076_Neural_Module_Networks_V2_End_To.png]]
 
 <p class="image-caption">Architecture of Neural Module Networks (V2) with end-to-end program generation</p>
 
-![[Lecture07_Pg079_Neural_Module_Networks_V2_End_To.png]]
-
-<p class="image-caption">Visualizing the program generator and executor in end-to-end NMNs</p>
-
-<!-- Review Needed: close slide match for 'Neural Module Networks — V2: End-to-End Learning (Hu et al., 2017)' (p80: 0.609, p79: 0.593) -->
 
 Removes the rule-based parser from V1:
 
@@ -795,7 +773,7 @@ class ProtoNet(nn.Module):
 
 ### Representation Learning Models
 
-![[Lecture07_Pg039_Representation_Learning_Models.png]]
+![[Lecture07_Pg038_Representation_Learning_Models.png]]
 
 <p class="image-caption">Comparison table of representation learning models: DeViSE, CLIP, GLIP, and LSeg</p>
 

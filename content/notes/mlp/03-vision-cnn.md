@@ -110,7 +110,7 @@ Robotics, assistive systems, self-driving cars, surveillance, medical applicatio
 
 ### Detection as a Regression Problem
 
-![[Lecture03_Pg010_Detection_As_A_Regression_Problem.png]]
+![[Lecture03_Pg011_Detection_As_A_Regression_Problem.png]]
 
 <p class="image-caption">Trying to treat object detection as a simple regression problem to find coordinates.</p>
 
@@ -161,7 +161,7 @@ Use a **sliding window**:
 
 ### R-CNN [Girshick et al., 2014]
 
-![[Lecture03_Pg020_R_Cnn_Girshick_Et_Al_2014.png]]
+![[Lecture03_Pg023_R_Cnn_Girshick_Et_Al_2014.png]]
 
 <p class="image-caption">R-CNN: the first big model to use region proposals with a CNN.</p>
 
@@ -182,11 +182,10 @@ The lecture's result slide makes the core contribution visible: once proposals a
 
 ### Fast R-CNN [Girshick, 2015]
 
-![[Lecture03_Pg028_Fast_R_Cnn_Girshick_2015.png]]
+![[Lecture03_Pg026_Fast_R_Cnn_Girshick_2015.png]]
 
 <p class="image-caption">Fast R-CNN made things way faster by sharing feature maps across all proposals.</p>
 
-<!-- Review Needed: close slide match for 'Fast R-CNN [Girshick, 2015]' (p28: 0.506, p29: 0.475) -->
 
 **Key improvement**: compute the CNN feature map **once for the whole image**, then extract per-proposal features from it.
 
@@ -212,7 +211,7 @@ Eliminates the external region proposal step by adding a **Region Proposal Netwo
 
 #### Region Proposal Network (RPN)
 
-![[Lecture03_Pg033_Region_Proposal_Network_Rpn.png]]
+![[Lecture03_Pg035_Region_Proposal_Network_Rpn.png]]
 
 <p class="image-caption">A closer look at the RPN, the part of the network that "guesses" where objects are.</p>
 
@@ -276,11 +275,10 @@ The COCO qualitative examples in the PDF also show that the Faster R-CNN pipelin
 
 ### Segmentation Extension: Mask R-CNN [He et al., 2017]
 
-![[Lecture03_Pg064_Segmentation_Extension_Mask_R_Cnn_He.png]]
+![[Lecture03_Pg041_Segmentation_Extension_Mask_R_Cnn_He.png]]
 
 <p class="image-caption">Mask R-CNN takes Faster R-CNN a step further by adding per-pixel masks.</p>
 
-<!-- Review Needed: close slide match for 'Segmentation Extension: Mask R-CNN [He et al., 2017]' (p64: 0.587, p41: 0.570) -->
 
 Extends Faster R-CNN with an additional **instance-segmentation** head:
 
@@ -319,7 +317,7 @@ Two-stage detectors are accurate but slow. Single-stage detectors skip the propo
 
 ### What is it?
 
-![[Lecture03_Pg046_What_Is_It.png]]
+![[Lecture03_Pg007_What_Is_It.png]]
 
 <p class="image-caption">Semantic segmentation is all about giving every single pixel its own class label.</p>
 
@@ -350,7 +348,7 @@ Apply a patch classifier at every pixel location. **Problem**: inefficient — n
 
 ### Fully Convolutional Networks (FCN) [Long et al., 2015]
 
-![[Lecture03_Pg048_Fully_Convolutional_Networks_Fcn_Long_Et.png]]
+![[Lecture03_Pg062_Fully_Convolutional_Networks_Fcn_Long_Et.png]]
 
 <p class="image-caption">FCNs: networks that are convolutional all the way down for dense predictions.</p>
 
@@ -384,17 +382,11 @@ During the forward max-pool, record the **switch positions** (which location hel
 
 #### Transposed Convolution (Learnable Upsampling)
 
-<!-- Review Needed: close slide match for 'Transposed Convolution (Learnable Upsampling)' (p51: 0.663, p52: 0.663) -->
 
-![[Lecture03_Pg051_Transposed_Convolution_Learnable_Upsampling.png]]
+![[Lecture03_Pg053_Transposed_Convolution_Learnable_Upsampling.png]]
 
 <p class="image-caption">Transposed convolution lets the network learn the best way to upsample.</p>
 
-![[Lecture03_Pg052_Transposed_Convolution_Learnable_Upsampling.png]]
-
-<p class="image-caption">Using a learned kernel to intelligently fill in the gaps when upsampling.</p>
-
-<!-- Review Needed: close slide match for 'Transposed Convolution (Learnable Upsampling)' (p51: 0.615, p52: 0.615) -->
 
 - Insert zeros between input values (stride > 1 in the "input space"), then apply a learned convolution kernel
 - The network **learns** how to upsample — can produce sharp, detailed outputs
@@ -469,7 +461,7 @@ Conv → ReLU → MaxPool ──────────→ UpConv + [concatenat
 
 ### Mask R-CNN [He et al., 2017]
 
-![[Lecture03_Pg064_Mask_R_Cnn_He_Et_Al.png]]
+![[Lecture03_Pg041_Mask_R_Cnn_He_Et_Al.png]]
 
 <p class="image-caption">An overview of Mask R-CNN's parallel heads for boxes, classes, and masks.</p>
 
@@ -495,7 +487,7 @@ The qualitative Mask R-CNN result slide makes the distinction from semantic segm
 
 ### ROI Pooling vs. ROI Align
 
-![[Lecture03_Pg068_Roi_Pooling_Vs_Roi_Align.png]]
+![[Lecture03_Pg067_Roi_Pooling_Vs_Roi_Align.png]]
 
 <p class="image-caption">Comparing RoI Pooling and RoI Align: why sub-pixel accuracy matters for masks.</p>
 

@@ -26,15 +26,10 @@ date: 2026-03-09
 
 ### Supervised vs. Unsupervised Learning
 
-<!-- Review Needed: close slide match for 'Supervised vs. Unsupervised Learning' (p6: 0.756, p7: 0.756) -->
-
-![[Lecture09_Pg006_Supervised_Vs_Unsupervised_Learning.png]]
-
-<p class="image-caption">Supervised vs. unsupervised: the difference between having labels and going it alone.</p>
 
 ![[Lecture09_Pg007_Supervised_Vs_Unsupervised_Learning.png]]
 
-<p class="image-caption">A quick look at the goals for supervised and unsupervised learning.</p>
+<p class="image-caption">Supervised vs. unsupervised: the difference between having labels and going it alone.</p>
 
 |              | Supervised                       | Unsupervised                       |
 | ------------ | -------------------------------- | ---------------------------------- |
@@ -44,7 +39,7 @@ date: 2026-03-09
 
 ### Generative Modelling
 
-![[Lecture09_Pg008_Generative_Modelling.png]]
+![[Lecture09_Pg011_Generative_Modelling.png]]
 
 <p class="image-caption">Generative modeling in a nutshell: learning to sample from our data distribution p(x).</p>
 
@@ -90,7 +85,7 @@ MLE is the backbone of supervised deep learning — cross-entropy and least-squa
 
 ### Taxonomy of Generative Models
 
-![[Lecture09_Pg014_Taxonomy_Of_Generative_Models.png]]
+![[Lecture09_Pg022_Taxonomy_Of_Generative_Models.png]]
 
 <p class="image-caption">How we group generative models: explicit density vs. implicit ones.</p>
 
@@ -114,7 +109,7 @@ Generative Models
 
 ## Mixture of Gaussians (MoG)
 
-![[Lecture09_Pg024_Mixture_Of_Gaussians_Mog.png]]
+![[Lecture09_Pg027_Mixture_Of_Gaussians_Mog.png]]
 
 <p class="image-caption">A Mixture of Gaussians: a simple example of a latent variable model.</p>
 
@@ -143,7 +138,7 @@ Combining simple Gaussians gives a much more expressive, multi-modal density.
 
 ### Architecture
 
-![[Lecture09_Pg031_Architecture.png]]
+![[Lecture09_Pg090_Architecture.png]]
 
 <p class="image-caption">The standard autoencoder: an encoder, a decoder, and that latent bottleneck.</p>
 
@@ -212,7 +207,7 @@ The model will force every single image into the exact same Gaussian cloud at th
 
 ## Variational Autoencoders (VAE)
 
-![[Lecture09_Pg041_Variational_Autoencoders_Vae.png]]
+![[Lecture09_Pg045_Variational_Autoencoders_Vae.png]]
 
 <p class="image-caption">The VAE architecture: encoding and decoding using probabilities.</p>
 
@@ -222,15 +217,10 @@ A **probabilistic** version of the autoencoder that allows genuine sampling of n
 
 ### From GMMs to VAEs
 
-<!-- Review Needed: close slide match for 'From GMMs to VAEs' (p45: 0.484, p42: 0.477) -->
 
 ![[Lecture09_Pg045_From_Gmms_To_Vaes.png]]
 
 <p class="image-caption">Moving from GMMs to VAEs by bringing in neural networks.</p>
-
-![[Lecture09_Pg042_From_Gmms_To_Vaes.png]]
-
-<p class="image-caption">Comparing latent priors and likelihoods between MoGs and VAEs.</p>
 
 The VAE is essentially a MoG with a **neural network** replacing the fixed Gaussians:
 
@@ -256,15 +246,10 @@ The sum inside the log is **intractable** for continuous, high-dimensional $z$ �
 
 ### Derivation via Jensen's Inequality
 
-<!-- Review Needed: close slide match for 'Derivation via Jensen's Inequality' (p47: 0.564, p48: 0.538) -->
 
 ![[Lecture09_Pg047_Derivation_Via_Jensen_S_Inequality.png]]
 
 <p class="image-caption">Using Jensen's inequality to derive the ELBO.</p>
-
-![[Lecture09_Pg048_Derivation_Via_Jensen_S_Inequality.png]]
-
-<p class="image-caption">Walking through the math to show how ELBO bounds our log-likelihood.</p>
 
 The log-likelihood with latent variables is hard:
 
@@ -320,7 +305,7 @@ The closer our chosen $q$ is to the true posterior $p(z|x)$, the tighter the ELB
 
 ### ELBO as Reconstruction + KL
 
-![[Lecture09_Pg049_Elbo_As_Reconstruction_Kl.png]]
+![[Lecture09_Pg046_Elbo_As_Reconstruction_Kl.png]]
 
 <p class="image-caption">Breaking down the ELBO into reconstruction loss and KL regularization.</p>
 
@@ -379,7 +364,7 @@ The key insight of VAEs is to **amortise** this inference: instead of running op
 
 ## Learning the Parameters
 
-![[Lecture09_Pg058_Learning_The_Parameters.png]]
+![[Lecture09_Pg060_Learning_The_Parameters.png]]
 
 <p class="image-caption">Training a VAE by optimizing the encoder and decoder together through the ELBO.</p>
 
@@ -510,7 +495,7 @@ That is why interpolation is such a good sanity check for VAEs. If the path betw
 
 ### Latent Space Arithmetic
 
-![[Lecture09_Pg030_Latent_Space_Arithmetic.png]]
+![[Lecture09_Pg015_Latent_Space_Arithmetic.png]]
 
 <p class="image-caption">Semantic arithmetic: doing math in the latent space to transform images.</p>
 
@@ -539,15 +524,10 @@ z("smiling woman") − z("neutral woman") + z("neutral man") ≈ z("smiling man"
 
 ### Disentangled Representation Learning
 
-<!-- Review Needed: close slide match for 'Disentangled Representation Learning' (p79: 0.456, p77: 0.433) -->
 
-![[Lecture09_Pg079_Disentangled_Representation_Learning.png]]
+![[Lecture09_Pg086_Disentangled_Representation_Learning.png]]
 
 <p class="image-caption">Using beta-VAE to pull apart independent factors of variation.</p>
-
-![[Lecture09_Pg077_Disentangled_Representation_Learning.png]]
-
-<p class="image-caption">Entangled vs. disentangled latent spaces for better control.</p>
 
 **Goal**: learn a latent space where each dimension controls an independent, interpretable factor (e.g. one dimension = pose, another = lighting).
 
@@ -578,7 +558,7 @@ So beta-VAE is not "strictly better VAE." It is a deliberate trade: **less raw f
 
 ### Style Transfer (Text and Images)
 
-![[Lecture09_Pg082_Style_Transfer_Text_And_Images.png]]
+![[Lecture09_Pg086_Style_Transfer_Text_And_Images.png]]
 
 <p class="image-caption">Using VAEs for style transfer in both images and text.</p>
 
@@ -589,7 +569,7 @@ VAEs disentangle **style** from **content** in the latent space. Applications:
 
 ### Handwriting Synthesis (Aksan et al., 2018)
 
-![[Lecture09_Pg086_Handwriting_Synthesis_Aksan_Et_Al_2018.png]]
+![[Lecture09_Pg014_Handwriting_Synthesis_Aksan_Et_Al_2018.png]]
 
 <p class="image-caption">Editing and generating synthetic handwriting on a VAE manifold.</p>
 
@@ -601,7 +581,7 @@ A VAE trained on handwriting samples can:
 
 ### Hand Pose Manifold (Tagliasacchi et al., 2015)
 
-![[Lecture09_Pg083_Hand_Pose_Manifold_Tagliasacchi_Et_Al.png]]
+![[Lecture09_Pg086_Hand_Pose_Manifold_Tagliasacchi_Et_Al.png]]
 
 <p class="image-caption">Mapping hand poses to a smooth manifold for better pose estimation.</p>
 
@@ -687,7 +667,7 @@ class VAE(nn.Module):
 
 ## Summary of VAEs
 
-![[Lecture09_Pg087_Summary_Of_Vaes.png]]
+![[Lecture09_Pg088_Summary_Of_Vaes.png]]
 
 <p class="image-caption">A wrap-up of VAEs: they're principled and smooth, but can be a bit blurry.</p>
 

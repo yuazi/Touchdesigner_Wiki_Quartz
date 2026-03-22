@@ -29,7 +29,7 @@ date: 2026-03-09
 
 ### Variational Autoencoders (VAEs)
 
-![[Lecture12_Pg004_Variational_Autoencoders_Vaes.png]]
+![[Lecture12_Pg005_Variational_Autoencoders_Vaes.png]]
 
 <p class="image-caption">The VAE setup: it's all about mapping data to that latent space and back.</p>
 
@@ -42,17 +42,11 @@ date: 2026-03-09
 
 ### Generative Adversarial Networks (GANs)
 
-<!-- Review Needed: close slide match for 'Generative Adversarial Networks (GANs)' (p6: 0.502, p7: 0.487) -->
 
 ![[Lecture12_Pg006_Generative_Adversarial_Networks_Gans.png]]
 
 <p class="image-caption">Here's how GANs work—the Generator and Discriminator constantly trying to outsmart each other.</p>
 
-![[Lecture12_Pg007_Generative_Adversarial_Networks_Gans.png]]
-
-<p class="image-caption">The training in action as the Generator learns to turn random noise into something meaningful.</p>
-
-<!-- Review Needed: close slide match for 'Generative Adversarial Networks (GANs)' (p7: 0.508, p6: 0.471) -->
 
 - **Generator**: try to fool the discriminator by generating real-looking images.
 - **Discriminator**: try to distinguish between real and fake images.
@@ -68,11 +62,10 @@ date: 2026-03-09
 ## This Lecture — Generative Models III
 ---
 
-![[Lecture12_Pg003_This_Lecture_Generative_Models_Iii.png]]
+![[Lecture12_Pg014_This_Lecture_Generative_Models_Iii.png]]
 
 <p class="image-caption">Here's the plan for today: we'll cover everything from discrete diffusion to GLIDE.</p>
 
-<!-- Review Needed: close slide match for 'This Lecture — Generative Models III' (p3: 0.610, p10: 0.610) -->
 1. Diffusion Models: Discrete Time
 2. Diffusion Models: Continuous Time
 3. Diffusion Model Application: GLIDE (Nichol et al., 2022)
@@ -123,7 +116,7 @@ $$q(x_{1:T}|x_0) = \prod_{t=1}^{T} q(x_t|x_{t-1})$$
 
 #### Noise Schedule Intuition
 
-![[Lecture12_Pg041_Noise_Schedule_Intuition.png]]
+![[Lecture12_Pg040_Noise_Schedule_Intuition.png]]
 
 <p class="image-caption">The noise schedule hits different frequencies at different stages of the process.</p>
 
@@ -186,17 +179,11 @@ That is why denoising is possible at intermediate timesteps: the original signal
 
 ### How Does the Distribution Change?
 
-<!-- Review Needed: close slide match for 'How Does the Distribution Change?' (p26: 0.665, p28: 0.645) -->
-
-![[Lecture12_Pg026_How_Does_The_Distribution_Change.png]]
-
-<p class="image-caption">Watch how that complex data distribution eventually smooths out into a simple Gaussian.</p>
 
 ![[Lecture12_Pg028_How_Does_The_Distribution_Change.png]]
 
-<p class="image-caption">It's a mix of drift and diffusion, slowly turning that weird shape into a standard Gaussian blob.</p>
+<p class="image-caption">Watch how that complex data distribution eventually smooths out into a simple Gaussian.</p>
 
-<!-- Review Needed: close slide match for 'How Does the Distribution Change?' (p26: 0.665, p28: 0.645) -->
 
 During forward diffusion, the **marginal distribution** $q(x_t)$ is smoothed gradually toward $\mathcal{N}(0, I)$:
 
@@ -207,11 +194,10 @@ During forward diffusion, the **marginal distribution** $q(x_t)$ is smoothed gra
 
 ### Generative Learning by Reversing the Diffusion Process
 
-![[Lecture12_Pg029_Generative_Learning_By_Reversing_The_Diffusion.png]]
+![[Lecture12_Pg033_Generative_Learning_By_Reversing_The_Diffusion.png]]
 
 <p class="image-caption">Now for the magic: learning to undo all that noise, one tiny step at a time.</p>
 
-<!-- Review Needed: close slide match for 'Generative Learning by Reversing the Diffusion Process' (p30: 0.471, p34: 0.458) -->
 
 To generate data, start from noise and reverse:
 
@@ -350,7 +336,7 @@ Output: predicted noise (H × W × C)
 
 ### Diffusion Hyperparameters — The Noise Schedule
 
-![[Lecture12_Pg040_Diffusion_Hyperparameters_The_Noise_Schedule.png]]
+![[Lecture12_Pg033_Diffusion_Hyperparameters_The_Noise_Schedule.png]]
 
 <p class="image-caption">Adjusting these hyperparameters really changes how the noise builds up over time.</p>
 
@@ -404,7 +390,7 @@ So diffusion spreads the generative problem across **many easy denoising steps**
 
 ### SDE Formulation (Song et al., 2021)
 
-![[Lecture12_Pg045_Sde_Formulation_Song_Et_Al_2021.png]]
+![[Lecture12_Pg046_Sde_Formulation_Song_Et_Al_2021.png]]
 
 <p class="image-caption">Let's look at this from a continuous perspective using Stochastic Differential Equations.</p>
 
@@ -576,7 +562,6 @@ The essential trick is simple: define a shorter timestep schedule and denoise on
 
 <p class="image-caption">Working directly in high-res pixel space is a massive computational headache.</p>
 
-<!-- Review Needed: close slide match for 'Motivation — The Scaling Problem' (p53: 0.416, p50: 0.398) -->
 
 Diffusion models **do not scale well with image resolution**. A 512×512×3 pixel image has ~786K dimensions, making direct pixel-space diffusion computationally expensive.
 
@@ -630,11 +615,10 @@ x_0 →[VAE Enc]→ z_0 →[Noise]→ z_T →[U-Net]→ ẑ_0 →[VAE Dec]→ x�
 
 ### Two-Stage Training
 
-![[Lecture12_Pg053_Two_Stage_Training.png]]
+![[Lecture12_Pg039_Two_Stage_Training.png]]
 
 <p class="image-caption">The trick with Latent Diffusion is to compress the image first, then do all the heavy lifting in that smaller space.</p>
 
-<!-- Review Needed: close slide match for 'Two-Stage Training' (p53: 0.525, p59: 0.496) -->
 
 Latent diffusion is trained in **two stages**:
 
@@ -659,7 +643,7 @@ In the lecture slides, the first stage is not just plain reconstruction: a **pat
 
 ### Advantages of Latent Diffusion
 
-![[Lecture12_Pg056_Advantages_Of_Latent_Diffusion.png]]
+![[Lecture12_Pg057_Advantages_Of_Latent_Diffusion.png]]
 
 <p class="image-caption">Latent Diffusion gives us the best of both worlds: it's efficient and handles semantics way better.</p>
 

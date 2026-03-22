@@ -86,17 +86,11 @@ Why do CNNs beat ViT on small datasets, but ViT wins on huge datasets?
 
 ### Vision Transformer (ViT) — Main Workflow
 
-<!-- Review Needed: close slide match for 'Vision Transformer (ViT) — Main Workflow' (p12: 0.552, p13: 0.522) -->
-
-![[Lecture06_Pg012_Vision_Transformer_Vit_Main_Workflow.png]]
-
-<p class="image-caption">Step 1 of the ViT workflow: break the image into a sequence of small patches.</p>
 
 ![[Lecture06_Pg013_Vision_Transformer_Vit_Main_Workflow.png]]
 
-<p class="image-caption">Step 2: feed those patches into a standard Transformer encoder, just like words in a sentence.</p>
+<p class="image-caption">Step 1 of the ViT workflow: break the image into a sequence of small patches.</p>
 
-<!-- Review Needed: close slide match for 'Vision Transformer (ViT) — Main Workflow' (p12: 0.556, p13: 0.512) -->
 
 **Paper**: Dosovitskiy et al. _"An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale."_ ICLR 2021.
 
@@ -104,7 +98,7 @@ The ViT processes images as a sequence of fixed-size patches fed into a standard
 
 #### Step 1: Image Patch and Position Embedding
 
-![[Lecture06_Pg012_Step_1_Image_Patch_And_Position.png]]
+![[Lecture06_Pg028_Step_1_Image_Patch_And_Position.png]]
 
 <p class="image-caption">Here's a closer look at how we extract patches and add those crucial positional embeddings.</p>
 
@@ -133,7 +127,7 @@ Image (224×224×3)
 
 #### Step 2: Encoding and Classification
 
-![[Lecture06_Pg013_Step_2_Encoding_And_Classification.png]]
+![[Lecture06_Pg028_Step_2_Encoding_And_Classification.png]]
 
 <p class="image-caption">Step 2: Transformer encoding and [CLS] token classification</p>
 
@@ -284,7 +278,7 @@ logits = model(img)  # (4, 1000)
 
 ### Recap: CNN-Based Object Detection
 
-![[Lecture06_Pg024_Recap_Cnn_Based_Object_Detection.png]]
+![[Lecture06_Pg025_Recap_Cnn_Based_Object_Detection.png]]
 
 <p class="image-caption">Recap of CNN-based object detection: R-CNN to Faster R-CNN</p>
 
@@ -323,7 +317,6 @@ Object detection requires:
 
 ### DETR Architecture
 
-<!-- Review Needed: close slide match for 'DETR Architecture' (p29: 0.443, p28: 0.442) -->
 
 ```
 Image → [CNN Backbone] → feature map (H/32 × W/32 × 2048)
@@ -354,7 +347,7 @@ Image → [CNN Backbone] → feature map (H/32 × W/32 × 2048)
 
 ### Optimal Bipartite Matching
 
-![[Lecture06_Pg032_Optimal_Bipartite_Matching.png]]
+![[Lecture06_Pg033_Optimal_Bipartite_Matching.png]]
 
 <p class="image-caption">Optimal bipartite matching in DETR using the Hungarian algorithm</p>
 
@@ -435,7 +428,7 @@ The qualitative slides explain _why_ DETR feels different from proposal-based de
 
 ### Deformable DETR (Zhu et al., 2020)
 
-![[Lecture06_Pg040_Deformable_Detr_Zhu_Et_Al_2020.png]]
+![[Lecture06_Pg041_Deformable_Detr_Zhu_Et_Al_2020.png]]
 
 <p class="image-caption">Deformable DETR: sparse attention for faster convergence</p>
 
@@ -471,7 +464,7 @@ Two targeted fixes for DETR's shortcomings:
 
 ### Motivation
 
-![[Lecture06_Pg043_Motivation.png]]
+![[Lecture06_Pg044_Motivation.png]]
 
 <p class="image-caption">Motivation for self-supervised visual representation learning</p>
 
@@ -500,17 +493,11 @@ These tasks forced the model to learn rich semantic representations without huma
 
 ### Pretext Tasks in Computer Vision
 
-<!-- Review Needed: close slide match for 'Pretext Tasks in Computer Vision' (p50: 0.643, p51: 0.643) -->
 
-![[Lecture06_Pg050_Pretext_Tasks_In_Computer_Vision.png]]
+![[Lecture06_Pg049_Pretext_Tasks_In_Computer_Vision.png]]
 
 <p class="image-caption">Visual pretext tasks: rotation prediction and jigsaw puzzles</p>
 
-![[Lecture06_Pg051_Pretext_Tasks_In_Computer_Vision.png]]
-
-<p class="image-caption">Visual pretext tasks: inpainting and colorization</p>
-
-<!-- Review Needed: close slide match for 'Pretext Tasks in Computer Vision' (p47: 0.643, p46: 0.624) -->
 
 Many analogous pretext tasks were proposed for vision (Li, cs231):
 
@@ -528,7 +515,7 @@ Many analogous pretext tasks were proposed for vision (Li, cs231):
 
 ### Self-Supervised Contrastive Learning
 
-![[Lecture06_Pg053_Self_Supervised_Contrastive_Learning.png]]
+![[Lecture06_Pg056_Self_Supervised_Contrastive_Learning.png]]
 
 <p class="image-caption">Framework for self-supervised contrastive learning</p>
 
@@ -558,7 +545,7 @@ loss: bring z₁ and z₂ close together, push apart from all z_other
 
 ### DINO — Self-supervised Vision Transformers
 
-![[Lecture06_Pg042_Dino_Self_Supervised_Vision_Transformers.png]]
+![[Lecture06_Pg058_Dino_Self_Supervised_Vision_Transformers.png]]
 
 <p class="image-caption">DINO: Knowledge distillation with no labels in ViTs</p>
 
@@ -568,7 +555,7 @@ loss: bring z₁ and z₂ close together, push apart from all z_other
 
 #### Multi-Crop Strategy
 
-![[Lecture06_Pg057_Multi_Crop_Strategy.png]]
+![[Lecture06_Pg063_Multi_Crop_Strategy.png]]
 
 <p class="image-caption">DINO multi-crop strategy: local and global views</p>
 
@@ -606,7 +593,6 @@ Objective: minimise H(Pₜ(x), Pₛ(x))  ← student learns to match teacher
 
 #### Loss Functions
 
-<!-- Review Needed: close slide match for 'Loss Functions' (p61: 0.420, p60: 0.415) -->
 
 **Student distribution** (softmax with temperature $\tau_s$):
 
@@ -650,7 +636,7 @@ Both forms result in learned representations that carry no useful information.
 
 #### Centering to Prevent Mode Collapse
 
-![[Lecture06_Pg065_Centering_To_Prevent_Mode_Collapse.png]]
+![[Lecture06_Pg066_Centering_To_Prevent_Mode_Collapse.png]]
 
 <p class="image-caption">Centering and sharpening techniques in DINO to prevent collapse</p>
 

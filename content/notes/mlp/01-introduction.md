@@ -68,7 +68,7 @@ So the network is gradually **rewriting the problem into a space where the final
 
 ### Why Activation Functions?
 
-![[Lecture01_Pg066_Why_Activation_Functions_Clean.png]]
+![[Lecture01_Pg093_Why_Activation_Functions_Clean.png]]
 
 <p class="image-caption">Nonlinear activations are what let us learn complex patterns.</p>
 
@@ -84,7 +84,7 @@ $$f = W_3 \max(0,\, W_2 \max(0,\, W_1 x))$$
 
 ### Brain Analogy — Be Careful
 
-![[Lecture01_Pg040_Brain_Analogy_Be_Careful.png]]
+![[Lecture01_Pg039_Brain_Analogy_Be_Careful.png]]
 
 <p class="image-caption">The brain analogy is a good start, but real neurons are way more complex.</p>
 
@@ -97,7 +97,7 @@ Biological neurons ≠ artificial neurons:
 
 ### Universal Approximation Theorem
 
-![[Lecture01_Pg042_Universal_Approximation_Theorem.png]]
+![[Lecture01_Pg052_Universal_Approximation_Theorem.png]]
 
 <p class="image-caption">The math says even a shallow network can model any continuous function.</p>
 
@@ -122,7 +122,7 @@ _(Original proof: Hornik et al., 1989; formal statement: Cybenko, 1989)_
 
 ## Optimisation
 
-![[Lecture01_Pg056_Optimisation.png]]
+![[Lecture01_Pg002_Optimisation.png]]
 
 <p class="image-caption">Optimizing is just about finding the weights that make the loss as small as possible.</p>
 
@@ -132,7 +132,7 @@ $$L(W) = \frac{1}{n} \sum_{i=1}^{n} L_i(W)$$
 
 ### Gradient Descent
 
-![[Lecture01_Pg061_Gradient_Descent.png]]
+![[Lecture01_Pg080_Gradient_Descent.png]]
 
 <p class="image-caption">Gradient descent works by taking small steps downhill to find the minimum.</p>
 
@@ -156,7 +156,7 @@ while True:
 
 ### Numerical vs. Analytic Gradient
 
-![[Lecture01_Pg074_Numerical_Vs_Analytic_Gradient.png]]
+![[Lecture01_Pg072_Numerical_Vs_Analytic_Gradient.png]]
 
 <p class="image-caption">Comparing numerical and analytic gradients for speed and accuracy.</p>
 
@@ -169,7 +169,7 @@ while True:
 
 ### Batch Training
 
-![[Lecture01_Pg075_Batch_Training.png]]
+![[Lecture01_Pg077_Batch_Training.png]]
 
 <p class="image-caption">Batch training looks at every single sample before making one update.</p>
 
@@ -183,7 +183,7 @@ Process **all** $n$ training samples, then update weights once based on $L(W) = 
 
 ### Stochastic Gradient Descent (SGD)
 
-![[Lecture01_Pg078_Stochastic_Gradient_Descent_Sgd.png]]
+![[Lecture01_Pg080_Stochastic_Gradient_Descent_Sgd.png]]
 
 <p class="image-caption">SGD updates the weights after every single example it sees.</p>
 
@@ -198,7 +198,7 @@ Randomly choose **one** training sample $x_i$, update weights based on $L_i(W)$.
 
 ### Mini-Batch Training
 
-![[Lecture01_Pg081_Mini_Batch_Training.png]]
+![[Lecture01_Pg082_Mini_Batch_Training.png]]
 
 <p class="image-caption">Mini-batches give us a nice balance between speed and stable updates.</p>
 
@@ -276,7 +276,7 @@ During the backward pass, each gate acts as a "gradient router":
 
 ### Patterns in Backward Flow
 
-![[Lecture01_Pg089_Patterns_In_Backward_Flow.png]]
+![[Lecture01_Pg090_Patterns_In_Backward_Flow.png]]
 
 <p class="image-caption">Here’s how gradients flow through addition, multiplication, and max operations.</p>
 
@@ -292,7 +292,7 @@ During the backward pass, each gate acts as a "gradient router":
 
 ### Sigmoid
 
-![[Lecture01_Pg102_Sigmoid_Clean.png]]
+![[Lecture01_Pg103_Sigmoid_Clean.png]]
 
 <p class="image-caption">Sigmoid squashes everything between 0 and 1, but it can make gradients disappear.</p>
 
@@ -317,7 +317,7 @@ Squashes numbers to $[0, 1]$. Can be interpreted as a saturating "firing rate" o
 
 ### Tanh
 
-![[Lecture01_Pg105_Tanh_Clean.png]]
+![[Lecture01_Pg115_Tanh_Clean.png]]
 
 <p class="image-caption">Tanh is zero-centered, but it still has the same saturation problems as sigmoid.</p>
 
@@ -329,7 +329,7 @@ $$\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
 
 ### ReLU
 
-![[Lecture01_Pg108_Relu_Clean.png]]
+![[Lecture01_Pg093_Relu_Clean.png]]
 
 <p class="image-caption">ReLU is fast and efficient, but watch out for "dead" neurons that stop learning.</p>
 
@@ -349,7 +349,7 @@ _(Krizhevsky et al., 2012; Nair and Hinton, 2010)_
 
 ### Leaky ReLU / PReLU
 
-![[Lecture01_Pg112_Leaky_Relu_Prelu.png]]
+![[Lecture01_Pg115_Leaky_Relu_Prelu.png]]
 
 <p class="image-caption">Leaky ReLU keeps a small slope for negative values so neurons never truly die.</p>
 
@@ -363,7 +363,7 @@ _(Maas et al., 2013; He et al., 2015)_
 
 ### ELU (Exponential Linear Unit)
 
-![[Lecture01_Pg114_Elu_Exponential_Linear_Unit.png]]
+![[Lecture01_Pg093_Elu_Exponential_Linear_Unit.png]]
 
 <p class="image-caption">ELU gives you the best of ReLU but with smoother activations for negative inputs.</p>
 
@@ -378,13 +378,9 @@ _(Clevert et al., 2016)_
 
 ### Maxout
 
-![[Lecture01_Pg117_Maxout.png]]
-
-<p class="image-caption">Maxout picks the best of several linear functions to create flexible activation shapes.</p>
-
 ![[Lecture01_Pg118_Maxout.png]]
 
-<p class="image-caption">Another way to see Maxout: it's piecewise-linear and never saturates.</p>
+<p class="image-caption">Maxout picks the best of several linear functions to create flexible activation shapes.</p>
 
 $$f(x) = \max(w_1^\top x + b_1,\; w_2^\top x + b_2)$$
 
@@ -410,7 +406,7 @@ _(Goodfellow et al., 2013)_
 
 ### All-Zero / Constant Init
 
-![[Lecture01_Pg121_All_Zero_Constant_Init.png]]
+![[Lecture01_Pg126_All_Zero_Constant_Init.png]]
 
 <p class="image-caption">Initializing everyone to the same value causes "symmetry" and breaks learning.</p>
 
@@ -418,7 +414,7 @@ If all weights are the same value, all neurons compute **identical gradients** �
 
 ### Small Random Numbers — `W = 0.01 * randn(Din, Dout)`
 
-![[Lecture01_Pg122_Small_Random_Numbers_W_0_01.png]]
+![[Lecture01_Pg126_Small_Random_Numbers_W_0_01.png]]
 
 <p class="image-caption">Tiny initial weights can make the signal fade away as it goes deeper.</p>
 
@@ -429,7 +425,7 @@ Works okay for small networks, but **not** for deep ones:
 
 ### Larger Random Numbers — `W = 0.05 * randn(Din, Dout)` (with tanh)
 
-![[Lecture01_Pg122_Larger_Random_Numbers_W_0_05.png]]
+![[Lecture01_Pg126_Larger_Random_Numbers_W_0_05.png]]
 
 <p class="image-caption">Large initial weights will saturate your activations and stall the training.</p>
 
@@ -438,7 +434,7 @@ Works okay for small networks, but **not** for deep ones:
 
 ### Xavier / Glorot Initialisation (2010)
 
-![[Lecture01_Pg155_Xavier_Glorot_Initialisation_2010.png]]
+![[Lecture01_Pg138_Xavier_Glorot_Initialisation_2010.png]]
 
 <p class="image-caption">Xavier initialization keeps the signal steady as it passes through the network.</p>
 
@@ -456,13 +452,9 @@ Activations are nicely scaled across all layers. **Assumes a zero-centred activa
 
 ### Kaiming / MSRA Initialisation — for ReLU (He et al., 2015)
 
-![[Lecture01_Pg137_Kaiming_Msra_Initialisation_For_Relu_He.png]]
-
-<p class="image-caption">Kaiming initialization is the go-to choice when you’re using ReLU.</p>
-
 ![[Lecture01_Pg138_Kaiming_Msra_Initialisation_For_Relu_He.png]]
 
-<p class="image-caption">How Kaiming scaling keeps activations stable when half of them are zeroed out.</p>
+<p class="image-caption">Kaiming initialization is the go-to choice when you’re using ReLU.</p>
 
 $$\text{std} = \sqrt{\frac{2}{D_\text{in}}}$$
 

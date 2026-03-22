@@ -64,7 +64,7 @@ $$\text{rabbit} = [0, 0, 1, 0, \ldots]$$
 
 ### Learned Embeddings
 
-![[Lecture05_Pg009_Learned_Embeddings.png]]
+![[Lecture05_Pg010_Learned_Embeddings.png]]
 
 <p class="image-caption">Learned embeddings map words into a space where similar meanings sit close together.</p>
 
@@ -84,17 +84,9 @@ This property reflects that the difference between gendered word pairs is captur
 
 ### How to Learn Embeddings: CBOW and Skip-gram
 
-<!-- Review Needed: close slide match for 'How to Learn Embeddings: CBOW and Skip-gram' (p12: 0.715, p13: 0.699) -->
+![[Lecture05_Pg014_Cbow_Vs_Skipgram.png]]
 
-![[Lecture05_Pg012_How_To_Learn_Embeddings_Cbow_And.png]]
-
-<p class="image-caption">CBOW predicts a target word just by looking at the words surrounding it.</p>
-
-![[Lecture05_Pg013_How_To_Learn_Embeddings_Cbow_And.png]]
-
-<p class="image-caption">Skip-gram does the opposite: it uses one word to predict all the neighbors.</p>
-
-<!-- Review Needed: close slide match for 'How to Learn Embeddings: CBOW and Skip-gram' (p12: 0.730, p13: 0.713) -->
+<p class="image-caption">Comparison of CBOW (predicting center from context) and Skip-gram (predicting context from center).</p>
 
 Three main approaches:
 
@@ -113,7 +105,7 @@ Skip-gram: "cat"               →  [the, sat, on, mat]
 
 ### Word2Vec (Mikolov et al., 2013)
 
-![[Lecture05_Pg015_Word2vec_Mikolov_Et_Al_2013.png]]
+![[Lecture05_Pg016_Word2vec_Mikolov_Et_Al_2013.png]]
 
 <p class="image-caption">Word2Vec maps words into a space where relationships like "king - man + woman = queen" actually work.</p>
 
@@ -145,7 +137,7 @@ print(model.wv.similarity("cat", "table"))  # low
 
 ### GloVe (Pennington et al., 2014)
 
-![[Lecture05_Pg017_Glove_Pennington_Et_Al_2014.png]]
+![[Lecture05_Pg018_Glove_Pennington_Et_Al_2014.png]]
 
 <p class="image-caption">GloVe takes a global view, looking at how often words appear together across the whole dataset.</p>
 
@@ -171,17 +163,11 @@ father → mother
 
 ### Contextual vs. Non-Contextual Embeddings
 
-<!-- Review Needed: close slide match for 'Contextual vs. Non-Contextual Embeddings' (p20: 0.631, p19: 0.612) -->
 
 ![[Lecture05_Pg020_Contextual_Vs_Non_Contextual_Embeddings.png]]
 
 <p class="image-caption">Comparing classic embeddings with contextual ones—static vs. dynamic meanings.</p>
 
-![[Lecture05_Pg019_Contextual_Vs_Non_Contextual_Embeddings.png]]
-
-<p class="image-caption">The word "bank" can mean very different things; contextual embeddings finally help us tell them apart.</p>
-
-<!-- Review Needed: close slide match for 'Contextual vs. Non-Contextual Embeddings' (p20: 0.654, p19: 0.634) -->
 
 In Word2Vec and GloVe, each word has exactly **one fixed vector** regardless of context. But many words are polysemous:
 
@@ -200,7 +186,7 @@ The word "left" (past tense of leave) and "left" (spatial direction) are differe
 
 ### How Contextual Are Contextual Embeddings? (Ethayarajh, 2019)
 
-![[Lecture05_Pg022_How_Contextual_Are_Contextual_Embeddings_Ethayarajh.png]]
+![[Lecture05_Pg021_How_Contextual_Are_Contextual_Embeddings_Ethayarajh.png]]
 
 <p class="image-caption">As you go deeper into the Transformer, the embeddings get more and more specific to their context.</p>
 
@@ -220,17 +206,11 @@ Ethayarajh (2019) compared BERT, ELMo, and GPT-2 using three new years: self-sim
 
 ### Motivation: RNN Weaknesses
 
-<!-- Review Needed: close slide match for 'Motivation: RNN Weaknesses' (p24: 0.616, p25: 0.614) -->
 
-![[Lecture05_Pg024_Motivation_Rnn_Weaknesses.png]]
+![[Lecture05_Pg026_Motivation_Rnn_Weaknesses.png]]
 
 <p class="image-caption">RNNs struggle with long sequences because they process everything one step at a time.</p>
 
-![[Lecture05_Pg025_Motivation_Rnn_Weaknesses.png]]
-
-<p class="image-caption">The "bottleneck" happens when you try to squeeze a whole sentence into a single fixed-size vector.</p>
-
-<!-- Review Needed: close slide match for 'Motivation: RNN Weaknesses' (p24: 0.628, p25: 0.626) -->
 
 RNNs have several fundamental weaknesses that motivated the development of attention:
 
@@ -245,7 +225,7 @@ RNNs have several fundamental weaknesses that motivated the development of atten
 
 ### Inspiration from Human Attention
 
-![[Lecture05_Pg026_Inspiration_From_Human_Attention.png]]
+![[Lecture05_Pg030_Inspiration_From_Human_Attention.png]]
 
 <p class="image-caption">Just like our eyes focus on specific parts of a scene, attention lets models focus on the most relevant data.</p>
 
@@ -261,17 +241,11 @@ Neural attention is loosely inspired by **human visual attention**:
 
 ### Attention in Machine Learning (Bahdanau et al., 2015)
 
-<!-- Review Needed: close slide match for 'Attention in Machine Learning (Bahdanau et al., 2015)' (p32: 0.497, p33: 0.493) -->
 
-![[Lecture05_Pg032_Attention_In_Machine_Learning_Bahdanau_Et.png]]
+![[Lecture05_Pg034_Attention_In_Machine_Learning_Bahdanau_Et.png]]
 
 <p class="image-caption">Bahdanau attention lets the decoder "look back" at the encoder's states at every step.</p>
 
-![[Lecture05_Pg033_Attention_In_Machine_Learning_Bahdanau_Et.png]]
-
-<p class="image-caption">You can actually see which words the model is focusing on as it translates from one language to another.</p>
-
-<!-- Review Needed: close slide match for 'Attention in Machine Learning (Bahdanau et al., 2015)' (p32: 0.479, p33: 0.475) -->
 
 The original neural attention mechanism was introduced for **machine translation** (seq2seq). The problem: when decoding, you can only use the last encoder hidden state $h_T$ — a bottleneck for long sentences.
 
@@ -293,7 +267,7 @@ This is a weighted sum over **all encoder states** $h_j$, where $\alpha_{ij}$ ar
 
 #### Computing the Attention Weights
 
-![[Lecture05_Pg039_Computing_The_Attention_Weights.png]]
+![[Lecture05_Pg034_Computing_The_Attention_Weights.png]]
 
 <p class="image-caption">This is the step-by-step process of how we calculate those all-important attention weights.</p>
 
@@ -313,11 +287,10 @@ This is a small **feed-forward network** that scores, given the current decoder 
 
 ### Soft vs. Hard Attention (Xu et al., 2015)
 
-![[Lecture05_Pg041_Soft_Vs_Hard_Attention_Xu_Et.png]]
+![[Lecture05_Pg040_Soft_Vs_Hard_Attention_Xu_Et.png]]
 
 <p class="image-caption">Soft attention is smooth and differentiable, while hard attention picks one spot and sticks to it.</p>
 
-<!-- Review Needed: close slide match for 'Soft vs. Hard Attention (Xu et al., 2015)' (p40: 0.552, p41: 0.535) -->
 
 |                   | Soft Attention                        | Hard Attention                  |
 | ----------------- | ------------------------------------- | ------------------------------- |
@@ -352,11 +325,10 @@ For the output word "Wirtschaftszone", global attention correctly puts weight on
 
 ### Advantages of Attention
 
-![[Lecture05_Pg045_Advantages_Of_Attention.png]]
+![[Lecture05_Pg046_Advantages_Of_Attention.png]]
 
 <p class="image-caption">A quick recap of why attention is such a game-changer for neural networks.</p>
 
-<!-- Review Needed: close slide match for 'Advantages of Attention' (p46: 0.445, p45: 0.444) -->
 
 1. **Flexibility**: handles variable-length inputs without a fixed-size bottleneck
 2. **Performance**: significantly better on long sequences where RNNs degrade
@@ -368,7 +340,7 @@ For the output word "Wirtschaftszone", global attention correctly puts weight on
 
 ## Attention Is All You Need
 
-![[Lecture05_Pg050_Attention_Is_All_You_Need.png]]
+![[Lecture05_Pg048_Attention_Is_All_You_Need.png]]
 
 <p class="image-caption">The landmark paper that introduced the world to the Transformer architecture.</p>
 
@@ -518,11 +490,10 @@ mask = causal_mask(4)
 
 ### Multi-Head Attention
 
-![[Lecture05_Pg054_Multi_Head_Attention.png]]
+![[Lecture05_Pg070_Multi_Head_Attention.png]]
 
 <p class="image-caption">Multi-head attention lets the model attend to different types of information in parallel.</p>
 
-<!-- Review Needed: close slide match for 'Multi-Head Attention' (p54: 0.415, p67: 0.374) -->
 
 One attention head learns one type of relationship. **Multi-head attention** runs $h$ attention operations in parallel, each in a lower-dimensional subspace:
 
@@ -591,17 +562,11 @@ class MultiHeadAttention(nn.Module):
 
 ### Summary of Multi-Head Attention Usage
 
-<!-- Review Needed: close slide match for 'Summary of Multi-Head Attention Usage' (p74: 0.565, p72: 0.564) -->
 
 ![[Lecture05_Pg074_Summary_Of_Multi_Head_Attention_Usage.png]]
 
 <p class="image-caption">Self-attention looks within the sequence, while cross-attention links the encoder and decoder.</p>
 
-![[Lecture05_Pg072_Summary_Of_Multi_Head_Attention_Usage.png]]
-
-<p class="image-caption">A bird's-eye view of how different attention mechanisms are used throughout the model.</p>
-
-<!-- Review Needed: close slide match for 'Summary of Multi-Head Attention Usage' (p73: 0.679, p74: 0.674) -->
 
 | Context                       | Who attends to what                                                                              |
 | ----------------------------- | ------------------------------------------------------------------------------------------------ |
@@ -613,15 +578,10 @@ class MultiHeadAttention(nn.Module):
 
 ### Feed-Forward Networks (FFN)
 
-<!-- Review Needed: close slide match for 'Feed-Forward Networks (FFN)' (p76: 0.590, p77: 0.589) -->
-
-![[Lecture05_Pg076_Feed_Forward_Networks_Ffn.png]]
-
-<p class="image-caption">The feed-forward network adds some much-needed non-linearity after the attention layers.</p>
 
 ![[Lecture05_Pg077_Feed_Forward_Networks_Ffn.png]]
 
-<p class="image-caption">The FFN is applied to every token separately, which makes it very efficient for parallel processing.</p>
+<p class="image-caption">The feed-forward network adds some much-needed non-linearity after the attention layers.</p>
 
 Each encoder/decoder block also contains a **position-wise feed-forward network** — a two-layer MLP applied _independently_ to each position:
 
@@ -813,7 +773,7 @@ BERT is an **encoder-only** Transformer that produces contextual representations
 
 ### Architecture
 
-![[Lecture05_Pg086_Architecture.png]]
+![[Lecture05_Pg087_Architecture.png]]
 
 <p class="image-caption">BERT uses a stack of Transformer encoders to understand context from both directions at once.</p>
 
@@ -828,7 +788,7 @@ BERT is an **encoder-only** Transformer that produces contextual representations
 
 #### 1. Masked Language Model (MLM)
 
-![[Lecture05_Pg088_1_Masked_Language_Model_Mlm.png]]
+![[Lecture05_Pg090_1_Masked_Language_Model_Mlm.png]]
 
 <p class="image-caption">BERT learns by trying to fill in the blanks of sentences where some words are hidden.</p>
 
@@ -964,7 +924,7 @@ GPT ("Generative Pre-trained Transformer") takes the opposite design choice from
 
 ### Causal Self-Attention Only
 
-![[Lecture05_Pg074_Causal_Self_Attention_Only.png]]
+![[Lecture05_Pg058_Causal_Self_Attention_Only.png]]
 
 <p class="image-caption">GPT-style models use causal attention to predict the next word in a sequence, one by one.</p>
 
