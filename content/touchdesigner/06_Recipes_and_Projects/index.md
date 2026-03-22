@@ -59,6 +59,7 @@ _Deep dives into fluid dynamics, motion tracking, and complex math._
 ### Math & Fractals
 - **[[touchdesigner/06_Recipes_and_Projects/y-3/Sierpinski Tetrahedron with Hand Tracking|(y-) 3D Sierpinski Tetrahedron]]**: Fractal geometry controlled by hand orientation and pinch-zoom.
 - **[[touchdesigner/06_Recipes_and_Projects/y-3/Hand-Tracked Chaotic Attractor|(y-) ★ Hand-Tracked Chaotic Attractor]]**: A math-heavy project using **Script CHOPs** to drive a Lorenz attractor with hand data.
+- **[[notes/random/neural-style-transfer|(y-) Real-time Neural Style Transfer]]**: A deep-learning recipe using OpenCV and pre-trained ONNX models.
 
 ---
 [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

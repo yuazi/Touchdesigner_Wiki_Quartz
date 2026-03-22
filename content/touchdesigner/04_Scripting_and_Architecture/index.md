@@ -15,8 +15,13 @@ This module covers Python integration, project organization, and performance opt
 - **[[Custom Parameters|(y-) Custom Parameters]]**: Adding your own parameters to COMPs.
 - **[[Modular Design and Toxes|(y-) Modular Design and Toxes]]**: Reusable components (.tox files).
 - **[[Container and Widgets|(y-) Container and Widgets]]**: Building custom user interfaces.
-- **[[Cooking|(y-) Cooking]]**: How TD decides what to compute.
+- [[Cooking|(y-) Cooking]]**: How TD decides what to compute.
 - **[[Performance Monitoring|(y-) Performance Monitoring]]**: Finding and fixing slowdowns.
+
+---
+
+### Practical Projects
+- **[[notes/random/neural-style-transfer|(y-) Real-time Neural Style Transfer]]**: A project using the **Script TOP** to run deep-learning inference with OpenCV.
 
 ---
 [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

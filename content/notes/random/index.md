@@ -14,6 +14,7 @@ The sensory and the mathematical. A mix of strange attractors, the visceral focu
 ## Exploration
 
 - [[notes/random/lorenz-attractor|(y-) The Lorenz Attractor]] — Exploring chaos and strange attractors.
+- [[notes/random/neural-style-transfer|(y-) Neural Style Transfer]] — Real-time creative coding meets deep learning.
 - [[notes/random/motorcycles|(y-) Motorcycles]] — Notes on riding and the focus it brings.
 - [[notes/random/perfumes|(y-) Perfumes]] — A different kind of sensory exploration.
 

@@ -31,6 +31,7 @@ Welcome to the **Advanced** module. These recipes involve deep dives into fluid 
 
 - **[[Sierpinski Tetrahedron with Hand Tracking|(y-) 3D Sierpinski Tetrahedron]]**: Fractal geometry controlled by hand orientation and pinch-zoom gestures. We use the **Copy SOP** and **GPU Instancing** for recursive complexity.
 - **[[Hand-Tracked Chaotic Attractor|(y-) ★ Hand-Tracked Chaotic Attractor]]**: A math-heavy project using **Script CHOPs** to drive a Lorenz attractor system in real time, optimized for high framerates on modern hardware.
+- **[[notes/random/neural-style-transfer|(y-) Real-time Neural Style Transfer]]**: A deep-learning recipe using OpenCV and pre-trained ONNX models inside the Script TOP.
 
 ---
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]
