@@ -41,7 +41,12 @@ $$p_\theta(x) = \int p_\theta(z)\, p_\theta(x|z)\, dz$$
 ![[Lecture10_Pg034_Generative_Adversarial_Networks_Gans_Training_Gans_Pseudocode.png]]
 
 <p class="image-caption">Added missing architecture/summary slide.</p>
-## Summary of VAEs
+## Summary
+
+![[Lecture10_Pg044_Generative_Adversarial_Networks_Gans_Gans_Vs_Vae.png]]
+
+<p class="image-caption">Most complete version of this build sequence.</p>
+ of VAEs
 
 ![[Lecture10_Pg008_Summary_Of_Vaes.png]]
 
@@ -483,7 +488,12 @@ Input image x ──→ [Generator (U-Net)] ──→ output image ŷ
 
 ---
 
-### CycleGAN — Unpaired Image-to-Image Translation
+### CycleGAN
+
+![[Lecture10_Pg062_Applications_Cyclegan_Overview.png]]
+
+<p class="image-caption">Most complete version of this build sequence.</p>
+ — Unpaired Image-to-Image Translation
 
 
 ![[Lecture10_Pg061_Cyclegan_Unpaired_Image_To_Image_Translation.png]]
@@ -739,7 +749,12 @@ Lower FID means the generated distribution is closer to the real one. FID captur
 ![[Lecture10_Pg034_Generative_Adversarial_Networks_Gans_Training_Gans_Pseudocode.png]]
 
 <p class="image-caption">Added missing architecture/summary slide.</p>
-## Summary: GAN Variants
+## Summary
+
+![[Lecture10_Pg044_Generative_Adversarial_Networks_Gans_Gans_Vs_Vae.png]]
+
+<p class="image-caption">Most complete version of this build sequence.</p>
+: GAN Variants
 
 | GAN Variant        | Key Innovation                                | Paper                   |
 | ------------------ | --------------------------------------------- | ----------------------- |

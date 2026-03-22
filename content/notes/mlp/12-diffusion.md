@@ -809,6 +809,11 @@ This is the same general diffusion machinery applied in an **editing / inpaintin
 
 ---
 
+
+
+![[Lecture12_Pg063_Text_Guided_Diffusion_Models.png]]
+
+<p class="image-caption">Most complete version of this build sequence.</p>
 ## Summary
 
 | Concept                      | Key Detail                                                                                                     |

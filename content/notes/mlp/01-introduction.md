@@ -211,6 +211,12 @@ Randomly choose **one** training sample $x_i$, update weights based on $L_i(W)$.
 
 <p class="image-caption">Mini-batches give us a nice balance between speed and stable updates.</p>
 
+
+![[Lecture01_Pg083_Mini_Batch_Training.png]]
+
+<p class="image-caption">Most complete version of this build sequence.</p>
+
+
 Process a **subset** $M \subset \{1, \dots, n\}$ of samples:
 
 $$L_M(W) = \frac{1}{|M|} \sum_{i \in M} L_i(W)$$
@@ -286,6 +292,11 @@ During the backward pass, each gate acts as a "gradient router":
 ### Patterns in Backward Flow
 
 ![[Lecture01_Pg090_Patterns_In_Backward_Flow.png]]
+
+![[Lecture01_Pg089_Patterns_In_Backward_Flow.png]]
+
+<p class="image-caption">Most complete version of this build sequence.</p>
+
 
 <p class="image-caption">Here’s how gradients flow through addition, multiplication, and max operations.</p>
 
@@ -609,7 +620,12 @@ Classically, activations are scaled at test time by $(1-p)$. In modern libraries
 
 Data augmentation is another form of regularisation: random crops, flips, colour jitter, noise, etc. It does not directly penalise the weights, but it makes the learning problem harder to overfit.
 
-### Summary of Common Regularisers
+#
+
+![[Lecture01_Pg098_Saturated_Neurons_Kill_The_Gradients.png]]
+
+<p class="image-caption">Most complete version of this build sequence.</p>
+## Summary of Common Regularisers
 
 | Method                | Main effect                                  | Typical outcome                      |
 | --------------------- | -------------------------------------------- | ------------------------------------ |
@@ -725,6 +741,11 @@ accuracy = model.score(X_test, y_test)
 
 ---
 
+
+
+![[Lecture01_Pg098_Saturated_Neurons_Kill_The_Gradients.png]]
+
+<p class="image-caption">Most complete version of this build sequence.</p>
 ## Summary
 
 1. ML = automatically learning from data without explicit programming

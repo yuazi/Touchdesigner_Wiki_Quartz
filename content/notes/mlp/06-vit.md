@@ -737,6 +737,11 @@ From the lecture's closing slide — notable models and frameworks as of WS 2025
 
 ---
 
+
+
+![[Lecture06_Pg009_Vision_Transformer_Replacing_Cnns_With_Self_Attention.png]]
+
+<p class="image-caption">Most complete version of this build sequence.</p>
 ## Summary
 
 | Topic                          | Key Points                                                                                                                                                  |

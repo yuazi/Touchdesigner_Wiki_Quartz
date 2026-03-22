@@ -678,6 +678,16 @@ class VAE(nn.Module):
 ![[Lecture09_Pg061_Variational_Autoencoders_Training_Vaes.png]]
 
 <p class="image-caption">Added missing architecture/summary slide.</p>
+
+
+![[Lecture09_Pg050_Variational_Autoencoders_Evidence_Lower_Bound_Elbo.png]]
+
+<p class="image-caption">Most complete version of this build sequence.</p>
+
+
+![[Lecture09_Pg071_Variational_Autoencoders_Reparametrisation_Trick.png]]
+
+<p class="image-caption">Most complete version of this build sequence.</p>
 ## Summary of VAEs
 
 ![[Lecture09_Pg088_Summary_Of_Vaes.png]]
