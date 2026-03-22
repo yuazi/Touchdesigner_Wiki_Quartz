@@ -138,7 +138,7 @@ Combining simple Gaussians gives a much more expressive, multi-modal density.
 
 ### Architecture
 
-![[Lecture09_Pg090_Architecture.png]]
+![[Lecture09_Pg027_Autoencoders_Introduction.png]]
 
 <p class="image-caption">The standard autoencoder: an encoder, a decoder, and that latent bottleneck.</p>
 
