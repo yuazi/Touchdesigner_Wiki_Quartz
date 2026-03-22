@@ -390,7 +390,7 @@ So diffusion spreads the generative problem across **many easy denoising steps**
 
 ### SDE Formulation (Song et al., 2021)
 
-![[Lecture12_Pg046_Sde_Formulation_Song_Et_Al_2021.png]]
+![[Lecture12_Pg045_Sde_Formulation.png]]
 
 <p class="image-caption">Let's look at this from a continuous perspective using Stochastic Differential Equations.</p>
 
@@ -429,6 +429,15 @@ The term $\nabla_x \log p_t(x)$ is the **score function** — the gradient of th
 
 - **Slow generation**: requires many forward passes through the network ($T = 1000$ steps by default).
 - **Less meaningful latents**: latent variables have the same dimensionality as the data — harder to interpret or manipulate.
+
+---
+
+### ⚠️ Common Pitfalls: Why Diffusion Can Fail
+
+1.  **The Sampling Bottleneck**: Unlike GANs which are "one-and-done," Diffusion requires iterative refinement. This makes them significantly slower for real-time applications unless you use distillation or DDIM.
+2.  **Schedule Sensitivity**: If the noise schedule ($\beta_t$) is too aggressive, the signal is destroyed too early for the model to learn meaningful structure. If it's too gentle, the reverse process starts from something that isn't true Gaussian noise, leading to artifacts.
+3.  **High-Res Instability**: Running diffusion directly in pixel space for high resolutions often leads to "grid-like" artifacts or extremely long training times. This is exactly why **Latent Diffusion** (LDMs) was invented—to compress the problem first.
+4.  **Prompt Adherence vs. Quality**: Over-using **Classifier-Free Guidance (CFG)** can make images look "deep-fried" or oversaturated. There is a sweet spot (usually scale 7-10) where the model follows the prompt without ruining the image aesthetics.
 
 ---
 

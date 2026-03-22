@@ -837,6 +837,13 @@ class ProtoNet(nn.Module):
 - Srivastava & Salakhutdinov (2012). _Multimodal learning with deep Boltzmann machines._ NeurIPS.
 - Pham et al. (2019). _Found in translation: Learning robust joint representations by cyclic translations between modalities._ AAAI.
 
+### ⚠️ Common Pitfalls: Why Multimodal Learning Can Fail
+
+1.  **Modality Dominance**: If one modality (e.g., Text) is much "easier" to solve the task with than another (e.g., Vision), the model might ignore the harder one entirely. This is why VQA models sometimes answer correctly without even looking at the image!
+2.  **The Alignment Challenge**: In **Coordinated Representations** (like DeViSE), the model must map two completely different spaces into one. If the alignment loss is too weak, the spaces will stay disjoint, and you won't get meaningful cross-modal results.
+3.  **Cross-Modal Over-reliance**: If your model only sees paired data (image + text), it might fail when one modality is missing at test time. **Robust Multimodal Learning** requires training with some modalities missing (dropout) to handle real-world failures.
+4.  **Heterogeneity of Data**: Combining low-dimensional audio features with high-resolution image patches is a nightmare for normalization. If not handled carefully, one modality will dominate the gradients just because of its larger scale.
+
 ### Applied Exam Focus
 - **CLIP**: Uses **Contrastive Learning** to align images and text in a shared latent space. The goal is to maximize the cosine similarity of matching pairs.
 - **Zero-Shot Transfer**: Because CLIP learns concepts (e.g., "a photo of a dog") rather than fixed labels, it can classify objects it was never explicitly trained on.

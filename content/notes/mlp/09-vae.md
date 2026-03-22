@@ -257,6 +257,10 @@ $$\log p(x;\theta) = \log \sum_{z} p(x,z;\theta) = \log \sum_z \frac{q(z)}{q(z)}
 
 where $q(z)$ is any distribution we choose (it should be simple and tractable).
 
+![[Lecture09_Pg047_ELBO_Jensens.png]]
+
+<p class="image-caption">Using Jensen's inequality to move the log inside the expectation, which gives us a tractable lower bound to optimize.</p>
+
 Since $\log$ is **concave**, Jensen's inequality gives:
 
 $$\log \mathbb{E}_{z \sim q}\!\left[f(z)\right] \ge \mathbb{E}_{z \sim q}\!\left[\log f(z)\right]$$
@@ -389,6 +393,10 @@ The expectation itself depends on $\phi$ (it is the distribution we sample $z$ f
 ## The Reparameterization Trick
 
 **Problem**: $z \sim q_\phi(z|x)$ is a stochastic sampling step — gradients cannot flow through it.
+
+![[Lecture09_Pg072_Reparametrisation_Trick.png]]
+
+<p class="image-caption">The Reparameterization Trick shifts the random sampling out of the main computational graph so gradients can flow freely into the encoder.</p>
 
 **Solution**: express the sample as a **deterministic** function of $(\phi, \varepsilon)$ where $\varepsilon$ is noise that doesn't depend on the parameters:
 
@@ -692,10 +700,18 @@ class VAE(nn.Module):
 | GAN         | Implicit               | Sharp, high quality | Unstable (mode collapse) |
 | Diffusion   | Hierarchical noise     | Excellent           | Stable                   |
 
+### ⚠️ Common Pitfalls: Why VAEs Can Fail
+
+1.  **Posterior Collapse**: If the decoder is "too powerful," it might ignore the latent variable $z$ and learn to generate the image using only its own internal parameters. This is why the KL-Divergence term must be carefully balanced.
+2.  **The "Blurry" Problem**: Because VAEs often use **MSE (L2) loss** for reconstruction, the model finds it safer to generate a "mean" (blurry) image than to commit to a specific, sharp detail. **GANs** solve this with an adversarial loss.
+3.  **The Prior Mismatch**: A single Gaussian prior ($\mathcal{N}(0, I)$) might be too simple to capture the complexity of real data (like all human faces). If the prior is "too tight," the model can't represent multiple modes (e.g., people with glasses and without).
+4.  **The Reparameterization Trick**: You *must* use this to train. If you try to sample $z$ directly from $q(z|x)$ and then backprop through it, your gradient will be zero (the sampling operation is non-differentiable).
+
 ### Applied Exam Focus
 - **Reparameterization Trick**: Instead of sampling $z \sim \mathcal{N}(\mu, \sigma^2)$ directly (which is non-differentiable), sample $\epsilon \sim \mathcal{N}(0, 1)$ and compute $z = \mu + \sigma \odot \epsilon$. This allows **Backprop** to work.
 - **Latent Space**: The **KL-Divergence** term in the loss forces the latent space to be a smooth, continuous Gaussian, enabling meaningful interpolation.
 - **ELBO**: The Evidence Lower Bound is the training objective that balances reconstruction quality with latent space regularity.
+- **Architectural Evolution**: VAEs produce blurry images, and GANs suffer from mode collapse. To get both high quality and high diversity, the modern field has largely shifted to **[[notes/mlp/12-diffusion|Diffusion Models (L12)]]**.
 
 ---
 [[notes/mlp/08-iml|Previous: L08 — IML]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/10-gans|Next: (y-10) GANs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

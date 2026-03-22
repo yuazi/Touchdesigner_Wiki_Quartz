@@ -51,6 +51,10 @@ CNNs have several weaknesses that motivated looking at Transformer alternatives 
 
 Before the full ViT, Ramachandran et al. (2019) showed that convolution layers can be replaced by **stand-alone self-attention** layers:
 
+![[Lecture06_Pg012_Patch_Projection.png]]
+
+<p class="image-caption">Visualizing how local self-attention can replace convolutions by attending over a neighborhood.</p>
+
 In a convolution, each output pixel $y_{ij}$ is a weighted sum over a local neighbourhood. In self-attention form:
 
 $$y_{ij} = \sum_{a,b \in \mathcal{N}_k(i,j)} \text{softmax}_{ab}\!\left(q_{ij}^\top k_{ab} + q_{ij}^\top r_{a-i,b-j}\right) v_{ab}$$
@@ -746,6 +750,13 @@ From the lecture's closing slide — notable models and frameworks as of WS 2025
 - Wu, Xiong, Yu, Lin (2018) — Unsupervised feature learning via non-parametric instance discrimination. _CVPR_, pp. 3733–3742.
 - Caron, Touvron, Misra, Jégou, Mairal, Bojanowski, Joulin (2021) — Emerging properties in self-supervised vision transformers. _ICCV_.
 - Zhu, Su, Lu, Li, Wang, Dai (2020) — Deformable DETR: Deformable transformers for end-to-end object detection. _arXiv:2010.04159_.
+
+### ⚠️ Common Pitfalls: Why Vision Transformers Can Fail
+
+1.  **The "Data-Hungry" Nature**: Unlike CNNs, ViTs do not have built-in **Inductive Biases** (like translation equivariance). This means they need **millions** of images (JFT-300M, ImageNet-21k) to learn how pixels relate to each other. On small datasets, a CNN will almost always win.
+2.  **Patch-Size Tradeoff**: If you choose large patches ($16 \times 16$), the model is fast but loses fine-grained detail. If you choose small patches ($4 \times 4$), the sequence length ($T$) explodes, and the quadratic self-attention costs ($O(T^2)$) will crash your GPU.
+3.  **Global vs. Local Focus**: ViTs can attend to distant pixels in the very first layer. This is powerful but can also lead to overfitting on irrelevant background features if the dataset is too small.
+4.  **Static Resolution**: ViTs are trained on a fixed resolution (e.g., 224x224). If you test on a larger image, you have to interpolate the **Positional Encodings**, which can lead to a drop in performance if not done carefully.
 
 ### Applied Exam Focus
 - **Patch Projection**: ViT treats an image as a sequence of $16 \times 16$ patches, effectively turning a Vision problem into an NLP problem.

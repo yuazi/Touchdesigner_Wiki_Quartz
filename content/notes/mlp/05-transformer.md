@@ -1098,6 +1098,13 @@ From the lecture's closing slide:
 - Vaswani et al. (2017) — Attention is all you need. _NeurIPS_, pp. 5998–6008.
 - Xu et al. (2015) — Show, attend and tell: Neural image caption generation with visual attention. _ICML_, pp. 2048–2057.
 
+### ⚠️ Common Pitfalls: Why Transformers Can Fail
+
+1.  **Quadratic Complexity**: Self-attention is $O(T^2)$, where $T$ is the sequence length. If you double the length of your text, it takes **four times** more memory. This makes long-form text (like whole books) extremely difficult to process in one go.
+2.  **Order Blindness**: Without **Positional Encodings**, a Transformer sees a sentence as a "bag of words." It cannot distinguish between *"The dog bit the man"* and *"The man bit the dog"* unless you explicitly inject the position information.
+3.  **Training Instability (Warmup)**: Transformers are incredibly sensitive to initial learning rates. Most modern models will fail or explode without a **Warmup period**, where the learning rate starts at zero and gradually increases for the first few thousand steps.
+4.  **Static Embedding Drift**: In models like BERT, the embeddings for "cat" are contextual, but the final vocabulary is still finite. If your input has many out-of-vocabulary (OOV) tokens, the model can struggle—this is why we use **Subword Tokenization** (WordPiece/BPE).
+
 ### Applied Exam Focus
 - **Self-Attention**: Complexity is **$O(N^2)$** with respect to sequence length $N$. This is the primary scaling bottleneck.
 - **Multi-Head Attention**: Allows the model to attend to different parts of the sequence simultaneously (e.g., one head for syntax, another for semantics).

@@ -181,6 +181,10 @@ $$\min_G \; V(G, D) = \mathbb{E}_{x \sim p_{data}}[\log D(x)] + \mathbb{E}_{x \s
 
 ### Combined Minimax Objective
 
+![[Lecture10_Pg028_Training_GANs_Minimax.png]]
+
+<p class="image-caption">The Minimax objective puts the Generator and Discriminator in a zero-sum game, training them simultaneously.</p>
+
 $$\min_G \max_D \; \mathcal{L}(D, G) = \mathbb{E}_{x \sim p_{data}}[\log D(x)] + \mathbb{E}_{z \sim p_z}[\log(1 - D(G(z)))]$$
 
 ### Connection to Jensen-Shannon Divergence
@@ -362,6 +366,10 @@ _Arjovsky et al., 2017_
 <p class="image-caption">Visualizing Earth Mover's Distance as the cost of optimal transport between distributions</p>
 
 Instead of JSD, use the **Wasserstein-1 (Earth Mover's) Distance**:
+
+![[Lecture10_Pg049_Wasserstein_Distance.png]]
+
+<p class="image-caption">Wasserstein distance measures the minimum "cost" to move the fake distribution to perfectly overlap the real one.</p>
 
 $$W(P \| Q) = \inf_{\gamma \in \Pi(P, Q)} \mathbb{E}_{(x,y) \sim \gamma}[\| x - y \|]$$
 
@@ -840,10 +848,18 @@ class Discriminator(nn.Module):
 - Krafka, Khosla, Kellnhofer et al. (2016). _Eye Tracking for Everyone._ CVPR.
 - Zhang, Park, Beeler, Bradley, Tang, Hilliges (2020). _ETH-XGaze: A Large Scale Dataset for Gaze Estimation under Extreme Head Pose and Gaze Variation._ ECCV.
 
+### ⚠️ Common Pitfalls: Why GANs Can Fail
+
+1.  **Mode Collapse**: The Generator finds a single "perfect" image that fools the Discriminator and only ever generates that one image. This is why we use **Mini-batch discrimination** or **Wasserstein Loss (WGAN)** to force diversity.
+2.  **The Overpowered Discriminator**: If the Discriminator becomes too "good" too quickly, its gradient becomes zero, and the Generator learns nothing. **Always balance their training rates** (e.g., train the generator twice for every discriminator update, or vice versa).
+3.  **The Non-Convergence Problem**: GAN training is a **zero-sum game**, not a standard optimization. It can "cycle" indefinitely without ever finding a stable solution (Nash Equilibrium). **Always check the visual quality of samples**, not just the loss value.
+4.  **Feature Mismatch**: If the Generator and Discriminator are not balanced in size/power, the Discriminator can "overpower" the Generator, leading to high-frequency artifacts or "checkerboard" patterns.
+
 ### Applied Exam Focus
 - **Min-Max Game**: The Generator tries to fool the Discriminator, while the Discriminator tries to distinguish real from fake. This is a **Nash Equilibrium** problem.
 - **Mode Collapse**: Occurs when the Generator discovers a single "safe" output that fools the Discriminator and stops producing diverse samples.
 - **WGAN**: Uses the **Earth Mover (Wasserstein) Distance** to provide smoother gradients even when the real and fake distributions don't overlap.
+- **Architectural Evolution**: GANs produce incredibly sharp images but are notoriously difficult to train and suffer from mode collapse. **[[notes/mlp/12-diffusion|Diffusion Models (L12)]]** solve these stability issues while maintaining state-of-the-art image quality.
 
 ---
 [[notes/mlp/09-vae|Previous: L09 — VAE]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/11-rl|Next: (y-11) RL]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

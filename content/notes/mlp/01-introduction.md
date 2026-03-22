@@ -145,6 +145,10 @@ $$\frac{\partial f(x)}{\partial x} = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$$
 
 In multiple dimensions, the gradient is the vector of partial derivatives along each dimension. The direction of **steepest descent** is the negative gradient.
 
+![[Lecture01_Pg061_Gradient_Descent_Math.png]]
+
+<p class="image-caption">Gradient descent steps "downhill" using the negative slope to find the minimum loss.</p>
+
 Update rule (starting from $W_0$):
 $$W_{t+1} = W_t - \alpha_t \nabla f(W_t)$$
 
@@ -224,7 +228,7 @@ How do we compute gradients for nodes in **hidden layers**? → **Backpropagatio
 
 ### Computational Graphs
 
-![[Lecture01_Pg085_Computational_Graphs.png]]
+![[Lecture01_Pg085_Computational_Graph.png]]
 
 <p class="image-caption">Computational graphs turn complex math into a sequence of simple, doable steps.</p>
 
@@ -733,6 +737,13 @@ accuracy = model.score(X_test, y_test)
 
 - Ioffe, Szegedy (2015) — Batch normalization: Accelerating deep network training by reducing internal covariate shift. _ICML_.
 - Srivastava, Hinton, Krizhevsky, Sutskever, Salakhutdinov (2014) — Dropout: A simple way to prevent neural networks from overfitting. _JMLR_, 15:1929–1958.
+
+### ⚠️ Common Pitfalls: Why Neural Networks Can Fail
+
+1.  **Linear Collapse**: If you forget to add a non-linear activation (like ReLU) between your layers, your deep network just becomes one giant linear transformation ($W_3 W_2 W_1 x = W_{total} x$). It's just a linear model with extra steps!
+2.  **The Symmetry Problem**: If you initialize all your weights to zero, every neuron in a hidden layer will calculate the exact same gradient and perform the exact same update. The network will never learn distinct features. **Always use Kaiming or Xavier initialization.**
+3.  **The Sigmoid Trap**: Don't use sigmoid in deep hidden layers. When $x$ is very large or very small, the gradient is almost zero ($\approx 0.0001$). This is the **Vanishing Gradient** problem—the signal dies before it can reach the early layers.
+4.  **Learning Rate Extremes**: If your learning rate is too high, the loss will explode. If it's too low, the model might get stuck in a tiny local minimum and take days to train. **Always check your loss curve.**
 
 ### Applied Exam Focus
 - **Loss Functions**: Use **MSE** for regression and **Cross-Entropy** for classification. Cross-Entropy penalizes confident wrong answers more heavily.

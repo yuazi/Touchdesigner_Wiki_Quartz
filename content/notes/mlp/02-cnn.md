@@ -269,6 +269,10 @@ A 32×32×3 image flattened to 3072×1 is fed into a dense layer. This ignores a
 
 <p class="image-caption">A convolution filter slides over the image to create a map of where it found a pattern.</p>
 
+![[Lecture02_Pg044_Convolution_Sliding_Window.png]]
+
+<p class="image-caption">A deeper look at the sliding window: moving the filter dot-product across the input volume.</p>
+
 - A **filter** (kernel) slides across the spatial dimensions of the input
 - Filters always **extend the full depth** of the input volume
 - The filter computes a dot product at each spatial position → produces an **activation map** (also called a **feature map**)
@@ -556,10 +560,18 @@ class LeNet5(nn.Module):
 - **`F.max_pool2d`**: Selects the maximum value in a small window, reducing spatial size and providing robustness to small translations.
 - **`x.view(-1, ...)`**: Used to "flatten" the 2D feature maps into a 1D vector before passing them to traditional linear layers.
 
+### ⚠️ Common Pitfalls: Why CNNs Can Fail
+
+1.  **Spatial Info Loss (Over-Pooling)**: Using too many Max-Pooling layers too early can destroy fine-grained spatial information. If your task requires precise localization (like segmentation), excessive pooling makes it impossible to recover the exact boundaries.
+2.  **Fixed Input Size**: Standard CNNs with Fully Connected heads require a fixed input resolution (e.g., 224x224). If you feed an image with a different aspect ratio without proper padding or cropping, you might distort the features.
+3.  **Boundary Effects**: Padding ($P$) is essential. Without it, the pixels at the edges are "seen" fewer times than the center pixels, leading to a bias where the model ignores the borders of the image.
+4.  **Receptive Field Mismatch**: If your filters are too small ($3 \times 3$) and the network is shallow, the model can only see tiny textures. To recognize a "house," the receptive field must be large enough to encompass the whole structure.
+
 ### Applied Exam Focus
 - **Dimension Formula**: Output size $= \frac{W - K + 2P}{S} + 1$. Remember this to calculate feature map shrinkage.
 - **Pooling**: **Max Pooling** provides local **translation invariance** and reduces the number of parameters (lowering overfitting risk).
 - **Receptive Field**: Each layer increases the 'view' of the original image. Deeper layers capture more global context but lose spatial precision.
+- **Architectural Evolution**: While CNNs dominate via their strong inductive biases (like translation invariance), they are increasingly being challenged by **[[notes/mlp/06-vit|Vision Transformers (L06)]]**, which discard these biases in favor of massive data scaling.
 
 ---
 [[notes/mlp/01-introduction|Previous: L01 — Intro]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/03-vision-cnn|Next: (y-03) Vision CNNs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

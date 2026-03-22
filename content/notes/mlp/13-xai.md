@@ -83,6 +83,15 @@ Saliency helps us catch models that are "right for the wrong reasons."
 
 ---
 
+### ⚠️ Common Pitfalls: The Limits of Explainability
+
+1.  **Confirmation Bias**: Humans tend to look at an explanation and find a reason why it "makes sense," even if the explanation is random noise. This is why automated evaluation (like deletion/insertion tests) is essential.
+2.  **Explanation Hacking**: It is possible to train a model that is intentionally biased but provides "fair-looking" explanations. This is why we need **Axiomatic** methods like SHAP or Integrated Gradients that have mathematical guarantees.
+3.  **Fragility of Saliency**: Many saliency methods (like Vanilla Gradient) are incredibly sensitive to tiny, imperceptible changes in the input. If your explanation changes because you added 1% noise, it's not a reliable window into the model's logic.
+4.  **Local vs. Global Blindness**: A model can be perfectly fair on one specific person (Local) while being systematically biased against their entire demographic (Global). Never rely on a single local explanation to vet a model for deployment.
+
+---
+
 ### 🧠 Deep Dive: LIME vs. SHAP (Accuracy vs. Fairness)
 
 Both LIME and SHAP give you feature importance, but they do it very differently.
@@ -250,7 +259,7 @@ where $\epsilon_i \sim \mathcal{N}(0, \sigma^2)$. Produces cleaner, more interpr
 
 ### 3. Integrated Gradients
 
-![[Lecture13_Pg089_3_Integrated_Gradients.png]]
+![[Lecture13_Pg089_Integrated_Gradients_Example.png]]
 
 <p class="image-caption">Integrated Gradients is a bit more robust—it avoids saturation and satisfies that completeness axiom.</p>
 

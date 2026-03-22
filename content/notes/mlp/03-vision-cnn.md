@@ -248,6 +248,10 @@ This is much faster than trying to draw a new box from scratch at every single p
 
 **RPN Loss Function**:
 
+![[Lecture03_Pg037_RPN_Loss.png]]
+
+<p class="image-caption">The RPN Loss balances the classification (object vs background) and the regression (tightening the bounding box).</p>
+
 $$L(p_i, t_i) = \frac{1}{N_\text{cls}} \sum_i L_\text{cls}(p_i, p_i^*) + \lambda \frac{1}{N_\text{reg}} \sum_i p_i^* \, L_\text{reg}(t_i, t_i^*)$$
 
 - $L_\text{cls}$: classification loss (object vs. background)

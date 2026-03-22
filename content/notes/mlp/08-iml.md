@@ -377,10 +377,9 @@ The lecture's theory slides emphasise that disagreement-based active learning is
 
 ### 1. Uncertainty Sampling
 
-![[Lecture08_Pg054_1_Uncertainty_Sampling.png]]
+![[Lecture08_Pg052_Uncertainty_Sampling_Math.png]]
 
-<p class="image-caption">A few ways to sample by uncertainty: least confidence, margin, and entropy.</p>
-
+<p class="image-caption">Comparing Margin vs. Entropy: different ways to measure how confused the model is.</p>
 
 Query the example the model is **least confident** about.
 
@@ -760,6 +759,13 @@ class GNN(nn.Module):
 - **Local to Global**: Information from the other side of the board propagates via multiple steps.
 - **Permutation Invariance**: The `index_add_` (sum) operation ensures result consistency regardless of neighbor order.
 - **Relational Reasoning**: The model learns the **rules** of Sudoku encoded in the graph structure.
+
+### ⚠️ Common Pitfalls: Why IML/Active Learning Can Fail
+
+1.  **Sampling Bias (Active Learning)**: If you only label the most "uncertain" samples, you might completely miss large clusters of the data distribution. This is why **Diversity-based sampling** must balance **Uncertainty-based sampling**.
+2.  **Oracle Reliability**: Active Learning assumes the "Oracle" (usually a human) is always correct. If the human labels an image incorrectly, the model might over-correct and ruin its learned features for that entire class.
+3.  **The Uncertainty Trap**: Just because a model is "uncertain" doesn't mean it's the *right* kind of uncertainty. It might just be looking at a low-quality or noisy image. **Deep Bayesian** methods try to distinguish between "model ignorance" and "noisy data" (Epistemic vs. Aleatoric uncertainty).
+4.  **Label Propagation Drift**: In Semi-supervised learning, if you propagate a single wrong label, it can "poison" an entire cluster of unlabeled data. Always use a confidence threshold when propagating labels.
 
 ### Applied Exam Focus
 - **Uncertainty Sampling**: In Active Learning, query points where the model is least confident (e.g., **Highest Entropy** or **Smallest Margin** between top two classes).

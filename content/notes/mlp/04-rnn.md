@@ -404,7 +404,7 @@ Because information can stay in the "files" (Cell State) without being modified,
 
 ### The Four Gates
 
-![[Lecture04_Pg082_The_Four_Gates.png]]
+![[Lecture04_Pg070_The_Four_Gates.png]]
 
 <p class="image-caption">These four gates are the "management team" that controls the flow of information through an LSTM.</p>
 
@@ -502,7 +502,7 @@ criterion = nn.CrossEntropyLoss()
 
 ## GRU — Gated Recurrent Unit
 
-![[Lecture04_Pg010_Gru_Gated_Recurrent_Unit.png]]
+![[Lecture04_Pg079_Gru_Gated_Recurrent_Unit.png]]
 
 <p class="image-caption">A GRU simplifies things by merging gates and getting rid of the separate cell state.</p>
 
@@ -729,10 +729,18 @@ From the lecture's closing slide:
 - Vinyals et al. (2015) — Show and tell: A neural image caption generator. _CVPR_.
 - Wu et al. (2016) — Google's neural machine translation system. _arXiv:1609.08144_.
 
+### ⚠️ Common Pitfalls: Why RNNs Can Fail
+
+1.  **The Vanishing Gradient Problem**: Vanilla RNNs are notoriously bad at remembering things from 50+ steps ago. The repeated multiplication of weights ($W_{hh}$) during the backward pass either shrinks the gradient to zero (vanishing) or makes it skyrocket (exploding).
+2.  **BPTT Computational Cost**: Backpropagating through 1,000 timesteps is effectively like training a 1,000-layer MLP where every layer shares the same weights. This is slow and uses massive amounts of memory.
+3.  **Teacher Forcing Bias (Exposure Bias)**: If you only ever train the decoder using *correct* ground truth tokens, it might not know how to recover when it makes a single mistake during inference. It’s like a student who only ever sees the solution key and panics when they have to solve a problem from scratch.
+4.  **Sequential Bottleneck**: RNNs *cannot* be parallelized over time. You must compute $h_t$ before you can compute $h_{t+1}$, which is why they are often slower to train than Transformers.
+
 ### Applied Exam Focus
 - **BPTT**: Backpropagation Through Time treats the unrolled RNN as a very deep MLP where weights are shared across timesteps.
 - **Vanishing Gradients**: Standard RNNs can't maintain long-term dependencies because gradients shrink exponentially over time.
 - **LSTMs/GRUs**: Use **Gating mechanisms** (Forget, Input, Output gates) to explicitly decide what information to keep or discard, effectively solving the vanishing gradient issue.
+- **Architectural Evolution**: Because RNNs process data sequentially, they cannot be efficiently parallelized. This bottleneck led to the invention of **[[notes/mlp/05-transformer|Transformers (L05)]]**, which process entire sequences at once using self-attention.
 
 ---
 [[notes/mlp/03-vision-cnn|Previous: L03 — Vision CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/05-transformer|Next: (y-05) Transformers]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
