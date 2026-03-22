@@ -36,17 +36,7 @@ $$p_\theta(x) = \int p_\theta(z)\, p_\theta(x|z)\, dz$$
 
 - Since this can't be optimised directly, we derive and optimise a **lower bound (ELBO)** on the likelihood.
 
-#
-
-![[Lecture10_Pg034_Generative_Adversarial_Networks_Gans_Training_Gans_Pseudocode.png]]
-
-<p class="image-caption">Added missing architecture/summary slide.</p>
-## Summary
-
-![[Lecture10_Pg044_Generative_Adversarial_Networks_Gans_Gans_Vs_Vae.png]]
-
-<p class="image-caption">Most complete version of this build sequence.</p>
- of VAEs
+## Summary of VAEs
 
 ![[Lecture10_Pg008_Summary_Of_Vaes.png]]
 
@@ -235,6 +225,10 @@ $$\max_{\Theta_d} \; \mathbb{E}_{x \sim p_{data}}[\log D_{\Theta_d}(x)] + \mathb
 **Step 2 — Gradient descent on G** (minimise $V$):
 
 $$\min_{\Theta_g} \; \mathbb{E}_{z \sim p_z}[\log(1 - D_{\Theta_d}(G_{\Theta_g}(z)))]$$
+
+![[Lecture10_Pg040_Generative_Adversarial_Networks_Gans_Training_Gans_Pseudocode.png]]
+
+<p class="image-caption">The fuller pseudocode version shows the actual alternating loop, discriminator steps, and the improved generator objective used in practice.</p>
 
 ### The Gradient Problem
 
@@ -488,12 +482,11 @@ Input image x ──→ [Generator (U-Net)] ──→ output image ŷ
 
 ---
 
-### CycleGAN
+### CycleGAN — Unpaired Image-to-Image Translation
 
 ![[Lecture10_Pg062_Applications_Cyclegan_Overview.png]]
 
-<p class="image-caption">Most complete version of this build sequence.</p>
- — Unpaired Image-to-Image Translation
+<p class="image-caption">The CycleGAN overview introduces the two-generator, two-discriminator setup used for unpaired translation.</p>
 
 
 ![[Lecture10_Pg061_Cyclegan_Unpaired_Image_To_Image_Translation.png]]
@@ -560,6 +553,10 @@ Instead of scalar $\gamma$ and $\beta$ vectors, SPADE produces _spatially-varyin
 1. Project the segmentation mask into an embedding space
 2. Apply convolutions to produce $\gamma(x, y)$ and $\beta(x, y)$ — 2D tensors, not just scalars
 3. Apply element-wise: normalise the activation, then modulate: $h = \gamma(x,y) \cdot \text{Norm}(h) + \beta(x,y)$
+
+![[Lecture10_Pg070_Spade.png]]
+
+<p class="image-caption">SPADE keeps the semantic layout alive by turning the mask into spatially varying normalization parameters.</p>
 
 The generator contains a series of **SPADE residual blocks** with upsampling layers. Each block conditions on the full-resolution semantic map, so spatial information is never lost.
 
@@ -742,19 +739,7 @@ Lower FID means the generated distribution is closer to the real one. FID captur
 
 > **Example**: A mode-collapsed GAN that generates only one type of face might have high per-image quality but terrible FID, because its distribution barely overlaps with the full real data distribution. IS might still give it a decent score. FID reliably catches both issues.
 
----
-
-
-
-![[Lecture10_Pg034_Generative_Adversarial_Networks_Gans_Training_Gans_Pseudocode.png]]
-
-<p class="image-caption">Added missing architecture/summary slide.</p>
-## Summary
-
-![[Lecture10_Pg044_Generative_Adversarial_Networks_Gans_Gans_Vs_Vae.png]]
-
-<p class="image-caption">Most complete version of this build sequence.</p>
-: GAN Variants
+## Summary: GAN Variants
 
 | GAN Variant        | Key Innovation                                | Paper                   |
 | ------------------ | --------------------------------------------- | ----------------------- |
@@ -768,6 +753,10 @@ Lower FID means the generated distribution is closer to the real one. FID captur
 | **StyleGAN**       | Disentangled $w$-space, AdaIN                 | Karras et al., 2019     |
 
 ## Final Comparison: VAEs vs GANs
+
+![[Lecture10_Pg044_Generative_Adversarial_Networks_Gans_Gans_Vs_Vae.png]]
+
+<p class="image-caption">This comparison slide captures the lecture’s main tradeoff: GANs gain sharpness by giving up explicit likelihoods and easy optimization.</p>
 
 |                | VAE                          | GAN                                    |
 | -------------- | ---------------------------- | -------------------------------------- |
@@ -888,4 +877,3 @@ class Discriminator(nn.Module):
 
 ---
 [[notes/mlp/09-vae|Previous: L09 — VAE]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/11-rl|Next: (y-11) RL]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
-

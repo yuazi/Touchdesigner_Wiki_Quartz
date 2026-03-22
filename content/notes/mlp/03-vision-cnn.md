@@ -213,7 +213,7 @@ Eliminates the external region proposal step by adding a **Region Proposal Netwo
 
 ![[Lecture03_Pg033_Region_Proposal_Network_Rpn.png]]
 
-<p class="image-caption">Added missing architecture/summary slide.</p>
+<p class="image-caption">The RPN overview: sliding anchors over the feature map to propose candidate object boxes.</p>
 
 
 ![[Lecture03_Pg035_Region_Proposal_Network_Rpn.png]]

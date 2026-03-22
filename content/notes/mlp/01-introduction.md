@@ -33,7 +33,7 @@ This course is **in-depth, hands-on, and advanced** — it assumes prior exposur
 
 ![[Lecture01_Pg041_Refresher_Neural_Networks_Architectures.png]]
 
-<p class="image-caption">Added missing architecture/summary slide.</p>
+<p class="image-caption">A compact refresher on feed-forward network structure: inputs, hidden layers, and outputs.</p>
 
 
 ### The Perceptron
@@ -214,7 +214,7 @@ Randomly choose **one** training sample $x_i$, update weights based on $L_i(W)$.
 
 ![[Lecture01_Pg083_Mini_Batch_Training.png]]
 
-<p class="image-caption">Most complete version of this build sequence.</p>
+<p class="image-caption">This second mini-batch slide makes the tradeoff explicit: cheaper updates than full batch, but less noise than pure SGD.</p>
 
 
 Process a **subset** $M \subset \{1, \dots, n\}$ of samples:
@@ -295,10 +295,7 @@ During the backward pass, each gate acts as a "gradient router":
 
 ![[Lecture01_Pg089_Patterns_In_Backward_Flow.png]]
 
-<p class="image-caption">Most complete version of this build sequence.</p>
-
-
-<p class="image-caption">Here’s how gradients flow through addition, multiplication, and max operations.</p>
+<p class="image-caption">Together these two slides summarize how gradients propagate through addition, multiplication, and max operations.</p>
 
 | Gate         | Role                 | Behaviour                                                                         |
 | ------------ | -------------------- | --------------------------------------------------------------------------------- |
@@ -620,11 +617,6 @@ Classically, activations are scaled at test time by $(1-p)$. In modern libraries
 
 Data augmentation is another form of regularisation: random crops, flips, colour jitter, noise, etc. It does not directly penalise the weights, but it makes the learning problem harder to overfit.
 
-#
-
-![[Lecture01_Pg098_Saturated_Neurons_Kill_The_Gradients.png]]
-
-<p class="image-caption">Most complete version of this build sequence.</p>
 ## Summary of Common Regularisers
 
 | Method                | Main effect                                  | Typical outcome                      |
@@ -743,9 +735,9 @@ accuracy = model.score(X_test, y_test)
 
 
 
-![[Lecture01_Pg098_Saturated_Neurons_Kill_The_Gradients.png]]
+![[Lecture01_Pg101_Saturated_Neurons_Kill_The_Gradients.png]]
 
-<p class="image-caption">Most complete version of this build sequence.</p>
+<p class="image-caption">The fullest version of this slide shows the sigmoid saturation cases explicitly, making the zero-gradient failure mode much clearer.</p>
 ## Summary
 
 1. ML = automatically learning from data without explicit programming

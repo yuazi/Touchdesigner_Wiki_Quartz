@@ -569,12 +569,11 @@ The essential trick is simple: define a shorter timestep schedule and denoise on
 
 ---
 
-## Latent Diffusion Models
+## Latent Diffusion Models (Rombach et al., 2022)
 
 ![[Lecture12_Pg058_Latent_Diffusion_Models_Overview_Rombach_Et_Al_2022.png]]
 
-<p class="image-caption">Added missing architecture/summary slide.</p>
- (Rombach et al., 2022)
+<p class="image-caption">The latent diffusion overview: encode to a compact latent, denoise there, then decode back to pixels.</p>
 
 ### Motivation — The Scaling Problem
 
@@ -660,6 +659,10 @@ That means the model does not have to squash the whole prompt into one vector. D
 This is a big part of why latent diffusion became the foundation for systems like Stable Diffusion.
 
 In the lecture slides, the first stage is not just plain reconstruction: a **patch-based adversarial discriminator** is added on top of the reconstruction / perceptual objective so the latent space keeps visually important details while staying compressed.
+
+![[Lecture12_Pg059_Adversarial_Patch_Based_Discriminator.png]]
+
+<p class="image-caption">Stage 1 of latent diffusion couples the autoencoder with a patch discriminator so compression keeps perceptually important detail.</p>
 
 ### Advantages of Latent Diffusion
 
@@ -813,7 +816,7 @@ This is the same general diffusion machinery applied in an **editing / inpaintin
 
 ![[Lecture12_Pg063_Text_Guided_Diffusion_Models.png]]
 
-<p class="image-caption">Most complete version of this build sequence.</p>
+<p class="image-caption">This recap slide ties together text conditioning, latent diffusion, and guided generation for modern image models.</p>
 ## Summary
 
 | Concept                      | Key Detail                                                                                                     |
@@ -894,4 +897,3 @@ class DDPM(nn.Module):
 
 ---
 [[notes/mlp/11-rl|Previous: L11 — RL]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/13-xai|Next: (y-13) XAI]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
-

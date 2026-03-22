@@ -301,16 +301,15 @@ Object detection requires:
 
 ---
 
-### DETR
+### DETR — End-to-End Object Detection with Transformers
 
 ![[Lecture06_Pg027_Object_Detection_With_Vits_Detr_Architecture.png]]
 
-<p class="image-caption">Added missing architecture/summary slide.</p>
- — End-to-End Object Detection with Transformers
+<p class="image-caption">The high-level DETR pipeline: CNN features go through a Transformer and directly produce a set of object predictions.</p>
 
 ![[Lecture06_Pg026_Detr_End_To_End_Object_Detection.png]]
 
-<p class="image-caption">DETR: End-to-end object detection using Transformers</p>
+<p class="image-caption">DETR reframes detection as direct set prediction, removing proposal stages and NMS.</p>
 
 **Paper**: Carion, Massa, Synnaeve, Usunier, Kirillov, Zagoruyko. _"End-to-End Object Detection with Transformers."_ ECCV 2020.
 
@@ -324,12 +323,11 @@ Object detection requires:
 
 ---
 
-### DETR
+### DETR Architecture
 
-![[Lecture06_Pg027_Object_Detection_With_Vits_Detr_Architecture.png]]
+![[Lecture06_Pg030_Output_Embedding_And_Prediction.png]]
 
-<p class="image-caption">Added missing architecture/summary slide.</p>
- Architecture
+<p class="image-caption">Each learned object query produces either a class-and-box prediction or an explicit “no object” output.</p>
 
 
 ```
@@ -418,12 +416,7 @@ This shows the modularity of the Transformer-based approach — segmentation req
 
 ---
 
-### DETR
-
-![[Lecture06_Pg027_Object_Detection_With_Vits_Detr_Architecture.png]]
-
-<p class="image-caption">Added missing architecture/summary slide.</p>
- — Results and Shortcomings
+### DETR Results and Shortcomings
 
 On COCO, DETR is not just conceptually elegant; it is also **competitive with strong Faster R-CNN baselines**. In the lecture comparison table:
 
@@ -741,7 +734,7 @@ From the lecture's closing slide — notable models and frameworks as of WS 2025
 
 ![[Lecture06_Pg009_Vision_Transformer_Replacing_Cnns_With_Self_Attention.png]]
 
-<p class="image-caption">Most complete version of this build sequence.</p>
+<p class="image-caption">Closing recap of the lecture arc from CNN limitations to ViT, DETR, and self-supervised Transformers.</p>
 ## Summary
 
 | Topic                          | Key Points                                                                                                                                                  |

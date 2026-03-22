@@ -186,7 +186,7 @@ _(Zhu and Goldberg, 2009)_
 
 ![[Lecture08_Pg045_Active_Learning_What_Makes_A_Good_Active_Learning_Algorithm.png]]
 
-<p class="image-caption">Added missing architecture/summary slide.</p>
+<p class="image-caption">This overview frames active learning as a query strategy: which unlabeled example is most worth paying to annotate next?</p>
 
 
 ### Batch vs. Selective Sampling (Stream)
@@ -500,8 +500,9 @@ This is a **harmonic equation**: labels spread outward from labeled nodes, weigh
 
 ![[Lecture08_Pg045_Active_Learning_What_Makes_A_Good_Active_Learning_Algorithm.png]]
 
-<p class="image-caption">Added missing architecture/summary slide.</p>
- with Label Propagation
+<p class="image-caption">The same active-learning framework is reused here as the bridge into graph-based querying with label propagation.</p>
+
+### Active Learning with Label Propagation
 
 
 ![[Lecture08_Pg083_Active_Learning_With_Label_Propagation.png]]

@@ -174,7 +174,7 @@ After enough training, the same RNN could generate plausible **Wikipedia markup*
 
 ![[Lecture04_Pg022_Recurrent_Neural_Networks_Computational_Graph.png]]
 
-<p class="image-caption">Added missing architecture/summary slide.</p>
+<p class="image-caption">The unrolled computational graph makes it clear how the same recurrent cell is reused across time steps.</p>
 
 
 ### Many-to-Many

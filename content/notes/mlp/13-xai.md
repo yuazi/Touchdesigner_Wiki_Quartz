@@ -121,7 +121,7 @@ Both LIME and SHAP give you feature importance, but they do it very differently.
 
 ![[Lecture13_Pg026_Post_Hoc_Explainability_Overview.png]]
 
-<p class="image-caption">Added missing architecture/summary slide.</p>
+<p class="image-caption">A taxonomy of post-hoc explainability methods, grouped by whether they explain locally or globally and by explanation type.</p>
 
 
 ```
@@ -799,4 +799,3 @@ Three evaluation goals [Doshi-Velez & Kim, 2017]:
 
 ---
 [[notes/mlp/12-diffusion|Previous: L12 — Diffusion]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
-

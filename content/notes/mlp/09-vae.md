@@ -244,6 +244,10 @@ The sum inside the log is **intractable** for continuous, high-dimensional $z$ â
 
 ## Evidence Lower Bound (ELBO)
 
+![[Lecture09_Pg050_Variational_Autoencoders_Evidence_Lower_Bound_Elbo.png]]
+
+<p class="image-caption">The ELBO slide summarizes the core VAE training target before we unpack its derivations.</p>
+
 ### Derivation via Jensen's Inequality
 
 
@@ -452,6 +456,10 @@ At **inference / generation time**: only the **decoder** is needed.
 
 1. Sample $z \sim p(z) = \mathcal{N}(0, I)$
 2. Pass through decoder: $\hat{x} = g_\theta(z)$
+
+![[Lecture09_Pg074_Generating_Data.png]]
+
+<p class="image-caption">At generation time the encoder disappears; we sample from the prior and let the decoder map latent codes back to data.</p>
 
 The KL regularization ensures this works â€” because the encoder is trained to push $q_\phi(z|x) \approx \mathcal{N}(0,I)$, any random $z$ from the prior decodes to a plausible image.
 
@@ -671,23 +679,6 @@ class VAE(nn.Module):
 - **Latent Space Continuity**: The KL-divergence loss (used in training) forces the `z` codes to cluster around $\mathcal{N}(0, 1)$. This ensures there are no large "gaps" in the latent space, making it easy to sample new, valid images.
 - **Transposed Convolution**: Unlike normal convolution that reduces resolution, `ConvTranspose2d` learns how to fill in pixels to increase the image size.
 
----
-
-
-
-![[Lecture09_Pg061_Variational_Autoencoders_Training_Vaes.png]]
-
-<p class="image-caption">Added missing architecture/summary slide.</p>
-
-
-![[Lecture09_Pg050_Variational_Autoencoders_Evidence_Lower_Bound_Elbo.png]]
-
-<p class="image-caption">Most complete version of this build sequence.</p>
-
-
-![[Lecture09_Pg071_Variational_Autoencoders_Reparametrisation_Trick.png]]
-
-<p class="image-caption">Most complete version of this build sequence.</p>
 ## Summary of VAEs
 
 ![[Lecture09_Pg088_Summary_Of_Vaes.png]]
