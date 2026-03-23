@@ -23,7 +23,7 @@ date: 2026-03-09
 
 ## VAE Recap
 
-![[Lecture10_Pg007_Vae_Recap.png]]
+![[Lecture10_Pg004_Vae_Recap.png]]
 
 <p class="image-caption">A quick recap of VAEs and their probabilistic bits.</p>
 
@@ -88,7 +88,7 @@ The test statistic $T$ compares $S_1$ and $S_2$ in terms of means and variance. 
 
 ### The GAN Idea
 
-![[Lecture10_Pg027_The_Gan_Idea.png]]
+![[Lecture10_Pg021_The_Gan_Idea.png]]
 
 <p class="image-caption">The core of GANs: learning to transform noise z into data samples x.</p>
 
@@ -339,7 +339,7 @@ More fundamentally: if $p_{data}$ and $p_G$ have **non-overlapping supports** (c
 ## Wasserstein Distance and WGAN
 
 
-![[Lecture10_Pg048_Wasserstein_Distance_And_Wgan.png]]
+![[Lecture10_Pg051_Wasserstein_Distance_And_Wgan.png]]
 
 <p class="image-caption">Wasserstein distance: a much more stable objective for training GANs.</p>
 
@@ -520,7 +520,7 @@ y (zebra) ──→ F ──→ x̂ (fake horse) ──→ G ──→ ŷ (recon
 
 ### GauGAN / SPADE — Spatially-Adaptive Normalization
 
-![[Lecture10_Pg071_Gaugan_Spade_Spatially_Adaptive_Normalization.png]]
+![[Lecture10_Pg066_Gaugan_Spade_Spatially_Adaptive_Normalization.png]]
 
 <p class="image-caption">GauGAN: using SPADE to create images from segmentation masks.</p>
 
@@ -667,7 +667,7 @@ Appearance-based gaze estimation requires large datasets annotated with ground-t
 
 ### Task Definition
 
-![[Lecture10_Pg081_Task_Definition.png]]
+![[Lecture10_Pg082_Task_Definition.png]]
 
 <p class="image-caption">What is gaze redirection? Transforming eyes to look where we want.</p>
 

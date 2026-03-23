@@ -107,7 +107,7 @@ $$f = W_3 \max(0,\, W_2 \max(0,\, W_1 x))$$
 
 ### Brain Analogy — Be Careful
 
-![[Lecture01_Pg039_Brain_Analogy_Be_Careful.png]]
+![[Lecture01_Pg040_Brain_Analogy_Be_Careful.png]]
 
 <p class="image-caption">The brain analogy is a good start, but real neurons are way more complex.</p>
 
@@ -155,7 +155,7 @@ $$L(W) = \frac{1}{n} \sum_{i=1}^{n} L_i(W)$$
 
 ### Gradient Descent
 
-![[Lecture01_Pg080_Gradient_Descent.png]]
+![[Lecture01_Pg061_Gradient_Descent.png]]
 
 <p class="image-caption">Gradient descent works by taking small steps downhill to find the minimum.</p>
 
@@ -201,7 +201,7 @@ while True:
 
 ### Numerical vs. Analytic Gradient
 
-![[Lecture01_Pg072_Numerical_Vs_Analytic_Gradient.png]]
+![[Lecture01_Pg074_Numerical_Vs_Analytic_Gradient.png]]
 
 <p class="image-caption">Comparing numerical and analytic gradients for speed and accuracy.</p>
 
@@ -228,7 +228,7 @@ Process **all** $n$ training samples, then update weights once based on $L(W) = 
 
 ### Stochastic Gradient Descent (SGD)
 
-![[Lecture01_Pg080_Stochastic_Gradient_Descent_Sgd.png]]
+![[Lecture01_Pg078_Stochastic_Gradient_Descent_Sgd.png]]
 
 <p class="image-caption">SGD updates the weights after every single example it sees.</p>
 
@@ -243,7 +243,7 @@ Randomly choose **one** training sample $x_i$, update weights based on $L_i(W)$.
 
 ### Mini-Batch Training
 
-![[Lecture01_Pg082_Mini_Batch_Training.png]]
+![[Lecture01_Pg081_Mini_Batch_Training.png]]
 
 <p class="image-caption">Mini-batches give us a nice balance between speed and stable updates.</p>
 
@@ -372,7 +372,7 @@ Squashes numbers to $[0, 1]$. Can be interpreted as a saturating "firing rate" o
 
 ### Tanh
 
-![[Lecture01_Pg115_Tanh_Clean.png]]
+![[Lecture01_Pg105_Tanh_Clean.png]]
 
 <p class="image-caption">Tanh is zero-centered, but it still has the same saturation problems as sigmoid.</p>
 
@@ -469,7 +469,7 @@ If all weights are the same value, all neurons compute **identical gradients** �
 
 ### Small Random Numbers — `W = 0.01 * randn(Din, Dout)`
 
-![[Lecture01_Pg126_Small_Random_Numbers_W_0_01.png]]
+![[Lecture01_Pg122_Small_Random_Numbers_W_0_01.png]]
 
 <p class="image-caption">Tiny initial weights can make the signal fade away as it goes deeper.</p>
 
@@ -480,7 +480,7 @@ Works okay for small networks, but **not** for deep ones:
 
 ### Larger Random Numbers — `W = 0.05 * randn(Din, Dout)` (with tanh)
 
-![[Lecture01_Pg126_Larger_Random_Numbers_W_0_05.png]]
+![[Lecture01_Pg122_Larger_Random_Numbers_W_0_05.png]]
 
 <p class="image-caption">Large initial weights will saturate your activations and stall the training.</p>
 

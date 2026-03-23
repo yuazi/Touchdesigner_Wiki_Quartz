@@ -27,7 +27,7 @@ date: 2026-03-09
 
 ## This Lecture — Generative Models III
 
-![[Lecture12_Pg014_This_Lecture_Generative_Models_Iii.png]]
+![[Lecture12_Pg010_This_Lecture_Generative_Models_Iii.png]]
 
 <p class="image-caption">Here's the plan for today: we'll cover everything from discrete diffusion to GLIDE.</p>
 
@@ -311,7 +311,7 @@ Output: predicted noise (H × W × C)
 
 ### Diffusion Hyperparameters — The Noise Schedule
 
-![[Lecture12_Pg033_Diffusion_Hyperparameters_The_Noise_Schedule.png]]
+![[Lecture12_Pg040_Diffusion_Hyperparameters_The_Noise_Schedule.png]]
 
 <p class="image-caption">Adjusting these hyperparameters really changes how the noise builds up over time.</p>
 
@@ -580,13 +580,13 @@ This is a big part of why latent diffusion became the foundation for systems lik
 
 In the lecture slides, the first stage is not just plain reconstruction: a **patch-based adversarial discriminator** is added on top of the reconstruction / perceptual objective so the latent space keeps visually important details while staying compressed.
 
-![[Lecture12_Pg061_Adversarial_Patch_Based_Discriminator.png]]
+![[Lecture12_Pg060_Adversarial_Patch_Based_Discriminator.png]]
 
 <p class="image-caption">Stage 1 of latent diffusion couples the autoencoder with a patch discriminator so compression keeps perceptually important detail.</p>
 
 ### Advantages of Latent Diffusion
 
-![[Lecture12_Pg057_Advantages_Of_Latent_Diffusion.png]]
+![[Lecture12_Pg056_Advantages_Of_Latent_Diffusion.png]]
 
 <p class="image-caption">Latent Diffusion gives us the best of both worlds: it's efficient and handles semantics way better.</p>
 
@@ -604,7 +604,7 @@ In the lecture slides, the first stage is not just plain reconstruction: a **pat
 
 ### Overview
 
-![[Lecture12_Pg063_Overview.png]]
+![[Lecture12_Pg067_Overview.png]]
 
 <p class="image-caption">GLIDE lets us both generate new images and edit existing ones just by typing a prompt.</p>
 
@@ -726,7 +726,7 @@ Now that the diffusion pipeline is in place, the comparison to earlier generativ
 
 ### Variational Autoencoders (VAEs)
 
-![[Lecture12_Pg005_Variational_Autoencoders_Vaes.png]]
+![[Lecture12_Pg004_Variational_Autoencoders_Vaes.png]]
 
 <p class="image-caption">The VAE setup: it's all about mapping data to that latent space and back.</p>
 
@@ -821,7 +821,7 @@ Diffusion often offers strong quality and coverage, but usually sacrifices speed
 
 
 
-![[Lecture12_Pg067_Text_Guided_Diffusion_Models.png]]
+![[Lecture12_Pg063_Text_Guided_Diffusion_Models.png]]
 
 <p class="image-caption">This recap slide ties together text conditioning, latent diffusion, and guided generation for modern image models.</p>
 ## Summary

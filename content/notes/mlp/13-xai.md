@@ -46,7 +46,7 @@ Two approaches exist:
 
 ### Approach 1 — Inherently Interpretable Models
 
-![[Lecture13_Pg013_Approach_1_Inherently_Interpretable_Models.png]]
+![[Lecture13_Pg010_Approach_1_Inherently_Interpretable_Models.png]]
 
 <p class="image-caption">Some models, like decision trees, are actually pretty easy to understand right out of the box.</p>
 
@@ -330,7 +330,7 @@ which is the desired completeness property.
 
 ### 4. Gradient × Input
 
-![[Lecture13_Pg042_4_Gradient_Input.png]]
+![[Lecture13_Pg044_4_Gradient_Input.png]]
 
 <p class="image-caption">Multiplying the gradient by the input helps us account for the actual scale of each feature.</p>
 
@@ -431,7 +431,7 @@ Identify which training examples had the most influence on a given test predicti
 
 ### Activation Maximisation / Feature Visualisation
 
-![[Lecture13_Pg057_Activation_Maximisation_Feature_Visualisation.png]]
+![[Lecture13_Pg058_Activation_Maximisation_Feature_Visualisation.png]]
 
 <p class="image-caption">We can visualize what a neuron likes by optimizing an image to maximize its activation.</p>
 
@@ -686,7 +686,7 @@ Common in: disease diagnosis (weight, age, glucose), credit scoring (income, pre
 ### Computer Vision
 
 
-![[Lecture13_Pg087_Computer_Vision.png]]
+![[Lecture13_Pg089_Computer_Vision.png]]
 
 <p class="image-caption">In computer vision, we have a ton of great tools for visualizing what the model sees.</p>
 
@@ -696,7 +696,7 @@ Applicable methods: all gradient-based saliency (Input Gradient, Guided Backprop
 
 ### Natural Language Processing
 
-![[Lecture13_Pg092_Natural_Language_Processing.png]]
+![[Lecture13_Pg093_Natural_Language_Processing.png]]
 
 <p class="image-caption">NLP is trickier because of the discrete nature of text, but we still have some solid interpretability methods.</p>
 

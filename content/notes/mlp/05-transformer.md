@@ -35,7 +35,7 @@ The teaching flow follows that question directly: first the seq2seq bottleneck t
 ### Motivation: RNN Weaknesses
 
 
-![[Lecture05_Pg026_Motivation_Rnn_Weaknesses.png]]
+![[Lecture05_Pg025_Motivation_Rnn_Weaknesses.png]]
 
 <p class="image-caption">RNNs struggle with long sequences because they process everything one step at a time.</p>
 
@@ -53,7 +53,7 @@ RNNs have several fundamental weaknesses that motivated the development of atten
 
 ### Inspiration from Human Attention
 
-![[Lecture05_Pg030_Inspiration_From_Human_Attention.png]]
+![[Lecture05_Pg026_Inspiration_From_Human_Attention.png]]
 
 <p class="image-caption">Just like our eyes focus on specific parts of a scene, attention lets models focus on the most relevant data.</p>
 
@@ -95,7 +95,7 @@ This is a weighted sum over **all encoder states** $h_j$, where $\alpha_{ij}$ ar
 
 #### Computing the Attention Weights
 
-![[Lecture05_Pg034_Computing_The_Attention_Weights.png]]
+![[Lecture05_Pg039_Computing_The_Attention_Weights.png]]
 
 <p class="image-caption">This is the step-by-step process of how we calculate those all-important attention weights.</p>
 
@@ -223,7 +223,7 @@ This property reflects that the difference between gendered word pairs is captur
 
 ### How to Learn Embeddings: CBOW and Skip-gram
 
-![[Lecture05_Pg014_Cbow_Vs_Skipgram.png]]
+![[Lecture05_Pg013_Cbow_Vs_Skipgram.png]]
 
 <p class="image-caption">Comparison of CBOW (predicting center from context) and Skip-gram (predicting context from center).</p>
 
@@ -244,7 +244,7 @@ Skip-gram: "cat"               →  [the, sat, on, mat]
 
 ### Word2Vec (Mikolov et al., 2013)
 
-![[Lecture05_Pg016_Word2vec_Mikolov_Et_Al_2013.png]]
+![[Lecture05_Pg015_Word2vec_Mikolov_Et_Al_2013.png]]
 
 <p class="image-caption">Word2Vec maps words into a space where relationships like "king - man + woman = queen" actually work.</p>
 
@@ -276,7 +276,7 @@ print(model.wv.similarity("cat", "table"))  # low
 
 ### GloVe (Pennington et al., 2014)
 
-![[Lecture05_Pg018_Glove_Pennington_Et_Al_2014.png]]
+![[Lecture05_Pg017_Glove_Pennington_Et_Al_2014.png]]
 
 <p class="image-caption">GloVe takes a global view, looking at how often words appear together across the whole dataset.</p>
 
@@ -835,7 +835,7 @@ BERT is an **encoder-only** Transformer that produces contextual representations
 
 ### Architecture
 
-![[Lecture05_Pg087_Architecture.png]]
+![[Lecture05_Pg086_Architecture.png]]
 
 <p class="image-caption">BERT uses a stack of Transformer encoders to understand context from both directions at once.</p>
 

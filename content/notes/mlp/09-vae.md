@@ -39,7 +39,7 @@ date: 2026-03-09
 
 ### Generative Modelling
 
-![[Lecture09_Pg011_Generative_Modelling.png]]
+![[Lecture09_Pg008_Generative_Modelling.png]]
 
 <p class="image-caption">Generative modeling in a nutshell: learning to sample from our data distribution p(x).</p>
 
@@ -109,7 +109,7 @@ Generative Models
 
 ## Mixture of Gaussians (MoG)
 
-![[Lecture09_Pg027_Mixture_Of_Gaussians_Mog.png]]
+![[Lecture09_Pg024_Mixture_Of_Gaussians_Mog.png]]
 
 <p class="image-caption">A Mixture of Gaussians: a simple example of a latent variable model.</p>
 
@@ -138,7 +138,7 @@ Combining simple Gaussians gives a much more expressive, multi-modal density.
 
 ### Architecture
 
-![[Lecture09_Pg027_Autoencoders_Introduction.png]]
+![[Lecture09_Pg030_Autoencoders_Introduction.png]]
 
 <p class="image-caption">The standard autoencoder: an encoder, a decoder, and that latent bottleneck.</p>
 
@@ -261,7 +261,7 @@ $$\log p(x;\theta) = \log \sum_{z} p(x,z;\theta) = \log \sum_z \frac{q(z)}{q(z)}
 
 where $q(z)$ is any distribution we choose (it should be simple and tractable).
 
-![[Lecture09_Pg047_ELBO_Jensens.png]]
+![[Lecture09_Pg048_ELBO_Jensens.png]]
 
 <p class="image-caption">Using Jensen's inequality to move the log inside the expectation, which gives us a tractable lower bound to optimize.</p>
 
@@ -588,7 +588,7 @@ z("smiling woman") − z("neutral woman") + z("neutral man") ≈ z("smiling man"
 ### Disentangled Representation Learning
 
 
-![[Lecture09_Pg086_Disentangled_Representation_Learning.png]]
+![[Lecture09_Pg077_Disentangled_Representation_Learning.png]]
 
 <p class="image-caption">Using beta-VAE to pull apart independent factors of variation.</p>
 
@@ -621,7 +621,7 @@ So beta-VAE is not "strictly better VAE." It is a deliberate trade: **less raw f
 
 ### Style Transfer (Text and Images)
 
-![[Lecture09_Pg086_Style_Transfer_Text_And_Images.png]]
+![[Lecture09_Pg082_Style_Transfer_Text_And_Images.png]]
 
 <p class="image-caption">Using VAEs for style transfer in both images and text.</p>
 
@@ -644,7 +644,7 @@ A VAE trained on handwriting samples can:
 
 ### Hand Pose Manifold (Tagliasacchi et al., 2015)
 
-![[Lecture09_Pg086_Hand_Pose_Manifold_Tagliasacchi_Et_Al.png]]
+![[Lecture09_Pg083_Hand_Pose_Manifold_Tagliasacchi_Et_Al.png]]
 
 <p class="image-caption">Mapping hand poses to a smooth manifold for better pose estimation.</p>
 
@@ -728,7 +728,7 @@ class VAE(nn.Module):
 
 ## Summary of VAEs
 
-![[Lecture09_Pg088_Summary_Of_Vaes.png]]
+![[Lecture09_Pg087_Summary_Of_Vaes.png]]
 
 <p class="image-caption">A wrap-up of VAEs: they're principled and smooth, but can be a bit blurry.</p>
 

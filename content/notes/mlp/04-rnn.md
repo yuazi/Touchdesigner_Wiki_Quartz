@@ -30,7 +30,7 @@ date: 2026-03-09
 
 ## RNNs — Flexibility in Architecture
 
-![[Lecture04_Pg069_Rnns_Flexibility_In_Architecture.png]]
+![[Lecture04_Pg083_Rnns_Flexibility_In_Architecture.png]]
 
 <p class="image-caption">RNNs are super flexible—you can map one or many inputs to one or many outputs.</p>
 
@@ -48,7 +48,7 @@ Unlike feedforward networks, RNNs can model a wide range of relationships betwee
 
 ## One-to-One: Vanilla Neural Networks
 
-![[Lecture04_Pg006_One_To_One_Vanilla_Neural_Networks.png]]
+![[Lecture04_Pg005_One_To_One_Vanilla_Neural_Networks.png]]
 
 <p class="image-caption">A standard one-to-one setup, just like a classic feedforward network.</p>
 
@@ -97,7 +97,7 @@ The entire input sequence is processed step-by-step. The **final hidden state** 
 
 ## Many-to-Many (Sync): Video Classification
 
-![[Lecture04_Pg014_Many_To_Many_Sync_Video_Classification.png]]
+![[Lecture04_Pg013_Many_To_Many_Sync_Video_Classification.png]]
 
 <p class="image-caption">In synchronous many-to-many, the model labels every single frame of a video as it goes.</p>
 
@@ -194,7 +194,7 @@ After enough training, the same RNN could generate plausible **Wikipedia markup*
 ### Many-to-Many
 
 
-![[Lecture04_Pg029_Many_To_Many.png]]
+![[Lecture04_Pg026_Many_To_Many.png]]
 
 <p class="image-caption">The computational graph for a many-to-many RNN, processing inputs and outputs step-by-step.</p>
 
@@ -204,7 +204,7 @@ $$L = \sum_{t=1}^{S} L_t$$
 
 ### Many-to-One
 
-![[Lecture04_Pg029_Many_To_One.png]]
+![[Lecture04_Pg028_Many_To_One.png]]
 
 <p class="image-caption">For many-to-one tasks, we only care about the very last output of the sequence.</p>
 
@@ -263,7 +263,7 @@ backpropagation through time = run the gradient through the whole unrolled chain
 
 ### The Gradient Product
 
-![[Lecture04_Pg039_The_Gradient_Product.png]]
+![[Lecture04_Pg044_The_Gradient_Product.png]]
 
 <p class="image-caption">This chain of multiplications is exactly why gradients can get messy in RNNs.</p>
 
@@ -290,7 +290,7 @@ Think of the backward pass in an RNN as a long game of "Telephone."
 ### Vanishing Gradients
 
 
-![[Lecture04_Pg039_Vanishing_Gradients.png]]
+![[Lecture04_Pg041_Vanishing_Gradients.png]]
 
 <p class="image-caption">When gradients vanish, the signal gets so weak that the model completely forgets the start of the sequence.</p>
 
@@ -333,7 +333,7 @@ if total_norm > max_norm:
 ## Long Short-Term Memory (LSTM)
 
 
-![[Lecture04_Pg069_Long_Short_Term_Memory_Lstm.png]]
+![[Lecture04_Pg072_Long_Short_Term_Memory_Lstm.png]]
 
 <p class="image-caption">An LSTM adds a cell state and special gates to help information flow much more easily.</p>
 
@@ -403,7 +403,7 @@ where $\odot$ is the Hadamard (element-wise) product.
 
 ### Why Gradient Flow is Better
 
-![[Lecture04_Pg078_Why_Gradient_Flow_Is_Better.png]]
+![[Lecture04_Pg076_Why_Gradient_Flow_Is_Better.png]]
 
 <p class="image-caption">The cell state acts like a highway, letting gradients travel deep into the past without fading.</p>
 
@@ -479,7 +479,7 @@ $$h_t = z_t \odot h_{t-1} + (1 - z_t) \odot \tilde{h}_t \quad \text{(new hidden 
 
 ### GRU vs LSTM
 
-![[Lecture04_Pg082_Gru_Vs_Lstm.png]]
+![[Lecture04_Pg074_Gru_Vs_Lstm.png]]
 
 <p class="image-caption">Comparing the inner workings of GRUs and LSTMs—one is leaner, the other is more complex.</p>
 

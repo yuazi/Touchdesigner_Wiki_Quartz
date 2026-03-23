@@ -45,7 +45,7 @@ Interactive ML is the bridge that makes it possible to build high-quality models
 
 ### Automatic vs. Interactive ML
 
-![[Lecture08_Pg004_Automatic_Vs_Interactive_Ml.png]]
+![[Lecture08_Pg006_Automatic_Vs_Interactive_Ml.png]]
 
 <p class="image-caption">Traditional ML vs. Interactive ML—here's where the human comes in.</p>
 
@@ -87,7 +87,7 @@ This matters especially in **health informatics** and other high-stakes settings
 
 ### Who Can Be "In the Loop"?
 
-![[Lecture08_Pg018_Who_Can_Be_In_The_Loop.png]]
+![[Lecture08_Pg021_Who_Can_Be_In_The_Loop.png]]
 
 <p class="image-caption">The different agents we can have in the loop, from experts to the crowd.</p>
 
@@ -256,7 +256,7 @@ Uncertainty sampling is **myopic and greedy**. Over time the queried sample beco
 
 ### Version Spaces
 
-![[Lecture08_Pg058_Version_Spaces.png]]
+![[Lecture08_Pg056_Version_Spaces.png]]
 
 <p class="image-caption">The Version Space, bounded by our most general and most specific hypotheses.</p>
 

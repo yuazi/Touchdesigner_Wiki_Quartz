@@ -102,7 +102,7 @@ The ViT processes images as a sequence of fixed-size patches fed into a standard
 
 #### Step 1: Image Patch and Position Embedding
 
-![[Lecture06_Pg028_Step_1_Image_Patch_And_Position.png]]
+![[Lecture06_Pg012_Step_1_Image_Patch_And_Position.png]]
 
 <p class="image-caption">Here's a closer look at how we extract patches and add those crucial positional embeddings.</p>
 
@@ -133,7 +133,7 @@ Image (224×224×3)
 
 #### Step 2: Encoding and Classification
 
-![[Lecture06_Pg028_Step_2_Encoding_And_Classification.png]]
+![[Lecture06_Pg013_Step_2_Encoding_And_Classification.png]]
 
 <p class="image-caption">Step 2: Transformer encoding and [CLS] token classification</p>
 
@@ -286,7 +286,7 @@ logits = model(img)  # (4, 1000)
 
 ### Recap: CNN-Based Object Detection
 
-![[Lecture06_Pg025_Recap_Cnn_Based_Object_Detection.png]]
+![[Lecture06_Pg024_Recap_Cnn_Based_Object_Detection.png]]
 
 <p class="image-caption">Recap of CNN-based object detection: R-CNN to Faster R-CNN</p>
 
@@ -307,7 +307,7 @@ Object detection requires:
 
 ### DETR — End-to-End Object Detection with Transformers
 
-![[Lecture06_Pg027_Object_Detection_With_Vits_Detr_Architecture.png]]
+![[Lecture06_Pg026_Object_Detection_With_Vits_Detr_Architecture.png]]
 
 <p class="image-caption">The high-level DETR pipeline: CNN features go through a Transformer and directly produce a set of object predictions.</p>
 
@@ -543,7 +543,7 @@ Many analogous pretext tasks were proposed for vision (Li, cs231):
 
 ### Self-Supervised Contrastive Learning
 
-![[Lecture06_Pg056_Self_Supervised_Contrastive_Learning.png]]
+![[Lecture06_Pg055_Self_Supervised_Contrastive_Learning.png]]
 
 <p class="image-caption">Framework for self-supervised contrastive learning</p>
 

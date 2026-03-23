@@ -108,7 +108,7 @@ Use a **sliding window**:
 
 ### R-CNN [Girshick et al., 2014]
 
-![[Lecture03_Pg023_R_Cnn_Girshick_Et_Al_2014.png]]
+![[Lecture03_Pg024_R_Cnn_Girshick_Et_Al_2014.png]]
 
 <p class="image-caption">R-CNN: the first big model to use region proposals with a CNN.</p>
 
@@ -129,7 +129,7 @@ The lecture's result slide makes the core contribution visible: once proposals a
 
 ### Fast R-CNN [Girshick, 2015]
 
-![[Lecture03_Pg026_Fast_R_Cnn_Girshick_2015.png]]
+![[Lecture03_Pg028_Fast_R_Cnn_Girshick_2015.png]]
 
 <p class="image-caption">Fast R-CNN made things way faster by sharing feature maps across all proposals.</p>
 
@@ -158,7 +158,7 @@ Eliminates the external region proposal step by adding a **Region Proposal Netwo
 
 #### Region Proposal Network (RPN)
 
-![[Lecture03_Pg033_Region_Proposal_Network_Rpn.png]]
+![[Lecture03_Pg035_Region_Proposal_Network_Rpn.png]]
 
 <p class="image-caption">The RPN overview: sliding anchors over the feature map to propose candidate object boxes.</p>
 
@@ -294,7 +294,7 @@ Two-stage detectors are accurate but slow. Single-stage detectors skip the propo
 
 ### What is it?
 
-![[Lecture03_Pg041_Semantic_Segmentation.png]]
+![[Lecture03_Pg046_Semantic_Segmentation.png]]
 
 <p class="image-caption">Semantic segmentation is all about giving every single pixel its own class label.</p>
 
@@ -440,7 +440,7 @@ Conv → ReLU → MaxPool ──────────→ UpConv + [concatenat
 
 ### Mask R-CNN [He et al., 2017]
 
-![[Lecture03_Pg041_Mask_R_Cnn_He_Et_Al.png]]
+![[Lecture03_Pg064_Mask_R_Cnn_He_Et_Al.png]]
 
 <p class="image-caption">An overview of Mask R-CNN's parallel heads for boxes, classes, and masks.</p>
 
@@ -466,7 +466,7 @@ The qualitative Mask R-CNN result slide makes the distinction from semantic segm
 
 ### ROI Pooling vs. ROI Align
 
-![[Lecture03_Pg067_Roi_Pooling_Vs_Roi_Align.png]]
+![[Lecture03_Pg068_Roi_Pooling_Vs_Roi_Align.png]]
 
 <p class="image-caption">Comparing RoI Pooling and RoI Align: why sub-pixel accuracy matters for masks.</p>
 

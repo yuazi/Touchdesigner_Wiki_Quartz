@@ -32,7 +32,7 @@ date: 2026-03-09
 
 ### What is Multimodal?
 
-![[Lecture07_Pg007_What_Is_Multimodal.png]]
+![[Lecture07_Pg009_What_Is_Multimodal.png]]
 
 <p class="image-caption">Multimodal is just combining different data types like images, audio, and text.</p>
 
@@ -92,7 +92,7 @@ Baltrušaitis et al. (2018) define **five fundamental challenges** for multimoda
 
 ### Challenge 1: Representation
 
-![[Lecture07_Pg018_Challenge_1_Representation.png]]
+![[Lecture07_Pg019_Challenge_1_Representation.png]]
 
 <p class="image-caption">We can either fuse everything into one space or keep them separate but aligned.</p>
 
@@ -190,7 +190,7 @@ Appending $1$ to each unimodal vector means the outer product encodes all subset
 
 ### Challenge 5: Co-Learning
 
-![[Lecture07_Pg016_Challenge_5_Co_Learning.png]]
+![[Lecture07_Pg032_Challenge_5_Co_Learning.png]]
 
 <p class="image-caption">Co-learning lets us use a data-rich modality to help out a data-poor one.</p>
 
@@ -303,7 +303,7 @@ Both branches are projected into the same shared embedding space (typically $d =
 
 #### Contrastive Pre-Training Loss
 
-![[Lecture07_Pg040_Contrastive_Pre_Training_Loss.png]]
+![[Lecture07_Pg046_Contrastive_Pre_Training_Loss.png]]
 
 <p class="image-caption">The goal is to make the diagonal of this matrix as large as possible.</p>
 
@@ -563,7 +563,7 @@ Integrates MoCo (He et al., 2020) momentum encoder + ViT + BERT.
 
 ### BLIP — Bootstrapping Language-Image Pre-training (Li et al., 2022)
 
-![[Lecture07_Pg065_Blip_Bootstrapping_Language_Image_Pre_Training.png]]
+![[Lecture07_Pg064_Blip_Bootstrapping_Language_Image_Pre_Training.png]]
 
 <p class="image-caption">BLIP cleans up messy web data by filtering and generating its own captions.</p>
 
@@ -715,7 +715,7 @@ Example questions:
 ### Neural Module Networks — V2: End-to-End Learning (Hu et al., 2017)
 
 
-![[Lecture07_Pg076_Neural_Module_Networks_V2_End_To.png]]
+![[Lecture07_Pg080_Neural_Module_Networks_V2_End_To.png]]
 
 <p class="image-caption">Architecture of Neural Module Networks (V2) with end-to-end program generation</p>
 

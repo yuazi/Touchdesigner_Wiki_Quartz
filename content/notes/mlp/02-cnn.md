@@ -123,7 +123,7 @@ Optic nerves terminate in two **lateral geniculate nuclei (LGN)**:
 
 ### Visual Cortex
 
-![[Lecture02_Pg014_Visual_Cortex.png]]
+![[Lecture02_Pg011_Visual_Cortex.png]]
 
 <p class="image-caption">The visual cortex is a hierarchy that starts with simple features in V1.</p>
 
@@ -132,7 +132,7 @@ Optic nerves terminate in two **lateral geniculate nuclei (LGN)**:
 
 ### Two-Streams Hypothesis
 
-![[Lecture02_Pg005_Two_Streams_Hypothesis.png]]
+![[Lecture02_Pg013_Two_Streams_Hypothesis.png]]
 
 <p class="image-caption">The two main paths in the brain: one for "where" things are and one for "what" they are.</p>
 
@@ -156,7 +156,7 @@ This trade-off directly impacts generalisation ability.
 
 ### Simple and Complex Cells
 
-![[Lecture02_Pg017_Simple_And_Complex_Cells.png]]
+![[Lecture02_Pg016_Simple_And_Complex_Cells.png]]
 
 <p class="image-caption">Simple cells care about exact location, while complex cells just want to see the right orientation.</p>
 
@@ -310,7 +310,7 @@ In a CNN, we don't hard-code these numbers. The network **learns** them during t
 
 ### Multiple Activation Maps
 
-![[Lecture02_Pg047_Multiple_Activation_Maps.png]]
+![[Lecture02_Pg048_Multiple_Activation_Maps.png]]
 
 <p class="image-caption">Stacking maps from different filters gives us a rich "volume" of features.</p>
 
@@ -474,11 +474,11 @@ Shortly afterwards, **batch normalisation** was invented, removing the need for 
 
 ### Case Study: ResNet
 
-![[Lecture02_Pg069_Case_Study_Resnet_Block.png]]
+![[Lecture02_Pg071_Case_Study_Resnet_Block.png]]
 
 <p class="image-caption">The fundamental building block of ResNet, showing the crucial skip connection that bypasses the non-linear layers.</p>
 
-![[Lecture02_Pg075_Case_Study_Resnet.png]]
+![[Lecture02_Pg071_Case_Study_Resnet.png]]
 
 <p class="image-caption">ResNet's skip connections let the gradient flow through dozens or even hundreds of layers.</p>
 
