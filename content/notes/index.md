@@ -25,8 +25,6 @@ A collection of notes and random thoughts—seedlings, growing ideas, and evergr
 - [[notes/tools/yazi|(y-) Yazi]] — Blazing fast terminal file manager with async I/O and image previews.
 - [[notes/tools/zsh|(y-) Zsh & Powerlevel10k]] — Powerful terminal setup and framework.
 - [[notes/tools/modern-cli|(y-) Modern CLI Tools]] — Replacements for ls, cat, and more.
-- [[work/slidelink|(y-) SlideLink]] — Domain-agnostic tool for aligning lecture notes with PDF course slides.
-- [[work/sudokusolver|(y-) Sudoku Solver]] — GNN-based solver using node classification to solve Sudoku puzzles.
 
 ## Taekwondo
 
@@ -48,6 +46,8 @@ A collection of notes and random thoughts—seedlings, growing ideas, and evergr
 - [[notes/random/neural-style-transfer|(y-) Neural Style Transfer]] — Real-time creative coding meets deep learning.
 - [[notes/random/motorcycles|(y-) Motorcycles]] — The visceral focus of the open road and the mechanics of riding.
 - [[notes/random/perfumes|(y-) Perfumes]] — Notes on niche fragrances and the chemistry of scent.
+- [[work/slidelink|(y-) SlideLink]] — Domain-agnostic tool for aligning lecture notes with PDF course slides.
+- [[work/sudokusolver|(y-) Sudoku Solver]] — GNN-based solver using node classification to solve Sudoku puzzles.
 
 ---
 [[/index|(y) Return to Home]]
