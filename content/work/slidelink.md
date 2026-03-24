@@ -78,7 +78,8 @@ To avoid matching slides that are just walls of text, SlideLink uses `PyMuPDF` t
 ## Workflow & Safety
 
 ![[pictures/work/slidelink/terminal_real.png]]
-*SlideLink in action: scanning notes, remapping LaTeX, and performing semantic matches across lecture slides.*
+
+<p class="image-caption">SlideLink in action: scanning notes, remapping LaTeX, and performing semantic matches across lecture slides.</p>
 
 SlideLink is designed to be safe to run on an existing vault.
 

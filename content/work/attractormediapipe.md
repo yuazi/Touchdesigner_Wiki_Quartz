@@ -58,11 +58,11 @@ For more on the mathematical background and chaotic properties of these systems,
 
 ![[pictures/attractor_aizawa.png]]
 
-*Aizawa attractor with grain-texture background*
+<p class="image-caption">Aizawa attractor with grain-texture background</p>
 
 ![[pictures/lorenz_8k_textured.png]]
 
-*8K High-resolution Lorenz attractor export with density-based coloring*
+<p class="image-caption">8K High-resolution Lorenz attractor export with density-based coloring</p>
 
 ### 2. Gesture Control
 
