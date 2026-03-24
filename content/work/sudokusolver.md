@@ -8,7 +8,10 @@ tags:
   - gnn
   - ai
 date: 2026-03-11
+github: https://github.com/yuazi/sudoku_solver
 ---
+
+[View on GitHub](https://github.com/yuazi/sudoku_solver)
 
 Solving Sudoku is a classic constraint satisfaction problem usually handled by backtracking or constraint propagation. I wanted to see if a neural network could learn the underlying rules of the game without being explicitly programmed with them, so I built **Sudoku Solver**.
 

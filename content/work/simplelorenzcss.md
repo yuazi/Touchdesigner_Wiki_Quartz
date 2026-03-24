@@ -8,7 +8,10 @@ tags:
   - visual
   - chaos
 date: 2026-03-11
+github: https://github.com/yuazi/simpleLorenzcss
 ---
+
+[View on GitHub](https://github.com/yuazi/simpleLorenzcss)
 
 Most digital gardens use static colors or simple gradients for their backgrounds. I wanted something that felt "alive" and reflected my interest in chaotic systems, so I built **simpleLorenzcss**.
 

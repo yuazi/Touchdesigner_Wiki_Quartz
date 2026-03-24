@@ -7,9 +7,13 @@ tags:
   - automation
   - nlp
 date: 2026-03-14
+github: https://github.com/yuazi/SlideLink
 ---
 
-Taking manual screenshots of lecture slides while writing notes is a massive waste of time. For the [[notes/mlp/index|Machine Perception & Learning]] course, I have hundreds of slides across 13+ lectures. Clicking back and forth between a PDF and Obsidian just to crop and name images felt like busywork, so I built **SlideLink** to handle it for me.
+[View on GitHub](https://github.com/yuazi/SlideLink)
+
+Taking manual screenshots of lecture slides while writing notes is a massive waste of time.
+ For the [[notes/mlp/index|Machine Perception & Learning]] course, I have hundreds of slides across 13+ lectures. Clicking back and forth between a PDF and Obsidian just to crop and name images felt like busywork, so I built **SlideLink** to handle it for me.
 
 SlideLink is a domain-agnostic CLI tool that contextually aligns Markdown lecture notes with PDF course slides. It "reads" your notes, finds the most relevant slide in the PDF using NLP and visual heuristics, renders it as a high-res PNG, and inserts the link automatically.
 
@@ -72,6 +76,9 @@ To avoid matching slides that are just walls of text, SlideLink uses `PyMuPDF` t
 ---
 
 ## Workflow & Safety
+
+![[pictures/work/slidelink/terminal_real.png]]
+*SlideLink in action: scanning notes, remapping LaTeX, and performing semantic matches across lecture slides.*
 
 SlideLink is designed to be safe to run on an existing vault.
 

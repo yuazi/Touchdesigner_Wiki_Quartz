@@ -9,7 +9,12 @@ tags:
   - chaos
   - generative
 date: 2026-03-11
+github: https://github.com/yuazi/attractormediapipe
 ---
+
+[View on GitHub](https://github.com/yuazi/attractormediapipe)
+
+![[pictures/work/attractormediapipe/demo.gif]]
 
 Exploring complex mathematical systems like strange attractors is usually done through static plots or traditional sliders. I wanted a way to "touch" the math and interact with it as if it were a physical object, so I built **AttractorMediaPipe**.
 
@@ -54,6 +59,10 @@ For more on the mathematical background and chaotic properties of these systems,
 ![[pictures/attractor_aizawa.png]]
 
 *Aizawa attractor with grain-texture background*
+
+![[pictures/lorenz_8k_textured.png]]
+
+*8K High-resolution Lorenz attractor export with density-based coloring*
 
 ### 2. Gesture Control
 

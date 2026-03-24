@@ -11,18 +11,18 @@ A collection of projects, experiments, and professional work. These are things I
 
 ## Active Projects
 
-- **Digital Garden**: this site, built with Quartz 4 and hosted on GitHub Pages.
+- **Digital Garden**: this site, built with Quartz 4 and hosted on GitHub Pages. ([GitHub](https://github.com/yuazi/_y_usagewiki))
 - **TouchDesigner Wiki**: a structured reference for interactive media in real time and visual programming with nodes.
-- **[[attractormediapipe|AttractorMediaPipe]]**: a gesture-controlled visualizer for strange attractors, with ModernGL live rendering and 8K Datashader exports.
+- **[[attractormediapipe|AttractorMediaPipe]]**: a gesture-controlled visualizer for strange attractors, with ModernGL live rendering and 8K Datashader exports. ([GitHub](https://github.com/yuazi/attractormediapipe))
 
 ---
 
 ## Archive
 
-- **[[sudokusolver|Sudoku Solver]]**: a Graph Neural Network that learns to solve Sudoku puzzles using node classification.
-- **[[slidelink|SlideLink]]**: a domain-agnostic CLI tool for contextually aligning lecture notes with PDF course slides using TF-IDF and visual heuristics.
-- **[[keyboardai|Keyboard AI]]**: a small Python CLI that learns from a text corpus and evolves keyboard layouts against an ergonomic scoring model.
-- **[[simplelorenzcss|simpleLorenzcss]]**: a small Quartz repo for the Lorenz and Halvorsen canvas background used in this garden.
+- **[[sudokusolver|Sudoku Solver]]**: a Graph Neural Network that learns to solve Sudoku puzzles using node classification. ([GitHub](https://github.com/yuazi/sudoku_solver))
+- **[[slidelink|SlideLink]]**: a domain-agnostic CLI tool for contextually aligning lecture notes with PDF course slides using TF-IDF and visual heuristics. ([GitHub](https://github.com/yuazi/SlideLink))
+- **[[keyboardai|Keyboard AI]]**: a small Python CLI that learns from a text corpus and evolves keyboard layouts against an ergonomic scoring model. ([GitHub](https://github.com/yuazi/keyboard-AI))
+- **[[simplelorenzcss|simpleLorenzcss]]**: a small Quartz repo for the Lorenz and Halvorsen canvas background used in this garden. ([GitHub](https://github.com/yuazi/simpleLorenzcss))
 
 ---
 
