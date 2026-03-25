@@ -48,6 +48,11 @@ POPs are the modern, high-performance way to handle particle systems and massive
    - Use a `Render POP` or convert the POP data back into a texture (`POP to TOP`) or geometry (`POP to SOP`) depending on how you wish to visualize the point cloud. Rendering as a texture (TOP) and using instancing is usually the most performant workflow.
 5. **System Requirements:** Note that POPs require a modern GPU and TouchDesigner 2023.11290 or later.
 
+## Practical Examples
+
+- **[[touchdesigner/06_Recipes_and_Projects/y-2/Image to POPs|(y-) Image to POPs: Pointcloud / Line Grid]]**: Learn how to use the `TOP to POP` operator to convert 2D pixel data into 3D point clouds and stylized wireframe grids.
+- **[[touchdesigner/06_Recipes_and_Projects/y-2/Organic Amoeba|(y-) Organic Amoeba]]**: Using `Noise POPs` and `Attribute POPs` to create lifelike, pulsating organic forms.
+
 ---
 
 [[touchdesigner/02_The_Operators/SOPs/index|(y-) Next Chapter: SOPs]]

@@ -33,6 +33,7 @@ _Requires a basic understanding of how data flows between TOPs, CHOPs, and SOPs.
 
 ### 3D & Rendering
 - **[[touchdesigner/06_Recipes_and_Projects/y-2/Instanced 3D Models with PBR|(y-) Instanced 3D Models with PBR]]**: Learn how to use high-quality **PBR Materials** with thousands of 3D models.
+- **[[touchdesigner/06_Recipes_and_Projects/y-2/Image to POPs|(y-) Image to POPs — Pointcloud and Line Grid]]**: Convert any 2D image or video into a 3D digital point cloud and structured grid using the **POPs** family.
 - **[[touchdesigner/06_Recipes_and_Projects/y-2/Organic Amoeba|(y-) Organic Amoeba]]**: Create a "living," pulsating point cloud using Noise POPs and iridescent position-to-color mapping.
 - **[[touchdesigner/06_Recipes_and_Projects/y-2/Biomechanical Metallic Spines|(y-) Biomechanical Metallic Spines]]**: Parametric vertebral structures using Revolve POPs and high-metallic shaders.
 

@@ -19,6 +19,7 @@ POPs (introduced in TouchDesigner 2023+) bring **massive GPU-accelerated particl
 ## In This Section
 
 - [[POP - Point Operators|(y-) POP - Point Operators]]
+- **Practical Recipe:** [[touchdesigner/06_Recipes_and_Projects/y-2/Image to POPs|(y-) Image to POPs: Pointcloud / Line Grid]]
 
 ---
 
