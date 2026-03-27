@@ -21,6 +21,7 @@ A collection of notes and random thoughts—seedlings, growing ideas, and evergr
 > Central index for terminal-centric utilities and keyboard-driven workflows.
 
 - [[notes/tools/ghostty|(y-) Ghostty]] — Fast, native terminal emulator written in Zig with first-class rendering.
+- [[notes/tools/homebrew|(y-) Homebrew]] — The missing package manager for macOS.
 - [[notes/tools/sioyek|(y-) Sioyek]] — PDF viewer optimized for technical documents and research papers.
 - [[notes/tools/yazi|(y-) Yazi]] — Blazing fast terminal file manager with async I/O and image previews.
 - [[notes/tools/zsh|(y-) Zsh & Powerlevel10k]] — Powerful terminal setup and framework.

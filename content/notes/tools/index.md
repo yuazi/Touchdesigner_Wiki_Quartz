@@ -18,6 +18,7 @@ Optimized for speed. A curated list of the terminal-centric tools I use to stay 
 ## Tool Notes
 
 - [[notes/tools/ghostty|(y-) Ghostty]] — A fast, native terminal emulator in Zig.
+- [[notes/tools/homebrew|(y-) Homebrew]] — The missing package manager for macOS.
 - [[notes/tools/sioyek|(y-) Sioyek]] — Keyboard-driven PDF viewer for researchers.
 - [[notes/tools/yazi|(y-) Yazi]] — Blazing fast terminal file manager in Rust.
 - [[notes/tools/zsh|(y-) Zsh & Powerlevel10k]] — Powerful terminal setup and framework.
