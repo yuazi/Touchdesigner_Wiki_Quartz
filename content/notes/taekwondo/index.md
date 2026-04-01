@@ -68,7 +68,7 @@ Poomsae (patterns / forms) practice has its own vocabulary. Knowing what the ins
 
 ---
 
-[[notes/taekwondo/stances|(y-) Stances]] | [[notes/taekwondo/combinations|(y-) Combinations]] | [[notes/taekwondo/sparring|(y-) Sparring]] | [[notes/taekwondo/stretching|(y-) Stretching]] | [[notes/taekwondo/philosophy|(y-) Philosophy]]
+[[notes/taekwondo/stances|(y-) Stances]] | [[notes/taekwondo/combinations|(y-) Combinations]] | [[notes/taekwondo/sparring|(y-) Sparring]] | [[notes/taekwondo/stretching|(y-) Stretching]] | [[notes/taekwondo/philosophy|(y-) Philosophy]] | [[notes/taekwondo/taeguk|(y-) Taegeuk]]
 
 ---
 [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
