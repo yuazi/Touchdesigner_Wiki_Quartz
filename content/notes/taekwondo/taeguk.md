@@ -21,28 +21,28 @@ Represents the beginning of the universe and the "birth" of a martial artist.
 ## Taegeuk 2: Ee Jang (Joyfulness)
 Represents inner strength and a bright, joyful mind.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/uceXdzPrXSo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tGlrUplKHh8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ---
 
 ## Taegeuk 3: Sam Jang (Fire and Sun)
 Represents passion, enthusiasm, and the warmth of the sun.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/C6pu_tqfyvU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ksSqKt0UkWo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ---
 
 ## Taegeuk 4: Sa Jang (Thunder)
 Represents power and dignity, like a thunderstorm.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/5WvMVf__EX4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Lt917gacJho" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ---
 
 ## Taegeuk 5: Oh Jang (Wind)
 Represents the flexibility and power of the wind.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/jG9Rn2O9jC8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VdqNEAHWCBM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ---
 
@@ -63,7 +63,7 @@ Represents stability and firmness, like a mountain.
 ## Taegeuk 8: Pal Jang (Earth)
 Represents the foundation and the end of the beginner's journey.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/oDWZZr6NW1A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Gr_Je2ZkgkI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ---
 
