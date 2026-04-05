@@ -8,19 +8,18 @@ tags:
 date: 2025-05-14
 ---
 
-[[notes/programverifaction/index|Back to Program Verification Index]] | [[notes/programverifaction/07-relational-semantics-and-cfgs|Previous: (y-07) Relational Semantics and CFGs]] | [[notes/programverifaction/09-predicate-transformers|Next: (y-09) Predicate Transformers]]
+[[index|Back to Program Verification Index]] | [[07-relational-semantics|Previous: (y-07) Relational Semantics]] | [[09-ultimate-referee|Next: (y-09) Ultimate Referee]]
 
 ## Mental Model for the Hoare Proof System
-![[Lecture08_Pg210_Mental_Model_For_The_Hoare_Proof.png]]
+![[../../pictures/programverifaction/08/Lecture08_Pg210_Mental_Model_For_The_Hoare_Proof.png]]
 
 
 - **Logic through Code**: Hoare Logic is a way to "transport" mathematical facts through program statements.
 - **Hoare Triple**: The basic unit of reasoning, written `{P} st {Q}`. It means: "If $P$ is true before $st$, then $Q$ will be true after $st$ (if it terminates)."
 - **Mechanical Rules**: Instead of thinking about all possible values, we follow a set of purely syntactic rules to build a **Derivation Tree**.
 - **The Loop Challenge**: For every loop, we must discover a "magical" formula called a **Loop Invariant** that remains true throughout the loop's execution.
-
 ## The Hoare Triple
-![[Lecture08_Pg208_The_Hoare_Triple.png]]
+![[../../pictures/programverifaction/08/Lecture08_Pg208_The_Hoare_Triple.png]]
 
 
 A **Hoare Triple** is written as:
@@ -29,32 +28,60 @@ $$\{P\} \ S \ \{Q\}$$
 - **$S$ (Statement):** The code being analyzed.
 - **$Q$ (Postcondition):** An assertion guaranteed to be true after execution.
 
-A triple is **valid** if $S$ satisfies the pair $(P, Q)$ under relational semantics.
+### Relational Semantics Connection
+![[../../pictures/programverifaction/08/Lecture08_Pg208_Relational_Semantics_Connection.png]]
+
+A triple is **valid** if the program $S$ satisfies the precondition-postcondition pair $(P, Q)$. Mathematically, this means the set of reachable states from $P$ via $S$ is a subset of $Q$:
+$$\text{post}(\{P\}, [[S]]) \subseteq \{Q\}$$
 
 ---
 
 ## Key Rules of the Hoare Proof System
 
 ### 1. Assignment Axiom (assig)
-![[Lecture08_Pg270_1_Assignment_Axiom_Assig.png]]
+![[../../pictures/programverifaction/08/Lecture08_Pg270_1_Assignment_Axiom_Assig.png]]
 
 $$\{Q[x \mapsto \text{expr}]\} \ x := \text{expr} \ \{Q\}$$
 To prove $Q$ holds *after* an assignment, we must prove $Q$ with $x$ replaced by the expression *before* the assignment.
 
-### 2. Composition Rule (compo)
-![[Lecture08_Pg211_2_Composition_Rule_Compo.png]]
+### Example Derivation
+Let's prove the correctness of a simple program: `x := x + 1; y := x; {x = y}`.
+
+We build the derivation tree from the bottom up:
+
+1.  **Goal**: $\{true\} \ x := x + 1; y := x \ \{x = y\}$
+2.  **Step 1 (Composition)**: We need an intermediate assertion $R$. Using the assignment axiom backwards for $y := x$ with postcondition $x=y$, we get $R = (x = x)$, which is $true$.
+3.  **Step 2 (Assignment)**: For $x := x + 1$ with postcondition $true$, the precondition is $true[x \mapsto x+1]$, which is still $true$.
+
+**Formal Tree**:
+$$
+\frac{
+    \frac{}{\{ (x+1=x+1) \} \ x := x + 1 \ \{ (x=x) \}} (assig)
+    \quad
+    \frac{}{\{ (x=x) \} \ y := x \ \{ (x=y) \}} (assig)
+}{
+    \{ true \} \ x := x + 1; y := x \ \{ x = y \}
+} (compo)
+$$
+*(Note: We use Strengthen Precondition to turn $true$ into $x+1=x+1$ and $x=x$ into $true$)*
+
+---
+
+## Key Rules (Continued)
+... (rest of the rules) ...
+![[../../pictures/programverifaction/08/Lecture08_Pg211_2_Composition_Rule_Compo.png]]
 
 $$\frac{\{P\} \ st_1 \ \{R\} \quad \{R\} \ st_2 \ \{Q\}}{\{P\} \ st_1; st_2 \ \{Q\}}$$
 To prove a sequence, find an intermediate assertion $R$ that links them.
 
 ### 3. Consequence Rules (strepre / weakpos)
-![[Lecture08_Pg224_3_Consequence_Rules_Strepre_Weakpos.png]]
+![[../../pictures/programverifaction/08/Lecture08_Pg224_3_Consequence_Rules_Strepre_Weakpos.png]]
 
 - **Strengthen Precondition**: If $P' \to P$ and $\{P\} st \{Q\}$ is valid, then $\{P'\} st \{Q\}$ is valid.
 - **Weaken Postcondition**: If $\{P\} st \{Q\}$ is valid and $Q \to Q'$, then $\{P\} st \{Q'\}$ is valid.
 
 ### 4. Conditional Rule (condi)
-![[Lecture08_Pg214_4_Conditional_Rule_Condi.png]]
+![[../../pictures/programverifaction/08/Lecture08_Pg214_4_Conditional_Rule_Condi.png]]
 
 $$\frac{\{P \wedge B\} \ st_1 \ \{Q\} \quad \{P \wedge \neg B\} \ st_2 \ \{Q\}}{\{P\} \ \text{if } B \ \{st_1\} \ \text{else } \{st_2\} \ \{Q\}}$$
 
@@ -90,4 +117,4 @@ A proof system is **Sound** if every Hoare triple we can derive is actually true
 5.  **Derivations** are mechanical proofs built from these rules.
 
 ---
-[[notes/programverifaction/index|Back to Program Verification Index]] | [[notes/programverifaction/07-relational-semantics-and-cfgs|Previous: (y-07) Relational Semantics and CFGs]] | [[notes/programverifaction/09-predicate-transformers|Next: (y-09) Predicate Transformers]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[index|Back to Program Verification Index]] | [[07-relational-semantics|Previous: (y-07) Relational Semantics]] | [[09-ultimate-referee|Next: (y-09) Ultimate Referee]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

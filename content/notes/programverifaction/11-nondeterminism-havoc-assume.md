@@ -1,5 +1,5 @@
 ---
-title: "L10 — Nondeterminism: Havoc and Assume"
+title: "L11 — Nondeterminism: Havoc and Assume"
 tags:
   - program-verification
   - nondeterminism
@@ -9,7 +9,7 @@ tags:
 date: 2025-05-28
 ---
 
-[[notes/programverifaction/index|Back to Program Verification Index]] | [[notes/programverifaction/09-array-theory-and-arrays-in-boostan|Previous: (y-09) Array Theory and Arrays in Boostan]] | [[notes/programverifaction/11-control-flow-graphs|Next: (y-11) Control-Flow Graphs]]
+[[index|Back to Program Verification Index]] | [[10-array-theory-and-arrays-in-boostan|Previous: (y-10) Array Theory and Arrays in Boostan]] | [[12-control-flow-graphs|Next: (y-12) Control-Flow Graphs]]
 
 ## Mental Model for Nondeterminism
 
@@ -32,37 +32,36 @@ In standard programming, we use `scanf` or `read()`. In verification, we use `ha
 ---
 
 ## The `assume` Statement
-![[Lecture10_Pg290_The_Assume_Statement.png]]
+![[../../pictures/programverifaction/10/Lecture10_Pg290_The_Assume_Statement.png]]
 
 
 An `assume P` statement is NOT a check; it is a **constraint** on the verifier.
 
 ### Relational Semantics of `assume P`
-![[Lecture10_Pg290_Relational_Semantics_Of_Assume_P.png]]
+![[../../pictures/programverifaction/10/Lecture10_Pg290_Relational_Semantics_Of_Assume_P.png]]
 
+- **Partial Identity Relation**: $[[\text{assume P}]] = \{ (s, s) \mid s \in \text{States and } s \models P \}$.
 - The relation is a subset of the **Identity Relation**.
 - $(s, s) \in [[\text{assume P}]]$ if and only if $s$ satisfies $P$.
 - If $s$ does not satisfy $P$, there is **no** successor state. The execution simply "disappears" (blocks).
 
 ### 💡 Intuition: Asserts vs. Assumes
-- **`assert P`**: A **Requirement**. You are telling the verifier: "Prove that $P$ is always true here. If you find even one case where it's false, my program has a bug."
-- **`assume P`**: A **Promise**. You are telling the verifier: "You can take it for granted that $P$ is true here. Don't even bother looking at cases where $P$ is false."
+- **`assert P`**: A **Requirement**. If $P$ is false, the program crashes (it's a bug).
+- **`assume P`**: A **Promise**. If $P$ is false, the execution path simply ceases to exist. It's like the program "blocks" forever, so we don't have to worry about those cases.
 
 ---
 
 ## Modeling "User Input" (Havoc + Assume)
-![[Lecture10_Pg278_Modeling_User_Input_Havoc_Assume.png]]
+![[../../pictures/programverifaction/10/Lecture10_Pg278_Modeling_User_Input_Havoc_Assume.png]]
 
 
-How do we model a C statement like `x = read_positive_int()`?
-In Boogie/Boostan, we write:
+To model a C statement like `x = read_positive_int()`, where the user provides an input we don't control, we use the following pattern in Boogie/Boostan:
+
 ```boogie
-havoc x;
-assume x > 0;
+havoc x;       // x could be absolutely anything (negative, zero, or positive)
+assume x > 0;  // discard any world where the user didn't give a positive number
 ```
-1.  `havoc x`: $x$ becomes anything ($-5, 0, 100, \dots$).
-2.  `assume x > 0`: The verifier ignores the worlds where $x \le 0$. 
-3.  **Result**: We are left only with executions where $x$ is a positive integer.
+1.  **Result**: Every execution that survives the `assume` statement will have a value of $x$ that is strictly greater than zero.
 
 ---
 
@@ -83,4 +82,4 @@ assume x > 0;
 5.  **Relational Semantics**: `assume` is a partial identity; `havoc` is a broad relation allowing any value for one variable.
 
 ---
-[[notes/programverifaction/index|Back to Program Verification Index]] | [[notes/programverifaction/09-array-theory-and-arrays-in-boostan|Previous: (y-09) Array Theory and Arrays in Boostan]] | [[notes/programverifaction/11-control-flow-graphs|Next: (y-11) Control-Flow Graphs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[index|Back to Program Verification Index]] | [[10-array-theory-and-arrays-in-boostan|Previous: (y-10) Array Theory and Arrays in Boostan]] | [[12-control-flow-graphs|Next: (y-12) Control-Flow Graphs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

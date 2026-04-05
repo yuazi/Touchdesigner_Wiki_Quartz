@@ -1,5 +1,5 @@
 ---
-title: "L13 — Abstractions and Abstract Reachability Graphs"
+title: "L16 — Abstractions and Abstract Reachability Graphs"
 tags:
   - program-verification
   - abstraction
@@ -9,17 +9,18 @@ tags:
 date: 2025-07-09
 ---
 
-[[notes/programverifaction/index|Back to Program Verification Index]] | [[notes/programverifaction/12-predicate-transformers|Previous: (y-12) Predicate Transformers]] | [[notes/notes/programverifaction/14-infeasibility-and-trace-abstraction|Next: (y-14) Infeasibility Proofs]]
+[[index|Back to Program Verification Index]] | [[15-correctness-via-assert|Previous: (y-15) Correctness via Assert Statements]] | [[17-infeasibility-and-cegar|Next: (y-17) Infeasibility Proofs and CEGAR]]
 
 ## Mental Model for Abstractions
 
 - **The State Space Explosion**: Programs have too many states to check individually. **Abstraction** allows us to group many concrete states into one "abstract" state.
 - **Predicates as Buckets**: We use a finite set of formulas (Predicates) $B$ to categorize states. For example, if $B = \{x > 0\}$, we only care if $x$ is positive or not.
+    - **Finite Approximation**: This analogy helps understand how we map an infinite number of concrete states (all possible values of $x$) into a finite set of "buckets" defined by our predicates.
 - **Abstract Reachability Graph (ARG)**: A graph where each node is an **Abstract Configuration** $(\ell, \phi)$. It represents "at location $\ell$, the program state satisfies $\phi$."
 - **Safety Proof**: If we can build an ARG where no node $(\ell_{\text{err}}, \phi)$ has a satisfiable $\phi$, we have proven the program safe.
 
 ## Abstract Strongest Post ($sp_B^\#$)
-![[Lecture13_Pg407_Abstract_Strongest_Post_Sp_B.png]]
+![[../../pictures/programverifaction/13/Lecture13_Pg407_Abstract_Strongest_Post_Sp_B.png]]
 
 
 The standard $sp$ can produce complex formulas. The **Abstract Strongest Post** forces the result to be a conjunction of formulas from our set $B$.
@@ -32,7 +33,7 @@ $$sp_B^\#(\psi, st) = \bigwedge \{ \phi \in B \mid sp(\psi, st) \subseteq \phi \
 ---
 
 ## Abstract Reachability Graphs (ARG)
-![[Lecture13_Pg405_Abstract_Reachability_Graphs_Arg.png]]
+![[../../pictures/programverifaction/13/Lecture13_Pg405_Abstract_Reachability_Graphs_Arg.png]]
 
 
 An ARG is a way to systematically explore the abstract state space of a program.
@@ -70,4 +71,4 @@ An ARG is a **Safety Proof** if:
 5.  **The Guesswork**: The main challenge in verification is finding a "good" set $B$ that is precise enough to prove safety but small enough to be efficient.
 
 ---
-[[notes/programverifaction/index|Back to Program Verification Index]] | [[notes/programverifaction/12-predicate-transformers|Previous: (y-12) Predicate Transformers]] | [[notes/notes/programverifaction/14-infeasibility-and-trace-abstraction|Next: (y-14) Infeasibility Proofs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[index|Back to Program Verification Index]] | [[15-correctness-via-assert|Previous: (y-15) Correctness via Assert Statements]] | [[17-infeasibility-and-cegar|Next: (y-17) Infeasibility Proofs and CEGAR]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

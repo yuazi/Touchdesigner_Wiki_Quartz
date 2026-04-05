@@ -1,5 +1,5 @@
 ---
-title: "L14 — Infeasibility Proofs and CEGAR"
+title: "L17 — Infeasibility Proofs and CEGAR"
 tags:
   - program-verification
   - cegar
@@ -9,7 +9,7 @@ tags:
 date: 2025-07-07
 ---
 
-[[notes/programverifaction/index|Back to Program Verification Index]] | [[notes/programverifaction/13-abstractions-and-arg|Previous: (y-13) Abstractions and ARG]] | [[notes/programverifaction/15-trace-abstraction|Next: (y-15) Trace Abstraction]]
+[[index|Back to Program Verification Index]] | [[16-abstractions-and-arg|Previous: (y-16) Abstractions and ARG]] | [[18-trace-abstraction-and-automata|Next: (y-18) Trace Abstraction and Floyd-Hoare Automata]]
 
 ## Mental Model for CEGAR
 
@@ -33,20 +33,19 @@ A sequence of formulas $\phi_0, \dots, \phi_n$ is a **Proof of Infeasibility** f
 ---
 
 ## The CEGAR Approach (Step-by-Step)
-![[Lecture14_Pg436_The_Cegar_Approach_Step_By_Step.png]]
+![[../../pictures/programverifaction/14/Lecture14_Pg436_The_Cegar_Approach_Step_By_Step.png]]
 
-
-1.  **Step 1: Start Simple**. Set the predicates $B = \emptyset$.
+1.  **Step 1: Start Simple**. Set the predicates $B = \emptyset$ (or some initial set).
 2.  **Step 2: Build ARG**. Construct the Abstract Reachability Graph based on $B$.
 3.  **Step 3: Check for Errors**.
-    - If the ARG is safe, the **Program is Correct**. Return "Safe."
-    - If the ARG has an error, find the **Error Trace** $\pi$ that led to it.
+    - If no error location $\ell_{\text{err}}$ is reachable in the ARG, the **Program is Safe**.
+    - If an error location $\ell_{\text{err}}$ is reachable, find the **Abstract Error Trace** $\pi$ that led to it.
 4.  **Step 4: Check Trace Feasibility**.
-    - If $\pi$ is **Feasible**, the **Program is Incorrect**. Return "Bug" + the counterexample.
-    - If $\pi$ is **Infeasible**, our model is too weak.
+    - If $\pi$ is **Feasible** (satisfiable in concrete semantics), the **Program is Incorrect**. Return "Bug" + the concrete counterexample.
+    - If $\pi$ is **Infeasible** (unsatisfiable in concrete semantics), our abstraction is too coarse.
 5.  **Step 5: Refine**.
-    - Find an **Infeasibility Proof** $\{\phi_0, \dots, \phi_n\}$ for $\pi$.
-    - Add these new formulas to our set $B$.
+    - Find an **Infeasibility Proof** sequence $\phi_0, \phi_1, \dots, \phi_n$ for $\pi$ such that $\phi_0 = \text{true}, sp(\phi_i, st_{i+1}) \subseteq \phi_{i+1}$, and $\phi_n = \text{false}$.
+    - Add these new formulas to our set of predicates $B$.
     - **Go back to Step 2**.
 
 ---
@@ -70,4 +69,4 @@ Imagine trying to find a path in a dark room.
 5.  **Power of Abstraction**: CEGAR allows us to verify complex programs without manually guessing invariants.
 
 ---
-[[notes/programverifaction/index|Back to Program Verification Index]] | [[notes/programverifaction/13-abstractions-and-arg|Previous: (y-13) Abstractions and ARG]] | [[notes/programverifaction/15-trace-abstraction|Next: (y-15) Trace Abstraction]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[index|Back to Program Verification Index]] | [[16-abstractions-and-arg|Previous: (y-16) Abstractions and ARG]] | [[18-trace-abstraction-and-automata|Next: (y-18) Trace Abstraction and Floyd-Hoare Automata]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

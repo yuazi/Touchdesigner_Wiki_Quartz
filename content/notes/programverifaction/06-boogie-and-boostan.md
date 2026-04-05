@@ -5,10 +5,11 @@ tags:
   - boogie
   - boostan
   - intermediate-language
+  - formal-methods
 date: 2026-04-30
 ---
 
-[[notes/programverifaction/index|Back to Program Verification Index]] | [[notes/programverifaction/05-smt-lib|Previous: (y-05) SMT-LIB]] | [[notes/programverifaction/07-control-flow-graphs|Next: (y-07) Control-Flow Graphs]]
+[[index|Back to Program Verification Index]] | [[05-smt-lib|Previous: (y-05) SMT-LIB]] | [[07-relational-semantics|Next: (y-07) Relational Semantics]]
 
 ## Mental Model for Boogie and Boostan
 
@@ -25,39 +26,88 @@ date: 2026-04-30
 
 ---
 
+## The Verification Pipeline
+![[../../pictures/programverifaction/06/Lecture06_Pg249_Verification_Pipeline.png]]
+
+
+Modern verifiers follow a specific translation chain:
+1.  **Source Code** (e.g., C, Java): Messy, complex, and hardware-specific.
+2.  **Intermediate Language** (e.g., **Boogie**): Clean, mathematical, and focused on assertions/assumptions.
+3.  **SMT Solver** (e.g., **Z3**): Receives the logic formulas and checks if an assertion violation is "satisfiable" (meaning a bug exists).
+
+---
+
 ## Boogie: The Verification Language
-![[Lecture06_Pg148_Boogie_The_Verification_Language.png]]
+![[../../pictures/programverifaction/06/Lecture06_Pg148_Boogie_The_Verification_Language.png]]
 
 
 Developed by Rustan Leino at Microsoft Research, Boogie is used by tools like **Ultimate Automizer** and **Dafny**.
 
 ### Key Features of Boogie
 - **Procedures**: Named blocks of code with inputs and outputs.
+- **`requires P`**: A **precondition** that must hold before calling the procedure.
+- **`ensures Q`**: A **postcondition** that the procedure promises to satisfy upon termination.
 - **Assignments**: `x := x + 1`.
 - **Assumptions**: `assume x > 0`. If this is false, the execution "stops" or is ignored.
 - **Assertions**: `assert x > 0`. This is a promise that *must* hold true.
-- **Non-determinism**: Procedures can return "any" value that satisfies a condition.
 
----
-
-## Boostan: The Teaching Language
-
-Boostan is the language we will define formally in this course. It is a simplified version of Boogie with:
-- **Relational Semantics**: We define code as a relation between the "State Before" and "State After".
-- **Small Vocabulary**: Only the essential commands needed to learn the theory of verification.
+### Example Boogie Code
+```boogie
+procedure Square(a: int) returns (square: int)
+    requires a >= 0;    // Precondition
+    ensures square >= a; // Postcondition
+{
+    square := a * a;
+    if (square == 0) {
+        assume {:print "a is zero"} true;
+    } else {
+        assume {:print "a = ", a} true;
+    }
+}
+```
 
 ---
 
 ## Tool: Boogaloo
 
-Boogaloo is an **interpreter** and **symbolic executor** for Boogie.
-- Unlike a standard compiler, Boogaloo can handle **non-deterministic** code.
-- It explores different execution paths to see what *might* happen.
-- Use the `-o` flag to control how many executions to explore (e.g., `-o 5`).
+Boogaloo is an **interpreter** and **symbolic executor** for Boogie. It allows you to explore the state space of your Boogie code before running a full proof tool.
+
+### Command Line Options
+![[../../pictures/programverifaction/06/Lecture06_Pg152_Command_Line_Options.png]]
+
+- **`-o [n]`**: Control the total number of **executions** to explore.
+- **`-n [n]`**: Limit the number of executions per **unique sequence of statements** (prevents getting stuck in infinite loops).
+- **`-c=0`**: Turns off **"concrete mode"** (allows variables to take symbolic values instead of just simple constants).
+- **`-p [proc]`**: Specifies the **entry procedure** to begin execution.
 
 ### 💡 Intuition: Asserts vs. Assumes
-- **`assert P`**: Your job is to *prove* P is true. If it fails, the code is **incorrect**.
-- **`assume P`**: The verifier can *take it for granted* that P is true. It is a filter that tells the verifier, "Only look at cases where P holds."
+...
+- **`assume P`**: The verifier can *take it for granted* that P is true. It is a filter that tells the verifier, "Only look at cases where P holds." If P is false, the path is ignored.
+
+---
+
+## Boostan: The Formal Fragment
+![[../../pictures/programverifaction/06/Lecture06_Pg153_Boostan_The_Formal_Fragment.png]]
+
+
+Boostan is a simplified version of Boogie used for defining formal relational semantics.
+
+### 🧠 Deep Dive: The Formal Grammar $G_{Boo}$
+A Boostan program $P$ is a sequence of commands $c$:
+- **Skip**: `skip` (Does nothing)
+- **Assignment**: `x := e` (Update variable $x$ with expression $e$)
+- **Sequence**: $c_1; c_2$ (Execute $c_1$, then $c_2$)
+- **If-Then-Else**: `if (b) { c_1 } else { c_2 }`
+- **While Loop**: `while (b) { c }`
+- **Havoc**: `havoc x` (Assign a non-deterministic value to $x$)
+- **Assume**: `assume b` (Filter execution paths)
+- **Assert**: `assert b` (Verify a condition)
+
+### 💡 The "Small Vocabulary" Approach
+Why do we limit Boostan to only a few commands?
+1.  **Ease of Formalization**: It's much easier to write mathematical rules for 8 commands than for 800.
+2.  **Completeness**: These few commands are actually **Turing-complete**! Any complex program (with `for` loops, `switch` statements, etc.) can be rewritten using just these basic building blocks.
+3.  **Orthogonality**: Each command does exactly one thing, making the semantics "clean" and predictable.
 
 ---
 
@@ -70,4 +120,4 @@ Boogaloo is an **interpreter** and **symbolic executor** for Boogie.
 5.  **Boogaloo** helps us debug our Boogie programs before we run a full verifier.
 
 ---
-[[notes/programverifaction/index|Back to Program Verification Index]] | [[notes/programverifaction/05-smt-lib|Previous: (y-05) SMT-LIB]] | [[notes/programverifaction/07-control-flow-graphs|Next: (y-07) Control-Flow Graphs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[index|Back to Program Verification Index]] | [[05-smt-lib|Previous: (y-05) SMT-LIB]] | [[07-relational-semantics|Next: (y-07) Relational Semantics]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

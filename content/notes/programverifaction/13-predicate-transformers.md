@@ -1,5 +1,5 @@
 ---
-title: "L12 — Predicate Transformers"
+title: "L13 — Predicate Transformers"
 tags:
   - program-verification
   - predicate-transformers
@@ -9,7 +9,7 @@ tags:
 date: 2025-06-15
 ---
 
-[[notes/programverifaction/index|Back to Program Verification Index]] | [[notes/programverifaction/11-control-flow-graphs|Previous: (y-11) Control-Flow Graphs]]
+[[index|Back to Program Verification Index]] | [[12-control-flow-graphs|Previous: (y-12) Control-Flow Graphs]] | [[14-bmc|Next: (y-14) Bounded Model Checking]]
 
 ## Mental Model for Predicate Transformers
 
@@ -20,22 +20,22 @@ date: 2025-06-15
 
 ## Strongest Postcondition ($sp$)
 <!-- Review Needed: close slide match for 'Strongest Postcondition ($sp$)' (p339: 0.485, p341: 0.477) -->
-![[Lecture12_Pg339_Strongest_Postcondition_Sp.png]]
-![[Lecture12_Pg341_Strongest_Postcondition_Sp.png]]
+![[../../pictures/programverifaction/12/Lecture12_Pg339_Strongest_Postcondition_Sp.png]]
+![[../../pictures/programverifaction/12/Lecture12_Pg341_Strongest_Postcondition_Sp.png]]
 
 
 $sp(\phi, S)$ calculates the set of all states reachable from $\phi$ by executing $S$.
 
 ### 1. Assignment: `x := expr`
-![[Lecture12_Pg221_1_Assignment_X_Expr.png]]
+![[../../pictures/programverifaction/12/Lecture12_Pg221_1_Assignment_X_Expr.png]]
 
-$$sp(\phi, x := \text{expr}) \equiv \exists \hat{x}. \phi[x \mapsto \hat{x}] \wedge x = \text{expr}[x \mapsto \hat{x}]$$
-- *Intuition*: We "save" the old value of $x$ as $\hat{x}$. The new state is one where the old $\phi$ was true (using $\hat{x}$) and the new $x$ is the result of the expression.
+$$sp(\phi, x := e) \equiv \exists x_{\text{old}}. \phi[x \mapsto x_{\text{old}}] \wedge x = e[x \mapsto x_{\text{old}}]$$
+- *Intuition*: We "save" the old value of $x$ as $x_{\text{old}}$. The new state is one where the old $\phi$ was true (using $x_{\text{old}}$) and the new $x$ is the result of the expression.
 
 ### 2. Havoc: `havoc x`
-![[Lecture12_Pg284_2_Havoc_Havoc_X.png]]
+![[../../pictures/programverifaction/12/Lecture12_Pg284_2_Havoc_Havoc_X.png]]
 
-$$sp(\phi, \text{havoc } x) \equiv \exists \hat{x}. \phi[x \mapsto \hat{x}]$$
+$$sp(\phi, \text{havoc } x) \equiv \exists x_{\text{old}}. \phi[x \mapsto x_{\text{old}}]$$
 - *Intuition*: We lose all specific information about $x$, but everything else in $\phi$ remains true.
 
 ### 3. Assume: `assume P`
@@ -49,7 +49,9 @@ $$sp(\phi, \text{assume } P) \equiv \phi \wedge P$$
 $wp(S, \psi)$ calculates the "least restrictive" condition required to guarantee $\psi$ after $S$.
 
 ### 1. Assignment: `x := expr`
-$$wp(x := \text{expr}, \psi) \equiv \psi[x \mapsto \text{expr}]$$
+![[../../pictures/programverifaction/13/Lecture13_Pg270_1_Assignment_X_Expr.png]]
+
+$$wp(x := e, \psi) \equiv \psi[x \mapsto e]$$
 - *Intuition*: This is exactly the same as the Hoare Assignment Axiom! Just substitute the expression into the postcondition.
 
 ### 2. Assume: `assume P`
@@ -77,4 +79,4 @@ When we compute $sp$ forward, we often end up with many existential quantifiers 
 6.  **Verification**: To prove `{P} S {Q}`, we check if $sp(P, S) \to Q$ (or if $P \to wp(S, Q)$).
 
 ---
-[[notes/programverifaction/index|Back to Program Verification Index]] | [[notes/programverifaction/11-control-flow-graphs|Previous: (y-11) Control-Flow Graphs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[index|Back to Program Verification Index]] | [[12-control-flow-graphs|Previous: (y-12) Control-Flow Graphs]] | [[14-bmc|Next: (y-14) Bounded Model Checking]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

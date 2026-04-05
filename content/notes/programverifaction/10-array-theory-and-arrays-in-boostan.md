@@ -1,5 +1,5 @@
 ---
-title: "L09 — Array Theory and Arrays in Boostan"
+title: "L10 — Array Theory and Arrays in Boostan"
 tags:
   - program-verification
   - arrays
@@ -9,10 +9,10 @@ tags:
 date: 2025-05-26
 ---
 
-[[notes/programverifaction/index|Back to Program Verification Index]] | [[notes/programverifaction/08-hoare-proof-system|Previous: (y-08) Hoare Proof System]] | [[notes/programverifaction/10-nondeterminism-havoc-assume|Next: (y-10) Nondeterminism: Havoc and Assume]]
+[[index|Back to Program Verification Index]] | [[09-ultimate-referee|Previous: (y-09) Ultimate Referee]] | [[11-nondeterminism-havoc-assume|Next: (y-11) Nondeterminism: Havoc and Assume]]
 
 ## Mental Model for Arrays
-![[Lecture09_Pg257_Mental_Model_For_Arrays.png]]
+![[../../pictures/programverifaction/09/Lecture09_Pg257_Mental_Model_For_Arrays.png]]
 
 
 - **Arrays as Maps**: In formal verification, an array is not a block of memory; it is a **Function** (or Map) from indices to values.
@@ -21,23 +21,23 @@ date: 2025-05-26
 - **Axiomatic Reasoning**: We reason about arrays using the **Read-over-Write** axioms, which tell us exactly what happens to an index after a store operation.
 
 ## The SMT Theory of Arrays ($T_{arr}$)
-![[Lecture09_Pg250_The_Smt_Theory_Of_Arrays_T.png]]
+![[../../pictures/programverifaction/09/Lecture09_Pg250_The_Smt_Theory_Of_Arrays_T.png]]
 
 
 The signature $\Sigma_{arr}$ includes $\{ \text{select, store, } = \}$.
 
 ### Key Axioms
 1.  **Read-over-Write (Hit)**: $\text{select}(\text{store}(a, i, v), i) = v$
-    - *Intuition*: If you write $v$ to $i$ and then read from $i$, you get $v$.
+    - *Intuition*: If you write $v$ to index $i$ and then read from $i$, you are guaranteed to get $v$.
 2.  **Read-over-Write (Miss)**: $i \ne j \to \text{select}(\text{store}(a, i, v), j) = \text{select}(a, j)$
-    - *Intuition*: Writing to index $i$ does not affect any other index $j$.
+    - *Intuition*: Writing to index $i$ does not change the value at any other index $j$.
 3.  **Extensionality**: $(\forall i. \text{select}(a, i) = \text{select}(b, i)) \leftrightarrow a = b$
-    - *Intuition*: Two arrays are "equal" if and only if they contain the same values at every possible index.
+    - *Intuition*: Two arrays $a$ and $b$ are the same array object if and only if they map every index $i$ to the same value.
 
 ---
 
 ## Arrays in Boostan
-![[Lecture09_Pg267_Arrays_In_Boostan.png]]
+![[../../pictures/programverifaction/09/Lecture09_Pg267_Arrays_In_Boostan.png]]
 
 
 We extend Boostan to support array assignments like `a[i] := expr`.
@@ -47,29 +47,32 @@ We extend Boostan to support array assignments like `a[i] := expr`.
 - **Grammar**: $X_{lhs} \to X_{var} \mid X_{var}[X_{expr}]$.
 
 ### 2. Relational Semantics
-![[Lecture09_Pg299_2_Relational_Semantics.png]]
+![[../../pictures/programverifaction/09/Lecture09_Pg299_2_Relational_Semantics.png]]
 
-The relation for `a[i] := expr` is:
+The relation for `a[i] := expr` is defined by:
 - $a' = \text{store}(a, i, \text{expr})$
-- All other variables (and other arrays) remain unchanged.
+- For all other variables and arrays, $v' = v$.
 
 ---
 
 ## Array Assignment in Hoare Logic
-![[Lecture09_Pg270_Array_Assignment_In_Hoare_Logic.png]]
+![[../../pictures/programverifaction/09/Lecture09_Pg270_Array_Assignment_In_Hoare_Logic.png]]
 
 
 We add a new rule to the Hoare Proof System to handle array updates:
 
 ### Array Assignment Axiom (arrassig)
-![[Lecture09_Pg270_Array_Assignment_Axiom_Arrassig.png]]
+![[../../pictures/programverifaction/09/Lecture09_Pg270_Array_Assignment_Axiom_Arrassig.png]]
 
+The formal rule is:
 $$\{ \phi[a \mapsto \text{store}(a, i, \text{expr})] \} \ a[i] := \text{expr} \ \{ \phi \}$$
 
-**Example**: To prove that `a[5] = 42` holds after `a[5] := 42`, we substitute `a` with `store(a, 5, 42)` in the postcondition:
-- Postcondition: $\text{select}(a, 5) = 42$
-- Precondition: $\text{select}(\text{store}(a, 5, 42), 5) = 42$
-- Since $\text{select}(\text{store}(a, 5, 42), 5)$ is always $42$ (by axiom), the precondition simplifies to $42=42$ (True).
+### 💡 Substitution Example
+To prove that `{ \text{select}(a, 5) = 42 }` is a postcondition for `a[5] := 42`, we find the weakest precondition:
+1.  Postcondition $\phi$: $\text{select}(a, 5) = 42$
+2.  Substitute $a$ with $\text{store}(a, 5, 42)$: $\text{select}(\text{store}(a, 5, 42), 5) = 42$
+3.  Simplify using Read-over-Write (Hit): $42 = 42$
+4.  Result: The precondition is simply `True`.
 
 ---
 
@@ -82,4 +85,4 @@ $$\{ \phi[a \mapsto \text{store}(a, i, \text{expr})] \} \ a[i] := \text{expr} \ 
 5.  **Hoare Logic** handles arrays by treating the update as a substitution of the entire array object.
 
 ---
-[[notes/programverifaction/index|Back to Program Verification Index]] | [[notes/programverifaction/08-hoare-proof-system|Previous: (y-08) Hoare Proof System]] | [[notes/programverifaction/10-nondeterminism-havoc-assume|Next: (y-10) Nondeterminism: Havoc and Assume]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[index|Back to Program Verification Index]] | [[09-ultimate-referee|Previous: (y-09) Ultimate Referee]] | [[11-nondeterminism-havoc-assume|Next: (y-11) Nondeterminism: Havoc and Assume]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
