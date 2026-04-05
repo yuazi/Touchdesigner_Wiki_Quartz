@@ -20,7 +20,7 @@ date: 2025-07-20
 - **Invariant Synthesis**: Instead of guessing a loop invariant, we create a **Template** (e.g., $ax + by \le c$) and use the solver to find the coefficients $a, b, c$.
 
 ## Bounded Model Checking (BMC)
-![[../../pictures/programverifaction/16/Lecture16_Pg371_Bounded_Model_Checking_Bmc.png]]
+![[pictures/programverification/16/Lecture16_Pg371_Bounded_Model_Checking_Bmc.png]]
 
 
 BMC is an **Incomplete** verification technique. It is highly effective at finding bugs but cannot generally prove that a program is safe for all possible inputs if it contains loops with unknown bounds.
@@ -46,7 +46,7 @@ To turn a sequence of statements (a path) into a single SMT formula, we use **SS
 ---
 
 ## Constraint-Based Invariant Synthesis
-![[../../pictures/programverifaction/16/Lecture16_Pg466_Constraint_Based_Invariant_Synthesis.png]]
+![[pictures/programverification/16/Lecture16_Pg466_Constraint_Based_Invariant_Synthesis.png]]
 
 
 Finding loop invariants is the hardest part of verification. Synthesis tries to automate it.

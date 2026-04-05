@@ -26,7 +26,7 @@ We use the [[work/slidelink|SlideLink]] tool to automatically align these notes 
 ---
 
 ## What is a Program Verifier?
-![[../../pictures/programverifaction/01/Lecture01_Pg012_What_Is_A_Program_Verifier.png]]
+![[pictures/programverification/01/Lecture01_Pg012_What_Is_A_Program_Verifier.png]]
 
 
 A program verifier is a tool that takes two inputs:
@@ -38,7 +38,7 @@ The verifier output is either:
 - **× no**: The program violates the specification (often with a counterexample).
 
 ### Typical Specifications
-![[../../pictures/programverifaction/01/Lecture01_Pg012_Typical_Specifications.png]]
+![[pictures/programverification/01/Lecture01_Pg012_Typical_Specifications.png]]
 
 - No division by zero.
 - Array only accessed within its bounds.
@@ -49,7 +49,7 @@ The verifier output is either:
 ---
 
 ## Motivation: Why do we care?
-![[../../pictures/programverifaction/01/Lecture01_Pg018_Motivation_Why_Do_We_Care.png]]
+![[pictures/programverification/01/Lecture01_Pg018_Motivation_Why_Do_We_Care.png]]
 
 
 Software is everywhere—from your phone to the brakes in your car. 
@@ -69,13 +69,13 @@ Imagine you are checking if a floor is safe to walk on.
 Verification isn't easy. There are three main "boss fights" we have to deal with:
 
 ### Challenge 1: Undecidability in Program Verification
-![[../../pictures/programverifaction/01/Lecture01_Pg022_Challenge_1_Undecidability_In_Program_Verification.png]]
+![[pictures/programverification/01/Lecture01_Pg022_Challenge_1_Undecidability_In_Program_Verification.png]]
 
 The **Halting Problem** tells us we can't write a perfect verifier that works for *every* possible program. 
 - **Strategy**: We don't try to solve it for everything. We build tools that are helpful for *most* programs we care about.
 
 ### Challenge 2: Semantic Ambiguities in Programming Languages
-![[../../pictures/programverifaction/01/Lecture01_Pg023_Challenge_2_Semantic_Ambiguities_In_Programming.png]]
+![[pictures/programverification/01/Lecture01_Pg023_Challenge_2_Semantic_Ambiguities_In_Programming.png]]
 
 What does `x := -7 / 5` actually do?
 - In **C/C++**, it might be `-1`.
@@ -85,7 +85,7 @@ What does `x := -7 / 5` actually do?
 To verify a program, we first need a **precise mathematical semantics** for the language. We can't prove things if the rules keep changing!
 
 ### 3. Proofs are Hard to Find
-![[../../pictures/programverifaction/01/Lecture01_Pg024_3_Proofs_Are_Hard_To_Find.png]]
+![[pictures/programverification/01/Lecture01_Pg024_3_Proofs_Are_Hard_To_Find.png]]
 
 Consider a loop that modifies `x` and `y`. Even if we know the program is correct, finding the **reason** (the "invariant") is hard. 
 - **Example**: "The values of x and y are always odd." This simple observation might be the key to the whole proof, but a computer has to "discover" it.
@@ -93,7 +93,7 @@ Consider a loop that modifies `x` and `y`. Even if we know the program is correc
 ---
 
 ## Content of this Course
-![[../../pictures/programverifaction/01/Lecture01_Pg026_Content_Of_This_Course.png]]
+![[pictures/programverification/01/Lecture01_Pg026_Content_Of_This_Course.png]]
 
 
 We will cover:

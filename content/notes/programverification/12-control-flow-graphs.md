@@ -11,7 +11,7 @@ date: 2025-06-04
 [[index|Back to Program Verification Index]] | [[11-nondeterminism-havoc-assume|Previous: (y-11) Nondeterminism: Havoc and Assume]] | [[13-predicate-transformers|Next: (y-13) Predicate Transformers]]
 
 ## Mental Model for Control-Flow Graphs (CFGs)
-![[../../pictures/programverifaction/11/Lecture11_Pg390_Mental_Model_For_Control_Flow_Graphs.png]]
+![[pictures/programverification/11/Lecture11_Pg390_Mental_Model_For_Control_Flow_Graphs.png]]
 
 
 - **Flattening Code**: Real programs have nested structure (`if` inside `while` inside `if`). A **CFG** flattens this into a simple directed graph of locations and transitions.
@@ -28,10 +28,10 @@ A Control-Flow Graph is a tuple $G = (Loc, \Delta, \ell_{\text{init}}, \ell_{\te
 - **$\ell_{\text{ex}}$**: The normal termination point of the program.
 
 ### Types of Transition Statements
-![[../../pictures/programverifaction/12/Lecture12_Pg221_1_Assignment_X_Expr.png]]
-![[../../pictures/programverifaction/12/Lecture12_Pg284_2_Havoc_Havoc_X.png]]
-![[../../pictures/programverifaction/12/Lecture12_Pg339_Strongest_Postcondition_Sp.png]]
-![[../../pictures/programverifaction/12/Lecture12_Pg341_Strongest_Postcondition_Sp.png]]
+![[pictures/programverification/12/Lecture12_Pg221_1_Assignment_X_Expr.png]]
+![[pictures/programverification/12/Lecture12_Pg284_2_Havoc_Havoc_X.png]]
+![[pictures/programverification/12/Lecture12_Pg339_Strongest_Postcondition_Sp.png]]
+![[pictures/programverification/12/Lecture12_Pg341_Strongest_Postcondition_Sp.png]]
 
 1.  **Assignments**: `x := expr` or `a[i] := expr`.
 2.  **Havoc**: `havoc x`.
@@ -44,7 +44,7 @@ A Control-Flow Graph is a tuple $G = (Loc, \Delta, \ell_{\text{init}}, \ell_{\te
 Complex control structures are "desugared" into Assume statements and graph edges.
 
 ### 1. If-Then-Else
-![[../../pictures/programverifaction/11/Lecture11_Pg189_1_If_Then_Else.png]]
+![[pictures/programverification/11/Lecture11_Pg189_1_If_Then_Else.png]]
 
 An `if (B) {st1} else {st2}` statement starting at $\ell_{\text{in}}$ and ending at $\ell_{\text{out}}$ becomes:
 - **True Branch**: An edge $(\ell_{\text{in}}, \text{assume } B, \ell_{1})$ where $\ell_{1}$ is the start of $st_1$.

@@ -20,7 +20,7 @@ date: 2025-07-09
 - **Safety Proof**: If we can build an ARG where no node $(\ell_{\text{err}}, \phi)$ has a satisfiable $\phi$, we have proven the program safe.
 
 ## Abstract Strongest Post ($sp_B^\#$)
-![[../../pictures/programverifaction/13/Lecture13_Pg407_Abstract_Strongest_Post_Sp_B.png]]
+![[pictures/programverification/13/Lecture13_Pg407_Abstract_Strongest_Post_Sp_B.png]]
 
 
 The standard $sp$ can produce complex formulas. The **Abstract Strongest Post** forces the result to be a conjunction of formulas from our set $B$.
@@ -33,7 +33,7 @@ $$sp_B^\#(\psi, st) = \bigwedge \{ \phi \in B \mid sp(\psi, st) \subseteq \phi \
 ---
 
 ## Abstract Reachability Graphs (ARG)
-![[../../pictures/programverifaction/13/Lecture13_Pg405_Abstract_Reachability_Graphs_Arg.png]]
+![[pictures/programverification/13/Lecture13_Pg405_Abstract_Reachability_Graphs_Arg.png]]
 
 
 An ARG is a way to systematically explore the abstract state space of a program.

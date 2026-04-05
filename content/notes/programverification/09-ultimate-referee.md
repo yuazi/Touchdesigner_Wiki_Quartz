@@ -12,8 +12,8 @@ date: 2025-05-20
 
 ## Mental Model for Ultimate Referee
 <!-- Review Needed: close slide match for 'Mental Model for Ultimate Referee' (p240: 0.451, p241: 0.446) -->
-![[../../pictures/programverifaction/09/Lecture09_Pg240_Mental_Model_For_Ultimate_Referee.png]]
-![[../../pictures/programverifaction/09/Lecture09_Pg241_Mental_Model_For_Ultimate_Referee.png]]
+![[pictures/programverification/09/Lecture09_Pg240_Mental_Model_For_Ultimate_Referee.png]]
+![[pictures/programverification/09/Lecture09_Pg241_Mental_Model_For_Ultimate_Referee.png]]
 
 
 - **Double-Checking Proofs**: Deriving Hoare triples and loop invariants is hard and error-prone. **Ultimate Referee** is a tool that takes your code and candidate invariants and checks if they actually form a valid proof.
@@ -21,7 +21,7 @@ date: 2025-05-20
 - **Focus on the Hard Part**: By using the tool, you can focus on the "guesswork" (finding the invariant) while the tool handles the "mechanical" part (checking the Hoare rules).
 
 ## Guide for Finding a Derivation
-![[../../pictures/programverifaction/09/Lecture09_Pg238_Guide_For_Finding_A_Derivation.png]]
+![[pictures/programverification/09/Lecture09_Pg238_Guide_For_Finding_A_Derivation.png]]
 
 
 Finding a derivation in the Hoare proof system follows a systematic path:
@@ -35,8 +35,8 @@ Finding a derivation in the Hoare proof system follows a systematic path:
 
 ## What is Ultimate Referee?
 <!-- Review Needed: close slide match for 'What is Ultimate Referee?' (p241: 0.528, p240: 0.484) -->
-![[../../pictures/programverifaction/09/Lecture09_Pg241_What_Is_Ultimate_Referee.png]]
-![[../../pictures/programverifaction/09/Lecture09_Pg240_What_Is_Ultimate_Referee.png]]
+![[pictures/programverification/09/Lecture09_Pg241_What_Is_Ultimate_Referee.png]]
+![[pictures/programverification/09/Lecture09_Pg240_What_Is_Ultimate_Referee.png]]
 
 
 Ultimate Referee is a tool implemented in the **Ultimate Framework**.
@@ -45,7 +45,7 @@ Ultimate Referee is a tool implemented in the **Ultimate Framework**.
 - **Output**: Either confirms the invariants are correct or provides a **Counterexample** explaining where the logic fails.
 
 ### 💡 Example: Too Strong Invariant
-![[../../pictures/programverifaction/09/Lecture09_Pg242_Example_Too_Strong_Invariant.png]]
+![[pictures/programverification/09/Lecture09_Pg242_Example_Too_Strong_Invariant.png]]
 
 If you provide an invariant like `y == 0` for a loop that actually has `y == 1`, the tool might say:
 > "Annotation is not valid for all loop-free paths from entry... to loop head."

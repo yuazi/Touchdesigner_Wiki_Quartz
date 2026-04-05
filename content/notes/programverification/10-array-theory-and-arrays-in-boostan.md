@@ -12,7 +12,7 @@ date: 2025-05-26
 [[index|Back to Program Verification Index]] | [[09-ultimate-referee|Previous: (y-09) Ultimate Referee]] | [[11-nondeterminism-havoc-assume|Next: (y-11) Nondeterminism: Havoc and Assume]]
 
 ## Mental Model for Arrays
-![[../../pictures/programverifaction/09/Lecture09_Pg257_Mental_Model_For_Arrays.png]]
+![[pictures/programverification/09/Lecture09_Pg257_Mental_Model_For_Arrays.png]]
 
 
 - **Arrays as Maps**: In formal verification, an array is not a block of memory; it is a **Function** (or Map) from indices to values.
@@ -21,7 +21,7 @@ date: 2025-05-26
 - **Axiomatic Reasoning**: We reason about arrays using the **Read-over-Write** axioms, which tell us exactly what happens to an index after a store operation.
 
 ## The SMT Theory of Arrays ($T_{arr}$)
-![[../../pictures/programverifaction/09/Lecture09_Pg250_The_Smt_Theory_Of_Arrays_T.png]]
+![[pictures/programverification/09/Lecture09_Pg250_The_Smt_Theory_Of_Arrays_T.png]]
 
 
 The signature $\Sigma_{arr}$ includes $\{ \text{select, store, } = \}$.
@@ -37,7 +37,7 @@ The signature $\Sigma_{arr}$ includes $\{ \text{select, store, } = \}$.
 ---
 
 ## Arrays in Boostan
-![[../../pictures/programverifaction/09/Lecture09_Pg267_Arrays_In_Boostan.png]]
+![[pictures/programverification/09/Lecture09_Pg267_Arrays_In_Boostan.png]]
 
 
 We extend Boostan to support array assignments like `a[i] := expr`.
@@ -47,7 +47,7 @@ We extend Boostan to support array assignments like `a[i] := expr`.
 - **Grammar**: $X_{lhs} \to X_{var} \mid X_{var}[X_{expr}]$.
 
 ### 2. Relational Semantics
-![[../../pictures/programverifaction/09/Lecture09_Pg299_2_Relational_Semantics.png]]
+![[pictures/programverification/09/Lecture09_Pg299_2_Relational_Semantics.png]]
 
 The relation for `a[i] := expr` is defined by:
 - $a' = \text{store}(a, i, \text{expr})$
@@ -56,13 +56,13 @@ The relation for `a[i] := expr` is defined by:
 ---
 
 ## Array Assignment in Hoare Logic
-![[../../pictures/programverifaction/09/Lecture09_Pg270_Array_Assignment_In_Hoare_Logic.png]]
+![[pictures/programverification/09/Lecture09_Pg270_Array_Assignment_In_Hoare_Logic.png]]
 
 
 We add a new rule to the Hoare Proof System to handle array updates:
 
 ### Array Assignment Axiom (arrassig)
-![[../../pictures/programverifaction/09/Lecture09_Pg270_Array_Assignment_Axiom_Arrassig.png]]
+![[pictures/programverification/09/Lecture09_Pg270_Array_Assignment_Axiom_Arrassig.png]]
 
 The formal rule is:
 $$\{ \phi[a \mapsto \text{store}(a, i, \text{expr})] \} \ a[i] := \text{expr} \ \{ \phi \}$$

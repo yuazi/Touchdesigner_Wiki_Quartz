@@ -32,13 +32,13 @@ In standard programming, we use `scanf` or `read()`. In verification, we use `ha
 ---
 
 ## The `assume` Statement
-![[../../pictures/programverifaction/10/Lecture10_Pg290_The_Assume_Statement.png]]
+![[pictures/programverification/10/Lecture10_Pg290_The_Assume_Statement.png]]
 
 
 An `assume P` statement is NOT a check; it is a **constraint** on the verifier.
 
 ### Relational Semantics of `assume P`
-![[../../pictures/programverifaction/10/Lecture10_Pg290_Relational_Semantics_Of_Assume_P.png]]
+![[pictures/programverification/10/Lecture10_Pg290_Relational_Semantics_Of_Assume_P.png]]
 
 - **Partial Identity Relation**: $[[\text{assume P}]] = \{ (s, s) \mid s \in \text{States and } s \models P \}$.
 - The relation is a subset of the **Identity Relation**.
@@ -52,7 +52,7 @@ An `assume P` statement is NOT a check; it is a **constraint** on the verifier.
 ---
 
 ## Modeling "User Input" (Havoc + Assume)
-![[../../pictures/programverifaction/10/Lecture10_Pg278_Modeling_User_Input_Havoc_Assume.png]]
+![[pictures/programverification/10/Lecture10_Pg278_Modeling_User_Input_Havoc_Assume.png]]
 
 
 To model a C statement like `x = read_positive_int()`, where the user provides an input we don't control, we use the following pattern in Boogie/Boostan:

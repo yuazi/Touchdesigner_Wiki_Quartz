@@ -33,7 +33,7 @@ A sequence of formulas $\phi_0, \dots, \phi_n$ is a **Proof of Infeasibility** f
 ---
 
 ## The CEGAR Approach (Step-by-Step)
-![[../../pictures/programverifaction/14/Lecture14_Pg436_The_Cegar_Approach_Step_By_Step.png]]
+![[pictures/programverification/14/Lecture14_Pg436_The_Cegar_Approach_Step_By_Step.png]]
 
 1.  **Step 1: Start Simple**. Set the predicates $B = \emptyset$ (or some initial set).
 2.  **Step 2: Build ARG**. Construct the Abstract Reachability Graph based on $B$.

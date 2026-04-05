@@ -27,7 +27,7 @@ date: 2026-04-30
 ---
 
 ## The Verification Pipeline
-![[../../pictures/programverifaction/06/Lecture06_Pg249_Verification_Pipeline.png]]
+![[pictures/programverification/06/Lecture06_Pg249_Verification_Pipeline.png]]
 
 
 Modern verifiers follow a specific translation chain:
@@ -38,7 +38,7 @@ Modern verifiers follow a specific translation chain:
 ---
 
 ## Boogie: The Verification Language
-![[../../pictures/programverifaction/06/Lecture06_Pg148_Boogie_The_Verification_Language.png]]
+![[pictures/programverification/06/Lecture06_Pg148_Boogie_The_Verification_Language.png]]
 
 
 Developed by Rustan Leino at Microsoft Research, Boogie is used by tools like **Ultimate Automizer** and **Dafny**.
@@ -73,7 +73,7 @@ procedure Square(a: int) returns (square: int)
 Boogaloo is an **interpreter** and **symbolic executor** for Boogie. It allows you to explore the state space of your Boogie code before running a full proof tool.
 
 ### Command Line Options
-![[../../pictures/programverifaction/06/Lecture06_Pg152_Command_Line_Options.png]]
+![[pictures/programverification/06/Lecture06_Pg152_Command_Line_Options.png]]
 
 - **`-o [n]`**: Control the total number of **executions** to explore.
 - **`-n [n]`**: Limit the number of executions per **unique sequence of statements** (prevents getting stuck in infinite loops).
@@ -87,7 +87,7 @@ Boogaloo is an **interpreter** and **symbolic executor** for Boogie. It allows y
 ---
 
 ## Boostan: The Formal Fragment
-![[../../pictures/programverifaction/06/Lecture06_Pg153_Boostan_The_Formal_Fragment.png]]
+![[pictures/programverification/06/Lecture06_Pg153_Boostan_The_Formal_Fragment.png]]
 
 
 Boostan is a simplified version of Boogie used for defining formal relational semantics.

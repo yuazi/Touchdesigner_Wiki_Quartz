@@ -22,7 +22,7 @@ date: 2026-04-14
 While Propositional Logic is powerful, it can't easily express statements like "Every integer has a square." FOL adds the machinery needed to formalize math and complex program states.
 
 ### 🧠 Deep Dive: Famous Theorems in FOL
-![[../../pictures/programverifaction/03/Lecture03_Pg058_Deep_Dive_Famous_Theorems_In_Fol.png]]
+![[pictures/programverification/03/Lecture03_Pg058_Deep_Dive_Famous_Theorems_In_Fol.png]]
 
 - **Triangle Inequality**: $\forall x, y, z. d(x, z) \le d(x, y) + d(y, z)$
 - **Fermat's Last Theorem**: $\neg \exists n > 2. \exists a, b, c > 0. a^n + b^n = c^n$
@@ -31,7 +31,7 @@ While Propositional Logic is powerful, it can't easily express statements like "
 ---
 
 ## Syntax: Terms and Formulas
-![[../../pictures/programverifaction/03/Lecture03_Pg135_Syntax_Terms_And_Formulas.png]]
+![[pictures/programverification/03/Lecture03_Pg135_Syntax_Terms_And_Formulas.png]]
 
 
 In FOL, we distinguish between things that represent **values** (Terms) and things that represent **truth** (Formulas).
@@ -44,7 +44,7 @@ A vocabulary $\mathcal{V}$ consists of:
 - **Predicates**: $p(x), \le(x, y), \dots$ (each has an **arity**)
 
 ### 2. Terms
-![[../../pictures/programverifaction/03/Lecture03_Pg134_2_Terms.png]]
+![[pictures/programverification/03/Lecture03_Pg134_2_Terms.png]]
 
 Terms are the "nouns" of our language.
 - Every variable is a term.
@@ -88,7 +88,7 @@ The formula $\forall x. \exists y. y > x$ is **true** if $D$ is the set of integ
 ---
 
 ## Free vs. Bound Variables
-![[../../pictures/programverifaction/03/Lecture03_Pg067_Free_Vs_Bound_Variables.png]]
+![[pictures/programverification/03/Lecture03_Pg067_Free_Vs_Bound_Variables.png]]
 
 
 - **Bound Variable**: A variable under the scope of a quantifier ($\forall x$ or $\exists x$).
@@ -96,7 +96,7 @@ The formula $\forall x. \exists y. y > x$ is **true** if $D$ is the set of integ
 - **Closed Formula (Sentence)**: A formula with no free variables. Its truth value depends *only* on the model, not on any specific variable assignment.
 
 ### Proof Rules of NFOL
-![[../../pictures/programverifaction/03/Lecture03_Pg072_Proof_Rules_Of_Nfol.png]]
+![[pictures/programverification/03/Lecture03_Pg072_Proof_Rules_Of_Nfol.png]]
 
 NFOL includes all rules from NPL, plus four rules for quantifiers.
 
@@ -119,7 +119,7 @@ Substitution is more than just "search and replace." We must avoid **Variable Ca
     - **Rule**: If $x$ is inside the scope of a quantifier for a variable $y$ that appears in $t$, you must first **rename** the bound $y$ to a "fresh" $z$.
 
 ### Example: A Derivation in NFOL
-![[../../pictures/programverifaction/03/Lecture03_Pg474_Example_A_Derivation_In_Nfol.png]]
+![[pictures/programverification/03/Lecture03_Pg474_Example_A_Derivation_In_Nfol.png]]
 
 **Goal**: Prove $\{\forall x,y,z. p(x,y) \wedge p(y,z) \to p(x,z), \forall x,y. p(x,y) \to p(y,x)\} \vdash p(a,b) \wedge p(b,c) \to p(c,a)$.
 

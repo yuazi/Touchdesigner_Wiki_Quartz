@@ -12,7 +12,7 @@ date: 2026-04-16
 [[index|Back to Program Verification Index]] | [[03-first-order-logic|Previous: (y-03) First-Order Logic]] | [[05-smt-lib|Next: (y-05) SMT-LIB]]
 
 ## Mental Model for First-Order Theories
-![[../../pictures/programverifaction/04/Lecture04_Pg082_Mental_Model_For_First_Order_Theories.png]]
+![[pictures/programverification/04/Lecture04_Pg082_Mental_Model_For_First_Order_Theories.png]]
 
 
 - **Pure FOL** is too broad. It doesn't know that $1+1=2$ or that $a=b \wedge b=c \to a=c$ unless we tell it.
@@ -21,7 +21,7 @@ date: 2026-04-16
 - This is how we bridge the gap between abstract logic and actual program variables (integers, arrays, bits).
 
 ## What is a First-Order Theory?
-![[../../pictures/programverifaction/04/Lecture04_Pg082_What_Is_A_First_Order_Theory.png]]
+![[pictures/programverification/04/Lecture04_Pg082_What_Is_A_First_Order_Theory.png]]
 
 
 A theory $T$ consists of:
@@ -29,7 +29,7 @@ A theory $T$ consists of:
 2.  **Axioms ($\mathcal{A}_T$)**: A set of closed formulas that define how those symbols behave.
 
 ### 🧠 Deep Dive: The Rock-Paper-Scissors Theory ($T_{RPS}$)
-![[../../pictures/programverifaction/04/Lecture04_Pg090_Deep_Dive_The_Rock_Paper_Scissors.png]]
+![[pictures/programverification/04/Lecture04_Pg090_Deep_Dive_The_Rock_Paper_Scissors.png]]
 
 Imagine a theory for the game Rock-Paper-Scissors.
 - **Signature**: $\{R, P, S, beat, =\}$
@@ -54,7 +54,7 @@ Equality is the most fundamental theory. Even if a solver knows nothing else, it
 5.  **Predicate Congruence**: $\forall \bar{x}, \bar{y}. (\bigwedge_i x_i = y_i) \to (p(\bar{x}) \leftrightarrow p(\bar{y}))$
 
 ### 🧠 Deep Dive: Axiom Schemata
-![[../../pictures/programverifaction/04/Lecture04_Pg087_Deep_Dive_Axiom_Schemata.png]]
+![[pictures/programverification/04/Lecture04_Pg087_Deep_Dive_Axiom_Schemata.png]]
 
 Axioms like **Function Congruence** are actually **Axiom Schemata**. This means they represent an infinite set of axioms, one for every possible function $f$.
 For a binary function $f_2(x, y)$, the specific axiom is:
@@ -66,13 +66,13 @@ Congruence means that functions and predicates are "well-behaved." If two inputs
 ---
 
 ## Natural Numbers and Integers
-![[../../pictures/programverifaction/04/Lecture04_Pg096_Natural_Numbers_And_Integers.png]]
+![[pictures/programverification/04/Lecture04_Pg096_Natural_Numbers_And_Integers.png]]
 
 
 We distinguish between several theories of arithmetic depending on whether they allow multiplication and which domain they cover.
 
 ### Peano Arithmetic ($T_{PA}$)
-![[../../pictures/programverifaction/04/Lecture04_Pg096_Peano_Arithmetic_T_Pa.png]]
+![[pictures/programverification/04/Lecture04_Pg096_Peano_Arithmetic_T_Pa.png]]
 
 
 This is the theory of **Natural Numbers** ($\mathbb{N}$) with addition and multiplication.
@@ -96,14 +96,14 @@ $T_{PA}$ is incredibly powerful and can express almost all of mathematics:
 In any consistent formal theory $T$ that is "sufficiently strong" (like $T_{PA}$), there are statements that are **true** but **unprovable** within $T$. This means no computer program can ever perfectly verify every true property of software that uses full integer multiplication.
 
 ### Presburger Arithmetic ($T_N$)
-![[../../pictures/programverifaction/04/Lecture04_Pg101_Presburger_Arithmetic_T_N.png]]
+![[pictures/programverification/04/Lecture04_Pg101_Presburger_Arithmetic_T_N.png]]
 
 Presburger Arithmetic is the fragment of $T_{PA}$ that **excludes multiplication**. 
 - **Signature**: $\{0, 1, +, =\}$
 - **Decidability**: Unlike $T_{PA}$, Presburger Arithmetic **is decidable**. This makes it the "sweet spot" for many automated verification tools.
 
 ### Theory of Integers ($T_Z$)
-![[../../pictures/programverifaction/04/Lecture04_Pg254_Theory_Of_Integers_T_Z.png]]
+![[pictures/programverification/04/Lecture04_Pg254_Theory_Of_Integers_T_Z.png]]
 
 The Theory of Integers (or Linear Integer Arithmetic) covers $\mathbb{Z} = \{\dots, -2, -1, 0, 1, 2, \dots\}$.
 - **Signature**: $\{\dots, -1, 0, 1, \dots, +, -, <, =\}$
@@ -125,7 +125,7 @@ The Theory of Integers (or Linear Integer Arithmetic) covers $\mathbb{Z} = \{\do
 | **Arrays ($T_A$)** | $\{\text{read}, \text{write}, =\}$ | Modeling memory and data structures. |
 
 ### The Array Axioms (Select)
-![[../../pictures/programverifaction/04/Lecture04_Pg113_The_Array_Axioms_Select.png]]
+![[pictures/programverification/04/Lecture04_Pg113_The_Array_Axioms_Select.png]]
 
 - **Read-over-Write**: $\text{read}(\text{write}(a, i, v), i) = v$. (If you write $v$ to index $i$ and then read from $i$, you get $v$).
 - **Independence**: If $i \ne j$, then $\text{read}(\text{write}(a, i, v), j) = \text{read}(a, j)$.
@@ -133,7 +133,7 @@ The Theory of Integers (or Linear Integer Arithmetic) covers $\mathbb{Z} = \{\do
 ---
 
 ## $T$-Validity and $T$-Satisfiability
-![[../../pictures/programverifaction/04/Lecture04_Pg083_T_Validity_And_T_Satisfiability.png]]
+![[pictures/programverification/04/Lecture04_Pg083_T_Validity_And_T_Satisfiability.png]]
 
 
 - **$T$-Satisfiable**: There exists a model that obeys all axioms of $T$ and makes the formula true.

@@ -15,6 +15,9 @@ A collection of notes and random thoughts—seedlings, growing ideas, and evergr
 > [!abstract] [[notes/mlp/index|(y) Machine Perception & Learning (MPL)]]
 > Study hub for the MPL master's course, covering deep learning from CNNs to Diffusion models.
 
+> [!abstract] [[notes/programverification/index|(y) Program Verification]]
+> Bridge the gap between source code and mathematical proofs using logic and SMT solvers.
+
 ## CLI & Tools
 
 > [!abstract] [[notes/tools/index|(y) CLI & Tools Hub]]

@@ -19,7 +19,7 @@ date: 2026-04-16
 - An **SMT Script** is a sequence of commands that define the environment, state assumptions, and ask questions about satisfiability.
 
 ## Introduction to SMT-LIB
-![[../../pictures/programverifaction/05/Lecture05_Pg127_Introduction_To_Smt_Lib.png]]
+![[pictures/programverification/05/Lecture05_Pg127_Introduction_To_Smt_Lib.png]]
 
 
 SMT-LIB (Satisfiability Modulo Theories Library) provides a standard for theories, logics, and solver interaction. Instead of learning a new language for every tool, we use SMT-LIB as a universal interface.
@@ -48,7 +48,7 @@ A typical script follows these steps, using the **4 main commands**:
 4.  **`get-model`**: If `sat`, ask for a concrete assignment to the variables.
 
 ### Full Lifecycle Example
-![[../../pictures/programverifaction/05/Lecture05_Pg131_Full_Lifecycle_Example.png]]
+![[pictures/programverification/05/Lecture05_Pg131_Full_Lifecycle_Example.png]]
 
 1.  **Set Logic**: Tell the solver which theories you need.
     - **`QF_LIA`**: Quantifier-Free Linear Integer Arithmetic.
@@ -63,7 +63,7 @@ A typical script follows these steps, using the **4 main commands**:
 ---
 
 ## Satisfiability vs. Validity
-![[../../pictures/programverifaction/05/Lecture05_Pg064_Satisfiability_Vs_Validity.png]]
+![[pictures/programverification/05/Lecture05_Pg064_Satisfiability_Vs_Validity.png]]
 
 
 In SMT, the primary operation is `(check-sat)`. However, in verification, we often want to know if a formula $F$ is **valid** (true in all models).
@@ -99,7 +99,7 @@ We want to check if $(P \Rightarrow Q) \Rightarrow (\neg Q \Rightarrow \neg P)$ 
 ---
 
 ## Important SMT Logics
-![[../../pictures/programverifaction/05/Lecture05_Pg131_Important_Smt_Logics.png]]
+![[pictures/programverification/05/Lecture05_Pg131_Important_Smt_Logics.png]]
 
 
 Solvers use these labels to pick the best algorithm for the job:

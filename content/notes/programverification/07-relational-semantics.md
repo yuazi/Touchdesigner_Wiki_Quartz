@@ -19,7 +19,7 @@ date: 2025-05-05
 - **Loops**: A `while` loop is represented as the **Reflexive Transitive Closure** ($R^*$) of its body, filtered by the exit condition.
 
 ## What is a Program State?
-![[../../pictures/programverifaction/07/Lecture07_Pg181_What_Is_A_Program_State.png]]
+![[pictures/programverification/07/Lecture07_Pg181_What_Is_A_Program_State.png]]
 
 
 A **Program State** $s$ is a function that assigns a value to every variable in the program. 
@@ -29,13 +29,13 @@ A **Program State** $s$ is a function that assigns a value to every variable in 
 ---
 
 ## Relational Semantics of Boostan
-![[../../pictures/programverifaction/07/Lecture07_Pg145_Relational_Semantics_Of_Boostan.png]]
+![[pictures/programverification/07/Lecture07_Pg145_Relational_Semantics_Of_Boostan.png]]
 
 
 We define the meaning (semantics) of each Boostan statement $[[\text{stmt}]]$ as a relation $R \subseteq \text{State} \times \text{State}$.
 
 ### 1. Assignment: `x := expr`
-![[../../pictures/programverifaction/07/Lecture07_Pg211_1_Assignment_X_Expr.png]]
+![[pictures/programverification/07/Lecture07_Pg211_1_Assignment_X_Expr.png]]
 
 The relation consists of pairs $(s, s')$ where:
 - The new value of $x$ (in $s'$) is the result of evaluating `expr` in the old state $s$.
@@ -45,7 +45,7 @@ The relation consists of pairs $(s, s')$ where:
 $$[[x := e]] = \{ (s, s') \mid s'(x) = [[e]]_s \text{ and } \forall v \ne x, s'(v) = s(v) \}$$
 
 ### 2. Composition: `st1; st2`
-![[../../pictures/programverifaction/07/Lecture07_Pg187_2_Composition_St1_St2.png]]
+![[pictures/programverification/07/Lecture07_Pg187_2_Composition_St1_St2.png]]
 
 Running `st1` followed by `st2` is the relational composition: $[[st1]] \circ [[st2]]$.
 - $(s, s'')$ is in the relation if there exists an intermediate state $s'$ that links them.
@@ -54,7 +54,7 @@ Running `st1` followed by `st2` is the relational composition: $[[st1]] \circ [[
 $$[[st_1; st_2]] = [[st_1]] \circ [[st_2]] = \{ (s, s'') \mid \exists s', (s, s') \in [[st_1]] \text{ and } (s', s'') \in [[st_2]] \}$$
 
 ### 3. If-Then-Else: `if (B) {st1} else {st2}`
-![[../../pictures/programverifaction/07/Lecture07_Pg187_3_If_Then_Else_If_B.png]]
+![[pictures/programverification/07/Lecture07_Pg187_3_If_Then_Else_If_B.png]]
 
 The relation follows one of two branches based on the Boolean condition $B$.
 
@@ -64,7 +64,7 @@ $$[[ \text{if } B \ \{st_1\} \ \text{else } \{st_2\} ]] = (\{B\} \times \text{St
 ---
 
 ## Semantics of Loops: `while (B) {st}`
-![[../../pictures/programverifaction/07/Lecture07_Pg497_Semantics_Of_Loops_While_B_St.png]]
+![[pictures/programverification/07/Lecture07_Pg497_Semantics_Of_Loops_While_B_St.png]]
 
 
 Loops are the most complex part of relational semantics. We use the **Reflexive Transitive Closure** ($R^*$) to model an arbitrary number of iterations (0 or more).
@@ -81,7 +81,7 @@ $$[[ \text{while } B \ \{st\} ]] = R_{body}^* \cap (\text{State} \times \{\neg B
 ---
 
 ## Precondition-Postcondition Pairs
-![[../../pictures/programverifaction/07/Lecture07_Pg199_Precondition_Postcondition_Pairs.png]]
+![[pictures/programverification/07/Lecture07_Pg199_Precondition_Postcondition_Pairs.png]]
 
 
 We say a program is **correct** with respect to a precondition $\phi_{\text{pre}}$ and a postcondition $\phi_{\text{post}}$ if the set of all possible final states is contained within the postcondition.

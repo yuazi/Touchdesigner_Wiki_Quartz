@@ -20,20 +20,20 @@ date: 2025-06-15
 
 ## Strongest Postcondition ($sp$)
 <!-- Review Needed: close slide match for 'Strongest Postcondition ($sp$)' (p339: 0.485, p341: 0.477) -->
-![[../../pictures/programverifaction/12/Lecture12_Pg339_Strongest_Postcondition_Sp.png]]
-![[../../pictures/programverifaction/12/Lecture12_Pg341_Strongest_Postcondition_Sp.png]]
+![[pictures/programverification/12/Lecture12_Pg339_Strongest_Postcondition_Sp.png]]
+![[pictures/programverification/12/Lecture12_Pg341_Strongest_Postcondition_Sp.png]]
 
 
 $sp(\phi, S)$ calculates the set of all states reachable from $\phi$ by executing $S$.
 
 ### 1. Assignment: `x := expr`
-![[../../pictures/programverifaction/12/Lecture12_Pg221_1_Assignment_X_Expr.png]]
+![[pictures/programverification/12/Lecture12_Pg221_1_Assignment_X_Expr.png]]
 
 $$sp(\phi, x := e) \equiv \exists x_{\text{old}}. \phi[x \mapsto x_{\text{old}}] \wedge x = e[x \mapsto x_{\text{old}}]$$
 - *Intuition*: We "save" the old value of $x$ as $x_{\text{old}}$. The new state is one where the old $\phi$ was true (using $x_{\text{old}}$) and the new $x$ is the result of the expression.
 
 ### 2. Havoc: `havoc x`
-![[../../pictures/programverifaction/12/Lecture12_Pg284_2_Havoc_Havoc_X.png]]
+![[pictures/programverification/12/Lecture12_Pg284_2_Havoc_Havoc_X.png]]
 
 $$sp(\phi, \text{havoc } x) \equiv \exists x_{\text{old}}. \phi[x \mapsto x_{\text{old}}]$$
 - *Intuition*: We lose all specific information about $x$, but everything else in $\phi$ remains true.
@@ -49,7 +49,7 @@ $$sp(\phi, \text{assume } P) \equiv \phi \wedge P$$
 $wp(S, \psi)$ calculates the "least restrictive" condition required to guarantee $\psi$ after $S$.
 
 ### 1. Assignment: `x := expr`
-![[../../pictures/programverifaction/13/Lecture13_Pg270_1_Assignment_X_Expr.png]]
+![[pictures/programverification/13/Lecture13_Pg270_1_Assignment_X_Expr.png]]
 
 $$wp(x := e, \psi) \equiv \psi[x \mapsto e]$$
 - *Intuition*: This is exactly the same as the Hoare Assignment Axiom! Just substitute the expression into the postcondition.

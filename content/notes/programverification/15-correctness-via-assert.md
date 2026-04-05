@@ -25,7 +25,7 @@ date: 2025-06-30
 - **Error Locations**: We verification tools look for a path from the initial location to a special **Error Location** ($\ell_{\text{err}}$) created by these asserts.
 
 ## The `assert` Statement
-![[../../pictures/programverifaction/15/Lecture15_Pg388_The_Assert_Statement.png]]
+![[pictures/programverification/15/Lecture15_Pg388_The_Assert_Statement.png]]
 
 
 In Boogie and Boostan, `assert expr;` is a fundamental building block.
@@ -47,13 +47,13 @@ assert x >= 0;
 ---
 
 ## CFG with Error Locations
-![[../../pictures/programverifaction/15/Lecture15_Pg391_Cfg_With_Error_Locations.png]]
+![[pictures/programverification/15/Lecture15_Pg391_Cfg_With_Error_Locations.png]]
 
 
 When we translate a program with asserts into a Control-Flow Graph (CFG), we add **Error Locations**.
 
 ### Translation of `assert expr;`
-![[../../pictures/programverifaction/15/Lecture15_Pg292_Translation_Of_Assert_Expr.png]]
+![[pictures/programverification/15/Lecture15_Pg292_Translation_Of_Assert_Expr.png]]
 
 For a location $\ell_{init}$, an `assert expr;` creates two outgoing transitions:
 1.  **Success**: $(\ell_{init}, \text{assume expr}, \ell_{ex})$ (Path continues).
