@@ -9,7 +9,7 @@ tags:
 date: 2025-06-15
 ---
 
-[[index|Back to Program Verification Index]] | [[12-control-flow-graphs|Previous: (y-12) Control-Flow Graphs]] | [[14-bmc|Next: (y-14) Bounded Model Checking]]
+[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/12-control-flow-graphs|Previous: (y-12) Control-Flow Graphs]] | [[notes/programverification/14-bmc|Next: (y-14) Bounded Model Checking]]
 
 ## Mental Model for Predicate Transformers
 
@@ -79,4 +79,4 @@ When we compute $sp$ forward, we often end up with many existential quantifiers 
 6.  **Verification**: To prove `{P} S {Q}`, we check if $sp(P, S) \to Q$ (or if $P \to wp(S, Q)$).
 
 ---
-[[index|Back to Program Verification Index]] | [[12-control-flow-graphs|Previous: (y-12) Control-Flow Graphs]] | [[14-bmc|Next: (y-14) Bounded Model Checking]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/12-control-flow-graphs|Previous: (y-12) Control-Flow Graphs]] | [[notes/programverification/14-bmc|Next: (y-14) Bounded Model Checking]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

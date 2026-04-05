@@ -9,7 +9,7 @@ tags:
 date: 2025-07-09
 ---
 
-[[index|Back to Program Verification Index]] | [[15-correctness-via-assert|Previous: (y-15) Correctness via Assert Statements]] | [[17-infeasibility-and-cegar|Next: (y-17) Infeasibility Proofs and CEGAR]]
+[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/15-correctness-via-assert|Previous: (y-15) Correctness via Assert Statements]] | [[notes/programverification/17-infeasibility-and-cegar|Next: (y-17) Infeasibility Proofs and CEGAR]]
 
 ## Mental Model for Abstractions
 
@@ -71,4 +71,4 @@ An ARG is a **Safety Proof** if:
 5.  **The Guesswork**: The main challenge in verification is finding a "good" set $B$ that is precise enough to prove safety but small enough to be efficient.
 
 ---
-[[index|Back to Program Verification Index]] | [[15-correctness-via-assert|Previous: (y-15) Correctness via Assert Statements]] | [[17-infeasibility-and-cegar|Next: (y-17) Infeasibility Proofs and CEGAR]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/15-correctness-via-assert|Previous: (y-15) Correctness via Assert Statements]] | [[notes/programverification/17-infeasibility-and-cegar|Next: (y-17) Infeasibility Proofs and CEGAR]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

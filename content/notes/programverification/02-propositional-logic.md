@@ -8,7 +8,7 @@ tags:
 date: 2026-04-09
 ---
 
-[[index|Back to Program Verification Index]] | [[01-introduction|Previous: (y-01) Introduction to Program Verification]] | [[03-first-order-logic|Next: (y-03) First-Order Logic]]
+[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/01-introduction|Previous: (y-01) Introduction to Program Verification]] | [[notes/programverification/03-first-order-logic|Next: (y-03) First-Order Logic]]
 
 ## Mental Model for Propositional Logic
 
@@ -159,4 +159,4 @@ A formal proof is like a game of LEGO. You start with your base blocks (axioms) 
 5. **Proof Systems**: Mechanical rules for human (or machine) reasoning.
 
 ---
-[[index|Back to Program Verification Index]] | [[01-introduction|Previous: (y-01) Introduction to Program Verification]] | [[03-first-order-logic|Next: (y-03) First-Order Logic]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/01-introduction|Previous: (y-01) Introduction to Program Verification]] | [[notes/programverification/03-first-order-logic|Next: (y-03) First-Order Logic]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

@@ -9,7 +9,7 @@ tags:
 date: 2025-07-20
 ---
 
-[[index|Back to Program Verification Index]] | [[18-trace-abstraction-and-automata|Previous: (y-18) Trace Abstraction and Floyd-Hoare Automata]]
+[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/18-trace-abstraction-and-automata|Previous: (y-18) Trace Abstraction and Floyd-Hoare Automata]]
 
 ## Mental Model for Invariant Synthesis
 
@@ -87,4 +87,4 @@ Imagine you have two points (Initial and Error) and you need to build a "wall" (
 5.  Verification is complete when we have a mathematical reason ($I$) for why no error can occur.
 
 ---
-[[index|Back to Program Verification Index]] | [[18-trace-abstraction-and-automata|Previous: (y-18) Trace Abstraction and Floyd-Hoare Automata]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/18-trace-abstraction-and-automata|Previous: (y-18) Trace Abstraction and Floyd-Hoare Automata]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

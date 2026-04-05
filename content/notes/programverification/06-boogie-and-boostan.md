@@ -9,7 +9,7 @@ tags:
 date: 2026-04-30
 ---
 
-[[index|Back to Program Verification Index]] | [[05-smt-lib|Previous: (y-05) SMT-LIB]] | [[07-relational-semantics|Next: (y-07) Relational Semantics]]
+[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/05-smt-lib|Previous: (y-05) SMT-LIB]] | [[notes/programverification/07-relational-semantics|Next: (y-07) Relational Semantics]]
 
 ## Mental Model for Boogie and Boostan
 
@@ -120,4 +120,4 @@ Why do we limit Boostan to only a few commands?
 5.  **Boogaloo** helps us debug our Boogie programs before we run a full verifier.
 
 ---
-[[index|Back to Program Verification Index]] | [[05-smt-lib|Previous: (y-05) SMT-LIB]] | [[07-relational-semantics|Next: (y-07) Relational Semantics]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/05-smt-lib|Previous: (y-05) SMT-LIB]] | [[notes/programverification/07-relational-semantics|Next: (y-07) Relational Semantics]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

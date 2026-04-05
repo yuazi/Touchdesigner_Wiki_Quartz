@@ -9,7 +9,7 @@ tags:
 date: 2025-06-30
 ---
 
-[[index|Back to Program Verification Index]] | [[14-bmc|Previous: (y-14) Bounded Model Checking]] | [[16-abstractions-and-arg|Next: (y-16) Abstractions and ARG]]
+[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/14-bmc|Previous: (y-14) Bounded Model Checking]] | [[notes/programverification/16-abstractions-and-arg|Next: (y-16) Abstractions and ARG]]
 
 ## Mental Model for Assert Statements
 
@@ -81,4 +81,4 @@ Imagine a program as a building.
 5.  **Safety**: Proving a program is safe means proving that its error locations are **unreachable**.
 
 ---
-[[index|Back to Program Verification Index]] | [[14-bmc|Previous: (y-14) Bounded Model Checking]] | [[16-abstractions-and-arg|Next: (y-16) Abstractions and ARG]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/14-bmc|Previous: (y-14) Bounded Model Checking]] | [[notes/programverification/16-abstractions-and-arg|Next: (y-16) Abstractions and ARG]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

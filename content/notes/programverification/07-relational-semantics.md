@@ -9,7 +9,7 @@ tags:
 date: 2025-05-05
 ---
 
-[[index|Back to Program Verification Index]] | [[06-boogie-and-boostan|Previous: (y-06) Boogie and Boostan]] | [[08-hoare-proof-system|Next: (y-08) Hoare Proof System]]
+[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/06-boogie-and-boostan|Previous: (y-06) Boogie and Boostan]] | [[notes/programverification/08-hoare-proof-system|Next: (y-08) Hoare Proof System]]
 
 ## Mental Model for Relational Semantics
 
@@ -101,4 +101,4 @@ Where $\text{post}(Y, R) = \{ s' \mid \exists s \in Y, (s, s') \in R \}$.
 5.  **Correctness**: The set of reachable final states must be a subset of the desired postcondition.
 
 ---
-[[index|Back to Program Verification Index]] | [[06-boogie-and-boostan|Previous: (y-06) Boogie and Boostan]] | [[08-hoare-proof-system|Next: (y-08) Hoare Proof System]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/06-boogie-and-boostan|Previous: (y-06) Boogie and Boostan]] | [[notes/programverification/08-hoare-proof-system|Next: (y-08) Hoare Proof System]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

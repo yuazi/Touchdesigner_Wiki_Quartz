@@ -9,7 +9,7 @@ tags:
 date: 2025-05-26
 ---
 
-[[index|Back to Program Verification Index]] | [[09-ultimate-referee|Previous: (y-09) Ultimate Referee]] | [[11-nondeterminism-havoc-assume|Next: (y-11) Nondeterminism: Havoc and Assume]]
+[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/09-ultimate-referee|Previous: (y-09) Ultimate Referee]] | [[notes/programverification/11-nondeterminism-havoc-assume|Next: (y-11) Nondeterminism: Havoc and Assume]]
 
 ## Mental Model for Arrays
 ![[pictures/programverification/09/Lecture09_Pg257_Mental_Model_For_Arrays.png]]
@@ -85,4 +85,4 @@ To prove that `{ \text{select}(a, 5) = 42 }` is a postcondition for `a[5] := 42`
 5.  **Hoare Logic** handles arrays by treating the update as a substitution of the entire array object.
 
 ---
-[[index|Back to Program Verification Index]] | [[09-ultimate-referee|Previous: (y-09) Ultimate Referee]] | [[11-nondeterminism-havoc-assume|Next: (y-11) Nondeterminism: Havoc and Assume]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/09-ultimate-referee|Previous: (y-09) Ultimate Referee]] | [[notes/programverification/11-nondeterminism-havoc-assume|Next: (y-11) Nondeterminism: Havoc and Assume]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

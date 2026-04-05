@@ -8,7 +8,7 @@ tags:
 date: 2026-04-14
 ---
 
-[[index|Back to Program Verification Index]] | [[02-propositional-logic|Previous: (y-02) Propositional Logic]] | [[04-first-order-theories|Next: (y-04) First-Order Theories]]
+[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/02-propositional-logic|Previous: (y-02) Propositional Logic]] | [[notes/programverification/04-first-order-theories|Next: (y-04) First-Order Theories]]
 
 ## Mental Model for First-Order Logic
 
@@ -144,4 +144,4 @@ Let $\Gamma = \{\forall x,y,z. p(x,y) \wedge p(y,z) \to p(x,z), \forall x,y. p(x
 4.  **Decidability**: Satisfiability in FOL is **undecidable**, but Validity is **semi-decidable**.
 
 ---
-[[index|Back to Program Verification Index]] | [[02-propositional-logic|Previous: (y-02) Propositional Logic]] | [[04-first-order-theories|Next: (y-04) First-Order Theories]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/02-propositional-logic|Previous: (y-02) Propositional Logic]] | [[notes/programverification/04-first-order-theories|Next: (y-04) First-Order Theories]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
