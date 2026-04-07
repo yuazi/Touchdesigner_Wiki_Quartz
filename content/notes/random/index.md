@@ -18,6 +18,7 @@ The sensory and the mathematical. A mix of strange attractors, the visceral focu
 - [[notes/random/motorcycles|(y-) Motorcycles]] — Notes on riding and the focus it brings.
 - [[notes/random/games|(y-) Gaming]] — A mix of tactical precision and a bit of chaotic storytelling.
 - [[notes/random/perfumes|(y-) Perfumes]] — A different kind of sensory exploration.
+- [[notes/random/matcha-coffee|(y-) Matcha and Coffee]] — Notes on the ritual and contrast of caffeine.
 
 ---
 [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

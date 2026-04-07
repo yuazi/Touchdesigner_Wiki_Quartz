@@ -51,6 +51,7 @@ A collection of notes and random thoughts—seedlings, growing ideas, and evergr
 - [[notes/random/motorcycles|(y-) Motorcycles]] — The visceral focus of the open road and the mechanics of riding.
 - [[notes/random/games|(y-) Gaming]] — A mix of tactical precision and a bit of chaotic storytelling.
 - [[notes/random/perfumes|(y-) Perfumes]] — Notes on niche fragrances and the chemistry of scent.
+- [[notes/random/matcha-coffee|(y-) Matcha and Coffee]] — Notes on the ritual and contrast of caffeine.
 - [[work/slidelink|(y-) SlideLink]] — Domain-agnostic tool for aligning lecture notes with PDF course slides.
 - [[work/sudokusolver|(y-) Sudoku Solver]] — GNN-based solver using node classification to solve Sudoku puzzles.
 
