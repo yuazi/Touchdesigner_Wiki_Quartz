@@ -7,98 +7,103 @@ tags:
   - transformations
 date: 2026-04-14
 ---
-[[notes/realtimegraphics/03_gpu_pipeline|Back: (y-03) Graphics Pipeline]] | [[notes/realtimegraphics/index|RTG Index]]
+[[notes/realtimegraphics/03_gpu_architecture_parallelism|Back: (y-03) GPU Architecture]] | [[notes/realtimegraphics/index|RTG Index]]
 
-## Mental Model First: The World is a Matrix
+## Mental Model First: Geometry as Data
 
-Every 3D object you see is essentially just a list of numbers. To move them, scale them, or view them from a camera, we perform matrix multiplications. The goal of this "primer" is to understand the math that turns those raw numbers into a final pixel.
-
----
-
-## 1. Homogeneous Coordinates ($w$)
-
-In 3D, we use $4 \times 4$ matrices for $3 \times 1$ vectors. Why the extra dimension?
-
-- **The Problem**: You cannot represent "Translation" as a $3 \times 3$ matrix multiplication. Rotation is linear, but translation is not.
-- **The Solution ($w$)**: By adding a 4th component, we can perform all transformations (Rotation, Scale, Translation) as a single matrix operation.
-  - **Points**: $w = 1$. Moving a point changes its location.
-  - **Vectors**: $w = 0$. Moving a vector doesn't change it (it has no position, only direction).
+- **The GPU is a Matrix Machine**: Everything in 3D graphics—movement, rotation, perspective—is just a sequence of $4 \times 4$ matrix multiplications.
+- **Homogeneous Coordinates**: We add a 4th dimension ($w$) to our 3D vectors to make translation and perspective projection possible with simple linear math.
+- **Rasterization is Interpolation**: We only calculate colors/normals at the three corners of a triangle. The hardware then uses **Barycentric Coordinates** to smoothly fill in every pixel in between.
 
 ---
 
-## 2. The Transformation Chain
+## 1. The Transformation Pipeline
 
-A vertex goes through a "pipeline" of coordinate spaces:
+![[L04_Pg-08.jpg]]
 
-1. **Object Space**: The coordinates as defined in the 3D model (e.g., $(0,0,0)$ is the center of the car).
-2. **World Space**: Where the car is placed in the scene. (**Model Matrix**)
-3. **View Space**: Where the car is relative to the camera. (**View Matrix**)
-4. **Clip Space**: The result of the **Projection Matrix**. This determines what's in the camera's FOV.
-5. **NDC (Normalized Device Coordinates)**: Everything is now between $-1$ and $1$.
-6. **Screen Space**: Mapped to the actual pixel width and height of your monitor.
+<p class="image-caption">L04_Pg-08: The journey of a vertex from a local model coordinate to a final pixel on your screen.</p>
+
+1. **Model Space**: Local coordinates (e.g., $(0,0,0)$ is the center of the car).
+2. **World Space**: Objects placed in the scene (Car is at $(10, 5, -20)$).
+3. **View Space (Camera Space)**: Everything relative to the camera lens.
+4. **Clip Space**: After applying projection; coordinates are ready for culling.
+5. **NDC (Normalized Device Coordinates)**: After $w$-divide. Everything is in a $[-1, 1]$ cube.
+6. **Viewport Space**: Actual screen coordinates (e.g., $(1920, 1080)$).
 
 ---
 
-## 3. Projection: Flattening the World
+## 2. Core Matrix Math
 
-### Orthographic Projection
-- Used for engineering (CAD) and UI.
-- No perspective distortion; objects far away are the same size as objects close up.
+### Translation, Scaling, Rotation
+We use **Homogeneous Coordinates** $(x, y, z, w)$ to unify these operations.
+
+- **Translation**:
+  $$ \begin{bmatrix} 1 & 0 & 0 & t_x \\ 0 & 1 & 0 & t_y \\ 0 & 0 & 1 & t_z \\ 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ z \\ 1 \end{bmatrix} = \begin{bmatrix} x + t_x \\ y + t_y \\ z + t_z \\ 1 \end{bmatrix} $$
 
 ### Perspective Projection
-- Mimics the human eye. 
-- Farther objects appear smaller.
-- The projection matrix is a frustum (a pyramid with the top cut off). 
+![[L04_Pg-18.jpg]]
 
-**💡 Math Trick**: Perspective division happens automatically in hardware. After the vertex shader, the GPU divides the $x, y, z$ by $w$. This "squashes" the world into the viewing cube.
+<p class="image-caption">L04_Pg-18: Perspective projection mimics how a camera lens (or human eye) works: objects get smaller as they get further away.</p>
 
----
-
-## 4. Visibility: Clipping & Culling
-
-GPUs don't waste time drawing what you can't see.
-
-- **Frustum Culling**: Discarding entire objects outside the camera's viewing pyramid (done on CPU).
-- **Back-Face Culling**: If a triangle's normal points away from the camera, it's not visible. The GPU skips it.
-- **Z-Buffer (Depth Buffer)**: Each pixel stores its "depth" ($1/z$). If a new pixel is closer, it overwrites the old one. If it's further, it's discarded.
+The key is that $x$ and $y$ are divided by $z$. In a matrix, we store $z$ in the $w$ component, and the hardware later performs the **W-Divide**:
+$$ x_{ndc} = x_{clip} / w_{clip} $$
 
 ---
 
-## 5. Shading Models
+## 3. Visibility & Interpolation
 
-### Lambertian (Diffuse)
-The simplest model for matte surfaces.
-$$I = L \cdot \max(0, n \cdot l)$$
-- $n$: Surface normal.
-- $l$: Vector pointing to the light.
-- **Intuition**: Surfaces directly facing the light are bright; those at an angle are dimmer.
+### The Z-Buffer
+![[L04_Pg-28.jpg]]
 
-### Blinn-Phong (Specular Highlights)
-Adds "shininess" to objects. 
-- Uses the **Half-vector** $h$ (the average of the light vector and the view vector).
-- The "dot product" of the normal and the half-vector determines the specular highlight.
+<p class="image-caption">L04_Pg-28: The Z-buffer stores the depth of the closest object at every pixel to handle occlusions.</p>
 
----
+- **💡 Intuition**: To keep things fast, the GPU doesn't sort triangles. It just draws them and keeps a "depth map." If a new pixel is closer than the stored value, it's drawn; otherwise, it's discarded.
 
-## 6. Textures: Mipmapping & Filtering
+### Barycentric Coordinates
+![[L04_Pg-31.jpg]]
 
-Textures are just 2D images wrapped around 3D models.
+<p class="image-caption">L04_Pg-31: Barycentric coordinates allow us to find any point inside a triangle using weights $(\lambda_1, \lambda_2, \lambda_3)$.</p>
 
-- **UV Mapping**: Assigning coordinates $(u,v)$ between $0$ and $1$ to every vertex.
-- **Mipmapping**: Pre-calculating smaller versions of a texture. If an object is far away, the GPU uses a smaller version to avoid "shimmering" (aliasing).
-- **Anisotropic Filtering**: Improves texture clarity on surfaces viewed at sharp angles (like a road extending into the distance).
+Any point $P$ inside $\triangle V_1 V_2 V_3$ is:
+$$ P = \lambda_1 V_1 + \lambda_2 V_2 + \lambda_3 V_3, \quad \text{where } \lambda_1 + \lambda_2 + \lambda_3 = 1 $$
 
 ---
 
-## 7. Alpha Blending
+## 4. Shading Models
 
-How we handle transparency. The most common formula is **Source Alpha**:
-$$C_{final} = \alpha_s \cdot C_s + (1 - \alpha_s) \cdot C_d$$
-- $C_s$: New (source) color.
-- $C_d$: Existing (destination) color in the buffer.
-- $\alpha_s$: Transparency of the new pixel.
+### Lambert (Diffuse)
+![[L04_Pg-35.jpg]]
 
-**⚠️ Warning**: For alpha blending to work correctly, you **must** draw your objects from back to front. Otherwise, the depth test will discard transparent pixels behind them.
+<p class="image-caption">L04_Pg-35: Diffuse shading depends only on the angle between the surface normal and the light source.</p>
+
+$$ I = k_d \cdot \max(0, \mathbf{n} \cdot \mathbf{l}) $$
+
+### Phong (Specular)
+![[L04_Pg-36.jpg]]
+
+<p class="image-caption">L04_Pg-36: Specular highlights depend on the viewer's position relative to the reflected light ray.</p>
+
+---
+
+## 5. Textures & Blending
+
+### Mip-mapping
+![[L04_Pg-40.jpg]]
+
+<p class="image-caption">L04_Pg-40: Mip-maps are pre-filtered, smaller versions of textures used to prevent aliasing (shimmering) at a distance.</p>
+
+### Alpha Blending (Transparency)
+![[L04_Pg-43.jpg]]
+
+<p class="image-caption">L04_Pg-43: Alpha blending requires drawing objects from back-to-front for correct results.</p>
+
+---
+
+### Applied Exam Focus
+- **Transformation Pipeline**: Be able to name all spaces in order (Model $\to$ World $\to$ View $\to$ Clip $\to$ NDC $\to$ Viewport).
+- **Perspective Division**: Understand that perspective happens because of the **$w$-divide**, not just the matrix multiplication.
+- **Barycentric Interpolation**: Know that the hardware uses this to interpolate UVs and Normals across a triangle.
+- **Alpha Blending**: Remember the **Back-to-Front** requirement for correct transparency.
 
 ---
 [[notes/realtimegraphics/index|(y) Back to RTG Index]]

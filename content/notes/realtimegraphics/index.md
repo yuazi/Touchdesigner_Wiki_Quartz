@@ -13,8 +13,8 @@ date: 2026-04-14
 ## Lecture Topics
 
 - [[notes/realtimegraphics/01_introduction|(y-) 01_introduction]]: Why Real-Time Graphics? Course overview and lab exercises.
-- [[notes/realtimegraphics/02_gpu_overview|(y-) 02_gpu_overview]]: GPU history, architecture, and the "Shoe Factory" analogy.
-- [[notes/realtimegraphics/03_gpu_pipeline|(y-) 03_gpu_pipeline]]: Detailed pipeline stages and modern API vs. OpenGL.
+- [[notes/realtimegraphics/02_graphics_pipeline|(y-) 02_graphics_pipeline]]: GPU history, architecture, and the "Shoe Factory" analogy.
+- [[notes/realtimegraphics/03_gpu_architecture_parallelism|(y-) 03_gpu_architecture_parallelism]]: Detailed pipeline stages and modern API vs. OpenGL.
 - [[notes/realtimegraphics/04_cg_primer|(y-) 04_cg_primer]]: Math foundations, transformations, and shading models.
 - **Special Effects**: 2D and 3D shading effects.
 - **Global Illumination**: Shadows, high dynamic range (HDR), and realistic lighting.

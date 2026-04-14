@@ -4,75 +4,99 @@ tags:
   - rtg
   - graphics
   - introduction
+  - throughput
   - master
 date: 2026-04-14
 ---
-[[notes/realtimegraphics/index|Back to RTG Index]] | [[notes/realtimegraphics/02_gpu_overview|Next: (y-02) GPU Overview]]
+[[notes/realtimegraphics/index|Back to RTG Index]] | [[notes/realtimegraphics/02_graphics_pipeline|Next: (y-02) Graphics Pipeline]]
 
 ## Mental Model First
 
-- **Real-Time is about Throughput**: Unlike offline rendering (Pixar), where a frame can take hours, we have ~6.9ms (at 144Hz) to finish everything.
-- **The CPU is the Director, the GPU is the Factory**: The CPU handles the logic, AI, and physics, then sends "draw calls" to the GPU, which mass-produces pixels.
-- **Abstractions Matter**: Modern APIs (Vulkan) are verbose because they remove the "magic" of the driver. You now have to manage memory and synchronization yourself.
-- **Graphics is Math in Motion**: Everything you see is a series of matrix multiplications and dot products executed billions of times per second.
+- **Graphics is a Throughput Problem**: Unlike a CPU which is a "sprint" for low latency, a GPU is a "marathon" for massive data-parallel throughput.
+- **The Magic of 60Hz**: At 60 frames per second, the illusion of motion becomes solid to the human eye. To achieve this at 4K resolution, you have only **16.6 milliseconds** to compute over 8 million pixels.
+- **Abstraction is Key**: We don't write raw Vulkan because it's too much boilerplate; we use a modern abstraction (Diligent Engine) to focus on the **algorithms** rather than the **API plumbing**.
+
+## Introduction
+
+**Real-Time Graphics** is about generating imagery so fast that the user can interact with it. 
+
+I use the [[work/slidelink|SlideLink]] tool I built to automatically align these notes with the original lecture slides.
 
 ---
 
-## Why Real-Time Graphics?
+## The "Numbers Problem" (Math)
 
-Machine perception and interaction require visual feedback. Whether it's **CAD**, **Games**, **Medical Visualization**, or **CGI Previews**, the goal is the same: compute millions of pixels in milliseconds.
+![[L01_Pg-08.jpg]]
 
-### The Numbers Problem
+<p class="image-caption">L01_Pg-08: The sheer volume of data is the primary engineering challenge in real-time rendering.</p>
 
-Consider 4K gaming at 144 Hz:
-- **Resolution**: $3840 \times 2160 = 8.3 \text{ million pixels}$.
-- **Refresh Rate**: $144 \text{ images/second}$.
-- **Throughput**: $8.3 \text{ Mpx} \times 144 \text{ Hz} \approx 1.2 \text{ Gigatexel/second}$ of just output data.
-- **The Reality**: Each pixel might require hundreds of shading operations, texture lookups, and depth tests. We are talking about **TFLOPS** (Teraflops) of computation.
+To understand why we need GPUs, look at the math for a modern 4K display:
 
-### Specialized Hardware vs. Parallelization
-To solve this, we don't use faster serial processors; we use thousands of slower, specialized cores.
-- **CPU**: Optimized for low-latency branch prediction and complex logic.
-- **GPU**: Optimized for massive data-parallel throughput.
+- **Resolution**: $3840 \times 2160 = 8.3$ Million pixels.
+- **Refresh Rate**: 60 Hz (standard) or 144 Hz (gaming).
+- **Anti-Aliasing**: 4x Multisamples per pixel.
+
+$$8.3 \text{M pixels} \times 60 \text{ frames/sec} \times 4 \text{ samples} \approx \mathbf{2 \text{ Billion samples per second}}$$
+
+Each sample requires multiple math operations (lighting, texturing, blending). A standard CPU core cannot handle billions of complex operations per second; we need **massive parallelization**.
+
+### 💡 Intuition: Throughput vs. Latency
+
+- **CPU (Latency-Oriented)**: A high-speed delivery truck. Fast at moving one package, but carries only a few at a time. If the truck stops for a red light (memory stall), everything waits.
+- **GPU (Throughput-Oriented)**: A massive freight train. Much slower than a truck, but carries 10,000 packages. Even if the train slows down, the total number of packages delivered per hour is enormous.
 
 ---
 
-## Course Tools: Diligent Engine
+## Three Decades of Progress (The Hardware Shift)
 
-While we learn the low-level concepts of Vulkan and DX12, we use **Diligent Engine** as a modern abstraction layer.
+![[L01_Pg-07.jpg]]
 
-- **Cross-Platform**: Works on Vulkan, OpenGL, DX11/12, and Metal.
-- **Simplification**: It provides a unified way to handle **Pipeline State Objects (PSO)** and **Resource Descriptors** without the 2000+ lines of "boilerplate" required for a basic Vulkan triangle.
-- **Shader Support**: Supports both **GLSL** and **HLSL**, allowing us to focus on the math of the Fragment Shader rather than API-specific plumbing.
+<p class="image-caption">L01_Pg-07: Visualization of the 30-year jump from supercomputers to consumer hardware.</p>
+
+| Feature | **1992: SGI RealityMonster** | **2026: GeForce RTX 5090** |
+| :--- | :--- | :--- |
+| **Form Factor** | 8 Racks (Room-sized) | Single PCIe Card |
+| **Power** | Megawatts | ~450–600 Watts |
+| **Cost** | ~$500,000 (1992 money) | ~$1,500–2,500 |
+| **Performance** | ~80 Million Triangles/sec | ~2–4 **Billion** Triangles/sec |
 
 ---
 
 ## Lab Exercises: The Roadmap to a Renderer
 
-The lab is designed as a series of building blocks:
+![[L01_Pg-14.jpg]]
+
+<p class="image-caption">L01_Pg-14: The 4-step journey you will take in the lab to build a modern renderer.</p>
+
+The lab is managed by tutors **Fabian Schmierer**, **Yiangyu Wang**, and **Xuening Tian**.
+- **Requirement**: You must pass every exercise with **> 60% individually**.
 
 1. **Basic Rendering**:
-   - Setting up **Indexed Buffers** (saving memory).
-   - Creating a **Rotating Cube** (Model-View-Projection matrix math).
-   - **Texturing**: Mapping 2D images onto 3D surfaces.
-2. **Post-Processing**:
-   - Learning "Screen-Space" techniques.
-   - **Bilateral Upscaling**: Intelligent scaling that preserves edges.
-   - **Anti-Aliasing**: Fighting the "jaggies" (SSAA/MSAA).
+   - **Indexed Buffers**: $N$ vertices, but $3N$ indices. Saves memory by reusing vertices.
+   - **MVP Transformations**: Moving from Model Space $\to$ World Space $\to$ View Space $\to$ Clip Space.
+2. **Screen-Space Post-Processing**:
+   - **Bilateral Upscaling**: Using edge-detection to scale images without blurring.
+   - **MSAA**: Using sub-pixel samples to fight the "jaggies."
 3. **Particle Systems**:
-   - Moving simulation to the GPU using **Compute Shaders**.
-   - **GPU Instancing**: Drawing thousands of objects (billboards) in a single draw call.
-4. **Advanced Project**:
-   - **Hardware Raytracing**: Utilizing RT cores for shadows and reflections.
-   - **SSAO (Screen Space Ambient Occlusion)**: Faking global illumination by darkening crevices.
+   - **GPU Instancing**: Drawing 100,000 leaves or particles in a single draw call.
+   - **Compute Shaders**: Moving the physics simulation off the CPU.
+4. **Final Project**:
+   - **Hardware Raytracing**: Using the RT cores for reflections.
+   - **SSAO**: Screen Space Ambient Occlusion for realistic "soft shadows" in corners.
 
 ---
 
-## Prerequisites & Exam
+## ⚠️ Common Pitfalls: The Bottleneck Trap
 
-- **Knowledge**: Assumes you know basic Computer Graphics (Rasterization, Shading).
-- **Programming**: Strong **C++** is essential. You'll be dealing with pointers, memory layouts, and high-performance code.
-- **Exam**: Usually a written exam, focusing on the architecture and the math behind the rendering pipeline.
+Real-time graphics performance is a game of **bottlenecks**. You can have the fastest GPU in the world, but your framerate will still be low if:
+1. **CPU Bound**: The CPU is too slow at preparing the command buffers (Draw Calls).
+2. **Memory Bound**: You are trying to move too many textures from VRAM to the ALUs (Bandwidth).
+3. **Fill-Rate Bound**: You are drawing too many transparent objects on top of each other (**Overdraw**).
+
+### Applied Exam Focus
+- **Throughput Calculation**: Be able to calculate the required gigapixels/sec for a given resolution and refresh rate.
+- **SGI vs. GPU Comparison**: Understand why specialized hardware (fixed-function rasterizers) won over general-purpose supercomputers.
+- **Course Administration**: 60% individual pass requirement for exercises; submissions via the university GitHub.
 
 ---
 [[notes/realtimegraphics/index|(y) Back to RTG Index]]
