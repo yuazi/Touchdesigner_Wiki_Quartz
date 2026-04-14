@@ -12,6 +12,12 @@ A collection of notes and random thoughts—seedlings, growing ideas, and evergr
 
 ## Courses
 
+> [!abstract] [[notes/realtimegraphics/index|(y) Real-Time Graphics (RTG)]]
+> Study hub for the RTG master's course, focusing on real-time CGI, the Vulkan API, and advanced rendering techniques.
+
+> [!abstract] [[notes/virtualaugmentedreality/index|(y) VR/AR]]
+> Explore the intersection of hardware, software, and human perception in immersive VR/AR environments.
+
 > [!abstract] [[notes/mlp/index|(y) Machine Perception & Learning (MPL)]]
 > Study hub for the MPL master's course, covering deep learning from CNNs to Diffusion models.
 
