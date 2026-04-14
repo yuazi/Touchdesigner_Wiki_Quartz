@@ -19,6 +19,7 @@ A collection of projects, experiments, and professional work. These are things I
 
 ## Archive
 
+- **[[mbclient|MB Client]]**: a digital onboarding portal for law firms, winning 2nd place (🥈) at LIC8.
 - **[[sudokusolver|Sudoku Solver]]**: a Graph Neural Network that learns to solve Sudoku puzzles using node classification. ([GitHub](https://github.com/yuazi/sudoku_solver))
 - **[[slidelink|SlideLink]]**: a domain-agnostic CLI tool for contextually aligning lecture notes with PDF course slides using TF-IDF and visual heuristics. ([GitHub](https://github.com/yuazi/SlideLink))
 - **[[keyboardai|Keyboard AI]]**: a small Python CLI that learns from a text corpus and evolves keyboard layouts against an ergonomic scoring model. ([GitHub](https://github.com/yuazi/keyboard-AI))

@@ -11,9 +11,15 @@ A running log of what I've been working on, learning, and building, ordered by t
 
 ## 2026
 
+### April
+
+- Won **2nd place (🥈)** at **LIC8 (Legal Innovation Challenge 8)** in Stuttgart.
+  - Developed **[[work/mbclient|MB Client]]**, a digital onboarding portal for the law firm Menold Bezler.
+  - Focused on streamlining client collaboration through smart imports, real-time tracking, and automated scheduling to replace email chaos.
+
 ### March
 
-- **Mar 11, 2026**: Completed major updates across the work portfolio.
+- Completed major updates across the work portfolio.
   - **[[work/attractormediapipe|AttractorMediaPipe]]**: Expanded to 9 chaotic systems with a new hybrid rendering engine (ModernGL + Datashader) and snapshot-only CLI mode.
   - **[[work/sudokusolver|Sudoku Solver]]**: Finalized the Graph Neural Network (GNN) implementation for solving puzzles via node classification.
   - **[[work/keyboardai|Keyboard AI]]**: Refined the evolutionary algorithm and scoring model for ergonomic layout optimization.
