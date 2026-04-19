@@ -34,6 +34,7 @@ A collection of notes and random thoughts—seedlings, growing ideas, and evergr
 - [[notes/tools/sioyek|(y-) Sioyek]] — PDF viewer optimized for technical documents and research papers.
 - [[notes/tools/yazi|(y-) Yazi]] — Blazing fast terminal file manager with async I/O and image previews.
 - [[notes/tools/zsh|(y-) Zsh & Powerlevel10k]] — Powerful terminal setup and framework.
+- [[notes/tools/macos-terminal|(y-) macOS Terminal]] — Essential built-in commands and utilities.
 - [[notes/tools/modern-cli|(y-) Modern CLI Tools]] — Replacements for ls, cat, and more.
 
 ## Taekwondo

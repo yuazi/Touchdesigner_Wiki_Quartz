@@ -22,6 +22,7 @@ Optimized for speed. A curated list of the terminal-centric tools I use to stay 
 - [[notes/tools/sioyek|(y-) Sioyek]] — Keyboard-driven PDF viewer for researchers.
 - [[notes/tools/yazi|(y-) Yazi]] — Blazing fast terminal file manager in Rust.
 - [[notes/tools/zsh|(y-) Zsh & Powerlevel10k]] — Powerful terminal setup and framework.
+- [[notes/tools/macos-terminal|(y-) macOS Terminal]] — Essential built-in commands and utilities.
 - [[notes/tools/modern-cli|(y-) Modern CLI Tools]] — Replacements for ls, cat, and more.
 
 ---
