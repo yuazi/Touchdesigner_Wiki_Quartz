@@ -7,7 +7,7 @@ tags:
   - definitions
 date: 2026-04-14
 ---
-[[/notes/virtualaugmentedreality/00_VR-AR|Back: (y-00) Course Organization]] | [[/notes/virtualaugmentedreality/index|VR/AR Index]]
+[[/notes/virtualaugmentedreality/00_VR-AR|Back: (y-00) Course Organization]] | [[/notes/virtualaugmentedreality/index|VR/AR Index]] | [[/notes/virtualaugmentedreality/02_VR-AR_hcd|Next: (y-02) Human-Centered Design]]
 
 ## Mental Model First: Tricking the Brain
 
