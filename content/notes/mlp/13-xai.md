@@ -9,7 +9,7 @@ tags:
   - deep-learning
 date: 2026-03-09
 ---
-[[notes/mlp/12-diffusion|Previous: L12 — Diffusion]] | [[notes/mlp/index|Back to MPL Index]]
+[[/notes/mlp/12-diffusion|Previous: L12 — Diffusion]] | [[/notes/mlp/index|Back to MPL Index]]
 
 ## Mental Model First
 
@@ -20,7 +20,7 @@ date: 2026-03-09
 
 ## Motivation
 
-![[Lecture13_Pg004_Motivation.png]]
+![[pictures/mpl/13/Lecture13_Pg004_Motivation.png]]
 
 <p class="image-caption">This is why we need XAI—especially when the model is making high-stakes decisions.</p>
 
@@ -46,7 +46,7 @@ Two approaches exist:
 
 ### Approach 1 — Inherently Interpretable Models
 
-![[Lecture13_Pg010_Approach_1_Inherently_Interpretable_Models.png]]
+![[pictures/mpl/13/Lecture13_Pg010_Approach_1_Inherently_Interpretable_Models.png]]
 
 <p class="image-caption">Some models, like decision trees, are actually pretty easy to understand right out of the box.</p>
 
@@ -57,7 +57,7 @@ Build a model that is interpretable by design: decision trees, rule lists, linea
 
 ### Approach 2 — Post-hoc Explanations
 
-![[Lecture13_Pg015_Approach_2_Post_Hoc_Explanations.png]]
+![[pictures/mpl/13/Lecture13_Pg015_Approach_2_Post_Hoc_Explanations.png]]
 
 <p class="image-caption">If the model is a black box, we have to use post-hoc methods to figure out what's going on inside.</p>
 
@@ -85,7 +85,7 @@ Saliency helps us catch models that are "right for the wrong reasons."
 
 ## Local vs. Global Explanations
 
-![[Lecture13_Pg020_Local_Vs_Global_Explanations.png]]
+![[pictures/mpl/13/Lecture13_Pg020_Local_Vs_Global_Explanations.png]]
 
 <p class="image-caption">It's helpful to compare local explanations for one instance versus global ones for the whole model.</p>
 
@@ -109,7 +109,7 @@ many predictions / whole model --> what patterns does the model rely on overall?
 
 ## Taxonomy of Post-hoc Explanation Methods
 
-![[Lecture13_Pg026_Post_Hoc_Explainability_Overview.png]]
+![[pictures/mpl/13/Lecture13_Pg026_Post_Hoc_Explainability_Overview.png]]
 
 <p class="image-caption">A taxonomy of post-hoc explainability methods, grouped by whether they explain locally or globally and by explanation type.</p>
 
@@ -132,7 +132,7 @@ Post-hoc Explainability
 
 ## Feature Importances — LIME
 
-![[Lecture13_Pg030_Feature_Importances_Lime.png]]
+![[pictures/mpl/13/Lecture13_Pg030_Feature_Importances_Lime.png]]
 
 <p class="image-caption">LIME basically builds a simple, local model to approximate how the big black box is behaving.</p>
 
@@ -182,7 +182,7 @@ image_exp, mask = explanation.get_image_and_mask(
 ## Rule-Based Explanations — Anchors
 
 
-![[Lecture13_Pg035_Rule_Based_Explanations_Anchors.png]]
+![[pictures/mpl/13/Lecture13_Pg035_Rule_Based_Explanations_Anchors.png]]
 
 <p class="image-caption">Anchors give us those "if-then" rules that act as sufficient conditions for a prediction.</p>
 
@@ -206,7 +206,7 @@ The anchor is interpretable as a human-readable condition that _reliably_ reprod
 ## Saliency Maps
 
 
-![[Lecture13_Pg039_Saliency_Maps.png]]
+![[pictures/mpl/13/Lecture13_Pg039_Saliency_Maps.png]]
 
 <p class="image-caption">Saliency maps are great for highlighting exactly which pixels or features the model is leaning on.</p>
 
@@ -217,7 +217,7 @@ Also called: feature attribution maps, heatmaps.
 ### 1. Input Gradient (Vanilla Saliency)
 
 
-![[Lecture13_Pg042_1_Input_Gradient_Vanilla_Saliency.png]]
+![[pictures/mpl/13/Lecture13_Pg042_1_Input_Gradient_Vanilla_Saliency.png]]
 
 <p class="image-caption">Vanilla saliency maps just look at the raw input gradients to see what's influential.</p>
 
@@ -242,7 +242,7 @@ saliency = x.grad.data.abs().max(dim=0).values  # collapse channels
 
 ### 2. SmoothGrad
 
-![[Lecture13_Pg043_2_Smoothgrad.png]]
+![[pictures/mpl/13/Lecture13_Pg043_2_Smoothgrad.png]]
 
 <p class="image-caption">SmoothGrad helps clean things up by averaging the gradients over some noisy copies of the input.</p>
 
@@ -254,7 +254,7 @@ where $\epsilon_i \sim \mathcal{N}(0, \sigma^2)$. Produces cleaner, more interpr
 
 ### 3. Integrated Gradients
 
-![[Lecture13_Pg089_Integrated_Gradients_Example.png]]
+![[pictures/mpl/13/Lecture13_Pg089_Integrated_Gradients_Example.png]]
 
 <p class="image-caption">Integrated Gradients is a bit more robust—it avoids saturation and satisfies that completeness axiom.</p>
 
@@ -330,7 +330,7 @@ which is the desired completeness property.
 
 ### 4. Gradient × Input
 
-![[Lecture13_Pg044_4_Gradient_Input.png]]
+![[pictures/mpl/13/Lecture13_Pg044_4_Gradient_Input.png]]
 
 <p class="image-caption">Multiplying the gradient by the input helps us account for the actual scale of each feature.</p>
 
@@ -342,7 +342,7 @@ Accounts for the magnitude of the input feature, not just its sensitivity.
 
 ### 5. Guided Backpropagation
 
-![[Lecture13_Pg048_5_Guided_Backpropagation.png]]
+![[pictures/mpl/13/Lecture13_Pg048_5_Guided_Backpropagation.png]]
 
 <p class="image-caption">Guided Backprop gives us much sharper maps by being more selective about which gradients it passes back.</p>
 
@@ -354,7 +354,7 @@ This produces sharper, less noisy maps compared to vanilla gradients.
 
 ### 6. Layer-wise Relevance Propagation (LRP)
 
-![[Lecture13_Pg050_6_Layer_Wise_Relevance_Propagation_Lrp.png]]
+![[pictures/mpl/13/Lecture13_Pg050_6_Layer_Wise_Relevance_Propagation_Lrp.png]]
 
 <p class="image-caption">LRP is all about redistributing the output score back through the layers in a conservative way.</p>
 
@@ -411,7 +411,7 @@ def grad_cam(model, x, target_class):
 
 ## Prototypes / Example-based Explanations
 
-![[Lecture13_Pg055_Prototypes_Example_Based_Explanations.png]]
+![[pictures/mpl/13/Lecture13_Pg055_Prototypes_Example_Based_Explanations.png]]
 
 <p class="image-caption">Sometimes it's easier to explain things using actual examples, like prototypes or influential samples from the training set.</p>
 
@@ -431,7 +431,7 @@ Identify which training examples had the most influence on a given test predicti
 
 ### Activation Maximisation / Feature Visualisation
 
-![[Lecture13_Pg058_Activation_Maximisation_Feature_Visualisation.png]]
+![[pictures/mpl/13/Lecture13_Pg058_Activation_Maximisation_Feature_Visualisation.png]]
 
 <p class="image-caption">We can visualize what a neuron likes by optimizing an image to maximize its activation.</p>
 
@@ -480,7 +480,7 @@ Counterfactuals are fundamentally different from saliency: saliency says _"this 
 
 ### 1. Minimum Distance Counterfactuals [Wachter et al., 2017]
 
-![[Lecture13_Pg063_1_Minimum_Distance_Counterfactuals_Wachter_Et.png]]
+![[pictures/mpl/13/Lecture13_Pg063_1_Minimum_Distance_Counterfactuals_Wachter_Et.png]]
 
 <p class="image-caption">Minimum distance counterfactuals tell you the smallest change needed to flip the outcome—super useful for recourse.</p>
 
@@ -491,7 +491,7 @@ Using **normalised Manhattan distance** penalises the total number of changes, f
 ### 2. Feasible and Least-Cost Counterfactuals [Ustun et al., 2019]
 
 
-![[Lecture13_Pg067_2_Feasible_And_Least_Cost_Counterfactuals.png]]
+![[pictures/mpl/13/Lecture13_Pg067_2_Feasible_And_Least_Cost_Counterfactuals.png]]
 
 A bare minimum-distance counterfactual can suggest impossible changes (e.g., "change your race"). Adding actionability constraints:
 
@@ -503,7 +503,7 @@ $$x^{CF} = \arg\min_{x' \in \mathcal{A}} \; \text{cost}(x, x') \quad \text{s.t.}
 
 ### 3. Causally Feasible Counterfactuals [Mahajan et al., 2019; Karimi et al., 2020]
 
-![[Lecture13_Pg068_3_Causally_Feasible_Counterfactuals_Mahajan_Et.png]]
+![[pictures/mpl/13/Lecture13_Pg068_3_Causally_Feasible_Counterfactuals_Mahajan_Et.png]]
 
 Changing one feature can be impossible without changing causally downstream features (e.g., changing _income_ should also change _debt-to-income ratio_). Use a **Structural Causal Model (SCM)**:
 
@@ -513,7 +513,7 @@ Implementation: solve via a variational autoencoder; requires access to model gr
 
 ### 4. Further Considerations
 
-![[Lecture13_Pg072_4_Further_Considerations.png]]
+![[pictures/mpl/13/Lecture13_Pg072_4_Further_Considerations.png]]
 
 | Consideration               | Details                                                                              |
 | --------------------------- | ------------------------------------------------------------------------------------ |
@@ -527,7 +527,7 @@ Implementation: solve via a variational autoencoder; requires access to model gr
 
 ### Collection of Local Explanations — SP-LIME
 
-![[Lecture13_Pg077_Collection_Of_Local_Explanations_Sp_Lime.png]]
+![[pictures/mpl/13/Lecture13_Pg077_Collection_Of_Local_Explanations_Sp_Lime.png]]
 
 <p class="image-caption">SP-LIME picks a representative set of local explanations to give you a global sense of the model.</p>
 
@@ -552,7 +552,7 @@ All instances → LIME for each → explanation matrix (N × F)
 
 ### Representation-based — Network Dissection [Bau et al., 2017]
 
-![[Lecture13_Pg080_Representation_Based_Network_Dissection_Bau_Et.png]]
+![[pictures/mpl/13/Lecture13_Pg080_Representation_Based_Network_Dissection_Bau_Et.png]]
 
 <p class="image-caption">Network Dissection helps us map internal neurons to human-readable concepts like "stripes" or "wheels".</p>
 
@@ -568,7 +568,7 @@ Determine what human-interpretable concepts are encoded by individual neurons (c
 
 ### Representational Similarity
 
-![[Lecture13_Pg081_Representational_Similarity.png]]
+![[pictures/mpl/13/Lecture13_Pg081_Representational_Similarity.png]]
 
 <p class="image-caption">Checking representational similarity helps us see how different layers or models compare to each other.</p>
 
@@ -669,7 +669,7 @@ If a _linear_ probe achieves high accuracy, the concept is **linearly decodable*
 
 ### Structured / Tabular Data
 
-![[Lecture13_Pg085_Structured_Tabular_Data.png]]
+![[pictures/mpl/13/Lecture13_Pg085_Structured_Tabular_Data.png]]
 
 <p class="image-caption">Explaining tabular data has its own set of challenges, like dealing with mixed types and discrete values.</p>
 
@@ -686,7 +686,7 @@ Common in: disease diagnosis (weight, age, glucose), credit scoring (income, pre
 ### Computer Vision
 
 
-![[Lecture13_Pg089_Computer_Vision.png]]
+![[pictures/mpl/13/Lecture13_Pg089_Computer_Vision.png]]
 
 <p class="image-caption">In computer vision, we have a ton of great tools for visualizing what the model sees.</p>
 
@@ -696,7 +696,7 @@ Applicable methods: all gradient-based saliency (Input Gradient, Guided Backprop
 
 ### Natural Language Processing
 
-![[Lecture13_Pg093_Natural_Language_Processing.png]]
+![[pictures/mpl/13/Lecture13_Pg093_Natural_Language_Processing.png]]
 
 <p class="image-caption">NLP is trickier because of the discrete nature of text, but we still have some solid interpretability methods.</p>
 
@@ -712,7 +712,7 @@ Applicable methods: all gradient-based saliency (Input Gradient, Guided Backprop
 
 ## Evaluation of Explanations
 
-![[Lecture13_Pg095_Evaluation_Of_Explanations.png]]
+![[pictures/mpl/13/Lecture13_Pg095_Evaluation_Of_Explanations.png]]
 
 <p class="image-caption">At the end of the day, we need to evaluate whether these explanations are actually helpful for humans.</p>
 
@@ -723,7 +723,7 @@ Three evaluation goals [Doshi-Velez & Kim, 2017]:
 ### 1. Understand Behaviour
 
 
-![[Lecture13_Pg102_1_Understand_Behaviour.png]]
+![[pictures/mpl/13/Lecture13_Pg102_1_Understand_Behaviour.png]]
 
 <p class="image-caption">One goal is just to understand the model's behavior—like seeing which features it really depends on.</p>
 
@@ -739,7 +739,7 @@ Three evaluation goals [Doshi-Velez & Kim, 2017]:
 ### 2. Useful for Debugging
 
 
-![[Lecture13_Pg104_2_Useful_For_Debugging.png]]
+![[pictures/mpl/13/Lecture13_Pg104_2_Useful_For_Debugging.png]]
 
 <p class="image-caption">XAI is a lifesaver for debugging, helping us catch when a model is right for the wrong reasons.</p>
 
@@ -750,7 +750,7 @@ Three evaluation goals [Doshi-Velez & Kim, 2017]:
 
 ### 3. Help Make Decisions
 
-![[Lecture13_Pg108_3_Help_Make_Decisions.png]]
+![[pictures/mpl/13/Lecture13_Pg108_3_Help_Make_Decisions.png]]
 
 <p class="image-caption">Finally, explanations should actually help us make better decisions when collaborating with AI.</p>
 
@@ -820,4 +820,4 @@ Both LIME and SHAP give you feature importance, but they do it very differently.
 - **Local vs. Global**: LIME provides **Local** explanations (for one specific image), while TCAV provides **Global** explanations (for a whole concept like "stripes").
 
 ---
-[[notes/mlp/12-diffusion|Previous: L12 — Diffusion]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/mlp/12-diffusion|Previous: L12 — Diffusion]] | [[/notes/mlp/index|Back to MPL Index]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

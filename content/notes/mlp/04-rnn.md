@@ -10,7 +10,7 @@ tags:
   - nlp
 date: 2026-03-09
 ---
-[[notes/mlp/03-vision-cnn|Previous: L03 — Vision CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/05-transformer|Next: (y-05) Transformers]]
+[[/notes/mlp/03-vision-cnn|Previous: L03 — Vision CNNs]] | [[/notes/mlp/index|Back to MPL Index]] | [[/notes/mlp/05-transformer|Next: (y-05) Transformers]]
 
 **This lecture covers:**
 
@@ -30,7 +30,7 @@ date: 2026-03-09
 
 ## RNNs — Flexibility in Architecture
 
-![[Lecture04_Pg083_Rnns_Flexibility_In_Architecture.png]]
+![[pictures/mpl/04/Lecture04_Pg083_Rnns_Flexibility_In_Architecture.png]]
 
 <p class="image-caption">RNNs are super flexible—you can map one or many inputs to one or many outputs.</p>
 
@@ -48,7 +48,7 @@ Unlike feedforward networks, RNNs can model a wide range of relationships betwee
 
 ## One-to-One: Vanilla Neural Networks
 
-![[Lecture04_Pg005_One_To_One_Vanilla_Neural_Networks.png]]
+![[pictures/mpl/04/Lecture04_Pg005_One_To_One_Vanilla_Neural_Networks.png]]
 
 <p class="image-caption">A standard one-to-one setup, just like a classic feedforward network.</p>
 
@@ -59,7 +59,7 @@ A standard feedforward network — one fixed input, one fixed output. The classi
 
 ## One-to-Many: Image Captioning
 
-![[Lecture04_Pg008_One_To_Many_Image_Captioning.png]]
+![[pictures/mpl/04/Lecture04_Pg008_One_To_Many_Image_Captioning.png]]
 
 <p class="image-caption">Image captioning is a classic one-to-many problem: one image in, a whole sentence out.</p>
 
@@ -75,7 +75,7 @@ Image → h_0 → [RNN] → "A" → [RNN] → "dog" → [RNN] → "on" → [RNN]
 
 ## Many-to-One: Sentiment Classification
 
-![[Lecture04_Pg010_Many_To_One_Sentiment_Classification.png]]
+![[pictures/mpl/04/Lecture04_Pg010_Many_To_One_Sentiment_Classification.png]]
 
 <p class="image-caption">Sentiment analysis takes a full sequence of words and boils it down to a single label.</p>
 
@@ -97,7 +97,7 @@ The entire input sequence is processed step-by-step. The **final hidden state** 
 
 ## Many-to-Many (Sync): Video Classification
 
-![[Lecture04_Pg013_Many_To_Many_Sync_Video_Classification.png]]
+![[pictures/mpl/04/Lecture04_Pg013_Many_To_Many_Sync_Video_Classification.png]]
 
 <p class="image-caption">In synchronous many-to-many, the model labels every single frame of a video as it goes.</p>
 
@@ -110,7 +110,7 @@ An output is produced at **every time step**, aligned with the input. Each frame
 
 ## Many-to-Many (Async): Machine Translation
 
-![[Lecture04_Pg012_Many_To_Many_Async_Machine_Translation.png]]
+![[pictures/mpl/04/Lecture04_Pg012_Many_To_Many_Async_Machine_Translation.png]]
 
 <p class="image-caption">Seq2Seq architectures handle translation by reading the whole sentence before starting to output.</p>
 
@@ -133,7 +133,7 @@ The final hidden state of the encoder "summarizes" the entire variable-sized inp
 
 ## The Vanilla RNN — How It Works
 
-![[Lecture04_Pg021_The_Vanilla_Rnn_How_It_Works.png]]
+![[pictures/mpl/04/Lecture04_Pg021_The_Vanilla_Rnn_How_It_Works.png]]
 
 <p class="image-caption">A vanilla RNN uses its hidden state to keep a running memory of what it's seen.</p>
 
@@ -165,7 +165,7 @@ same recurrent weights are reused at every time step
 
 ### Character-Level Language Model (Karpathy)
 
-![[Lecture04_Pg066_Character_Level_Language_Model_Karpathy.png]]
+![[pictures/mpl/04/Lecture04_Pg066_Character_Level_Language_Model_Karpathy.png]]
 
 <p class="image-caption">This model predicts the very next character based on everything it's read so far.</p>
 
@@ -186,7 +186,7 @@ After enough training, the same RNN could generate plausible **Wikipedia markup*
 
 ## Computational Graphs
 
-![[Lecture04_Pg022_Recurrent_Neural_Networks_Computational_Graph.png]]
+![[pictures/mpl/04/Lecture04_Pg022_Recurrent_Neural_Networks_Computational_Graph.png]]
 
 <p class="image-caption">The unrolled computational graph makes it clear how the same recurrent cell is reused across time steps.</p>
 
@@ -194,7 +194,7 @@ After enough training, the same RNN could generate plausible **Wikipedia markup*
 ### Many-to-Many
 
 
-![[Lecture04_Pg026_Many_To_Many.png]]
+![[pictures/mpl/04/Lecture04_Pg026_Many_To_Many.png]]
 
 <p class="image-caption">The computational graph for a many-to-many RNN, processing inputs and outputs step-by-step.</p>
 
@@ -204,7 +204,7 @@ $$L = \sum_{t=1}^{S} L_t$$
 
 ### Many-to-One
 
-![[Lecture04_Pg028_Many_To_One.png]]
+![[pictures/mpl/04/Lecture04_Pg028_Many_To_One.png]]
 
 <p class="image-caption">For many-to-one tasks, we only care about the very last output of the sequence.</p>
 
@@ -212,7 +212,7 @@ The network runs through the full sequence but only the **final hidden state** i
 
 ### One-to-Many
 
-![[Lecture04_Pg029_One_To_Many.png]]
+![[pictures/mpl/04/Lecture04_Pg029_One_To_Many.png]]
 
 <p class="image-caption">In one-to-many setups, a single initial input kicks off the entire sequence generation.</p>
 
@@ -221,7 +221,7 @@ A **fixed-size input** (e.g., an image feature vector) initializes $h_0$, and th
 ### Sequence-to-Sequence
 
 
-![[Lecture04_Pg031_Sequence_To_Sequence.png]]
+![[pictures/mpl/04/Lecture04_Pg031_Sequence_To_Sequence.png]]
 
 <p class="image-caption">The encoder's job is to read the entire input and compress it into a context vector.</p>
 
@@ -238,7 +238,7 @@ x_1 → x_2 → x_3 → [Encoder → c] → y_1 → y_2 → y_3 → y_4
 
 ### Intuition
 
-![[Lecture04_Pg034_Intuition.png]]
+![[pictures/mpl/04/Lecture04_Pg034_Intuition.png]]
 
 <p class="image-caption">BPTT is basically just regular backprop applied to a network that’s been unrolled across time.</p>
 
@@ -263,7 +263,7 @@ backpropagation through time = run the gradient through the whole unrolled chain
 
 ### The Gradient Product
 
-![[Lecture04_Pg044_The_Gradient_Product.png]]
+![[pictures/mpl/04/Lecture04_Pg044_The_Gradient_Product.png]]
 
 <p class="image-caption">This chain of multiplications is exactly why gradients can get messy in RNNs.</p>
 
@@ -290,7 +290,7 @@ Think of the backward pass in an RNN as a long game of "Telephone."
 ### Vanishing Gradients
 
 
-![[Lecture04_Pg041_Vanishing_Gradients.png]]
+![[pictures/mpl/04/Lecture04_Pg041_Vanishing_Gradients.png]]
 
 <p class="image-caption">When gradients vanish, the signal gets so weak that the model completely forgets the start of the sequence.</p>
 
@@ -307,7 +307,7 @@ Intuitively: if the repeated matrix multiplication shrinks vectors (eigenvalues 
 
 ### Exploding Gradients
 
-![[Lecture04_Pg039_Exploding_Gradients.png]]
+![[pictures/mpl/04/Lecture04_Pg039_Exploding_Gradients.png]]
 
 <p class="image-caption">If gradients explode, the updates become so huge that the model's training just falls apart.</p>
 
@@ -333,7 +333,7 @@ if total_norm > max_norm:
 ## Long Short-Term Memory (LSTM)
 
 
-![[Lecture04_Pg072_Long_Short_Term_Memory_Lstm.png]]
+![[pictures/mpl/04/Lecture04_Pg072_Long_Short_Term_Memory_Lstm.png]]
 
 <p class="image-caption">An LSTM adds a cell state and special gates to help information flow much more easily.</p>
 
@@ -362,7 +362,7 @@ Because information can stay in the "files" (Cell State) without being modified,
 
 ### The Four Gates
 
-![[Lecture04_Pg070_The_Four_Gates.png]]
+![[pictures/mpl/04/Lecture04_Pg070_The_Four_Gates.png]]
 
 <p class="image-caption">These four gates are the "management team" that controls the flow of information through an LSTM.</p>
 
@@ -388,7 +388,7 @@ where $\odot$ is the Hadamard (element-wise) product.
 
 ### Intuition — Concrete Example
 
-![[Lecture04_Pg046_Intuition_Concrete_Example.png]]
+![[pictures/mpl/04/Lecture04_Pg046_Intuition_Concrete_Example.png]]
 
 <p class="image-caption">LSTMs are great at remembering things like subject-verb agreement over long distances.</p>
 
@@ -403,7 +403,7 @@ where $\odot$ is the Hadamard (element-wise) product.
 
 ### Why Gradient Flow is Better
 
-![[Lecture04_Pg076_Why_Gradient_Flow_Is_Better.png]]
+![[pictures/mpl/04/Lecture04_Pg076_Why_Gradient_Flow_Is_Better.png]]
 
 <p class="image-caption">The cell state acts like a highway, letting gradients travel deep into the past without fading.</p>
 
@@ -460,7 +460,7 @@ criterion = nn.CrossEntropyLoss()
 
 ## GRU — Gated Recurrent Unit
 
-![[Lecture04_Pg079_Gru_Gated_Recurrent_Unit.png]]
+![[pictures/mpl/04/Lecture04_Pg079_Gru_Gated_Recurrent_Unit.png]]
 
 <p class="image-caption">A GRU simplifies things by merging gates and getting rid of the separate cell state.</p>
 
@@ -479,7 +479,7 @@ $$h_t = z_t \odot h_{t-1} + (1 - z_t) \odot \tilde{h}_t \quad \text{(new hidden 
 
 ### GRU vs LSTM
 
-![[Lecture04_Pg074_Gru_Vs_Lstm.png]]
+![[pictures/mpl/04/Lecture04_Pg074_Gru_Vs_Lstm.png]]
 
 <p class="image-caption">Comparing the inner workings of GRUs and LSTMs—one is leaner, the other is more complex.</p>
 
@@ -505,7 +505,7 @@ gru = nn.GRU(input_size=128, hidden_size=256, num_layers=2,
 
 ## Bidirectional LSTM (BiLSTM)
 
-![[Lecture04_Pg082_Bidirectional_Lstm_Bilstm.png]]
+![[pictures/mpl/04/Lecture04_Pg082_Bidirectional_Lstm_Bilstm.png]]
 
 <p class="image-caption">Bidirectional LSTMs get the full picture by looking at the sequence from both ends at once.</p>
 
@@ -531,7 +531,7 @@ $$\overrightarrow{h}_t = \overrightarrow{o}_t \odot \tanh(\overrightarrow{c}_t)$
 
 ### Backward Pass Equations
 
-![[Lecture04_Pg082_Backward_Pass_Equations.png]]
+![[pictures/mpl/04/Lecture04_Pg082_Backward_Pass_Equations.png]]
 
 <p class="image-caption">The backward pass uses its own set of parameters to learn from the future context.</p>
 
@@ -649,7 +649,7 @@ class Decoder(nn.Module):
 
 ### Papers
 
-![[Lecture04_Pg046_Papers.png]]
+![[pictures/mpl/04/Lecture04_Pg046_Papers.png]]
 
 <p class="image-caption">These are the key papers that really kicked off neural image captioning.</p>
 
@@ -772,7 +772,7 @@ From the lecture's closing slide:
 - **BPTT**: Backpropagation Through Time treats the unrolled RNN as a very deep MLP where weights are shared across timesteps.
 - **Vanishing Gradients**: Standard RNNs can't maintain long-term dependencies because gradients shrink exponentially over time.
 - **LSTMs/GRUs**: Use **Gating mechanisms** (Forget, Input, Output gates) to explicitly decide what information to keep or discard, effectively solving the vanishing gradient issue.
-- **Architectural Evolution**: Because RNNs process data sequentially, they cannot be efficiently parallelized. This bottleneck led to the invention of **[[notes/mlp/05-transformer|Transformers (L05)]]**, which process entire sequences at once using self-attention.
+- **Architectural Evolution**: Because RNNs process data sequentially, they cannot be efficiently parallelized. This bottleneck led to the invention of **[[/notes/mlp/05-transformer|Transformers (L05)]]**, which process entire sequences at once using self-attention.
 
 ---
-[[notes/mlp/03-vision-cnn|Previous: L03 — Vision CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/05-transformer|Next: (y-05) Transformers]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/mlp/03-vision-cnn|Previous: L03 — Vision CNNs]] | [[/notes/mlp/index|Back to MPL Index]] | [[/notes/mlp/05-transformer|Next: (y-05) Transformers]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

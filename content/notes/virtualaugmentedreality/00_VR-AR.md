@@ -6,7 +6,7 @@ tags:
   - introduction
 date: 2026-04-14
 ---
-[[notes/virtualaugmentedreality/index|Back to VR/AR Index]] | [[notes/virtualaugmentedreality/01_VR-AR|Next: (y-01) Introduction & History]]
+[[/notes/virtualaugmentedreality/index|Back to VR/AR Index]] | [[/notes/virtualaugmentedreality/01_VR-AR|Next: (y-01) Introduction & History]]
 
 ## Mental Model First: From Theory to Interaction
 
@@ -64,4 +64,4 @@ You accumulate points through two parallel tracks:
 - **Visual Computing Foundations**: Having a background in Computer Graphics, HCI, and Computer Vision will be extremely helpful for the technical aspects of tracking and registration.
 
 ---
-[[notes/virtualaugmentedreality/index|(y) Back to VR/AR Index]]
+[[/notes/virtualaugmentedreality/index|(y) Back to VR/AR Index]]

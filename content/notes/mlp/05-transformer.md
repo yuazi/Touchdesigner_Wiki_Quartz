@@ -9,7 +9,7 @@ tags:
   - nlp
 date: 2026-03-09
 ---
-[[notes/mlp/04-rnn|Previous: L04 — RNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/06-vit|Next: (y-06) ViT]]
+[[/notes/mlp/04-rnn|Previous: L04 — RNNs]] | [[/notes/mlp/index|Back to MPL Index]] | [[/notes/mlp/06-vit|Next: (y-06) ViT]]
 
 **This lecture covers:**
 
@@ -35,7 +35,7 @@ The teaching flow follows that question directly: first the seq2seq bottleneck t
 ### Motivation: RNN Weaknesses
 
 
-![[Lecture05_Pg025_Motivation_Rnn_Weaknesses.png]]
+![[pictures/mpl/05/Lecture05_Pg025_Motivation_Rnn_Weaknesses.png]]
 
 <p class="image-caption">RNNs struggle with long sequences because they process everything one step at a time.</p>
 
@@ -53,7 +53,7 @@ RNNs have several fundamental weaknesses that motivated the development of atten
 
 ### Inspiration from Human Attention
 
-![[Lecture05_Pg026_Inspiration_From_Human_Attention.png]]
+![[pictures/mpl/05/Lecture05_Pg026_Inspiration_From_Human_Attention.png]]
 
 <p class="image-caption">Just like our eyes focus on specific parts of a scene, attention lets models focus on the most relevant data.</p>
 
@@ -70,7 +70,7 @@ Neural attention is loosely inspired by **human visual attention**:
 ### Attention in Machine Learning (Bahdanau et al., 2015)
 
 
-![[Lecture05_Pg034_Attention_In_Machine_Learning_Bahdanau_Et.png]]
+![[pictures/mpl/05/Lecture05_Pg034_Attention_In_Machine_Learning_Bahdanau_Et.png]]
 
 <p class="image-caption">Bahdanau attention lets the decoder "look back" at the encoder's states at every step.</p>
 
@@ -95,7 +95,7 @@ This is a weighted sum over **all encoder states** $h_j$, where $\alpha_{ij}$ ar
 
 #### Computing the Attention Weights
 
-![[Lecture05_Pg039_Computing_The_Attention_Weights.png]]
+![[pictures/mpl/05/Lecture05_Pg039_Computing_The_Attention_Weights.png]]
 
 <p class="image-caption">This is the step-by-step process of how we calculate those all-important attention weights.</p>
 
@@ -115,7 +115,7 @@ This is a small **feed-forward network** that scores, given the current decoder 
 
 ### Soft vs. Hard Attention (Xu et al., 2015)
 
-![[Lecture05_Pg040_Soft_Vs_Hard_Attention_Xu_Et.png]]
+![[pictures/mpl/05/Lecture05_Pg040_Soft_Vs_Hard_Attention_Xu_Et.png]]
 
 <p class="image-caption">Soft attention is smooth and differentiable, while hard attention picks one spot and sticks to it.</p>
 
@@ -134,7 +134,7 @@ When generating the word "bird", soft attention weights the entire image with a 
 
 ### Global vs. Local Attention (Luong et al., 2015)
 
-![[Lecture05_Pg042_Global_Vs_Local_Attention_Luong_Et.png]]
+![[pictures/mpl/05/Lecture05_Pg042_Global_Vs_Local_Attention_Luong_Et.png]]
 
 <p class="image-caption">Global attention looks at everything, while local attention focuses on a small window of tokens.</p>
 
@@ -153,7 +153,7 @@ For the output word "Wirtschaftszone", global attention correctly puts weight on
 
 ### Advantages of Attention
 
-![[Lecture05_Pg046_Advantages_Of_Attention.png]]
+![[pictures/mpl/05/Lecture05_Pg046_Advantages_Of_Attention.png]]
 
 <p class="image-caption">A quick recap of why attention is such a game-changer for neural networks.</p>
 
@@ -170,7 +170,7 @@ For the output word "Wirtschaftszone", global attention correctly puts weight on
 
 ### Motivation
 
-![[Lecture05_Pg006_Motivation.png]]
+![[pictures/mpl/05/Lecture05_Pg006_Motivation.png]]
 
 <p class="image-caption">Embeddings are the secret sauce for handling categorical data in machine learning.</p>
 
@@ -187,7 +187,7 @@ Many machine learning algorithms cannot work with **categorical data** directly 
 
 ### One-hot Encoding
 
-![[Lecture05_Pg008_One_Hot_Encoding.png]]
+![[pictures/mpl/05/Lecture05_Pg008_One_Hot_Encoding.png]]
 
 <p class="image-caption">A quick look at how one-hot encoding represents words as sparse vectors.</p>
 
@@ -203,7 +203,7 @@ $$\text{rabbit} = [0, 0, 1, 0, \ldots]$$
 
 ### Learned Embeddings
 
-![[Lecture05_Pg010_Learned_Embeddings.png]]
+![[pictures/mpl/05/Lecture05_Pg010_Learned_Embeddings.png]]
 
 <p class="image-caption">Learned embeddings map words into a space where similar meanings sit close together.</p>
 
@@ -223,7 +223,7 @@ This property reflects that the difference between gendered word pairs is captur
 
 ### How to Learn Embeddings: CBOW and Skip-gram
 
-![[Lecture05_Pg013_Cbow_Vs_Skipgram.png]]
+![[pictures/mpl/05/Lecture05_Pg013_Cbow_Vs_Skipgram.png]]
 
 <p class="image-caption">Comparison of CBOW (predicting center from context) and Skip-gram (predicting context from center).</p>
 
@@ -244,7 +244,7 @@ Skip-gram: "cat"               →  [the, sat, on, mat]
 
 ### Word2Vec (Mikolov et al., 2013)
 
-![[Lecture05_Pg015_Word2vec_Mikolov_Et_Al_2013.png]]
+![[pictures/mpl/05/Lecture05_Pg015_Word2vec_Mikolov_Et_Al_2013.png]]
 
 <p class="image-caption">Word2Vec maps words into a space where relationships like "king - man + woman = queen" actually work.</p>
 
@@ -276,7 +276,7 @@ print(model.wv.similarity("cat", "table"))  # low
 
 ### GloVe (Pennington et al., 2014)
 
-![[Lecture05_Pg017_Glove_Pennington_Et_Al_2014.png]]
+![[pictures/mpl/05/Lecture05_Pg017_Glove_Pennington_Et_Al_2014.png]]
 
 <p class="image-caption">GloVe takes a global view, looking at how often words appear together across the whole dataset.</p>
 
@@ -303,7 +303,7 @@ father → mother
 ### Contextual vs. Non-Contextual Embeddings
 
 
-![[Lecture05_Pg020_Contextual_Vs_Non_Contextual_Embeddings.png]]
+![[pictures/mpl/05/Lecture05_Pg020_Contextual_Vs_Non_Contextual_Embeddings.png]]
 
 <p class="image-caption">Comparing classic embeddings with contextual ones—static vs. dynamic meanings.</p>
 
@@ -325,7 +325,7 @@ The word "left" (past tense of leave) and "left" (spatial direction) are differe
 
 ### How Contextual Are Contextual Embeddings? (Ethayarajh, 2019)
 
-![[Lecture05_Pg021_How_Contextual_Are_Contextual_Embeddings_Ethayarajh.png]]
+![[pictures/mpl/05/Lecture05_Pg021_How_Contextual_Are_Contextual_Embeddings_Ethayarajh.png]]
 
 <p class="image-caption">As you go deeper into the Transformer, the embeddings get more and more specific to their context.</p>
 
@@ -343,7 +343,7 @@ Ethayarajh (2019) compared BERT, ELMo, and GPT-2 using three new years: self-sim
 
 ## Attention Is All You Need
 
-![[Lecture05_Pg048_Attention_Is_All_You_Need.png]]
+![[pictures/mpl/05/Lecture05_Pg048_Attention_Is_All_You_Need.png]]
 
 <p class="image-caption">The landmark paper that introduced the world to the Transformer architecture.</p>
 
@@ -360,7 +360,7 @@ Ethayarajh (2019) compared BERT, ELMo, and GPT-2 using three new years: self-sim
 
 ### Architecture Overview
 
-![[Lecture05_Pg051_Attention_Is_All_You_Need_Overview.png]]
+![[pictures/mpl/05/Lecture05_Pg051_Attention_Is_All_You_Need_Overview.png]]
 
 <p class="image-caption">The main architecture diagram showing the Transformer encoder and decoder stacks.</p>
 
@@ -372,7 +372,7 @@ The Transformer is an **encoder-decoder** architecture:
 
 #### Sublayers in each block
 
-![[Lecture05_Pg054_Sublayers_In_Each_Block.png]]
+![[pictures/mpl/05/Lecture05_Pg054_Sublayers_In_Each_Block.png]]
 
 <p class="image-caption">The internal structure of a Transformer block—the building block of modern LLMs.</p>
 
@@ -385,7 +385,7 @@ The Transformer is an **encoder-decoder** architecture:
 
 ### Self-Attention and Contextual Embeddings
 
-![[Lecture05_Pg059_Self_Attention_QKV.png]]
+![[pictures/mpl/05/Lecture05_Pg059_Self_Attention_QKV.png]]
 
 <p class="image-caption">Self-attention splits each token into a Query, Key, and Value vector to dynamically route information.</p>
 
@@ -403,7 +403,7 @@ For a sequence of $n$ tokens, each token attends to all $n$ tokens simultaneousl
 
 ### Scaled Dot-Product Attention
 
-![[Lecture05_Pg063_Scaled_Dot_Product_Attention.png]]
+![[pictures/mpl/05/Lecture05_Pg063_Scaled_Dot_Product_Attention.png]]
 
 <p class="image-caption">Scaled dot-product attention is the engine under the hood, using Queries, Keys, and Values.</p>
 
@@ -485,7 +485,7 @@ For $d_k = 512$, the values in $QK^\top$ can be very large. When you pass these 
 
 ### Masked Self-Attention
 
-![[Lecture05_Pg064_Masked_Self_Attention.png]]
+![[pictures/mpl/05/Lecture05_Pg064_Masked_Self_Attention.png]]
 
 <p class="image-caption">Causal masking ensures the model can't "cheat" by looking at future words during training.</p>
 
@@ -521,7 +521,7 @@ mask = causal_mask(4)
 
 ### Multi-Head Attention
 
-![[Lecture05_Pg070_Multi_Head_Attention.png]]
+![[pictures/mpl/05/Lecture05_Pg070_Multi_Head_Attention.png]]
 
 <p class="image-caption">Multi-head attention lets the model attend to different types of information in parallel.</p>
 
@@ -611,7 +611,7 @@ class MultiHeadAttention(nn.Module):
 ### Summary of Multi-Head Attention Usage
 
 
-![[Lecture05_Pg074_Summary_Of_Multi_Head_Attention_Usage.png]]
+![[pictures/mpl/05/Lecture05_Pg074_Summary_Of_Multi_Head_Attention_Usage.png]]
 
 <p class="image-caption">Self-attention looks within the sequence, while cross-attention links the encoder and decoder.</p>
 
@@ -641,7 +641,7 @@ decoder prefix ---masked self-attend---> decoder state
 ### Feed-Forward Networks (FFN)
 
 
-![[Lecture05_Pg077_Feed_Forward_Networks_Ffn.png]]
+![[pictures/mpl/05/Lecture05_Pg077_Feed_Forward_Networks_Ffn.png]]
 
 <p class="image-caption">The feed-forward network adds some much-needed non-linearity after the attention layers.</p>
 
@@ -689,7 +689,7 @@ class FeedForward(nn.Module):
 
 ### Residual Connections and Layer Normalisation
 
-![[Lecture05_Pg080_Residual_Connections_And_Layer_Normalisation.png]]
+![[pictures/mpl/05/Lecture05_Pg080_Residual_Connections_And_Layer_Normalisation.png]]
 
 <p class="image-caption">Residual connections and layer norm keep the training stable and the gradients flowing.</p>
 
@@ -739,7 +739,7 @@ class TransformerBlock(nn.Module):
 
 ### Positional Encoding
 
-![[Lecture05_Pg081_Positional_Encoding.png]]
+![[pictures/mpl/05/Lecture05_Pg081_Positional_Encoding.png]]
 
 <p class="image-caption">Since Transformers don't have recurrence, we use these sine waves to tell the model where each word is.</p>
 
@@ -835,7 +835,7 @@ BERT is an **encoder-only** Transformer that produces contextual representations
 
 ### Architecture
 
-![[Lecture05_Pg086_Architecture.png]]
+![[pictures/mpl/05/Lecture05_Pg086_Architecture.png]]
 
 <p class="image-caption">BERT uses a stack of Transformer encoders to understand context from both directions at once.</p>
 
@@ -850,7 +850,7 @@ BERT is an **encoder-only** Transformer that produces contextual representations
 
 #### 1. Masked Language Model (MLM)
 
-![[Lecture05_Pg090_1_Masked_Language_Model_Mlm.png]]
+![[pictures/mpl/05/Lecture05_Pg090_1_Masked_Language_Model_Mlm.png]]
 
 <p class="image-caption">BERT learns by trying to fill in the blanks of sentences where some words are hidden.</p>
 
@@ -876,7 +876,7 @@ Because `[MASK]` is seen during training but never at fine-tuning time, the 10% 
 
 #### 2. Next Sentence Prediction (NSP)
 
-![[Lecture05_Pg090_2_Next_Sentence_Prediction_Nsp.png]]
+![[pictures/mpl/05/Lecture05_Pg090_2_Next_Sentence_Prediction_Nsp.png]]
 
 <p class="image-caption">The NSP task helps BERT understand the relationship between two different sentences.</p>
 
@@ -912,7 +912,7 @@ Label:  NotNext (False)
 
 ### Self-supervised Learning
 
-![[Lecture05_Pg089_Self_Supervised_Learning.png]]
+![[pictures/mpl/05/Lecture05_Pg089_Self_Supervised_Learning.png]]
 
 <p class="image-caption">Self-supervised learning lets us train on massive amounts of raw text without needing manual labels.</p>
 
@@ -986,7 +986,7 @@ GPT ("Generative Pre-trained Transformer") takes the opposite design choice from
 
 ### Causal Self-Attention Only
 
-![[Lecture05_Pg058_Causal_Self_Attention_Only.png]]
+![[pictures/mpl/05/Lecture05_Pg058_Causal_Self_Attention_Only.png]]
 
 <p class="image-caption">GPT-style models use causal attention to predict the next word in a sequence, one by one.</p>
 
@@ -1173,4 +1173,4 @@ From the lecture's closing slide:
 - **Positional Encoding**: Crucial because Transformers have **no inherent sense of order** (unlike RNNs). Without it, the model treats the input as a "bag of words."
 
 ---
-[[notes/mlp/04-rnn|Previous: L04 — RNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/06-vit|Next: (y-06) ViT]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/mlp/04-rnn|Previous: L04 — RNNs]] | [[/notes/mlp/index|Back to MPL Index]] | [[/notes/mlp/06-vit|Next: (y-06) ViT]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

@@ -7,7 +7,7 @@ tags:
   - definitions
 date: 2026-04-14
 ---
-[[notes/virtualaugmentedreality/00_VR-AR|Back: (y-00) Course Organization]] | [[notes/virtualaugmentedreality/index|VR/AR Index]]
+[[/notes/virtualaugmentedreality/00_VR-AR|Back: (y-00) Course Organization]] | [[/notes/virtualaugmentedreality/index|VR/AR Index]]
 
 ## Mental Model First: Tricking the Brain
 
@@ -75,13 +75,27 @@ Reality is not binary. It's a spectrum:
 - **Mediated Reality**: Technology that adds, removes, or alters our perception (Steve Mann).
 - **Diminished Reality**: A subset of AR/Mediated Reality that *removes* real-world elements (e.g., erasing a wire from a view).
 
-### The Milgram-Weiser Chart
-![Milgram-Weiser Chart](pictures/virtualaugmentedreality/01/Lecture01_Pg076_Milgram_Weiser_Chart.png)
-Visualizes the relationship between:
-- **Stationary vs. Ubiquitous**: (e.g., CAVE vs. Mobile AR).
-- **Real vs. Virtual**: (e.g., Ubiquitous computing vs. Distributed VR).
+---
 
-### 3 Fidelity Continua (McMahan 2003 / Jerald)
+## Mixed Reality & Presence Cheat Sheet (Exam Prep)
+
+| Concept | Key Definition | Critical Criteria |
+| :--- | :--- | :--- |
+| **Azuma's AR** | Overlaying virtual on real | 1. Combine Real/Virtual, 2. Real-time, 3. 3D Registered. |
+| **Immersion** | **Objective** system properties | Resolution, FOV, Frame rate, Latency. |
+| **Presence** | **Subjective** user feeling | Place Illusion (PI) and Plausibility Illusion (Psi). |
+| **Milgram's MR** | Reality-Virtuality Continuum | Reality $\to$ AR $\to$ AV $\to$ VR. |
+| **BIP** | Break-in-Presence | Moment the user remembers the real world (e.g., hitting a wall). |
+
+### Slater's 4 Illusions of Presence:
+1.  **Place Illusion (PI)**: The feeling of being "there" (stable world).
+2.  **Plausibility Illusion (Psi)**: The feeling that what is happening is "real" (events respond to you).
+3.  **Self-Embodiment**: Seeing a virtual body as your own.
+4.  **Social Illusion**: Feeling that others in the world are also "present."
+
+---
+
+## 3. Fidelity Continua (McMahan 2003 / Jerald)
 ![Fidelity Continua](pictures/virtualaugmentedreality/01/Lecture01_Pg012_Fidelity_Continua.png)
 1. **Representational Fidelity**: How realistic the world looks/sounds (Photorealistic $\to$ Abstract).
 2. **Interaction Fidelity**: How realistic the interactions are (Physical training $\to$ Magic buttons).
@@ -145,4 +159,4 @@ VR and AR have historically been characterized by the **Gartner Hype Cycle**:
 - **Games**: **Pokémon GO**, **Apple SwiftShot**, **Eye of Judgement** (Sony MR).
 
 ---
-[[notes/virtualaugmentedreality/index|(y) Back to VR/AR Index]]
+[[/notes/virtualaugmentedreality/index|(y) Back to VR/AR Index]]

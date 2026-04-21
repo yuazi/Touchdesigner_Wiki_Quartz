@@ -9,7 +9,7 @@ tags:
   - annotation
 date: 2026-03-09
 ---
-[[notes/mlp/07-multimodal|Previous: L07 — Multimodal]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/09-vae|Next: (y-09) VAE]]
+[[/notes/mlp/07-multimodal|Previous: L07 — Multimodal]] | [[/notes/mlp/index|Back to MPL Index]] | [[/notes/mlp/09-vae|Next: (y-09) VAE]]
 
 ## Mental Model First
 
@@ -45,7 +45,7 @@ Interactive ML is the bridge that makes it possible to build high-quality models
 
 ### Automatic vs. Interactive ML
 
-![[Lecture08_Pg006_Automatic_Vs_Interactive_Ml.png]]
+![[pictures/mpl/08/Lecture08_Pg006_Automatic_Vs_Interactive_Ml.png]]
 
 <p class="image-caption">Traditional ML vs. Interactive ML—here's where the human comes in.</p>
 
@@ -61,7 +61,7 @@ But sometimes you **still need a human in the loop**:
 
 ### Definition
 
-![[Lecture08_Pg017_Definition.png]]
+![[pictures/mpl/08/Lecture08_Pg017_Definition.png]]
 
 <p class="image-caption">A formal look at iML: putting the human right in the learning loop.</p>
 
@@ -73,7 +73,7 @@ This matters especially in **health informatics** and other high-stakes settings
 
 ### Types of ML on a Spectrum
 
-![[Lecture08_Pg040_Types_Of_Ml_On_A_Spectrum.png]]
+![[pictures/mpl/08/Lecture08_Pg040_Types_Of_Ml_On_A_Spectrum.png]]
 
 <p class="image-caption">The ML spectrum, ranging from totally unsupervised to fully interactive.</p>
 
@@ -87,7 +87,7 @@ This matters especially in **health informatics** and other high-stakes settings
 
 ### Who Can Be "In the Loop"?
 
-![[Lecture08_Pg021_Who_Can_Be_In_The_Loop.png]]
+![[pictures/mpl/08/Lecture08_Pg021_Who_Can_Be_In_The_Loop.png]]
 
 <p class="image-caption">The different agents we can have in the loop, from experts to the crowd.</p>
 
@@ -109,7 +109,7 @@ The lecture also highlights two complementary cautions:
 
 #### Example 1: k-Anonymisation of Medical Data
 
-![[Lecture08_Pg027_Example_1_K_Anonymisation_Of_Medical.png]]
+![[pictures/mpl/08/Lecture08_Pg027_Example_1_K_Anonymisation_Of_Medical.png]]
 
 <p class="image-caption">Using iML to help with k-anonymization for sensitive medical data.</p>
 
@@ -117,7 +117,7 @@ The lecture also highlights two complementary cautions:
 
 #### Example 2: Protein Folding
 
-![[Lecture08_Pg031_Example_2_Protein_Folding.png]]
+![[pictures/mpl/08/Lecture08_Pg031_Example_2_Protein_Folding.png]]
 
 <p class="image-caption">How human guidance can help tackle the complex protein folding problem.</p>
 
@@ -129,7 +129,7 @@ Proteins are the building blocks of life; their 3D structure is determined by th
 #### Example 3: Subspace Clustering
 
 
-![[Lecture08_Pg034_Example_3_Subspace_Clustering.png]]
+![[pictures/mpl/08/Lecture08_Pg034_Example_3_Subspace_Clustering.png]]
 
 <p class="image-caption">Spotting positive and negative clusters in subspace clustering.</p>
 
@@ -143,7 +143,7 @@ Patterns in high-dimensional data often live in **subsets of dimensions** (subsp
 
 ## Active Learning
 
-![[Lecture08_Pg045_Active_Learning_What_Makes_A_Good_Active_Learning_Algorithm.png]]
+![[pictures/mpl/08/Lecture08_Pg045_Active_Learning_What_Makes_A_Good_Active_Learning_Algorithm.png]]
 
 <p class="image-caption">This overview frames active learning as a query strategy: which unlabeled example is most worth paying to annotate next?</p>
 
@@ -168,7 +168,7 @@ labeled set grows -> retrain model -> repeat
 
 ### Batch vs. Selective Sampling (Stream)
 
-![[Lecture08_Pg044_Batch_Vs_Selective_Sampling_Stream.png]]
+![[pictures/mpl/08/Lecture08_Pg044_Batch_Vs_Selective_Sampling_Stream.png]]
 
 <p class="image-caption">Batch Active Learning vs. Selective Sampling in a live data stream.</p>
 
@@ -181,7 +181,7 @@ In both cases the **goal** is to use far fewer labeled examples than passive (ra
 
 ### Can Adaptive Querying Actually Help?
 
-![[Lecture08_Pg047_Can_Adaptive_Querying_Actually_Help.png]]
+![[pictures/mpl/08/Lecture08_Pg047_Can_Adaptive_Querying_Actually_Help.png]]
 
 <p class="image-caption">Comparing label complexity: active learning is like doing a binary search.</p>
 
@@ -212,7 +212,7 @@ Passive learning needs 1/ε queries to get the same ε accuracy.
 
 ### Active SVM — Uncertainty Sampling in Practice
 
-![[Lecture08_Pg054_Active_Svm_Uncertainty_Sampling_In_Practice.png]]
+![[pictures/mpl/08/Lecture08_Pg054_Active_Svm_Uncertainty_Sampling_In_Practice.png]]
 
 <p class="image-caption">Active SVM in action: we query the points right on the decision boundary.</p>
 
@@ -244,7 +244,7 @@ for _ in range(num_rounds):
 
 #### ⚠️ Sampling Bias Warning
 
-![[Lecture08_Pg054_Sampling_Bias_Warning.png]]
+![[pictures/mpl/08/Lecture08_Pg054_Sampling_Bias_Warning.png]]
 
 <p class="image-caption">The risk of sampling bias when we're too greedy with uncertainty sampling.</p>
 
@@ -256,7 +256,7 @@ Uncertainty sampling is **myopic and greedy**. Over time the queried sample beco
 
 ### Version Spaces
 
-![[Lecture08_Pg056_Version_Spaces.png]]
+![[pictures/mpl/08/Lecture08_Pg056_Version_Spaces.png]]
 
 <p class="image-caption">The Version Space, bounded by our most general and most specific hypotheses.</p>
 
@@ -279,7 +279,7 @@ The version space is bounded by:
 
 ### Region of Disagreement
 
-![[Lecture08_Pg059_Region_Of_Disagreement.png]]
+![[pictures/mpl/08/Lecture08_Pg059_Region_Of_Disagreement.png]]
 
 <p class="image-caption">The region of disagreement where our hypotheses just can't agree on a label.</p>
 
@@ -295,7 +295,7 @@ Outside the region of disagreement, **all hypotheses agree** — labeling such a
 
 ### Disagreement-Based Active Learning
 
-![[Lecture08_Pg061_Disagreement_Based_Active_Learning.png]]
+![[pictures/mpl/08/Lecture08_Pg061_Disagreement_Based_Active_Learning.png]]
 
 <p class="image-caption">The CAL algorithm: focusing our queries on that region of disagreement.</p>
 
@@ -320,7 +320,7 @@ Outside the region of disagreement, **all hypotheses agree** — labeling such a
 
 ### Agnostic Active Learner — A² Algorithm
 
-![[Lecture08_Pg065_Agnostic_Active_Learner_A_Algorithm.png]]
+![[pictures/mpl/08/Lecture08_Pg065_Agnostic_Active_Learner_A_Algorithm.png]]
 
 <p class="image-caption">The A² Agnostic Active Learner, designed for when things get noisy or mismatched.</p>
 
@@ -342,7 +342,7 @@ What if $c^* \notin H$? (The realistic case — noise, model mismatch.)
 
 ### Theoretical Guarantees — What to Retain
 
-![[Lecture08_Pg067_Theoretical_Guarantees_What_To_Retain.png]]
+![[pictures/mpl/08/Lecture08_Pg067_Theoretical_Guarantees_What_To_Retain.png]]
 
 <p class="image-caption">Theoretical guarantees and safety for disagreement-based active learning.</p>
 
@@ -359,7 +359,7 @@ The lecture's theory slides emphasise that disagreement-based active learning is
 
 ### 1. Uncertainty Sampling
 
-![[Lecture08_Pg052_Uncertainty_Sampling_Math.png]]
+![[pictures/mpl/08/Lecture08_Pg052_Uncertainty_Sampling_Math.png]]
 
 <p class="image-caption">Comparing Margin vs. Entropy: different ways to measure how confused the model is.</p>
 
@@ -378,7 +378,7 @@ $$x^* = \arg\max_x - \sum_c P(c \mid x) \log P(c \mid x)$$
 
 ### 2. Maximal Diversity Sampling
 
-![[Lecture08_Pg071_2_Maximal_Diversity_Sampling.png]]
+![[pictures/mpl/08/Lecture08_Pg071_2_Maximal_Diversity_Sampling.png]]
 
 <p class="image-caption">Using maximal diversity sampling to make sure we cover the whole feature space.</p>
 
@@ -388,7 +388,7 @@ $$\text{select } B \text{ points s.t. every unlabeled point is close to at least
 
 ### 3. Ensemble-Based Possibilities (Query by Committee)
 
-![[Lecture08_Pg072_3_Ensemble_Based_Possibilities_Query_By.png]]
+![[pictures/mpl/08/Lecture08_Pg072_3_Ensemble_Based_Possibilities_Query_By.png]]
 
 <p class="image-caption">Query by Committee: letting an ensemble pick where the disagreement is highest.</p>
 
@@ -410,7 +410,7 @@ query_idx = np.argmax(disagreement)
 
 ### 4. Density-Based Sampling
 
-![[Lecture08_Pg073_4_Density_Based_Sampling.png]]
+![[pictures/mpl/08/Lecture08_Pg073_4_Density_Based_Sampling.png]]
 
 <p class="image-caption">Density-based sampling: balancing uncertainty with how representative the data is.</p>
 
@@ -424,7 +424,7 @@ The second term is the average similarity to all unlabeled points — a proxy fo
 
 ## Deep Active Learning
 
-![[Lecture08_Pg087_Deep_Active_Learning.png]]
+![[pictures/mpl/08/Lecture08_Pg087_Deep_Active_Learning.png]]
 
 <p class="image-caption">Deep Active Learning: it's tricky with softmax confidence and batching.</p>
 
@@ -449,7 +449,7 @@ Classical active learning theory assumes a fixed, well-understood hypothesis cla
 
 ### MC Dropout — Bayesian Approximation
 
-![[Lecture08_Pg089_Mc_Dropout_Bayesian_Approximation.png]]
+![[pictures/mpl/08/Lecture08_Pg089_Mc_Dropout_Bayesian_Approximation.png]]
 
 <p class="image-caption">Approximating Bayesian uncertainty using MC Dropout at test time.</p>
 
@@ -500,7 +500,7 @@ large disagreement across runs = model uncertainty
 
 ### BALD — Bayesian Active Learning by Disagreement
 
-![[Lecture08_Pg091_Bald_Bayesian_Active_Learning_By_Disagreement.png]]
+![[pictures/mpl/08/Lecture08_Pg091_Bald_Bayesian_Active_Learning_By_Disagreement.png]]
 
 <p class="image-caption">The BALD strategy: find where models are confident but totally disagree.</p>
 
@@ -527,7 +527,7 @@ $$I \approx -\sum_c \left(\frac{1}{T}\sum_t p^t_c\right)\log\left(\frac{1}{T}\su
 ### Learning Loss for Active Learning
 
 
-![[Lecture08_Pg092_Learning_Loss_For_Active_Learning.png]]
+![[pictures/mpl/08/Lecture08_Pg092_Learning_Loss_For_Active_Learning.png]]
 
 <p class="image-caption">Learning to predict loss with an extra module to help pick samples.</p>
 
@@ -550,7 +550,7 @@ $$I \approx -\sum_c \left(\frac{1}{T}\sum_t p^t_c\right)\log\left(\frac{1}{T}\su
 
 ### Mode Collapse in Active Learning
 
-![[Lecture08_Pg095_Mode_Collapse_In_Active_Learning.png]]
+![[pictures/mpl/08/Lecture08_Pg095_Mode_Collapse_In_Active_Learning.png]]
 
 <p class="image-caption">Mode collapse in action: over-sampling those tricky classes like 4 vs 9.</p>
 
@@ -562,7 +562,7 @@ A critical failure mode: the uncertainty-based strategy keeps selecting the **sa
 
 ### Batch-Aware Methods — Uncertainty vs. Diversity (BatchBALD)
 
-![[Lecture08_Pg096_Batch_Aware_Methods_Uncertainty_Vs_Diversity.png]]
+![[pictures/mpl/08/Lecture08_Pg096_Batch_Aware_Methods_Uncertainty_Vs_Diversity.png]]
 
 <p class="image-caption">Comparing strategies for batch acquisition: uncertainty, diversity, and BatchBALD.</p>
 
@@ -591,7 +591,7 @@ Given:
 
 ### Key Insight
 
-![[Lecture08_Pg039_Key_Insight.png]]
+![[pictures/mpl/08/Lecture08_Pg039_Key_Insight.png]]
 
 <p class="image-caption">Unlabeled data helps by shrinking the search space and biasing our function.</p>
 
@@ -607,7 +607,7 @@ _(Zhu and Goldberg, 2009)_
 
 ### Fundamental Questions (General Discriminative Model)
 
-![[Lecture08_Pg040_Fundamental_Questions_General_Discriminative_Model.png]]
+![[pictures/mpl/08/Lecture08_Pg040_Fundamental_Questions_General_Discriminative_Model.png]]
 
 <p class="image-caption">The big questions for discriminative models when dealing with unlabeled data.</p>
 
@@ -634,7 +634,7 @@ This graph view is particularly useful when the geometry of the unlabeled data i
 
 ### Building the Graph
 
-![[Lecture08_Pg075_Building_The_Graph.png]]
+![[pictures/mpl/08/Lecture08_Pg075_Building_The_Graph.png]]
 
 <p class="image-caption">Building a similarity graph to propagate labels between nodes.</p>
 
@@ -646,7 +646,7 @@ Often used in a **transductive** setting: given $L \cup U$, output predictions o
 
 ### Graph Partitioning Algorithms
 
-![[Lecture08_Pg078_Graph_Partitioning_Algorithms.png]]
+![[pictures/mpl/08/Lecture08_Pg078_Graph_Partitioning_Algorithms.png]]
 
 <p class="image-caption">Comparing graph partitioning: min-cut, soft-cut, and spectral methods.</p>
 
@@ -658,7 +658,7 @@ Often used in a **transductive** setting: given $L \cup U$, output predictions o
 
 ### Semi-supervised Learning with Soft Cuts (Zhu et al., 2003)
 
-![[Lecture08_Pg079_Semi_Supervised_Learning_With_Soft_Cuts.png]]
+![[pictures/mpl/08/Lecture08_Pg079_Semi_Supervised_Learning_With_Soft_Cuts.png]]
 
 <p class="image-caption">Label propagation works like a harmonic function spreading through the graph.</p>
 
@@ -672,14 +672,14 @@ This is a **harmonic equation**: labels spread outward from labeled nodes, weigh
 
 ### Active Learning
 
-![[Lecture08_Pg045_Active_Learning_What_Makes_A_Good_Active_Learning_Algorithm.png]]
+![[pictures/mpl/08/Lecture08_Pg045_Active_Learning_What_Makes_A_Good_Active_Learning_Algorithm.png]]
 
 <p class="image-caption">The same active-learning framework is reused here as the bridge into graph-based querying with label propagation.</p>
 
 ### Active Learning with Label Propagation
 
 
-![[Lecture08_Pg083_Active_Learning_With_Label_Propagation.png]]
+![[pictures/mpl/08/Lecture08_Pg083_Active_Learning_With_Label_Propagation.png]]
 
 <p class="image-caption">An active learning strategy for graphs: query nodes that spread the most info.</p>
 
@@ -718,7 +718,7 @@ This approach performs well for **video segmentation** (Fathi et al., 2011) wher
 
 ### Short Summary
 
-![[Lecture08_Pg085_Short_Summary.png]]
+![[pictures/mpl/08/Lecture08_Pg085_Short_Summary.png]]
 
 <p class="image-caption">A quick wrap-up of iML techniques and what makes them tick.</p>
 
@@ -827,4 +827,4 @@ class GNN(nn.Module):
 - **GNN Iterations**: Each message-passing step increases the **receptive field** by one hop. To capture a whole Sudoku board, you need at least $T=9$ iterations.
 
 ---
-[[notes/mlp/07-multimodal|Previous: L07 — Multimodal]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/09-vae|Next: (y-09) VAE]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/mlp/07-multimodal|Previous: L07 — Multimodal]] | [[/notes/mlp/index|Back to MPL Index]] | [[/notes/mlp/09-vae|Next: (y-09) VAE]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

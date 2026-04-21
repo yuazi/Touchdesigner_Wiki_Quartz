@@ -8,7 +8,7 @@ tags:
   - neural-networks
 date: 2026-03-09
 ---
-[[notes/mlp/09-vae|Previous: L09 — VAE]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/11-rl|Next: (y-11) RL]]
+[[/notes/mlp/09-vae|Previous: L09 — VAE]] | [[/notes/mlp/index|Back to MPL Index]] | [[/notes/mlp/11-rl|Next: (y-11) RL]]
 
 > _University of Stuttgart — Machine Perception and Learning for Collaborative Intelligent Systems, Prof. Dr. Andreas Bulling, WS 2025/2026_
 
@@ -23,7 +23,7 @@ date: 2026-03-09
 
 ## VAE Recap
 
-![[Lecture10_Pg004_Vae_Recap.png]]
+![[pictures/mpl/10/Lecture10_Pg004_Vae_Recap.png]]
 
 <p class="image-caption">A quick recap of VAEs and their probabilistic bits.</p>
 
@@ -38,7 +38,7 @@ $$p_\theta(x) = \int p_\theta(z)\, p_\theta(x|z)\, dz$$
 
 ## Summary of VAEs
 
-![[Lecture10_Pg008_Summary_Of_Vaes.png]]
+![[pictures/mpl/10/Lecture10_Pg008_Summary_Of_Vaes.png]]
 
 <p class="image-caption">A summary of VAEs: easy to train, but there's a tradeoff with image quality.</p>
 
@@ -53,7 +53,7 @@ $$p_\theta(x) = \int p_\theta(z)\, p_\theta(x|z)\, dz$$
 
 ## Motivation: From Explicit to Implicit Density
 
-![[Lecture10_Pg010_Motivation_From_Explicit_To_Implicit_Density.png]]
+![[pictures/mpl/10/Lecture10_Pg010_Motivation_From_Explicit_To_Implicit_Density.png]]
 
 <p class="image-caption">Why we're moving from explicit density models to implicit sampling with GANs.</p>
 
@@ -68,7 +68,7 @@ This motivates **implicit density** models — we don't write down $p(x)$ at all
 
 ### The Two-Sample Test Intuition
 
-![[Lecture10_Pg019_The_Two_Sample_Test_Intuition.png]]
+![[pictures/mpl/10/Lecture10_Pg019_The_Two_Sample_Test_Intuition.png]]
 
 <p class="image-caption">The two-sample test: can you tell the real samples from the generated ones?</p>
 
@@ -88,7 +88,7 @@ The test statistic $T$ compares $S_1$ and $S_2$ in terms of means and variance. 
 
 ### The GAN Idea
 
-![[Lecture10_Pg021_The_Gan_Idea.png]]
+![[pictures/mpl/10/Lecture10_Pg021_The_Gan_Idea.png]]
 
 <p class="image-caption">The core of GANs: learning to transform noise z into data samples x.</p>
 
@@ -128,7 +128,7 @@ Instead of trying to learn how to make all types of money, the counterfeiter mig
 
 ## The Adversarial Framework
 
-![[Lecture10_Pg026_The_Adversarial_Framework.png]]
+![[pictures/mpl/10/Lecture10_Pg026_The_Adversarial_Framework.png]]
 
 <p class="image-caption">The GAN architecture: a generator and a discriminator in a constant battle.</p>
 
@@ -159,7 +159,7 @@ The generator never sees real data directly — it only receives feedback throug
 
 ### Discriminator Objective
 
-![[Lecture10_Pg029_Discriminator_Objective.png]]
+![[pictures/mpl/10/Lecture10_Pg029_Discriminator_Objective.png]]
 
 <p class="image-caption">The discriminator's goal: get as good as possible at spotting real vs. fake data.</p>
 
@@ -181,7 +181,7 @@ $$\min_G \; V(G, D) = \mathbb{E}_{x \sim p_{data}}[\log D(x)] + \mathbb{E}_{x \s
 
 ### Combined Minimax Objective
 
-![[Lecture10_Pg028_Training_GANs_Minimax.png]]
+![[pictures/mpl/10/Lecture10_Pg028_Training_GANs_Minimax.png]]
 
 <p class="image-caption">The Minimax objective puts the Generator and Discriminator in a zero-sum game, training them simultaneously.</p>
 
@@ -226,13 +226,13 @@ $$\max_{\Theta_d} \; \mathbb{E}_{x \sim p_{data}}[\log D_{\Theta_d}(x)] + \mathb
 
 $$\min_{\Theta_g} \; \mathbb{E}_{z \sim p_z}[\log(1 - D_{\Theta_d}(G_{\Theta_g}(z)))]$$
 
-![[Lecture10_Pg040_Generative_Adversarial_Networks_Gans_Training_Gans_Pseudocode.png]]
+![[pictures/mpl/10/Lecture10_Pg040_Generative_Adversarial_Networks_Gans_Training_Gans_Pseudocode.png]]
 
 <p class="image-caption">The fuller pseudocode version shows the actual alternating loop, discriminator steps, and the improved generator objective used in practice.</p>
 
 ### The Gradient Problem
 
-![[Lecture10_Pg038_The_Gradient_Problem.png]]
+![[pictures/mpl/10/Lecture10_Pg038_The_Gradient_Problem.png]]
 
 <p class="image-caption">The vanishing gradient problem in the standard GAN setup.</p>
 
@@ -244,7 +244,7 @@ Minimising $\log(1 - D(G(z)))$ causes a **vanishing gradient** early in training
 
 ### The Non-Saturating Fix (Standard in Practice)
 
-![[Lecture10_Pg039_The_Non_Saturating_Fix_Standard_In.png]]
+![[pictures/mpl/10/Lecture10_Pg039_The_Non_Saturating_Fix_Standard_In.png]]
 
 <p class="image-caption">Fixing the generator objective so it gets better gradients early on.</p>
 
@@ -291,7 +291,7 @@ for real_batch in dataloader:
 
 ### 1. Training Instability (Nash Equilibrium)
 
-![[Lecture10_Pg042_1_Training_Instability_Nash_Equilibrium.png]]
+![[pictures/mpl/10/Lecture10_Pg042_1_Training_Instability_Nash_Equilibrium.png]]
 
 <p class="image-caption">GAN training is unstable—it's tough to find that perfect Nash equilibrium.</p>
 
@@ -301,7 +301,7 @@ Additionally, the generator can learn to exploit statistical properties of the d
 
 ### 2. Mode Collapse
 
-![[Lecture10_Pg043_2_Mode_Collapse.png]]
+![[pictures/mpl/10/Lecture10_Pg043_2_Mode_Collapse.png]]
 
 <p class="image-caption">Mode collapse: when the generator just keeps making the same few things.</p>
 
@@ -321,7 +321,7 @@ Illustrated by a "saddle point in dual energy landscape" — the generator finds
 
 ## Issues with Jensen-Shannon Divergence
 
-![[Lecture10_Pg045_Issues_With_Jensen_Shannon_Divergence.png]]
+![[pictures/mpl/10/Lecture10_Pg045_Issues_With_Jensen_Shannon_Divergence.png]]
 
 <p class="image-caption">Why Jensen-Shannon Divergence fails when distributions don't overlap.</p>
 
@@ -339,7 +339,7 @@ More fundamentally: if $p_{data}$ and $p_G$ have **non-overlapping supports** (c
 ## Wasserstein Distance and WGAN
 
 
-![[Lecture10_Pg051_Wasserstein_Distance_And_Wgan.png]]
+![[pictures/mpl/10/Lecture10_Pg051_Wasserstein_Distance_And_Wgan.png]]
 
 <p class="image-caption">Wasserstein distance: a much more stable objective for training GANs.</p>
 
@@ -349,13 +349,13 @@ _Arjovsky et al., 2017_
 ### Earth Mover's Distance
 
 
-![[Lecture10_Pg049_Earth_Mover_S_Distance.png]]
+![[pictures/mpl/10/Lecture10_Pg049_Earth_Mover_S_Distance.png]]
 
 <p class="image-caption">Visualizing Earth Mover's Distance as the cost of optimal transport between distributions</p>
 
 Instead of JSD, use the **Wasserstein-1 (Earth Mover's) Distance**:
 
-![[Lecture10_Pg049_Wasserstein_Distance.png]]
+![[pictures/mpl/10/Lecture10_Pg049_Wasserstein_Distance.png]]
 
 <p class="image-caption">Wasserstein distance measures the minimum "cost" to move the fake distribution to perfectly overlap the real one.</p>
 
@@ -424,7 +424,7 @@ $$\min_G \max_D \; \mathbb{E}_{x,c}[\log D(x, c)] + \mathbb{E}_{z,c}[\log(1 - D(
 
 ### Pix2Pix — Image-to-Image Translation
 
-![[Lecture10_Pg056_Pix2pix_Image_To_Image_Translation.png]]
+![[pictures/mpl/10/Lecture10_Pg056_Pix2pix_Image_To_Image_Translation.png]]
 
 <p class="image-caption">Pix2Pix: using conditional GANs for paired image-to-image translation.</p>
 
@@ -468,12 +468,12 @@ Input image x ──→ [Generator (U-Net)] ──→ output image ŷ
 
 ### CycleGAN — Unpaired Image-to-Image Translation
 
-![[Lecture10_Pg062_Applications_Cyclegan_Overview.png]]
+![[pictures/mpl/10/Lecture10_Pg062_Applications_Cyclegan_Overview.png]]
 
 <p class="image-caption">The CycleGAN overview introduces the two-generator, two-discriminator setup used for unpaired translation.</p>
 
 
-![[Lecture10_Pg061_Cyclegan_Unpaired_Image_To_Image_Translation.png]]
+![[pictures/mpl/10/Lecture10_Pg061_Cyclegan_Unpaired_Image_To_Image_Translation.png]]
 
 <p class="image-caption">CycleGAN: unpaired translation using cycle-consistency.</p>
 
@@ -520,7 +520,7 @@ y (zebra) ──→ F ──→ x̂ (fake horse) ──→ G ──→ ŷ (recon
 
 ### GauGAN / SPADE — Spatially-Adaptive Normalization
 
-![[Lecture10_Pg066_Gaugan_Spade_Spatially_Adaptive_Normalization.png]]
+![[pictures/mpl/10/Lecture10_Pg066_Gaugan_Spade_Spatially_Adaptive_Normalization.png]]
 
 <p class="image-caption">GauGAN: using SPADE to create images from segmentation masks.</p>
 
@@ -538,7 +538,7 @@ Instead of scalar $\gamma$ and $\beta$ vectors, SPADE produces _spatially-varyin
 2. Apply convolutions to produce $\gamma(x, y)$ and $\beta(x, y)$ — 2D tensors, not just scalars
 3. Apply element-wise: normalise the activation, then modulate: $h = \gamma(x,y) \cdot \text{Norm}(h) + \beta(x,y)$
 
-![[Lecture10_Pg070_Spade.png]]
+![[pictures/mpl/10/Lecture10_Pg070_Spade.png]]
 
 <p class="image-caption">SPADE keeps the semantic layout alive by turning the mask into spatially varying normalization parameters.</p>
 
@@ -552,7 +552,7 @@ The generator contains a series of **SPADE residual blocks** with upsampling lay
 
 ### StyleGAN — Style-Based Generator Architecture
 
-![[Lecture10_Pg073_Stylegan_Style_Based_Generator_Architecture.png]]
+![[pictures/mpl/10/Lecture10_Pg073_Stylegan_Style_Based_Generator_Architecture.png]]
 
 <p class="image-caption">StyleGAN: an overview of the mapping network and AdaIN layers.</p>
 
@@ -647,7 +647,7 @@ At inference, use $w_1$ for early (coarse) layers and $w_2$ for later (fine) lay
 
 ## Case Study: GANs for Gaze Redirection
 
-![[Lecture10_Pg081_Case_Study_Gans_For_Gaze_Redirection.png]]
+![[pictures/mpl/10/Lecture10_Pg081_Case_Study_Gans_For_Gaze_Redirection.png]]
 
 <p class="image-caption">A case study on using GANs for eye gaze redirection.</p>
 
@@ -667,7 +667,7 @@ Appearance-based gaze estimation requires large datasets annotated with ground-t
 
 ### Task Definition
 
-![[Lecture10_Pg082_Task_Definition.png]]
+![[pictures/mpl/10/Lecture10_Pg082_Task_Definition.png]]
 
 <p class="image-caption">What is gaze redirection? Transforming eyes to look where we want.</p>
 
@@ -683,7 +683,7 @@ Two requirements:
 ### Conditional GAN Framework
 
 
-![[Lecture10_Pg087_Conditional_Gan_Framework.png]]
+![[pictures/mpl/10/Lecture10_Pg087_Conditional_Gan_Framework.png]]
 
 <p class="image-caption">The conditional GAN setup for gaze redirection with a dual-purpose discriminator.</p>
 
@@ -720,7 +720,7 @@ $$\mathcal{L}_D = \mathcal{L}_{adv} + \lambda_{gaze} \mathcal{L}^D_{gaze}$$
 
 ### Evaluation Metric: LPIPS
 
-![[Lecture10_Pg090_Evaluation_Metric_Lpips.png]]
+![[pictures/mpl/10/Lecture10_Pg090_Evaluation_Metric_Lpips.png]]
 
 <p class="image-caption">LPIPS: a learned metric for comparing how similar image patches look.</p>
 
@@ -732,7 +732,7 @@ Perceptual quality is evaluated using **LPIPS** (Learned Perceptual Image Patch 
 
 ### Key Contributions
 
-![[Lecture10_Pg084_Key_Contributions.png]]
+![[pictures/mpl/10/Lecture10_Pg084_Key_Contributions.png]]
 
 <p class="image-caption">A wrap-up of the key takeaways from the gaze redirection case study.</p>
 
@@ -776,7 +776,7 @@ Lower FID means the generated distribution is closer to the real one. FID captur
 
 ## GANs vs VAEs
 
-![[Lecture10_Pg021_Gans_Vs_Vaes.png]]
+![[pictures/mpl/10/Lecture10_Pg021_Gans_Vs_Vaes.png]]
 
 <p class="image-caption">Comparing VAEs and GANs: training, quality, and how we evaluate density.</p>
 
@@ -792,7 +792,7 @@ Lower FID means the generated distribution is closer to the real one. FID captur
 
 ## Final Comparison: VAEs vs GANs
 
-![[Lecture10_Pg044_Generative_Adversarial_Networks_Gans_Gans_Vs_Vae.png]]
+![[pictures/mpl/10/Lecture10_Pg044_Generative_Adversarial_Networks_Gans_Gans_Vs_Vae.png]]
 
 <p class="image-caption">This comparison slide captures the lecture’s main tradeoff: GANs gain sharpness by giving up explicit likelihoods and easy optimization.</p>
 
@@ -911,7 +911,7 @@ class Discriminator(nn.Module):
 - **Min-Max Game**: The Generator tries to fool the Discriminator, while the Discriminator tries to distinguish real from fake. This is a **Nash Equilibrium** problem.
 - **Mode Collapse**: Occurs when the Generator discovers a single "safe" output that fools the Discriminator and stops producing diverse samples.
 - **WGAN**: Uses the **Earth Mover (Wasserstein) Distance** to provide smoother gradients even when the real and fake distributions don't overlap.
-- **Architectural Evolution**: GANs produce incredibly sharp images but are notoriously difficult to train and suffer from mode collapse. **[[notes/mlp/12-diffusion|Diffusion Models (L12)]]** solve these stability issues while maintaining state-of-the-art image quality.
+- **Architectural Evolution**: GANs produce incredibly sharp images but are notoriously difficult to train and suffer from mode collapse. **[[/notes/mlp/12-diffusion|Diffusion Models (L12)]]** solve these stability issues while maintaining state-of-the-art image quality.
 
 ---
-[[notes/mlp/09-vae|Previous: L09 — VAE]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/11-rl|Next: (y-11) RL]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/mlp/09-vae|Previous: L09 — VAE]] | [[/notes/mlp/index|Back to MPL Index]] | [[/notes/mlp/11-rl|Next: (y-11) RL]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

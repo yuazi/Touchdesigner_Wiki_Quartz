@@ -9,7 +9,7 @@ tags:
 date: 2025-07-09
 ---
 
-[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/17-infeasibility-and-cegar|Previous: (y-17) Infeasibility Proofs and CEGAR]] | [[notes/programverification/19-invariant-synthesis|Next: (y-19) Constraint-Based Invariant Synthesis]]
+[[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/17-infeasibility-and-cegar|Previous: (y-17) Infeasibility Proofs and CEGAR]] | [[/notes/programverification/19-invariant-synthesis|Next: (y-19) Constraint-Based Invariant Synthesis]]
 
 ## Mental Model for Trace Abstraction
 <!-- Review Needed: close slide match for 'Mental Model for Trace Abstraction' (p455: 0.544, p456: 0.544) -->
@@ -95,4 +95,4 @@ Imagine a field (the set of all possible error traces $L(A_P)$).
 5.  **Ultimate Automizer**: This is the core algorithm used in one of the most successful modern verifiers.
 
 ---
-[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/17-infeasibility-and-cegar|Previous: (y-17) Infeasibility Proofs and CEGAR]] | [[notes/programverification/19-invariant-synthesis|Next: (y-19) Constraint-Based Invariant Synthesis]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/17-infeasibility-and-cegar|Previous: (y-17) Infeasibility Proofs and CEGAR]] | [[/notes/programverification/19-invariant-synthesis|Next: (y-19) Constraint-Based Invariant Synthesis]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

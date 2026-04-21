@@ -10,7 +10,7 @@ tags:
   - semantic-segmentation
 date: 2026-03-09
 ---
-[[notes/mlp/02-cnn|Previous: L02 — CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/04-rnn|Next: (y-04) RNNs]]
+[[/notes/mlp/02-cnn|Previous: L02 — CNNs]] | [[/notes/mlp/index|Back to MPL Index]] | [[/notes/mlp/04-rnn|Next: (y-04) RNNs]]
 
 ## Mental Model First
 
@@ -23,7 +23,7 @@ date: 2026-03-09
 
 ### What is it?
 
-![[Lecture03_Pg007_What_Is_It.png]]
+![[pictures/mpl/03/Lecture03_Pg007_What_Is_It.png]]
 
 <p class="image-caption">Object detection is about both identifying what's in the image and where it is.</p>
 
@@ -32,7 +32,7 @@ date: 2026-03-09
 
 ### Why do we need it?
 
-![[Lecture03_Pg008_Why_Do_We_Need_It.png]]
+![[pictures/mpl/03/Lecture03_Pg008_Why_Do_We_Need_It.png]]
 
 <p class="image-caption">We use object detection for everything from self-driving cars to medical imaging.</p>
 
@@ -42,7 +42,7 @@ Robotics, assistive systems, self-driving cars, surveillance, medical applicatio
 
 ### Classification vs. Regression — Recap
 
-![[Lecture03_Pg009_Classification_Vs_Regression_Recap.png]]
+![[pictures/mpl/03/Lecture03_Pg009_Classification_Vs_Regression_Recap.png]]
 
 <p class="image-caption">A quick refresher on the difference between classification and regression.</p>
 
@@ -57,7 +57,7 @@ Robotics, assistive systems, self-driving cars, surveillance, medical applicatio
 
 ### Detection as a Regression Problem
 
-![[Lecture03_Pg011_Detection_As_A_Regression_Problem.png]]
+![[pictures/mpl/03/Lecture03_Pg011_Detection_As_A_Regression_Problem.png]]
 
 <p class="image-caption">Trying to treat object detection as a simple regression problem to find coordinates.</p>
 
@@ -69,7 +69,7 @@ Use a regression model to detect objects — output: coordinates of the objects 
 
 ### Detection as a Classification Problem
 
-![[Lecture03_Pg014_Detection_As_A_Classification_Problem.png]]
+![[pictures/mpl/03/Lecture03_Pg014_Detection_As_A_Classification_Problem.png]]
 
 <p class="image-caption">Another way: treating detection as a classification task with a sliding window.</p>
 
@@ -89,7 +89,7 @@ Use a **sliding window**:
 
 ### Region Proposal Methods
 
-![[Lecture03_Pg015_Region_Proposal_Methods.png]]
+![[pictures/mpl/03/Lecture03_Pg015_Region_Proposal_Methods.png]]
 
 <p class="image-caption">A look at methods like Selective Search that suggest where objects might be.</p>
 
@@ -108,7 +108,7 @@ Use a **sliding window**:
 
 ### R-CNN [Girshick et al., 2014]
 
-![[Lecture03_Pg024_R_Cnn_Girshick_Et_Al_2014.png]]
+![[pictures/mpl/03/Lecture03_Pg024_R_Cnn_Girshick_Et_Al_2014.png]]
 
 <p class="image-caption">R-CNN: the first big model to use region proposals with a CNN.</p>
 
@@ -129,7 +129,7 @@ The lecture's result slide makes the core contribution visible: once proposals a
 
 ### Fast R-CNN [Girshick, 2015]
 
-![[Lecture03_Pg028_Fast_R_Cnn_Girshick_2015.png]]
+![[pictures/mpl/03/Lecture03_Pg028_Fast_R_Cnn_Girshick_2015.png]]
 
 <p class="image-caption">Fast R-CNN made things way faster by sharing feature maps across all proposals.</p>
 
@@ -150,7 +150,7 @@ The lecture's result slide makes the core contribution visible: once proposals a
 
 ### Faster R-CNN [Ren et al., 2015]
 
-![[Lecture03_Pg032_Faster_R_Cnn_Ren_Et_Al.png]]
+![[pictures/mpl/03/Lecture03_Pg032_Faster_R_Cnn_Ren_Et_Al.png]]
 
 <p class="image-caption">Faster R-CNN brought region proposals directly into the network with the RPN.</p>
 
@@ -158,12 +158,12 @@ Eliminates the external region proposal step by adding a **Region Proposal Netwo
 
 #### Region Proposal Network (RPN)
 
-![[Lecture03_Pg035_Region_Proposal_Network_Rpn.png]]
+![[pictures/mpl/03/Lecture03_Pg035_Region_Proposal_Network_Rpn.png]]
 
 <p class="image-caption">The RPN overview: sliding anchors over the feature map to propose candidate object boxes.</p>
 
 
-![[Lecture03_Pg035_Region_Proposal_Network_Rpn.png]]
+![[pictures/mpl/03/Lecture03_Pg035_Region_Proposal_Network_Rpn.png]]
 
 <p class="image-caption">A closer look at the RPN, the part of the network that "guesses" where objects are.</p>
 
@@ -221,7 +221,7 @@ This is much faster than trying to draw a new box from scratch at every single p
 
 **RPN Loss Function**:
 
-![[Lecture03_Pg037_RPN_Loss.png]]
+![[pictures/mpl/03/Lecture03_Pg037_RPN_Loss.png]]
 
 <p class="image-caption">The RPN Loss balances the classification (object vs background) and the regression (tightening the bounding box).</p>
 
@@ -252,7 +252,7 @@ The COCO qualitative examples in the PDF also show that the Faster R-CNN pipelin
 
 ### Segmentation Extension: Mask R-CNN [He et al., 2017]
 
-![[Lecture03_Pg041_Segmentation_Extension_Mask_R_Cnn_He.png]]
+![[pictures/mpl/03/Lecture03_Pg041_Segmentation_Extension_Mask_R_Cnn_He.png]]
 
 <p class="image-caption">Mask R-CNN takes Faster R-CNN a step further by adding per-pixel masks.</p>
 
@@ -266,7 +266,7 @@ Extends Faster R-CNN with an additional **instance-segmentation** head:
 
 ### Single-Stage Detectors
 
-![[Lecture03_Pg042_Single_Stage_Detectors.png]]
+![[pictures/mpl/03/Lecture03_Pg042_Single_Stage_Detectors.png]]
 
 <p class="image-caption">Single-stage detectors like SSD and YOLO are built for maximum speed.</p>
 
@@ -294,7 +294,7 @@ Two-stage detectors are accurate but slow. Single-stage detectors skip the propo
 
 ### What is it?
 
-![[Lecture03_Pg046_Semantic_Segmentation.png]]
+![[pictures/mpl/03/Lecture03_Pg046_Semantic_Segmentation.png]]
 
 <p class="image-caption">Semantic segmentation is all about giving every single pixel its own class label.</p>
 
@@ -315,7 +315,7 @@ It helps to separate the related tasks clearly:
 
 ### Sliding Window Approach
 
-![[Lecture03_Pg047_Sliding_Window_Approach.png]]
+![[pictures/mpl/03/Lecture03_Pg047_Sliding_Window_Approach.png]]
 
 <p class="image-caption">The old, slow way of doing segmentation with a sliding window.</p>
 
@@ -325,7 +325,7 @@ Apply a patch classifier at every pixel location. **Problem**: inefficient — n
 
 ### Fully Convolutional Networks (FCN) [Long et al., 2015]
 
-![[Lecture03_Pg062_Fully_Convolutional_Networks_Fcn_Long_Et.png]]
+![[pictures/mpl/03/Lecture03_Pg062_Fully_Convolutional_Networks_Fcn_Long_Et.png]]
 
 <p class="image-caption">FCNs: networks that are convolutional all the way down for dense predictions.</p>
 
@@ -341,7 +341,7 @@ Apply a patch classifier at every pixel location. **Problem**: inefficient — n
 
 #### Unpooling (Nearest-Neighbour)
 
-![[Lecture03_Pg049_Unpooling_Nearest_Neighbour.png]]
+![[pictures/mpl/03/Lecture03_Pg049_Unpooling_Nearest_Neighbour.png]]
 
 <p class="image-caption">Nearest-neighbor unpooling: a simple, but blocky, way to resize an image.</p>
 
@@ -349,7 +349,7 @@ Simply repeat (or tile) each value into the larger grid. Fast but blocky — no 
 
 #### Max Unpooling
 
-![[Lecture03_Pg050_Max_Unpooling.png]]
+![[pictures/mpl/03/Lecture03_Pg050_Max_Unpooling.png]]
 
 <p class="image-caption">Max unpooling uses "switches" from the pooling layer to put pixels back where they belong.</p>
 
@@ -360,7 +360,7 @@ During the forward max-pool, record the **switch positions** (which location hel
 #### Transposed Convolution (Learnable Upsampling)
 
 
-![[Lecture03_Pg053_Transposed_Convolution_Learnable_Upsampling.png]]
+![[pictures/mpl/03/Lecture03_Pg053_Transposed_Convolution_Learnable_Upsampling.png]]
 
 <p class="image-caption">Transposed convolution lets the network learn the best way to upsample.</p>
 
@@ -386,7 +386,7 @@ When we want to make an image larger (upsample), we have two main choices:
 
 ### Learning Deconvolution Network [Noh et al., 2015]
 
-![[Lecture03_Pg061_Learning_Deconvolution_Network_Noh_Et_Al.png]]
+![[pictures/mpl/03/Lecture03_Pg061_Learning_Deconvolution_Network_Noh_Et_Al.png]]
 
 <p class="image-caption">The Learning Deconvolution Network uses a nice, symmetric encoder-decoder structure.</p>
 
@@ -398,7 +398,7 @@ When we want to make an image larger (upsample), we have two main choices:
 
 ### FCN Skip Connections
 
-![[Lecture03_Pg062_Fcn_Skip_Connections.png]]
+![[pictures/mpl/03/Lecture03_Pg062_Fcn_Skip_Connections.png]]
 
 <p class="image-caption">Skip connections combine high-level meaning with low-level detail for sharper masks.</p>
 
@@ -414,7 +414,7 @@ When we want to make an image larger (upsample), we have two main choices:
 
 ### U-Net [Ronneberger et al., 2015]
 
-![[Lecture03_Pg063_U_Net_Ronneberger_Et_Al_2015.png]]
+![[pictures/mpl/03/Lecture03_Pg063_U_Net_Ronneberger_Et_Al_2015.png]]
 
 <p class="image-caption">U-Net: the go-to architecture for medical imaging, using "concatenating" skip connections.</p>
 
@@ -440,7 +440,7 @@ Conv → ReLU → MaxPool ──────────→ UpConv + [concatenat
 
 ### Mask R-CNN [He et al., 2017]
 
-![[Lecture03_Pg064_Mask_R_Cnn_He_Et_Al.png]]
+![[pictures/mpl/03/Lecture03_Pg064_Mask_R_Cnn_He_Et_Al.png]]
 
 <p class="image-caption">An overview of Mask R-CNN's parallel heads for boxes, classes, and masks.</p>
 
@@ -466,7 +466,7 @@ The qualitative Mask R-CNN result slide makes the distinction from semantic segm
 
 ### ROI Pooling vs. ROI Align
 
-![[Lecture03_Pg068_Roi_Pooling_Vs_Roi_Align.png]]
+![[pictures/mpl/03/Lecture03_Pg068_Roi_Pooling_Vs_Roi_Align.png]]
 
 <p class="image-caption">Comparing RoI Pooling and RoI Align: why sub-pixel accuracy matters for masks.</p>
 
@@ -556,7 +556,7 @@ At the time, EfficientNet achieved **better accuracy per FLOP** than many ResNet
 
 ## Take-Home Messages
 
-![[Lecture03_Pg071_Take_Home_Messages.png]]
+![[pictures/mpl/03/Lecture03_Pg071_Take_Home_Messages.png]]
 
 <p class="image-caption">A quick wrap-up of the main methods for detection and segmentation.</p>
 
@@ -643,4 +643,4 @@ class ResidualBlock(nn.Module):
 - **ResNet**: Solved the **degradation problem** in very deep networks using **Skip Connections** (Residual blocks), allowing gradients to flow unimpeded.
 
 ---
-[[notes/mlp/02-cnn|Previous: L02 — CNNs]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/04-rnn|Next: (y-04) RNNs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/mlp/02-cnn|Previous: L02 — CNNs]] | [[/notes/mlp/index|Back to MPL Index]] | [[/notes/mlp/04-rnn|Next: (y-04) RNNs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

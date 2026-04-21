@@ -8,7 +8,7 @@ tags:
 date: 2025-06-04
 ---
 
-[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/11-nondeterminism-havoc-assume|Previous: (y-11) Nondeterminism: Havoc and Assume]] | [[notes/programverification/13-predicate-transformers|Next: (y-13) Predicate Transformers]]
+[[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/11-nondeterminism-havoc-assume|Previous: (y-11) Nondeterminism: Havoc and Assume]] | [[/notes/programverification/13-predicate-transformers|Next: (y-13) Predicate Transformers]]
 
 ## Mental Model for Control-Flow Graphs (CFGs)
 ![[pictures/programverification/11/Lecture11_Pg390_Mental_Model_For_Control_Flow_Graphs.png]]
@@ -82,4 +82,4 @@ An **Execution** is a sequence of states $(s_0, s_1, \dots, s_n)$ that follows a
 5.  **Tools** prefer CFGs because they provide a uniform way to represent different programming languages.
 
 ---
-[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/11-nondeterminism-havoc-assume|Previous: (y-11) Nondeterminism: Havoc and Assume]] | [[notes/programverification/13-predicate-transformers|Next: (y-13) Predicate Transformers]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/11-nondeterminism-havoc-assume|Previous: (y-11) Nondeterminism: Havoc and Assume]] | [[/notes/programverification/13-predicate-transformers|Next: (y-13) Predicate Transformers]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

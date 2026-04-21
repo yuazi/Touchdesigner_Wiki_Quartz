@@ -8,7 +8,7 @@ tags:
 date: 2025-05-20
 ---
 
-[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/08-hoare-proof-system|Previous: (y-08) Hoare Proof System]] | [[notes/programverification/10-array-theory-and-arrays-in-boostan|Next: (y-10) Array Theory and Arrays in Boostan]]
+[[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/08-hoare-proof-system|Previous: (y-08) Hoare Proof System]] | [[/notes/programverification/10-array-theory-and-arrays-in-boostan|Next: (y-10) Array Theory and Arrays in Boostan]]
 
 ## Mental Model for Ultimate Referee
 <!-- Review Needed: close slide match for 'Mental Model for Ultimate Referee' (p240: 0.451, p241: 0.446) -->
@@ -102,4 +102,4 @@ Ultimate Referee helps you debug your proof by pointing out where the Hoare logi
 3.  **Efficiency**: Reduces the time spent on manual proof checking.
 
 ---
-[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/08-hoare-proof-system|Previous: (y-08) Hoare Proof System]] | [[notes/programverification/10-array-theory-and-arrays-in-boostan|Next: (y-10) Array Theory and Arrays in Boostan]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/08-hoare-proof-system|Previous: (y-08) Hoare Proof System]] | [[/notes/programverification/10-array-theory-and-arrays-in-boostan|Next: (y-10) Array Theory and Arrays in Boostan]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

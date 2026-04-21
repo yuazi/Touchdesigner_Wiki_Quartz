@@ -9,7 +9,7 @@ tags:
 date: 2025-07-07
 ---
 
-[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/16-abstractions-and-arg|Previous: (y-16) Abstractions and ARG]] | [[notes/programverification/18-trace-abstraction-and-automata|Next: (y-18) Trace Abstraction and Floyd-Hoare Automata]]
+[[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/16-abstractions-and-arg|Previous: (y-16) Abstractions and ARG]] | [[/notes/programverification/18-trace-abstraction-and-automata|Next: (y-18) Trace Abstraction and Floyd-Hoare Automata]]
 
 ## Mental Model for CEGAR
 
@@ -69,4 +69,4 @@ Imagine trying to find a path in a dark room.
 5.  **Power of Abstraction**: CEGAR allows us to verify complex programs without manually guessing invariants.
 
 ---
-[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/16-abstractions-and-arg|Previous: (y-16) Abstractions and ARG]] | [[notes/programverification/18-trace-abstraction-and-automata|Next: (y-18) Trace Abstraction and Floyd-Hoare Automata]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/16-abstractions-and-arg|Previous: (y-16) Abstractions and ARG]] | [[/notes/programverification/18-trace-abstraction-and-automata|Next: (y-18) Trace Abstraction and Floyd-Hoare Automata]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

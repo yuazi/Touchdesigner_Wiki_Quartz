@@ -10,7 +10,7 @@ tags:
   - neural-networks
 date: 2026-03-09
 ---
-[[notes/mlp/05-transformer|Previous: L05 — Transformers]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/07-multimodal|Next: (y-07) Multimodal]]
+[[/notes/mlp/05-transformer|Previous: L05 — Transformers]] | [[/notes/mlp/index|Back to MPL Index]] | [[/notes/mlp/07-multimodal|Next: (y-07) Multimodal]]
 
 **This lecture covers:**
 
@@ -31,7 +31,7 @@ date: 2026-03-09
 
 ### Limitations of CNNs
 
-![[Lecture06_Pg007_Limitations_Of_Cnns.png]]
+![[pictures/mpl/06/Lecture06_Pg007_Limitations_Of_Cnns.png]]
 
 <p class="image-caption">CNNs can be surprisingly fragile when it comes to changes in texture or distribution.</p>
 
@@ -45,13 +45,13 @@ CNNs have several weaknesses that motivated looking at Transformer alternatives 
 
 ### Replacing CNNs with Self-Attention (Ramachandran et al., 2019)
 
-![[Lecture06_Pg008_Replacing_Cnns_With_Self_Attention_Ramachandran.png]]
+![[pictures/mpl/06/Lecture06_Pg008_Replacing_Cnns_With_Self_Attention_Ramachandran.png]]
 
 <p class="image-caption">What if we just used self-attention instead of convolution? It actually works.</p>
 
 Before the full ViT, Ramachandran et al. (2019) showed that convolution layers can be replaced by **stand-alone self-attention** layers:
 
-![[Lecture06_Pg009_Vision_Transformer_Replacing_Cnns_With_Self_Attention.png]]
+![[pictures/mpl/06/Lecture06_Pg009_Vision_Transformer_Replacing_Cnns_With_Self_Attention.png]]
 
 <p class="image-caption">Relative position embeddings let local self-attention preserve where neighboring pixels sit in the image grid.</p>
 
@@ -91,7 +91,7 @@ Why do CNNs beat ViT on small datasets, but ViT wins on huge datasets?
 ### Vision Transformer (ViT) — Main Workflow
 
 
-![[Lecture06_Pg013_Vision_Transformer_Vit_Main_Workflow.png]]
+![[pictures/mpl/06/Lecture06_Pg013_Vision_Transformer_Vit_Main_Workflow.png]]
 
 <p class="image-caption">Step 1 of the ViT workflow: break the image into a sequence of small patches.</p>
 
@@ -102,7 +102,7 @@ The ViT processes images as a sequence of fixed-size patches fed into a standard
 
 #### Step 1: Image Patch and Position Embedding
 
-![[Lecture06_Pg012_Step_1_Image_Patch_And_Position.png]]
+![[pictures/mpl/06/Lecture06_Pg012_Step_1_Image_Patch_And_Position.png]]
 
 <p class="image-caption">Here's a closer look at how we extract patches and add those crucial positional embeddings.</p>
 
@@ -133,7 +133,7 @@ Image (224×224×3)
 
 #### Step 2: Encoding and Classification
 
-![[Lecture06_Pg013_Step_2_Encoding_And_Classification.png]]
+![[pictures/mpl/06/Lecture06_Pg013_Step_2_Encoding_And_Classification.png]]
 
 <p class="image-caption">Step 2: Transformer encoding and [CLS] token classification</p>
 
@@ -153,7 +153,7 @@ Image (224×224×3)
 
 ### ViT Architecture Versions
 
-![[Lecture06_Pg015_Vit_Architecture_Versions.png]]
+![[pictures/mpl/06/Lecture06_Pg015_Vit_Architecture_Versions.png]]
 
 <p class="image-caption">Comparison of ViT-Base, ViT-Large, and ViT-Huge configurations</p>
 
@@ -171,7 +171,7 @@ Both 16×16 and 32×32 patch sizes are used. Smaller patches = more tokens = mor
 
 ### Data Requirements
 
-![[Lecture06_Pg014_Data_Requirements.png]]
+![[pictures/mpl/06/Lecture06_Pg014_Data_Requirements.png]]
 
 <p class="image-caption">ViT performance vs data scale: ImageNet-1K to JFT-300M</p>
 
@@ -201,7 +201,7 @@ To improve performance on smaller datasets, three regularisation parameters help
 
 ### Attention Maps
 
-![[Lecture06_Pg021_Attention_Maps.png]]
+![[pictures/mpl/06/Lecture06_Pg021_Attention_Maps.png]]
 
 <p class="image-caption">Emergent attention maps in ViT highlighting semantic objects</p>
 
@@ -286,7 +286,7 @@ logits = model(img)  # (4, 1000)
 
 ### Recap: CNN-Based Object Detection
 
-![[Lecture06_Pg024_Recap_Cnn_Based_Object_Detection.png]]
+![[pictures/mpl/06/Lecture06_Pg024_Recap_Cnn_Based_Object_Detection.png]]
 
 <p class="image-caption">Recap of CNN-based object detection: R-CNN to Faster R-CNN</p>
 
@@ -307,11 +307,11 @@ Object detection requires:
 
 ### DETR — End-to-End Object Detection with Transformers
 
-![[Lecture06_Pg026_Object_Detection_With_Vits_Detr_Architecture.png]]
+![[pictures/mpl/06/Lecture06_Pg026_Object_Detection_With_Vits_Detr_Architecture.png]]
 
 <p class="image-caption">The high-level DETR pipeline: CNN features go through a Transformer and directly produce a set of object predictions.</p>
 
-![[Lecture06_Pg026_Detr_End_To_End_Object_Detection.png]]
+![[pictures/mpl/06/Lecture06_Pg026_Detr_End_To_End_Object_Detection.png]]
 
 <p class="image-caption">DETR reframes detection as direct set prediction, removing proposal stages and NMS.</p>
 
@@ -329,7 +329,7 @@ Object detection requires:
 
 ### DETR Architecture
 
-![[Lecture06_Pg030_Output_Embedding_And_Prediction.png]]
+![[pictures/mpl/06/Lecture06_Pg030_Output_Embedding_And_Prediction.png]]
 
 <p class="image-caption">Each learned object query produces either a class-and-box prediction or an explicit “no object” output.</p>
 
@@ -365,7 +365,7 @@ Image → [CNN Backbone] → feature map (H/32 × W/32 × 2048)
 
 ### Optimal Bipartite Matching
 
-![[Lecture06_Pg033_Optimal_Bipartite_Matching.png]]
+![[pictures/mpl/06/Lecture06_Pg033_Optimal_Bipartite_Matching.png]]
 
 <p class="image-caption">Optimal bipartite matching in DETR using the Hungarian algorithm</p>
 
@@ -400,7 +400,7 @@ duplicate predictions get matched to "no object" and penalized
 
 ### Combined Loss Function (Hungarian Loss)
 
-![[Lecture06_Pg034_Combined_Loss_Function_Hungarian_Loss.png]]
+![[pictures/mpl/06/Lecture06_Pg034_Combined_Loss_Function_Hungarian_Loss.png]]
 
 <p class="image-caption">DETR Hungarian loss combining classification and box regression</p>
 
@@ -418,7 +418,7 @@ $$\mathcal{L}_{\text{Hungarian}}(y, \hat{y}) = \sum_{i=1}^{N} \left[ -\log \hat{
 
 ### Panoptic Segmentation
 
-![[Lecture06_Pg038_Panoptic_Segmentation.png]]
+![[pictures/mpl/06/Lecture06_Pg038_Panoptic_Segmentation.png]]
 
 <p class="image-caption">Panoptic segmentation extension for DETR using a mask head</p>
 
@@ -456,7 +456,7 @@ The qualitative slides explain _why_ DETR feels different from proposal-based de
 
 ### Deformable DETR (Zhu et al., 2020)
 
-![[Lecture06_Pg041_Deformable_Detr_Zhu_Et_Al_2020.png]]
+![[pictures/mpl/06/Lecture06_Pg041_Deformable_Detr_Zhu_Et_Al_2020.png]]
 
 <p class="image-caption">Deformable DETR: sparse attention for faster convergence</p>
 
@@ -492,7 +492,7 @@ Two targeted fixes for DETR's shortcomings:
 
 ### Motivation
 
-![[Lecture06_Pg044_Motivation.png]]
+![[pictures/mpl/06/Lecture06_Pg044_Motivation.png]]
 
 <p class="image-caption">Motivation for self-supervised visual representation learning</p>
 
@@ -506,7 +506,7 @@ Two targeted fixes for DETR's shortcomings:
 
 ### Pretext Tasks in NLP
 
-![[Lecture06_Pg045_Pretext_Tasks_In_Nlp.png]]
+![[pictures/mpl/06/Lecture06_Pg045_Pretext_Tasks_In_Nlp.png]]
 
 <p class="image-caption">Analogous pretext tasks in NLP: MLM and NSP</p>
 
@@ -522,7 +522,7 @@ These tasks forced the model to learn rich semantic representations without huma
 ### Pretext Tasks in Computer Vision
 
 
-![[Lecture06_Pg049_Pretext_Tasks_In_Computer_Vision.png]]
+![[pictures/mpl/06/Lecture06_Pg049_Pretext_Tasks_In_Computer_Vision.png]]
 
 <p class="image-caption">Visual pretext tasks: rotation prediction and jigsaw puzzles</p>
 
@@ -543,7 +543,7 @@ Many analogous pretext tasks were proposed for vision (Li, cs231):
 
 ### Self-Supervised Contrastive Learning
 
-![[Lecture06_Pg055_Self_Supervised_Contrastive_Learning.png]]
+![[pictures/mpl/06/Lecture06_Pg055_Self_Supervised_Contrastive_Learning.png]]
 
 <p class="image-caption">Framework for self-supervised contrastive learning</p>
 
@@ -573,7 +573,7 @@ loss: bring z₁ and z₂ close together, push apart from all z_other
 
 ### DINO — Self-supervised Vision Transformers
 
-![[Lecture06_Pg058_Dino_Self_Supervised_Vision_Transformers.png]]
+![[pictures/mpl/06/Lecture06_Pg058_Dino_Self_Supervised_Vision_Transformers.png]]
 
 <p class="image-caption">DINO: Knowledge distillation with no labels in ViTs</p>
 
@@ -583,7 +583,7 @@ loss: bring z₁ and z₂ close together, push apart from all z_other
 
 #### Multi-Crop Strategy
 
-![[Lecture06_Pg063_Multi_Crop_Strategy.png]]
+![[pictures/mpl/06/Lecture06_Pg063_Multi_Crop_Strategy.png]]
 
 <p class="image-caption">DINO multi-crop strategy: local and global views</p>
 
@@ -600,7 +600,7 @@ This asymmetry forces the model to learn **local-to-global correspondence**: the
 
 #### Knowledge Distillation: Teacher-Student Framework
 
-![[Lecture06_Pg059_Knowledge_Distillation_Teacher_Student_Framework.png]]
+![[pictures/mpl/06/Lecture06_Pg059_Knowledge_Distillation_Teacher_Student_Framework.png]]
 
 <p class="image-caption">Teacher-student distillation framework in DINO</p>
 
@@ -649,7 +649,7 @@ $$\min_{\theta_s} \sum_{x \in \{x_1^g, x_2^g\}} \sum_{\substack{x' \in V \\ x' \
 
 #### Mode Collapse Problem
 
-![[Lecture06_Pg064_Mode_Collapse_Problem.png]]
+![[pictures/mpl/06/Lecture06_Pg064_Mode_Collapse_Problem.png]]
 
 <p class="image-caption">Visualization of the mode collapse problem in self-supervision</p>
 
@@ -664,7 +664,7 @@ Both forms result in learned representations that carry no useful information.
 
 #### Centering to Prevent Mode Collapse
 
-![[Lecture06_Pg066_Centering_To_Prevent_Mode_Collapse.png]]
+![[pictures/mpl/06/Lecture06_Pg066_Centering_To_Prevent_Mode_Collapse.png]]
 
 <p class="image-caption">Centering and sharpening techniques in DINO to prevent collapse</p>
 
@@ -732,7 +732,7 @@ DINO became the foundation for **DINOv2**, **SAM (Segment Anything Model)**, and
 
 ### The Field is Evolving Quickly
 
-![[Lecture06_Pg069_The_Field_Is_Evolving_Quickly.png]]
+![[pictures/mpl/06/Lecture06_Pg069_The_Field_Is_Evolving_Quickly.png]]
 
 <p class="image-caption">Summary of the rapid evolution in vision and language models</p>
 
@@ -748,7 +748,7 @@ From the lecture's closing slide — notable models and frameworks as of WS 2025
 
 
 
-![[Lecture06_Pg009_Vision_Transformer_Replacing_Cnns_With_Self_Attention.png]]
+![[pictures/mpl/06/Lecture06_Pg009_Vision_Transformer_Replacing_Cnns_With_Self_Attention.png]]
 
 <p class="image-caption">Closing recap of the lecture arc from CNN limitations to ViT, DETR, and self-supervised Transformers.</p>
 ## Summary
@@ -793,4 +793,4 @@ From the lecture's closing slide — notable models and frameworks as of WS 2025
 - **Hybrid Models**: Often use a CNN backbone to extract features before passing them to a Transformer for global reasoning.
 
 ---
-[[notes/mlp/05-transformer|Previous: L05 — Transformers]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/07-multimodal|Next: (y-07) Multimodal]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/mlp/05-transformer|Previous: L05 — Transformers]] | [[/notes/mlp/index|Back to MPL Index]] | [[/notes/mlp/07-multimodal|Next: (y-07) Multimodal]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

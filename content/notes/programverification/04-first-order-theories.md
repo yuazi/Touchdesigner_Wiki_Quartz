@@ -9,7 +9,7 @@ tags:
 date: 2026-04-16
 ---
 
-[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/03-first-order-logic|Previous: (y-03) First-Order Logic]] | [[notes/programverification/05-smt-lib|Next: (y-05) SMT-LIB]]
+[[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/03-first-order-logic|Previous: (y-03) First-Order Logic]] | [[/notes/programverification/05-smt-lib|Next: (y-05) SMT-LIB]]
 
 ## Mental Model for First-Order Theories
 ![[pictures/programverification/04/Lecture04_Pg082_Mental_Model_For_First_Order_Theories.png]]
@@ -152,4 +152,4 @@ In program verification, we usually care about **$T$-Satisfiability**. If a "bad
 5.  Verification tools combine these theories to reason about complex code.
 
 ---
-[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/03-first-order-logic|Previous: (y-03) First-Order Logic]] | [[notes/programverification/05-smt-lib|Next: (y-05) SMT-LIB]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/03-first-order-logic|Previous: (y-03) First-Order Logic]] | [[/notes/programverification/05-smt-lib|Next: (y-05) SMT-LIB]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

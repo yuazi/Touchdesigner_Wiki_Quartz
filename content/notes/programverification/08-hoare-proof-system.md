@@ -8,7 +8,7 @@ tags:
 date: 2025-05-14
 ---
 
-[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/07-relational-semantics|Previous: (y-07) Relational Semantics]] | [[notes/programverification/09-ultimate-referee|Next: (y-09) Ultimate Referee]]
+[[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/07-relational-semantics|Previous: (y-07) Relational Semantics]] | [[/notes/programverification/09-ultimate-referee|Next: (y-09) Ultimate Referee]]
 
 ## Mental Model for the Hoare Proof System
 ![[pictures/programverification/08/Lecture08_Pg210_Mental_Model_For_The_Hoare_Proof.png]]
@@ -117,4 +117,4 @@ A proof system is **Sound** if every Hoare triple we can derive is actually true
 5.  **Derivations** are mechanical proofs built from these rules.
 
 ---
-[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/07-relational-semantics|Previous: (y-07) Relational Semantics]] | [[notes/programverification/09-ultimate-referee|Next: (y-09) Ultimate Referee]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/07-relational-semantics|Previous: (y-07) Relational Semantics]] | [[/notes/programverification/09-ultimate-referee|Next: (y-09) Ultimate Referee]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

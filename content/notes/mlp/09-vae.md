@@ -9,7 +9,7 @@ tags:
   - neural-networks
 date: 2026-03-09
 ---
-[[notes/mlp/08-iml|Previous: L08 — IML]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/10-gans|Next: (y-10) GANs]]
+[[/notes/mlp/08-iml|Previous: L08 — IML]] | [[/notes/mlp/index|Back to MPL Index]] | [[/notes/mlp/10-gans|Next: (y-10) GANs]]
 
 > **Slide credits**: O. Hilliges @ ETHZ · Paul Liang & Louis-Philippe Morency @ CMU
 
@@ -27,7 +27,7 @@ date: 2026-03-09
 ### Supervised vs. Unsupervised Learning
 
 
-![[Lecture09_Pg007_Supervised_Vs_Unsupervised_Learning.png]]
+![[pictures/mpl/09/Lecture09_Pg007_Supervised_Vs_Unsupervised_Learning.png]]
 
 <p class="image-caption">Supervised vs. unsupervised: the difference between having labels and going it alone.</p>
 
@@ -39,7 +39,7 @@ date: 2026-03-09
 
 ### Generative Modelling
 
-![[Lecture09_Pg008_Generative_Modelling.png]]
+![[pictures/mpl/09/Lecture09_Pg008_Generative_Modelling.png]]
 
 <p class="image-caption">Generative modeling in a nutshell: learning to sample from our data distribution p(x).</p>
 
@@ -56,7 +56,7 @@ We may also want **conditional** generation $p(x|c)$, where $c$ is a category (e
 
 ### Latent Variable Models
 
-![[Lecture09_Pg015_Latent_Variable_Models.png]]
+![[pictures/mpl/09/Lecture09_Pg015_Latent_Variable_Models.png]]
 
 <p class="image-caption">Modeling those hidden factors of variation using latent variables.</p>
 
@@ -73,7 +73,7 @@ Images have huge variability: gender, eye colour, hair colour, pose, lighting, e
 
 ### Maximum Likelihood Estimation (MLE)
 
-![[Lecture09_Pg019_Maximum_Likelihood_Estimation_Mle.png]]
+![[pictures/mpl/09/Lecture09_Pg019_Maximum_Likelihood_Estimation_Mle.png]]
 
 <p class="image-caption">MLE: the foundational goal for pretty much all deep learning models.</p>
 
@@ -85,7 +85,7 @@ MLE is the backbone of supervised deep learning — cross-entropy and least-squa
 
 ### Taxonomy of Generative Models
 
-![[Lecture09_Pg022_Taxonomy_Of_Generative_Models.png]]
+![[pictures/mpl/09/Lecture09_Pg022_Taxonomy_Of_Generative_Models.png]]
 
 <p class="image-caption">How we group generative models: explicit density vs. implicit ones.</p>
 
@@ -109,7 +109,7 @@ Generative Models
 
 ## Mixture of Gaussians (MoG)
 
-![[Lecture09_Pg024_Mixture_Of_Gaussians_Mog.png]]
+![[pictures/mpl/09/Lecture09_Pg024_Mixture_Of_Gaussians_Mog.png]]
 
 <p class="image-caption">A Mixture of Gaussians: a simple example of a latent variable model.</p>
 
@@ -138,7 +138,7 @@ Combining simple Gaussians gives a much more expressive, multi-modal density.
 
 ### Architecture
 
-![[Lecture09_Pg030_Autoencoders_Introduction.png]]
+![[pictures/mpl/09/Lecture09_Pg030_Autoencoders_Introduction.png]]
 
 <p class="image-caption">The standard autoencoder: an encoder, a decoder, and that latent bottleneck.</p>
 
@@ -207,7 +207,7 @@ The model will force every single image into the exact same Gaussian cloud at th
 
 ## Variational Autoencoders (VAE)
 
-![[Lecture09_Pg045_Variational_Autoencoders_Vae.png]]
+![[pictures/mpl/09/Lecture09_Pg045_Variational_Autoencoders_Vae.png]]
 
 <p class="image-caption">The VAE architecture: encoding and decoding using probabilities.</p>
 
@@ -218,7 +218,7 @@ A **probabilistic** version of the autoencoder that allows genuine sampling of n
 ### From GMMs to VAEs
 
 
-![[Lecture09_Pg045_From_Gmms_To_Vaes.png]]
+![[pictures/mpl/09/Lecture09_Pg045_From_Gmms_To_Vaes.png]]
 
 <p class="image-caption">Moving from GMMs to VAEs by bringing in neural networks.</p>
 
@@ -244,14 +244,14 @@ The sum inside the log is **intractable** for continuous, high-dimensional $z$ �
 
 ## Evidence Lower Bound (ELBO)
 
-![[Lecture09_Pg050_Variational_Autoencoders_Evidence_Lower_Bound_Elbo.png]]
+![[pictures/mpl/09/Lecture09_Pg050_Variational_Autoencoders_Evidence_Lower_Bound_Elbo.png]]
 
 <p class="image-caption">The ELBO slide summarizes the core VAE training target before we unpack its derivations.</p>
 
 ### Derivation via Jensen's Inequality
 
 
-![[Lecture09_Pg047_Derivation_Via_Jensen_S_Inequality.png]]
+![[pictures/mpl/09/Lecture09_Pg047_Derivation_Via_Jensen_S_Inequality.png]]
 
 <p class="image-caption">Using Jensen's inequality to derive the ELBO.</p>
 
@@ -261,7 +261,7 @@ $$\log p(x;\theta) = \log \sum_{z} p(x,z;\theta) = \log \sum_z \frac{q(z)}{q(z)}
 
 where $q(z)$ is any distribution we choose (it should be simple and tractable).
 
-![[Lecture09_Pg048_ELBO_Jensens.png]]
+![[pictures/mpl/09/Lecture09_Pg048_ELBO_Jensens.png]]
 
 <p class="image-caption">Using Jensen's inequality to move the log inside the expectation, which gives us a tractable lower bound to optimize.</p>
 
@@ -291,7 +291,7 @@ So the ELBO is not a random trick. It is the price we pay for turning an intract
 
 ### Derivation via KL Divergence
 
-![[Lecture09_Pg052_Derivation_Via_Kl_Divergence.png]]
+![[pictures/mpl/09/Lecture09_Pg052_Derivation_Via_Kl_Divergence.png]]
 
 <p class="image-caption">Another way to get the ELBO: using KL divergence between our posteriors.</p>
 
@@ -313,7 +313,7 @@ The closer our chosen $q$ is to the true posterior $p(z|x)$, the tighter the ELB
 
 ### ELBO as Reconstruction + KL
 
-![[Lecture09_Pg046_Elbo_As_Reconstruction_Kl.png]]
+![[pictures/mpl/09/Lecture09_Pg046_Elbo_As_Reconstruction_Kl.png]]
 
 <p class="image-caption">Breaking down the ELBO into reconstruction loss and KL regularization.</p>
 
@@ -366,7 +366,7 @@ VAE training works when these two pressures balance: **compress, but not so aggr
 
 ## Variational Inference
 
-![[Lecture09_Pg055_Variational_Inference.png]]
+![[pictures/mpl/09/Lecture09_Pg055_Variational_Inference.png]]
 
 <p class="image-caption">Fitting a simple distribution q to a messy, intractable posterior.</p>
 
@@ -386,7 +386,7 @@ The key insight of VAEs is to **amortise** this inference: instead of running op
 
 **Problem**: $z \sim q_\phi(z|x)$ is a stochastic sampling step — gradients cannot flow through it.
 
-![[Lecture09_Pg072_Reparametrisation_Trick.png]]
+![[pictures/mpl/09/Lecture09_Pg072_Reparametrisation_Trick.png]]
 
 <p class="image-caption">The Reparameterization Trick shifts the random sampling out of the main computational graph so gradients can flow freely into the encoder.</p>
 
@@ -457,7 +457,7 @@ x ──→ Encoder ──→ μ, σ
 
 ## Learning the Parameters
 
-![[Lecture09_Pg060_Learning_The_Parameters.png]]
+![[pictures/mpl/09/Lecture09_Pg060_Learning_The_Parameters.png]]
 
 <p class="image-caption">Training a VAE by optimizing the encoder and decoder together through the ELBO.</p>
 
@@ -488,7 +488,7 @@ At **inference / generation time**: only the **decoder** is needed.
 1. Sample $z \sim p(z) = \mathcal{N}(0, I)$
 2. Pass through decoder: $\hat{x} = g_\theta(z)$
 
-![[Lecture09_Pg074_Generating_Data.png]]
+![[pictures/mpl/09/Lecture09_Pg074_Generating_Data.png]]
 
 <p class="image-caption">At generation time the encoder disappears; we sample from the prior and let the decoder map latent codes back to data.</p>
 
@@ -558,7 +558,7 @@ That is why interpolation is such a good sanity check for VAEs. If the path betw
 
 ### Latent Space Arithmetic
 
-![[Lecture09_Pg015_Latent_Space_Arithmetic.png]]
+![[pictures/mpl/09/Lecture09_Pg015_Latent_Space_Arithmetic.png]]
 
 <p class="image-caption">Semantic arithmetic: doing math in the latent space to transform images.</p>
 
@@ -588,7 +588,7 @@ z("smiling woman") − z("neutral woman") + z("neutral man") ≈ z("smiling man"
 ### Disentangled Representation Learning
 
 
-![[Lecture09_Pg077_Disentangled_Representation_Learning.png]]
+![[pictures/mpl/09/Lecture09_Pg077_Disentangled_Representation_Learning.png]]
 
 <p class="image-caption">Using beta-VAE to pull apart independent factors of variation.</p>
 
@@ -621,7 +621,7 @@ So beta-VAE is not "strictly better VAE." It is a deliberate trade: **less raw f
 
 ### Style Transfer (Text and Images)
 
-![[Lecture09_Pg082_Style_Transfer_Text_And_Images.png]]
+![[pictures/mpl/09/Lecture09_Pg082_Style_Transfer_Text_And_Images.png]]
 
 <p class="image-caption">Using VAEs for style transfer in both images and text.</p>
 
@@ -632,7 +632,7 @@ VAEs disentangle **style** from **content** in the latent space. Applications:
 
 ### Handwriting Synthesis (Aksan et al., 2018)
 
-![[Lecture09_Pg014_Handwriting_Synthesis_Aksan_Et_Al_2018.png]]
+![[pictures/mpl/09/Lecture09_Pg014_Handwriting_Synthesis_Aksan_Et_Al_2018.png]]
 
 <p class="image-caption">Editing and generating synthetic handwriting on a VAE manifold.</p>
 
@@ -644,7 +644,7 @@ A VAE trained on handwriting samples can:
 
 ### Hand Pose Manifold (Tagliasacchi et al., 2015)
 
-![[Lecture09_Pg083_Hand_Pose_Manifold_Tagliasacchi_Et_Al.png]]
+![[pictures/mpl/09/Lecture09_Pg083_Hand_Pose_Manifold_Tagliasacchi_Et_Al.png]]
 
 <p class="image-caption">Mapping hand poses to a smooth manifold for better pose estimation.</p>
 
@@ -728,7 +728,7 @@ class VAE(nn.Module):
 
 ## Summary of VAEs
 
-![[Lecture09_Pg087_Summary_Of_Vaes.png]]
+![[pictures/mpl/09/Lecture09_Pg087_Summary_Of_Vaes.png]]
 
 <p class="image-caption">A wrap-up of VAEs: they're principled and smooth, but can be a bit blurry.</p>
 
@@ -764,7 +764,7 @@ class VAE(nn.Module):
 - **Reparameterization Trick**: Instead of sampling $z \sim \mathcal{N}(\mu, \sigma^2)$ directly (which is non-differentiable), sample $\epsilon \sim \mathcal{N}(0, 1)$ and compute $z = \mu + \sigma \odot \epsilon$. This allows **Backprop** to work.
 - **Latent Space**: The **KL-Divergence** term in the loss forces the latent space to be a smooth, continuous Gaussian, enabling meaningful interpolation.
 - **ELBO**: The Evidence Lower Bound is the training objective that balances reconstruction quality with latent space regularity.
-- **Architectural Evolution**: VAEs produce blurry images, and GANs suffer from mode collapse. To get both high quality and high diversity, the modern field has largely shifted to **[[notes/mlp/12-diffusion|Diffusion Models (L12)]]**.
+- **Architectural Evolution**: VAEs produce blurry images, and GANs suffer from mode collapse. To get both high quality and high diversity, the modern field has largely shifted to **[[/notes/mlp/12-diffusion|Diffusion Models (L12)]]**.
 
 ---
-[[notes/mlp/08-iml|Previous: L08 — IML]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/10-gans|Next: (y-10) GANs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/mlp/08-iml|Previous: L08 — IML]] | [[/notes/mlp/index|Back to MPL Index]] | [[/notes/mlp/10-gans|Next: (y-10) GANs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

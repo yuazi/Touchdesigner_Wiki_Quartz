@@ -11,7 +11,7 @@ date: 2026-03-12
 
 > **Inspired by:** [Gatys et al. (A Neural Algorithm of Artistic Style)](https://arxiv.org/abs/1508.06576)
 
-I’ve been looking for a way to actually "see" the concepts from my [[notes/mlp/02-cnn|CNN theory]] notes in a live environment. Neural Style Transfer (NST) turns out to be the answer—it uses a pre-trained network to "repaint" your camera feed using the visual DNA of a specific artwork. Since optimization loops are too slow for real-time work, I reach for **Feed-forward Style Transfer** to keep things running at a steady 60fps.
+I’ve been looking for a way to actually "see" the concepts from my [[/notes/mlp/02-cnn|CNN theory]] notes in a live environment. Neural Style Transfer (NST) turns out to be the answer—it uses a pre-trained network to "repaint" your camera feed using the visual DNA of a specific artwork. Since optimization loops are too slow for real-time work, I reach for **Feed-forward Style Transfer** to keep things running at a steady 60fps.
 
 > [!info] Operator Families in this Recipe
 >
@@ -165,7 +165,7 @@ Here is how the data flows through the operator and the Python script:
 ## See Also
 
 - [[touchdesigner/04_Scripting_and_Architecture/Python in TD|(y-) Python in TouchDesigner]] — More on how to use external libraries like OpenCV.
-- [[notes/mlp/01-introduction|(y-) Introduction to Machine Learning]] — The foundation for understanding how networks "see."
+- [[/notes/mlp/01-introduction|(y-) Introduction to Machine Learning]] — The foundation for understanding how networks "see."
 - [[work/index|(y) The Workshop]] — Other creative coding experiments and finished projects.
 
 ---

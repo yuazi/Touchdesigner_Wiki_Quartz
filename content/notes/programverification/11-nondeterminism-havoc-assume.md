@@ -9,7 +9,7 @@ tags:
 date: 2025-05-28
 ---
 
-[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/10-array-theory-and-arrays-in-boostan|Previous: (y-10) Array Theory and Arrays in Boostan]] | [[notes/programverification/12-control-flow-graphs|Next: (y-12) Control-Flow Graphs]]
+[[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/10-array-theory-and-arrays-in-boostan|Previous: (y-10) Array Theory and Arrays in Boostan]] | [[/notes/programverification/12-control-flow-graphs|Next: (y-12) Control-Flow Graphs]]
 
 ## Mental Model for Nondeterminism
 
@@ -82,4 +82,4 @@ assume x > 0;  // discard any world where the user didn't give a positive number
 5.  **Relational Semantics**: `assume` is a partial identity; `havoc` is a broad relation allowing any value for one variable.
 
 ---
-[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/10-array-theory-and-arrays-in-boostan|Previous: (y-10) Array Theory and Arrays in Boostan]] | [[notes/programverification/12-control-flow-graphs|Next: (y-12) Control-Flow Graphs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/10-array-theory-and-arrays-in-boostan|Previous: (y-10) Array Theory and Arrays in Boostan]] | [[/notes/programverification/12-control-flow-graphs|Next: (y-12) Control-Flow Graphs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

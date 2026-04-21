@@ -12,9 +12,10 @@ date: 2026-04-14
 
 ## Course Outline
 
-- [[notes/virtualaugmentedreality/00_VR-AR|(y-) 00_VR-AR]]: Course organization, philosophy, and grading.
-- [[notes/virtualaugmentedreality/01_VR-AR|(y-) 01_VR-AR]]: Definitions, history, and applications of VR/AR.
-- **Hardware**: HMDs, CAVE systems, and tracking technology.
+- [[/notes/virtualaugmentedreality/00_VR-AR|(y-) 00_VR-AR]]: Course organization, philosophy, and grading.
+- [[/notes/virtualaugmentedreality/01_VR-AR|(y-) 01_VR-AR]]: Definitions, history, and applications of VR/AR.
+- [[/notes/virtualaugmentedreality/02_VR-AR_hcd|(y-) 02_VR-AR_hcd]]: Human-Centered Design, motion sickness theories, and technical requirements.
+- [[/notes/virtualaugmentedreality/03-1_VR-AR_hardware|(y-) 03-1_VR-AR_hardware]]: Depth perception, stereo rendering math, and VR hardware challenges.
 - **Tracking & Computer Vision**: How systems understand position and the environment.
 - **Visual Coherence & Perception**: Aligning virtual objects with the real world and human sensory limits.
 - **Interaction & Haptics**: How we interact with virtual worlds.

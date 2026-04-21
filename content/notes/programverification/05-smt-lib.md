@@ -9,7 +9,7 @@ tags:
 date: 2026-04-16
 ---
 
-[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/04-first-order-theories|Previous: (y-04) First-Order Theories]] | [[notes/programverification/06-boogie-and-boostan|Next: (y-06) Boogie and Boostan]]
+[[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/04-first-order-theories|Previous: (y-04) First-Order Theories]] | [[/notes/programverification/06-boogie-and-boostan|Next: (y-06) Boogie and Boostan]]
 
 ## Mental Model for SMT-LIB
 
@@ -132,4 +132,4 @@ SMT solvers support integer division `div`, but it comes with **pitfalls**:
 5.  **Logics** define the specific subset of FOL and theories being used.
 
 ---
-[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/04-first-order-theories|Previous: (y-04) First-Order Theories]] | [[notes/programverification/06-boogie-and-boostan|Next: (y-06) Boogie and Boostan]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/04-first-order-theories|Previous: (y-04) First-Order Theories]] | [[/notes/programverification/06-boogie-and-boostan|Next: (y-06) Boogie and Boostan]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

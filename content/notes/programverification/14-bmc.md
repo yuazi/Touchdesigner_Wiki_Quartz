@@ -10,7 +10,7 @@ tags:
 date: 2025-07-20
 ---
 
-[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/13-predicate-transformers|Previous: (y-13) Predicate Transformers]] | [[notes/programverification/15-correctness-via-assert|Next: (y-15) Correctness via Assert Statements]]
+[[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/13-predicate-transformers|Previous: (y-13) Predicate Transformers]] | [[/notes/programverification/15-correctness-via-assert|Next: (y-15) Correctness via Assert Statements]]
 
 ## Mental Model for BMC and Synthesis
 
@@ -86,4 +86,4 @@ We use an SMT solver (specifically one that handles **Horn Clauses**) to find va
 5.  **SMT Solvers** are the underlying engine for both BMC and Synthesis.
 
 ---
-[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/13-predicate-transformers|Previous: (y-13) Predicate Transformers]] | [[notes/programverification/15-correctness-via-assert|Next: (y-15) Correctness via Assert Statements]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/13-predicate-transformers|Previous: (y-13) Predicate Transformers]] | [[/notes/programverification/15-correctness-via-assert|Next: (y-15) Correctness via Assert Statements]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

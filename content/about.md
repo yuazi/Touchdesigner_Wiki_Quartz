@@ -28,7 +28,7 @@ I build tools that bridge the gap between complex data and intuitive interfaces.
 
 ## Currently
 
-- **Building:** [SlideLink](./work/slidelink)—automating the bridge between lecture slides and Quartz notes.
+- **Building:** [SlideLink](work/slidelink)—automating the bridge between lecture slides and Quartz notes.
 - **Studying:** Machine Perception & Learning (MPL).
 - **Training:** Taekwondo—focusing on high pressure sparring and PNF mobility.
 - **Exploring:** The intersection of generative AI and real time visual systems.
@@ -40,7 +40,7 @@ I build tools that bridge the gap between complex data and intuitive interfaces.
 - **Taekwondo:** A white-to-black belt journey fueled by a love for spinning kicks.
 - **Motorcycles:** Pure focus. No distractions, just the bike and the road.
 - **Scents:** Exploring the sensory world of niche perfumery.
-- **Chaos:** Obsessed with the math of the [Lorenz Attractor](./notes/random/lorenz-attractor).
+- **Chaos:** Obsessed with the math of the [Lorenz Attractor](notes/random/lorenz-attractor).
 
 ---
 
@@ -55,5 +55,5 @@ Feel free to reach out if you want to talk about data science, creative coding, 
 > _"The garden is never finished. Neither am I."_
 
 ---
-[[/index|(y) Return to Garden]]
+[[index|(y) Return to Garden]]
 

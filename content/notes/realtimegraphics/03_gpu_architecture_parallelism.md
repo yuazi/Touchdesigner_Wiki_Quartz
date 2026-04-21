@@ -21,7 +21,7 @@ date: 2026-04-14
 ## 1. Hardware Architectures: SIMD vs. SIMT
 
 ### SIMD (Single Instruction, Multiple Data)
-![[L03_Pg-08.jpg]]
+![[pictures/realtimegraphics/03/L03_Pg-08.jpg]]
 
 <p class="image-caption">L03_Pg-08: SIMD uses a single instruction to operate on a vector of data at once (e.g., 4 floats).</p>
 
@@ -29,7 +29,7 @@ date: 2026-04-14
 - **Execution**: A single ALU operation on a vector register.
 
 ### SIMT (Single Instruction, Multiple Threads)
-![[L03_Pg-11.jpg]]
+![[pictures/realtimegraphics/03/L03_Pg-11.jpg]]
 
 <p class="image-caption">L03_Pg-11: SIMT is a higher-level abstraction where thousands of threads execute the same program in parallel.</p>
 
@@ -41,7 +41,7 @@ date: 2026-04-14
 
 ## 2. The Cost of Divergence
 
-![[L03_Pg-12.jpg]]
+![[pictures/realtimegraphics/03/L03_Pg-12.jpg]]
 
 <p class="image-caption">L03_Pg-12: Branch Divergence forces the GPU to execute both paths of an 'if/else', masking out the inactive threads. Performance drops by 50% here.</p>
 
@@ -54,7 +54,7 @@ Imagine a bus (Warp) of 32 people. At a fork in the road:
 
 ## 3. Latency Hiding (The GPU's Secret)
 
-![[L03_Pg-35.jpg]]
+![[pictures/realtimegraphics/03/L03_Pg-35.jpg]]
 
 <p class="image-caption">L03_Pg-35: The GPU scheduler keeps thousands of threads "in flight" so it can always find work to do while others wait for memory.</p>
 
@@ -66,7 +66,7 @@ Imagine a bus (Warp) of 32 people. At a fork in the road:
 ## 4. Modern Pipeline Stages
 
 ### Mesh Shaders (The Future)
-![[L03_Pg-48.jpg]]
+![[pictures/realtimegraphics/03/L03_Pg-48.jpg]]
 
 <p class="image-caption">L03_Pg-48: Mesh shaders replace the old fixed-function geometry stages with a more flexible, compute-like model using Meshlets.</p>
 
@@ -78,7 +78,7 @@ Imagine a bus (Warp) of 32 people. At a fork in the road:
 ## 5. Display & Buffering
 
 ### Double vs. Triple Buffering
-![[L03_Pg-59.jpg]]
+![[pictures/realtimegraphics/03/L03_Pg-59.jpg]]
 
 <p class="image-caption">L03_Pg-59: Double buffering prevents flickering but causes "tearing" if the swap happens mid-scanout.</p>
 

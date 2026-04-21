@@ -10,7 +10,7 @@ tags:
   - nlp
 date: 2026-03-09
 ---
-[[notes/mlp/06-vit|Previous: L06 — ViT]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/08-iml|Next: (y-08) IML]]
+[[/notes/mlp/06-vit|Previous: L06 — ViT]] | [[/notes/mlp/index|Back to MPL Index]] | [[/notes/mlp/08-iml|Next: (y-08) IML]]
 
 **This lecture covers:**
 
@@ -32,7 +32,7 @@ date: 2026-03-09
 
 ### What is Multimodal?
 
-![[Lecture07_Pg009_What_Is_Multimodal.png]]
+![[pictures/mpl/07/Lecture07_Pg009_What_Is_Multimodal.png]]
 
 <p class="image-caption">Multimodal is just combining different data types like images, audio, and text.</p>
 
@@ -50,7 +50,7 @@ Three definitions of increasing scope (Baltrušaitis et al., 2018 / Morency, CMU
 
 ### Heterogeneity of Modalities
 
-![[Lecture07_Pg010_Heterogeneity_Of_Modalities.png]]
+![[pictures/mpl/07/Lecture07_Pg010_Heterogeneity_Of_Modalities.png]]
 
 <p class="image-caption">Each modality has its own structure—think dense video frames versus discrete text tokens.</p>
 
@@ -65,7 +65,7 @@ This heterogeneity is both a challenge and an opportunity — each modality carr
 
 ### Real-World Multimodal Tasks
 
-![[Lecture07_Pg015_Real_World_Multimodal_Tasks.png]]
+![[pictures/mpl/07/Lecture07_Pg015_Real_World_Multimodal_Tasks.png]]
 
 <p class="image-caption">Here are some common tasks where you'd actually use multimodal learning.</p>
 
@@ -84,7 +84,7 @@ This heterogeneity is both a challenge and an opportunity — each modality carr
 
 ## 2. Core Multimodal Challenges
 
-![[Lecture07_Pg016_2_Core_Multimodal_Challenges.png]]
+![[pictures/mpl/07/Lecture07_Pg016_2_Core_Multimodal_Challenges.png]]
 
 <p class="image-caption">These are the five main hurdles we have to clear in multimodal ML.</p>
 
@@ -92,7 +92,7 @@ Baltrušaitis et al. (2018) define **five fundamental challenges** for multimoda
 
 ### Challenge 1: Representation
 
-![[Lecture07_Pg019_Challenge_1_Representation.png]]
+![[pictures/mpl/07/Lecture07_Pg019_Challenge_1_Representation.png]]
 
 <p class="image-caption">We can either fuse everything into one space or keep them separate but aligned.</p>
 
@@ -117,7 +117,7 @@ Early examples:
 
 ### Challenge 2: Alignment
 
-![[Lecture07_Pg023_Challenge_2_Alignment.png]]
+![[pictures/mpl/07/Lecture07_Pg023_Challenge_2_Alignment.png]]
 
 <p class="image-caption">Alignment is about finding which parts of the image match up with which words.</p>
 
@@ -136,7 +136,7 @@ Use cases for implicit alignment: Machine Translation, Cross-modal retrieval, Im
 
 ### Challenge 3: Translation
 
-![[Lecture07_Pg026_Challenge_3_Translation.png]]
+![[pictures/mpl/07/Lecture07_Pg026_Challenge_3_Translation.png]]
 
 <p class="image-caption">Translation is how we map one data type directly to another.</p>
 
@@ -153,7 +153,7 @@ Use cases for implicit alignment: Machine Translation, Cross-modal retrieval, Im
 
 ### Challenge 4: Fusion
 
-![[Lecture07_Pg030_Challenge_4_Fusion.png]]
+![[pictures/mpl/07/Lecture07_Pg030_Challenge_4_Fusion.png]]
 
 <p class="image-caption">Fusion is where we decide exactly when to mix the different signals.</p>
 
@@ -170,7 +170,7 @@ Model-based techniques include kernel-based methods, graphical models, and deep 
 
 #### Tensor Fusion Network (Zadeh et al., 2017)
 
-![[Lecture07_Pg038_Tensor_Fusion_Network_Zadeh_Et_Al.png]]
+![[pictures/mpl/07/Lecture07_Pg038_Tensor_Fusion_Network_Zadeh_Et_Al.png]]
 
 <p class="image-caption">Tensor Fusion picks up on all the interactions between modalities.</p>
 
@@ -190,7 +190,7 @@ Appending $1$ to each unimodal vector means the outer product encodes all subset
 
 ### Challenge 5: Co-Learning
 
-![[Lecture07_Pg032_Challenge_5_Co_Learning.png]]
+![[pictures/mpl/07/Lecture07_Pg032_Challenge_5_Co_Learning.png]]
 
 <p class="image-caption">Co-learning lets us use a data-rich modality to help out a data-poor one.</p>
 
@@ -221,7 +221,7 @@ Joint (fusion)                Coordinated
 
 ### DeViSE — Deep Visual-Semantic Embedding (Frome et al., 2013)
 
-![[Lecture07_Pg039_Devise_Deep_Visual_Semantic_Embedding_Frome.png]]
+![[pictures/mpl/07/Lecture07_Pg039_Devise_Deep_Visual_Semantic_Embedding_Frome.png]]
 
 <p class="image-caption">DeViSE maps images into a semantic word-vector space.</p>
 
@@ -240,11 +240,11 @@ By embedding images into word-vector space, the model gains **semantic structure
 
 ### CLIP — Contrastive Language-Image Pre-training (Radford et al., 2021)
 
-![[Lecture07_Pg040_Clip_Training_Diagonal.png]]
+![[pictures/mpl/07/Lecture07_Pg040_Clip_Training_Diagonal.png]]
 
 <p class="image-caption">CLIP training: Pull matching pairs together and push all others apart.</p>
 
-![[Lecture07_Pg041_Clip_Prediction_Phase.png]]
+![[pictures/mpl/07/Lecture07_Pg041_Clip_Prediction_Phase.png]]
 
 <p class="image-caption">CLIP prediction: Use the learned space to classify unseen images without any training labels.</p>
 
@@ -303,7 +303,7 @@ Both branches are projected into the same shared embedding space (typically $d =
 
 #### Contrastive Pre-Training Loss
 
-![[Lecture07_Pg046_Contrastive_Pre_Training_Loss.png]]
+![[pictures/mpl/07/Lecture07_Pg046_Contrastive_Pre_Training_Loss.png]]
 
 <p class="image-caption">The goal is to make the diagonal of this matrix as large as possible.</p>
 
@@ -382,7 +382,7 @@ image(red car) − image(car) + text("boat") ≈ image(red boat)
 
 #### GLIP — Grounded Language-Image Pre-training (Li et al., 2022)
 
-![[Lecture07_Pg046_Glip_Grounded_Language_Image_Pre_Training.png]]
+![[pictures/mpl/07/Lecture07_Pg046_Glip_Grounded_Language_Image_Pre_Training.png]]
 
 <p class="image-caption">GLIP extends CLIP's ideas down to individual object bounding boxes.</p>
 
@@ -394,7 +394,7 @@ image(red car) − image(car) + text("boat") ≈ image(red boat)
 
 #### LSeg — Language-Driven Semantic Segmentation (Li et al., 2022)
 
-![[Lecture07_Pg047_Lseg_Language_Driven_Semantic_Segmentation_Li.png]]
+![[pictures/mpl/07/Lecture07_Pg047_Lseg_Language_Driven_Semantic_Segmentation_Li.png]]
 
 <p class="image-caption">LSeg takes it even further by aligning text labels with individual pixels.</p>
 
@@ -410,7 +410,7 @@ image(red car) − image(car) + text("boat") ≈ image(red boat)
 
 ### Motivation
 
-![[Lecture07_Pg023_Motivation.png]]
+![[pictures/mpl/07/Lecture07_Pg023_Motivation.png]]
 
 <p class="image-caption">We need alignment to know exactly what the model is looking at.</p>
 
@@ -424,7 +424,7 @@ image(red car) − image(car) + text("boat") ≈ image(red boat)
 ### Cross-Modal Transformer (Tsai et al., 2019)
 
 
-![[Lecture07_Pg053_Cross_Modal_Transformer_Tsai_Et_Al.png]]
+![[pictures/mpl/07/Lecture07_Pg053_Cross_Modal_Transformer_Tsai_Et_Al.png]]
 
 <p class="image-caption">Cross-modal transformers let one modality 'look' at another via attention.</p>
 
@@ -453,7 +453,7 @@ This allows modality A to selectively read information from modality B.
 
 ### Case Study: VisualBERT (Li et al., 2019)
 
-![[Lecture07_Pg054_Case_Study_Visualbert_Li_Et_Al.png]]
+![[pictures/mpl/07/Lecture07_Pg054_Case_Study_Visualbert_Li_Et_Al.png]]
 
 <p class="image-caption">VisualBERT just throws everything into one big transformer stream.</p>
 
@@ -476,7 +476,7 @@ $$f = f_o + f_s + f_p$$
 
 ### Case Study: ViLBERT (Lu et al., 2019)
 
-![[Lecture07_Pg056_Case_Study_Vilbert_Lu_Et_Al.png]]
+![[pictures/mpl/07/Lecture07_Pg056_Case_Study_Vilbert_Lu_Et_Al.png]]
 
 <p class="image-caption">ViLBERT keeps two streams but lets them talk via co-attention.</p>
 
@@ -494,7 +494,7 @@ $$f = f_o + f_s + f_p$$
 ### Case Study: HowTo100M + MIL-NCE (Miech et al., 2019/2020)
 
 
-![[Lecture07_Pg058_Case_Study_Howto100m_Mil_Nce_Miech.png]]
+![[pictures/mpl/07/Lecture07_Pg058_Case_Study_Howto100m_Mil_Nce_Miech.png]]
 
 <p class="image-caption">MIL-NCE helps the model learn even when captions aren't perfectly timed.</p>
 
@@ -516,7 +516,7 @@ Input: 3.2-second video clip (32 frames at 10 FPS) + up to 16 subtitle words.
 
 ### Case Study: ViLT — Vision-and-Language Transformer (Kim et al., 2021)
 
-![[Lecture07_Pg060_Case_Study_Vilt_Vision_And_Language.png]]
+![[pictures/mpl/07/Lecture07_Pg060_Case_Study_Vilt_Vision_And_Language.png]]
 
 <p class="image-caption">ViLT skips the heavy object detector and just uses raw image patches.</p>
 
@@ -535,7 +535,7 @@ Input: 3.2-second video clip (32 frames at 10 FPS) + up to 16 subtitle words.
 
 ### ALBEF — Align Before Fuse (Li et al., 2021)
 
-![[Lecture07_Pg062_Albef_Align_Before_Fuse_Li_Et.png]]
+![[pictures/mpl/07/Lecture07_Pg062_Albef_Align_Before_Fuse_Li_Et.png]]
 
 <p class="image-caption">ALBEF makes sure features are aligned before it tries to fuse them.</p>
 
@@ -545,7 +545,7 @@ Integrates MoCo (He et al., 2020) momentum encoder + ViT + BERT.
 
 #### Loss Components
 
-![[Lecture07_Pg063_Loss_Components.png]]
+![[pictures/mpl/07/Lecture07_Pg063_Loss_Components.png]]
 
 <p class="image-caption">It uses three different losses to get the alignment and fusion right.</p>
 
@@ -563,7 +563,7 @@ Integrates MoCo (He et al., 2020) momentum encoder + ViT + BERT.
 
 ### BLIP — Bootstrapping Language-Image Pre-training (Li et al., 2022)
 
-![[Lecture07_Pg064_Blip_Bootstrapping_Language_Image_Pre_Training.png]]
+![[pictures/mpl/07/Lecture07_Pg064_Blip_Bootstrapping_Language_Image_Pre_Training.png]]
 
 <p class="image-caption">BLIP cleans up messy web data by filtering and generating its own captions.</p>
 
@@ -584,7 +584,7 @@ An improved version of ALBEF with two innovations:
 ### Visual Question Answering (VQA)
 
 
-![[Lecture07_Pg071_Visual_Question_Answering_Vqa.png]]
+![[pictures/mpl/07/Lecture07_Pg071_Visual_Question_Answering_Vqa.png]]
 
 <p class="image-caption">Introduction to Visual Question Answering (VQA) tasks and examples</p>
 
@@ -602,7 +602,7 @@ An improved version of ALBEF with two innovations:
 
 ### Hierarchical Co-Attention (Lu et al., 2016)
 
-![[Lecture07_Pg072_Hierarchical_Co_Attention_Lu_Et_Al.png]]
+![[pictures/mpl/07/Lecture07_Pg072_Hierarchical_Co_Attention_Lu_Et_Al.png]]
 
 <p class="image-caption">Architecture of Hierarchical Co-Attention for VQA across words, phrases, and sentences</p>
 
@@ -629,7 +629,7 @@ Computed at three levels of granularity:
 
 ### Stacked Attention Networks (Yang et al., 2016)
 
-![[Lecture07_Pg073_Stacked_Attention_Networks_Yang_Et_Al.png]]
+![[pictures/mpl/07/Lecture07_Pg073_Stacked_Attention_Networks_Yang_Et_Al.png]]
 
 <p class="image-caption">Architecture of Stacked Attention Networks using multi-hop refinement</p>
 
@@ -648,7 +648,7 @@ Final: Q + v̂_K → answer prediction
 
 ### Other Attention-Based Models
 
-![[Lecture07_Pg074_Other_Attention_Based_Models.png]]
+![[pictures/mpl/07/Lecture07_Pg074_Other_Attention_Based_Models.png]]
 
 <p class="image-caption">Comparison of different attention-based models for VQA and captioning</p>
 
@@ -664,7 +664,7 @@ Open research questions: how to make attention more interpretable? Can we levera
 
 ### Neural Module Networks — V1 (Andreas et al., 2015)
 
-![[Lecture07_Pg076_Neural_Module_Networks_V1_Andreas_Et.png]]
+![[pictures/mpl/07/Lecture07_Pg076_Neural_Module_Networks_V1_Andreas_Et.png]]
 
 <p class="image-caption">Architecture of Neural Module Networks (V1) using a rule-based parser</p>
 
@@ -694,7 +694,7 @@ Example modules:
 
 ### CLEVR — A Dataset for Visual Reasoning (Johnson et al., 2017)
 
-![[Lecture07_Pg078_Clevr_A_Dataset_For_Visual_Reasoning.png]]
+![[pictures/mpl/07/Lecture07_Pg078_Clevr_A_Dataset_For_Visual_Reasoning.png]]
 
 <p class="image-caption">Examples from the CLEVR dataset for compositional visual reasoning</p>
 
@@ -715,7 +715,7 @@ Example questions:
 ### Neural Module Networks — V2: End-to-End Learning (Hu et al., 2017)
 
 
-![[Lecture07_Pg080_Neural_Module_Networks_V2_End_To.png]]
+![[pictures/mpl/07/Lecture07_Pg080_Neural_Module_Networks_V2_End_To.png]]
 
 <p class="image-caption">Architecture of Neural Module Networks (V2) with end-to-end program generation</p>
 
@@ -794,7 +794,7 @@ class ProtoNet(nn.Module):
 
 ### Representation Learning Models
 
-![[Lecture07_Pg038_Representation_Learning_Models.png]]
+![[pictures/mpl/07/Lecture07_Pg038_Representation_Learning_Models.png]]
 
 <p class="image-caption">Comparison table of representation learning models: DeViSE, CLIP, GLIP, and LSeg</p>
 
@@ -871,4 +871,4 @@ class ProtoNet(nn.Module):
 - **Modality Gap**: Despite alignment, image and text features often occupy distinct clusters in the latent space, which is an ongoing research challenge.
 
 ---
-[[notes/mlp/06-vit|Previous: L06 — ViT]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/08-iml|Next: (y-08) IML]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/mlp/06-vit|Previous: L06 — ViT]] | [[/notes/mlp/index|Back to MPL Index]] | [[/notes/mlp/08-iml|Next: (y-08) IML]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

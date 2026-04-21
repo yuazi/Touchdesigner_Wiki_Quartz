@@ -8,7 +8,7 @@ tags:
 date: 2026-04-03
 ---
 
-[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/02-propositional-logic|Next: (y-02) Propositional Logic]]
+[[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/02-propositional-logic|Next: (y-02) Propositional Logic]]
 
 ## Mental Model for Program Verification
 
@@ -113,4 +113,4 @@ We will cover:
 5. We will use **Z3** and **SMT-LIB** to automate our reasoning.
 
 ---
-[[notes/programverification/index|Back to Program Verification Index]] | [[notes/programverification/02-propositional-logic|Next: (y-02) Propositional Logic]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/02-propositional-logic|Next: (y-02) Propositional Logic]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

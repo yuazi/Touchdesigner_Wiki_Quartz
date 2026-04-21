@@ -26,7 +26,7 @@ I use the [[work/slidelink|SlideLink]] tool I built to automatically align these
 
 ## The "Numbers Problem" (Math)
 
-![[L01_Pg-08.jpg]]
+![[pictures/realtimegraphics/01/L01_Pg-08.jpg]]
 
 <p class="image-caption">L01_Pg-08: The sheer volume of data is the primary engineering challenge in real-time rendering.</p>
 
@@ -49,7 +49,7 @@ Each sample requires multiple math operations (lighting, texturing, blending). A
 
 ## Three Decades of Progress (The Hardware Shift)
 
-![[L01_Pg-07.jpg]]
+![[pictures/realtimegraphics/01/L01_Pg-07.jpg]]
 
 <p class="image-caption">L01_Pg-07: Visualization of the 30-year jump from supercomputers to consumer hardware.</p>
 
@@ -64,7 +64,7 @@ Each sample requires multiple math operations (lighting, texturing, blending). A
 
 ## Lab Exercises: The Roadmap to a Renderer
 
-![[L01_Pg-14.jpg]]
+![[pictures/realtimegraphics/01/L01_Pg-14.jpg]]
 
 <p class="image-caption">L01_Pg-14: The 4-step journey you will take in the lab to build a modern renderer.</p>
 

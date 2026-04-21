@@ -10,7 +10,7 @@ tags:
   - neural-networks
 date: 2026-03-09
 ---
-[[notes/mlp/11-rl|Previous: L11 — RL]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/13-xai|Next: (y-13) XAI]]
+[[/notes/mlp/11-rl|Previous: L11 — RL]] | [[/notes/mlp/index|Back to MPL Index]] | [[/notes/mlp/13-xai|Next: (y-13) XAI]]
 
 > **Course**: Machine Perception and Learning for Collaborative Intelligent Systems  
 > **Lecturer**: Prof. Dr. Andreas Bulling, University of Stuttgart, WS 2025/2026
@@ -20,14 +20,14 @@ date: 2026-03-09
 ## Mental Model First
 
 - Diffusion models learn generation by solving many small **denoising** problems instead of one giant generation problem.
-- **Hierarchical Connection**: They can be viewed as a special form of hierarchical VAE with a fixed encoder. Modern systems like **Stable Diffusion** leverage this by using a VAE to compress images into a latent space first. → **[[notes/mlp/09-vae|Generative AI & VAE L09]]**
+- **Hierarchical Connection**: They can be viewed as a special form of hierarchical VAE with a fixed encoder. Modern systems like **Stable Diffusion** leverage this by using a VAE to compress images into a latent space first. → **[[/notes/mlp/09-vae|Generative AI & VAE L09]]**
 - The forward process destroys structure gradually; the reverse model learns how to rebuild that structure step by step.
 - Their biggest strength is stable high-quality generation, while their biggest weakness is often sampling cost.
 - If one question guides this lecture, let it be: **why is reversing a noise process easier to train than generating a full image in one shot?**
 
 ## This Lecture — Generative Models III
 
-![[Lecture12_Pg010_This_Lecture_Generative_Models_Iii.png]]
+![[pictures/mpl/12/Lecture12_Pg010_This_Lecture_Generative_Models_Iii.png]]
 
 <p class="image-caption">Here's the plan for today: we'll cover everything from discrete diffusion to GLIDE.</p>
 
@@ -45,7 +45,7 @@ We start with the diffusion mechanism itself and return to VAEs and GANs later o
 
 ### Basic Idea
 
-![[Lecture12_Pg018_Basic_Idea.png]]
+![[pictures/mpl/12/Lecture12_Pg018_Basic_Idea.png]]
 
 <p class="image-caption">Think of it as two halves: first we add noise, then we learn how to take it back out.</p>
 
@@ -67,7 +67,7 @@ Reverse:  x_T (noise) ──denoise──► x_{T-1} ──► ... ──denoise
 
 ### Forward Diffusion Process
 
-![[Lecture12_Pg019_Forward_Diffusion_Process.png]]
+![[pictures/mpl/12/Lecture12_Pg019_Forward_Diffusion_Process.png]]
 
 <p class="image-caption">In the forward pass, we're just watching the image gradually dissolve into pure noise.</p>
 
@@ -85,7 +85,7 @@ $$q(x_{1:T}|x_0) = \prod_{t=1}^{T} q(x_t|x_{t-1})$$
 
 #### Noise Schedule Intuition
 
-![[Lecture12_Pg040_Noise_Schedule_Intuition.png]]
+![[pictures/mpl/12/Lecture12_Pg040_Noise_Schedule_Intuition.png]]
 
 <p class="image-caption">The noise schedule hits different frequencies at different stages of the process.</p>
 
@@ -100,7 +100,7 @@ $$q(x_{1:T}|x_0) = \prod_{t=1}^{T} q(x_t|x_{t-1})$$
 
 ### Sampling from the Forward Distribution — Closed Form
 
-![[Lecture12_Pg025_Sampling_From_The_Forward_Distribution_Closed.png]]
+![[pictures/mpl/12/Lecture12_Pg025_Sampling_From_The_Forward_Distribution_Closed.png]]
 
 <p class="image-caption">The cool thing is this closed-form trick—we can jump straight to any noisy step we want.</p>
 
@@ -149,7 +149,7 @@ That is why denoising is possible at intermediate timesteps: the original signal
 ### How Does the Distribution Change?
 
 
-![[Lecture12_Pg028_How_Does_The_Distribution_Change.png]]
+![[pictures/mpl/12/Lecture12_Pg028_How_Does_The_Distribution_Change.png]]
 
 <p class="image-caption">Watch how that complex data distribution eventually smooths out into a simple Gaussian.</p>
 
@@ -163,7 +163,7 @@ During forward diffusion, the **marginal distribution** $q(x_t)$ is smoothed gra
 
 ### Generative Learning by Reversing the Diffusion Process
 
-![[Lecture12_Pg033_Generative_Learning_By_Reversing_The_Diffusion.png]]
+![[pictures/mpl/12/Lecture12_Pg033_Generative_Learning_By_Reversing_The_Diffusion.png]]
 
 <p class="image-caption">Now for the magic: learning to undo all that noise, one tiny step at a time.</p>
 
@@ -218,7 +218,7 @@ $$p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^{T} p_\theta(x_{t-1}|x_t)$$
 
 ### Reverse Conditional Gaussian and Training Objective
 
-![[Lecture12_Pg037_Reverse_Conditional_Gaussian_And_Training_Objective.png]]
+![[pictures/mpl/12/Lecture12_Pg037_Reverse_Conditional_Gaussian_And_Training_Objective.png]]
 
 <p class="image-caption">The goal for DDPM is simple—just make the predicted noise match the actual noise we added.</p>
 
@@ -270,13 +270,13 @@ So "predict the noise" is not just a coding convenience. It is the parameterizat
 
 ### Training and Sampling Algorithms
 
-![[Lecture12_Pg038_Training_And_Sampling_Algorithms.png]]
+![[pictures/mpl/12/Lecture12_Pg038_Training_And_Sampling_Algorithms.png]]
 
 <p class="image-caption">The core training and sampling algorithms for Denoising Diffusion Probabilistic Models (DDPM).</p>
 
 ### Training Procedure — U-Net Architecture
 
-![[Lecture12_Pg039_Training_Procedure_U_Net_Architecture.png]]
+![[pictures/mpl/12/Lecture12_Pg039_Training_Procedure_U_Net_Architecture.png]]
 
 <p class="image-caption">We're using a U-Net here, complete with skip connections and time-step embeddings to handle the denoising.</p>
 
@@ -311,7 +311,7 @@ Output: predicted noise (H × W × C)
 
 ### Diffusion Hyperparameters — The Noise Schedule
 
-![[Lecture12_Pg040_Diffusion_Hyperparameters_The_Noise_Schedule.png]]
+![[pictures/mpl/12/Lecture12_Pg040_Diffusion_Hyperparameters_The_Noise_Schedule.png]]
 
 <p class="image-caption">Adjusting these hyperparameters really changes how the noise builds up over time.</p>
 
@@ -335,7 +335,7 @@ alpha_bar = torch.cumprod(alpha, dim=0)        # ᾱ_t
 
 ### Connection to VAEs
 
-![[Lecture12_Pg043_Connection_To_Vaes.png]]
+![[pictures/mpl/12/Lecture12_Pg043_Connection_To_Vaes.png]]
 
 <p class="image-caption">If you look closely, diffusion models and hierarchical VAEs actually share a lot of the same DNA.</p>
 
@@ -365,7 +365,7 @@ So diffusion spreads the generative problem across **many easy denoising steps**
 
 ### SDE Formulation (Song et al., 2021)
 
-![[Lecture12_Pg045_Sde_Formulation.png]]
+![[pictures/mpl/12/Lecture12_Pg045_Sde_Formulation.png]]
 
 <p class="image-caption">Let's look at this from a continuous perspective using Stochastic Differential Equations.</p>
 
@@ -378,7 +378,7 @@ $$dx = f(x, t)\,dt + g(t)\,dw$$
 
 ### Time Reversal
 
-![[Lecture12_Pg046_Time_Reversal.png]]
+![[pictures/mpl/12/Lecture12_Pg046_Time_Reversal.png]]
 
 <p class="image-caption">Reversing the time in these SDEs really comes down to mastering the score function.</p>
 
@@ -489,13 +489,13 @@ The essential trick is simple: define a shorter timestep schedule and denoise on
 
 ## Latent Diffusion Models (Rombach et al., 2022)
 
-![[Lecture12_Pg058_Latent_Diffusion_Models_Overview_Rombach_Et_Al_2022.png]]
+![[pictures/mpl/12/Lecture12_Pg058_Latent_Diffusion_Models_Overview_Rombach_Et_Al_2022.png]]
 
 <p class="image-caption">The latent diffusion overview: encode to a compact latent, denoise there, then decode back to pixels.</p>
 
 ### Motivation — The Scaling Problem
 
-![[Lecture12_Pg055_Motivation_The_Scaling_Problem.png]]
+![[pictures/mpl/12/Lecture12_Pg055_Motivation_The_Scaling_Problem.png]]
 
 <p class="image-caption">Working directly in high-res pixel space is a massive computational headache.</p>
 
@@ -554,7 +554,7 @@ x_0 →[VAE Enc]→ z_0 →[Noise]→ z_T →[U-Net]→ ẑ_0 →[VAE Dec]→ x�
 
 ### Two-Stage Training
 
-![[Lecture12_Pg060_Two_Stage_Training.png]]
+![[pictures/mpl/12/Lecture12_Pg060_Two_Stage_Training.png]]
 
 <p class="image-caption">The trick with Latent Diffusion is to compress the image first, then do all the heavy lifting in that smaller space.</p>
 
@@ -580,13 +580,13 @@ This is a big part of why latent diffusion became the foundation for systems lik
 
 In the lecture slides, the first stage is not just plain reconstruction: a **patch-based adversarial discriminator** is added on top of the reconstruction / perceptual objective so the latent space keeps visually important details while staying compressed.
 
-![[Lecture12_Pg060_Adversarial_Patch_Based_Discriminator.png]]
+![[pictures/mpl/12/Lecture12_Pg060_Adversarial_Patch_Based_Discriminator.png]]
 
 <p class="image-caption">Stage 1 of latent diffusion couples the autoencoder with a patch discriminator so compression keeps perceptually important detail.</p>
 
 ### Advantages of Latent Diffusion
 
-![[Lecture12_Pg056_Advantages_Of_Latent_Diffusion.png]]
+![[pictures/mpl/12/Lecture12_Pg056_Advantages_Of_Latent_Diffusion.png]]
 
 <p class="image-caption">Latent Diffusion gives us the best of both worlds: it's efficient and handles semantics way better.</p>
 
@@ -604,7 +604,7 @@ In the lecture slides, the first stage is not just plain reconstruction: a **pat
 
 ### Overview
 
-![[Lecture12_Pg067_Overview.png]]
+![[pictures/mpl/12/Lecture12_Pg067_Overview.png]]
 
 <p class="image-caption">GLIDE lets us both generate new images and edit existing ones just by typing a prompt.</p>
 
@@ -615,7 +615,7 @@ In the lecture slides, the first stage is not just plain reconstruction: a **pat
 
 ### CLIP Guidance (Radford et al., 2021)
 
-![[Lecture12_Pg064_Clip_Guidance_Radford_Et_Al_2021.png]]
+![[pictures/mpl/12/Lecture12_Pg064_Clip_Guidance_Radford_Et_Al_2021.png]]
 
 <p class="image-caption">We can use CLIP to steer the diffusion process by checking how well the image matches our text.</p>
 
@@ -661,7 +661,7 @@ $$\tilde\varepsilon = \varepsilon_{\text{uncond}} + s \cdot (\varepsilon_{\text{
 
 ### GLIDE Training
 
-![[Lecture12_Pg066_Glide_Training.png]]
+![[pictures/mpl/12/Lecture12_Pg066_Glide_Training.png]]
 
 <p class="image-caption">Training GLIDE involves teaching it to denoise both with and without the text prompt.</p>
 
@@ -674,7 +674,7 @@ The difference between these two predictions becomes the direction that is later
 
 ### Classifier-Free Guidance (Ho & Salimans, 2022)
 
-![[Lecture12_Pg065_Classifier_Free_Guidance_Ho_Salimans_2022.png]]
+![[pictures/mpl/12/Lecture12_Pg065_Classifier_Free_Guidance_Ho_Salimans_2022.png]]
 
 <p class="image-caption">Classifier-free guidance is basically just sliding between the conditional and unconditional predictions.</p>
 
@@ -705,7 +705,7 @@ eps_guided = eps_uncond + w * (eps_cond - eps_uncond)  # guided prediction
 
 ### GLIDE Editing Results
 
-![[Lecture12_Pg070_Glide_Editing_Results.png]]
+![[pictures/mpl/12/Lecture12_Pg070_Glide_Editing_Results.png]]
 
 <p class="image-caption">Here are some cool examples of GLIDE doing its thing with text-guided edits and inpainting.</p>
 
@@ -726,7 +726,7 @@ Now that the diffusion pipeline is in place, the comparison to earlier generativ
 
 ### Variational Autoencoders (VAEs)
 
-![[Lecture12_Pg004_Variational_Autoencoders_Vaes.png]]
+![[pictures/mpl/12/Lecture12_Pg004_Variational_Autoencoders_Vaes.png]]
 
 <p class="image-caption">The VAE setup: it's all about mapping data to that latent space and back.</p>
 
@@ -740,7 +740,7 @@ Now that the diffusion pipeline is in place, the comparison to earlier generativ
 ### Generative Adversarial Networks (GANs)
 
 
-![[Lecture12_Pg006_Generative_Adversarial_Networks_Gans.png]]
+![[pictures/mpl/12/Lecture12_Pg006_Generative_Adversarial_Networks_Gans.png]]
 
 <p class="image-caption">Here's how GANs work—the Generator and Discriminator constantly trying to outsmart each other.</p>
 
@@ -782,7 +782,7 @@ Now that the diffusion pipeline is in place, the comparison to earlier generativ
 
 ### The Generative Trilemma
 
-![[Lecture12_Pg048_The_Generative_Trilemma.png]]
+![[pictures/mpl/12/Lecture12_Pg048_The_Generative_Trilemma.png]]
 
 <p class="image-caption">The classic generative trilemma: you're always balancing quality, sampling speed, and diversity.</p>
 
@@ -809,7 +809,7 @@ Diffusion often offers strong quality and coverage, but usually sacrifices speed
 
 ## Are We Done? — Open Challenges
 
-![[Lecture12_Pg049_Are_We_Done_Open_Challenges.png]]
+![[pictures/mpl/12/Lecture12_Pg049_Are_We_Done_Open_Challenges.png]]
 
 <p class="image-caption">A quick wrap-up of where we're still struggling with diffusion research.</p>
 
@@ -821,7 +821,7 @@ Diffusion often offers strong quality and coverage, but usually sacrifices speed
 
 
 
-![[Lecture12_Pg063_Text_Guided_Diffusion_Models.png]]
+![[pictures/mpl/12/Lecture12_Pg063_Text_Guided_Diffusion_Models.png]]
 
 <p class="image-caption">This recap slide ties together text conditioning, latent diffusion, and guided generation for modern image models.</p>
 ## Summary
@@ -903,4 +903,4 @@ class DDPM(nn.Module):
 - **Sampling**: Unlike VAEs or GANs (one-step), Diffusion requires **iterative refinement**, making it high-quality but slower to generate.
 
 ---
-[[notes/mlp/11-rl|Previous: L11 — RL]] | [[notes/mlp/index|Back to MPL Index]] | [[notes/mlp/13-xai|Next: (y-13) XAI]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/mlp/11-rl|Previous: L11 — RL]] | [[/notes/mlp/index|Back to MPL Index]] | [[/notes/mlp/13-xai|Next: (y-13) XAI]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
