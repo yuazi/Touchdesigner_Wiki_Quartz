@@ -10,7 +10,7 @@ date: 2026-04-21
 [[/notes/virtualaugmentedreality/01_VR-AR|Back: (y-01) Introduction & History]] | [[/notes/virtualaugmentedreality/index|VR/AR Index]] | [[/notes/virtualaugmentedreality/03-1_VR-AR_hardware|Next: (y-03.1) Stereo Rendering & Hardware]]
 
 ## Mental Model: VR is for Humans
-![](../../pictures/virtualaugmentedreality/02/Lecture0202_Pg005_Mental_Model_Vr_Is_For_Humans.png)
+![](pictures/virtualaugmentedreality/02/Lecture0202_Pg005_Mental_Model_Vr_Is_For_Humans.png)
 
 
 Human-Centered Design (HCD) in VR/AR isn't just about "good UI." It's about designing for the **human sensory system**. Because VR/AR co-opts our biological senses (vision, vestibular system), poor design doesn't just lead to "bad UX"—it leads to **physical illness**.
@@ -18,14 +18,14 @@ Human-Centered Design (HCD) in VR/AR isn't just about "good UI." It's about desi
 ---
 
 ## 1. The Iterative Design Process
-![](../../pictures/virtualaugmentedreality/02/Lecture0202_Pg004_1_The_Iterative_Design_Process.png)
+![](pictures/virtualaugmentedreality/02/Lecture0202_Pg004_1_The_Iterative_Design_Process.png)
 
 
 The core methodology for VR/AR design is iterative. Unlike traditional software where you might "think everything through" first, VR requires a **"Create Culture"**:
 **Analysis** $\to$ **Design** $\to$ **Prototype** $\to$ **Test**
 
 ### Why iteration is mandatory:
-![](../../pictures/virtualaugmentedreality/02/Lecture0202_Pg004_Why_Iteration_Is_Mandatory.png)
+![](pictures/virtualaugmentedreality/02/Lecture0202_Pg004_Why_Iteration_Is_Mandatory.png)
 
 1. **Unexplored Space**: There are no "standard" UI patterns like the "Hamburger Menu" in VR yet.
 2. **Biological Sensitivity**: Small changes in camera movement or latency can have massive impacts on user comfort.
@@ -39,13 +39,13 @@ The core methodology for VR/AR design is iterative. Unlike traditional software 
 Every project starts with a vision. As Eugene Ferguson noted, great engineering feats (like rockets) exist because they were first a mental picture. In VR, this vision defines the **Targeted Behavior**.
 
 ### Understanding Constraints
-![](../../pictures/virtualaugmentedreality/02/Lecture0202_Pg007_Understanding_Constraints.png)
+![](pictures/virtualaugmentedreality/02/Lecture0202_Pg007_Understanding_Constraints.png)
 
 - **Real Constraints**: Laws of physics, hardware limitations (e.g., FOV of the headset), or human biological limits (e.g., maximum comfortable rotation speed).
 - **Overcomable Constraints**: Resource limits, budget, or misperceptions about what the technology can do.
 
 ### The "Elastic User" Threat
-![](../../pictures/virtualaugmentedreality/02/Lecture0202_Pg008_The_Elastic_User_Threat.png)
+![](pictures/virtualaugmentedreality/02/Lecture0202_Pg008_The_Elastic_User_Threat.png)
 
 One of the biggest design failures is designing for an "elastic user"—a user whose needs and skills change whenever the designer faces a hard decision. To combat this, we use **Personas** and **User Stories** to keep the target human fixed.
 
@@ -61,7 +61,7 @@ According to **Jason Jerald** (*The VR Book*), maintaining the "Illusion of Pres
 - **The Result of Failure**: If latency exceeds **30ms**, the virtual world appears to "swim" or lag behind your eyes. This creates a sensory mismatch that triggers sickness.
 
 ### Theories of Motion Sickness
-![](../../pictures/virtualaugmentedreality/02/Lecture02_Sensory_Conflict.png)
+![](pictures/virtualaugmentedreality/02/Lecture02_Sensory_Conflict.png)
 
 1. **Sensory Conflict Theory**: The most accepted theory. Your eyes see you moving (visual), but your inner ear (vestibular) says you are sitting still. This conflict causes the brain to panic.
 2. **Evolutionary (Poison) Theory**: The brain interprets the sensory mismatch as a sign of hallucination caused by poisoning (neurotoxins). It triggers the vomit response to "clear" the poison.
