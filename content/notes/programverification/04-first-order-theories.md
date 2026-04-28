@@ -21,123 +21,121 @@ date: 2026-04-16
 - This is how we bridge the gap between abstract logic and actual program variables (integers, arrays, bits).
 
 ## What is a First-Order Theory?
-![[pictures/programverification/04/Lecture04_Pg082_What_Is_A_First_Order_Theory.png]]
 
+A **Theory ($T$)** constrains the meaning of symbols (like $=, +, \le, \text{read}$) using a specific **Signature** and a set of **Axioms**. This allows us to bridge the gap between abstract logic and actual program variables.
 
-A theory $T$ consists of:
-1.  **Signature ($\Sigma$)**: The set of allowed symbols (constants, functions, predicates).
-2.  **Axioms ($\mathcal{A}_T$)**: A set of closed formulas that define how those symbols behave.
+### Formal Definition
+A first-order theory $T$ consists of:
+1.  **Signature ($\Sigma$)**: A set of constant, function, and predicate symbols.
+2.  **Axioms ($\mathcal{A}_T$)**: A set of closed $\Sigma$-formulas.
 
-### 🧠 Deep Dive: The Rock-Paper-Scissors Theory ($T_{RPS}$)
-![[pictures/programverification/04/Lecture04_Pg090_Deep_Dive_The_Rock_Paper_Scissors.png]]
+### $T$-Models and $T$-Validity
+- **$T$-Model**: A model $M$ is a $T$-model if it satisfies all axioms in $\mathcal{A}_T$.
+- **$T$-Satisfiable**: A formula $\phi$ is $T$-satisfiable if there exists a **$T$-model** $M$ such that $M \models \phi$.
+- **$T$-Valid**: A formula $\phi$ is $T$-valid (denoted $T \models \phi$) if every $T$-model satisfies $\phi$.
+- **$T$-Equivalent**: $\phi_1$ and $\phi_2$ are $T$-equivalent if $\phi_1 \leftrightarrow \phi_2$ is $T$-valid.
 
-Imagine a theory for the game Rock-Paper-Scissors.
-- **Signature**: $\{R, P, S, beat, =\}$
+---
+
+## Example: Rock-Paper-Scissors Theory ($T_{RPS}$)
+
+To define the game Rock-Paper-Scissors, we need a specific theory.
+- **Signature**: $\{R, P, S, \text{beat}/2, =/2\}$
 - **Axioms**:
-  1.  $\forall x. x=R \vee x=P \vee x=S$ (Only three moves exist)
-  2.  $R \ne P \wedge P \ne S \wedge S \ne R$ (Moves are distinct)
-  3.  $beat(P, R) \wedge beat(R, S) \wedge beat(S, P)$ (Winning rules)
-  4.  $\forall x, y. beat(x, y) \to \neg beat(y, x)$ (Asymmetry)
-  5.  ... (and so on, totaling about 10 axioms to fully define the game).
+  1.  $\text{beat}(P, R)$
+  2.  $\text{beat}(R, S)$
+  3.  $\text{beat}(S, P)$
+  4.  $\neg \text{beat}(R, R)$
+  5.  $\neg \text{beat}(R, P)$
+  6.  $\neg \text{beat}(S, S)$
+  7.  $\neg \text{beat}(S, R)$
+  8.  $\neg \text{beat}(P, P)$
+  9.  $\neg \text{beat}(P, S)$
+  10. $\forall x. x=R \vee x=P \vee x=S$ (Domain is restricted to these three)
+
+### 🧠 Deep Dive: Reasoning in $T_{RPS}$
+Is the formula $\neg \exists x. \forall y. \text{beat}(x, y)$ (no move wins against all others) $T$-valid?
+- **Yes**. Because move $x$ would have to beat $R, P$, and $S$. But axioms 4, 6, and 8 state that no move beats itself.
+Is the formula $\forall x. \exists y. \text{beat}(x, y)$ (every move has something it beats) $T$-valid?
+- **Yes**. $R$ beats $S$, $P$ beats $R$, and $S$ beats $P$.
 
 ---
 
 ## Theory of Equality ($T_E$)
 
-Equality is the most fundamental theory. Even if a solver knows nothing else, it usually knows how $=$ works.
+$T_E$ is the foundation of most SMT reasoning. Its signature includes $=/2$ and all other constant/function/predicate symbols.
 
-### Axioms of $T_E$
+### Axioms
 1.  **Reflexivity**: $\forall x. x = x$
 2.  **Symmetry**: $\forall x, y. x = y \to y = x$
 3.  **Transitivity**: $\forall x, y, z. (x = y \wedge y = z) \to x = z$
-4.  **Function Congruence**: $\forall \bar{x}, \bar{y}. (\bigwedge_i x_i = y_i) \to f(\bar{x}) = f(\bar{y})$
-5.  **Predicate Congruence**: $\forall \bar{x}, \bar{y}. (\bigwedge_i x_i = y_i) \to (p(\bar{x}) \leftrightarrow p(\bar{y}))$
+4.  **Function Congruence**: For each $n$-ary $f$, $\forall \bar{x}, \bar{y}. (\bigwedge_i x_i = y_i) \to f(\bar{x}) = f(\bar{y})$
+5.  **Predicate Congruence**: For each $n$-ary $p$, $\forall \bar{x}, \bar{y}. (\bigwedge_i x_i = y_i) \to (p(\bar{x}) \leftrightarrow p(\bar{y}))$
 
 ### 🧠 Deep Dive: Axiom Schemata
-![[pictures/programverification/04/Lecture04_Pg087_Deep_Dive_Axiom_Schemata.png]]
-
-Axioms like **Function Congruence** are actually **Axiom Schemata**. This means they represent an infinite set of axioms, one for every possible function $f$.
-For a binary function $f_2(x, y)$, the specific axiom is:
-$$\forall x_1, x_2, y_1, y_2. (x_1 = y_1 \wedge x_2 = y_2) \to f_2(x_1, x_2) = f_2(y_1, y_2)$$
-
-### 💡 Intuition: Congruence
-Congruence means that functions and predicates are "well-behaved." If two inputs are identical, the output must be identical. This allows a verifier to substitute $b$ for $a$ if it knows $a=b$.
+Axioms like **Function Congruence** are actually **Axiom Schemata**. Since a signature can have infinitely many functions, we cannot list every axiom. Instead, we provide a "template."
+For a binary function $f(x, y)$, the schema generates:
+$$\forall x_1, x_2, y_1, y_2. (x_1 = y_1 \wedge x_2 = y_2) \to f(x_1, x_2) = f(y_1, y_2)$$
 
 ---
 
-## Natural Numbers and Integers
-![[pictures/programverification/04/Lecture04_Pg096_Natural_Numbers_And_Integers.png]]
+## Arithmetic Theories
 
-
-We distinguish between several theories of arithmetic depending on whether they allow multiplication and which domain they cover.
-
-### Peano Arithmetic ($T_{PA}$)
-![[pictures/programverification/04/Lecture04_Pg096_Peano_Arithmetic_T_Pa.png]]
-
-
-This is the theory of **Natural Numbers** ($\mathbb{N}$) with addition and multiplication.
-
+### 1. Peano Arithmetic ($T_{PA}$)
+Theory of **Natural Numbers** ($\mathbb{N}$) with addition and multiplication.
 - **Signature**: $\{0, 1, +, \cdot, =\}$
-- **Key Axioms**:
-  1.  **Zero**: $\forall x. \neg(x + 1 = 0)$
-  2.  **Successor**: $\forall x, y. x + 1 = y + 1 \to x = y$
-  3.  **Induction Schema**: $\phi[0] \wedge (\forall x. \phi[x] \to \phi[x + 1]) \to \forall x. \phi[x]$
-  4.  **Plus Zero**: $\forall x. x + 0 = x$
-  5.  **Plus Successor**: $\forall x, y. x + (y + 1) = (x + y) + 1$
-  6.  **Times Zero**: $\forall x. x \cdot 0 = 0$
-  7.  **Times Successor**: $\forall x, y. x \cdot (y + 1) = x \cdot y + x$
+- **Axioms**: Successor rules, Plus/Times rules, and the **Induction Schema**:
+  $$\phi[0] \wedge (\forall x. \phi[x] \to \phi[x + 1]) \to \forall x. \phi[x]$$
 
-### Expressiveness of $T_{PA}$
-$T_{PA}$ is incredibly powerful and can express almost all of mathematics:
-- **Pythagorean Theorem**: $\forall a, b, c. a^2 + b^2 = c^2 \leftrightarrow \dots$ (where $x^2$ is $x \cdot x$).
-- **Fermat's Last Theorem**: $\forall n. n > 2 \to \neg \exists a, b, c. a > 0 \wedge b > 0 \wedge c > 0 \wedge a^n + b^n = c^n$ (Note: exponentiation $a^n$ must be encoded using Gödel's $\beta$-function since it's not in the signature).
+### 🧠 Deep Dive: Expressiveness of $T_{PA}$
+$T_{PA}$ can express almost all of mathematics. Even exponentiation $x^n$, which is not in the signature, can be encoded using a complex formula $\text{EXP}(x, n, r)$.
+- **Gödel showed** that for every recursive function $f$, there is a $\Sigma_{PA}$ formula $\phi$ such that $\phi(\bar{x}, r) \leftrightarrow r = f(\bar{x})$.
+- This high expressiveness comes at a price: **$T_{PA}$ is undecidable**.
 
-### ⚠️ Gödel's First Incompleteness Theorem
-In any consistent formal theory $T$ that is "sufficiently strong" (like $T_{PA}$), there are statements that are **true** but **unprovable** within $T$. This means no computer program can ever perfectly verify every true property of software that uses full integer multiplication.
-
-### Presburger Arithmetic ($T_N$)
-![[pictures/programverification/04/Lecture04_Pg101_Presburger_Arithmetic_T_N.png]]
-
-Presburger Arithmetic is the fragment of $T_{PA}$ that **excludes multiplication**. 
+### 2. Presburger Arithmetic ($T_N$)
+Natural numbers with **addition only** (no multiplication).
 - **Signature**: $\{0, 1, +, =\}$
-- **Decidability**: Unlike $T_{PA}$, Presburger Arithmetic **is decidable**. This makes it the "sweet spot" for many automated verification tools.
+- **Decidability**: $T_N$ is **decidable**. It is the most common theory for loop bounds and simple offsets.
 
-### Theory of Integers ($T_Z$)
-![[pictures/programverification/04/Lecture04_Pg254_Theory_Of_Integers_T_Z.png]]
+### 3. Theory of Integers ($T_Z$)
+Integers ($\mathbb{Z}$) with $\{+, -, <, =\}$.
 
-The Theory of Integers (or Linear Integer Arithmetic) covers $\mathbb{Z} = \{\dots, -2, -1, 0, 1, 2, \dots\}$.
-- **Signature**: $\{\dots, -1, 0, 1, \dots, +, -, <, =\}$
-- **Expressiveness**: $T_Z$ and $T_N$ have the same expressiveness (every $T_Z$ formula can be transformed into an equisatisfiable $T_N$ formula).
-
-### ⚠️ Warning: Undecidability
-- **Peano Arithmetic** is **undecidable**. There is no algorithm that can tell you if any arbitrary statement about integers (with multiplication) is true.
-- The quantifier-free fragment of $T_{PA}$ is also undecidable (Matiyasevich's Theorem).
-- Verification tools usually stick to **Linear Arithmetic** (no $x \cdot y$ where both are variables) to remain decidable.
+### 🧠 Deep Dive: Transforming $T_Z$ to $T_N$
+To decide $T_Z$-validity for a formula $\phi$, we transform its negation $\neg \phi$ into an equisatisfiable $T_N$ formula:
+1.  Replace every integer variable $x$ with $x_p - x_n$ (where $x_p, x_n$ are natural numbers).
+2.  Eliminate subtraction by moving terms to the other side of $=$ or $>$.
+3.  Replace $a > b$ with $\exists u. \neg(u=0) \wedge a = b + u$.
+If the resulting $T_N$ formula is unsatisfiable, then $\phi$ is $T_Z$-valid.
 
 ---
 
-## Other Important Theories
+## Theory of Arrays ($T_A$)
 
-| Theory | Signature | Use Case |
-|---|---|---|
-| **Integers ($T_\mathbb{Z}$)** | $\{0, 1, +, -, <, =\}$ | Standard loop counters and array indices. |
-| **Reals ($T_\mathbb{R}$)** | $\{0, 1, +, \cdot, <, =\}$ | Physical systems and scientific computing. |
-| **Arrays ($T_A$)** | $\{\text{read}, \text{write}, =\}$ | Modeling memory and data structures. |
+Used to model computer memory and data structures. Unlike functions in FOL, arrays are "first-class objects" that can be modified.
 
-### The Array Axioms (Select)
-![[pictures/programverification/04/Lecture04_Pg113_The_Array_Axioms_Select.png]]
+- **Signature**: $\{\text{select}, \text{store}, =\}$
+- **Axioms**:
+  1.  **Reflexivity, Symmetry, Transitivity** of $=$.
+  2.  **Array Congruence**: $\forall a, i, j. i = j \to \text{select}(a, i) = \text{select}(a, j)$
+  3.  **Read-over-Write 1**: $\forall a, v, i, j. i = j \to \text{select}(\text{store}(a, i, v), j) = v$
+  4.  **Read-over-Write 2**: $\forall a, v, i, j. i \ne j \to \text{select}(\text{store}(a, i, v), j) = \text{select}(a, j)$
+  5.  **Extensionality**: $\forall a, b. (\forall i. \text{select}(a, i) = \text{select}(b, i)) \leftrightarrow a = b$
+      - *Intuition*: Two arrays are equal if and only if they have the same values at every index.
 
-- **Read-over-Write**: $\text{read}(\text{write}(a, i, v), i) = v$. (If you write $v$ to index $i$ and then read from $i$, you get $v$).
-- **Independence**: If $i \ne j$, then $\text{read}(\text{write}(a, i, v), j) = \text{read}(a, j)$.
+### 💡 Application: Modeling Memory
+In a verifier, a pointer `*ptr` is modeled as `select(mem, ptr)`, and an assignment `*ptr = v` becomes `mem' = store(mem, ptr, v)`.
 
 ---
 
-## $T$-Validity and $T$-Satisfiability
-![[pictures/programverification/04/Lecture04_Pg083_T_Validity_And_T_Satisfiability.png]]
+## Summary of Decidability
 
-
-- **$T$-Satisfiable**: There exists a model that obeys all axioms of $T$ and makes the formula true.
-- **$T$-Valid**: The formula is true in *every* model that obeys the axioms of $T$.
+| Logic / Theory | Satisfiability | Validity |
+| :--- | :--- | :--- |
+| **Propositional Logic (PL)** | Decidable | Decidable |
+| **First-Order Logic (FOL)** | Undecidable | Semi-decidable |
+| **Theory of Equality ($T_E$)** | Undecidable (Decidable for QF) | Undecidable |
+| **Presburger Arithmetic ($T_N$)** | Decidable | Decidable |
+| **Peano Arithmetic ($T_{PA}$)** | Undecidable | Undecidable |
 
 In program verification, we usually care about **$T$-Satisfiability**. If a "bad state" (like an assertion failure) is $T$-satisfiable, it means there is a real execution that leads to a bug.
 

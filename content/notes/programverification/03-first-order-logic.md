@@ -19,104 +19,116 @@ date: 2026-04-14
 
 ## Introduction to First-Order Logic
 
-While Propositional Logic is powerful, it can't easily express statements like "Every integer has a square." FOL adds the machinery needed to formalize math and complex program states.
+While Propositional Logic is powerful, it can't easily express statements about objects and their properties. **First-Order Logic (FOL)**, also known as **Predicate Logic**, adds the machinery needed to formalize math and complex program states.
 
 ### 🧠 Deep Dive: Famous Theorems in FOL
+These examples show how FOL can formalize complex mathematical statements.
 ![[pictures/programverification/03/Lecture03_Pg058_Deep_Dive_Famous_Theorems_In_Fol.png]]
 
-- **Triangle Inequality**: $\forall x, y, z. d(x, z) \le d(x, y) + d(y, z)$
-- **Fermat's Last Theorem**: $\neg \exists n > 2. \exists a, b, c > 0. a^n + b^n = c^n$
-- **Pumping Lemma**: $\forall L. Regular(L) \to \exists p. \forall s \in L. (|s| \ge p \to \exists u, v, w. (s = uvw \wedge |uv| \le p \wedge |v| \ge 1 \wedge \forall i \ge 0. uv^iw \in L))$
+1.  **Triangle Inequality**: The length of one side of a triangle is less than the sum of the lengths of the other two sides.
+    $$\forall x, y, z. \text{triangle}(x, y, z) \to \text{length}(x) < \text{length}(y) + \text{length}(z)$$
+2.  **Fermat's Last Theorem**: For any integer $n > 2$, no three positive integers $a, b, c$ satisfy $a^n + b^n = c^n$.
+    $$\forall n. (\text{integer}(n) \wedge n > 2) \to \forall a, b, c. (\text{integer}(a) \wedge \text{integer}(b) \wedge \text{integer}(c) \wedge a > 0 \wedge b > 0 \wedge c > 0) \to a^n + b^n \neq c^n$$
+3.  **Pumping Lemma (for Regular Languages)**:
+    $$\forall L. \text{regular}(L) \to \exists n. \forall z. (z \in L \wedge |z| \ge n \to \exists u, v, w. (z = uvw \wedge |v| \ge 1 \wedge |uv| \le n \wedge \forall i \ge 0. uv^iw \in L))$$
 
 ---
 
 ## Syntax: Terms and Formulas
-![[pictures/programverification/03/Lecture03_Pg135_Syntax_Terms_And_Formulas.png]]
 
-
-In FOL, we distinguish between things that represent **values** (Terms) and things that represent **truth** (Formulas).
+In FOL, we distinguish between **Terms** (representing values/objects) and **Formulas** (representing truth values).
 
 ### 1. The Vocabulary (Signature)
-A vocabulary $\mathcal{V}$ consists of:
-- **Variables**: $x, y, z, \dots$
-- **Constants**: $0, 1, a, b, \dots$
-- **Functions**: $f(x), +(x, y), \dots$ (each has an **arity**)
-- **Predicates**: $p(x), \le(x, y), \dots$ (each has an **arity**)
+A vocabulary $\mathcal{V}$ is a tuple $(V_{Var}, V_{Const}, V_{Fun}, V_{Pred})$:
+- **Variables ($V_{Var}$)**: A countable set $\{x, y, z, \dots\}$.
+- **Constants ($V_{Const}$)**: A countable set $\{c_1, c_2, \dots\}$.
+- **Function Symbols ($V_{Fun}$)**: Each with an **arity** $n \ge 1$ (e.g., $f/1, +/2$).
+- **Predicate Symbols ($V_{Pred}$)**: Each with an **arity** $n \ge 0$ (e.g., $p/1, \le/2$). Arity 0 predicates are like propositional variables.
 
 ### 2. Terms
-![[pictures/programverification/03/Lecture03_Pg134_2_Terms.png]]
-
-Terms are the "nouns" of our language.
-- Every variable is a term.
-- Every constant is a term.
-- If $f$ is an $n$-ary function and $t_1, \dots, t_n$ are terms, then $f(t_1, \dots, t_n)$ is a term.
+Terms are the "nouns" of the language. They are defined inductively:
+1. Every variable $x \in V_{Var}$ is a term.
+2. Every constant $c \in V_{Const}$ is a term.
+3. If $t_1, \dots, t_n$ are terms and $f \in V_{Fun}$ has arity $n$, then $f(t_1, \dots, t_n)$ is a term.
 
 ### 3. Formulas
-Formulas are the "sentences" that can be true or false.
-- `false` is a formula.
-- $p(t_1, \dots, t_n)$ is an **atom** (the simplest formula).
-- If $\phi$ and $\psi$ are formulas, then $\neg \phi, \phi \wedge \psi, \phi \vee \psi, \phi \to \psi$ are formulas.
-- **Quantifiers**: If $\phi$ is a formula, then $\exists x. \phi$ and $\forall x. \phi$ are formulas.
+Formulas are the "sentences". They are defined inductively:
+1. `false` is a formula.
+2. **Atoms**: If $t_1, \dots, t_n$ are terms and $p \in V_{Pred}$ has arity $n$, then $p(t_1, \dots, t_n)$ is a formula.
+3. **Connectives**: If $\phi$ and $\psi$ are formulas, then $\neg \phi, (\phi \wedge \psi), (\phi \vee \psi), (\phi \to \psi)$ are formulas.
+4. **Quantifiers**: If $\phi$ is a formula and $x \in V_{Var}$, then $\exists x. \phi$ and $\forall x. \phi$ are formulas.
+   - *Abbreviation*: $\forall x. \phi := \neg \exists x. \neg \phi$.
 
 ---
 
 ## Semantics: Models and Interpretations
 
-A formula doesn't have a truth value until we provide a **Model** $M = (D, I)$:
-- **Domain ($D$)**: The set of all objects we are talking about (e.g., all integers, all people).
-- **Interpretation ($I$)**: Maps symbols to the domain.
-  - Constants $\to$ elements of $D$.
-  - Functions $\to$ actual operations on $D$.
-  - Predicates $\to$ relations (sets of tuples) over $D$.
+A formula is assigned a truth value relative to a **Model** $M = (D, I)$ and a **Variable Assignment** $\rho$.
 
-### Formal Definition: Variable Assignment
-A **Variable Assignment** $\rho: Var \to D$ is a mapping from variables to elements of the domain.
+- **Interpretation Domain ($D$)**: A non-empty set of objects.
+- **Interpretation Function ($I$)**:
+  - For $c \in V_{Const}$, $I(c) \in D$.
+  - For $f \in V_{Fun}$ of arity $n$, $I(f): D^n \to D$.
+  - For $p \in V_{Pred}$ of arity $n$, $I(p) \subseteq D^n$ (a relation).
+- **Variable Assignment ($\rho$)**: A mapping $\rho: V_{Var} \to D$.
+  - **Notation**: $\rho[x \mapsto d]$ denotes a mapping that is the same as $\rho$ except it maps $x$ to $d$.
 
-The value of a term $t$ under a model $M$ and assignment $\rho$, denoted $\mathcal{V}_{M,\rho}(t)$, is:
-- $x \in Var \implies \rho(x)$
-- $c \in Const \implies I(c)$
-- $f(t_1, \dots, t_n) \implies I(f)(\mathcal{V}_{M,\rho}(t_1), \dots, \mathcal{V}_{M,\rho}(t_n))$
+### Evaluation of Terms $[[t]]_{M,\rho}$
+1. $[[x]]_{M,\rho} = \rho(x)$
+2. $[[c]]_{M,\rho} = I(c)$
+3. $[[f(t_1, \dots, t_n)]]_{M,\rho} = I(f)([[t_1]]_{M,\rho}, \dots, [[t_n]]_{M,\rho})$
 
-A formula $\phi$ is **satisfied** by $M$ and $\rho$ ($M, \rho \models \phi$) if:
-- $M, \rho \models p(t_1, \dots, t_n)$ iff $(\mathcal{V}_{M,\rho}(t_1), \dots, \mathcal{V}_{M,\rho}(t_n)) \in I(p)$
-- $M, \rho \models \forall x. \phi$ iff for all $d \in D$, $M, \rho[x \mapsto d] \models \phi$
-- $M, \rho \models \exists x. \phi$ iff there exists $d \in D$ such that $M, \rho[x \mapsto d] \models \phi$
-
-### 💡 Intuition: Truth is Relative
-The formula $\forall x. \exists y. y > x$ is **true** if $D$ is the set of integers, but **false** if $D$ is a finite set of people (there is no "taller" person if you are already the tallest).
+### Evaluation of Formulas $[[\phi]]_{M,\rho}$
+1. $[[false]]_{M,\rho} = \text{false}$
+2. $[[p(t_1, \dots, t_n)]]_{M,\rho} = \text{true}$ iff $([[t_1]]_{M,\rho}, \dots, [[t_n]]_{M,\rho}) \in I(p)$
+3. $[[\neg \phi]]_{M,\rho} = \text{true}$ iff $[[\phi]]_{M,\rho} = \text{false}$
+4. $[[\phi_1 \wedge \phi_2]]_{M,\rho} = \text{true}$ iff $[[\phi_1]]_{M,\rho} = \text{true}$ and $[[\phi_2]]_{M,\rho} = \text{true}$
+5. $[[\exists x. \phi]]_{M,\rho} = \text{true}$ iff there exists $d \in D$ such that $[[\phi]]_{M,\rho[x \mapsto d]} = \text{true}$
 
 ---
 
 ## Free vs. Bound Variables
-![[pictures/programverification/03/Lecture03_Pg067_Free_Vs_Bound_Variables.png]]
 
-
-- **Bound Variable**: A variable under the scope of a quantifier ($\forall x$ or $\exists x$).
-- **Free Variable**: A variable that is NOT bound.
-- **Closed Formula (Sentence)**: A formula with no free variables. Its truth value depends *only* on the model, not on any specific variable assignment.
-
-### Proof Rules of NFOL
-![[pictures/programverification/03/Lecture03_Pg072_Proof_Rules_Of_Nfol.png]]
-
-NFOL includes all rules from NPL, plus four rules for quantifiers.
-
-| Rule | Name | Formula | Side Condition |
-| :--- | :--- | :--- | :--- |
-| **Intro $\forall$** | ($I\forall$) | $\frac{\Gamma \vdash \phi[x \mapsto y]}{\Gamma \vdash \forall x.\phi}$ | $y \notin freevars(\Gamma)$ and ($x=y$ or $y \notin freevars(\phi)$) |
-| **Elim $\forall$** | ($E\forall$) | $\frac{\Gamma \vdash \forall x.\phi}{\Gamma \vdash \phi[x \mapsto t]}$ | None |
-| **Intro $\exists$** | ($I\exists$) | $\frac{\Gamma \vdash \phi[x \mapsto t]}{\Gamma \vdash \exists x.\phi}$ | None |
-| **Elim $\exists$** | ($E\exists$) | $\frac{\Gamma \vdash \exists x.\phi \quad \Gamma \cup \{\phi[x \mapsto y]\} \vdash \psi}{\Gamma \vdash \psi}$ | $y \notin freevars(\Gamma \cup \{\psi\})$ and ($x=y$ or $y \notin freevars(\phi)$) |
+- **Free Variables (`freevars`)**: The variables not captured by a quantifier.
+  - `freevars(x) = {x}`, `freevars(c) = ∅`
+  - `freevars(p(t1, ..., tn)) = freevars(t1) ∪ ... ∪ freevars(tn)`
+  - `freevars(∃x. φ) = freevars(φ) \ {x}`
+- **Bound Variable**: A variable $x$ in the scope of $\forall x$ or $\exists x$.
+- **Closed Formula (Sentence)**: A formula where `freevars(φ) = ∅`. Its truth value is independent of the variable assignment $\rho$.
 
 ---
 
-## 🧠 Deep Dive: Substitution and Free Variables
-Substitution is more than just "search and replace." We must avoid **Variable Capture**.
+## Substitution and Variable Capture
 
-- **Free Variables**: Variables that are not under the scope of any quantifier.
-    - Example: In $\exists x. p(x, y)$, $x$ is **bound**, but $y$ is **free**.
-- **Substitution $\phi[x \mapsto t]$**: Replace all free occurrences of $x$ with $t$.
-- **Variable Capture**: If $t$ contains a variable $y$, and you substitute $x \mapsto t$ inside $\forall y. \dots$, the $y$ in $t$ is suddenly bound!
-    - **Rule**: If $x$ is inside the scope of a quantifier for a variable $y$ that appears in $t$, you must first **rename** the bound $y$ to a "fresh" $z$.
+**Substitution** $\phi[x \mapsto t]$ means replacing every **free** occurrence of $x$ in $\phi$ with the term $t$. To avoid **Variable Capture**, we must ensure that no variable in $t$ becomes bound after substitution.
+
+**Formal Definition ($\psi\sigma$)**:
+If $\psi = \exists x. \phi$ and we apply substitution $\sigma$:
+1. If $x \notin vars(\sigma)$, then $(\exists x. \phi)\sigma = \exists x. (\phi\sigma)$.
+2. If $x \in vars(\sigma)$, we must **rename** $x$ to a fresh variable $x'$:
+   $(\exists x. \phi)\sigma = \exists x'. (\phi[x \mapsto x'])\sigma$
+
+---
+
+## NFOL: Natural Deduction for FOL
+
+NFOL extends Natural Deduction for Propositional Logic (NPL) with rules for quantifiers.
+
+| Rule | Intro/Elim | Formula | Side Condition |
+| :--- | :--- | :--- | :--- |
+| **($I\forall$)** | Intro $\forall$ | $\frac{\Gamma \vdash \phi[x \mapsto y]}{\Gamma \vdash \forall x.\phi}$ | (a) $y \notin freevars(\Gamma)$ and (b) ($x=y$ or $y \notin freevars(\phi)$) |
+| **($E\forall$)** | Elim $\forall$ | $\frac{\Gamma \vdash \forall x.\phi}{\Gamma \vdash \phi[x \mapsto t]}$ | None |
+| **($I\exists$)** | Intro $\exists$ | $\frac{\Gamma \vdash \phi[x \mapsto t]}{\Gamma \vdash \exists x.\phi}$ | None |
+| **($E\exists$)** | Elim $\exists$ | $\frac{\Gamma \vdash \exists x.\phi \quad \Gamma \cup \{\phi[x \mapsto y]\} \vdash \psi}{\Gamma \vdash \psi}$ | (a) $y \notin freevars(\Gamma \cup \{\psi\})$ and (b) ($x=y$ or $y \notin freevars(\phi)$) |
+
+### 💡 Why the Side Conditions?
+The condition "$y \notin freevars(\Gamma)$" in $(I\forall)$ ensures that $y$ is an **arbitrary** element. If we knew something specific about $y$ (i.e., it was in $\Gamma$), we couldn't generalize it to "all $x$".
+
+---
+
+## Decidability
+- **Satisfiability in FOL** is **undecidable** (Church-Turing Theorem).
+- **Validity in FOL** is **semi-decidable** (we can enumerate proofs, but if a formula is invalid, we might never find out).
 
 ### Example: A Derivation in NFOL
 ![[pictures/programverification/03/Lecture03_Pg474_Example_A_Derivation_In_Nfol.png]]
