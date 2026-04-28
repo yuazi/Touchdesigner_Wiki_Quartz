@@ -48,7 +48,6 @@ A typical script follows these steps, using the **4 main commands**:
 4.  **`get-model`**: If `sat`, ask for a concrete assignment to the variables.
 
 ### Full Lifecycle Example
-![[pictures/programverification/05/Lecture05_Pg131_Full_Lifecycle_Example.png]]
 
 1.  **Set Logic**: Tell the solver which theories you need.
     - **`QF_LIA`**: Quantifier-Free Linear Integer Arithmetic.

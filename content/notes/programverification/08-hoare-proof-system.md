@@ -19,7 +19,6 @@ date: 2025-05-14
 - **Mechanical Rules**: Instead of thinking about all possible values, we follow a set of purely syntactic rules to build a **Derivation Tree**.
 - **The Loop Challenge**: For every loop, we must discover a "magical" formula called a **Loop Invariant** that remains true throughout the loop's execution.
 ## The Hoare Triple
-![[pictures/programverification/08/Lecture08_Pg208_The_Hoare_Triple.png]]
 
 
 A **Hoare Triple** is written as:
@@ -29,7 +28,7 @@ $$\{P\} \ S \ \{Q\}$$
 - **$Q$ (Postcondition):** An assertion guaranteed to be true after execution.
 
 ### Relational Semantics Connection
-![[pictures/programverification/08/Lecture08_Pg208_Relational_Semantics_Connection.png]]
+![[pictures/programverification/08/Lecture08_Pg208_The_Hoare_Triple.png]]
 
 A triple is **valid** if the program $S$ satisfies the precondition-postcondition pair $(P, Q)$. Mathematically, this means the set of reachable states from $P$ via $S$ is a subset of $Q$:
 $$\text{post}(\{P\}, [[S]]) \subseteq \{Q\}$$
@@ -39,7 +38,7 @@ $$\text{post}(\{P\}, [[S]]) \subseteq \{Q\}$$
 ## Key Rules of the Hoare Proof System
 
 ### 1. Assignment Axiom (assig)
-![[pictures/programverification/08/Lecture08_Pg270_1_Assignment_Axiom_Assig.png]]
+![[pictures/programverification/13/Lecture13_Pg270_1_Assignment_X_Expr.png]]
 
 $$\{Q[x \mapsto \text{expr}]\} \ x := \text{expr} \ \{Q\}$$
 To prove $Q$ holds *after* an assignment, we must prove $Q$ with $x$ replaced by the expression *before* the assignment.
@@ -69,7 +68,7 @@ $$
 
 ## Key Rules (Continued)
 ... (rest of the rules) ...
-![[pictures/programverification/08/Lecture08_Pg211_2_Composition_Rule_Compo.png]]
+![[pictures/programverification/07/Lecture07_Pg211_1_Assignment_X_Expr.png]]
 
 $$\frac{\{P\} \ st_1 \ \{R\} \quad \{R\} \ st_2 \ \{Q\}}{\{P\} \ st_1; st_2 \ \{Q\}}$$
 To prove a sequence, find an intermediate assertion $R$ that links them.

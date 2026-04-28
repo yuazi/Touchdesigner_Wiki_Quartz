@@ -13,8 +13,6 @@ date: 2025-07-09
 
 ## Mental Model for Trace Abstraction
 <!-- Review Needed: close slide match for 'Mental Model for Trace Abstraction' (p455: 0.544, p456: 0.544) -->
-![[pictures/programverification/15/Lecture15_Pg455_Mental_Model_For_Trace_Abstraction.png]]
-![[pictures/programverification/15/Lecture15_Pg456_Mental_Model_For_Trace_Abstraction.png]]
 
 
 - **Code as Language**: We can view a program as a **Formal Language** over an alphabet of statements (e.g., $x:=0$, $x<y$).
@@ -35,7 +33,6 @@ date: 2025-07-09
 ## Floyd-Hoare Automata
 <!-- Review Needed: close slide match for 'Floyd-Hoare Automata' (p445: 0.483, p447: 0.455) -->
 ![[pictures/programverification/15/Lecture15_Pg445_Floyd_Hoare_Automata.png]]
-![[pictures/programverification/15/Lecture15_Pg447_Floyd_Hoare_Automata.png]]
 
 
 A **Floyd-Hoare Automaton** (FHA) is a way to prove that many traces are infeasible at once.

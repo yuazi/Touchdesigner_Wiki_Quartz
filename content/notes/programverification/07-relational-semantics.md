@@ -45,7 +45,6 @@ The relation consists of pairs $(s, s')$ where:
 $$[[x := e]] = \{ (s, s') \mid s'(x) = [[e]]_s \text{ and } \forall v \ne x, s'(v) = s(v) \}$$
 
 ### 2. Composition: `st1; st2`
-![[pictures/programverification/07/Lecture07_Pg187_2_Composition_St1_St2.png]]
 
 Running `st1` followed by `st2` is the relational composition: $[[st1]] \circ [[st2]]$.
 - $(s, s'')$ is in the relation if there exists an intermediate state $s'$ that links them.

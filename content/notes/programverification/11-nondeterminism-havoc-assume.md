@@ -32,13 +32,12 @@ In standard programming, we use `scanf` or `read()`. In verification, we use `ha
 ---
 
 ## The `assume` Statement
-![[pictures/programverification/10/Lecture10_Pg290_The_Assume_Statement.png]]
 
 
 An `assume P` statement is NOT a check; it is a **constraint** on the verifier.
 
 ### Relational Semantics of `assume P`
-![[pictures/programverification/10/Lecture10_Pg290_Relational_Semantics_Of_Assume_P.png]]
+![[pictures/programverification/10/Lecture10_Pg290_The_Assume_Statement.png]]
 
 - **Partial Identity Relation**: $[[\text{assume P}]] = \{ (s, s) \mid s \in \text{States and } s \models P \}$.
 - The relation is a subset of the **Identity Relation**.

@@ -11,9 +11,6 @@ date: 2025-05-20
 [[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/08-hoare-proof-system|Previous: (y-08) Hoare Proof System]] | [[/notes/programverification/10-array-theory-and-arrays-in-boostan|Next: (y-10) Array Theory and Arrays in Boostan]]
 
 ## Mental Model for Ultimate Referee
-<!-- Review Needed: close slide match for 'Mental Model for Ultimate Referee' (p240: 0.451, p241: 0.446) -->
-![[pictures/programverification/09/Lecture09_Pg240_Mental_Model_For_Ultimate_Referee.png]]
-![[pictures/programverification/09/Lecture09_Pg241_Mental_Model_For_Ultimate_Referee.png]]
 
 
 - **Double-Checking Proofs**: Deriving Hoare triples and loop invariants is hard and error-prone. **Ultimate Referee** is a tool that takes your code and candidate invariants and checks if they actually form a valid proof.
@@ -34,7 +31,6 @@ Finding a derivation in the Hoare proof system follows a systematic path:
 ---
 
 ## What is Ultimate Referee?
-<!-- Review Needed: close slide match for 'What is Ultimate Referee?' (p241: 0.528, p240: 0.484) -->
 ![[pictures/programverification/09/Lecture09_Pg241_What_Is_Ultimate_Referee.png]]
 ![[pictures/programverification/09/Lecture09_Pg240_What_Is_Ultimate_Referee.png]]
 

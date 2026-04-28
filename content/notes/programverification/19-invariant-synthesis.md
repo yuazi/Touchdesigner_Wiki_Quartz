@@ -47,7 +47,7 @@ $$\forall \vec{x}. \ (\phi \wedge P_1(\vec{x}_1) \wedge \dots \wedge P_n(\vec{x}
 - $P_i$ are **Uninterpreted Predicates** (the unknown invariants).
 
 ### Example: Horn Clauses for a Loop
-![[pictures/programverification/19/Lecture19_Pg497_Example_Horn_Clauses_For_A_Loop.png]]
+![[pictures/programverification/07/Lecture07_Pg497_Semantics_Of_Loops_While_B_St.png]]
 
 For a loop `while B { body }`, the requirements are encoded as:
 1.  **Entry**: $Pre(x) \to Inv(x)$

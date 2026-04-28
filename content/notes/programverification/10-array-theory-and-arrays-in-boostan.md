@@ -12,7 +12,7 @@ date: 2025-05-26
 [[/notes/programverification/index|Back to Program Verification Index]] | [[/notes/programverification/09-ultimate-referee|Previous: (y-09) Ultimate Referee]] | [[/notes/programverification/11-nondeterminism-havoc-assume|Next: (y-11) Nondeterminism: Havoc and Assume]]
 
 ## Mental Model for Arrays
-![[pictures/programverification/09/Lecture09_Pg257_Mental_Model_For_Arrays.png]]
+![[pictures/programverification/04/Lecture04_Pg257_Theory_Of_Arrays_T_A.png]]
 
 
 - **Arrays as Maps**: In formal verification, an array is not a block of memory; it is a **Function** (or Map) from indices to values.
@@ -56,13 +56,12 @@ The relation for `a[i] := expr` is defined by:
 ---
 
 ## Array Assignment in Hoare Logic
-![[pictures/programverification/09/Lecture09_Pg270_Array_Assignment_In_Hoare_Logic.png]]
 
 
 We add a new rule to the Hoare Proof System to handle array updates:
 
 ### Array Assignment Axiom (arrassig)
-![[pictures/programverification/09/Lecture09_Pg270_Array_Assignment_Axiom_Arrassig.png]]
+![[pictures/programverification/13/Lecture13_Pg270_1_Assignment_X_Expr.png]]
 
 The formal rule is:
 $$\{ \phi[a \mapsto \text{store}(a, i, \text{expr})] \} \ a[i] := \text{expr} \ \{ \phi \}$$

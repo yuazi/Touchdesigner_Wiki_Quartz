@@ -26,7 +26,6 @@ We use the [[work/slidelink|SlideLink]] tool to automatically align these notes 
 ---
 
 ## What is a Program Verifier?
-![[pictures/programverification/01/Lecture01_Pg012_What_Is_A_Program_Verifier.png]]
 
 
 A program verifier is a tool that takes two inputs:

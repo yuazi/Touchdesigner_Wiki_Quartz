@@ -1,5 +1,5 @@
 ---
-title: "L03 — First-Order Logic"
+title: "L03 - First-Order Logic"
 tags:
   - program-verification
   - first-order-logic
@@ -18,6 +18,8 @@ date: 2026-04-14
 - **Substitution**: The "engine" of reasoning in FOL. To prove something about "all $x$", we often substitute $x$ with a specific term $t$.
 
 ## Introduction to First-Order Logic
+![[pictures/programverification/03/Lecture03_Pg055_Introduction_To_First_Order_Logic.png]]
+
 
 While Propositional Logic is powerful, it can't easily express statements about objects and their properties. **First-Order Logic (FOL)**, also known as **Predicate Logic**, adds the machinery needed to formalize math and complex program states.
 
@@ -35,10 +37,14 @@ These examples show how FOL can formalize complex mathematical statements.
 ---
 
 ## Syntax: Terms and Formulas
+![[pictures/programverification/03/Lecture03_Pg135_Syntax_Terms_And_Formulas.png]]
+
 
 In FOL, we distinguish between **Terms** (representing values/objects) and **Formulas** (representing truth values).
 
 ### 1. The Vocabulary (Signature)
+![[pictures/programverification/03/Lecture03_Pg059_1_The_Vocabulary_Signature.png]]
+
 A vocabulary $\mathcal{V}$ is a tuple $(V_{Var}, V_{Const}, V_{Fun}, V_{Pred})$:
 - **Variables ($V_{Var}$)**: A countable set $\{x, y, z, \dots\}$.
 - **Constants ($V_{Const}$)**: A countable set $\{c_1, c_2, \dots\}$.
@@ -46,6 +52,8 @@ A vocabulary $\mathcal{V}$ is a tuple $(V_{Var}, V_{Const}, V_{Fun}, V_{Pred})$:
 - **Predicate Symbols ($V_{Pred}$)**: Each with an **arity** $n \ge 0$ (e.g., $p/1, \le/2$). Arity 0 predicates are like propositional variables.
 
 ### 2. Terms
+![[pictures/programverification/03/Lecture03_Pg134_2_Terms.png]]
+
 Terms are the "nouns" of the language. They are defined inductively:
 1. Every variable $x \in V_{Var}$ is a term.
 2. Every constant $c \in V_{Const}$ is a term.
@@ -88,6 +96,8 @@ A formula is assigned a truth value relative to a **Model** $M = (D, I)$ and a *
 ---
 
 ## Free vs. Bound Variables
+![[pictures/programverification/03/Lecture03_Pg067_Free_Vs_Bound_Variables.png]]
+
 
 - **Free Variables (`freevars`)**: The variables not captured by a quantifier.
   - `freevars(x) = {x}`, `freevars(c) = ∅`
@@ -127,6 +137,8 @@ The condition "$y \notin freevars(\Gamma)$" in $(I\forall)$ ensures that $y$ is 
 ---
 
 ## Decidability
+![[pictures/programverification/03/Lecture03_Pg093_Decidability.png]]
+
 - **Satisfiability in FOL** is **undecidable** (Church-Turing Theorem).
 - **Validity in FOL** is **semi-decidable** (we can enumerate proofs, but if a formula is invalid, we might never find out).
 

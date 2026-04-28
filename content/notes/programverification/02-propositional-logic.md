@@ -141,7 +141,7 @@ Let $\Gamma = \{A, A \to B\}$.
 A formal proof is like a game of LEGO. You start with your base blocks (axioms) and use the connection rules to build the final shape (the conclusion). If you follow the rules, the final shape is guaranteed to be stable.
 
 ### Guide for Finding a Derivation
-![[pictures/programverification/02/Lecture02_Pg240_Guide_For_Finding_A_Derivation.png]]
+![[pictures/programverification/09/Lecture09_Pg240_What_Is_Ultimate_Referee.png]]
 
 1.  **Start at the bottom**: Write the goal implication as the root of your tree.
 2.  **Look at the Top-Level Operator**: If the RHS is $F_1 \wedge F_2$, use ($I\wedge$) to split the problem.
