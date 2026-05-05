@@ -2,12 +2,12 @@
 title: Now
 tags:
   - me
-date: 2026-04-15
+date: 2026-05-05
 ---
 
 This is my **(y)now** page—a snapshot of what's currently taking up my headspace, time, and energy. It's a way for me to stay grounded and for you to see what I'm actually up to beyond the static notes.
 
-*Last updated: April 15, 2026*
+*Last updated: May 5, 2026*
 
 ---
 
@@ -17,7 +17,7 @@ A huge milestone lately was winning 2nd place (🥈) at **LIC8**. It was a uniqu
 ---
 
 ## 🛠️ What I'm Building
-My primary focus has shifted entirely to **Garden Maintenance**—pruning old thoughts, planting new ones, and making sure everything in this digital space connects the way it should. It's a slow, rewarding process of making sense of what I'm learning.
+My primary focus has shifted entirely to **Garden Maintenance**—pruning old thoughts, planting new ones (like the recent expansion of my **[[notes/random/perfumes|perfume collection]]**), and making sure everything in this digital space connects the way it should. It's a slow, rewarding process of making sense of what I'm learning.
 
 ## 🎓 In the Lab (Academic)
 I'm currently navigating my Master's in **Winfo (Business Informatics)** at the University of Stuttgart. This semester is all about the technical deep end:
