@@ -24,6 +24,9 @@ Classical UI design (2D) relies on constraints (mouse on a table, windows on a s
 ### A. Selection (Picking)
 ![](pictures/virtualaugmentedreality/04/Lecture04_Pg011_A_Selection_Picking.png)
 
+<p class="image-caption">Selection Tasks: Techniques for identifying and picking virtual objects, from raycasting to gaze-based selection.</p>
+
+
 Identifying an object to interact with.
 - **Raycasting**: A virtual laser pointer coming from the hand. Good for distant objects.
 - **Virtual Hand**: Direct touch. You move your virtual hand to intersect with the object. Most natural but limited by arm reach.
@@ -33,12 +36,18 @@ Identifying an object to interact with.
 ### B. Manipulation (Modifying)
 ![](pictures/virtualaugmentedreality/04/Lecture04_Pg005_B_Manipulation_Modifying.png)
 
+<p class="image-caption">Manipulation Tasks: Rotating, translating, and scaling objects using 3D widgets or bimanual interaction.</p>
+
+
 Changing an object's properties: **R**otate, **T**ranslate (move), **S**cale.
 - **3D Widgets**: Using handles (arrows/rings) to constrain movement to one axis at a time.
 - **Bimanual Interaction**: Using two hands (e.g., "stretching" an object to scale it).
 
 ### C. Navigation (Moving)
 ![](pictures/virtualaugmentedreality/04/Lecture04_Pg017_C_Navigation_Moving.png)
+
+<p class="image-caption">Navigation: Combining the motor task of travel (teleportation, walking) with the cognitive task of wayfinding.</p>
+
 
 - **Travel (Motor task)**: The physical/virtual act of moving from A to B.
     - **Teleportation**: Instant movement. Reduces motion sickness because there is no optical flow.
@@ -48,6 +57,9 @@ Changing an object's properties: **R**otate, **T**ranslate (move), **S**cale.
 ### D. System Control (Commanding)
 ![](pictures/virtualaugmentedreality/04/Lecture04_Pg021_D_System_Control_Commanding.png)
 
+<p class="image-caption">System Control: Issuing commands via diegetic menus, hand-attached UI (TULIP), or voice control.</p>
+
+
 - **Diegetic Menus**: Menus that exist inside the world (e.g., a virtual tablet in your hand).
 - **TULIP**: Attaching menu items to your fingertips (ideal for pinch gestures).
 - **Voice Commands**: "Hey Siri/Siri, open Safari."
@@ -56,6 +68,8 @@ Changing an object's properties: **R**otate, **T**ranslate (move), **S**cale.
 
 ## 3. AR-Specific Interaction
 ![](pictures/virtualaugmentedreality/04/Lecture04_Pg025_3_Ar_Specific_Interaction.png)
+
+<p class="image-caption">AR-Specific Interaction: Tangible AR, Magic Mirrors, and World in Miniature (WIM) techniques.</p>
 
 
 In AR, we interact with both virtual and real objects.
@@ -69,6 +83,9 @@ In AR, we interact with both virtual and real objects.
 ## 4. Design Guidelines
 ![](pictures/virtualaugmentedreality/04/Lecture04_Pg024_4_Design_Guidelines.png)
 
+<p class="image-caption">Design Best Practices: Reducing degrees of freedom, providing feedback, and mapping interactions to the device.</p>
+
+
 1.  **Map to Device**: Use pointing for distant selection, and grasping for close manipulation.
 2.  **Reduce DOF**: Don't force 6DOF if 1DOF (a slider) works better.
 3.  **Clutching**: Provide a way to "let go" and reposition the hand (like lifting a mouse).
@@ -78,6 +95,8 @@ In AR, we interact with both virtual and real objects.
 
 ## 5. Self-Assessment Quiz
 ![](pictures/virtualaugmentedreality/04/Lecture04_Pg017_5_Self_Assessment_Quiz.png)
+
+<p class="image-caption">Knowledge Check: Reviewing concepts like the Heisenberg effect and the difference between travel and wayfinding.</p>
 
 
 **Q1: What is the "Heisenberg Effect" in spatial interaction?**

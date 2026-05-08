@@ -13,11 +13,16 @@ date: 2026-04-28
 ## 1. Visual AR Output: OST vs. VST
 ![](pictures/virtualaugmentedreality/03/Lecture03_Pg003_1_Visual_Ar_Output_Ost_Vs.png)
 
+<p class="image-caption">OST vs. VST: The two primary methods for merging virtual and physical realities.</p>
+
 
 There are two primary ways to combine virtual content with the real world in an HMD.
 
 ### Optical See-Through (OST)
 ![](pictures/virtualaugmentedreality/03/Lecture03_Pg004_Optical_See_Through_Ost.png)
+
+<p class="image-caption">Optical See-Through (OST): Virtual light is combined with direct vision using an optical combiner.</p>
+
 
 Uses an **optical combiner** (like a half-silvered mirror or waveguide) to allow the user to see the real world directly, with virtual light reflected into the eye.
 - **Examples**: Microsoft HoloLens, Magic Leap, Epson Moverio.
@@ -30,6 +35,9 @@ Uses an **optical combiner** (like a half-silvered mirror or waveguide) to allow
 
 ### Video See-Through (VST)
 ![](pictures/virtualaugmentedreality/03/Lecture03_Pg024_Video_See_Through_Vst.png)
+
+<p class="image-caption">Video See-Through (VST): The real world is captured by cameras and digitized before being shown on an opaque screen.</p>
+
 
 Captures the real world via **cameras**, digitizes it, merges it with virtual content, and displays the result on an opaque screen.
 - **Examples**: Meta Quest 3/Pro, Apple Vision Pro, Varjo XR-4.
@@ -58,6 +66,9 @@ Captures the real world via **cameras**, digitizes it, merges it with virtual co
 ## 3. Display Space Taxonomy
 ![](pictures/virtualaugmentedreality/03/Lecture03_Pg019_3_Display_Space_Taxonomy.png)
 
+<p class="image-caption">Display Space Taxonomy: Classifying displays based on their position relative to the user.</p>
+
+
 Where is the display relative to the user?
 
 1.  **Head-mounted (Head Space)**: Moves with the head (HMDs).
@@ -70,6 +81,9 @@ Where is the display relative to the user?
 ## 4. Spatial Augmented Reality (SAR)
 ![](pictures/virtualaugmentedreality/03/Lecture03_Pg033_4_Spatial_Augmented_Reality_Sar.png)
 
+<p class="image-caption">Spatial Augmented Reality (SAR): Projecting information directly onto physical objects in the environment.</p>
+
+
 Instead of wearing a device, we project light onto the environment.
 - **View-Independent**: Textures projected onto a white 3D model (e.g., projection mapping on buildings).
 - **View-Dependent**: Requires tracking the user to project "anamorphic" 3D objects that look correct only from the user's perspective.
@@ -80,6 +94,9 @@ Instead of wearing a device, we project light onto the environment.
 
 ### 1. Hands & Haptics
 ![](pictures/virtualaugmentedreality/03/Lecture03_Pg039_1_Hands_Haptics.png)
+
+<p class="image-caption">Input Devices: Data gloves and haptic feedback systems allow for more natural interaction in VR/AR.</p>
+
 
 - **Data Gloves**: Tracking finger joints (e.g., Jaron Lanier's 1987 Data Glove).
 - **Haptic Gloves**: Provide resistance (brakes) or vibration to simulate touch (e.g., HaptX, SenseGlove).
@@ -92,6 +109,9 @@ Instead of wearing a device, we project light onto the environment.
 ### 3. Other Senses
 ![](pictures/virtualaugmentedreality/03/Lecture03_Pg046_3_Other_Senses.png)
 
+<p class="image-caption">Beyond Vision: 3D audio, olfactory, and gustatory displays aim for a truly multi-sensory experience.</p>
+
+
 - **3D Audio**: Essential for "Place Illusion."
 - **Olfactory/Taste**: Experimental displays for smell and flavor.
 
@@ -99,6 +119,8 @@ Instead of wearing a device, we project light onto the environment.
 
 ## 6. Self-Assessment Quiz
 ![](pictures/virtualaugmentedreality/03/Lecture03_Pg004_6_Self_Assessment_Quiz.png)
+
+<p class="image-caption">Quick Check: Test your knowledge on AR output methods and input technologies.</p>
 
 
 **Q1: Why can't an Optical See-Through display (like HoloLens) show a solid black cube?**

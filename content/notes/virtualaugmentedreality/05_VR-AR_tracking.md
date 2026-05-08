@@ -12,6 +12,8 @@ date: 2026-05-12
 ## 1. The Trinity of Alignment
 ![](pictures/virtualaugmentedreality/05/Lecture05_Pg004_1_The_Trinity_Of_Alignment.png)
 
+<p class="image-caption">The Trinity of Alignment: Registration, Calibration, and Tracking work together to align the virtual and physical worlds.</p>
+
 
 - **Registration**: The mathematical alignment of virtual objects with the real world (or the user's view).
 - **Calibration**: An offline process to adjust sensors (e.g., measuring the distance between eyes or camera offsets).
@@ -24,11 +26,17 @@ date: 2026-05-12
 ### Degrees of Freedom (DOF)
 ![](pictures/virtualaugmentedreality/05/Lecture05_Pg010_Degrees_Of_Freedom_Dof.png)
 
+<p class="image-caption">Degrees of Freedom (DOF): Distinguishing between orientation-only (3DOF) and full positional tracking (6DOF).</p>
+
+
 - **3DOF**: Orientation only (Roll, Pitch, Yaw). Used in early VR (Google Cardboard).
 - **6DOF**: Orientation + Position (X, Y, Z). Essential for "true" VR/AR where you can walk around objects.
 
 ### Frames of Reference
 ![](pictures/virtualaugmentedreality/05/Lecture05_Pg006_Frames_Of_Reference.png)
+
+<p class="image-caption">Frames of Reference: Defining whether objects are stabilized relative to the world, the body, or the screen.</p>
+
 
 - **World-stabilized**: Virtual objects stay locked to a physical location (e.g., a virtual TV on a real wall).
 - **Body-stabilized**: Objects move with the user (e.g., a "tool-belt" or HUD).
@@ -37,14 +45,18 @@ date: 2026-05-12
 ### Outside-In vs. Inside-Out
 ![](pictures/virtualaugmentedreality/05/Lecture05_Pg013_Outside_In_Vs_Inside_Out.png)
 
+<p class="image-caption">Tracking Architectures: Comparing stationary external sensors (Outside-In) with HMD-mounted sensors (Inside-Out).</p>
+
+
 - **Outside-In**: Sensors are stationary in the room (e.g., Valve Index Lighthouses, Oculus Rift CV1 cameras). 
-    - *Pros*: Very accurate. 
-    - *Cons*: "Occlusion" (blocking the line of sight) and limited "tracking volume."
+- *Pros*: Very accurate. 
+- *Cons*: "Occlusion" (blocking the line of sight) and limited "tracking volume."
 - **Inside-Out**: Sensors are on the HMD looking out (e.g., Quest 3, HoloLens).
-    - *Pros*: Unlimited space (SLAM), easy setup. 
-    - *Cons*: Computationally expensive.
+- *Pros*: Unlimited space (SLAM), easy setup. 
+- *Cons*: Computationally expensive.
 
 ---
+
 
 ## 3. Sensor Types & Technologies
 
@@ -71,6 +83,9 @@ date: 2026-05-12
 ## 4. Sensor Fusion
 ![](pictures/virtualaugmentedreality/05/Lecture05_Pg043_4_Sensor_Fusion.png)
 
+<p class="image-caption">Sensor Fusion: Combining multiple data sources like IMUs and optical sensors to achieve low latency and high accuracy.</p>
+
+
 Combining data from multiple sensors to overcome individual weaknesses.
 - **Complementary**: Combining different types (e.g., IMU for fast motion + Camera for slow, accurate drift correction).
 - **Statistical (Kalman Filters)**: Using math to predict the next state and correcting it with new measurements.
@@ -80,6 +95,9 @@ Combining data from multiple sensors to overcome individual weaknesses.
 
 ## 5. Measurement Errors
 ![](pictures/virtualaugmentedreality/05/Lecture05_Pg015_5_Measurement_Errors.png)
+
+<p class="image-caption">Measurement Errors: Understanding the trade-offs between accuracy, precision (jitter), and latency.</p>
+
 
 - **Accuracy**: How close the measurement is to the "ground truth."
 - **Precision (Jitter)**: How stable the measurement is when the object is still.

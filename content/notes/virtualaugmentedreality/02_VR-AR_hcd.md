@@ -12,6 +12,7 @@ date: 2026-04-21
 ## Mental Model: VR is for Humans
 ![](pictures/virtualaugmentedreality/02/Lecture0202_Pg005_Mental_Model_Vr_Is_For_Humans.png)
 
+<p class="image-caption">The core philosophy: VR and AR systems must be designed for the human sensory system to ensure comfort and presence.</p>
 
 Human-Centered Design (HCD) in VR/AR isn't just about "good UI." It's about designing for the **human sensory system**. Because VR/AR co-opts our biological senses (vision, vestibular system), poor design doesn't just lead to "bad UX"—it leads to **physical illness**.
 
@@ -20,12 +21,15 @@ Human-Centered Design (HCD) in VR/AR isn't just about "good UI." It's about desi
 ## 1. The Iterative Design Process
 ![](pictures/virtualaugmentedreality/02/Lecture0202_Pg004_1_The_Iterative_Design_Process.png)
 
+<p class="image-caption">The iterative design loop: Analysis, Design, Prototyping, and Evaluation.</p>
 
 The core methodology for VR/AR design is iterative. Unlike traditional software where you might "think everything through" first, VR requires a **"Create Culture"**:
 **Analysis** $\to$ **Design** $\to$ **Prototype** $\to$ **Test**
 
 ### Why iteration is mandatory:
 ![](pictures/virtualaugmentedreality/02/Lecture0202_Pg004_Why_Iteration_Is_Mandatory.png)
+
+<p class="image-caption">Why iteration is key: Exploring new UI patterns, managing biological sensitivity, and failing early.</p>
 
 1. **Unexplored Space**: There are no "standard" UI patterns like the "Hamburger Menu" in VR yet.
 2. **Biological Sensitivity**: Small changes in camera movement or latency can have massive impacts on user comfort.
@@ -41,11 +45,15 @@ Every project starts with a vision. As Eugene Ferguson noted, great engineering 
 ### Understanding Constraints
 ![](pictures/virtualaugmentedreality/02/Lecture0202_Pg007_Understanding_Constraints.png)
 
+<p class="image-caption">Balancing the vision with real and overcomable constraints.</p>
+
 - **Real Constraints**: Laws of physics, hardware limitations (e.g., FOV of the headset), or human biological limits (e.g., maximum comfortable rotation speed).
 - **Overcomable Constraints**: Resource limits, budget, or misperceptions about what the technology can do.
 
 ### The "Elastic User" Threat
 ![](pictures/virtualaugmentedreality/02/Lecture0202_Pg008_The_Elastic_User_Threat.png)
+
+<p class="image-caption">The Elastic User Threat: Avoid redefining user needs to fit design limitations.</p>
 
 One of the biggest design failures is designing for an "elastic user"—a user whose needs and skills change whenever the designer faces a hard decision. To combat this, we use **Personas** and **User Stories** to keep the target human fixed.
 
@@ -62,6 +70,8 @@ According to **Jason Jerald** (*The VR Book*), maintaining the "Illusion of Pres
 
 ### Theories of Motion Sickness
 ![](pictures/virtualaugmentedreality/02/Lecture02_Sensory_Conflict.png)
+
+<p class="image-caption">Sensory Conflict: The mismatch between visual cues and vestibular input is a primary cause of motion sickness.</p>
 
 1. **Sensory Conflict Theory**: The most accepted theory. Your eyes see you moving (visual), but your inner ear (vestibular) says you are sitting still. This conflict causes the brain to panic.
 2. **Evolutionary (Poison) Theory**: The brain interprets the sensory mismatch as a sign of hallucination caused by poisoning (neurotoxins). It triggers the vomit response to "clear" the poison.

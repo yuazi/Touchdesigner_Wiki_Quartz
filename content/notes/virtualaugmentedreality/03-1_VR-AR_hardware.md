@@ -13,11 +13,16 @@ date: 2026-04-21
 ## Depth Perception: The Human Vision System
 ![](pictures/virtualaugmentedreality/03/Lecture03_103_Pg004_Depth_Perception_The_Human_Vision_System.png)
 
+<p class="image-caption">Depth Perception: The human vision system uses a combination of monocular and binocular cues to interpret 3D space.</p>
+
 
 How do we see in 3D? Our brain synthesizes multiple "cues" to calculate depth.
 
 ### 1. Monocular (2D) Depth Cues
 ![](pictures/virtualaugmentedreality/03/Lecture03_103_Pg009_1_Monocular_2d_Depth_Cues.png)
+
+<p class="image-caption">Monocular depth cues: How we perceive depth with just one eye through motion, occlusion, and perspective.</p>
+
 
 These allow us to perceive depth even with one eye closed:
 - **Motion Parallax**: As you move, close objects move faster across your retina than distant ones.
@@ -28,7 +33,13 @@ These allow us to perceive depth even with one eye closed:
 ### 2. Binocular (3D) Depth Cues
 <!-- Review Needed: close slide match for '2. Binocular (3D) Depth Cues' (p12: 0.588, p11: 0.554) -->
 ![](pictures/virtualaugmentedreality/03/Lecture03_103_Pg012_2_Binocular_3d_Depth_Cues.png)
+
+<p class="image-caption">Binocular depth cues: Stereopsis and convergence are the foundation of 3D vision and VR immersion.</p>
+
 ![](pictures/virtualaugmentedreality/03/Lecture03_103_Pg011_2_Binocular_3d_Depth_Cues.png)
+
+<p class="image-caption">Binocular disparity: The slightly different images seen by each eye are fused by the brain into a 3D volume.</p>
+
 
 These require both eyes and are the core of VR's "stereo" effect:
 - **Stereopsis (Retinal Disparity)**: Because our eyes are ~6.5cm apart (IPD), each eye sees a slightly different angle. The brain fuses these two 2D images into one 3D volume.
@@ -39,11 +50,16 @@ These require both eyes and are the core of VR's "stereo" effect:
 ## 2. Stereo Rendering Math
 ![](pictures/virtualaugmentedreality/03/Lecture03_103_Pg003_2_Stereo_Rendering_Math.png)
 
+<p class="image-caption">The math behind stereo rendering involves calculating correct camera offsets and projection matrices.</p>
+
 
 To create stereopsis digitally, we must render two images. The geometry matters.
 
 ### Parallax Values
 ![](pictures/virtualaugmentedreality/03/Lecture03_103_Pg017_Parallax_Values.png)
+
+<p class="image-caption">Parallax types: Zero, Positive (behind screen), Negative (front of screen), and Divergent (avoid!).</p>
+
 
 - **Zero Parallax**: The virtual object is exactly on the screen plane.
 - **Positive Parallax**: Images for each eye are separated such that the object appears *behind* the screen.
@@ -52,6 +68,9 @@ To create stereopsis digitally, we must render two images. The geometry matters.
 
 ### Off-Axis vs. Toe-in Rendering
 ![](pictures/virtualaugmentedreality/03/Lecture03_103_Pg024_Off_Axis_Vs_Toe_In_Rendering.png)
+
+<p class="image-caption">Off-Axis vs. Toe-In: Off-axis rendering is the correct way to avoid vertical parallax and eye strain.</p>
+
 
 - **Toe-in (INCORRECT)**: Angling two cameras toward each other. This is easier to implement but creates **Vertical Parallax** (the same point appears at different heights for each eye). This is the primary cause of eye strain in poor 3D content.
 - **Off-Axis (CORRECT)**: The two cameras remain parallel, but their **projection frustums are shifted (asymmetric)**. This keeps the projection planes coplanar and ensures only horizontal parallax is created, mimicking natural vision.
@@ -63,10 +82,16 @@ To create stereopsis digitally, we must render two images. The geometry matters.
 ### Why do we need lenses?
 ![](pictures/virtualaugmentedreality/03/Lecture03_103_Pg048_Why_Do_We_Need_Lenses.png)
 
+<p class="image-caption">Lenses in HMDs: Necessary to focus on a screen just centimeters away by shifting the focal plane.</p>
+
+
 A screen 5cm from your face is impossible for the human eye to focus on. Lenses (Fresnel or Pancake) are used to "bend" the light so it appears to come from ~2 meters away (the **focal plane**).
 
 ### Challenge: Vergence-Accommodation Conflict (VAC)
 ![](pictures/virtualaugmentedreality/03/Lecture03_Vergence_Accommodation.png)
+
+<p class="image-caption">Vergence-Accommodation Conflict: A major challenge where eyes converge at one distance but focus at another.</p>
+
 
 This is the "Holy Grail" problem of VR hardware.
 - **Vergence**: Your eyes rotate to look at a virtual object 20cm away.
@@ -79,6 +104,9 @@ This is the "Holy Grail" problem of VR hardware.
 
 ### Challenge: Latency & Judder
 ![](pictures/virtualaugmentedreality/03/Lecture03_103_Pg054_Challenge_Latency_Judder.png)
+
+<p class="image-caption">Latency and Judder: Low persistence displays help prevent image smearing during fast head movements.</p>
+
 
 - **Judder**: The stuttering or "multiple imaging" effect seen when the frame rate is lower than the refresh rate during head movement.
 - **Solution**: **Low Persistence Displays**. Instead of keeping a frame visible for the whole duration, the screen flashes the image briefly and goes black. This prevents the image from "smearing" across the retina as your eye moves.

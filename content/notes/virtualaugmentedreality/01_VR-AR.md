@@ -37,7 +37,8 @@ Unlike VR, which replaces your vision, AR overlays virtual information onto the 
 
 ### Augmented Reality Feedback Loop
 ![AR Feedback Loop](pictures/virtualaugmentedreality/01/Lecture01_Pg015_AR_Feedback_Loop.png)
-AR uses a feedback loop between the human user and the computer system. The system tracks the user’s viewpoint, registers the pose in the real world with virtual content, and presents **situated visualization**.
+
+<p class="image-caption">AR uses a feedback loop between the human user and the computer system to present situated visualization.</p>
 
 ---
 
@@ -45,6 +46,9 @@ AR uses a feedback loop between the human user and the computer system. The syst
 
 - **Immersion (Objective - System Property)**: The technological degree to which a VR system projects stimuli onto the sensory receptors (Slater and Wilbur 1997).
 ![Immersion Factors](pictures/virtualaugmentedreality/01/Lecture01_Pg009_Immersion_Factors.png)
+
+<p class="image-caption">Key technological factors that contribute to the degree of immersion in a VR system.</p>
+
     - **Extensiveness**: Range of sensory modalities (visuals, audio, haptics).
     - **Matching**: Congruence between modalities (e.g., head motion matches visual update).
     - **Surroundness**: Panoramic extent (FOV, spatialized audio, 360 tracking).
@@ -68,6 +72,9 @@ To achieve a high degree of presence, a system must sustain:
 
 ### Mixed Reality Continuum (Milgram)
 ![Mixed Reality Continuum](pictures/virtualaugmentedreality/01/Lecture01_Pg075_Mixed_Reality_Continuum.png)
+
+<p class="image-caption">The Reality-Virtuality Continuum as defined by Milgram, ranging from the real environment to total virtuality.</p>
+
 Reality is not binary. It's a spectrum:
 `Reality` $\to$ `Augmented Reality (AR)` $\to$ `Augmented Virtuality (AV)` $\to$ `Virtual Reality (VR)`.
 
@@ -97,6 +104,9 @@ Reality is not binary. It's a spectrum:
 
 ## 3. Fidelity Continua (McMahan 2003 / Jerald)
 ![Fidelity Continua](pictures/virtualaugmentedreality/01/Lecture01_Pg012_Fidelity_Continua.png)
+
+<p class="image-caption">The three axes of fidelity: Representational, Interaction, and Experiential.</p>
+
 1. **Representational Fidelity**: How realistic the world looks/sounds (Photorealistic $\to$ Abstract).
 2. **Interaction Fidelity**: How realistic the interactions are (Physical training $\to$ Magic buttons).
 3. **Experiential Fidelity**: How well the user's experience matches the creator's intention (Scripted $\to$ Free-roaming).
@@ -127,12 +137,18 @@ Reality is not binary. It's a spectrum:
 
 ### The Uncanny Valley
 ![Uncanny Valley Chart](pictures/virtualaugmentedreality/01/Lecture01_Pg011_Uncanny_Valley.png)
+
+<p class="image-caption">The Uncanny Valley: Empathy increases with human-likeness until a sharp dip occurs for "almost human" characters.</p>
+
 As a virtual character becomes more human-like, our empathy increases—until they are "almost" human, at which point our reaction turns to revulsion. 
 
 ---
 
 ## 6. The Hype Cycle: Where are we?
 ![Gartner Hype Cycle](pictures/virtualaugmentedreality/01/Lecture01_Pg077_Gartner_Hype_Cycle.png)
+
+<p class="image-caption">The Gartner Hype Cycle, showing the typical path of emerging technologies from innovation to productivity.</p>
+
 VR and AR have historically been characterized by the **Gartner Hype Cycle**:
 1. **Innovation Trigger**
 2. **Peak of Inflated Expectations**
