@@ -16,9 +16,10 @@ date: 2026-04-14
 - [[/notes/virtualaugmentedreality/01_VR-AR|(y-) 01_VR-AR]]: Definitions, history, and applications of VR/AR.
 - [[/notes/virtualaugmentedreality/02_VR-AR_hcd|(y-) 02_VR-AR_hcd]]: Human-Centered Design, motion sickness theories, and technical requirements.
 - [[/notes/virtualaugmentedreality/03-1_VR-AR_hardware|(y-) 03-1_VR-AR_hardware]]: Depth perception, stereo rendering math, and VR hardware challenges.
-- **Tracking & Computer Vision**: How systems understand position and the environment.
+- [[/notes/virtualaugmentedreality/03-2_VR-AR_hardware-2|(y-) 03-2_VR-AR_hardware-2]]: OST vs VST, Spatial AR, and Input Devices (Part 2).
+- [[/notes/virtualaugmentedreality/04_VR-AR_Interaction|(y-) 04_VR-AR_Interaction]]: Selection, Manipulation, Navigation, and System Control.
+- [[/notes/virtualaugmentedreality/05_VR-AR_tracking|(y-) 05_VR-AR_tracking]]: Coordinate systems, DOFs, Sensor types, and Sensor Fusion.
 - **Visual Coherence & Perception**: Aligning virtual objects with the real world and human sensory limits.
-- **Interaction & Haptics**: How we interact with virtual worlds.
 - **Health & Accessibility**: Adverse effects (cybersickness) and assistive technologies.
 - **Immersive Analytics**: Visualizing data in VR/AR.
 

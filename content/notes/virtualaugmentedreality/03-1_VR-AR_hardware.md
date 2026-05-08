@@ -8,7 +8,7 @@ tags:
   - theory
 date: 2026-04-21
 ---
-[[/notes/virtualaugmentedreality/02_VR-AR_hcd|Back: (y-02) Human-Centered Design]] | [[/notes/virtualaugmentedreality/index|VR/AR Index]]
+[[/notes/virtualaugmentedreality/02_VR-AR_hcd|Back: (y-02) Human-Centered Design]] | [[/notes/virtualaugmentedreality/index|VR/AR Index]] | [[/notes/virtualaugmentedreality/03-2_VR-AR_hardware-2|Next: (y-03.2) Hardware Part 2]]
 
 ## Depth Perception: The Human Vision System
 ![](pictures/virtualaugmentedreality/03/Lecture03_103_Pg004_Depth_Perception_The_Human_Vision_System.png)
