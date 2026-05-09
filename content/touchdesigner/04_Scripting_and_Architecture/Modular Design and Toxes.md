@@ -1,4 +1,5 @@
 ---
+title: "Modular Design and Toxes"
 tags:
   - touchdesigner
   - td/architecture
@@ -8,40 +9,91 @@ tags:
 date: 2026-02-21
 ---
 
-# Modular Design and Toxes
+A `.toe` file (your project) is one giant binary blob. The moment a project gets serious, you'll want to factor parts of it out into reusable, version-controllable units. The unit you factor out is the **`.tox`**: a saved component that contains one COMP plus everything inside it.
 
-Keeping your networks clean, organized, and reusable.
+## What a `.tox` Is
 
-## Toxes and Version Control (Git)
+Per the Derivative wiki, a `.tox` is "a TouchDesigner Component file, the file type used to save a Component of your TouchDesigner project. A .tox file contains one component which in turn can contain multiple components."
 
-A `.tox` is a saved TouchDesigner component (like a Base COMP or Container COMP) that encapsulates a piece of your network.
+That means a `.tox` is portable: drop it into a different `.toe`, drop it into another COMP, share it with a collaborator, and the entire internal network plus parameters travels with it.
 
-- **Saving:** Right-click a COMP -> **Save Component .tox...**
-- **External Loading:** On the COMP's _Common_ page, set the **External .tox** path.
-- **Save on Quit:** Turn on `Save on Quit` so the `.tox` file updates automatically when you save your main project.
-- **Git Best Practices:** TouchDesigner `.toe` (project) files are binary and terrible for Git version control. The standard practice is to build your project out of modular `External .tox` files. You commit the `.tox` files to Git, allowing multiple developers to work on different modules simultaneously without merge conflicts on the main `.toe` file.
+## Saving a `.tox`
 
-## Parameter Promotion (Custom Parameters)
+| Action                                  | How                                                        |
+| --------------------------------------- | ---------------------------------------------------------- |
+| Save a COMP to `.tox`                   | RMB the COMP → **Save Component .tox...**                  |
+| Load a `.tox` into an empty COMP        | Drag-drop the `.tox` from Finder/Explorer into the network |
+| Replace a COMP's contents from a `.tox` | Set the COMP's `External .tox` parameter to a path         |
 
-To make your `.tox` modules reusable, you shouldn't have to dive inside them to change settings.
+## The External `.tox` Workflow
 
-1. Right-click your COMP and select **Customize Component...**
-2. In the dialog, you can create custom sliders, toggles, and menus.
-3. Dive inside the COMP, and use a **Parameter CHOP** or Python expressions to map these custom parameters to the nodes inside.
+Every COMP has an `External .tox` parameter on its **Common** page. When set, the COMP's contents are loaded from the file on disk each time the project starts. This is how you keep modular pieces in their own files outside the `.toe`.
 
-## Python Extensions
+| Common page parameter       | What it does                                                                                                                                                         |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **External .tox**           | Path to the on-disk `.tox`. Contents load from this file at project start.                                                                                           |
+| **Reload .tox** (pulse)     | Re-read the file without restarting the project.                                                                                                                     |
+| **Save Backup of External** | When on, the contents are also baked into the `.toe` as a fallback. If the external file goes missing, the backup loads instead.                                     |
+| **Sub-Component to Load**   | Reach into the `.tox` and pull out a nested COMP. E.g. if `proj.tox` contains `proj/geo1`, setting this to `geo1` makes the loaded COMP be `geo1` instead of `proj`. |
 
-When your module needs complex logic or state management, loose script nodes become messy.
+## Toxes and Git
 
-- **Extensions** are Python classes attached directly to a COMP.
-- Right-click a COMP -> **Customize Component...** -> Go to the _Extension Code_ section and type a name (e.g., `MyModuleExt`). Click "Add".
-- This attaches a Python DAT containing a class. Any functions or variables defined in this class become natively accessible as properties of that COMP.
-- Example: If your extension has a function `def Fire(self):`, you can call `op('myComp').Fire()` from anywhere in the project.
+`.toe` files are binary and miserable for source control: any meaningful change produces an unmergeable diff. The standard workaround is to keep your project as a thin shell that loads modular `.tox` files. You commit the `.tox` files; multiple developers can work on different modules without merge conflicts on the main `.toe`.
 
-## Organization Best Practices
+There's an active community of helper extensions for the "save external" workflow (auto-save on file save, version stamps in the COMP's Common page) since stock TouchDesigner doesn't bundle this. Worth searching the forum if you want a cleaner save story.
 
-- Use **Base COMPs** to group related logic.
-- Avoid "spaghetti" wiring across levels (don't drag wires constantly in and out of COMPs). Use `Select` OPs, `In/Out` OPs, or **Global OP Shortcuts** to establish clear data highways between your modules.
+## Engine COMP: Process Isolation
+
+The Engine COMP runs a `.tox` in a separate OS process via TouchEngine. Use cases:
+
+- A misbehaving module can crash without taking the main project down.
+- Run a heavy module on its own clock so a stutter in it doesn't drop your main framerate.
+- Mix-and-match `.tox` files built in different TouchDesigner versions.
+
+Trade-offs:
+
+- Communication is restricted to TOP, CHOP, and DAT data through buffers (latency cost).
+- Custom parameters are one-way only (host writes to the engine, not back).
+- Buffer sizes and clock-sync settings need tuning to your workload.
+
+## Custom Parameters: The Module Interface
+
+A `.tox` is only as reusable as its interface. The interface is the wrapper COMP's custom parameters.
+
+1. RMB the COMP → **Customize Component...**
+2. Add custom parameters that represent every knob someone using this module would want.
+3. Inside the COMP, bind internal node parameters to those custom parameters (Bind mode, purple).
+4. Save as `.tox`.
+
+Now anyone who drops this `.tox` in sees a clean parameter surface and never has to dive inside.
+
+See [[touchdesigner/04_Scripting_and_Architecture/Custom Parameters|Custom Parameters]] for the full pattern.
+
+## Python Extensions: When State Gets Complex
+
+When module logic is more than a few callback DATs, **Extensions** scale better. An Extension is a Python class attached to a COMP whose methods become callable as `op('myComp').MyMethod()`.
+
+1. RMB the COMP → **Customize Component...**
+2. Open the **Extension Code** section, name your class (e.g. `MyModuleExt`), click **Add**.
+3. TouchDesigner creates a Text DAT with a class skeleton.
+4. Define methods like `def Fire(self):` and call them externally as `op('myComp').Fire()`.
+
+Extensions also let you cleanly hold per-COMP state in `self`, instead of stuffing it into Storage or hidden DATs.
+
+## Wiring Across Modules: Avoid Spaghetti
+
+Keep wires inside their owning COMP. To pass data between modules, use these mechanisms instead of dragging long wires:
+
+- **Global OP Shortcuts**: name a top-level singleton (audio engine, settings) and reference as `op.AUDIO` from anywhere. See [[touchdesigner/04_Scripting_and_Architecture/The op and me objects|The op and me objects]].
+- **Parent Shortcuts**: reference a containing COMP by stable name regardless of nesting depth.
+- **In/Out ops** at the COMP boundary: clean inputs/outputs on the wrapper. See [[touchdesigner/01_Core_Concepts/Connecting Nodes|Connecting Nodes]].
+- **Select TOP/CHOP/SOP/DAT**: pulls data from another op by path, no wire required.
+
+## What's Next
+
+- [[touchdesigner/04_Scripting_and_Architecture/Custom Parameters|Custom Parameters]]: design the interface of your `.tox`
+- [[touchdesigner/04_Scripting_and_Architecture/Container and Widgets|Container and Widgets]]: ship a UI alongside the parameters
 
 ---
+
 [[touchdesigner/04_Scripting_and_Architecture/index|(y) Return to Scripting & Architecture]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]
