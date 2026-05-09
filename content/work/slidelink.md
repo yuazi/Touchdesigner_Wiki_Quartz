@@ -13,7 +13,7 @@ github: https://github.com/yuazi/SlideLink
 [View on GitHub](https://github.com/yuazi/SlideLink)
 
 Taking manual screenshots of lecture slides while writing notes is a massive waste of time.
- For the [[/notes/mlp/index|Machine Perception & Learning]] course, I have hundreds of slides across 13+ lectures. Clicking back and forth between a PDF and Obsidian just to crop and name images felt like busywork, so I built **SlideLink** to handle it for me.
+ For the [[/notes/lectures/mlp/index|Machine Perception & Learning]] course, I have hundreds of slides across 13+ lectures. Clicking back and forth between a PDF and Obsidian just to crop and name images felt like busywork, so I built **SlideLink** to handle it for me.
 
 SlideLink is a domain-agnostic CLI tool that contextually aligns Markdown lecture notes with PDF course slides. It "reads" your notes, finds the most relevant slide in the PDF using NLP and visual heuristics, renders it as a high-res PNG, and inserts the link automatically.
 
@@ -63,7 +63,7 @@ To make it robust enough for real-world academic use, SlideLink uses a scoring s
 
 At the core, it uses a **TF-IDF vectorizer** with `ngram_range=(1, 2)`. It converts the text in your notes (the context following a heading) and the text on every slide into vectors. It then calculates the **cosine similarity** between them to find the semantic match.
 
-The core logic leverages **Transformers** to align semantic meaning between text and visual slide content. See [[/notes/mlp/05-transformer|L05: Transformers]] for the underlying architecture.
+The core logic leverages **Transformers** to align semantic meaning between text and visual slide content. See [[/notes/lectures/mlp/05-transformer|L05: Transformers]] for the underlying architecture.
 
 ### 2. Math & LaTeX Aliases
 

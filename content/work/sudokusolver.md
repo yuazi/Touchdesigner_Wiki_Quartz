@@ -15,7 +15,7 @@ github: https://github.com/yuazi/sudoku_solver
 
 Solving Sudoku is a classic constraint satisfaction problem usually handled by backtracking or constraint propagation. I wanted to see if a neural network could learn the underlying rules of the game without being explicitly programmed with them, so I built **Sudoku Solver**.
 
-This project serves as a practical exploration of graph-based architectures, applying concepts from my **[[/notes/mlp/index|Machine Perception & Learning (MPL)]]** studies to non-Euclidean data structures.
+This project serves as a practical exploration of graph-based architectures, applying concepts from my **[[/notes/lectures/mlp/index|Machine Perception & Learning (MPL)]]** studies to non-Euclidean data structures.
 
 It is a **Graph Neural Network (GNN)** that treats the Sudoku grid as a graph where each cell is a node and constraints (row, column, box) are edges. The model learns to predict the correct value for each empty cell through node classification.
 
