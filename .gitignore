@@ -15,3 +15,4 @@ gha-creds-*.json
 
 find_keywords.py
 *.pdf
+CLAUDE.md
