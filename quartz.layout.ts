@@ -8,7 +8,7 @@ export const sharedPageComponents: SharedLayout = {
   afterBody: [Component.LorenzBackground(), Component.GardenBootOverlay()],
   footer: Component.Footer({
     links: {
-      GitHub: "https://github.com/yuazi/_y_usagewiki",
+      GitHub: "https://github.com/yuazi/yuazi.github.io",
       About: "/about",
     },
   }),

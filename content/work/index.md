@@ -11,7 +11,7 @@ A collection of projects, experiments, and professional work. These are things I
 
 ## Active Projects
 
-- **Digital Garden**: this site, built with Quartz 4 and hosted on GitHub Pages. ([GitHub](https://github.com/yuazi/_y_usagewiki))
+- **Digital Garden**: this site, built with Quartz 4 and hosted on GitHub Pages. ([GitHub](https://github.com/yuazi/yuazi.github.io))
 - **TouchDesigner Wiki**: a structured reference for interactive media in real time and visual programming with nodes.
 - **[[attractormediapipe|AttractorMediaPipe]]**: a gesture-controlled visualizer for strange attractors, with ModernGL live rendering and 8K Datashader exports. ([GitHub](https://github.com/yuazi/attractormediapipe))
 
