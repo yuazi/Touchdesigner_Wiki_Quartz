@@ -10,37 +10,140 @@ date: 2026-02-11
 
 # Timer CHOP
 
-The **Timer CHOP** is the most robust and accurate way to handle triggers, countdowns, and time-based events in TouchDesigner. It is significantly more reliable for complex logic than building your own counters.
+The **Timer CHOP** is a state machine for time. Use it any time you'd reach for "do X after N seconds," "play through these phases," or "loop this for 10 cycles." It outputs a current fraction, a current state (running, done, ready), and fires Python callbacks at the right moments. Building this by hand with Constant CHOPs and counters works briefly, then breaks the moment you need cycling, segments, or pause.
 
-## Key Concepts
+## Output Channels
 
-The Timer CHOP doesn't just "count up." It manages a state machine for a segment of time.
+The Timer CHOP exposes a lot of channels. The five you'll use most:
 
-- **Length:** The duration the timer will run.
-- **Segments:** You can have the timer run through an array of different times (e.g., a 5-second intro, a 10-second main sequence, a 2-second outro). This is driven by an attached DAT table.
-- **Initialize / Start / Initialize Start:**
-  - _Initialize:_ Resets the timer to 0 but does not play it.
-  - _Start:_ Begins playback.
-  - _Initialize Start:_ Does both simultaneously.
+| Channel            | What it holds                                                |
+| ------------------ | ------------------------------------------------------------ |
+| **timer_fraction** | "0 to 1 per-segment" - drives most animation directly        |
+| **timer_seconds**  | Elapsed time in seconds since Start                          |
+| **timer_pulse**    | Pulses (1 for one frame) "when the timer reaches its length" |
+| **running**        | "1 after a Start and before the Done"                        |
+| **done**           | Activates "when done or complete"                            |
 
-## Outputs
+Additional channels worth knowing:
 
-The power of the Timer CHOP lies in what it outputs automatically. When you connect it to a Null CHOP, you'll see several channels:
+| Channel             | Use for                                                                  |
+| ------------------- | ------------------------------------------------------------------------ |
+| **ready**           | "1 after an Initialize and before a Start" - confirms the timer is armed |
+| **cycles**          | Number of completed cycles                                               |
+| **cycle_pulse**     | One-frame pulse at each cycle boundary                                   |
+| **segment**         | Index of the current segment (0-based) in segment mode                   |
+| **segment_pulse**   | "pulse at the end of each segment"                                       |
+| **playing_seconds** | Elapsed time, unaffected by Speed parameter                              |
+| **running_seconds** | "wall-clock time since Start occurred"                                   |
 
-1.  **timer_fraction:** Goes from 0.0 to 1.0 over the length of the timer. This is the most useful channel for driving animations or crossfades.
-2.  **timer_seconds:** The actual elapsed time.
-3.  **running:** Outputs a 1 when playing, 0 when stopped.
-4.  **done:** Fires a 1 exactly when the timer finishes. Perfect for triggering the _next_ event in a sequence.
+## Key Parameters (Timer Page)
 
-## The Timer Callback DAT
+| Parameter              | Description                                                           |
+| ---------------------- | --------------------------------------------------------------------- |
+| **Initialize** (pulse) | "sets the frames, samples and fraction counters to zero"              |
+| **Start** (pulse)      | "begin the timers counting. It will count through the delay first"    |
+| **Length**             | "the time-length of the timer"                                        |
+| **Length Type**        | Fixed or Infinite                                                     |
+| **Length Units**       | Samples / Frames / Seconds                                            |
+| **Delay**              | "after Start, the delay before the timer begins counting"             |
+| **Speed**              | "Slows down or speeds up the timer" (default 1)                       |
+| **Play**               | "Pauses the timer. It is basically a 0 or 1 multiplier on the Speed"  |
+| **Cycle**              | "causes the timer to loop back to 0 when it reaches the end"          |
+| **Cycle Limit**        | Cap the number of cycles                                              |
+| **Maximum Cycles**     | The cap value when Cycle Limit is on                                  |
+| **Cue Point**          | A frozen reference time the timer can jump to                         |
+| **Cue Pulse** (pulse)  | "Jump instantly to the Cue Point"                                     |
+| **On Done**            | Do Nothing / Re-Initialize / Re-Start / Re-Start without Initializing |
+| **Callbacks DAT**      | "The path to the DAT containing callbacks for this Timer CHOP"        |
 
-When you create a Timer CHOP, it usually comes attached to a Text DAT full of Python callbacks (e.g., `onInitialize`, `onStart`, `onDone`).
+## Segments Mode
 
-This is incredibly powerful. You can write Python code that _only executes_ when those specific events happen. For example, triggering a sound effect using `onStart()`, and loading a new level using `onDone()`.
+A Segments DAT (a Table DAT) drives a multi-stage timer. One row per segment, with these column headings: `delay` or `begin`, `length`, `cycle`, `cyclelimit`, `maxcycles`, `cycleendalert`. The `begin` column "represents the time from Start that the timer will begin counting." Custom columns are allowed and can be exported as channels via the **Columns to Custom Channels** parameter.
+
+Choose **Serial Timers** ("timers will be played back-to-back") or **Parallel Timers** ("timers can be played at the same time"). Segment Units (Samples/Frames/Seconds) controls the unit of the time columns.
+
+Navigation pulses: **Go to Previous Segment**, **Go to Next Segment**, **Exit Segment at End of Cycle**.
+
+## Callbacks (Timer Callback DAT)
+
+The Timer CHOP creates a Text DAT full of Python skeletons. Fill in the methods you need.
+
+| Method              | Fires when                                                                   |
+| ------------------- | ---------------------------------------------------------------------------- |
+| `onInitialize()`    | Initialize is pulsed; "prepare any part of your setup prior to starting"     |
+| `onStart()`         | "the frame that the Start parameter is pulsed"                               |
+| `onTimerActive()`   | "every frame that the timer is running and there is no Delay or Play is off" |
+| `onCycleStart()`    | "if the timer is set to cycle"                                               |
+| `onCycleEndAlert()` | Configurable preview window before each cycle ends (use for crossfades)      |
+| `onSegmentEnter()`  | A segment becomes active (segment-mode timers)                               |
+| `onSegmentExit()`   | A segment finishes (segment-mode timers)                                     |
+| `onDone()`          | "the timer reaches its finished state"                                       |
+
+In a segment callback, `print(help(segment))` lists what's available on the segment object, including any custom columns.
+
+## Python Control
+
+```python
+# Start the timer from another script
+op('timer1').par.start.pulse()
+
+# Re-arm and start fresh
+op('timer1').par.initialize.pulse()
+op('timer1').par.start.pulse()
+
+# Read the current fraction
+frac = op('timer1')['timer_fraction'][0]
+
+# Jump to a cue
+op('timer1').par.cuepoint = 5.0
+op('timer1').par.cuepulse.pulse()
+```
+
+## Practical Example: 3-Segment Intro
+
+Drop a Table DAT with this content:
+
+```
+length	cycle	cyclelimit	maxcycles
+2	off	off	0
+4	off	off	0
+1	off	off	0
+```
+
+Set Timer CHOP Length Units to Seconds, point Segments DAT at this table, and define the callback:
+
+```python
+def onSegmentEnter(segment, prev, info):
+    constant = op('phase_constant')
+    if segment.index == 0:
+        constant.par.value0 = 0.0   # intro
+    elif segment.index == 1:
+        constant.par.value0 = 1.0   # main
+    elif segment.index == 2:
+        constant.par.value0 = 0.5   # outro
+```
+
+The Timer cycles through 2 + 4 + 1 = 7 seconds total, switching the Constant CHOP at each segment boundary.
+
+## Common Gotchas
+
+- **Length Units matters.** "5" means 5 samples, 5 frames, or 5 seconds depending on Length Units. Misreading this is the most common Timer mistake.
+- **Initialize is not Start.** Initialize zeros the counters and arms the timer (sets `ready` to 1); Start kicks off the run. You usually pulse both, in that order.
+- **Pulse on the parameter, not the channel.** `op('timer1').par.start.pulse()` works; trying to "set" `op('timer1').par.start = 1` doesn't trigger the pulse.
+- **Segments table needs the right column names.** A typo like `lenght` instead of `length` is silently ignored; the timer just uses defaults.
+- **Callbacks need the Callbacks DAT parameter set.** The auto-created callback DAT is wired by default, but if you copy/paste a Timer CHOP, double-check the parameter still points at a DAT that exists.
+
+## Related Nodes
+
+- [[touchdesigner/04_Scripting_and_Architecture/Python in TD|Python in TD]]: full reference for the callback DAT system
+- [[touchdesigner/04_Scripting_and_Architecture/The op and me objects|The op and me objects]]: scoping rules for Python in callbacks
+- [[Constant CHOP]]: the natural pairing for a state-driven value
+- [[Math CHOP]]: remap `timer_fraction` into whatever range you need
 
 ---
 
 [[touchdesigner/02_The_Operators/COMPs/index|(y-) Next Chapter: COMPs]]
 
 ---
+
 [[touchdesigner/02_The_Operators/CHOPs/index|(y) Return to CHOPs]] | [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

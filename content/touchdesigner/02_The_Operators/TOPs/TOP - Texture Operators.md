@@ -7,47 +7,64 @@ tags:
 date: 2026-02-11
 ---
 
-# TOP - Texture Operators (2D)
+# TOP - Texture Operators
 
-TOPs are used for image processing and 2D graphics. They run on the GPU.
+TOPs ("Texture Operators") are TouchDesigner's family for 2D image work: video playback, generative imagery, compositing, and any GPU-side pixel manipulation. Per the wiki: "Texture Operators... are image operators that provide real-time, GPU-based compositing and image manipulation," and "all calculations for TOPs are performed on the system's GPU."
 
-## Key TOPs
+That GPU residency is what makes TOPs fast. Filters and composites that would crawl on the CPU run at video rate because each pixel is processed by a separate GPU thread. The trade-off is that the values you see on the cook timer for a TOP often understate the real GPU cost (more on that below).
 
-- **Movie File In:** Load images or videos.
-- **Constant:** Create a solid color.
-- **Composite:** Blend multiple TOPs together (Add, Multiply, Screen, etc.).
-- **Blur:** Soften textures.
-- **Level:** Adjust brightness, contrast, and gamma.
-- **Render:** The bridge between 3D (SOPs/MATs) and 2D (TOPs).
+## TOP Categories
 
-## Resolution and Pixel Formats
+The wiki itself only formally lists a "Sweet 16" of commonly-used TOPs (Movie File In, Ramp, Level, Transform, Over, Text, Blur, Composite, Render, CHOP to, Resolution, Crop, Select, Reorder, Cache, Displace). Practically the family groups into:
 
-TOP computations happen under specific settings found on the **Common** page of almost any TOP node:
+- **Generators** make pixels from nothing: Constant, Noise, Ramp, Circle, Text, Movie File In, Video Device In, NDI In, Render
+- **Filters** modify a single input: Blur, Level, Threshold, Edge, Monochrome, Transform, Crop, Lookup, Displace
+- **Composites** combine multiple inputs: Composite, Over, Add, Multiply, Layer, Layout, Cross, Switch
+- **Bridges** convert across families: CHOP to TOP, SOP to TOP (via render), POP to TOP, TOP to CHOP, Texture 3D
+- **Outputs** send pixels outside: Movie File Out, Touch Out, NDI Out, Syphon/Spout Out, Video Device Out, Screen
 
-- **Resolution:** Dictates the width and height. You usually want to dictate this clearly at the start of a chain (e.g., using a Constant TOP set to 1920x1080) and let downstream nodes "Use Input" resolution.
-- **Pixel Format (Crucial!):**
-  - **8-bit fixed:** Default for most images/video. Values stay strictly between 0 and 1 (or 0-255).
-  - **16-bit / 32-bit float:** Critical for Displacement maps, Point Clouds (XYZ coordinates stored as RGB), and Feedback loops. Float formats allow negative numbers and numbers far exceeding 1.0 without being clipped or crushed.
+## Pixel Formats
 
-## Tips
+Set on the Common page of every TOP. The choice is a precision/cost trade.
 
-- Always check your resolution in the middle-mouse-click menu.
-- Purple = 2D Data.
+| Format           | Bits per channel | Range                    | Use it for                                                                |
+| ---------------- | ---------------- | ------------------------ | ------------------------------------------------------------------------- |
+| **8-bit fixed**  | 8 (32 / pixel)   | clamped to [0,1]         | Default. Anything destined for an 8-bit display.                          |
+| **16-bit fixed** | 16 (64 / pixel)  | clamped to [0,1]         | Smoother gradients in 8-bit-bound output. Same clamp.                     |
+| **16-bit float** | 16 (64 / pixel)  | any value, ±             | HDR composites, normal maps, intermediate buffers, feedback loops.        |
+| **32-bit float** | 32 (128 / pixel) | any value, ± (high prec) | When you need precise math: GPGPU work, deep displacement, instance data. |
 
-## How to Use TOPs
+Per the wiki: "Fixed point formats, regardless of if they are 8 or 16 bit, can only represent values between 0 and 1... Floating point formats can represent very large values and very small values, both negative and positive." Picking 16- or 32-bit float on every TOP isn't free; bandwidth is the dominant TOP cost so step up only when math demands it (HDR, feedback, packed data).
 
-To use TOPs effectively:
+## Resolution
 
-1. **Adding a TOP:** Open the OP Create Dialog (Tab) and select the TOP family (purple color).
-2. **Generating vs Processing:** Start chains with generator TOPs (darker purple, no inputs required) like `Movie File In` or `Constant`, then connect them to processing TOPs (lighter purple) like `Level`, `Blur`, or `Composite`.
-3. **Connecting:** Drag from the output port on the right of one TOP to the input port on the left of another to process the image stream.
-4. **Resolution Management:** The first node in a chain usually dictates the resolution. Subsequent nodes default to "Use Input" resolution. You can override this in the Common page of any TOP's parameters.
-5. **Viewing Output:** Click the 'Viewer Active' toggle (bottom right of the node) to interact with the image or background-click 'Display' to set it as the network's backdrop.
-6. **Exporting and Converting:** You can pass TOP data to other families using conversion nodes like `TOP to CHOP` to convert pixel color values into channel data streams.
+Every TOP has Resolution and Output Resolution on the Common page. By default a filter inherits from its input; setting Custom Resolution forces a specific size. There's also a Resolution Menu (`resmenu`) preset list. The Resolution dimensions field is enabled only when the resolution mode is Custom.
+
+Halving Resolution from 1920x1080 to 960x540 cuts GPU work to a quarter, since cost scales with pixel count. That's the most reliable single optimization for TOP-heavy networks.
+
+## GPU Cook Times Lie
+
+The cook times you see in the Performance Monitor for TOPs are **not** the GPU's actual processing time. The GPU runs asynchronously, so what TouchDesigner records is mostly the dispatch and waiting overhead. For real GPU profiling, use the Probe Palette tool (it tracks GPU and CPU times separately, drawn as diamonds vs circles), or step out to RenderDoc / Nvidia Nsight. See [[touchdesigner/04_Scripting_and_Architecture/Performance Monitoring|Performance Monitoring]].
+
+## Common Gotchas
+
+- **Pre-multiplied alpha.** Most TOPs assume premultiplied RGBA. A non-premultiplied source feeding into a Composite TOP will give halo edges; run it through a Premultiply TOP first.
+- **sRGB vs linear.** GPU compositing math is linear. Movie File In / Texture loads can do an sRGB-to-linear conversion via the Read sRGB toggle; matching this end-to-end avoids a washed-out output.
+- **Pixel format mismatch in feedback loops.** A Feedback TOP at 8-bit fixed clamps every multiplied value to [0,1]; bright accumulation will look posterized or vanish. Switch the loop to 16- or 32-bit float.
+- **Render TOP cooks every camera move.** Even if the geometry is static, moving the camera marks the Render TOP dirty. Don't expect "static = free."
+- **Cross-family bridges have a cost.** CHOP to TOP and TOP to CHOP move data across the GPU/CPU boundary. Free to wire, not free to cook.
+
+## Related Nodes
+
+- [[Render TOP]]: the GPU pass that turns a Geo COMP + Camera + Light into a TOP
+- [[Constant CHOP]] (CHOP to TOP): the bridge for piping CHOP data into a texture
+- [[touchdesigner/03_Rendering_and_Output/Feedback Loops|Feedback Loops]]: TOP feedback patterns
+- [[touchdesigner/04_Scripting_and_Architecture/Performance Monitoring|Performance Monitoring]]: Probe and Performance Monitor for finding GPU bottlenecks
 
 ---
 
 [[Render TOP|(y-) Next Page: Render TOP]]
 
 ---
+
 [[touchdesigner/02_The_Operators/TOPs/index|(y) Return to TOPs]] | [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]
