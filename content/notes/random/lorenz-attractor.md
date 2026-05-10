@@ -8,7 +8,9 @@ tags:
 date: 2026-03-04
 ---
 
-![Lorenz Attractor](../../pictures/lorenz_8k_textured.png)
+![[pictures/lorenz_8k_textured.png]]
+
+<p class="image-caption">8K High-resolution Lorenz attractor export with density-based coloring</p>
 
 The Lorenz attractor is one of those rare mathematical objects that stops you in the middle of a thought. It is simple enough to write on a napkin, three coupled differential equations, yet complex enough that no two trajectories ever quite repeat themselves.
 
