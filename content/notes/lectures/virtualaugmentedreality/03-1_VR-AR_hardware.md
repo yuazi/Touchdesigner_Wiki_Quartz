@@ -43,9 +43,9 @@ Binocular cues require both eyes:
 
 ## 2. Stereo Rendering
 
-![[pictures/virtualaugmentedreality/03-1/Lecture03-1_Pg017_Parallax.png]]
+![[pictures/virtualaugmentedreality/03-1/Lecture03-1_Pg020_Positive_Parallax.png]]
 
-<p class="image-caption">Parallax determines whether a point appears on, behind, or in front of the projection plane.</p>
+<p class="image-caption">Positive parallax places the point behind the projection plane.</p>
 
 Stereo rendering creates separate left-eye and right-eye images. The main parallax cases are:
 
@@ -54,9 +54,25 @@ Stereo rendering creates separate left-eye and right-eye images. The main parall
 - **Negative parallax**: object appears in front of the projection plane.
 - **Divergent parallax**: eyes would need to diverge outward; this is uncomfortable and should be avoided.
 
-![[pictures/virtualaugmentedreality/03-1/Lecture03-1_Pg025_Off_Axis_Rendering.png]]
+![[pictures/virtualaugmentedreality/03-1/Lecture03-1_Pg021_Zero_Parallax.png]]
 
-<p class="image-caption">Off-axis rendering keeps cameras parallel and shifts the projection frusta; toe-in rendering creates vertical parallax.</p>
+<p class="image-caption">Zero parallax places the point on the projection plane.</p>
+
+![[pictures/virtualaugmentedreality/03-1/Lecture03-1_Pg022_Negative_Parallax.png]]
+
+<p class="image-caption">Negative parallax places the point in front of the projection plane.</p>
+
+![[pictures/virtualaugmentedreality/03-1/Lecture03-1_Pg023_Divergent_Parallax.png]]
+
+<p class="image-caption">Divergent parallax is unnatural because the optical paths never cross.</p>
+
+![[pictures/virtualaugmentedreality/03-1/Lecture03-1_Pg024_Toe_In_Rendering.png]]
+
+<p class="image-caption">Toe-in rendering is incorrect because it creates vertical parallax, which the visual system does not use for stereo depth.</p>
+
+![[pictures/virtualaugmentedreality/03-1/Lecture03-1_Pg025_Off_Axis_Rendering_Correct.png]]
+
+<p class="image-caption">Off-axis rendering is the correct approach: cameras remain parallel while the projection frusta are shifted.</p>
 
 The exam-critical comparison:
 

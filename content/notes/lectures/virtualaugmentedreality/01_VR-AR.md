@@ -82,11 +82,11 @@ Related terms:
 
 ## 6. Hype and Adoption
 
-![[pictures/virtualaugmentedreality/01/Lecture01_Pg077_Hype_Cycle.png]]
+![[pictures/virtualaugmentedreality/01/Lecture01_Pg079_AR_VR_Hype_Cycle.png]]
 
-<p class="image-caption">The hype-cycle framing explains why VR/AR repeatedly alternates between inflated expectations, disappointment, and practical adoption.</p>
+<p class="image-caption">The lecture places AR and VR on Gartner's hype cycle across multiple years, showing AR moving through inflated expectations and VR rising along the slope of enlightenment by 2017.</p>
 
-Many VR/AR waves follow the same adoption pattern: a promising technical demo creates hype, real constraints become visible, the field cools down, then useful systems emerge where the value proposition survives the constraints.
+The point is more specific than a generic hype-cycle diagram: AR and VR do not move through adoption at the same pace. The slide marks where Gartner placed AR and VR between 1995 and 2017, making the hype cycle a way to discuss the field's maturity rather than only a general technology-adoption curve.
 
 ## Exam Focus
 
