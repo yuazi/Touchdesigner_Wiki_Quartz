@@ -18,7 +18,7 @@ date: 2026-04-09
 - **Proof Systems** are a set of mechanical rules for deriving truth. They allow us to move from premises to conclusions without making mistakes.
 
 ## Introduction to Propositional Logic
-![[pictures/programverification/02/Lecture02_Pg029_Introduction_To_Propositional_Logic.png]]
+![[pictures/programverification/02/Lecture02_Pg030_Outline_Of_Propositional_Logic.png]]
 
 
 Propositional logic (PL) is the foundation of program verification. We use it to describe the state of a program and the conditions that must hold at each point in the code.
@@ -26,7 +26,7 @@ Propositional logic (PL) is the foundation of program verification. We use it to
 ---
 
 ## Syntax of Propositional Logic
-![[pictures/programverification/02/Lecture02_Pg030_Syntax_Of_Propositional_Logic.png]]
+![[pictures/programverification/02/Lecture02_Pg031_Syntax_Of_Propositional_Logic.png]]
 
 
 A PL formula is built from:
@@ -47,7 +47,7 @@ Example: $A \wedge B \vee C$ is $(A \wedge B) \vee C$.
 ---
 
 ## Semantics: What do formulas mean?
-![[pictures/programverification/02/Lecture02_Pg032_Semantics_What_Do_Formulas_Mean.png]]
+![[pictures/programverification/02/Lecture02_Pg033_Semantics.png]]
 
 
 A **variable assignment** ($\rho$) maps every variable to a truth value (`true` or `false`).
@@ -61,13 +61,13 @@ A **variable assignment** ($\rho$) maps every variable to a truth value (`true` 
 ---
 
 ## Truth Tables
-![[pictures/programverification/02/Lecture02_Pg036_Truth_Tables.png]]
+![[pictures/programverification/02/Lecture02_Pg035_Truth_Tables.png]]
 
 
 Truth tables are the "brute force" way to check logic. You list every possible combination of inputs and calculate the output.
 
 ### Example: Truth Table for $F_5$
-![[pictures/programverification/02/Lecture02_Pg034_Example_Truth_Table_For_F_5.png]]
+![[pictures/programverification/02/Lecture02_Pg036_Truth_Table_Example.png]]
 
 Let $F_5: (P \to Q) \wedge (P \vee Q) \wedge \neg Q$.
 
@@ -85,9 +85,7 @@ Let $F_5: (P \to Q) \wedge (P \vee Q) \wedge \neg Q$.
 ---
 
 ## Using SMT Solvers (Z3) for SAT
-<!-- Review Needed: close slide match for 'Using SMT Solvers (Z3) for SAT' (p38: 0.484, p39: 0.465) -->
-![[pictures/programverification/02/Lecture02_Pg038_Using_Smt_Solvers_Z3_For_Sat.png]]
-![[pictures/programverification/02/Lecture02_Pg039_Using_Smt_Solvers_Z3_For_Sat.png]]
+![[pictures/programverification/02/Lecture02_Pg038_Smt_Solvers_For_Sat.png]]
 
 
 Instead of truth tables, we use **SMT Solvers**. They use clever algorithms (like CDCL) to solve formulas with thousands of variables in milliseconds.
@@ -106,7 +104,7 @@ Example for $(P \to Q) \wedge (P \vee Q)$:
 ---
 
 ## Proof Systems: NPL
-![[pictures/programverification/02/Lecture02_Pg209_Proof_Systems_Npl.png]]
+![[pictures/programverification/02/Lecture02_Pg045_Proof_Rules_Of_Npl.png]]
 
 
 A **Proof System** is a set of rules for deriving implications $\Gamma \models F$ (meaning "if all formulas in $\Gamma$ are true, then $F$ must be true").
@@ -141,7 +139,7 @@ Let $\Gamma = \{A, A \to B\}$.
 A formal proof is like a game of LEGO. You start with your base blocks (axioms) and use the connection rules to build the final shape (the conclusion). If you follow the rules, the final shape is guaranteed to be stable.
 
 ### Guide for Finding a Derivation
-![[pictures/programverification/09/Lecture09_Pg240_What_Is_Ultimate_Referee.png]]
+![[pictures/programverification/02/Lecture02_Pg051_Guide_For_Proving_Implications.png]]
 
 1.  **Start at the bottom**: Write the goal implication as the root of your tree.
 2.  **Look at the Top-Level Operator**: If the RHS is $F_1 \wedge F_2$, use ($I\wedge$) to split the problem.

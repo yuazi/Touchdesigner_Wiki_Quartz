@@ -7,7 +7,7 @@ tags:
   - transformations
 date: 2026-04-14
 ---
-[[notes/lectures/realtimegraphics/03_gpu_architecture_parallelism|Back: (y-03) GPU Architecture]] | [[notes/lectures/realtimegraphics/index|RTG Index]]
+[[notes/lectures/realtimegraphics/03_gpu_architecture_parallelism|Back: (y-03) GPU Architecture]] | [[notes/lectures/realtimegraphics/05_shading_models|Next: (y-05) Shading Models]] | [[notes/lectures/realtimegraphics/index|RTG Index]]
 
 ## Mental Model First: Geometry as Data
 

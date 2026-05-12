@@ -10,6 +10,8 @@ date: 2025-05-14
 
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/07-relational-semantics|Previous: (y-07) Relational Semantics]] | [[/notes/lectures/programverification/09-ultimate-referee|Next: (y-09) Ultimate Referee]]
 
+> [!warning] Slides from the 2025 course PDF. This material is not in the 2026 `ProgramVerification Slides.pdf` (202 pp.) yet, so the embedded page numbers refer to the older 514-page deck.
+
 ## Mental Model for the Hoare Proof System
 ![[pictures/programverification/08/Lecture08_Pg210_Mental_Model_For_The_Hoare_Proof.png]]
 
@@ -68,7 +70,6 @@ $$
 
 ## Key Rules (Continued)
 ... (rest of the rules) ...
-![[pictures/programverification/07/Lecture07_Pg211_1_Assignment_X_Expr.png]]
 
 $$\frac{\{P\} \ st_1 \ \{R\} \quad \{R\} \ st_2 \ \{Q\}}{\{P\} \ st_1; st_2 \ \{Q\}}$$
 To prove a sequence, find an intermediate assertion $R$ that links them.

@@ -25,14 +25,14 @@ date: 2026-04-16
 A **Theory ($T$)** constrains the meaning of symbols (like $=, +, \le, \text{read}$) using a specific **Signature** and a set of **Axioms**. This allows us to bridge the gap between abstract logic and actual program variables.
 
 ### Formal Definition
-![[pictures/programverification/04/Lecture04_Pg082_Formal_Definition.png]]
+![[pictures/programverification/04/Lecture04_Pg083_First_Order_Theories_Definition.png]]
 
 A first-order theory $T$ consists of:
 1.  **Signature ($\Sigma$)**: A set of constant, function, and predicate symbols.
 2.  **Axioms ($\mathcal{A}_T$)**: A set of closed $\Sigma$-formulas.
 
 ### $T$-Models and $T$-Validity
-![[pictures/programverification/04/Lecture04_Pg083_T_Models_And_T_Validity.png]]
+![[pictures/programverification/04/Lecture04_Pg084_T_Validity_And_T_Satisfiability.png]]
 
 - **$T$-Model**: A model $M$ is a $T$-model if it satisfies all axioms in $\mathcal{A}_T$.
 - **$T$-Satisfiable**: A formula $\phi$ is $T$-satisfiable if there exists a **$T$-model** $M$ such that $M \models \phi$.
@@ -42,7 +42,7 @@ A first-order theory $T$ consists of:
 ---
 
 ## Example: Rock-Paper-Scissors Theory ($T_{RPS}$)
-![[pictures/programverification/04/Lecture04_Pg090_Example_Rock_Paper_Scissors_Theory_T.png]]
+![[pictures/programverification/04/Lecture04_Pg091_Rock_Paper_Scissors_Theory.png]]
 
 
 To define the game Rock-Paper-Scissors, we need a specific theory.
@@ -68,7 +68,7 @@ Is the formula $\forall x. \exists y. \text{beat}(x, y)$ (every move has somethi
 ---
 
 ## Theory of Equality ($T_E$)
-![[pictures/programverification/04/Lecture04_Pg086_Theory_Of_Equality_T_E.png]]
+![[pictures/programverification/04/Lecture04_Pg087_Theory_Of_Equality_T_E.png]]
 
 
 $T_E$ is the foundation of most SMT reasoning. Its signature includes $=/2$ and all other constant/function/predicate symbols.
@@ -81,7 +81,7 @@ $T_E$ is the foundation of most SMT reasoning. Its signature includes $=/2$ and 
 5.  **Predicate Congruence**: For each $n$-ary $p$, $\forall \bar{x}, \bar{y}. (\bigwedge_i x_i = y_i) \to (p(\bar{x}) \leftrightarrow p(\bar{y}))$
 
 ### 🧠 Deep Dive: Axiom Schemata
-![[pictures/programverification/04/Lecture04_Pg087_Deep_Dive_Axiom_Schemata.png]]
+![[pictures/programverification/04/Lecture04_Pg088_Axiom_Schemata.png]]
 
 Axioms like **Function Congruence** are actually **Axiom Schemata**. Since a signature can have infinitely many functions, we cannot list every axiom. Instead, we provide a "template."
 For a binary function $f(x, y)$, the schema generates:
@@ -92,7 +92,7 @@ $$\forall x_1, x_2, y_1, y_2. (x_1 = y_1 \wedge x_2 = y_2) \to f(x_1, x_2) = f(y
 ## Arithmetic Theories
 
 ### 1. Peano Arithmetic ($T_{PA}$)
-![[pictures/programverification/04/Lecture04_Pg097_1_Peano_Arithmetic_T_Pa.png]]
+![[pictures/programverification/04/Lecture04_Pg098_Peano_Arithmetic_T_Pa.png]]
 
 Theory of **Natural Numbers** ($\mathbb{N}$) with addition and multiplication.
 - **Signature**: $\{0, 1, +, \cdot, =\}$
@@ -105,14 +105,14 @@ $T_{PA}$ can express almost all of mathematics. Even exponentiation $x^n$, which
 - This high expressiveness comes at a price: **$T_{PA}$ is undecidable**.
 
 ### 2. Presburger Arithmetic ($T_N$)
-![[pictures/programverification/04/Lecture04_Pg096_2_Presburger_Arithmetic_T_N.png]]
+![[pictures/programverification/04/Lecture04_Pg102_Presburger_Arithmetic_T_N.png]]
 
 Natural numbers with **addition only** (no multiplication).
 - **Signature**: $\{0, 1, +, =\}$
 - **Decidability**: $T_N$ is **decidable**. It is the most common theory for loop bounds and simple offsets.
 
 ### 3. Theory of Integers ($T_Z$)
-![[pictures/programverification/04/Lecture04_Pg254_3_Theory_Of_Integers_T_Z.png]]
+![[pictures/programverification/04/Lecture04_Pg103_Theory_Of_Integers_T_Z.png]]
 
 Integers ($\mathbb{Z}$) with $\{+, -, <, =\}$.
 
@@ -126,7 +126,7 @@ If the resulting $T_N$ formula is unsatisfiable, then $\phi$ is $T_Z$-valid.
 ---
 
 ## Theory of Arrays ($T_A$)
-![[pictures/programverification/04/Lecture04_Pg257_Theory_Of_Arrays_T_A.png]]
+![[pictures/programverification/04/Lecture04_Pg114_Theory_Of_Arrays_T_A.png]]
 
 
 Used to model computer memory and data structures. Unlike functions in FOL, arrays are "first-class objects" that can be modified.
@@ -141,7 +141,6 @@ Used to model computer memory and data structures. Unlike functions in FOL, arra
       - *Intuition*: Two arrays are equal if and only if they have the same values at every index.
 
 ### 💡 Application: Modeling Memory
-![[pictures/programverification/04/Lecture04_Pg264_Application_Modeling_Memory.png]]
 
 In a verifier, a pointer `*ptr` is modeled as `select(mem, ptr)`, and an assignment `*ptr = v` becomes `mem' = store(mem, ptr, v)`.
 

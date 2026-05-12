@@ -10,6 +10,8 @@ date: 2025-05-20
 
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/08-hoare-proof-system|Previous: (y-08) Hoare Proof System]] | [[/notes/lectures/programverification/10-array-theory-and-arrays-in-boostan|Next: (y-10) Array Theory and Arrays in Boostan]]
 
+> [!warning] Slides from the 2025 course PDF. This material is not in the 2026 `ProgramVerification Slides.pdf` (202 pp.) yet, so the embedded page numbers refer to the older 514-page deck.
+
 ## Mental Model for Ultimate Referee
 
 

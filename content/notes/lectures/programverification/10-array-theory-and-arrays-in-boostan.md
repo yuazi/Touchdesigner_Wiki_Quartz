@@ -11,8 +11,10 @@ date: 2025-05-26
 
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/09-ultimate-referee|Previous: (y-09) Ultimate Referee]] | [[/notes/lectures/programverification/11-nondeterminism-havoc-assume|Next: (y-11) Nondeterminism: Havoc and Assume]]
 
+> [!warning] The Boostan-array integration here is from the 2025 course PDF. The pure $T_A$ axioms are now covered in the 2026 slides under [[/notes/lectures/programverification/04-first-order-theories|§4 First-Order Theories]]; the rest of this note refers to the older 514-page deck.
+
 ## Mental Model for Arrays
-![[pictures/programverification/04/Lecture04_Pg257_Theory_Of_Arrays_T_A.png]]
+![[pictures/programverification/04/Lecture04_Pg114_Theory_Of_Arrays_T_A.png]]
 
 
 - **Arrays as Maps**: In formal verification, an array is not a block of memory; it is a **Function** (or Map) from indices to values.
