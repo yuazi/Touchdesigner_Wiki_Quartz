@@ -6,92 +6,232 @@ tags:
   - architecture
   - simd
   - parallelism
-date: 2026-04-14
+date: 2026-05-12
 ---
+
 [[notes/lectures/realtimegraphics/02_graphics_pipeline|Back: (y-02) Graphics Pipeline]] | [[notes/lectures/realtimegraphics/04_cg_primer|Next: (y-04) Graphics Primer]]
 
 ## Mental Model First: The Scheduling Game
 
-- **GPUs Hate Waiting**: The ALUs (math units) are very fast, but memory access is very slow. The GPU's primary trick is **Latency Hiding**—switching to a different group of threads the moment one group has to wait for data.
-- **Lockstep Execution**: Threads are not independent. They move in "Warps" or "Wavefronts." If one thread in a warp takes an `if` branch and another takes the `else`, the hardware has to execute both paths for the whole warp (**Divergence**).
-- **The Unified Model**: Modern GPUs don't have "vertex cores" and "pixel cores" separately. They have **Generic Processing Cores** that can do any job, allowing for dynamic load balancing.
+- **GPUs win by keeping work in flight.** They tolerate long memory latency by switching to other ready work.
+- **Throughput beats single-thread latency.** A GPU core is not trying to finish one task fastest; it is trying to finish many similar tasks per unit time.
+- **Divergence wastes lanes.** When threads in a lockstep group disagree on control flow, inactive lanes wait.
+- **Modern pipelines are flexible.** Newer stages such as mesh shaders move more geometry processing into programmable, compute-like units.
 
 ---
 
-## 1. Hardware Architectures: SIMD vs. SIMT
+## 1. Goals for Fast Execution
 
-### SIMD (Single Instruction, Multiple Data)
+![[pictures/realtimegraphics/03/L03_Pg-02.jpg]]
+
+<p class="image-caption">L03_Pg-02: Fast GPU execution means maximizing parallelism, hiding latency, minimizing memory traffic, and avoiding unnecessary work.</p>
+
+This slide is the performance model for the whole lecture. A GPU becomes slow when it cannot find enough independent work, waits on memory too often, or spends cycles on fragments and primitives that will not matter.
+
+### Hardware Characteristics
+
+![[pictures/realtimegraphics/03/L03_Pg-03.jpg]]
+
+<p class="image-caption">L03_Pg-03: GPUs combine fixed-function units with programmable shader stages handled by symmetric multiprocessors.</p>
+
+The hardware is mixed:
+
+- fixed-function units for common high-throughput tasks,
+- programmable shader units for developer-defined work,
+- schedulers and command processors to feed the machine.
+
+---
+
+## 2. SIMD, SIMT, and Divergence
+
+### SIMD Execution
+
 ![[pictures/realtimegraphics/03/L03_Pg-08.jpg]]
 
-<p class="image-caption">L03_Pg-08: SIMD uses a single instruction to operate on a vector of data at once (e.g., 4 floats).</p>
+<p class="image-caption">L03_Pg-08: SIMD amortizes instruction management across many arithmetic lanes.</p>
 
-- **Level**: Low-level hardware vector units.
-- **Execution**: A single ALU operation on a vector register.
+SIMD means one instruction is applied to multiple data lanes. This is efficient when lanes do the same thing, but it becomes awkward when lanes need different control flow.
 
-### SIMT (Single Instruction, Multiple Threads)
-![[pictures/realtimegraphics/03/L03_Pg-11.jpg]]
-
-<p class="image-caption">L03_Pg-11: SIMT is a higher-level abstraction where thousands of threads execute the same program in parallel.</p>
-
-- **Warp (NVIDIA)**: 32 threads.
-- **Wavefront (AMD)**: 64 threads.
-- **Concept**: Each thread has its own register state, but they all share a single **Program Counter**. They execute in lockstep.
-
----
-
-## 2. The Cost of Divergence
+### Branch Divergence
 
 ![[pictures/realtimegraphics/03/L03_Pg-12.jpg]]
 
-<p class="image-caption">L03_Pg-12: Branch Divergence forces the GPU to execute both paths of an 'if/else', masking out the inactive threads. Performance drops by 50% here.</p>
+<p class="image-caption">L03_Pg-12: Divergent branches force a group to execute both paths with inactive lanes masked off.</p>
 
-### 💡 Intuition: The Bus Analogy
-Imagine a bus (Warp) of 32 people. At a fork in the road:
-- **No Divergence**: Everyone wants to go Left. The bus turns Left. Speed: 100%.
-- **Divergence**: 16 people want Left, 16 want Right. The bus must drive down the Left road (16 people wait), then *backup*, and drive down the Right road (the other 16 people wait). Speed: 50%.
+If half a warp takes the `if` path and half takes the `else` path, the hardware often serializes the paths. The branch is correct, but useful throughput drops.
 
----
+### SIMT Avoids Stalling
 
-## 3. Latency Hiding (The GPU's Secret)
+![[pictures/realtimegraphics/03/L03_Pg-13.jpg]]
 
-![[pictures/realtimegraphics/03/L03_Pg-35.jpg]]
+<p class="image-caption">L03_Pg-13: SIMT exposes many logical threads so the scheduler can swap work when one group stalls.</p>
 
-<p class="image-caption">L03_Pg-35: The GPU scheduler keeps thousands of threads "in flight" so it can always find work to do while others wait for memory.</p>
+SIMT presents many threads to the programmer, but schedules them in groups. The key benefit is latency hiding: while one group waits on memory, another group can run.
 
-- **Memory Stall**: Accessing VRAM takes ~400–800 cycles.
-- **Solution**: The scheduler instantly context-switches to a ready Warp. Because registers are stored on-chip for all active warps, this switch is **zero-overhead**.
+### 💡 Intuition: Occupancy as Insurance
+
+High occupancy does not automatically mean high performance, but low occupancy removes the scheduler's options. If there are not enough resident groups, memory stalls become visible as idle hardware.
 
 ---
 
-## 4. Modern Pipeline Stages
+## 3. GPU Front End and Work Feeding
 
-### Mesh Shaders (The Future)
+### Command Processor
+
+![[pictures/realtimegraphics/03/L03_Pg-19.jpg]]
+
+<p class="image-caption">L03_Pg-19: The command processor consumes the command stream and feeds the downstream GPU pipeline.</p>
+
+The command processor is the front end. It handles state changes, command stream interpretation, memory transfers, and the launch of graphics or compute work.
+
+### Scheduler
+
+![[pictures/realtimegraphics/03/L03_Pg-20.jpg]]
+
+<p class="image-caption">L03_Pg-20: The scheduler manages GPU work so available units receive ready tasks.</p>
+
+Schedulers are responsible for keeping execution units busy while respecting dependencies and available resources.
+
+### Vertex Batch Processing
+
+![[pictures/realtimegraphics/03/L03_Pg-23.jpg]]
+
+<p class="image-caption">L03_Pg-23: Vertex batch processing exploits shared vertices so repeated work can be reduced.</p>
+
+Meshes reuse vertices across triangles. Batching and caching prevent the vertex shader from doing the same transformation more often than necessary.
+
+---
+
+## 4. Programmable Geometry Evolution
+
+### Mesh Shaders and Meshlets
+
+![[pictures/realtimegraphics/03/L03_Pg-24.jpg]]
+
+<p class="image-caption">L03_Pg-24: Mesh shaders can output compact meshlets directly, replacing parts of the older fixed geometry path.</p>
+
+Mesh shaders let applications organize geometry into small chunks that can be culled, generated, and emitted more flexibly than the classic vertex/geometry pipeline.
+
+### Historical Graphics Pipeline
+
+![[pictures/realtimegraphics/03/L03_Pg-28.jpg]]
+
+<p class="image-caption">L03_Pg-28: The complete historical graphics pipeline includes tessellation and geometry shader stages.</p>
+
+The historical pipeline contains many optional geometry stages. Understanding it helps explain both legacy APIs and why newer APIs try to simplify or replace some stages.
+
+### Tessellation
+
+![[pictures/realtimegraphics/03/L03_Pg-29.jpg]]
+
+<p class="image-caption">L03_Pg-29: Tessellation subdivides patches into finer geometry under programmable control.</p>
+
+Tessellation can add geometric detail based on distance, curvature, or screen size. It is powerful but can become expensive if it generates more primitives than the later pipeline can handle.
+
+---
+
+## 5. Rasterization, Depth, and Fragment Cost
+
+### Rasterizer
+
+![[pictures/realtimegraphics/03/L03_Pg-36.jpg]]
+
+<p class="image-caption">L03_Pg-36: Rasterization turns triangles into covered samples and interpolated attributes.</p>
+
+Rasterization is fixed-function, but its output volume depends heavily on primitive size and screen coverage.
+
+### Variable Rasterizer Bandwidth
+
+![[pictures/realtimegraphics/03/L03_Pg-37.jpg]]
+
+<p class="image-caption">L03_Pg-37: Large and tiny primitives stress the rasterizer differently.</p>
+
+Large triangles create many fragments. Tiny triangles can waste setup work and underutilize the hardware. Both extremes can become bottlenecks.
+
+### Depth Buffer
+
+![[pictures/realtimegraphics/03/L03_Pg-39.jpg]]
+
+<p class="image-caption">L03_Pg-39: The depth buffer keeps the closest fragment per pixel without sorting all geometry.</p>
+
+The z-buffer is an order test. It avoids sorting triangles globally and lets the GPU reject hidden fragments locally.
+
+### Early-Z and Hierarchical Depth
+
+![[pictures/realtimegraphics/03/L03_Pg-41.jpg]]
+
+<p class="image-caption">L03_Pg-41: Hierarchical depth stores coarse depth summaries so hidden tiles can be rejected early.</p>
+
+Early-Z is valuable because fragment shading can be expensive. Rejecting invisible fragments before shading saves texture reads, math, and bandwidth.
+
+### Fragment Shading and ROP
+
+![[pictures/realtimegraphics/03/L03_Pg-42.jpg]]
+
+<p class="image-caption">L03_Pg-42: Fragment work is launched in groups, then raster operations merge visible results into the framebuffer.</p>
+
+Fragment shading is programmable; ROP is fixed-function. The boundary matters because blending and depth writes obey primitive order and framebuffer rules.
+
+---
+
+## 6. Display Synchronization
+
+### Display Synchronization
+
 ![[pictures/realtimegraphics/03/L03_Pg-48.jpg]]
 
-<p class="image-caption">L03_Pg-48: Mesh shaders replace the old fixed-function geometry stages with a more flexible, compute-like model using Meshlets.</p>
+<p class="image-caption">L03_Pg-48: Rendering must synchronize with display scan-out to avoid tearing and stale buffers.</p>
 
-- **Task Shader**: Coarse-grained culling (LOD).
-- **Mesh Shader**: Generates vertices/triangles directly.
+The display is continuously scanning out an image while the GPU is producing future images. Buffering separates those two timelines.
+
+### Presentation Modes
+
+![[pictures/realtimegraphics/03/L03_Pg-56.jpg]]
+
+<p class="image-caption">L03_Pg-56: Presentation modes trade tearing, latency, and frame pacing.</p>
+
+- **Immediate**: low latency, but can tear.
+- **FIFO**: vertical sync style queue; no tearing, but can add latency.
+- **Mailbox**: keeps the newest completed frame; useful for interactive workloads.
 
 ---
 
-## 5. Display & Buffering
+## 7. Driver and Modern API Direction
 
-### Double vs. Triple Buffering
-![[pictures/realtimegraphics/03/L03_Pg-59.jpg]]
+### Graphics Driver Architecture
 
-<p class="image-caption">L03_Pg-59: Double buffering prevents flickering but causes "tearing" if the swap happens mid-scanout.</p>
+![[pictures/realtimegraphics/03/L03_Pg-57.jpg]]
 
-### Presentation Modes (Vulkan)
-- **FIFO (V-Sync)**: Classic queue. Prevents tearing but limits FPS and adds latency.
-- **Mailbox (Triple Buffering)**: The "Very Modern" mode. The GPU always works on the latest available back buffer. No tearing + lowest latency.
+<p class="image-caption">L03_Pg-57: Driver architecture separates user-mode command preparation from kernel-mode system interaction.</p>
+
+Drivers batch, validate, translate, and submit commands. Modern APIs try to make this work more predictable by exposing more responsibility to the application.
+
+### Modern API Design
+
+![[pictures/realtimegraphics/03/L03_Pg-65.jpg]]
+
+<p class="image-caption">L03_Pg-65: Vulkan, DirectX 12, and Metal expose more explicit control and allow CPU-side multithreading.</p>
+
+The tradeoff is clear: explicit APIs reduce hidden driver overhead, but require applications to manage more details correctly.
+
+### Very Modern APIs
+
+![[pictures/realtimegraphics/03/L03_Pg-68.jpg]]
+
+<p class="image-caption">L03_Pg-68: Newer API directions move toward bindless resources and more pointer-like access models.</p>
+
+Bindless and pointer-like models reduce the cost of binding many resources, but require careful memory and lifetime management.
 
 ---
 
 ### Applied Exam Focus
-- **SIMT Divergence**: Understand that `if/else` is not "free" on a GPU; it's serialized within a warp.
-- **Latency Hiding**: Know that GPUs don't have large caches; they have **massive multithreading** to hide memory stalls.
-- **Presentation Modes**: Be able to explain why **Mailbox** is the preferred mode for high-performance interactive apps.
+
+- **Latency hiding**: explain why many resident warps/wavefronts hide memory stalls.
+- **Divergence**: understand why different branch paths inside one group serialize.
+- **Early-Z**: know why rejecting hidden fragments before shading matters.
+- **Modern APIs**: explain the tradeoff between explicit control and boilerplate.
+- **Presentation**: distinguish immediate, FIFO, and mailbox behavior.
 
 ---
-[[notes/lectures/realtimegraphics/index|(y) Back to RTG Index]]
+
+[[notes/lectures/realtimegraphics/02_graphics_pipeline|Back: (y-02) Graphics Pipeline]] | [[notes/lectures/realtimegraphics/index|(y) Back to RTG Index]] | [[notes/lectures/realtimegraphics/04_cg_primer|Next: (y-04) Graphics Primer]]

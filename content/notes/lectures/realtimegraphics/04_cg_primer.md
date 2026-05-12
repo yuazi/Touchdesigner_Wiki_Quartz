@@ -5,105 +5,252 @@ tags:
   - math
   - shading
   - transformations
-date: 2026-04-14
+date: 2026-05-12
 ---
+
 [[notes/lectures/realtimegraphics/03_gpu_architecture_parallelism|Back: (y-03) GPU Architecture]] | [[notes/lectures/realtimegraphics/05_shading_models|Next: (y-05) Shading Models]] | [[notes/lectures/realtimegraphics/index|RTG Index]]
 
 ## Mental Model First: Geometry as Data
 
-- **The GPU is a Matrix Machine**: Everything in 3D graphics—movement, rotation, perspective—is just a sequence of $4 \times 4$ matrix multiplications.
-- **Homogeneous Coordinates**: We add a 4th dimension ($w$) to our 3D vectors to make translation and perspective projection possible with simple linear math.
-- **Rasterization is Interpolation**: We only calculate colors/normals at the three corners of a triangle. The hardware then uses **Barycentric Coordinates** to smoothly fill in every pixel in between.
+- **Objects become triangles.** The GPU is built around simple primitives that can be transformed, rasterized, and interpolated efficiently.
+- **Transforms are matrix products.** Movement through object, world, camera, clip, and screen spaces is mostly linear algebra.
+- **Rasterization is inside testing plus interpolation.** Edge equations decide coverage; barycentric coordinates carry attributes across the triangle.
+- **Visibility is an order test.** The depth buffer does not need exact metric depth, only a value that preserves near/far ordering.
 
 ---
 
-## 1. The Transformation Pipeline
+## 1. Object Order and Triangle Data
+
+![[pictures/realtimegraphics/04/L04_Pg-02.jpg]]
+
+<p class="image-caption">L04_Pg-02: Object-order image synthesis visits objects and projects their primitives to the screen.</p>
+
+Computer graphics usually starts from scene geometry, not from pixels. The renderer projects objects into the image and lets rasterization find the covered samples.
+
+### Indexed Triangles
+
+![[pictures/realtimegraphics/04/L04_Pg-05.jpg]]
+
+<p class="image-caption">L04_Pg-05: Indexed triangles store each vertex once and reference it from multiple triangles.</p>
+
+A triangle soup duplicates vertices for every triangle. Indexed geometry stores shared vertices once, then uses an index buffer to define triangles. This reduces memory and improves vertex reuse.
+
+---
+
+## 2. Transformation Pipeline
 
 ![[pictures/realtimegraphics/04/L04_Pg-08.jpg]]
 
-<p class="image-caption">L04_Pg-08: The journey of a vertex from a local model coordinate to a final pixel on your screen.</p>
+<p class="image-caption">L04_Pg-08: Vertices move from object space through world, camera, clip, normalized device, and viewport spaces.</p>
 
-1. **Model Space**: Local coordinates (e.g., $(0,0,0)$ is the center of the car).
-2. **World Space**: Objects placed in the scene (Car is at $(10, 5, -20)$).
-3. **View Space (Camera Space)**: Everything relative to the camera lens.
-4. **Clip Space**: After applying projection; coordinates are ready for culling.
-5. **NDC (Normalized Device Coordinates)**: After $w$-divide. Everything is in a $[-1, 1]$ cube.
-6. **Viewport Space**: Actual screen coordinates (e.g., $(1920, 1080)$).
+The standard chain is:
+
+1. **Object space**: local model coordinates.
+2. **World space**: object placed in the scene.
+3. **Camera space**: coordinates relative to the camera.
+4. **Clip space**: projection applied; clipping can happen.
+5. **Normalized device coordinates**: after perspective divide.
+6. **Viewport space**: final screen coordinates.
+
+### Homogeneous Coordinates
+
+![[pictures/realtimegraphics/04/L04_Pg-09.jpg]]
+
+<p class="image-caption">L04_Pg-09: Homogeneous coordinates add a w component so affine transforms and projection fit into matrix form.</p>
+
+The fourth coordinate lets translation, scaling, rotation, and projection share the same representation:
+
+$$\mathbf{v}' = M \mathbf{v}$$
+
+For points, $w = 1$. After projection, the hardware divides by $w$ to return to 3D normalized coordinates.
 
 ---
 
-## 2. Core Matrix Math
+## 3. Core Transform Matrices
 
-### Translation, Scaling, Rotation
-We use **Homogeneous Coordinates** $(x, y, z, w)$ to unify these operations.
+### Translation
 
-- **Translation**:
-  $$ \begin{bmatrix} 1 & 0 & 0 & t_x \\ 0 & 1 & 0 & t_y \\ 0 & 0 & 1 & t_z \\ 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ z \\ 1 \end{bmatrix} = \begin{bmatrix} x + t_x \\ y + t_y \\ z + t_z \\ 1 \end{bmatrix} $$
+![[pictures/realtimegraphics/04/L04_Pg-11.jpg]]
+
+<p class="image-caption">L04_Pg-11: Translation moves a point by storing offsets in the fourth column of a homogeneous matrix.</p>
+
+Translation is not linear in 3D coordinates alone, but it becomes a matrix multiplication in homogeneous coordinates.
+
+### Scaling
+
+![[pictures/realtimegraphics/04/L04_Pg-12.jpg]]
+
+<p class="image-caption">L04_Pg-12: Scaling stretches coordinates along each axis.</p>
+
+Scaling changes object size. Non-uniform scaling can distort normals, which matters later for lighting.
+
+### Rotation
+
+![[pictures/realtimegraphics/04/L04_Pg-13.jpg]]
+
+<p class="image-caption">L04_Pg-13: Rotation matrices change orientation while preserving distances around the chosen axis.</p>
+
+Rotation order matters because matrix multiplication is not commutative. `Rz * Ry * Rx` generally differs from `Rx * Ry * Rz`.
+
+---
+
+## 4. Projection and Camera Space
 
 ### Perspective Projection
+
+![[pictures/realtimegraphics/04/L04_Pg-16.jpg]]
+
+<p class="image-caption">L04_Pg-16: Perspective projection makes farther objects appear smaller by preparing coordinates for division by depth.</p>
+
+Perspective projection encodes the camera frustum. The visual effect comes from the later divide by $w$, not from a simple 2D scale.
+
+### Normalization of Homogeneous Coordinates
+
 ![[pictures/realtimegraphics/04/L04_Pg-18.jpg]]
 
-<p class="image-caption">L04_Pg-18: Perspective projection mimics how a camera lens (or human eye) works: objects get smaller as they get further away.</p>
+<p class="image-caption">L04_Pg-18: Dividing by w maps homogeneous coordinates back into ordinary 3D coordinates.</p>
 
-The key is that $x$ and $y$ are divided by $z$. In a matrix, we store $z$ in the $w$ component, and the hardware later performs the **W-Divide**:
-$$ x_{ndc} = x_{clip} / w_{clip} $$
+All nonzero scalar multiples of a homogeneous point represent the same Euclidean point. Normalization picks the representative with $w = 1$.
+
+### Camera Transformation
+
+![[pictures/realtimegraphics/04/L04_Pg-20.jpg]]
+
+<p class="image-caption">L04_Pg-20: The camera transform is built from camera position, direction, and up vector.</p>
+
+The view matrix can be understood as moving the world so the camera becomes the origin looking down its canonical direction.
+
+### Normalized Device Coordinates
+
+![[pictures/realtimegraphics/04/L04_Pg-21.jpg]]
+
+<p class="image-caption">L04_Pg-21: After perspective division, visible geometry lies inside normalized device coordinates.</p>
+
+NDC is the canonical space used before viewport mapping. It makes screen mapping independent of the actual window size.
 
 ---
 
-## 3. Visibility & Interpolation
+## 5. Culling, Clipping, and Rasterization
 
-### The Z-Buffer
-![[pictures/realtimegraphics/04/L04_Pg-28.jpg]]
+### Culling and Clipping
 
-<p class="image-caption">L04_Pg-28: The Z-buffer stores the depth of the closest object at every pixel to handle occlusions.</p>
+![[pictures/realtimegraphics/04/L04_Pg-22.jpg]]
 
-- **💡 Intuition**: To keep things fast, the GPU doesn't sort triangles. It just draws them and keeps a "depth map." If a new pixel is closer than the stored value, it's drawn; otherwise, it's discarded.
+<p class="image-caption">L04_Pg-22: Culling rejects fully invisible geometry; clipping handles primitives that cross the visible boundary.</p>
 
-### Barycentric Coordinates
+Rejecting invisible primitives early protects later stages from unnecessary work.
+
+### Rasterization and Edge Equations
+
+![[pictures/realtimegraphics/04/L04_Pg-26.jpg]]
+
+<p class="image-caption">L04_Pg-26: Rasterization uses edge equations to decide whether samples lie inside a triangle.</p>
+
+Each triangle edge defines a half-plane. A sample is inside when it lies on the correct side of every edge.
+
+### Hierarchical Rasterization
+
+![[pictures/realtimegraphics/04/L04_Pg-30.jpg]]
+
+<p class="image-caption">L04_Pg-30: Hierarchical rasterization tests tiles before individual samples.</p>
+
+Tile-level tests are a throughput optimization: large fully inside/outside regions can be accepted or rejected without checking every pixel first.
+
+---
+
+## 6. Depth and Visibility
+
+### Depth as an Order Relation
+
 ![[pictures/realtimegraphics/04/L04_Pg-31.jpg]]
 
-<p class="image-caption">L04_Pg-31: Barycentric coordinates allow us to find any point inside a triangle using weights $(\lambda_1, \lambda_2, \lambda_3)$.</p>
+<p class="image-caption">L04_Pg-31: Depth values only need to preserve visibility ordering, not physical distance linearly.</p>
 
-Any point $P$ inside $\triangle V_1 V_2 V_3$ is:
-$$ P = \lambda_1 V_1 + \lambda_2 V_2 + \lambda_3 V_3, \quad \text{where } \lambda_1 + \lambda_2 + \lambda_3 = 1 $$
+The depth buffer answers: **which fragment is closer?** A nonlinear projection is acceptable if the ordering is correct and precision is sufficient.
 
----
+### Depth Buffer Algorithm
 
-## 4. Shading Models
-
-### Lambert (Diffuse)
 ![[pictures/realtimegraphics/04/L04_Pg-35.jpg]]
 
-<p class="image-caption">L04_Pg-35: Diffuse shading depends only on the angle between the surface normal and the light source.</p>
+<p class="image-caption">L04_Pg-35: The z-buffer stores the nearest depth per pixel and updates it when a closer fragment arrives.</p>
 
-$$ I = k_d \cdot \max(0, \mathbf{n} \cdot \mathbf{l}) $$
-
-### Phong (Specular)
-![[pictures/realtimegraphics/04/L04_Pg-36.jpg]]
-
-<p class="image-caption">L04_Pg-36: Specular highlights depend on the viewer's position relative to the reflected light ray.</p>
+This avoids sorting all triangles by depth. The GPU can draw primitives in arbitrary order and let the depth test resolve visibility.
 
 ---
 
-## 5. Textures & Blending
+## 7. Shading and Material Basics
 
-### Mip-mapping
-![[pictures/realtimegraphics/04/L04_Pg-40.jpg]]
+### Lambert Shading
 
-<p class="image-caption">L04_Pg-40: Mip-maps are pre-filtered, smaller versions of textures used to prevent aliasing (shimmering) at a distance.</p>
+![[pictures/realtimegraphics/04/L04_Pg-37.jpg]]
 
-### Alpha Blending (Transparency)
+<p class="image-caption">L04_Pg-37: Lambert shading uses the dot product between surface normal and light direction for diffuse light.</p>
+
+The basic diffuse term is:
+
+$$L = k_d \circ I_L \circ \max(\mathbf{n} \cdot \mathbf{l}, 0)$$
+
+It is view-independent: rotating the camera does not change the brightness if light and surface orientation stay fixed.
+
+### Phong Shading
+
+![[pictures/realtimegraphics/04/L04_Pg-38.jpg]]
+
+<p class="image-caption">L04_Pg-38: Phong shading adds ambient, diffuse, and specular terms.</p>
+
+Phong introduces a view-dependent highlight. It is useful as a first specular model, even though the next lecture explains why it is not physically accurate.
+
+---
+
+## 8. Textures and Interpolation
+
+### Textures
+
+![[pictures/realtimegraphics/04/L04_Pg-39.jpg]]
+
+<p class="image-caption">L04_Pg-39: Textures simulate spatially varying material properties such as color, reflection, and shininess.</p>
+
+Textures let one mesh reuse the same geometry while changing appearance across the surface.
+
+### Texture Coordinates
+
+![[pictures/realtimegraphics/04/L04_Pg-41.jpg]]
+
+<p class="image-caption">L04_Pg-41: Texture coordinates attach a 2D parameterization to mesh vertices.</p>
+
+Each vertex stores $(u, v)$ coordinates. Rasterization interpolates them for fragments, and the fragment shader samples the texture.
+
+### Barycentric Coordinates
+
+![[pictures/realtimegraphics/04/L04_Pg-42.jpg]]
+
+<p class="image-caption">L04_Pg-42: Barycentric coordinates express a point inside a triangle as weighted vertex contributions.</p>
+
+For a point $P$ inside a triangle:
+
+$$P = \lambda_1 V_1 + \lambda_2 V_2 + \lambda_3 V_3,\quad \lambda_1 + \lambda_2 + \lambda_3 = 1$$
+
+The same weights interpolate colors, normals, texture coordinates, and other vertex attributes.
+
+### Alpha Blending
+
 ![[pictures/realtimegraphics/04/L04_Pg-43.jpg]]
 
-<p class="image-caption">L04_Pg-43: Alpha blending requires drawing objects from back-to-front for correct results.</p>
+<p class="image-caption">L04_Pg-43: Alpha blending combines the new fragment color with the existing framebuffer color.</p>
+
+Transparency is order-dependent. Correct alpha blending usually requires drawing transparent objects from back to front after opaque objects.
 
 ---
 
 ### Applied Exam Focus
-- **Transformation Pipeline**: Be able to name all spaces in order (Model $\to$ World $\to$ View $\to$ Clip $\to$ NDC $\to$ Viewport).
-- **Perspective Division**: Understand that perspective happens because of the **$w$-divide**, not just the matrix multiplication.
-- **Barycentric Interpolation**: Know that the hardware uses this to interpolate UVs and Normals across a triangle.
-- **Alpha Blending**: Remember the **Back-to-Front** requirement for correct transparency.
+
+- **Spaces in order**: object -> world -> camera -> clip -> NDC -> viewport.
+- **Homogeneous coordinates**: know why the fourth coordinate makes translation and projection matrix-based.
+- **Perspective divide**: understand that perspective comes from dividing by $w$.
+- **Rasterization**: connect edge equations, barycentric coordinates, and interpolation.
+- **Depth buffer**: explain why unsorted triangles can still produce correct visibility.
+- **Alpha blending**: remember that transparent rendering is order-dependent.
 
 ---
-[[notes/lectures/realtimegraphics/index|(y) Back to RTG Index]]
+
+[[notes/lectures/realtimegraphics/03_gpu_architecture_parallelism|Back: (y-03) GPU Architecture]] | [[notes/lectures/realtimegraphics/index|(y) Back to RTG Index]] | [[notes/lectures/realtimegraphics/05_shading_models|Next: (y-05) Shading Models]]

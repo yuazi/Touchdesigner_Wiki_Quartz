@@ -6,124 +6,212 @@ tags:
   - pipeline
   - architecture
   - vulkan
-date: 2026-04-14
+date: 2026-05-12
 ---
+
 [[notes/lectures/realtimegraphics/01_introduction|Back: (y-01) Introduction]] | [[notes/lectures/realtimegraphics/03_gpu_architecture_parallelism|Next: (y-03) GPU Architecture & Parallelism]]
 
 ## Mental Model First: The Graphics Factory
 
-- **Object Order (Rasterization)**: "Where do I see what?" Go through all objects and project them onto the screen. This is a high-throughput assembly line.
-- **Fixed-Function vs. Programmable**: Some parts of the factory are "hard-wired" for speed (Rasterizer, ROP), while others allow you to write your own "programs" (Vertex/Fragment Shaders).
-- **The "Weakest Link"**: If your fragment shader is complex but your triangles are small, the fragment shader is the bottleneck. If you have too many triangles, the vertex shader is the bottleneck.
+- **Rasterization is object order.** The renderer visits objects, projects their primitives, and lets covered pixels fall out of the pipeline.
+- **The pipeline mixes fixed and programmable work.** Fixed stages are fast and specialized; shader stages are flexible and developer-controlled.
+- **APIs describe work, not pixels directly.** Modern APIs make applications declare resources, commands, state, synchronization, and presentation.
+- **A frame is a production line.** Geometry enters as buffers; final color and depth values leave through the framebuffer.
+
+---
+
+## 1. Image Synthesis Orders
 
 ![[pictures/realtimegraphics/02/L02_Pg-02.jpg]]
 
-<p class="image-caption">L02_Pg-02: Comparing Image Synthesis strategies. Rasterization (Object Order) vs. Raytracing (Image Order).</p>
+<p class="image-caption">L02_Pg-02: Object-order rasterization projects primitives to the image; image-order methods trace from pixels into the scene.</p>
+
+Rasterization asks: **which pixels does this object cover?** Ray tracing asks: **what object does this pixel see?** Real-time graphics historically relies on rasterization because object-order triangle processing maps extremely well to hardware.
+
+### Rasterization Hardware
+
+![[pictures/realtimegraphics/02/L02_Pg-03.jpg]]
+
+<p class="image-caption">L02_Pg-03: Real-time hardware is optimized around rasterizing simple primitives, especially triangles.</p>
+
+The triangle is the default primitive because it is planar, simple to interpolate over, and efficient to process in parallel.
 
 ---
 
-## 1. Architecture: The Pipeline Concept
+## 2. Essential Graphics Pipeline
 
-In real-time rendering, the pipeline is a chain of stages where each stage depends on the result of the previous one. A bottleneck in any stage limits the entire system's throughput.
-
-![[pictures/realtimegraphics/02/L02_Pg-04.jpg]]
-
-<p class="image-caption">L02_Pg-04: The conceptual "Logical Pipeline." Raw data enters at the top, and final pixels exit at the bottom.</p>
-
----
-
-## 2. The Application Stage (CPU)
-
-Unlike later stages, the Application Stage is **fully programmable** and runs entirely on the CPU. It is often the bottleneck for complex games.
-
-- **Primary Tasks**:
-    - **Culling**: Identifying which objects are outside the view frustum.
-    - **Animation**: Solving skeletal matrices.
-    - **Physics/Collision**: "Is the player touching the wall?"
-- **Output**: Draw Calls (Instructions for the GPU) and Vertex Buffers.
-
----
-
-## 3. The Geometry Processing Stage
-
-This stage transforms the 3D geometry into 2D clip-space coordinates.
-
-### 1. Input Assembler (Fixed)
 ![[pictures/realtimegraphics/02/L02_Pg-05.jpg]]
 
-<p class="image-caption">L02_Pg-05: The IA reads raw buffers and "assembles" them into primitives (triangles, lines).</p>
+<p class="image-caption">L02_Pg-05: The essential pipeline: input assembly, vertex shading, rasterization, fragment shading, and raster operations.</p>
 
-- **Task**: Reads raw vertex data from memory.
-- **Key Feature**: It can attach system-generated values like `vertex_id` or `instance_id`.
+The pipeline is a dependency chain. Each stage consumes the previous stage's output, so the slowest stage limits frame throughput.
 
-### 2. Vertex Shader (Programmable)
+### Input Assembler
+
 ![[pictures/realtimegraphics/02/L02_Pg-06.jpg]]
 
-<p class="image-caption">L02_Pg-06: The VS is where the math happens. Moving vertices from model space to clip space.</p>
+<p class="image-caption">L02_Pg-06: The input assembler reads vertex/index buffers and assembles points, lines, or triangles.</p>
 
-- **Mandatory Output**: `gl_Position`.
-- **Operations**: $P \times V \times M \times \text{vertex}$.
+The input assembler is fixed-function. It reads buffers, applies index order, and forms primitives for the programmable vertex stage.
 
-### 3. Clipping & Culling (Fixed)
+### Vertex Shader
+
+![[pictures/realtimegraphics/02/L02_Pg-07.jpg]]
+
+<p class="image-caption">L02_Pg-07: The vertex shader transforms positions and forwards per-vertex attributes.</p>
+
+The vertex shader runs once per vertex invocation. Its most important output is clip-space position; it can also pass attributes such as color, normals, or texture coordinates.
+
+---
+
+## 3. Rasterization and Pixel Work
+
+### Rasterizer
+
 ![[pictures/realtimegraphics/02/L02_Pg-08.jpg]]
 
-<p class="image-caption">L02_Pg-08: Primitives outside the view frustum are culled; those intersecting are clipped.</p>
+<p class="image-caption">L02_Pg-08: The rasterizer finds covered samples and interpolates vertex attributes across each primitive.</p>
 
----
+Rasterization converts continuous triangle coverage into fragments. Attribute interpolation bridges the vertex and fragment stages.
 
-## 4. The Rasterization Stage
+### Fragment Shader
 
-### Rasterizer (Fixed)
 ![[pictures/realtimegraphics/02/L02_Pg-09.jpg]]
 
-<p class="image-caption">L02_Pg-09: The Rasterizer "slices" triangles into fragments (potential pixels).</p>
+<p class="image-caption">L02_Pg-09: The fragment shader computes per-fragment color using interpolation, lighting, textures, and shader logic.</p>
 
-### Interpolation
+This is where most material appearance is computed. It can be cheap, like a constant color, or expensive, like a physically based material with several texture reads.
+
+### Raster Operations
+
 ![[pictures/realtimegraphics/02/L02_Pg-10.jpg]]
 
-<p class="image-caption">L02_Pg-10: Attributes (Color, UVs) are mathematically interpolated across the surface of the triangle.</p>
+<p class="image-caption">L02_Pg-10: Raster operations resolve depth, blending, stencil, and final writes into framebuffer attachments.</p>
+
+Raster operations decide whether a fragment becomes a final pixel value. Multiple fragments can compete for the same pixel, so depth and blending matter here.
 
 ---
 
-## 5. The Pixel Processing Stage
+## 4. Graphics APIs
 
-### 1. Fragment Shader (Programmable)
-![[pictures/realtimegraphics/02/L02_Pg-11.jpg]]
+![[pictures/realtimegraphics/02/L02_Pg-12.jpg]]
 
-<p class="image-caption">L02_Pg-11: The FS determines the color. This is where textures are looked up and lighting is calculated.</p>
+<p class="image-caption">L02_Pg-12: A graphics API is hardware independent at the interface, but implemented by hardware-specific drivers.</p>
 
-### 2. Raster Operations (ROP - Fixed)
-![[pictures/realtimegraphics/02/L02_Pg-13.jpg]]
+APIs such as Vulkan, OpenGL, OpenGL ES, and DirectX define how applications talk to graphics hardware. The API itself is portable; the driver implementation is vendor-specific.
 
-<p class="image-caption">L02_Pg-13: The ROP handles the "Final Merger" (Depth testing, Alpha blending).</p>
+### Vulkan Handles
+
+![[pictures/realtimegraphics/02/L02_Pg-18.jpg]]
+
+<p class="image-caption">L02_Pg-18: Vulkan exposes explicit handles such as instance, physical device, logical device, queues, and swap-chain objects.</p>
+
+Vulkan makes many objects explicit:
+
+- **Instance**: connection to the Vulkan runtime.
+- **Physical device**: the actual GPU.
+- **Logical device**: the application's interface to that GPU.
+- **Queues**: ordered submission targets for work.
+
+### Draw Calls
+
+![[pictures/realtimegraphics/02/L02_Pg-19.jpg]]
+
+<p class="image-caption">L02_Pg-19: Draw calls specify primitive type, buffers, offsets, and counts for GPU work.</p>
+
+A draw call is not "draw this object" in a high-level sense. It is a compact command that tells the GPU which buffers, states, and primitive ranges to process.
 
 ---
 
-## 6. Modern API Architecture (The Shoe Factory)
+## 5. Resources, Descriptors, and State
 
-![[pictures/realtimegraphics/02/L02_Pg-15.jpg]]
+### Resources
 
-<p class="image-caption">L02_Pg-15: In Vulkan/DX12, you don't just "draw"; you build a factory line (PSO).</p>
+![[pictures/realtimegraphics/02/L02_Pg-24.jpg]]
 
-### Key Vulkan Handles
-![[pictures/realtimegraphics/02/L02_Pg-16.jpg]]
+<p class="image-caption">L02_Pg-24: Resources are GPU-memory data objects such as buffers and images.</p>
 
-<p class="image-caption">L02_Pg-16: The hierarchy of Vulkan objects: Instance $\to$ Physical Device $\to$ Logical Device.</p>
+Resources hold the data the GPU reads or writes: vertex buffers, index buffers, textures, storage buffers, render targets, and depth buffers.
 
-### 💡 Intuition: Why use a PSO (Pipeline State Object)?
-![[pictures/realtimegraphics/02/L02_Pg-20.jpg]]
+### Resource Descriptors
 
-<p class="image-caption">L02_Pg-20: The PSO contains all state (Shaders, Blending, Depth) in one immutable object.</p>
+![[pictures/realtimegraphics/02/L02_Pg-25.jpg]]
 
-In older APIs (OpenGL), changing the blend mode was a simple state change. In Vulkan, everything is baked into a **PSO**. This allows the GPU driver to optimize hardware registers *before* the draw call, avoiding costly re-validation during the frame.
+<p class="image-caption">L02_Pg-25: Descriptors tell shaders where resources live and how they may be used.</p>
+
+Descriptors are the bridge between shader code and GPU memory. Without them, a shader has no stable way to locate textures, buffers, or samplers.
+
+### Pipeline State Object
+
+![[pictures/realtimegraphics/02/L02_Pg-28.jpg]]
+
+<p class="image-caption">L02_Pg-28: A pipeline state object packages shaders and fixed-function render configuration into one immutable state bundle.</p>
+
+Modern APIs prefer explicit immutable state. This reduces hidden driver work during rendering, but shifts responsibility to the application.
+
+### CPU Main Loop
+
+![[pictures/realtimegraphics/02/L02_Pg-29.jpg]]
+
+<p class="image-caption">L02_Pg-29: Each frame acquires a swap-chain image, submits rendering commands, and presents the result.</p>
+
+The CPU side of a frame is a loop of acquire, record/submit commands, synchronize, and present. Poor CPU-side organization can bottleneck the GPU.
+
+### Command Buffers
+
+![[pictures/realtimegraphics/02/L02_Pg-31.jpg]]
+
+<p class="image-caption">L02_Pg-31: Command buffers collect rendering commands so they can be validated, reused, and submitted efficiently.</p>
+
+Command buffers make API calls batchable. The application records a sequence once or per frame, and the GPU consumes that sequence asynchronously.
+
+---
+
+## 6. Shader Programming Basics
+
+### Anatomy of a GLSL Shader
+
+![[pictures/realtimegraphics/02/L02_Pg-36.jpg]]
+
+<p class="image-caption">L02_Pg-36: GLSL shaders declare uniforms, varying inputs, outputs, and the main function executed by each invocation.</p>
+
+Shader programs run many times: once per vertex, per fragment, or per compute invocation depending on the stage.
+
+### Built-In Variables
+
+![[pictures/realtimegraphics/02/L02_Pg-37.jpg]]
+
+<p class="image-caption">L02_Pg-37: Built-in variables connect shader code to fixed-function pipeline expectations.</p>
+
+Examples include vertex IDs, instance IDs, clip-space positions, and fragment coordinates. They are the contract between programmable code and pipeline hardware.
+
+### Minimal Vertex Shader
+
+![[pictures/realtimegraphics/02/L02_Pg-39.jpg]]
+
+<p class="image-caption">L02_Pg-39: A minimal vertex shader transforms a vertex position by an MVP matrix and forwards color.</p>
+
+The essential vertex shader job is:
+
+$$gl\_Position = MVP \cdot position$$
+
+### Minimal Fragment Shader
+
+![[pictures/realtimegraphics/02/L02_Pg-42.jpg]]
+
+<p class="image-caption">L02_Pg-42: A minimal fragment shader writes interpolated color to the framebuffer.</p>
+
+The fragment shader decides the output color for each surviving fragment. Later lectures make this stage much richer through texturing and shading models.
 
 ---
 
 ### Applied Exam Focus
-- **Fixed vs. Programmable**: Be able to identify which stage is fixed (Rasterizer, IA, ROP) and which is programmable (VS, FS, GS, CS).
-- **Object vs Image Order**: Know the difference between Rasterization and Raytracing.
-- **Interpolation**: Understand that this happens *between* the Vertex and Fragment shaders.
-- **Vulkan handles**: Understand the difference between a Physical Device (Hardware) and a Logical Device (Interface).
+
+- **Pipeline order**: input assembler -> vertex shader -> rasterizer -> fragment shader -> raster operations.
+- **Fixed vs programmable**: know which stages are hardware-controlled and which run shader code.
+- **Rasterization vs ray tracing**: object-order projection vs image-order visibility queries.
+- **Vulkan explicitness**: resources, descriptors, command buffers, and pipeline state are explicit objects.
 
 ---
-[[notes/lectures/realtimegraphics/index|(y) Back to RTG Index]]
+
+[[notes/lectures/realtimegraphics/01_introduction|Back: (y-01) Introduction]] | [[notes/lectures/realtimegraphics/index|(y) Back to RTG Index]] | [[notes/lectures/realtimegraphics/03_gpu_architecture_parallelism|Next: (y-03) GPU Architecture & Parallelism]]

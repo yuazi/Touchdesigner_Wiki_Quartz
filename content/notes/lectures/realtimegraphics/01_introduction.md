@@ -6,97 +6,151 @@ tags:
   - introduction
   - throughput
   - master
-date: 2026-04-14
+date: 2026-05-12
 ---
+
 [[notes/lectures/realtimegraphics/index|Back to RTG Index]] | [[notes/lectures/realtimegraphics/02_graphics_pipeline|Next: (y-02) Graphics Pipeline]]
 
-## Mental Model First
+## Mental Model First: Real-Time Graphics Is a Throughput Problem
 
-- **Graphics is a Throughput Problem**: Unlike a CPU which is a "sprint" for low latency, a GPU is a "marathon" for massive data-parallel throughput.
-- **The Magic of 60Hz**: At 60 frames per second, the illusion of motion becomes solid to the human eye. To achieve this at 4K resolution, you have only **16.6 milliseconds** to compute over 8 million pixels.
-- **Abstraction is Key**: We don't write raw Vulkan because it's too much boilerplate; we use a modern abstraction (Diligent Engine) to focus on the **algorithms** rather than the **API plumbing**.
-
-## Introduction
-
-**Real-Time Graphics** is about generating imagery so fast that the user can interact with it. 
-
-I use the [[work/slidelink|SlideLink]] tool I built to automatically align these notes with the original lecture slides.
+- **The target is interaction.** Real-time graphics means generated images arrive fast enough that users can react to them.
+- **Pixels dominate the budget.** A 4K frame has millions of pixels; high refresh rates multiply that cost immediately.
+- **GPUs exist for parallelism.** The workload is too large for one fast CPU thread, but many pixels, vertices, and samples can be processed together.
+- **The course mixes concepts and implementation.** The lectures explain the pipeline; the lab turns those ideas into working renderer code.
 
 ---
 
-## The "Numbers Problem" (Math)
+## 1. What Real-Time Graphics Wants
 
-![[pictures/realtimegraphics/01/L01_Pg-08.jpg]]
+![[pictures/realtimegraphics/01/L01_Pg-03.jpg]]
 
-<p class="image-caption">L01_Pg-08: The sheer volume of data is the primary engineering challenge in real-time rendering.</p>
+<p class="image-caption">L01_Pg-03: Real-time graphics aims for computer-generated imagery fast enough for interactive use.</p>
 
-To understand why we need GPUs, look at the math for a modern 4K display:
+Real-time graphics is the engineering discipline behind games, visualization, CAD, VR/AR, simulation, and interactive previews. The image does not merely need to look good; it must arrive before the next display deadline.
 
-- **Resolution**: $3840 \times 2160 = 8.3$ Million pixels.
-- **Refresh Rate**: 60 Hz (standard) or 144 Hz (gaming).
-- **Anti-Aliasing**: 4x Multisamples per pixel.
+### The Core Question
 
-$$8.3 \text{M pixels} \times 60 \text{ frames/sec} \times 4 \text{ samples} \approx \mathbf{2 \text{ Billion samples per second}}$$
+![[pictures/realtimegraphics/01/L01_Pg-04.jpg]]
 
-Each sample requires multiple math operations (lighting, texturing, blending). A standard CPU core cannot handle billions of complex operations per second; we need **massive parallelization**.
+<p class="image-caption">L01_Pg-04: The problem is computing millions of pixels from a complex 3D scene in real time.</p>
 
-### 💡 Intuition: Throughput vs. Latency
+The central challenge is:
 
-- **CPU (Latency-Oriented)**: A high-speed delivery truck. Fast at moving one package, but carries only a few at a time. If the truck stops for a red light (memory stall), everything waits.
-- **GPU (Throughput-Oriented)**: A massive freight train. Much slower than a truck, but carries 10,000 packages. Even if the train slows down, the total number of packages delivered per hour is enormous.
+> How can we synthesize a complex 3D image quickly enough that interaction still feels continuous?
+
+That question explains most of the later architecture: fixed-function hardware, shader parallelism, batching, buffering, and aggressive avoidance of wasted work.
 
 ---
 
-## Three Decades of Progress (The Hardware Shift)
+## 2. Three Decades of Hardware Progress
 
 ![[pictures/realtimegraphics/01/L01_Pg-07.jpg]]
 
-<p class="image-caption">L01_Pg-07: Visualization of the 30-year jump from supercomputers to consumer hardware.</p>
+<p class="image-caption">L01_Pg-07: Hardware moved from room-scale specialist systems to consumer GPUs with far higher practical throughput.</p>
 
-| Feature | **1992: SGI RealityMonster** | **2026: GeForce RTX 5090** |
-| :--- | :--- | :--- |
-| **Form Factor** | 8 Racks (Room-sized) | Single PCIe Card |
-| **Power** | Megawatts | ~450–600 Watts |
-| **Cost** | ~$500,000 (1992 money) | ~$1,500–2,500 |
-| **Performance** | ~80 Million Triangles/sec | ~2–4 **Billion** Triangles/sec |
+The lecture contrasts the SGI RealityMonster era with modern RTX-class GPUs. The important lesson is not only that hardware became faster, but that graphics became a mass-market parallel computing workload.
+
+| Era   | Example               | Practical Meaning                              |
+| :---- | :-------------------- | :--------------------------------------------- |
+| 1990s | SGI RealityMonster    | Expensive, room-scale specialized rendering    |
+| Today | GeForce RTX-class GPU | Desktop-scale hardware for real-time rendering |
+
+### 💡 Intuition: Why Graphics Hardware Won
+
+Graphics workloads have enormous regularity: many vertices pass through similar transforms, and many fragments run similar shading programs. Hardware that is specialized for this regularity wins on cost, power, and throughput.
 
 ---
 
-## Lab Exercises: The Roadmap to a Renderer
+## 3. Course Topics and Mental Map
+
+![[pictures/realtimegraphics/01/L01_Pg-09.jpg]]
+
+<p class="image-caption">L01_Pg-09: The course starts with the graphics pipeline and expands into shading, effects, global illumination, and acceleration structures.</p>
+
+The course sequence can be read as a renderer roadmap:
+
+1. **Graphics pipeline and Vulkan**: how work gets onto the GPU.
+2. **Texturing and shading**: how visible surfaces receive color.
+3. **Special effects**: post-processing and screen-space techniques.
+4. **Global illumination and shadows**: indirect light and visibility.
+5. **Acceleration structures**: making ray and scene queries fast enough.
+
+---
+
+## 4. Lab Overview
 
 ![[pictures/realtimegraphics/01/L01_Pg-14.jpg]]
 
-<p class="image-caption">L01_Pg-14: The 4-step journey you will take in the lab to build a modern renderer.</p>
+<p class="image-caption">L01_Pg-14: The lab is organized around four programming exercises and individual pass requirements.</p>
 
-The lab is managed by tutors **Fabian Schmierer**, **Yiangyu Wang**, and **Xuening Tian**.
-- **Requirement**: You must pass every exercise with **> 60% individually**.
+The lab turns rendering concepts into code. The pass condition is strict: every exercise must be passed individually with more than 60 percent, so a weak assignment cannot simply be averaged away.
 
-1. **Basic Rendering**:
-   - **Indexed Buffers**: $N$ vertices, but $3N$ indices. Saves memory by reusing vertices.
-   - **MVP Transformations**: Moving from Model Space $\to$ World Space $\to$ View Space $\to$ Clip Space.
-2. **Screen-Space Post-Processing**:
-   - **Bilateral Upscaling**: Using edge-detection to scale images without blurring.
-   - **MSAA**: Using sub-pixel samples to fight the "jaggies."
-3. **Particle Systems**:
-   - **GPU Instancing**: Drawing 100,000 leaves or particles in a single draw call.
-   - **Compute Shaders**: Moving the physics simulation off the CPU.
-4. **Final Project**:
-   - **Hardware Raytracing**: Using the RT cores for reflections.
-   - **SSAO**: Screen Space Ambient Occlusion for realistic "soft shadows" in corners.
+### Diligent Engine
+
+![[pictures/realtimegraphics/01/L01_Pg-16.jpg]]
+
+<p class="image-caption">L01_Pg-16: Diligent Engine provides a modern cross-platform rendering abstraction over APIs such as Vulkan and DirectX.</p>
+
+Diligent Engine gives access to modern rendering concepts without forcing every exercise to start from raw Vulkan boilerplate. The point is to learn pipeline and algorithm design, not to spend all effort on platform setup.
 
 ---
 
-## ⚠️ Common Pitfalls: The Bottleneck Trap
+## 5. Exercise Roadmap
 
-Real-time graphics performance is a game of **bottlenecks**. You can have the fastest GPU in the world, but your framerate will still be low if:
-1. **CPU Bound**: The CPU is too slow at preparing the command buffers (Draw Calls).
-2. **Memory Bound**: You are trying to move too many textures from VRAM to the ALUs (Bandwidth).
-3. **Fill-Rate Bound**: You are drawing too many transparent objects on top of each other (**Overdraw**).
+![[pictures/realtimegraphics/01/L01_Pg-18.jpg]]
+
+<p class="image-caption">L01_Pg-18: The exercises build from basic rendering to post-processing, particles, and a final advanced project.</p>
+
+The assignments form a staged renderer:
+
+1. **Basic Rendering**: buffers, indexed geometry, transformations, and basic draw calls.
+2. **Screen-Space Post-Processing**: image-space filters, upscaling, and multisampling.
+3. **Particle System**: many independent objects, instancing, and GPU-side simulation.
+4. **Raytracing or SSAO**: advanced visibility or ambient occlusion effects.
+
+### Screen-Space Post-Processing
+
+![[pictures/realtimegraphics/01/L01_Pg-20.jpg]]
+
+<p class="image-caption">L01_Pg-20: The second assignment focuses on screen-space processing such as upscaling and antialiasing.</p>
+
+Post-processing treats the already-rendered image as input data. It is a natural place to learn image filters, sampling, and GPU memory access patterns.
+
+### Particle Systems
+
+![[pictures/realtimegraphics/01/L01_Pg-21.jpg]]
+
+<p class="image-caption">L01_Pg-21: Particle simulation highlights the difference between CPU-side and GPU-side parallel work.</p>
+
+Particles are a good fit for GPUs because many particles follow the same update rules independently. That makes them an early example of graphics as general parallel computation.
+
+### Final Project Direction
+
+![[pictures/realtimegraphics/01/L01_Pg-22.jpg]]
+
+<p class="image-caption">L01_Pg-22: The final project options include hardware ray tracing or screen-space ambient occlusion.</p>
+
+The final project asks for a more complete effect: ray tracing for visibility/reflection or SSAO for plausible contact shadowing in screen space.
+
+---
+
+## 6. Communication and Independence
+
+![[pictures/realtimegraphics/01/L01_Pg-23.jpg]]
+
+<p class="image-caption">L01_Pg-23: Exercise work is independent; discussion is allowed, but sharing code is not.</p>
+
+The course allows discussion, but implementations must remain independent. Treat outside examples as learning material, not as code to copy.
+
+---
 
 ### Applied Exam Focus
-- **Throughput Calculation**: Be able to calculate the required gigapixels/sec for a given resolution and refresh rate.
-- **SGI vs. GPU Comparison**: Understand why specialized hardware (fixed-function rasterizers) won over general-purpose supercomputers.
-- **Course Administration**: 60% individual pass requirement for exercises; submissions via the university GitHub.
+
+- **Throughput calculation**: explain why resolution, refresh rate, and sampling quickly become billions of operations.
+- **Specialized hardware**: know why graphics workloads suit parallel GPU hardware.
+- **Course map**: connect pipeline, shading, post-processing, particles, and ray tracing to the renderer pipeline.
+- **Lab rule**: every exercise must exceed the individual pass threshold.
 
 ---
-[[notes/lectures/realtimegraphics/index|(y) Back to RTG Index]]
+
+[[notes/lectures/realtimegraphics/index|(y) Back to RTG Index]] | [[notes/lectures/realtimegraphics/02_graphics_pipeline|Next: (y-02) Graphics Pipeline]]
