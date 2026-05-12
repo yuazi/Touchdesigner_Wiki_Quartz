@@ -1,123 +1,192 @@
 ---
-title: "05_VR-AR — Tracking in VR/AR"
+title: "05_VR-AR - Tracking in VR/AR"
 tags:
   - vrar
   - tracking
   - sensors
-  - theory
+  - registration
 date: 2026-05-12
 ---
-[[/notes/lectures/virtualaugmentedreality/04_VR-AR_Interaction|Back: (y-04) Interaction]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]]
 
-## 1. The Trinity of Alignment
-![](pictures/virtualaugmentedreality/05/Lecture05_Pg004_1_The_Trinity_Of_Alignment.png)
+[[/notes/lectures/virtualaugmentedreality/04_VR-AR_Interaction|Previous: (y-04) Interaction]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/06_VR-AR_CompVision|Next: (y-06) Computer Vision for AR]]
 
-<p class="image-caption">The Trinity of Alignment: Registration, Calibration, and Tracking work together to align the virtual and physical worlds.</p>
+## Mental Model First
 
+- **Tracking estimates pose over time.** VR/AR needs to know where the head, controllers, body, or real-world targets are.
+- **Registration is the goal.** Tracking is useful because it lets virtual content align with the user's view, body, or world.
+- **No sensor is perfect.** Every tracking technology trades off accuracy, precision, latency, workspace, robustness, and setup complexity.
+- **Sensor fusion is the practical answer.** Modern systems combine sensors because single measurements are incomplete or unreliable.
 
-- **Registration**: The mathematical alignment of virtual objects with the real world (or the user's view).
-- **Calibration**: An offline process to adjust sensors (e.g., measuring the distance between eyes or camera offsets).
-- **Tracking**: The dynamic, real-time sensing of the user's pose (position and orientation) in 3D space.
+## 1. Tracking, Calibration, and Registration
+
+![[pictures/virtualaugmentedreality/05/Lecture05_Pg004_Tracking_Calibration_Registration.png]]
+
+<p class="image-caption">Registration aligns spatial properties, calibration adjusts measurements offline, and tracking estimates pose in real time.</p>
+
+The three terms are related but not interchangeable:
+
+| Concept      | Meaning                            | Role in VR/AR                                                      |
+| :----------- | :--------------------------------- | :----------------------------------------------------------------- |
+| Registration | Alignment of spatial properties    | Makes virtual objects appear in the correct real or virtual place. |
+| Calibration  | Offline adjustment of measurements | Corrects sensor and display parameters before or during use.       |
+| Tracking     | Real-time measurement of pose      | Updates the system as the user or object moves.                    |
+
+Tracking examples from the lecture include head tracking, controller tracking, and motion tracking. In AR, the tracking result must support stable 3D registration; otherwise augmentations drift or jitter relative to the real world.
+
+## 2. Coordinate Systems and Frames of Reference
+
+![[pictures/virtualaugmentedreality/05/Lecture05_Pg005_Coordinate_Systems.png]]
+
+<p class="image-caption">Coordinate systems distinguish local object coordinates, world coordinates, display coordinates, and sensor-related coordinate frames.</p>
+
+Coordinate systems are the bookkeeping layer of tracking. A tracked object may have local coordinates, but the application needs to know its pose relative to the world, the user's head, the display, or another object. Tracking therefore produces transformations between coordinate systems.
+
+![[pictures/virtualaugmentedreality/05/Lecture05_Pg010_Degrees_Of_Freedom.png]]
+
+<p class="image-caption">Full tracking requires six degrees of freedom: three positional dimensions and three rotational dimensions.</p>
+
+Degrees of freedom:
+
+- **3DOF orientation**: roll, pitch, and yaw.
+- **3DOF position**: x, y, and z.
+- **6DOF pose**: position plus orientation.
+
+Frames of reference determine what an augmentation is stable relative to:
+
+- **World-stabilized** content stays fixed in the physical or virtual world.
+- **Body-stabilized** content moves with the user.
+- **Screen-stabilized** content stays fixed in display space.
+
+## 3. Measurement Coordinates, Phenomena, and Principles
+
+![[pictures/virtualaugmentedreality/05/Lecture05_Pg007_Measurement_Coordinates.png]]
+
+<p class="image-caption">Measurement coordinates distinguish global and local measurements, with different workspace and precision implications.</p>
+
+The lecture separates tracking by what is measured and how it is measured:
+
+- **Global vs. local measurements**: global systems can cover city-scale or unlimited workspaces, while local systems often offer higher precision in a restricted volume.
+- **Physical phenomena**: visible light, infrared light, radio waves, sound, magnetic fields, acceleration, and mechanical motion can all support tracking.
+- **Measurement principles**: signal strength, signal direction, time of flight, and direct geometric measurement.
+
+Geometric measurement examples:
+
+- **Trilateration** uses distances.
+- **Triangulation** uses angles.
+- **Rigid sensor arrangements** can provide more constraints through known geometry.
+
+## 4. Outside-In vs. Inside-Out Tracking
+
+![[pictures/virtualaugmentedreality/05/Lecture05_Pg013_Outside_In_Inside_Out.png]]
+
+<p class="image-caption">Outside-in tracking uses stationary sensors observing mobile objects; inside-out tracking puts sensors on the mobile device observing the world.</p>
+
+| Architecture | Sensor Location          | Typical Strength                       | Typical Weakness                                       |
+| :----------- | :----------------------- | :------------------------------------- | :----------------------------------------------------- |
+| Outside-in   | Fixed in the environment | Accurate in a prepared tracking volume | Limited workspace and line-of-sight occlusion          |
+| Inside-out   | On the tracked device    | Mobile and flexible workspace          | Requires onboard sensing and environment understanding |
+
+Signal sources can be passive or active:
+
+- **Passive sources** use existing signals such as natural light or Earth's magnetic field.
+- **Active sources** emit signals intentionally, such as infrared LEDs, lasers, or ultrasonic pulses.
+
+## 5. Measurement Error and Temporal Behavior
+
+![[pictures/virtualaugmentedreality/05/Lecture05_Pg015_Measurement_Error.png]]
+
+<p class="image-caption">Measurement quality is described by accuracy, precision, noise, jitter, drift, latency, and update rate.</p>
+
+Important error concepts:
+
+- **Accuracy**: closeness to the true value.
+- **Precision**: repeatability of the measurement.
+- **Noise/jitter**: short-term unstable variation.
+- **Drift**: gradual accumulated deviation over time.
+- **Latency**: delay between real motion and reported measurement.
+- **Update rate**: number of measurements per time interval.
+
+These are independent. A sensor can be precise but inaccurate, low-latency but noisy, or accurate but too slow for comfortable VR.
+
+## 6. Stationary and Mobile Tracking Systems
+
+![[pictures/virtualaugmentedreality/05/Lecture05_Pg017_Stationary_Tracking_Systems.png]]
+
+<p class="image-caption">Stationary tracking systems in the lecture include mechanical, electromagnetic, and ultrasonic tracking.</p>
+
+Stationary systems in the lecture:
+
+- **Mechanical tracking**: articulated arms with joints, encoders, or potentiometers. High precision but physically restrictive.
+- **Electromagnetic tracking**: a stationary source produces magnetic fields; sensor coils infer pose. Metal and electromagnetic interference can distort measurements.
+- **Ultrasonic tracking**: uses sound time of flight and trilateration, often requiring synchronization.
+
+Mobile sensors:
+
+- **GPS**: planet-scale radio time-of-flight, requiring signals from at least four satellites.
+- **Differential GPS**: uses correction signals to compensate atmospheric distortion.
+- **Wireless networks**: WiFi, Bluetooth, or mobile towers can provide coarse location through signal strength or geometry.
+- **Magnetometer**: measures direction of Earth's magnetic field.
+- **Gyroscope**: measures rotational velocity.
+- **Linear accelerometer**: measures acceleration with a MEMS device.
+- **Odometer**: measures movement mechanically or opto-electrically, such as a wheel encoder.
+
+## 7. Optical Tracking
+
+![[pictures/virtualaugmentedreality/05/Lecture05_Pg029_Optical_Tracking.png]]
+
+<p class="image-caption">Optical tracking uses cameras, model-based or model-free tracking, and passive or active illumination.</p>
+
+Optical tracking matters because cameras are cheap and powerful. The lecture distinguishes:
+
+- **Model-based tracking**: a tracking model representing the 3D world is available.
+- **Model-free tracking**: the system works from observed image features without a prepared full model.
+- **Passive illumination**: uses natural or existing light.
+- **Active illumination**: adds controlled light, such as infrared.
+
+![[pictures/virtualaugmentedreality/05/Lecture05_Pg035_Markers_Natural_Features.png]]
+
+<p class="image-caption">Fiducial markers are artificial tracking targets; natural features use salient points in the environment.</p>
+
+Marker and feature tradeoffs:
+
+- **Fiducial markers** are artificial, easy to detect, and can provide enough points for pose estimation.
+- **Retro-reflective markers** reflect light back toward the light source and are easy to see with infrared cameras.
+- **Natural features** avoid instrumenting the environment but require robust image processing and target identification.
+
+## 8. Sensor Fusion
+
+![[pictures/virtualaugmentedreality/05/Lecture05_Pg041_Sensor_Fusion.png]]
+
+<p class="image-caption">Sensor fusion combines multiple sensors, such as cameras, inertial sensors, GPS, magnetometers, and wireless signals.</p>
+
+Fusion types from the lecture:
+
+| Fusion Type   | Meaning                                                                         | Example Idea                                              |
+| :------------ | :------------------------------------------------------------------------------ | :-------------------------------------------------------- |
+| Complementary | Sensors measure different degrees of freedom or compensate different weaknesses | Combine fast inertial data with visual correction.        |
+| Competitive   | Sensors measure the same degree of freedom redundantly                          | Use a worse sensor only when a better one is unavailable. |
+| Statistical   | Measurements are combined into an estimate of true system state                 | Improve quality by modeling uncertainty.                  |
+| Cooperative   | One sensor helps another obtain a measurement                                   | Assisted GPS combines cell tower and GPS information.     |
+
+The central reason for fusion is that tracking must be fast, stable, and accurate at the same time, while individual sensors usually satisfy only part of that requirement.
+
+### Applied Exam Focus
+
+- **Terminology**: registration, calibration, and tracking are distinct.
+- **Pose**: full pose is 6DOF: three translation and three rotation dimensions.
+- **Architecture**: outside-in vs. inside-out is about where the sensors are.
+- **Quality**: accuracy, precision, jitter, drift, latency, and update rate describe different failures.
+- **Technology**: know mechanical, electromagnetic, ultrasonic, GPS, wireless, magnetometer, gyroscope, accelerometer, odometer, optical, marker, and natural-feature tracking at a high level.
+- **Fusion**: explain complementary, competitive, statistical, and cooperative sensor fusion.
+
+## Self-Check
+
+1. Why does AR require registration in addition to ordinary tracking?
+2. What is the difference between accuracy and precision?
+3. Why can a high-update-rate sensor still be bad for VR?
+4. How do outside-in and inside-out tracking differ?
+5. Why are natural features attractive but difficult for tracking?
 
 ---
 
-## 2. Tracking Fundamentals
-
-### Degrees of Freedom (DOF)
-![](pictures/virtualaugmentedreality/05/Lecture05_Pg010_Degrees_Of_Freedom_Dof.png)
-
-<p class="image-caption">Degrees of Freedom (DOF): Distinguishing between orientation-only (3DOF) and full positional tracking (6DOF).</p>
-
-
-- **3DOF**: Orientation only (Roll, Pitch, Yaw). Used in early VR (Google Cardboard).
-- **6DOF**: Orientation + Position (X, Y, Z). Essential for "true" VR/AR where you can walk around objects.
-
-### Frames of Reference
-![](pictures/virtualaugmentedreality/05/Lecture05_Pg006_Frames_Of_Reference.png)
-
-<p class="image-caption">Frames of Reference: Defining whether objects are stabilized relative to the world, the body, or the screen.</p>
-
-
-- **World-stabilized**: Virtual objects stay locked to a physical location (e.g., a virtual TV on a real wall).
-- **Body-stabilized**: Objects move with the user (e.g., a "tool-belt" or HUD).
-- **Screen-stabilized**: Objects are locked to the display (e.g., low-battery warning).
-
-### Outside-In vs. Inside-Out
-![](pictures/virtualaugmentedreality/05/Lecture05_Pg013_Outside_In_Vs_Inside_Out.png)
-
-<p class="image-caption">Tracking Architectures: Comparing stationary external sensors (Outside-In) with HMD-mounted sensors (Inside-Out).</p>
-
-
-- **Outside-In**: Sensors are stationary in the room (e.g., Valve Index Lighthouses, Oculus Rift CV1 cameras). 
-- *Pros*: Very accurate. 
-- *Cons*: "Occlusion" (blocking the line of sight) and limited "tracking volume."
-- **Inside-Out**: Sensors are on the HMD looking out (e.g., Quest 3, HoloLens).
-- *Pros*: Unlimited space (SLAM), easy setup. 
-- *Cons*: Computationally expensive.
-
----
-
-
-## 3. Sensor Types & Technologies
-
-### A. Mechanical
-- Physical linkage (like an arm). Very fast and precise but restricts movement.
-
-### B. Electromagnetic
-- A base station generates a magnetic field. Sensors measure the field's strength/angle.
-- *Problem*: Metal objects in the room can distort the field.
-
-### C. Inertial (IMU)
-- **Gyroscopes**: Measure angular velocity (3DOF orientation).
-- **Accelerometers**: Measure linear acceleration (positional change).
-- **Magnetometers**: Electronic compass.
-- *Problem*: **Drift**. Errors accumulate over time, causing the world to "slide" away.
-
-### D. Optical Tracking (The King of Modern VR)
-- **Markers (Fiducials)**: Using unique patterns (QR codes, retro-reflective balls) that are easy for cameras to see.
-- **Natural Features**: Tracking the environment itself (corners of a table, texture of a rug) using **Computer Vision**.
-- **Active Illumination**: Using Infrared (IR) LEDs and filters so the camera only sees the "glow" of the markers.
-
----
-
-## 4. Sensor Fusion
-![](pictures/virtualaugmentedreality/05/Lecture05_Pg043_4_Sensor_Fusion.png)
-
-<p class="image-caption">Sensor Fusion: Combining multiple data sources like IMUs and optical sensors to achieve low latency and high accuracy.</p>
-
-
-Combining data from multiple sensors to overcome individual weaknesses.
-- **Complementary**: Combining different types (e.g., IMU for fast motion + Camera for slow, accurate drift correction).
-- **Statistical (Kalman Filters)**: Using math to predict the next state and correcting it with new measurements.
-- **Cooperative**: One sensor helps another (e.g., Assisted GPS).
-
----
-
-## 5. Measurement Errors
-![](pictures/virtualaugmentedreality/05/Lecture05_Pg015_5_Measurement_Errors.png)
-
-<p class="image-caption">Measurement Errors: Understanding the trade-offs between accuracy, precision (jitter), and latency.</p>
-
-
-- **Accuracy**: How close the measurement is to the "ground truth."
-- **Precision (Jitter)**: How stable the measurement is when the object is still.
-- **Latency**: The time between moving and the computer knowing you moved. (VR goal: < 15ms).
-
----
-
-## 6. Self-Assessment Quiz
-
-**Q1: What is the difference between 3DOF and 6DOF?**
-> *Answer: 3DOF only tracks which way you are looking (rotation). 6DOF tracks rotation AND where you are in space (translation), allowing you to duck, lean, and walk.*
-
-**Q2: Why is "Drift" a problem for IMU sensors?**
-> *Answer: Because IMUs measure change (acceleration/velocity) rather than absolute position. You must "integrate" these values to find position, and small errors in the sensor add up every millisecond, leading to large offsets over time.*
-
-**Q3: Define SLAM in the context of Inside-Out tracking.**
-> *Answer: **Simultaneous Localization and Mapping**. The device builds a map of the room while simultaneously figuring out where it is within that map.*
-
-**Q4: Which is better for large-scale outdoor AR: GPS or Marker-based tracking?**
-> *Answer: GPS is better for coarse localization (finding the right street), but marker-based (or natural feature tracking) is needed for precise "registration" of virtual objects on a specific wall or table.*
-
----
-[[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]]
+[[/notes/lectures/virtualaugmentedreality/04_VR-AR_Interaction|Previous: (y-04) Interaction]] | [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/06_VR-AR_CompVision|Next: (y-06) Computer Vision for AR]]

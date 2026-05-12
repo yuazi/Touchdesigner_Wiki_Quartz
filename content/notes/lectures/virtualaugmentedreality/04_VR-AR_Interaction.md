@@ -1,115 +1,131 @@
 ---
-title: "04_VR-AR — Interaction in VR/AR"
+title: "04_VR-AR - Interaction in VR/AR"
 tags:
   - vrar
   - interaction
   - 3dui
   - ux
-  - theory
 date: 2026-05-05
 ---
-[[/notes/lectures/virtualaugmentedreality/03-2_VR-AR_hardware-2|Back: (y-03.2) Hardware Part 2]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/05_VR-AR_tracking|Next: (y-05) Tracking]]
 
-## 1. Why 3D Interaction is Hard
-Classical UI design (2D) relies on constraints (mouse on a table, windows on a screen). 3D Interaction (3DUI) lacks these:
-- **Spatial Input**: 6 degrees of freedom (DOF) is harder to control than 2.
-- **Fatigue**: "Gorilla Arm" (tiredness from holding arms in the air).
-- **Precision**: Human hands shake; virtual rays are sensitive.
-- **Midas Touch**: Everything you look at or touch might trigger an action accidentally.
+[[/notes/lectures/virtualaugmentedreality/03-2_VR-AR_hardware-2|Previous: (y-03.2) AR Displays and Input Hardware]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/05_VR-AR_tracking|Next: (y-05) Tracking]]
+
+## Mental Model First
+
+3D interaction is hard because it removes many helpful 2D constraints. The user must select, manipulate, navigate, and control systems in a space where precision, fatigue, depth, occlusion, and feedback all matter.
+
+![[pictures/virtualaugmentedreality/04/Lecture04_Pg005_Typical_Tasks.png]]
+
+<p class="image-caption">Typical 3D interaction tasks include object interaction, navigation, and system control.</p>
+
+## 1. Why 3D Interaction Is Hard
+
+Compared with desktop UI, VR/AR interaction has:
+
+- more degrees of freedom,
+- spatial ambiguity,
+- less stable physical support,
+- hand and arm fatigue,
+- tracking noise,
+- occlusion and depth perception problems,
+- weaker standards and fewer mature tools than classical 2D UI.
+
+Good interaction techniques add constraints where the real world no longer provides them.
+
+## 2. Selection
+
+![[pictures/virtualaugmentedreality/04/Lecture04_Pg007_Selection.png]]
+
+<p class="image-caption">Selection is the basis for manipulation and can overcome real-world limits of reachability and visibility.</p>
+
+Selection techniques:
+
+- **Touch/direct hand**: natural for nearby objects but limited by reach.
+- **Raycasting**: efficient for distant objects but sensitive to hand jitter.
+- **Hand tracking**: uses the user's hands as the input device.
+- **Eye tracking and multimodal input**: can be combined with voice or gestures, as introduced in the lecture's multimodal interaction section.
+
+## 3. Manipulation
+
+![[pictures/virtualaugmentedreality/04/Lecture04_Pg013_Manipulation.png]]
+
+<p class="image-caption">Manipulation modifies object properties such as translation, rotation, scale, or more complex attributes.</p>
+
+Manipulation starts after selection. The common operations are translate, rotate, and scale. A central design decision is whether to preserve full 6DOF control or constrain motion to make the task easier and more precise.
+
+Useful principles:
+
+- map technique to device capabilities,
+- reduce degrees of freedom when possible,
+- provide continuous feedback,
+- support clutching or mode changes when the hand becomes awkwardly positioned.
+
+## 4. Navigation
+
+![[pictures/virtualaugmentedreality/04/Lecture04_Pg017_Navigation.png]]
+
+<p class="image-caption">Navigation combines travel, the motor component of movement, with wayfinding, the cognitive component of deciding where to go.</p>
+
+Navigation has two parts, both named in the lecture:
+
+- **Travel**: moving through the environment.
+- **Wayfinding**: understanding location, route, and destination.
+
+The lecture explicitly contrasts redirected walking and teleportation as VR navigation techniques. Redirected walking is tied to the cited Razzaque, Kohn, and Whitton work; teleportation is presented as another common travel technique.
+
+## 5. System Control and Complex Tasks
+
+![[pictures/virtualaugmentedreality/04/Lecture04_Pg021_System_Control.png]]
+
+<p class="image-caption">System control includes menus, commands, mode changes, and complex tasks such as 3D data exploration.</p>
+
+System control issues:
+
+- menus should be reachable and stable,
+- command modes must be visible,
+- gestures should avoid accidental activation,
+- 2D interfaces inside 3D environments are sometimes the pragmatic choice.
+
+## 6. AR-Specific Interaction
+
+![[pictures/virtualaugmentedreality/04/Lecture04_Pg025_VR_AR_Interaction.png]]
+
+<p class="image-caption">VR often interacts with virtual objects; AR must coordinate virtual objects, real objects, real surfaces, and shared physical space.</p>
+
+![[pictures/virtualaugmentedreality/04/Lecture04_Pg043_World_In_Miniature.png]]
+
+<p class="image-caption">World-in-miniature gives users an overview model that can be manipulated to affect the larger scene.</p>
+
+AR-specific patterns include tangible props, magic mirrors, projection on surfaces, personal interaction panels, augmented maps, and world-in-miniature techniques.
+
+## 7. Design Guidelines
+
+![[pictures/virtualaugmentedreality/04/Lecture04_Pg024_Design_Guidelines.png]]
+
+<p class="image-caption">Design guidelines emphasize device mapping, reducing degrees of freedom, and choosing techniques that lower error.</p>
+
+Exam-ready guideline summary:
+
+- There is no universal best technique.
+- Match the technique to task, device, and environment.
+- Reduce DOF when full freedom is unnecessary.
+- Provide feedback for selection, manipulation, and mode changes.
+- Design for physical comfort, not only task completion.
+
+## Exam Focus
+
+- Separate selection, manipulation, navigation, and system control.
+- Explain travel vs. wayfinding.
+- Explain why teleportation is comfortable.
+- Describe how AR interaction differs from VR interaction.
+
+## Self-Check
+
+1. Why is raycasting useful and what problem does it introduce?
+2. What is the difference between travel and wayfinding?
+3. Why should manipulation often reduce degrees of freedom?
+4. What does world-in-miniature provide?
 
 ---
 
-## 2. Typical Interaction Tasks
-
-### A. Selection (Picking)
-![](pictures/virtualaugmentedreality/04/Lecture04_Pg011_A_Selection_Picking.png)
-
-<p class="image-caption">Selection Tasks: Techniques for identifying and picking virtual objects, from raycasting to gaze-based selection.</p>
-
-
-Identifying an object to interact with.
-- **Raycasting**: A virtual laser pointer coming from the hand. Good for distant objects.
-- **Virtual Hand**: Direct touch. You move your virtual hand to intersect with the object. Most natural but limited by arm reach.
-- **BalloonProbe**: A technique to handle occlusion by "pushing aside" objects in a dense scene.
-- **Eye Gaze + Gesture**: Using the eye to select and a small pinch to "click" (e.g., Apple Vision Pro).
-
-### B. Manipulation (Modifying)
-![](pictures/virtualaugmentedreality/04/Lecture04_Pg005_B_Manipulation_Modifying.png)
-
-<p class="image-caption">Manipulation Tasks: Rotating, translating, and scaling objects using 3D widgets or bimanual interaction.</p>
-
-
-Changing an object's properties: **R**otate, **T**ranslate (move), **S**cale.
-- **3D Widgets**: Using handles (arrows/rings) to constrain movement to one axis at a time.
-- **Bimanual Interaction**: Using two hands (e.g., "stretching" an object to scale it).
-
-### C. Navigation (Moving)
-![](pictures/virtualaugmentedreality/04/Lecture04_Pg017_C_Navigation_Moving.png)
-
-<p class="image-caption">Navigation: Combining the motor task of travel (teleportation, walking) with the cognitive task of wayfinding.</p>
-
-
-- **Travel (Motor task)**: The physical/virtual act of moving from A to B.
-    - **Teleportation**: Instant movement. Reduces motion sickness because there is no optical flow.
-    - **Redirected Walking**: Tricking the user into walking in circles while they think they are in a huge hall.
-- **Wayfinding (Cognitive task)**: Using maps, landmarks, or arrows to know *where* to go.
-
-### D. System Control (Commanding)
-![](pictures/virtualaugmentedreality/04/Lecture04_Pg021_D_System_Control_Commanding.png)
-
-<p class="image-caption">System Control: Issuing commands via diegetic menus, hand-attached UI (TULIP), or voice control.</p>
-
-
-- **Diegetic Menus**: Menus that exist inside the world (e.g., a virtual tablet in your hand).
-- **TULIP**: Attaching menu items to your fingertips (ideal for pinch gestures).
-- **Voice Commands**: "Hey Siri/Siri, open Safari."
-
----
-
-## 3. AR-Specific Interaction
-![](pictures/virtualaugmentedreality/04/Lecture04_Pg025_3_Ar_Specific_Interaction.png)
-
-<p class="image-caption">AR-Specific Interaction: Tangible AR, Magic Mirrors, and World in Miniature (WIM) techniques.</p>
-
-
-In AR, we interact with both virtual and real objects.
-- **Tangible AR**: Using real-world "props" or markers to control virtual content (e.g., turning a physical cube to rotate a virtual car).
-- **Magic Mirror**: A screen that behaves like a mirror, augmenting the user's reflection (e.g., virtual try-on for clothes).
-- **Everywhere Display**: Turning any flat surface (table, wall) into a touch interface using a projector and camera.
-- **World in Miniature (WIM)**: A small "god-view" model of the entire scene that you can interact with to make changes in the large-scale world.
-
----
-
-## 4. Design Guidelines
-![](pictures/virtualaugmentedreality/04/Lecture04_Pg024_4_Design_Guidelines.png)
-
-<p class="image-caption">Design Best Practices: Reducing degrees of freedom, providing feedback, and mapping interactions to the device.</p>
-
-
-1.  **Map to Device**: Use pointing for distant selection, and grasping for close manipulation.
-2.  **Reduce DOF**: Don't force 6DOF if 1DOF (a slider) works better.
-3.  **Clutching**: Provide a way to "let go" and reposition the hand (like lifting a mouse).
-4.  **Feedback**: Always provide visual, audio, or haptic confirmation of an action.
-
----
-
-## 5. Self-Assessment Quiz
-![](pictures/virtualaugmentedreality/04/Lecture04_Pg017_5_Self_Assessment_Quiz.png)
-
-<p class="image-caption">Knowledge Check: Reviewing concepts like the Heisenberg effect and the difference between travel and wayfinding.</p>
-
-
-**Q1: What is the "Heisenberg Effect" in spatial interaction?**
-> *Answer: The act of "clicking" (pressing a button) often causes the hand to move slightly, changing the selection point and causing errors.*
-
-**Q2: Difference between Wayfinding and Travel?**
-> *Answer: Travel is the mechanical movement (walking, flying, teleporting). Wayfinding is the mental process of navigation (knowing where you are and how to get to the destination).*
-
-**Q3: Why is "Teleportation" popular in VR?**
-> *Answer: It minimizes "vestibular-visual conflict." Since the user doesn't see themselves moving continuously through space, the brain doesn't expect the feeling of motion, reducing nausea.*
-
-**Q4: Name a benefit of "Tangible AR".**
-> *Answer: It provides natural haptic feedback (you feel the physical object) and uses existing human skills for manipulating physical props.*
-
----
 [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]]

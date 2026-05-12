@@ -8,32 +8,42 @@ date: 2026-04-14
 ---
 
 > [!abstract] Course Summary
-> An exploration of Virtual and Augmented Reality, covering the technical challenges of hardware and software, human-centered design, and hands-on project experience in immersive environments.
+> Virtual and Augmented Reality combines graphics, tracking, computer vision, interaction, hardware, and human perception to create registered, responsive, and comfortable immersive systems.
 
-## Course Outline
+## Lecture Notes
 
-- [[/notes/lectures/virtualaugmentedreality/00_VR-AR|(y-) 00_VR-AR]]: Course organization, philosophy, and grading.
-- [[/notes/lectures/virtualaugmentedreality/01_VR-AR|(y-) 01_VR-AR]]: Definitions, history, and applications of VR/AR.
-- [[/notes/lectures/virtualaugmentedreality/02_VR-AR_hcd|(y-) 02_VR-AR_hcd]]: Human-Centered Design, motion sickness theories, and technical requirements.
-- [[/notes/lectures/virtualaugmentedreality/03-1_VR-AR_hardware|(y-) 03-1_VR-AR_hardware]]: Depth perception, stereo rendering math, and VR hardware challenges.
-- [[/notes/lectures/virtualaugmentedreality/03-2_VR-AR_hardware-2|(y-) 03-2_VR-AR_hardware-2]]: OST vs VST, Spatial AR, and Input Devices (Part 2).
-- [[/notes/lectures/virtualaugmentedreality/04_VR-AR_Interaction|(y-) 04_VR-AR_Interaction]]: Selection, Manipulation, Navigation, and System Control.
-- [[/notes/lectures/virtualaugmentedreality/05_VR-AR_tracking|(y-) 05_VR-AR_tracking]]: Coordinate systems, DOFs, Sensor types, and Sensor Fusion.
-- **Visual Coherence & Perception**: Aligning virtual objects with the real world and human sensory limits.
-- **Health & Accessibility**: Adverse effects (cybersickness) and assistive technologies.
-- **Immersive Analytics**: Visualizing data in VR/AR.
+1. [[/notes/lectures/virtualaugmentedreality/00_VR-AR|(y-) L00 - Course Organization]]  
+   Course philosophy, structure, project, quizzes, and oral exam requirements.
 
-## Assessment
+2. [[/notes/lectures/virtualaugmentedreality/01_VR-AR|(y-) L01 - Introduction and History]]  
+   VR/AR definitions, immersion and presence, history, applications, and the mixed reality continuum.
 
-- **Project (50%)**: A team-based (3 people) VR/AR project, including a demo and report.
-- **Quizzes (50%)**: Six bi-weekly quizzes on lecture content.
-- **Oral Exam**: Required for final grading (prerequisite: 60+ points).
+3. [[/notes/lectures/virtualaugmentedreality/02_VR-AR_hcd|(y-) L02 - Human-Centered Design]]  
+   Iterative design, analysis, constraints, VR-specific requirements, prototyping, and testing.
 
-## Lecturers
+4. [[/notes/lectures/virtualaugmentedreality/03-1_VR-AR_hardware|(y-) L03.1 - Stereo Rendering and Hardware]]  
+   Depth cues, stereo rendering, parallax, off-axis projection, HMD optics, latency, and display challenges.
 
-- Prof. Michael Sedlmair
-- Dr. Wolfgang Büschel
-- Dr. Alexander Achberger
+5. [[/notes/lectures/virtualaugmentedreality/03-2_VR-AR_hardware-2|(y-) L03.2 - AR Displays and Input Hardware]]  
+   Optical/video see-through AR, display-space taxonomy, spatial AR, haptics, and multimodal input.
+
+6. [[/notes/lectures/virtualaugmentedreality/04_VR-AR_Interaction|(y-) L04 - Interaction in VR/AR]]  
+   3D interaction tasks, selection, manipulation, navigation, system control, and AR-specific interaction.
+
+7. [[/notes/lectures/virtualaugmentedreality/05_VR-AR_tracking|(y-) L05 - Tracking in VR/AR]]  
+   Registration, calibration, tracking, coordinate systems, sensor technologies, optical tracking, and sensor fusion.
+
+8. [[/notes/lectures/virtualaugmentedreality/06_VR-AR_CompVision|(y-) L06 - Computer Vision for AR]]  
+   Marker tracking, homographies, multi-camera IR tracking, natural features, SIFT, pose estimation, SLAM, and outdoor tracking.
+
+## Assessment Map
+
+| Component | Weight / Gate                         | Notes                                                                                    |
+| :-------- | :------------------------------------ | :--------------------------------------------------------------------------------------- |
+| Project   | 50 points                             | Team-based VR/AR project with demo and report.                                           |
+| Quizzes   | 50 points                             | Six quizzes across the semester.                                                         |
+| Oral exam | Requires at least 60 collected points | Focuses primarily on the theoretical lecture material and may include project questions. |
 
 ---
+
 [[notes/index|(y) Back to Notes]]

@@ -1,178 +1,108 @@
 ---
-title: "01_VR-AR — Introduction & History of VR/AR"
+title: "01_VR-AR - Introduction and History"
 tags:
   - vrar
   - history
-  - theory
   - definitions
+  - theory
 date: 2026-04-14
 ---
-[[/notes/lectures/virtualaugmentedreality/00_VR-AR|Back: (y-00) Course Organization]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/02_VR-AR_hcd|Next: (y-02) Human-Centered Design]]
 
-## Mental Model First: Tricking the Brain
+[[/notes/lectures/virtualaugmentedreality/00_VR-AR|Previous: (y-00) Course Organization]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/02_VR-AR_hcd|Next: (y-02) Human-Centered Design]]
 
-- **VR is an Oxymoron**: It's a "virtual" (in essence, not in fact) "reality" (actually existing).
-- **The Core Goal**: Inducing targeted behavior in an organism. We want to "fool" the brain into feeling present in a world that isn't there.
-- **The Brain is Adaptable**: It doesn't need 8K graphics to feel "there." It needs low latency, consistent tracking, and correct proprioception.
+## Mental Model First
 
----
+VR replaces the user's sensory world; AR modifies the user's perception of the physical world. Both are about controlling a perception-action loop. The core question is not "is the image realistic?" but "does the system induce the intended experience and behavior while staying coherent, responsive, and registered?"
 
-## 1. Defining VR & AR
+## 1. Definitions: VR, AR, and Mixed Reality
 
-### Virtual Reality (VR)
-"Inducing targeted behavior in an organism by using artificial sensory stimulation, while the organism has little or no awareness of the interference." (LaValle)
+VR is commonly framed as a computer-generated environment that uses artificial sensory stimulation to induce targeted behavior. The system tries to make the user act as if the virtual situation were real enough.
 
-**The 4 Components of LaValle's Definition**:
-1. **Targeted Behavior**: The organism has a designed "experience" (flying, walking, socializing).
-2. **Organism**: Humans, but also fruit flies, cockroaches, fish, rodents, or monkeys.
-3. **Artificial Sensory Stimulation**: Senses are co-opted/replaced by engineering.
-4. **Awareness**: The organism is "fooled" into feeling present; the interference is accepted as natural.
+AR keeps the physical world in view and overlays virtual information on top of it. Azuma's classic criteria are the exam anchor:
 
-### Augmented Reality (AR)
-Unlike VR, which replaces your vision, AR overlays virtual information onto the physical environment.
-- **Azuma's Criteria**: To be true AR, it must:
-  1. Combine real and virtual content.
-  2. Be interactive in real-time.
-  3. Be registered in 3D (the virtual object stays locked in 3D space relative to the real world).
+- combines real and virtual content,
+- is interactive in real time,
+- is registered in 3D.
 
-### Augmented Reality Feedback Loop
-![AR Feedback Loop](pictures/virtualaugmentedreality/01/Lecture01_Pg015_AR_Feedback_Loop.png)
+![[pictures/virtualaugmentedreality/01/Lecture01_Pg015_AR_Feedback_Loop.png]]
 
-<p class="image-caption">AR uses a feedback loop between the human user and the computer system to present situated visualization.</p>
+<p class="image-caption">AR is a feedback loop: the user observes an augmented display, controls the viewpoint, the system tracks that view, and the computer updates the situated visualization.</p>
 
----
+## 2. Immersion and Presence
 
-## 2. Immersion vs. Presence (Slater and Wilbur)
+![[pictures/virtualaugmentedreality/01/Lecture01_Pg009_Immersion_Presence.png]]
 
-- **Immersion (Objective - System Property)**: The technological degree to which a VR system projects stimuli onto the sensory receptors (Slater and Wilbur 1997).
-![Immersion Factors](pictures/virtualaugmentedreality/01/Lecture01_Pg009_Immersion_Factors.png)
+<p class="image-caption">Immersion is a system property; presence is the user's subjective feeling of being in the mediated environment.</p>
 
-<p class="image-caption">Key technological factors that contribute to the degree of immersion in a VR system.</p>
+Use this distinction carefully:
 
-    - **Extensiveness**: Range of sensory modalities (visuals, audio, haptics).
-    - **Matching**: Congruence between modalities (e.g., head motion matches visual update).
-    - **Surroundness**: Panoramic extent (FOV, spatialized audio, 360 tracking).
-    - **Vividness**: Quality of simulation (resolution, frame rate, lighting).
-    - **Interactability**: User's ability to make changes to the world.
-    - **Plot**: The story and consistent portrayal of the experience.
+- **Immersion** is objective: field of view, resolution, tracking volume, latency, refresh rate, audio, haptics, and interaction capability.
+- **Presence** is subjective: the user's feeling of being there and accepting the mediated situation.
+- **Break in presence** happens when the illusion collapses, often because of latency, visual mismatch, tracking error, or interaction failure.
 
-- **Presence (Subjective - User Experience)**: The psychological "sense of being there."
-    - **Break-in-presence (BIP)**: The moment the illusion breaks (e.g., due to lag or seeing the real world).
+## 3. History: Why Old Systems Still Matter
 
-### The 4 Illusions of Presence (Lecture)
-To achieve a high degree of presence, a system must sustain:
-1. **Place Illusion (PI)**: The illusion of being in a stable, physical place.
-2. **Self-Embodiment Illusion**: Seeing and feeling a virtual body (avatar) as your own.
-3. **Physical Interaction Illusion**: Virtual objects respond to your actions.
-4. **Social Communication Illusion**: Other agents respond to you as if you are there.
+![[pictures/virtualaugmentedreality/01/Lecture01_Pg025_Sword_Of_Damocles.png]]
 
----
+<p class="image-caption">Sutherland's Sword of Damocles is an early head-mounted AR system and a key milestone in immersive display history.</p>
 
-## 3. Mixed Reality Continuum & Fidelity
+Important milestones:
 
-### Mixed Reality Continuum (Milgram)
-![Mixed Reality Continuum](pictures/virtualaugmentedreality/01/Lecture01_Pg075_Mixed_Reality_Continuum.png)
+- Wheatstone's stereoscope showed the importance of binocular disparity.
+- Heilig's Sensorama combined multiple sensory channels.
+- Sutherland's Sword of Damocles introduced a tracked head-mounted display.
+- NASA VIEW and later HMDs pushed VR toward practical systems.
+- Boeing wire harness guidance, KARMA, NaviCam, ARToolKit, and outdoor AR systems shaped early AR practice.
 
-<p class="image-caption">The Reality-Virtuality Continuum as defined by Milgram, ranging from the real environment to total virtuality.</p>
+The pattern is consistent: VR/AR progresses when display, tracking, registration, and interaction improve together.
 
-Reality is not binary. It's a spectrum:
-`Reality` $\to$ `Augmented Reality (AR)` $\to$ `Augmented Virtuality (AV)` $\to$ `Virtual Reality (VR)`.
+## 4. Applications
 
-- **Augmented Virtuality (AV)**: Bringing real-world elements into a virtual world.
-- **Mediated Reality**: Technology that adds, removes, or alters our perception (Steve Mann).
-- **Diminished Reality**: A subset of AR/Mediated Reality that *removes* real-world elements (e.g., erasing a wire from a view).
+![[pictures/virtualaugmentedreality/01/Lecture01_Pg040_Application_Examples.png]]
 
----
+<p class="image-caption">VR application examples include entertainment, psychology, healthcare, education, training, fine arts, heritage, and archaeology.</p>
 
-## Mixed Reality & Presence Cheat Sheet (Exam Prep)
+VR applications often benefit from replacing the environment: exposure therapy, training, simulation, art, virtual heritage, and embodied experiments. AR applications often benefit from keeping the real environment visible: maintenance, medical guidance, navigation, industrial discrepancy analysis, translation, retail, sports visualization, and situated information overlays.
 
-| Concept | Key Definition | Critical Criteria |
-| :--- | :--- | :--- |
-| **Azuma's AR** | Overlaying virtual on real | 1. Combine Real/Virtual, 2. Real-time, 3. 3D Registered. |
-| **Immersion** | **Objective** system properties | Resolution, FOV, Frame rate, Latency. |
-| **Presence** | **Subjective** user feeling | Place Illusion (PI) and Plausibility Illusion (Psi). |
-| **Milgram's MR** | Reality-Virtuality Continuum | Reality $\to$ AR $\to$ AV $\to$ VR. |
-| **BIP** | Break-in-Presence | Moment the user remembers the real world (e.g., hitting a wall). |
+## 5. Mixed Reality Continuum
 
-### Slater's 4 Illusions of Presence:
-1.  **Place Illusion (PI)**: The feeling of being "there" (stable world).
-2.  **Plausibility Illusion (Psi)**: The feeling that what is happening is "real" (events respond to you).
-3.  **Self-Embodiment**: Seeing a virtual body as your own.
-4.  **Social Illusion**: Feeling that others in the world are also "present."
+![[pictures/virtualaugmentedreality/01/Lecture01_Pg075_Mixed_Reality_Continuum.png]]
 
----
+<p class="image-caption">Milgram's continuum places real environments, AR, augmented virtuality, and virtual reality on one spectrum.</p>
 
-## 3. Fidelity Continua (McMahan 2003 / Jerald)
-![Fidelity Continua](pictures/virtualaugmentedreality/01/Lecture01_Pg012_Fidelity_Continua.png)
+The useful exam idea is that reality and virtuality are not binary:
 
-<p class="image-caption">The three axes of fidelity: Representational, Interaction, and Experiential.</p>
+`real environment -> augmented reality -> augmented virtuality -> virtual environment`
 
-1. **Representational Fidelity**: How realistic the world looks/sounds (Photorealistic $\to$ Abstract).
-2. **Interaction Fidelity**: How realistic the interactions are (Physical training $\to$ Magic buttons).
-3. **Experiential Fidelity**: How well the user's experience matches the creator's intention (Scripted $\to$ Free-roaming).
+Related terms:
+
+- **Augmented virtuality** brings real elements into a mostly virtual world.
+- **Mediated reality** alters perception by adding, removing, or transforming information.
+- **Diminished reality** removes real-world content from the user's view.
+
+## 6. Hype and Adoption
+
+![[pictures/virtualaugmentedreality/01/Lecture01_Pg077_Hype_Cycle.png]]
+
+<p class="image-caption">The hype-cycle framing explains why VR/AR repeatedly alternates between inflated expectations, disappointment, and practical adoption.</p>
+
+Many VR/AR waves follow the same adoption pattern: a promising technical demo creates hype, real constraints become visible, the field cools down, then useful systems emerge where the value proposition survives the constraints.
+
+## Exam Focus
+
+- Define VR using artificial sensory stimulation and targeted behavior.
+- Define AR using Azuma's three criteria.
+- Separate immersion from presence.
+- Explain the mixed reality continuum without treating AR and VR as unrelated fields.
+- Connect historical systems to the technical challenge they exposed.
+
+## Self-Check
+
+1. Why is immersion objective while presence is subjective?
+2. Which three criteria make an application AR according to Azuma?
+3. Where does augmented virtuality sit on Milgram's continuum?
+4. Why does AR need tracking and registration more explicitly than ordinary screen graphics?
 
 ---
 
-## 4. History: Milestones of Perception
-
-- **1832: Wheatstone's Stereoscope**: Proved binocular disparity is key to 3D depth.
-- **1870: Brewster Stereoscope**: Mass-produced (250k units), used lenses for 3D effect.
-- **1960: Heilig's Stereoscopic TV**: First actual HMD patent.
-- **1962: Sensorama (Heilig)**: Full-body simulator (3D video, sound, wind, vibration, smells like bread/exhaust).
-- **1968: The Sword of Damocles (Sutherland)**: First HMD and AR system (wireframe 3D).
-- **1988: NASA VIEW System**: Early HMD system.
-- **Late 80s: Boeing Wire Harness**: First industrial AR use (David Mizell).
-- **1990: Grope III**: Haptic display for molecular docking.
-- **1993: KARMA**: First knowledge-driven AR (printer maintenance).
-- **1994: Ultrasound Pregnancy Visualization**: First medical AR (Andrei State, UNC).
-- **1994: NaviCam**: Handheld AR forerunner (Jun Rekimoto).
-- **Late 90s: Construct3D**: Teaching geometry in AR to students.
-- **1999: ARQuake**: First outdoor AR game (Bruce Thomas).
-- **1999: ARToolKit**: First popular open-source AR framework (Mark Billinghurst).
-- **1999: Invisible Train**: Handheld AR game with virtual trains on real tracks.
-
----
-
-## 5. Fidelity & The Uncanny Valley
-
-### The Uncanny Valley
-![Uncanny Valley Chart](pictures/virtualaugmentedreality/01/Lecture01_Pg011_Uncanny_Valley.png)
-
-<p class="image-caption">The Uncanny Valley: Empathy increases with human-likeness until a sharp dip occurs for "almost human" characters.</p>
-
-As a virtual character becomes more human-like, our empathy increases—until they are "almost" human, at which point our reaction turns to revulsion. 
-
----
-
-## 6. The Hype Cycle: Where are we?
-![Gartner Hype Cycle](pictures/virtualaugmentedreality/01/Lecture01_Pg077_Gartner_Hype_Cycle.png)
-
-<p class="image-caption">The Gartner Hype Cycle, showing the typical path of emerging technologies from innovation to productivity.</p>
-
-VR and AR have historically been characterized by the **Gartner Hype Cycle**:
-1. **Innovation Trigger**
-2. **Peak of Inflated Expectations**
-3. **Trough of Disillusionment**
-4. **Slope of Enlightenment**
-5. **Plateau of Productivity**
-
----
-
-## 7. Applications
-
-### Virtual Reality (VR)
-- **Psychology**: **Freud-Me** (Perspective taking), Phobia treatment (Heights, Spiders).
-- **Healthcare**: Surgery simulation, rehabilitation.
-- **Heritage**: **Curia Julia** (voice propagation/archeology).
-- **Fine Arts**: Jacolby Satterwhite's "Domestika".
-
-### Augmented Reality (AR)
-- **Industry**: **Discrepancy Analysis** (CAD vs. Factory floor), **Planar** display on wheels.
-- **Infrastructure**: **Underground Inspection** (gas pipes via GPS/AR).
-- **Medical**: **CamC** (X-ray overlay on C-arm), Needle insertion support.
-- **Navigation/Info**: **Peak.AR** (mountain tops), **Wikitude Drive** (road perspective), **Google Translate**.
-- **Broadcast/Retail**: **LiberoVision** (soccer broadcast), **IKEA Place** (virtual furniture), **Pictofit** (virtual try-on).
-- **Games**: **Pokémon GO**, **Apple SwiftShot**, **Eye of Judgement** (Sony MR).
-
----
 [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]]

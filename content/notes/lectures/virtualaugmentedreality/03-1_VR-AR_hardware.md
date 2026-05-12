@@ -1,160 +1,125 @@
 ---
-title: "03.1_VR-AR — Stereo Rendering & VR/AR Hardware"
+title: "03.1_VR-AR - Stereo Rendering and Hardware"
 tags:
   - vrar
   - hardware
+  - stereo
   - rendering
   - optics
-  - theory
 date: 2026-04-21
 ---
-[[/notes/lectures/virtualaugmentedreality/02_VR-AR_hcd|Back: (y-02) Human-Centered Design]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/03-2_VR-AR_hardware-2|Next: (y-03.2) Hardware Part 2]]
 
-## Depth Perception: The Human Vision System
-![](pictures/virtualaugmentedreality/03/Lecture03_103_Pg004_Depth_Perception_The_Human_Vision_System.png)
+[[/notes/lectures/virtualaugmentedreality/02_VR-AR_hcd|Previous: (y-02) Human-Centered Design]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/03-2_VR-AR_hardware-2|Next: (y-03.2) AR Displays and Input Hardware]]
 
-<p class="image-caption">Depth Perception: The human vision system uses a combination of monocular and binocular cues to interpret 3D space.</p>
+## Mental Model First
 
+Stereo VR works by giving each eye a slightly different image, but comfort depends on the whole optical chain: human depth cues, camera geometry, projection, lenses, display timing, field of view, and latency. A stereo image can be mathematically plausible and still feel bad if it violates how the visual system expects depth cues to agree.
 
-How do we see in 3D? Our brain synthesizes multiple "cues" to calculate depth.
+![[pictures/virtualaugmentedreality/03-1/Lecture03-1_Pg004_How_We_See_3D.png]]
 
-### 1. Monocular (2D) Depth Cues
-![](pictures/virtualaugmentedreality/03/Lecture03_103_Pg009_1_Monocular_2d_Depth_Cues.png)
+<p class="image-caption">Human 3D perception combines monocular 2D cues and binocular 3D cues.</p>
 
-<p class="image-caption">Monocular depth cues: How we perceive depth with just one eye through motion, occlusion, and perspective.</p>
+## 1. Depth Cues
 
+![[pictures/virtualaugmentedreality/03-1/Lecture03-1_Pg009_Monocular_Depth_Cues.png]]
 
-These allow us to perceive depth even with one eye closed:
-- **Motion Parallax**: As you move, close objects move faster across your retina than distant ones.
-- **Occlusion**: A "near" object overlapping a "far" object.
-- **Perspective**: The convergence of parallel lines (e.g., train tracks) toward a vanishing point.
-- **Aerial Perspective**: Atmosphere makes distant objects look bluer and lower contrast (scattering).
+<p class="image-caption">Monocular cues such as motion parallax, occlusion, perspective, and aerial perspective support depth perception with one eye.</p>
 
-### 2. Binocular (3D) Depth Cues
-<!-- Review Needed: close slide match for '2. Binocular (3D) Depth Cues' (p12: 0.588, p11: 0.554) -->
-![](pictures/virtualaugmentedreality/03/Lecture03_103_Pg012_2_Binocular_3d_Depth_Cues.png)
+Monocular cues are available even without stereo:
 
-<p class="image-caption">Binocular depth cues: Stereopsis and convergence are the foundation of 3D vision and VR immersion.</p>
+- **Motion parallax**: close objects move more across the retina than far objects during head motion.
+- **Occlusion**: nearer objects hide farther objects.
+- **Perspective**: parallel lines converge with distance.
+- **Aerial perspective**: distant objects become lower contrast and color-shifted.
 
-![](pictures/virtualaugmentedreality/03/Lecture03_103_Pg011_2_Binocular_3d_Depth_Cues.png)
+![[pictures/virtualaugmentedreality/03-1/Lecture03-1_Pg012_Binocular_Depth_Cues.png]]
 
-<p class="image-caption">Binocular disparity: The slightly different images seen by each eye are fused by the brain into a 3D volume.</p>
+<p class="image-caption">Binocular depth cues include stereopsis from retinal disparity and convergence from eye rotation.</p>
 
+Binocular cues require both eyes:
 
-These require both eyes and are the core of VR's "stereo" effect:
-- **Stereopsis (Retinal Disparity)**: Because our eyes are ~6.5cm apart (IPD), each eye sees a slightly different angle. The brain fuses these two 2D images into one 3D volume.
-- **Convergence**: The physical rotation of the eyes inward to look at a close object.
+- **Stereopsis** comes from the two retinal images differing because the eyes are separated by the interpupillary distance.
+- **Convergence** is the inward rotation of both eyes for close objects.
 
----
+## 2. Stereo Rendering
 
-## 2. Stereo Rendering Math
-![](pictures/virtualaugmentedreality/03/Lecture03_103_Pg003_2_Stereo_Rendering_Math.png)
+![[pictures/virtualaugmentedreality/03-1/Lecture03-1_Pg017_Parallax.png]]
 
-<p class="image-caption">The math behind stereo rendering involves calculating correct camera offsets and projection matrices.</p>
+<p class="image-caption">Parallax determines whether a point appears on, behind, or in front of the projection plane.</p>
 
+Stereo rendering creates separate left-eye and right-eye images. The main parallax cases are:
 
-To create stereopsis digitally, we must render two images. The geometry matters.
+- **Zero parallax**: object lies on the projection plane.
+- **Positive parallax**: object appears behind the projection plane.
+- **Negative parallax**: object appears in front of the projection plane.
+- **Divergent parallax**: eyes would need to diverge outward; this is uncomfortable and should be avoided.
 
-### Parallax Values
-![](pictures/virtualaugmentedreality/03/Lecture03_103_Pg017_Parallax_Values.png)
+![[pictures/virtualaugmentedreality/03-1/Lecture03-1_Pg025_Off_Axis_Rendering.png]]
 
-<p class="image-caption">Parallax types: Zero, Positive (behind screen), Negative (front of screen), and Divergent (avoid!).</p>
+<p class="image-caption">Off-axis rendering keeps cameras parallel and shifts the projection frusta; toe-in rendering creates vertical parallax.</p>
 
+The exam-critical comparison:
 
-- **Zero Parallax**: The virtual object is exactly on the screen plane.
-- **Positive Parallax**: Images for each eye are separated such that the object appears *behind* the screen.
-- **Negative Parallax**: Images cross in a way that the object appears to "pop out" *in front* of the screen.
-- **Divergent Parallax**: The eyes would have to rotate *outward* to see the object. This is biologically impossible/painful and must be avoided.
+| Method             | What It Does                             | Why It Matters                                               |
+| :----------------- | :--------------------------------------- | :----------------------------------------------------------- |
+| Toe-in rendering   | Rotates cameras inward                   | Easy but introduces vertical parallax and eye strain.        |
+| Off-axis rendering | Keeps cameras parallel and shifts frusta | Correct stereo geometry for comfortable horizontal parallax. |
 
-### Off-Axis vs. Toe-in Rendering
-![](pictures/virtualaugmentedreality/03/Lecture03_103_Pg024_Off_Axis_Vs_Toe_In_Rendering.png)
+## 3. Visual VR Output Hardware
 
-<p class="image-caption">Off-Axis vs. Toe-In: Off-axis rendering is the correct way to avoid vertical parallax and eye strain.</p>
+VR output systems include anaglyph, polarized, shutter, CAVE-like projection, autostereoscopic displays, and head-mounted displays. Each technique separates images for the two eyes with a different tradeoff in cost, color quality, crosstalk, brightness, field of view, and user freedom.
 
+Head-mounted displays dominate consumer VR because they move with the user and can fill much more of the visual field, but they bring optical and timing challenges.
 
-- **Toe-in (INCORRECT)**: Angling two cameras toward each other. This is easier to implement but creates **Vertical Parallax** (the same point appears at different heights for each eye). This is the primary cause of eye strain in poor 3D content.
-- **Off-Axis (CORRECT)**: The two cameras remain parallel, but their **projection frustums are shifted (asymmetric)**. This keeps the projection planes coplanar and ensures only horizontal parallax is created, mimicking natural vision.
+![[pictures/virtualaugmentedreality/03-1/Lecture03-1_Pg048_Why_Lenses.png]]
 
----
+<p class="image-caption">HMD lenses make a very close display focusable by shifting the apparent focal distance.</p>
 
-## 3. Optics & HMD Challenges
+## 4. HMD Challenges
 
-### Why do we need lenses?
-![](pictures/virtualaugmentedreality/03/Lecture03_103_Pg048_Why_Do_We_Need_Lenses.png)
+![[pictures/virtualaugmentedreality/03-1/Lecture03-1_Pg054_Latency.png]]
 
-<p class="image-caption">Lenses in HMDs: Necessary to focus on a screen just centimeters away by shifting the focal plane.</p>
+<p class="image-caption">Presence requires exceptionally low latency because head motion must quickly affect the displayed photons.</p>
 
+Important hardware challenges:
 
-A screen 5cm from your face is impossible for the human eye to focus on. Lenses (Fresnel or Pancake) are used to "bend" the light so it appears to come from ~2 meters away (the **focal plane**).
+- **Latency**: delay between motion and visual update breaks presence and can cause discomfort.
+- **Judder**: visible stutter during head motion, reduced by high refresh rate and low persistence displays.
+- **Resolution**: the human visual field demands far more pixels than a normal screen because it spans a large field of view.
+- **Lens distortion**: lenses improve focus but introduce distortion that rendering must pre-correct.
 
-### Challenge: Vergence-Accommodation Conflict (VAC)
-![](pictures/virtualaugmentedreality/03/Lecture03_Vergence_Accommodation.png)
+![[pictures/virtualaugmentedreality/03-1/Lecture03-1_Pg060_High_Resolution_Display.png]]
 
-<p class="image-caption">Vergence-Accommodation Conflict: A major challenge where eyes converge at one distance but focus at another.</p>
+<p class="image-caption">Wide human field of view makes high-resolution VR display requirements extremely demanding.</p>
 
+## 5. Vergence-Accommodation Conflict
 
-This is the "Holy Grail" problem of VR hardware.
-- **Vergence**: Your eyes rotate to look at a virtual object 20cm away.
-- **Accommodation**: Your eyes physically focus (muscle change) on the screen, which the lenses make appear to be at a fixed 2m distance.
-- **The Conflict**: Your brain receives two conflicting depth signals: "Convergence says 20cm, but Focus says 2m."
-- **Current Solutions**: 
-    - **Varifocal displays** (moving lenses/screens).
-    - **Light Field displays** (projecting a field of light rays).
-    - **Safe Zone Design**: Keeping all UI/text between 0.75m and 3.0m where the conflict is minimal.
+![[pictures/virtualaugmentedreality/03-1/Lecture03-1_Pg063_Other_Display_Challenges.png]]
 
-### Challenge: Latency & Judder
-![](pictures/virtualaugmentedreality/03/Lecture03_103_Pg054_Challenge_Latency_Judder.png)
+<p class="image-caption">Other display challenges include rolling display artifacts, reprojection, asymmetric gaze cones, cue conflicts, and vergence-accommodation conflict.</p>
 
-<p class="image-caption">Latency and Judder: Low persistence displays help prevent image smearing during fast head movements.</p>
+The fixed display plane creates a mismatch:
 
+- **Vergence** says the virtual object may be near or far.
+- **Accommodation** remains tied to the physical screen or lens focal plane.
 
-- **Judder**: The stuttering or "multiple imaging" effect seen when the frame rate is lower than the refresh rate during head movement.
-- **Solution**: **Low Persistence Displays**. Instead of keeping a frame visible for the whole duration, the screen flashes the image briefly and goes black. This prevents the image from "smearing" across the retina as your eye moves.
+This conflict explains why comfortable UI distances matter. Light-field and varifocal displays try to reduce it, but most systems still rely on careful content placement.
 
----
+## Exam Focus
 
-## 4. Hardware Evolution Comparison (The Numbers)
+- Name monocular and binocular depth cues.
+- Explain parallax types and why divergent parallax is dangerous.
+- Compare toe-in and off-axis stereo rendering.
+- Explain why HMDs need lenses and why that creates optical tradeoffs.
+- Relate latency, refresh rate, and low persistence to comfort.
 
-To reach "Human Eye Resolution" (Retina) at a 160° FOV, we need roughly **16K x 16K per eye**. Here is where we are:
+## Self-Check
 
-| Device | Year | Res (per eye) | PPD (Pixels Per Degree) | Latency Goal |
-| :--- | :--- | :--- | :--- | :--- |
-| **Oculus DK2** | 2014 | 960 x 1080 | ~10 PPD | ~50ms (Legacy) |
-| **Meta Quest 3**| 2023 | 2064 x 2208 | ~25 PPD | < 20ms |
-| **Apple Vision Pro**| 2024 | 3660 x 3200 | ~34-40 PPD | ~12ms |
-| **Varjo VR-3** | 2021 | 1920x1920 (Focus) | **70 PPD** (Retina+) | < 20ms |
-| **Human Limit**| -- | -- | **~60 PPD** | **< 7-15ms** |
+1. Why does toe-in rendering create vertical parallax?
+2. What is the difference between stereopsis and convergence?
+3. Why is divergent parallax uncomfortable?
+4. What is vergence-accommodation conflict?
 
 ---
 
-## 5. Hardware Display Types
-
-| Type | Mechanism | Pros/Cons |
-| :--- | :--- | :--- |
-| **Anaglyph** | Color filters (Red/Cyan) | Very cheap; poor color, high crosstalk. |
-| **Polarized** | Light waves filtered by angle | Good color; requires silver screen/special monitors. |
-| **Shutter** | Active glasses sync with 120Hz+ | High quality; expensive glasses, flickering issues. |
-| **HMD** | Individual screens per eye | Full immersion; heavy, VAC issues. |
-| **Autostereoscopic**| Parallax barriers (Nintendo 3DS) | No glasses needed; very small "sweet spot." |
-
----
-
-## 5. Self-Assessment Quiz
-
-**Q1: What is the main difference between "Toe-in" and "Off-axis" rendering?**
-> *Answer: Toe-in angles the cameras, causing vertical parallax and eye strain. Off-axis keeps cameras parallel but shifts the frustum, creating correct horizontal parallax only.*
-
-**Q2: Why does VR hardware cause "Vergence-Accommodation Conflict"?**
-> *Answer: Because the eyes converge at various virtual distances while the physical focus (accommodation) remains fixed on the screen/lens focal plane (usually ~2m).*
-
-**Q3: How does a "Low Persistence" display reduce motion blur?**
-> *Answer: By only lighting the pixels for a fraction of the frame time. This prevents the image from being "painted" across the retina as the user's head moves.*
-
-**Q4: Name three monocular depth cues.**
-> *Answer: Motion parallax, Occlusion, Linear Perspective, Aerial Perspective, or Object Size.*
-
-**Q5: What is the danger of "Divergent Parallax"?**
-> *Answer: It forces the eyes to rotate outward (wall-eyed), which is unnatural and causes significant physical pain/discomfort.*
-
----
 [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]]

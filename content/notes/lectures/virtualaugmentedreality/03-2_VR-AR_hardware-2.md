@@ -1,139 +1,119 @@
 ---
-title: "03.2_VR-AR — Stereo Rendering & VR/AR Hardware (Part 2)"
+title: "03.2_VR-AR - AR Displays and Input Hardware"
 tags:
   - vrar
   - hardware
   - ar
   - hmd
-  - theory
+  - input
 date: 2026-04-28
 ---
-[[/notes/lectures/virtualaugmentedreality/03-1_VR-AR_hardware|Back: (y-03.1) Hardware Part 1]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/04_VR-AR_Interaction|Next: (y-04) Interaction]]
 
-## 1. Visual AR Output: OST vs. VST
-![](pictures/virtualaugmentedreality/03/Lecture03_Pg003_1_Visual_Ar_Output_Ost_Vs.png)
+[[/notes/lectures/virtualaugmentedreality/03-1_VR-AR_hardware|Previous: (y-03.1) Stereo Rendering and Hardware]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/04_VR-AR_Interaction|Next: (y-04) Interaction]]
 
-<p class="image-caption">OST vs. VST: The two primary methods for merging virtual and physical realities.</p>
+## Mental Model First
 
+AR display hardware decides how the real world and virtual content meet. Optical see-through keeps the real world direct but makes occlusion and registration harder. Video see-through gives the computer full control over the image but introduces camera latency, resolution limits, and safety risks.
 
-There are two primary ways to combine virtual content with the real world in an HMD.
+## 1. Optical vs. Video See-Through
 
-### Optical See-Through (OST)
-![](pictures/virtualaugmentedreality/03/Lecture03_Pg004_Optical_See_Through_Ost.png)
+![[pictures/virtualaugmentedreality/03-2/Lecture03-2_Pg004_Optical_See_Through.png]]
 
-<p class="image-caption">Optical See-Through (OST): Virtual light is combined with direct vision using an optical combiner.</p>
+<p class="image-caption">Optical see-through displays combine virtual light with direct vision of the real world.</p>
 
+**Optical see-through (OST)**:
 
-Uses an **optical combiner** (like a half-silvered mirror or waveguide) to allow the user to see the real world directly, with virtual light reflected into the eye.
-- **Examples**: Microsoft HoloLens, Magic Leap, Epson Moverio.
-- **Pros**:
-    - Real world is seen at "infinite" resolution/zero latency.
-    - Safety: If the power fails, you can still see.
-- **Cons**:
-    - **Add-only light**: Can only add light to the scene (cannot render true black; everything looks slightly "ghostly").
-    - **Registration**: Harder to align virtual objects perfectly because the real world doesn't go through the computer.
+- user sees the real world directly,
+- real-world latency and resolution are excellent,
+- virtual imagery can be delayed relative to the real world,
+- the display can mostly add light, so true black and hard occlusion are difficult.
 
-### Video See-Through (VST)
-![](pictures/virtualaugmentedreality/03/Lecture03_Pg024_Video_See_Through_Vst.png)
+![[pictures/virtualaugmentedreality/03-2/Lecture03-2_Pg006_Video_See_Through.png]]
 
-<p class="image-caption">Video See-Through (VST): The real world is captured by cameras and digitized before being shown on an opaque screen.</p>
+<p class="image-caption">Video see-through captures the real world with cameras, combines it digitally, then displays the result.</p>
 
+**Video see-through (VST)**:
 
-Captures the real world via **cameras**, digitizes it, merges it with virtual content, and displays the result on an opaque screen.
-- **Examples**: Meta Quest 3/Pro, Apple Vision Pro, Varjo XR-4.
-- **Pros**:
-    - **Occlusion**: Can "subtract" light (render a solid virtual object over a real one).
-    - **Matched Latency**: Both real and virtual views are delayed by the same amount (easier on the brain for registration).
-- **Cons**:
-    - **Camera Resolution**: Real world is limited by camera quality.
-    - **Cyber Sickness**: Even a tiny delay in the video feed can cause nausea.
-    - **Safety**: If the system fails, you are blind.
+- real and virtual content are both digital,
+- occlusion and image processing are easier,
+- both views share the same display pipeline,
+- camera quality, latency, dynamic range, and failure safety become central problems.
 
----
+## 2. Display Space Taxonomy
 
-## 2. Comparison Summary
+![[pictures/virtualaugmentedreality/03-2/Lecture03-2_Pg019_Display_Space_Taxonomy.png]]
 
-| Feature | Optical See-Through (OST) | Video See-Through (VST) |
-| :--- | :--- | :--- |
-| **Real World View** | Direct (Light speed) | Digitized (Camera latency) |
-| **Resolution** | Human eye limit | Camera/Display limit |
-| **Light Logic** | Additive only (Ghostly) | Additive & Subtractive (Solid) |
-| **Safety** | High (Fail-safe) | Low (Blind if failure) |
-| **Latency** | Mixed (Real vs. Virtual) | Matched (Both delayed) |
+<p class="image-caption">Display spaces include head-mounted, hand-held, stationary, and spatial/projection-based displays.</p>
 
----
+Display categories:
 
-## 3. Display Space Taxonomy
-![](pictures/virtualaugmentedreality/03/Lecture03_Pg019_3_Display_Space_Taxonomy.png)
+- **Head-mounted**: HMDs and near-eye displays.
+- **Hand-held**: phones and tablets as magic windows.
+- **Stationary**: fixed screens or magic mirrors.
+- **Spatial AR**: projectors augment the physical world directly.
 
-<p class="image-caption">Display Space Taxonomy: Classifying displays based on their position relative to the user.</p>
+## 3. The Ideal Near-Eye AR Display
 
+![[pictures/virtualaugmentedreality/03-2/Lecture03-2_Pg025_Perfect_Near_Eye_Display.png]]
 
-Where is the display relative to the user?
+<p class="image-caption">The ideal near-eye AR display would be imperceptible, comfortable, high dynamic range, eye-limited, full-FOV, binocular, true-occlusion, and robustly tracked.</p>
 
-1.  **Head-mounted (Head Space)**: Moves with the head (HMDs).
-2.  **Hand-held (Body Space)**: Smartphones, tablets (Magic Window).
-3.  **Stationary (World Space)**: Monitors, "Magic Mirrors" (e.g., smart mirrors in retail).
-4.  **Projected (World Space)**: Spatial AR (SAR). Projecting directly onto physical objects.
+This slide is a compact requirements list. A perfect AR display would be:
 
----
+- always available and comfortable,
+- optically unobtrusive,
+- high dynamic range in all lighting,
+- eye-resolution and full human field of view,
+- binocular with true depth,
+- capable of real occlusion,
+- supported by stable tracking and scene understanding.
 
-## 4. Spatial Augmented Reality (SAR)
-![](pictures/virtualaugmentedreality/03/Lecture03_Pg033_4_Spatial_Augmented_Reality_Sar.png)
+Current systems satisfy only subsets of this list.
 
-<p class="image-caption">Spatial Augmented Reality (SAR): Projecting information directly onto physical objects in the environment.</p>
+## 4. Spatial Augmented Reality
 
+![[pictures/virtualaugmentedreality/03-2/Lecture03-2_Pg032_Spatial_AR.png]]
 
-Instead of wearing a device, we project light onto the environment.
-- **View-Independent**: Textures projected onto a white 3D model (e.g., projection mapping on buildings).
-- **View-Dependent**: Requires tracking the user to project "anamorphic" 3D objects that look correct only from the user's perspective.
+<p class="image-caption">Spatial AR projects virtual imagery onto physical surfaces instead of using a worn or hand-held display.</p>
 
----
+Spatial AR moves the display into the environment. It is powerful for shared settings because multiple users can see the augmentation without wearing hardware. The tradeoff is that projection depends on surface geometry, lighting, calibration, and user viewpoint.
 
-## 5. Input Devices for VR/AR
+## 5. Multimodal Input Hardware
 
-### 1. Hands & Haptics
-![](pictures/virtualaugmentedreality/03/Lecture03_Pg039_1_Hands_Haptics.png)
+![[pictures/virtualaugmentedreality/03-2/Lecture03-2_Pg038_Multimodal_Devices.png]]
 
-<p class="image-caption">Input Devices: Data gloves and haptic feedback systems allow for more natural interaction in VR/AR.</p>
+<p class="image-caption">VR/AR input hardware extends beyond vision and includes hands, haptics, locomotion devices, and other senses.</p>
 
+![[pictures/virtualaugmentedreality/03-2/Lecture03-2_Pg040_Haptic_Gloves.png]]
 
-- **Data Gloves**: Tracking finger joints (e.g., Jaron Lanier's 1987 Data Glove).
-- **Haptic Gloves**: Provide resistance (brakes) or vibration to simulate touch (e.g., HaptX, SenseGlove).
-- **Exoskeletons**: Large-scale force feedback for the whole arm/body.
+<p class="image-caption">Haptic gloves and force-feedback devices try to close the gap between virtual contact and physical sensation.</p>
 
-### 2. Locomotion
-- **Treadmills**: Omni-directional treadmills (e.g., Virtuix Omni) allow walking in any direction while staying in place.
-- **Redirected Walking**: Subtly rotating the virtual world so the user walks in a circle in real life while thinking they are walking straight.
+Input devices include:
 
-### 3. Other Senses
-![](pictures/virtualaugmentedreality/03/Lecture03_Pg046_3_Other_Senses.png)
+- data gloves for finger tracking,
+- haptic gloves for tactile or force feedback,
+- exoskeletons for stronger force feedback,
+- treadmills and locomotion interfaces,
+- audio, wind, smell, and other sensory channels.
 
-<p class="image-caption">Beyond Vision: 3D audio, olfactory, and gustatory displays aim for a truly multi-sensory experience.</p>
+![[pictures/virtualaugmentedreality/03-2/Lecture03-2_Pg046_Other_Senses.png]]
 
+<p class="image-caption">Other senses matter because presence is multisensory, not only visual.</p>
 
-- **3D Audio**: Essential for "Place Illusion."
-- **Olfactory/Taste**: Experimental displays for smell and flavor.
+## Exam Focus
 
----
+- Compare OST and VST across latency, occlusion, safety, and image control.
+- Classify displays by head, hand, world, and projection space.
+- Explain why a perfect AR display is still difficult.
+- Connect haptics and other senses to presence and interaction fidelity.
 
-## 6. Self-Assessment Quiz
-![](pictures/virtualaugmentedreality/03/Lecture03_Pg004_6_Self_Assessment_Quiz.png)
+## Self-Check
 
-<p class="image-caption">Quick Check: Test your knowledge on AR output methods and input technologies.</p>
-
-
-**Q1: Why can't an Optical See-Through display (like HoloLens) show a solid black cube?**
-> *Answer: Because it works by adding light to the user's natural vision. You cannot "project black" onto the real world; black is simply the absence of light.*
-
-**Q2: What is "matched latency" in Video See-Through?**
-> *Answer: Since both the real-world feed and the virtual content are processed by the same computer, they are displayed to the user at the exact same moment. This avoids the "lagging virtual object" feel common in OST.*
-
-**Q3: Define Spatial Augmented Reality (SAR).**
-> *Answer: AR that uses projectors to cast graphical information directly onto physical objects instead of using an eye-worn or hand-held display.*
-
-**Q4: What is the main safety risk of VST HMDs?**
-> *Answer: If the hardware or software fails, the user becomes completely blind to their physical environment, which is dangerous in high-stakes scenarios (e.g., surgery).*
+1. Why can OST struggle to show a solid black virtual object?
+2. Why can VST support stronger occlusion than OST?
+3. What makes spatial AR useful for shared experiences?
+4. Which display tradeoffs appear in the ideal near-eye AR display list?
 
 ---
+
 [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]]
