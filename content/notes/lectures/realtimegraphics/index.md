@@ -17,6 +17,7 @@ date: 2026-04-14
 - [[notes/lectures/realtimegraphics/03_gpu_architecture_parallelism|(y-) 03_gpu_architecture_parallelism]]: Detailed pipeline stages and modern API vs. OpenGL.
 - [[notes/lectures/realtimegraphics/04_cg_primer|(y-) 04_cg_primer]]: Math foundations, transformations, and shading models.
 - [[notes/lectures/realtimegraphics/05_shading_models|(y-) 05_shading_models]]: BRDFs, Lambert, Phong, Blinn-Phong, Cook-Torrance, Disney BRDF.
+- [[notes/lectures/realtimegraphics/06_textures|(y-) 06_textures]]: Texture mapping, filtering, multipass rendering, environment mapping, and bump/normal mapping.
 - **Global Illumination**: Shadows, high dynamic range (HDR), and realistic lighting.
 - **Rendering Acceleration**: Level of Detail (LOD) and visibility algorithms.
 - **Compute Shaders**: General-purpose computation on the GPU.

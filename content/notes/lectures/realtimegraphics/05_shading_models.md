@@ -8,7 +8,7 @@ tags:
   - lighting
 date: 2026-05-12
 ---
-[[notes/lectures/realtimegraphics/04_cg_primer|Back: (y-04) Graphics Primer]] | [[notes/lectures/realtimegraphics/index|RTG Index]]
+[[notes/lectures/realtimegraphics/04_cg_primer|Back: (y-04) Graphics Primer]] | [[notes/lectures/realtimegraphics/06_textures|Next: (y-06) Textures]] | [[notes/lectures/realtimegraphics/index|RTG Index]]
 
 ## Mental Model First: Where Does the Pixel Colour Come From?
 
