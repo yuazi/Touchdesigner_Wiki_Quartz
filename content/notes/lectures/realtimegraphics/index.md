@@ -18,6 +18,7 @@ date: 2026-04-14
 - [[notes/lectures/realtimegraphics/04_cg_primer|(y-) 04_cg_primer]]: Math foundations, transformations, and shading models.
 - [[notes/lectures/realtimegraphics/05_shading_models|(y-) 05_shading_models]]: BRDFs, Lambert, Phong, Blinn-Phong, Cook-Torrance, Disney BRDF.
 - [[notes/lectures/realtimegraphics/06_textures|(y-) 06_textures]]: Texture mapping, filtering, multipass rendering, environment mapping, and bump/normal mapping.
+- [[notes/lectures/realtimegraphics/08_deferred_shading|(y-) 08_deferred_shading]]: Deferred rendering, G-Buffers, deferred lighting, light volumes, visibility buffers, and normal encoding.
 - **Global Illumination**: Shadows, high dynamic range (HDR), and realistic lighting.
 - **Rendering Acceleration**: Level of Detail (LOD) and visibility algorithms.
 - **Compute Shaders**: General-purpose computation on the GPU.
@@ -31,9 +32,10 @@ date: 2026-04-14
 
 ## Resources
 
-- **Main Book**: *Real-Time Rendering, 4th Edition* by Tomas Akenine-Möller et al.
+- **Main Book**: _Real-Time Rendering, 4th Edition_ by Tomas Akenine-Möller et al.
 - **Engine**: [DiligentEngine](https://github.com/DiligentGraphics/DiligentEngine) — A modern cross-platform rendering engine.
 - **Lecturer**: Dieter Schmalstieg
 
 ---
+
 [[notes/index|(y) Back to Notes]]

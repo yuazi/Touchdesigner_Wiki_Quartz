@@ -6,7 +6,7 @@ tags:
 
 # Welcome to my Digital Garden
 
-[I am (y-)useful](./about.md) · [What I'm doing now](./now.md) · a space where ideas grow slowly and connect over time. It is not a blog or a course, just a **living collection of notes** shaped by curiosity and use.
+[I am (y-)useful](./about.md) · [What I'm doing now](./now.md) · a space where ideas grow slowly and connect over time. It is just a **living collection of notes** shaped by curiosity and use.
 
 A digital garden is intentionally unfinished. You'll find notes at different stages of development: some polished, some just <span data-gb-restart>seedlings</span>.
 

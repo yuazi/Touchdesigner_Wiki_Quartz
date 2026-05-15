@@ -9,7 +9,7 @@ tags:
 date: 2026-05-13
 ---
 
-[[notes/lectures/realtimegraphics/05_shading_models|Back: (y-05) Shading Models]] | [[notes/lectures/realtimegraphics/index|RTG Index]]
+[[notes/lectures/realtimegraphics/05_shading_models|Back: (y-05) Shading Models]] | [[notes/lectures/realtimegraphics/index|RTG Index]] | [[notes/lectures/realtimegraphics/08_deferred_shading|Next: (y-08) Deferred Shading]]
 
 ## Mental Model First: Textures as Functions
 
@@ -448,4 +448,4 @@ The conceptual point is the same as the first texture shader: vertices carry coo
 
 ---
 
-[[notes/lectures/realtimegraphics/index|(y) Back to RTG Index]]
+[[notes/lectures/realtimegraphics/index|(y) Back to RTG Index]] | [[notes/lectures/realtimegraphics/08_deferred_shading|Next: (y-08) Deferred Shading]]
