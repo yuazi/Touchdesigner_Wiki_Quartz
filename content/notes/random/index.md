@@ -6,19 +6,18 @@ tags:
 date: 2026-03-18
 ---
 
-The sensory and the mathematical. A mix of strange attractors, the visceral focus of motorcycles, and the curated world of scents.
-
+Everything that isn't a lecture and isn't a project.
 
 ---
 
 ## Exploration
 
-- [[notes/random/lorenz-attractor|(y-) The Lorenz Attractor]] — Exploring chaos and strange attractors.
-- [[notes/random/neural-style-transfer|(y-) Neural Style Transfer]] — Real-time creative coding meets deep learning.
-- [[notes/random/motorcycles|(y-) Motorcycles]] — Notes on riding and the focus it brings.
-- [[notes/random/games|(y-) Gaming]] — A mix of tactical precision and a bit of chaotic storytelling.
-- [[notes/random/perfumes|(y-) Perfumes]] — A different kind of sensory exploration.
-- [[notes/random/matcha-coffee|(y-) Matcha and Coffee]] — Notes on the ritual and contrast of caffeine.
+- [[notes/random/lorenz-attractor|(y-) The Lorenz Attractor]]: three equations, infinite orbits, and why determinism is not the same as predictability.
+- [[notes/random/neural-style-transfer|(y-) Neural Style Transfer]]: notes on the technique and what makes it work.
+- [[notes/random/motorcycles|(y-) Motorcycles]]: the Husqvarna Vitpilen 701 and why I ride.
+- [[notes/random/games|(y-) Gaming]]: what I'm playing right now.
+- [[notes/random/perfumes|(y-) Perfumes]]: rotation organized by season.
+- [[notes/random/matcha-coffee|(y-) Matcha and Coffee]]: two caffeine rituals that have almost nothing in common.
 
 ---
 [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

@@ -7,11 +7,11 @@ tags:
 date: 2026-03-05
 ---
 
-The "Do" in motion. Documenting the path from white-belt basics to the tactical chaos of sparring and spinning hook kicks.
+What I'm working on in the dojang (gym). Kicks, stances, sparring, and the rest of it.
 
 ---
 
-I like kicking and spinning, looks really cool. Honestly I just saw someone do a spinning hook kick in a Jackie Chan movie and thought "I need to learn that." That was enough motivation for me. No deep philosophical reason — just pure "that looks insane, I want to do it."
+I like kicking and spinning, looks really cool. Honestly I just saw someone do a spinning hook kick in a Jackie Chan movie and thought "I need to learn that." That was enough motivation for me. No deep philosophical reason. Just pure "that looks insane, I want to do it."
 
 ---
 

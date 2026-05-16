@@ -8,7 +8,7 @@ date: 2026-04-14
 ---
 
 > [!abstract] Course Summary
-> Virtual and Augmented Reality combines graphics, tracking, computer vision, interaction, hardware, and human perception to create registered, responsive, and comfortable immersive systems.
+> VR and AR sits across graphics, tracking, computer vision, interaction, hardware, and human perception. The course pulls those threads together into systems that are responsive, comfortable, and registered to the real world.
 
 ## Lecture Notes
 

@@ -3,10 +3,10 @@ title: (y) TouchDesigner Wiki
 date: 2026-02-01
 ---
 
-Welcome to your **TouchDesigner** learning wiki, a structured reference for visual programming with nodes and interactive media in real time.
+My TouchDesigner wiki. Reference notes for visual programming with nodes and real-time interactive media.
 
 > [!tip] New to TouchDesigner?
-> If you've just installed the software, start with our **[[touchdesigner/06_Recipes_and_Projects/y-1/index|(y-1) Beginner Recipes]]**. They are designed to get you making visuals in under 10 minutes without needing deep technical knowledge.
+> If you just installed TouchDesigner, start with the **[[touchdesigner/06_Recipes_and_Projects/y-1/index|(y-1) Beginner Recipes]]**. You should be making visuals inside ten minutes.
 
 ---
 

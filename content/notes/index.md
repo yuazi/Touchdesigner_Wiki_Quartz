@@ -5,62 +5,61 @@ tags:
 date: 2026-01-01
 ---
 
-A collection of notes and random thoughts—seedlings, growing ideas, and evergreen knowledge.
-
+Notes, references, and rabbit holes. Some are seedlings, some are evergreen.
 
 ---
 
 ## Courses
 
 > [!abstract] [[notes/lectures/realtimegraphics/index|(y) Real-Time Graphics (RTG)]]
-> Study hub for the RTG master's course, focusing on real-time CGI, the Vulkan API, and advanced rendering techniques.
+> Rendering pipeline study notes: rasterization, GPU architecture, shading models, textures, deferred shading.
 
 > [!abstract] [[/notes/lectures/virtualaugmentedreality/index|(y) Virtual & Augmented Reality]]
-> Explore the intersection of hardware, software, and human perception in immersive VR/AR environments.
+> Lecture notes on immersive systems: displays, tracking, interaction, computer vision, and human-centered design.
 
 > [!abstract] [[/notes/lectures/mlp/index|(y) Machine Perception & Learning (MPL)]]
-> Study hub for the MPL master's course, covering deep learning from CNNs to Diffusion models.
+> Deep learning lecture notes, from CNNs and transformers through VAEs, GANs, and diffusion models.
 
 > [!abstract] [[/notes/lectures/programverification/index|(y) Program Verification]]
-> Bridge the gap between source code and mathematical proofs using logic and SMT solvers.
+> Hoare logic, predicate transformers, SMT, Boogie/Boostan, and proving programs correct.
 
 ## CLI & Tools
 
 > [!abstract] [[notes/tools/index|(y) CLI & Tools Hub]]
-> Central index for terminal-centric utilities and keyboard-driven workflows.
+> The terminal tools I use and the keyboard-driven workflow I've built around them.
 
-- [[notes/tools/ghostty|(y-) Ghostty]] — Fast, native terminal emulator written in Zig with first-class rendering.
-- [[notes/tools/homebrew|(y-) Homebrew]] — The missing package manager for macOS.
-- [[notes/tools/sioyek|(y-) Sioyek]] — PDF viewer optimized for technical documents and research papers.
-- [[notes/tools/yazi|(y-) Yazi]] — Blazing fast terminal file manager with async I/O and image previews.
-- [[notes/tools/zsh|(y-) Zsh & Powerlevel10k]] — Powerful terminal setup and framework.
-- [[notes/tools/macos-terminal|(y-) macOS Terminal]] — Essential built-in commands and utilities.
-- [[notes/tools/modern-cli|(y-) Modern CLI Tools]] — Replacements for ls, cat, and more.
+- [[notes/tools/ghostty|(y-) Ghostty]]: GPU-rendered terminal emulator written in Zig.
+- [[notes/tools/homebrew|(y-) Homebrew]]: macOS package manager.
+- [[notes/tools/sioyek|(y-) Sioyek]]: PDF viewer made for technical papers.
+- [[notes/tools/yazi|(y-) Yazi]]: terminal file manager with async I/O and image previews.
+- [[notes/tools/zsh|(y-) Zsh & Powerlevel10k]]: shell and prompt setup.
+- [[notes/tools/macos-terminal|(y-) macOS Terminal]]: built-in commands worth knowing.
+- [[notes/tools/modern-cli|(y-) Modern CLI Tools]]: drop-in replacements for ls, cat, grep, find.
 
 ## Taekwondo
 
 > [!abstract] [[notes/taekwondo/index|(y) Taekwondo Hub]]
-> Journey from white-belt basics to the "Do" of high-performance martial arts.
+> What I'm working on in the dojang, from stances up to sparring.
 
-- [[notes/taekwondo/stances|(y-) Stances]] — Fundamental body positioning for poomsae and combat stability.
-- [[notes/taekwondo/combinations|(y-) Combinations]] — Chaining strikes for explosive flow and tactical pressure.
-- [[notes/taekwondo/sparring|(y-) Sparring]] — High-intensity tactics inspired by the "Cancel" style of CJ Nickolas.
-- [[notes/taekwondo/stretching|(y-) Stretching]] — Modern PNF and mobility protocols for unlocking high-kick range.
-- [[notes/taekwondo/philosophy|(y-) Philosophy]] — The five tenets and the ethical path behind the physical discipline.
+- [[notes/taekwondo/stances|(y-) Stances]]: foot positions and how they shape balance and power.
+- [[notes/taekwondo/combinations|(y-) Combinations]]: chaining strikes, transitions, and pressure tactics.
+- [[notes/taekwondo/sparring|(y-) Sparring]]: front-leg cancel style, inspired by CJ Nickolas.
+- [[notes/taekwondo/stretching|(y-) Stretching]]: PNF protocols and the mobility work that actually moved my range.
+- [[notes/taekwondo/philosophy|(y-) Philosophy]]: the five tenets and what they mean off the mat.
 
 ## Random
 
 > [!abstract] [[notes/random/index|(y) Random Hub]]
-> Sensory experiences, mathematical chaos, and miscellaneous interests.
+> Everything that isn't a lecture and isn't a project.
 
-- [[notes/random/lorenz-attractor|(y-) The Lorenz Attractor]] — Visualizing the butterfly effect and deterministic chaos.
-- [[notes/random/neural-style-transfer|(y-) Neural Style Transfer]] — Real-time creative coding meets deep learning.
-- [[notes/random/motorcycles|(y-) Motorcycles]] — The visceral focus of the open road and the mechanics of riding.
-- [[notes/random/games|(y-) Gaming]] — A mix of tactical precision and a bit of chaotic storytelling.
-- [[notes/random/perfumes|(y-) Perfumes]] — Notes on niche fragrances and the chemistry of scent.
-- [[notes/random/matcha-coffee|(y-) Matcha and Coffee]] — Notes on the ritual and contrast of caffeine.
-- [[work/slidelink|(y-) SlideLink]] — Domain-agnostic tool for aligning lecture notes with PDF course slides.
-- [[work/sudokusolver|(y-) Sudoku Solver]] — GNN-based solver using node classification to solve Sudoku puzzles.
+- [[notes/random/lorenz-attractor|(y-) The Lorenz Attractor]]: three equations, infinite orbits, and why determinism is not the same as predictability.
+- [[notes/random/neural-style-transfer|(y-) Neural Style Transfer]]: notes on the technique and what makes it work.
+- [[notes/random/motorcycles|(y-) Motorcycles]]: the Husqvarna Vitpilen 701 and why I ride.
+- [[notes/random/games|(y-) Gaming]]: what I'm playing right now.
+- [[notes/random/perfumes|(y-) Perfumes]]: rotation organized by season.
+- [[notes/random/matcha-coffee|(y-) Matcha and Coffee]]: two caffeine rituals that have almost nothing in common.
+- [[work/slidelink|(y-) SlideLink]]: the slide-to-heading matcher that powers my lecture notes.
+- [[work/sudokusolver|(y-) Sudoku Solver]]: a GNN that learns to solve Sudoku via node classification.
 
 ---
 [[/index|(y) Return to Home]]

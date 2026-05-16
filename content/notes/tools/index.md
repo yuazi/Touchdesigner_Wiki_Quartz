@@ -7,23 +7,19 @@ tags:
 date: 2026-03-18
 ---
 
-Optimized for speed. A curated list of the terminal-centric tools I use to stay in flow and keep my hands on the home row.
-
+The terminal tools I use and the keyboard-driven workflow I've built around them.
 
 ---
 
-> [!abstract] [[notes/tools/index|(y) CLI & Tools Hub]]
-> Central index for terminal-centric utilities and keyboard-driven workflows.
-
 ## Tool Notes
 
-- [[notes/tools/ghostty|(y-) Ghostty]] — A fast, native terminal emulator in Zig.
-- [[notes/tools/homebrew|(y-) Homebrew]] — The missing package manager for macOS.
-- [[notes/tools/sioyek|(y-) Sioyek]] — Keyboard-driven PDF viewer for researchers.
-- [[notes/tools/yazi|(y-) Yazi]] — Blazing fast terminal file manager in Rust.
-- [[notes/tools/zsh|(y-) Zsh & Powerlevel10k]] — Powerful terminal setup and framework.
-- [[notes/tools/macos-terminal|(y-) macOS Terminal]] — Essential built-in commands and utilities.
-- [[notes/tools/modern-cli|(y-) Modern CLI Tools]] — Replacements for ls, cat, and more.
+- [[notes/tools/ghostty|(y-) Ghostty]]: GPU-rendered terminal emulator written in Zig.
+- [[notes/tools/homebrew|(y-) Homebrew]]: macOS package manager.
+- [[notes/tools/sioyek|(y-) Sioyek]]: keyboard-driven PDF viewer made for technical papers.
+- [[notes/tools/yazi|(y-) Yazi]]: terminal file manager with async I/O and image previews.
+- [[notes/tools/zsh|(y-) Zsh & Powerlevel10k]]: shell and prompt setup.
+- [[notes/tools/macos-terminal|(y-) macOS Terminal]]: built-in commands worth knowing.
+- [[notes/tools/modern-cli|(y-) Modern CLI Tools]]: drop-in replacements for ls, cat, grep, find.
 
 ---
 [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
