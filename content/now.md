@@ -5,41 +5,37 @@ tags:
 date: 2026-05-05
 ---
 
-This is my **(y)now** page—a snapshot of what's currently taking up my headspace, time, and energy. It's a way for me to stay grounded and for you to see what I'm actually up to beyond the static notes.
+A snapshot of what I'm working on right now. This page changes often; the rest of the garden moves slower.
 
 _Last updated: May 5, 2026_
 
 ---
 
-## 🏆 Recent Highlights
+## Recent Highlights
 
-A huge milestone lately was winning 2nd place (🥈) at **LIC8**. It was a unique challenge, especially since it was my first real brush with **Law**. Stepping outside my usual technical bubble to navigate legal frameworks was intense, but incredibly rewarding to see it pay off.
+Took 2nd place at **LIC8** recently. It was my first competition that leaned on legal frameworks instead of code, and getting through the proceedings without a law background was harder than I expected. Worth the effort.
 
----
+## What I'm Building
 
-## 🛠️ What I'm Building
+Mostly tending the garden. Pruning old notes, linking new ones together, trying to make this site feel like a connected whole instead of a pile of markdown. The latest addition is an expanded [[notes/random/perfumes|perfume collection]].
 
-My primary focus has shifted entirely to **Garden Maintenance**—pruning old thoughts, planting new ones (like the recent expansion of my **[[notes/random/perfumes|perfume collection]]**), and making sure everything in this digital space connects the way it should. It's a slow, rewarding process of making sense of what I'm learning.
+## In the Lab (Academic)
 
-## 🎓 In the Lab (Academic)
+Master's in Wirtschaftsinformatik at the University of Stuttgart. This semester is the technical-heavy one:
 
-I'm currently navigating my Master's in **Winfo (Business Informatics)** at the University of Stuttgart. This semester is all about the technical deep end:
+- **Real-Time Graphics**: the math under rendering pipelines, from rasterization to deferred shading.
+- **Program Verification**: proving code actually does what it claims with Hoare logic and friends.
+- **VR & AR**: how we build and inhabit immersive spaces.
 
-- **Real-Time Graphics**: Exploring the math and logic behind rendering systems.
-- **Program Verification**: Learning how to prove that code actually does what it's supposed to.
-- **VR & AR**: Diving into immersive technologies and how we interact with digital spaces.
+## Moving (Physical)
 
-## 🥋 Moving (Physical)
+Daily mobility work at home to keep the hips and shoulders honest. Still training Taekwondo, mostly sparring and technical drills. I've also been dropping in on a Pencak Silat gym occasionally for something different. The flow is completely opposite, and it keeps me from getting too tuned to one style.
 
-I'm focusing on **Home Stretching** routines to keep my mobility in check.
+## Everything Else
 
-I'm still dedicated to **Taekwondo**, with a focus on sparring and technical drills. Recently, I've also been heading to a gym occasionally for **Pencak Silat**—it's a great change of pace and adds a different flow to my martial arts training.
+Weather is finally good, so the Husqvarna Vitpilen 701 is getting weekend miles again.
 
-## 🏍️ Everything Else
-
-The weather is getting better, so I've been taking the **Husqvarna Vitpilen 701** out for more weekend rides. There's nothing quite like it for clearing the mind.
-
-When I just want to switch off, I'm still getting into a few rounds of **Ready or Not**—it's tactical, slow, and a nice contrast to the fast-paced academic work.
+For evenings I'm in and out of Ready or Not and Halo MCC. Slow, tactical, and a useful antidote to a day spent in lecture notes.
 
 ---
 

@@ -7,53 +7,46 @@ date: 2026-03-18
 
 ## Who am I?
 
-Hey, I'm **Yusuf**
+Hey, I'm **Yusuf**.
 
-I am a **Wirtschaftsinformatik (Business Informatics) Master's student** at the University of Stuttgart. I live at the intersection of technical depth and business strategy—effectively a **"Nerd in a Suit."**
+I'm a Wirtschaftsinformatik (Business Informatics) Master's student at the University of Stuttgart. The degree sits between computer science and business, and I picked it because I didn't want to choose.
 
-This space, the **(y)usage Garden**, is my second brain. It’s where I map connections, visualize chaotic systems, and document my path through machine learning, creative tech, and physical discipline.
+This site, the **(y)usage Garden**, is where I put what I'm learning. Lecture notes, side projects, random rabbit holes. Some of it is polished, most of it isn't.
 
 ---
 
 ## The Stack
 
-I build tools that bridge the gap between complex data and intuitive interfaces.
-
 - **Languages:** Python, TypeScript, Java, Lua
-- **AI/ML:** PyTorch, MediaPipe, Constraint Propagation
-- **Creative:** TouchDesigner, GLSL, Strange Attractors
-- **Environment:** Ghostty + Neovim + Yazi (keyboard-driven workflow)
+- **AI/ML:** PyTorch, MediaPipe, constraint propagation
+- **Creative:** TouchDesigner, GLSL, strange attractors
+- **Environment:** Ghostty + Neovim + Yazi (keyboard only, no mouse if I can help it)
 
 ---
 
 ## Currently
 
-- **Building:** [SlideLink](work/slidelink)—automating the bridge between lecture slides and Quartz notes.
+- **Building:** [SlideLink](work/slidelink), a tool that matches lecture slide screenshots to the right headings in my notes.
 - **Studying:** Machine Perception & Learning (MPL).
-- **Training:** Taekwondo—focusing on high pressure sparring and PNF mobility.
-- **Exploring:** The intersection of generative AI and real time visual systems.
+- **Training:** Taekwondo. Sparring under pressure on training days, PNF mobility on the off days.
+- **Exploring:** how generative models behave when you wire them into real time visual systems.
 
 ---
 
 ## Beyond the Screen
 
-- **Taekwondo:** A white-to-black belt journey fueled by a love for spinning kicks.
-- **Motorcycles:** Pure focus. No distractions, just the bike and the road.
-- **Scents:** Exploring the sensory world of niche perfumery.
-- **Chaos:** Obsessed with the math of the [Lorenz Attractor](notes/random/lorenz-attractor).
+- **Taekwondo:** working my way from white to black. Spinning kicks are the whole reason I started.
+- **Motorcycles:** the Husqvarna Vitpilen 701. More on [why I ride](notes/random/motorcycles).
+- **Scents:** slowly building out a [perfume rotation](notes/random/perfumes) organized by season.
+- **Chaos:** the [Lorenz Attractor](notes/random/lorenz-attractor) is absurdly beautiful. It's also why this site has a moving background.
 
 ---
 
 ## Contact
 
-Feel free to reach out if you want to talk about data science, creative coding, or why the front leg "cancel" is the most important move in sparring.
+If you want to talk about data science, creative coding, or why the front leg cancel matters more than people give it credit for, reach out.
 
 - **GitHub:** [yuazi](https://github.com/yuazi)
 
 ---
-
-> _"The garden is never finished. Neither am I."_
-
----
 [[index|(y) Return to Garden]]
-
