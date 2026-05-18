@@ -8,7 +8,7 @@ date: 2026-04-14
 ---
 
 > [!abstract] Course Summary
-> Focusing on the computation of computer-generated imagery (CGI) in real-time. This course covers the modern graphics pipeline, specialized hardware, and advanced rendering techniques like global illumination and hardware raytracing.
+> How real-time CGI actually gets computed. Covers the modern graphics pipeline, GPU hardware, and advanced techniques like global illumination and hardware raytracing.
 
 ## Lecture Topics
 
@@ -33,7 +33,7 @@ date: 2026-04-14
 ## Resources
 
 - **Main Book**: _Real-Time Rendering, 4th Edition_ by Tomas Akenine-Möller et al.
-- **Engine**: [DiligentEngine](https://github.com/DiligentGraphics/DiligentEngine) — A modern cross-platform rendering engine.
+- **Engine**: [DiligentEngine](https://github.com/DiligentGraphics/DiligentEngine): cross-platform rendering engine.
 - **Lecturer**: Dieter Schmalstieg
 
 ---

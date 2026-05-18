@@ -47,6 +47,20 @@ Notes, references, and rabbit holes. Some are seedlings, some are evergreen.
 - [[notes/taekwondo/stretching|(y-) Stretching]]: PNF protocols and the mobility work that actually moved my range.
 - [[notes/taekwondo/philosophy|(y-) Philosophy]]: the five tenets and what they mean off the mat.
 
+## Fencing (Épée)
+
+> [!abstract] [[notes/fencing/index|(y) Fencing (Épée) Hub]]
+> Notes on épée, the slowest and most tactical of the three weapons. No right of way, whole-body target, wrist sniping galore.
+
+- [[notes/fencing/stances|(y-) Stances]]: classical and modern en garde variants.
+- [[notes/fencing/footwork|(y-) Footwork]]: advance, retreat, lunge, fleche, balestra, passata-sotto.
+- [[notes/fencing/parries|(y-) Parries]]: the numbered parries, circular parries, prises de fer.
+- [[notes/fencing/bladework|(y-) Bladework]]: simple and compound attacks, taking the blade, counter-offense.
+- [[notes/fencing/tactics|(y-) Tactics]]: distance, tempo, second intention, and modern competitive styles.
+- [[notes/fencing/workout|(y-) Workout]]: no-equipment conditioning grouped by purpose.
+- [[notes/fencing/stretching|(y-) Stretching]]: mobility for the lunge, the wrist, and the asymmetric fencer's body.
+- [[notes/fencing/glossary|(y-) Glossary]]: the French (mostly) vocabulary you need to read a coaching book.
+
 ## Random
 
 > [!abstract] [[notes/random/index|(y) Random Hub]]
