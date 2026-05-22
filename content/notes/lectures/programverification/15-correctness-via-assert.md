@@ -80,5 +80,32 @@ Imagine a program as a building.
 4.  **Abstract Error Configuration**: A pair $(\ell, \phi)$ where $\ell$ is an error location and $\phi$ is satisfiable.
 5.  **Safety**: Proving a program is safe means proving that its error locations are **unreachable**.
 
+## Self-Check
+
+1. What does an `assert P` statement mean operationally, and how is it different from `assume P`?
+
+> [!success]- Answer
+> `assert P` is a check at this exact program point: if $P$ is false the program is considered incorrect. `assume P` is a constraint: paths where $P$ is false simply disappear, no error is raised. Asserts produce bugs; assumes filter the state space.
+
+2. How is an `assert expr` translated into a CFG?
+
+> [!success]- Answer
+> The source location $\ell_{\text{init}}$ gains two outgoing edges: an `assume expr` edge to the successor $\ell_{\text{ex}}$ for the success case, and an `assume !expr` edge to a dedicated error location $\ell_{\text{err}}$ for the failure case. Reaching $\ell_{\text{err}}$ in any execution constitutes an assertion failure.
+
+3. What does "program safety" reduce to in this framework?
+
+> [!success]- Answer
+> Safety means no path of the CFG from the initial location reaches any error location. Equivalently, every abstract configuration $(\ell_{\text{err}}, \phi)$ reachable from the initial state must have $\phi$ equivalent to `false`. Verification becomes a graph reachability question with logical conditions on edges.
+
+4. Why are local assertions more expressive than a single pre/post specification?
+
+> [!success]- Answer
+> A pre/post pair only checks the overall input-output relationship at the exit point. Asserts let you specify local invariants at any program point (loop heads, just after a critical assignment, before a dangerous operation). This catches bugs at the exact point they manifest, rather than letting them propagate to the final state.
+
+5. In the example `assume x > 0; x := x - 1; assert x >= 0;`, why is the assert safe?
+
+> [!success]- Answer
+> The `assume x > 0` filters to states where $x \ge 1$ (integer domain). After `x := x - 1`, the new $x$ is at least $0$. The assert $x \ge 0$ therefore holds along every surviving path, so the error location is unreachable and the fragment is safe.
+
 ---
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/14-bmc|Previous: (y-14) Bounded Model Checking]] | [[/notes/lectures/programverification/16-abstractions-and-arg|Next: (y-16) Abstractions and ARG]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

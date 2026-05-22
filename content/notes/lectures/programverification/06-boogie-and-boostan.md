@@ -117,5 +117,32 @@ Why do we limit Boostan to only a few commands?
 4.  **Assumes** filter states, while **Asserts** check for bugs.
 5.  **Boogaloo** helps us debug our Boogie programs before we run a full verifier.
 
+## Self-Check
+
+1. Why do verifiers translate C, Java, or C# into Boogie instead of working on the source directly?
+
+> [!success]- Answer
+> Real languages have hundreds of features and ambiguous English-text semantics, which makes them hard to formalize. Boogie is a clean, mathematically defined intermediate language with a small core, so multiple front-ends can target it and a single verifier handles all of them. The translation isolates verification from the messy parts of each source language.
+
+2. What is the operational difference between `assume P` and `assert P` in Boogie?
+
+> [!success]- Answer
+> `assume P` filters executions: paths where `P` is false are dropped from consideration, so the verifier proceeds as if `P` were given. `assert P` is a proof obligation: the verifier must show `P` holds along every path that reaches it; if any path falsifies `P`, the verifier reports a bug. Assumes constrain inputs; asserts check outputs.
+
+3. List the commands of Boostan ($G_{Boo}$) and explain why such a small set is enough.
+
+> [!success]- Answer
+> Boostan has `skip`, `x := e`, sequencing $c_1; c_2$, `if (b) {c_1} else {c_2}`, `while (b) {c}`, `havoc x`, `assume b`, and `assert b`. These commands are Turing-complete: any richer construct (`for`, `switch`, `return`) can be desugared into them. The small core makes the formal semantics tractable while keeping enough expressive power.
+
+4. What is `havoc x`, and why does verification need it?
+
+> [!success]- Answer
+> `havoc x` assigns a non-deterministic value to `x`. It is used to model unknown inputs, the effect of an under-specified call, or to "forget" a variable's value at the top of a loop so the verifier reasons about an arbitrary iteration. It is the basic source of non-determinism in Boostan.
+
+5. What does Boogaloo do and how does it complement a full verifier?
+
+> [!success]- Answer
+> Boogaloo is an interpreter and symbolic executor for Boogie. With flags like `-o`, `-n`, `-c=0`, and `-p`, it explores executions of a procedure, including non-deterministic ones, before you invoke a heavy proof tool. This lets you catch obvious bugs and sanity-check the model cheaply; once Boogaloo is happy, you run the verifier for a real correctness proof.
+
 ---
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/05-smt-lib|Previous: (y-05) SMT-LIB]] | [[/notes/lectures/programverification/07-relational-semantics|Next: (y-07) Relational Semantics]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

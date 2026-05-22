@@ -251,6 +251,33 @@ Transparency is order-dependent. Correct alpha blending usually requires drawing
 - **Depth buffer**: explain why unsorted triangles can still produce correct visibility.
 - **Alpha blending**: remember that transparent rendering is order-dependent.
 
+## Self-Check
+
+1. Why do we use 4D homogeneous coordinates instead of plain 3D coordinates?
+
+> [!success]- Answer
+> A 4x4 matrix can encode translation, rotation, scale, and perspective uniformly, but only because the extra $w$ coordinate exists. Translation is not linear in 3D, so it cannot be expressed by a 3x3 matrix; in 4D it slips into the matrix column for $w$. Perspective then arises from dividing by the resulting $w$ after the matrix multiply.
+
+2. What is the difference between clip space, NDC, and viewport coordinates?
+
+> [!success]- Answer
+> Clip space is the result of the projection matrix, with $w$ still present, and clipping happens there. After dividing by $w$, the visible region lies in normalized device coordinates, a canonical cube independent of window size. The viewport transform then maps NDC into actual pixel coordinates for the framebuffer.
+
+3. Write the Lambert diffuse formula and explain why it is view-independent.
+
+> [!success]- Answer
+> $L = k_d \circ I_L \circ \max(\mathbf{n} \cdot \mathbf{l}, 0)$. The light intensity depends only on the surface normal $\mathbf{n}$ and the light direction $\mathbf{l}$, not on the view direction. Rotating the camera does not change the dot product, so the diffuse brightness stays the same regardless of where the camera looks from.
+
+4. How does the rasterizer decide whether a sample is inside a triangle, and how does it interpolate attributes?
+
+> [!success]- Answer
+> Each triangle edge defines a half-plane; a sample is inside iff it lies on the correct side of all three edges (the edge-equation test). For samples that pass, barycentric coordinates $(\lambda_1, \lambda_2, \lambda_3)$ with $\sum \lambda_i = 1$ express the sample as a weighted combination of the vertices, and the same weights interpolate per-vertex color, normal, and texture coordinates.
+
+5. Why does the depth buffer remove the need to sort opaque triangles, but not transparent ones?
+
+> [!success]- Answer
+> For opaque triangles the depth test keeps the closest fragment per pixel regardless of submission order. For transparent fragments the blend equation depends on the order in which fragments are applied to the framebuffer; back-to-front compositing of transparent objects is needed to get the correct color, which sorting (or order-independent transparency techniques) provides.
+
 ---
 
 [[notes/lectures/realtimegraphics/03_gpu_architecture_parallelism|Back: (y-03) GPU Architecture]] | [[notes/lectures/realtimegraphics/index|(y) Back to RTG Index]] | [[notes/lectures/realtimegraphics/05_shading_models|Next: (y-05) Shading Models]]

@@ -882,6 +882,33 @@ class Discriminator(nn.Module):
 - GAN Zoo (hundreds of GAN variants): https://github.com/hindupuravinash/the-gan-zoo
 - Tips and tricks for training GANs: https://github.com/soumith/ganhacks
 
+## Self-Check
+
+1. State the vanilla GAN minimax objective and describe each player's role.
+
+> [!success]- Answer
+> $\min_G \max_D \mathbb{E}_{x \sim p_{\text{data}}}[\log D(x)] + \mathbb{E}_{z \sim p_z}[\log(1 - D(G(z)))]$. $D$ maximizes its accuracy at distinguishing real samples from generated ones. $G$ minimizes $D$'s ability to tell them apart, which is equivalent to making $G(z)$ indistinguishable from $p_{\text{data}}$. At the Nash equilibrium $D \equiv 1/2$ and $p_g = p_{\text{data}}$.
+
+2. What is mode collapse, and what are two common ways to mitigate it?
+
+> [!success]- Answer
+> Mode collapse is when the generator finds one (or a few) outputs that fool the discriminator and stops covering the data distribution. Mitigations include mini-batch discrimination (let $D$ judge a batch jointly so collapsed batches are detectable), Wasserstein loss / WGAN-GP for smoother gradients, unrolled GANs, and feature-matching objectives.
+
+3. Why does the Wasserstein distance give smoother gradients than the original JS-divergence objective?
+
+> [!success]- Answer
+> When the supports of real and generated distributions do not overlap, the JS divergence saturates at $\log 2$ and its gradient is uninformative. The Wasserstein (Earth Mover) distance still measures how far apart the distributions are even when their supports are disjoint, so its gradient continues to push the generator in a useful direction. WGAN enforces a Lipschitz constraint on the critic to make this distance tractable.
+
+4. Compare Pix2Pix and CycleGAN for image-to-image translation.
+
+> [!success]- Answer
+> Pix2Pix needs paired training examples (each input image paired with the desired output) and uses a conditional GAN plus L1 reconstruction loss. CycleGAN handles unpaired data: it trains two generators $G: X \to Y$ and $F: Y \to X$ plus two discriminators, with a cycle-consistency loss requiring $F(G(x)) \approx x$ and $G(F(y)) \approx y$. The cycle loss compensates for the lack of paired supervision.
+
+5. Why is FID preferred over Inception Score for evaluating GAN samples?
+
+> [!success]- Answer
+> Inception Score rewards confident, diverse predictions but does not compare generated samples to the real data distribution, so a mode-collapsed GAN can score well. FID fits Gaussians to InceptionV3 features of real and generated images and measures their Fréchet distance, so it captures both fidelity and diversity. Lower FID means the generated distribution is closer to the real one.
+
 ---
 
 ## References

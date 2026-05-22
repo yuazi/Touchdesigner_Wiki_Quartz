@@ -799,6 +799,33 @@ accuracy = model.score(X_test, y_test)
 7. BatchNorm normalises activations and makes optimisation more stable
 8. Regularisation improves generalisation; strong defaults are **weight decay + dropout**
 
+## Self-Check
+
+1. Why does an MLP need non-linear activation functions between its layers?
+
+> [!success]- Answer
+> Without a non-linearity, stacked linear layers collapse into a single linear transformation: $W_3 W_2 W_1 x = W_{\text{total}} x$. That defeats the point of going deep, since the composite model can only represent linear functions. ReLU, tanh, sigmoid, and friends inject the non-linearity that lets a deep network express richer function classes.
+
+2. Compare batch, stochastic, and mini-batch gradient descent in one sentence each.
+
+> [!success]- Answer
+> Batch gradient descent computes one gradient over all $n$ training samples per update: stable but slow and memory-heavy. SGD updates after every single sample: cheap and noisy, which helps escape local minima but does not settle precisely. Mini-batch processes a small subset $M$: balances stability against compute, and is the default in modern deep learning.
+
+3. Why does the Sigmoid activation cause vanishing gradients in deep networks?
+
+> [!success]- Answer
+> The derivative $\sigma'(x) = \sigma(x)(1-\sigma(x))$ peaks at $0.25$ and decays to nearly zero when $|x|$ is large. Stacking many sigmoid layers multiplies these small gradients during backprop, so the gradient flowing back into early layers becomes vanishingly small and those layers stop learning. ReLU and its variants avoid this by not saturating on the positive side.
+
+4. Why is Kaiming initialization preferred over Xavier for ReLU networks?
+
+> [!success]- Answer
+> Xavier assumes a zero-mean activation function like tanh and chooses $\text{std} = 1/\sqrt{D_{\text{in}}}$ so layer-to-layer variance is preserved. ReLU zeros half of its inputs, halving the variance carried forward. Kaiming corrects for this with $\text{std} = \sqrt{2/D_{\text{in}}}$, doubling the variance so the signal stays stable through deep ReLU stacks.
+
+5. What does Batch Normalization compute, and what are $\gamma$ and $\beta$ for?
+
+> [!success]- Answer
+> For a mini-batch $B$, BatchNorm computes the batch mean $\mu_B$ and variance $\sigma_B^2$, normalizes each activation to $\hat x_i = (x_i - \mu_B)/\sqrt{\sigma_B^2 + \varepsilon}$, then applies a learned affine transform $y_i = \gamma \hat x_i + \beta$. $\gamma$ and $\beta$ let the network undo the normalization if a different mean or scale is actually optimal, so BatchNorm never loses representational power.
+
 ---
 
 ## References

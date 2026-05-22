@@ -156,5 +156,32 @@ A formal proof is like a game of LEGO. You start with your base blocks (axioms) 
 4. **SMT Solvers**: Automated tools for solving logic.
 5. **Proof Systems**: Mechanical rules for human (or machine) reasoning.
 
+## Self-Check
+
+1. State the relationship between validity and unsatisfiability used to reduce checking validity to a SAT query.
+
+> [!success]- Answer
+> A formula $F$ is **valid** if and only if $\neg F$ is **unsatisfiable**. This lets SMT solvers check validity by negating the formula and asking the satisfiability question instead, which is the direction the solver natively supports.
+
+2. Given $F_5: (P \to Q) \wedge (P \vee Q) \wedge \neg Q$, what does a truth table show about its satisfiability?
+
+> [!success]- Answer
+> The truth table evaluates $F_5$ for all four assignments of $P$ and $Q$ and the final column is false in every row. So $F_5$ is **unsatisfiable**: no assignment makes it true, which also means $\neg F_5$ is valid.
+
+3. Why are truth tables impractical for real verification problems, and what replaces them?
+
+> [!success]- Answer
+> For $n$ variables, a truth table needs $2^n$ rows, so 100 variables already exceeds astronomical sizes. SMT solvers like Z3 replace the brute-force enumeration with smarter algorithms (CDCL and friends) that handle thousands of variables in milliseconds. The lecture writes the formula in SMT-LIB prefix notation and invokes `check-sat` on the solver.
+
+4. What is the difference between the **(I$\wedge$)** rule and the **(E$\wedge$)** rule in NPL?
+
+> [!success]- Answer
+> **(I$\wedge$)** is the introduction rule: from separate proofs of $\Gamma \vdash F_1$ and $\Gamma \vdash F_2$ it concludes $\Gamma \vdash F_1 \wedge F_2$. **(E$\wedge_i$)** is the elimination rule: from a proof of $\Gamma \vdash F_1 \wedge F_2$ it concludes $\Gamma \vdash F_i$. Introduction builds conjunctions; elimination takes them apart.
+
+5. Sketch how to derive $\{A, A \to B\} \vdash A \wedge B$ in NPL.
+
+> [!success]- Answer
+> Start at the goal and apply **(I$\wedge$)**, splitting into two sub-goals: $\Gamma \vdash A$ and $\Gamma \vdash B$. The first is closed immediately by **(Ax)** because $A \in \Gamma$. For the second, apply **(E$\to$)** (modus ponens) using $\Gamma \vdash A$ and $\Gamma \vdash A \to B$, both of which close by **(Ax)**.
+
 ---
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/01-introduction|Previous: (y-01) Introduction to Program Verification]] | [[/notes/lectures/programverification/03-first-order-logic|Next: (y-03) First-Order Logic]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

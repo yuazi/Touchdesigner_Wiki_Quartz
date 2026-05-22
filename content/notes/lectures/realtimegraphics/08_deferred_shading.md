@@ -273,6 +273,33 @@ The result is dramatically better visual quality at the same bit depth than naiv
 - **Visibility Buffer**: store only depth and primitive ID, reconstruct attributes in the shading pass through barycentric interpolation; smaller and more material-flexible than a G-Buffer.
 - **Normal encodings**: XY + sign halves the storage but needs the Z sign; best-fit normals minimize quantization error by relaxing unit length.
 
+## Self-Check
+
+1. Why does deferred shading scale better than forward shading when there are many lights?
+
+> [!success]- Answer
+> Forward shading runs the full lighting equation for every fragment of every drawn surface, even fragments that turn out to be hidden later. Deferred shading first writes geometry attributes into a G-Buffer (one pass over geometry), then runs the lighting equation in screen space once per visible pixel. The lighting cost no longer multiplies with overdraw and instead scales with screen pixels and lights.
+
+2. Why does transparency break a standard deferred pipeline, and how do production engines work around it?
+
+> [!success]- Answer
+> A G-Buffer stores attributes for exactly one surface per pixel, namely the nearest one. Transparent surfaces need contributions from multiple surfaces along the view ray, so they cannot be encoded directly. The workaround is hybrid rendering: opaque objects go through the deferred path, then a separate forward pass renders transparent objects back-to-front, blending into the lit image.
+
+3. Why is the position channel typically reconstructed from depth instead of stored explicitly?
+
+> [!success]- Answer
+> An RGBA32F world-position texture is 16 bytes per pixel, around 132 MB at 4K, and the data is already implicit in the depth buffer plus screen coordinates plus the inverse view-projection matrix. Reconstructing it costs a few ALU operations in the lighting pass but saves an entire G-Buffer slot's memory and bandwidth.
+
+4. How is the radius of a point-light bounding sphere chosen, and why is it used?
+
+> [!success]- Answer
+> A point light's contribution falls as $C \cdot \text{Intensity} / r^2$. Setting that below $1/256$ (the 8-bit threshold) gives $r = 16 \sqrt{C \cdot \text{Intensity}}$. Drawing the sphere mesh restricts the lighting pass to pixels actually inside the light's effective range, so the per-light cost stops scaling with the full screen.
+
+5. What does a Visibility Buffer store, and why does it scale better than a G-Buffer for material-rich scenes?
+
+> [!success]- Answer
+> A Visibility Buffer stores only what is needed to identify the visible triangle at each pixel: depth and primitive ID, optionally barycentric coordinates. The shading pass looks up vertex attributes through the primitive ID and interpolates them on demand. Memory is essentially fixed regardless of material complexity, so engines with many material channels (Unreal's Nanite path, for example) benefit because they no longer pay for every channel of every pixel up front.
+
 ---
 
 [[notes/lectures/realtimegraphics/06_textures|Back: (y-06) Textures]] | [[notes/lectures/realtimegraphics/index|RTG Index]]

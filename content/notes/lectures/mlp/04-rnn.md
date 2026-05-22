@@ -740,6 +740,33 @@ From the lecture's closing slide:
 
 > Further reading: _LSTM: A Search Space Odyssey_ — Greff et al., 2017. Systematic comparison of LSTM variants.
 
+## Self-Check
+
+1. Why do vanilla RNNs suffer from vanishing or exploding gradients on long sequences?
+
+> [!success]- Answer
+> Backpropagation through time multiplies the same recurrent weight matrix $W_{hh}$ at every timestep. If its eigenvalues are less than 1, the gradient magnitude shrinks geometrically; if greater than 1, it grows geometrically. Over hundreds of steps the signal either vanishes (no learning of long-range dependencies) or explodes (numerical blow-up).
+
+2. How do LSTMs mitigate vanishing gradients compared to a vanilla RNN?
+
+> [!success]- Answer
+> LSTMs introduce a cell state that is updated through additive interactions gated by the input, forget, and output gates. Because the cell state is mostly added to rather than multiplied through a non-linearity, gradients can flow back through many steps without geometric decay. The gates learn when to write, keep, or forget information.
+
+3. Compare the parameter cost of an LSTM versus a GRU.
+
+> [!success]- Answer
+> An LSTM has four gate matrices (input, forget, output, and the candidate update), so its weight count is roughly $4\times$ a vanilla RNN. A GRU collapses the gating into two gates (reset and update) and has no separate cell state, giving roughly $3\times$ a vanilla RNN. GRUs are slightly less expressive but cheaper and often comparable in practice.
+
+4. Why can a bidirectional LSTM not be used for autoregressive generation?
+
+> [!success]- Answer
+> A BiLSTM concatenates a forward pass and a backward pass over the entire sequence, so producing the state at position $t$ requires knowing tokens at positions $> t$. Autoregressive generation produces one token at a time, with future tokens still unknown, so the backward pass cannot be run. BiLSTMs are useful for tasks like tagging or classification where the full sequence is available.
+
+5. What standard fixes exist for exploding gradients and for the sequential bottleneck of RNNs?
+
+> [!success]- Answer
+> Exploding gradients are handled by gradient clipping: rescaling the gradient vector when its norm exceeds a threshold. The sequential bottleneck (each $h_t$ depends on $h_{t-1}$) cannot be solved within the RNN family because the dependency is inherent; the lecture's resolution is moving to Transformers, where positions are processed in parallel via self-attention.
+
 ---
 
 ## References

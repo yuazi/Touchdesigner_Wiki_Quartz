@@ -167,5 +167,32 @@ Let $\Gamma = \{\forall x,y,z. p(x,y) \wedge p(y,z) \to p(x,z), \forall x,y. p(x
 3.  **Models** give meaning to symbols.
 4.  **Decidability**: Satisfiability in FOL is **undecidable**, but Validity is **semi-decidable**.
 
+## Self-Check
+
+1. What is the difference between a **term** and a **formula** in FOL?
+
+> [!success]- Answer
+> Terms denote objects and are built from variables, constants, and function symbols applied to other terms. Formulas denote truth values and are built from atoms $p(t_1, \dots, t_n)$, the constant `false`, propositional connectives, and quantifiers. Terms never have a truth value on their own; formulas always do (relative to a model and assignment).
+
+2. What is needed to assign a truth value to a FOL formula?
+
+> [!success]- Answer
+> A model $M = (D, I)$ with a non-empty domain $D$ and an interpretation $I$ for each constant, function, and predicate symbol, plus a variable assignment $\rho: V_{Var} \to D$. For a closed formula (sentence), the truth value is independent of $\rho$ because no free variables remain.
+
+3. Why does the substitution $\phi[x \mapsto t]$ sometimes require renaming a bound variable?
+
+> [!success]- Answer
+> A naive substitution can let a variable inside $t$ be captured by an existing quantifier in $\phi$, changing the meaning. If $\psi = \exists x. \phi$ and $x \in \text{vars}(\sigma)$, the rule renames $x$ to a fresh $x'$ first and then substitutes, preserving the original semantics. Capture-avoiding substitution is the engine of every quantifier rule that follows.
+
+4. State the side condition for **($I\forall$)** and explain why it is needed.
+
+> [!success]- Answer
+> The rule requires $y \notin \text{freevars}(\Gamma)$ (and either $x = y$ or $y \notin \text{freevars}(\phi)$). The condition forces $y$ to be a genuinely arbitrary element: if $\Gamma$ already constrained $y$ in some way, the proof would only establish the property for that specific $y$, not for all $x$.
+
+5. Is satisfiability decidable in full first-order logic? What about validity?
+
+> [!success]- Answer
+> Satisfiability in FOL is **undecidable** (a consequence of Church-Turing). Validity is **semi-decidable**: proof systems can enumerate derivations and will find a proof for any valid formula, but for an invalid formula the search may run forever without ever halting.
+
 ---
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/02-propositional-logic|Previous: (y-02) Propositional Logic]] | [[/notes/lectures/programverification/04-first-order-theories|Next: (y-04) First-Order Theories]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

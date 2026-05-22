@@ -111,5 +111,32 @@ We will cover:
 4. **Challenges**: Undecidability, Ambiguity, and the difficulty of finding proofs.
 5. We will use **Z3** and **SMT-LIB** to automate our reasoning.
 
+## Self-Check
+
+1. Why is testing fundamentally insufficient for safety-critical systems?
+
+> [!success]- Answer
+> Testing only exercises a finite set of inputs, so it can prove the presence of bugs but never their absence. A function like `y / (myHash(x) - 23)` might crash only for one rare input that random testing never hits. Verification reasons about all inputs symbolically through proof, which is what safety-critical software actually needs.
+
+2. What are the two inputs to a program verifier, and what are the two possible outputs?
+
+> [!success]- Answer
+> The inputs are the program (in C, Java, Boogie, etc.) and the specification (a logical statement of what should hold, such as no division by zero, in-bounds array access, or no assertion violations). The output is either "yes, the program satisfies the specification" or "no, with a counterexample showing a violating execution".
+
+3. How does the Halting Problem constrain what a program verifier can do?
+
+> [!success]- Answer
+> Halting is undecidable, so no verifier can be sound, complete, and always terminating for every program. The lecture's strategy is to give up on universal coverage and instead build tools that are useful for the programs we actually care about, accepting incompleteness or false alarms as a trade-off.
+
+4. Why is precise mathematical semantics a prerequisite for verification?
+
+> [!success]- Answer
+> Different languages give different answers for the same expression. The lecture notes that `x := -7 / 5` is `-1` in C, `-2` in Python, and `-1.4` in JavaScript. Without a fixed mathematical meaning for each construct, you cannot prove anything about the program, because the proof would depend on which interpretation you assumed.
+
+5. Why is finding loop invariants considered one of the central challenges of verification?
+
+> [!success]- Answer
+> A correct program may rely on a subtle invariant (for example, "x and y are always odd") that the proof system can use mechanically, but that a human or tool has to discover in the first place. The mechanical checking part is straightforward once the invariant is given; the creative step of inventing the right invariant is what makes proofs hard to find.
+
 ---
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/02-propositional-logic|Next: (y-02) Propositional Logic]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

@@ -232,6 +232,33 @@ Bindless and pointer-like models reduce the cost of binding many resources, but 
 - **Modern APIs**: explain the tradeoff between explicit control and boilerplate.
 - **Presentation**: distinguish immediate, FIFO, and mailbox behavior.
 
+## Self-Check
+
+1. Why do GPUs keep many warps or wavefronts resident on the same SIMT unit?
+
+> [!success]- Answer
+> When one warp stalls on a memory read, the scheduler can switch to another resident warp that has its operands ready. That latency hiding keeps the arithmetic units busy without expensive caches. The downside is that performance depends on having enough independent work to fill the slots.
+
+2. Why does branch divergence within one warp hurt throughput?
+
+> [!success]- Answer
+> All lanes of a warp execute the same instruction in lockstep. If lanes take different sides of a branch, the warp serially executes each branch with the other lanes masked off, so the cost is the sum of both paths instead of one. Coherent branching keeps the SIMT model fast.
+
+3. How does the z-buffer let the GPU avoid sorting all triangles globally?
+
+> [!success]- Answer
+> The depth buffer stores the closest depth seen so far at each pixel. When a new fragment arrives, the GPU compares its depth and writes the fragment only if it is closer. The comparison is local, so the rasterizer can process triangles in any order while still producing the same visible-surface result.
+
+4. Why is early-Z (and hierarchical depth) so valuable in fragment-heavy scenes?
+
+> [!success]- Answer
+> Fragment shading can be expensive (texture reads, complex math, several lights). Rejecting a hidden fragment before it runs the shader saves all of that work. Hierarchical depth aggregates depth at tile level so entire tiles of fragments can be killed in one check, before any per-fragment work begins.
+
+5. Compare immediate, FIFO, and mailbox presentation modes.
+
+> [!success]- Answer
+> Immediate pushes the new frame to the display as soon as it is ready, which is low-latency but can tear. FIFO queues frames and presents them in scan-out order, which avoids tearing but adds latency when the queue fills. Mailbox keeps only the most recent completed frame, dropping older ones, which gives low latency without tearing but at the cost of wasted GPU work for the dropped frames.
+
 ---
 
 [[notes/lectures/realtimegraphics/02_graphics_pipeline|Back: (y-02) Graphics Pipeline]] | [[notes/lectures/realtimegraphics/index|(y) Back to RTG Index]] | [[notes/lectures/realtimegraphics/04_cg_primer|Next: (y-04) Graphics Primer]]

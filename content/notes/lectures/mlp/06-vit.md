@@ -765,6 +765,33 @@ From the lecture's closing slide — notable models and frameworks as of WS 2025
 | **Contrastive learning**       | Positive (same image, different augmentations) vs negative pairs; minimize/maximize distance                                                                |
 | **DINO**                       | Teacher (EMA) + student; global views to teacher only; local-to-global correspondence; centering + sharpening prevents mode collapse; emergent segmentation |
 
+## Self-Check
+
+1. How does a Vision Transformer turn an image into a sequence of tokens?
+
+> [!success]- Answer
+> The image is split into non-overlapping patches (16×16 in the original ViT), each patch is flattened and linearly projected to a token embedding, and a learned [CLS] token is prepended. Positional embeddings are added to preserve spatial layout. The resulting sequence is fed into a standard Transformer encoder, and the final [CLS] embedding feeds the classification head.
+
+2. Why does ViT need much more data than a comparably sized ResNet to perform well?
+
+> [!success]- Answer
+> CNNs encode strong inductive biases like locality and translation equivariance directly into the architecture, so they learn useful features from relatively small datasets. ViT lacks those biases and has to learn similar invariances from data alone, so it only matches or beats ResNets once the pretraining set is very large (JFT-300M scale). On small datasets a ResNet usually wins.
+
+3. What problem does DETR solve, and how does its bipartite-matching loss avoid the need for NMS?
+
+> [!success]- Answer
+> DETR reformulates object detection as predicting a fixed set of $N$ object queries from a CNN-backbone Transformer. The training loss matches predictions to ground-truth boxes with Hungarian bipartite matching, so each ground truth is paired with exactly one prediction and the rest are pushed to "no object". This removes the need for hand-tuned anchors and non-maximum suppression.
+
+4. What are the main weaknesses of standard DETR, and how does Deformable DETR address them?
+
+> [!success]- Answer
+> Standard DETR converges slowly and detects small objects poorly because dense attention over the full feature map is expensive and information dilutes across positions. Deformable DETR uses sparse deformable attention, which only attends to a small set of learned reference points, and adds multi-scale features, making it faster to train and better on small objects.
+
+5. How does DINO use a teacher-student setup to learn self-supervised representations?
+
+> [!success]- Answer
+> Two networks share architecture: the student is updated by gradient descent, the teacher's weights are an exponential moving average of the student's. Both see different augmented crops of the same image (only global crops go to the teacher) and the student is trained to match the teacher's output distribution. Centering and sharpening the teacher's output prevents mode collapse, and the resulting features show emergent object segmentation properties.
+
 ---
 
 ## References

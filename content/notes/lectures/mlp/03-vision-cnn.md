@@ -633,6 +633,33 @@ class ResidualBlock(nn.Module):
 
 ---
 
+## Self-Check
+
+1. What two ideas did AlexNet popularize for training deep CNNs at scale?
+
+> [!success]- Answer
+> Replacing saturating activations with ReLU so deep networks could train without vanishing gradients, and using Dropout in the fully connected head as regularization on the very large parameter budget. Together with GPU training, those choices made deep CNNs practical and won ImageNet 2012 by a wide margin.
+
+2. Why does VGG prefer stacking many $3 \times 3$ convolutions over using fewer large $7 \times 7$ filters?
+
+> [!success]- Answer
+> Three stacked $3 \times 3$ layers have the same receptive field as one $7 \times 7$ layer but use fewer parameters and insert two extra non-linearities between them. The stack therefore captures the same spatial context with more representational depth and less compute, which was the key VGG insight.
+
+3. What "degradation problem" do ResNets solve, and how do residual blocks help?
+
+> [!success]- Answer
+> In plain very deep networks, training error increases past a certain depth even though the model is more expressive: optimization, not capacity, is the issue. Residual blocks reformulate each layer as $F(x) + x$, so a block can default to the identity if no transformation is helpful. This keeps gradients flowing back to early layers through the skip connection and lets very deep nets (ResNet-152) train successfully.
+
+4. In the implementation snippet, what is the shortcut's 1x1 convolution for?
+
+> [!success]- Answer
+> When the residual block changes channels or uses stride to downsample, the input $x$ no longer matches the shape of the main path's output. A $1 \times 1$ convolution with the same stride is applied to the shortcut to project $x$ into the correct channel count and resolution, so the additive skip connection is dimensionally consistent.
+
+5. Why is BatchNorm placed inside each residual block in modern ResNets?
+
+> [!success]- Answer
+> BatchNorm stabilizes the distribution of activations going into the next layer, which allows higher learning rates and speeds up convergence. Inside a residual block it also keeps the magnitude of the $F(x)$ term aligned with the identity branch, so neither dominates the sum. The standard pattern is Conv -> BN -> ReLU.
+
 ## References
 
 - Tan, Le (2019) — EfficientNet: Rethinking model scaling for convolutional neural networks. _ICML_.

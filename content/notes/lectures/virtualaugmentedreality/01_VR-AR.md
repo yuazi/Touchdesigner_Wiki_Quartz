@@ -99,9 +99,24 @@ The point is more specific than a generic hype-cycle diagram: AR and VR do not m
 ## Self-Check
 
 1. Why is immersion objective while presence is subjective?
+
+> [!success]- Answer
+> Immersion is a property of the system: field of view, resolution, tracking volume, latency, refresh rate, audio, haptics, and interaction capability. Those can all be measured. Presence is the user's internal feeling of being in the mediated environment, which depends on the individual and the context. The same immersive setup can produce strong presence for one user and a break in presence for another.
+
 2. Which three criteria make an application AR according to Azuma?
+
+> [!success]- Answer
+> It must combine real and virtual content, be interactive in real time, and be registered in 3D. All three are required; a static overlay or a non-real-time composite does not qualify.
+
 3. Where does augmented virtuality sit on Milgram's continuum?
+
+> [!success]- Answer
+> Between augmented reality and virtual environment, closer to the virtual end. The world is mostly virtual, with real elements brought into it. The continuum runs: real environment, augmented reality, augmented virtuality, virtual environment.
+
 4. Why does AR need tracking and registration more explicitly than ordinary screen graphics?
+
+> [!success]- Answer
+> Ordinary screen graphics live in the display's coordinate system; the real world is irrelevant. AR overlays virtual content on the physical environment, so the system must know the user's viewpoint and the world's geometry well enough to place virtual content at the right pixel. Without tracking and registration the overlay drifts and the illusion collapses, which is Azuma's "registered in 3D" criterion.
 
 ---
 

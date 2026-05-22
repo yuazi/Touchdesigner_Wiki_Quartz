@@ -132,9 +132,24 @@ This conflict explains why comfortable UI distances matter. Light-field and vari
 ## Self-Check
 
 1. Why does toe-in rendering create vertical parallax?
+
+> [!success]- Answer
+> Toe-in rendering rotates the two virtual cameras inward toward the viewing target instead of keeping them parallel with shifted frusta. The rotation tilts the image planes relative to each other, so a single 3D point projects to slightly different vertical positions in the two eyes. The visual system does not use vertical disparity for stereo depth, so the result is eye strain rather than depth perception. Off-axis rendering keeps the cameras parallel and shifts the frusta, avoiding this problem.
+
 2. What is the difference between stereopsis and convergence?
+
+> [!success]- Answer
+> Stereopsis comes from horizontal retinal disparity: the two eyes see slightly different images because they are separated by the interpupillary distance, and the brain extracts depth from that disparity. Convergence is the muscular cue: both eyes rotate inward to fixate on a near object, and the brain reads the rotation angle as depth. Stereopsis is the image cue, convergence is the motor cue.
+
 3. Why is divergent parallax uncomfortable?
+
+> [!success]- Answer
+> Divergent parallax asks the two eyes to rotate outward so their optical axes diverge. Human eyes do not naturally diverge beyond parallel for far objects, so the visual system cannot fuse the image and the user experiences strain or double vision. Stereo content should keep parallax between zero and positive within a comfortable budget.
+
 4. What is vergence-accommodation conflict?
+
+> [!success]- Answer
+> In a real scene, vergence (eye rotation toward an object) and accommodation (lens focus) cue the same distance. In a HMD the display sits at a fixed focal plane while vergence is driven by the rendered disparity, so the two cues disagree whenever the virtual object's apparent depth differs from the display's focal depth. This mismatch causes eye fatigue and constrains where comfortable UI can be placed; light-field and varifocal displays try to reduce the conflict.
 
 ---
 

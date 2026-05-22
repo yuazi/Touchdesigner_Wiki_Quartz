@@ -100,5 +100,32 @@ Where $\text{post}(Y, R) = \{ s' \mid \exists s \in Y, (s, s') \in R \}$.
 4.  **While Loops**: Use reflexive transitive closure ($R^*$) to model arbitrary iterations.
 5.  **Correctness**: The set of reachable final states must be a subset of the desired postcondition.
 
+## Self-Check
+
+1. Why does relational semantics view a statement as a binary relation rather than a function?
+
+> [!success]- Answer
+> A function takes one input state to one output state, which does not handle non-determinism (`havoc`) or filtering (`assume`). A binary relation $R \subseteq \text{State} \times \text{State}$ allows a state to be related to several successors (non-determinism) or to none at all (a blocked path). This matches Boostan's actual behavior.
+
+2. Give the relation $[[x := e]]$ in words.
+
+> [!success]- Answer
+> The pair $(s, s')$ is in $[[x := e]]$ iff $s'(x)$ equals the value of $e$ evaluated in $s$, and $s'$ agrees with $s$ on every other variable. Assignment changes exactly the assigned variable and leaves the rest of the state untouched.
+
+3. How is sequencing $st_1; st_2$ defined in relational semantics, and what does the intermediate state mean?
+
+> [!success]- Answer
+> $[[st_1; st_2]] = [[st_1]] \circ [[st_2]] = \{(s, s'') \mid \exists s'. (s, s') \in [[st_1]] \wedge (s', s'') \in [[st_2]]\}$. The intermediate state $s'$ is the state after $st_1$ runs and before $st_2$ runs; sequencing is exactly relational composition.
+
+4. Why does the semantics of `while (B) {st}` use the reflexive transitive closure $R^*$?
+
+> [!success]- Answer
+> A loop may execute its body zero, one, or arbitrarily many times before $B$ becomes false. $R^*$ is the smallest relation containing all finite iterations of $R$ plus the identity (zero iterations). Intersecting with $\text{State} \times \{\neg B\}$ keeps only those final states where the loop guard has become false, i.e., the loop actually terminated.
+
+5. What does $\text{post}(\{\phi_{\text{pre}}\}, [[st]]) \subseteq \{\phi_{\text{post}}\}$ say about partial correctness?
+
+> [!success]- Answer
+> For every initial state satisfying $\phi_{\text{pre}}$, every state reachable through $[[st]]$ satisfies $\phi_{\text{post}}$. It is partial because the inclusion is vacuous when $st$ has no terminating execution from $s$: the relation simply contains no pair starting at $s$. Total correctness would additionally require termination.
+
 ---
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/06-boogie-and-boostan|Previous: (y-06) Boogie and Boostan]] | [[/notes/lectures/programverification/08-hoare-proof-system|Next: (y-08) Hoare Proof System]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

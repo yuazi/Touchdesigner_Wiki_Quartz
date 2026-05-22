@@ -128,5 +128,32 @@ SMT solvers support integer division `div`, but it comes with **pitfalls**:
 4.  **Sorted Logic** ensures that we don't accidentally add a Boolean to an Integer.
 5.  **Logics** define the specific subset of FOL and theories being used.
 
+## Self-Check
+
+1. Translate $x + y = 10 \wedge x \ge 0$ into SMT-LIB prefix notation.
+
+> [!success]- Answer
+> `(and (= (+ x y) 10) (>= x 0))`. Each operator comes before its operands, and conjunctions wrap the two atoms with `and`.
+
+2. How do you use `(check-sat)` to prove that a formula $F$ is valid?
+
+> [!success]- Answer
+> Assert the negation `(assert (not F))` and call `(check-sat)`. If the solver replies `unsat`, the negation has no model, so $F$ is valid. If it replies `sat`, the returned model is a concrete counterexample to $F$.
+
+3. What logic label would you choose for verifying a program that manipulates integer counters and array indices, and why?
+
+> [!success]- Answer
+> `AUFLIA`: Arrays, Uninterpreted Functions, and Linear Integer Arithmetic. It includes the array theory you need for indexed memory, uninterpreted functions for code you do not unfold, and linear integer arithmetic for the counter math. `QF_LIA` alone would not let you reason about arrays; `QF_A` alone would not handle the integer arithmetic.
+
+4. Why is `(div y z)` dangerous when `z` is a variable?
+
+> [!success]- Answer
+> Two issues. First, integer division by a variable makes the formula non-linear, and non-linear integer arithmetic is undecidable in general, so the solver may time out or give up. Second, division by zero is implementation-defined: Z3 picks some fixed but unspecified value, so `(div y 0)` does not raise an error but produces a value the formula then reasons about as if it were real, which can hide real bugs.
+
+5. List the four main SMT-LIB commands in the order a typical script uses them.
+
+> [!success]- Answer
+> `define-fun` (or `declare-fun`) to introduce symbols, `assert` to state the constraints, `check-sat` to ask whether they are jointly satisfiable, and `get-model` to retrieve a concrete satisfying assignment when the answer is `sat`. The lifecycle is declare, assert, check, model.
+
 ---
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/04-first-order-theories|Previous: (y-04) First-Order Theories]] | [[/notes/lectures/programverification/06-boogie-and-boostan|Next: (y-06) Boogie and Boostan]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

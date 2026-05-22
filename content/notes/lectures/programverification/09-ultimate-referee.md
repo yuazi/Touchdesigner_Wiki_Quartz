@@ -128,5 +128,32 @@ Ultimate Referee helps you debug your proof by pointing out where the Hoare logi
 2. **Reliability**: Allows us to check the results of complex, non-transparent verifiers.
 3. **Efficiency**: Reduces the time spent on manual proof checking.
 
+## Self-Check
+
+1. What two inputs does Ultimate Referee take, and what does it check?
+
+> [!success]- Answer
+> A Boogie program whose loops are annotated with candidate invariants using the `invariant` keyword, and a correctness specification (typically a `requires`/`ensures` pair). It checks whether there is some Hoare derivation that uses the given formulas as loop invariants of the respective while rules.
+
+2. According to the "Guide for Finding a Derivation," in which direction should sequential composition be processed, and why?
+
+> [!success]- Answer
+> Right to left, i.e., backwards. The assignment axiom is a backward rule (substitute into the postcondition), so chaining assignments naturally proceeds from the end of the program toward the start. Each step turns a postcondition into the precondition that must hold just before that statement.
+
+3. For the `Sum(n)` example, the invariant `invariant sum == 0;` is rejected with "inductivity check failed". Why?
+
+> [!success]- Answer
+> Inductivity asks: assuming the invariant holds before an arbitrary iteration, does it still hold after one iteration of the body? After the first iteration the body executes `i := i + 1; sum := sum + i`, so `sum` becomes 1. The invariant `sum == 0` no longer holds, so the body fails to preserve it.
+
+4. How does Ultimate Referee's strictness differ from the witness validator built into Ultimate?
+
+> [!success]- Answer
+> Ultimate Referee insists on a strict Hoare derivation using exactly the given invariants. The standard witness validator is more lenient: it tries to complete partial proofs by filling in missing pieces. Referee is therefore useful when you want to confirm that the invariants alone are enough, not just that some proof exists.
+
+5. Match each Referee error message to the part of the Hoare while rule it points at: "Initial entry failed", "Inductivity check failed", "Postcondition might not hold".
+
+> [!success]- Answer
+> "Initial entry failed" means the invariant does not hold when the loop is reached: the precondition does not imply $\varphi$. "Inductivity check failed" means $\{\varphi \wedge expr\}\ st\ \{\varphi\}$ is not derivable. "Postcondition might not hold" means $\varphi \wedge \neg expr$ on exit is not strong enough to imply the desired postcondition.
+
 ---
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/08-hoare-proof-system|Previous: (y-08) Hoare Proof System]] | [[/notes/lectures/programverification/10-array-theory-and-arrays-in-boostan|Next: (y-10) Array Theory and Arrays in Boostan]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

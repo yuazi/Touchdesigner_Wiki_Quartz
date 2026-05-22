@@ -187,13 +187,44 @@ This is the same idea as late-stage reprojection on consumer headsets: the rende
 ## Self-Check
 
 1. Why does AR need both camera calibration and display calibration?
+
+> [!success]- Answer
+> Camera calibration recovers the internal optical parameters and lens distortion so the captured image becomes a clean projection. Display calibration recovers where the user's eye sits relative to the HMD optics, so virtual content projected to the display lands on the same line of sight as the real point. Both are needed for registration: one fixes the input video, the other fixes the output projection to the eye.
+
 2. What is the difference between pincushion and barrel distortion?
+
+> [!success]- Answer
+> Both are radial lens distortions that grow toward the image edge. Pincushion bends straight grid lines inward toward the image center, while barrel bows them outward. They are modeled with a low-order radial polynomial and removed by undistorting the video with the calibrated coefficients.
+
 3. Why is a regular dot grid a useful calibration target, and why are multiple views needed?
+
+> [!success]- Answer
+> The dot grid has known geometry, so observed pixel positions of the dots give correspondences to known 3D points. Multiple views are needed because a single image leaves depth and scale ambiguities; varying the viewpoint introduces enough constraints to solve for the internal parameters.
+
 4. What is the drawback shared by shooting gallery and boresight calibration?
+
+> [!success]- Answer
+> Both are manual, human-in-the-loop procedures. Every sample depends on the user's alignment judgment, so accuracy is bounded by user attention and patience. The shooting gallery also requires a specific rig (chin rest plus joystick), and boresight depends on a calibrated physical box edge.
+
 5. How does SPAAM differ from calibration with an input device?
+
+> [!success]- Answer
+> SPAAM aligns crosshair targets shown on the display with a single tracked real-world point, repeated six or more times from different head poses. Calibration with a tracked pointing device replaces that fixed real-world point with a tracked pen, so the user can pick sample depths by stretching the arm. The math is the same; the pen gives more flexible sampling without installed targets in the room.
+
 6. What does hand-eye calibration solve, and why is it relevant when two tracking systems are used?
+
+> [!success]- Answer
+> It solves the unknown static transformation X between two tracked frames (here, the user's head H and a head-mounted camera E) when no shared reference point is available. With external tracker measurements A (R to H) and camera measurements B (E to T) collected from multiple poses, X is recovered from the AX = XB constraint. It applies whenever two trackers run in parallel but cannot directly compare measurements.
+
 7. Why does small angular error in tracking become a large positional error at distance?
+
+> [!success]- Answer
+> Angular error rotates the entire viewing ray, so the positional offset at a virtual object grows linearly with its distance from the user. Long lever arms amplify the rotation: a fraction-of-a-degree wobble at the head produces centimeters of misregistration on an object meters away. This is why rotational accuracy matters more than positional accuracy for visually convincing AR.
+
 8. How does prediction compensate for end-to-end latency in the rendering pipeline?
+
+> [!success]- Answer
+> The pipeline predicts twice. First it predicts the future pose at scan-out time and renders for that pose. After rendering, fresh tracking data is used to predict the latest pose, and the rendered frame is reprojected to match it before display. A high tracker update rate keeps both predictions accurate so the final warp stays small.
 
 ---
 

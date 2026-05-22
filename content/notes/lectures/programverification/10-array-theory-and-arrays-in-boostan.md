@@ -85,5 +85,32 @@ To prove that `{ \text{select}(a, 5) = 42 }` is a postcondition for `a[5] := 42`
 4.  **Extensionality** allows us to prove that two arrays are identical.
 5.  **Hoare Logic** handles arrays by treating the update as a substitution of the entire array object.
 
+## Self-Check
+
+1. Why does verification model arrays as total maps from indices to values, rather than as blocks of memory?
+
+> [!success]- Answer
+> Total maps fit cleanly into first-order logic: each array is a function symbol with `select` and `store` as operations, and the read-over-write axioms describe their behavior. The memory-block view would force the logic to talk about addresses, allocation, and aliasing, which is much harder to axiomatize and decide.
+
+2. State the two read-over-write axioms and what each one guarantees.
+
+> [!success]- Answer
+> Hit: $\text{select}(\text{store}(a, i, v), i) = v$ says reading the index you just wrote returns the value you wrote. Miss: $i \ne j \to \text{select}(\text{store}(a, i, v), j) = \text{select}(a, j)$ says writing index $i$ leaves every other index unchanged. Together they specify the entire input-output behavior of `store` and `select`.
+
+3. What does the extensionality axiom let you prove about arrays?
+
+> [!success]- Answer
+> $(\forall i. \text{select}(a, i) = \text{select}(b, i)) \leftrightarrow a = b$. Two arrays are equal exactly when they map every index to the same value. This lets you reason about array equality elementwise instead of pointwise on a specific representation.
+
+4. State the array-assignment axiom of Hoare logic and explain its substitution.
+
+> [!success]- Answer
+> $\{\phi[a \mapsto \text{store}(a, i, expr)]\}\ a[i] := expr\ \{\phi\}$. The whole array name `a` in the postcondition is replaced by the updated array term `store(a, i, expr)`. Like ordinary assignment, the rule reads backward: predict the precondition by substituting the updated value into the postcondition.
+
+5. Use the array-assignment rule to derive the weakest precondition of `a[5] := 42` for the postcondition $\text{select}(a, 5) = 42$.
+
+> [!success]- Answer
+> Substitute $a$ with $\text{store}(a, 5, 42)$ in the postcondition: $\text{select}(\text{store}(a, 5, 42), 5) = 42$. Apply read-over-write Hit to simplify the left-hand side to $42$, giving $42 = 42$, which is `true`. So the weakest precondition is `true`.
+
 ---
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/09-ultimate-referee|Previous: (y-09) Ultimate Referee]] | [[/notes/lectures/programverification/11-nondeterminism-havoc-assume|Next: (y-11) Nondeterminism: Havoc and Assume]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

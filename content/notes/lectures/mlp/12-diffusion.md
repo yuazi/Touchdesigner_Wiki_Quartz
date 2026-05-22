@@ -842,6 +842,33 @@ Diffusion often offers strong quality and coverage, but usually sacrifices speed
 | **Classifier-free guidance** | Train with and without text, then amplify $(\varepsilon_\text{cond} - \varepsilon_\text{uncond})$ by scale $w$ |
 | **GLIDE editing**            | Text-guided masked edits preserve global scene context while changing selected regions                         |
 
+## Self-Check
+
+1. Write the closed-form expression that lets a diffusion model jump from $x_0$ directly to $x_t$, and explain what each term controls.
+
+> [!success]- Answer
+> $x_t = \sqrt{\bar\alpha_t}\, x_0 + \sqrt{1 - \bar\alpha_t}\, \varepsilon$, with $\varepsilon \sim \mathcal{N}(0, I)$ and $\bar\alpha_t = \prod_{s \le t}(1 - \beta_s)$. $\bar\alpha_t$ measures how much of the original signal survives at step $t$; $1 - \bar\alpha_t$ is the variance of accumulated Gaussian noise. The closed form removes the need to simulate the forward chain step by step.
+
+2. What does the training loss minimize, and why is noise prediction often preferred over $\mu$ prediction?
+
+> [!success]- Answer
+> The standard simplified loss is $\mathcal{L} = \|\varepsilon - \varepsilon_\theta(x_t, t)\|^2$: the network predicts the noise that was added to $x_0$ to obtain $x_t$. This parameterization gives a stable target with unit-ish variance independent of $t$, and is empirically easier to optimize than predicting the posterior mean $\mu$ directly.
+
+3. Why is latent diffusion (Stable Diffusion) faster than pixel-space diffusion?
+
+> [!success]- Answer
+> A pretrained autoencoder first compresses an image into a small latent (for example $64 \times 64$ instead of $512 \times 512$), and the diffusion process runs in that latent space. Each denoising step then operates on far fewer values, so training and sampling cost drop by a large factor while perceptual quality of the decoded result stays high.
+
+4. How does classifier-free guidance work, and what does the scale parameter $w$ control?
+
+> [!success]- Answer
+> The model is trained jointly on conditional inputs (text) and an empty token, learning both $\varepsilon_{\text{cond}}$ and $\varepsilon_{\text{uncond}}$. At sampling time the noise prediction is $\varepsilon_{\text{uncond}} + w(\varepsilon_{\text{cond}} - \varepsilon_{\text{uncond}})$. The scale $w$ amplifies the direction the conditioning pushes the sample: higher $w$ improves prompt adherence but reduces diversity and can degrade quality.
+
+5. What is the "generative trilemma," and where does diffusion sit on it?
+
+> [!success]- Answer
+> The trilemma is: high quality, high diversity, fast sampling, pick two. GANs are fast and high quality but lose diversity (mode collapse). VAEs are fast and diverse but blurry. Diffusion delivers high quality and high diversity but is slow because sampling needs many iterative denoising steps. Distillation and DDIM-style accelerators try to claw back speed.
+
 ### PyTorch Implementation: Denoising Diffusion Probabilistic Models (DDPM)
 
 DDPM works by gradually adding noise to data (forward) and then learning to reverse this process (backward) using a neural network.

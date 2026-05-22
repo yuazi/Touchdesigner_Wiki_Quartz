@@ -151,6 +151,33 @@ The course allows discussion, but implementations must remain independent. Treat
 - **Course map**: connect pipeline, shading, post-processing, particles, and ray tracing to the renderer pipeline.
 - **Lab rule**: every exercise must exceed the individual pass threshold.
 
+## Self-Check
+
+1. Why is real-time graphics described as a throughput problem rather than a quality problem?
+
+> [!success]- Answer
+> The challenge is hitting the next display deadline, not just producing a beautiful image. A 4K frame already has millions of pixels, and high refresh rates multiply that cost; even with high-quality shaders, missing the deadline breaks interactivity. The image has to look acceptable AND arrive on time, but the binding constraint is throughput.
+
+2. Why are graphics workloads a good match for GPU hardware?
+
+> [!success]- Answer
+> Graphics work is highly regular: many vertices flow through the same transforms, and many fragments execute the same shading program. That regularity lets specialized parallel hardware win on cost, power, and throughput compared to a single fast CPU thread, which is why GPUs evolved as massively parallel processors.
+
+3. List the renderer pipeline stages the course covers and what each one solves.
+
+> [!success]- Answer
+> Graphics pipeline and Vulkan (how work reaches the GPU), texturing and shading (how visible surfaces get color), special effects and post-processing (screen-space filters and image-domain effects), global illumination and shadows (indirect light and visibility), and acceleration structures (fast ray and scene queries). Together they cover the full path from scene data to lit pixels.
+
+4. Why is screen-space post-processing a natural early lab exercise?
+
+> [!success]- Answer
+> Post-processing treats an already-rendered image as input, so the student practices GPU memory access, sampling, and image-domain filtering without needing to render new geometry. Upscaling and antialiasing exercises focus the learning on shader and bandwidth issues rather than scene authoring.
+
+5. What is the lab's pass rule, and why does it matter for course planning?
+
+> [!success]- Answer
+> Every individual exercise must be passed with more than 60 percent; a strong assignment cannot be used to average out a weak one. So no single exercise can be skipped or undersized; the workload must be spread across all four assignments.
+
 ---
 
 [[notes/lectures/realtimegraphics/index|(y) Back to RTG Index]] | [[notes/lectures/realtimegraphics/02_graphics_pipeline|Next: (y-02) Graphics Pipeline]]

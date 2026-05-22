@@ -814,6 +814,33 @@ class GNN(nn.Module):
 - **Permutation Invariance**: The `index_add_` (sum) operation ensures result consistency regardless of neighbor order.
 - **Relational Reasoning**: The model learns the **rules** of Sudoku encoded in the graph structure.
 
+## Self-Check
+
+1. What is the central goal of active learning, and why can it deliver exponential improvements in label complexity?
+
+> [!success]- Answer
+> Active learning picks which unlabeled examples to label next, instead of labeling at random. By preferentially asking the oracle about the most informative examples (those that most reduce the version space or model uncertainty), the learner can reach a target accuracy with exponentially fewer labels than passive learning in favorable settings. The win disappears under sampling bias or noisy oracles.
+
+2. What is the difference between uncertainty sampling and diversity (Core-Set) sampling?
+
+> [!success]- Answer
+> Uncertainty sampling queries examples where the current model is least confident (lowest margin, highest entropy, or highest disagreement among an ensemble). Diversity sampling instead queries a batch that maximally covers the feature space, even if each point is not individually uncertain. The two are complementary: uncertainty focuses where the model is wrong; diversity prevents the batch from clustering on one ambiguous region.
+
+3. How does the A² (disagreement-based) scheme provide noise-robust guarantees?
+
+> [!success]- Answer
+> A² maintains the current version space and only queries examples in the region where hypotheses still disagree. Examples outside that region are already classified consistently by all surviving hypotheses, so labeling them buys nothing. The scheme makes provable progress even with noisy oracles because each query reduces disagreement.
+
+4. How does MC Dropout produce epistemic uncertainty estimates for active learning?
+
+> [!success]- Answer
+> A dropout-trained network is interpreted as a variational approximation to a Bayesian network. At query time, dropout is kept enabled and $T$ forward passes are averaged; the variance across passes approximates the model's epistemic uncertainty. BALD picks examples that maximize the mutual information between predictions and parameters, which corresponds to high disagreement among MC samples.
+
+5. Why does the Sudoku-solving GNN need at least $T = 9$ message-passing iterations?
+
+> [!success]- Answer
+> Each message-passing step expands a node's effective receptive field by one hop in the constraint graph. A Sudoku board has rows, columns, and 3x3 boxes that link any two cells in at most a few hops; ensuring information from any cell can reach any other requires at least nine iterations to cover all positions on the longest constraint path, so the receptive field spans the full board.
+
 ### ⚠️ Common Pitfalls: Why IML/Active Learning Can Fail
 
 1.  **Sampling Bias (Active Learning)**: If you only label the most "uncertain" samples, you might completely miss large clusters of the data distribution. This is why **Diversity-based sampling** must balance **Uncertainty-based sampling**.

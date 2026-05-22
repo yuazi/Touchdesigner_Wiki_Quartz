@@ -89,9 +89,24 @@ The oral exam focuses primarily on theory from the lecture sequence, with possib
 ## Self-Check
 
 1. Why does the course combine lectures with project-based exercises?
+
+> [!success]- Answer
+> Lectures provide the theoretical backbone (definitions, perception, tracking, calibration, interaction). The project forces those concepts into an actual interactive artifact, so students learn the engineering constraints that lectures alone do not surface. The two together turn passive understanding into design ability.
+
 2. Which fields feed into VR/AR besides computer graphics?
+
+> [!success]- Answer
+> Computer vision (tracking and registration of physical structure), HCI (interaction techniques and evaluation), human perception (latency, field of view, motion, comfort, presence), and visualization. VR/AR is interdisciplinary by construction, not just a rendering topic.
+
 3. What is the minimum point threshold for oral exam eligibility?
+
+> [!success]- Answer
+> At least 60 points collected during the semester, from the 50-point project and 50-point quiz tracks combined. Falling below 60 points means no oral exam, and therefore no final grade.
+
 4. Why is a VR/AR project report expected to discuss design decisions, not only implementation?
+
+> [!success]- Answer
+> The oral exam asks students to explain how project choices map to course concepts such as presence, registration, tracking, latency, interaction techniques, and evaluation. A report that records these decisions makes those connections visible and demonstrates that the project is grounded in theory, not just code.
 
 ---
 

@@ -201,6 +201,33 @@ The proof is by induction over derivation height:
 - Loops require an inductive invariant.
 - Soundness bridges derivability back to relational semantics.
 
+## Self-Check
+
+1. State the validity condition for a Hoare triple $\{\varphi\}\ st\ \{\psi\}$ in semantic terms.
+
+> [!success]- Answer
+> The triple is valid iff $\text{post}(\{\varphi\}, [[st]]) \subseteq \{\psi\}$: every final state reachable from a $\varphi$-state through $st$ lies in $\psi$. The proof system is just a structured way to establish that semantic inclusion.
+
+2. Write the assignment axiom and explain why it reads "backward".
+
+> [!success]- Answer
+> $\{\varphi[x \mapsto expr]\}\ x := expr\ \{\varphi\}$. To make $\varphi$ true after the assignment, the state before must satisfy $\varphi$ with every free occurrence of $x$ replaced by $expr$. The rule pushes the postcondition through the assignment back into a precondition, which is why proofs are typically done from the end backward.
+
+3. Why does the composition rule need an intermediate assertion $\varphi_2$?
+
+> [!success]- Answer
+> The composition rule says $\{\varphi_1\}\ st_1\ \{\varphi_2\}$ and $\{\varphi_2\}\ st_2\ \{\varphi_3\}$ together give $\{\varphi_1\}\ st_1; st_2\ \{\varphi_3\}$. The intermediate $\varphi_2$ is the contract between the two pieces: it must be implied by what $st_1$ guarantees and strong enough for $st_2$ to need. Picking a good $\varphi_2$ is the main creative step in sequential proofs.
+
+4. State the three requirements for $\varphi$ to be a loop invariant in the while rule.
+
+> [!success]- Answer
+> $\varphi$ must hold before the loop (so it implies the loop's precondition), be preserved by one iteration assuming the guard holds (i.e., $\{\varphi \wedge expr\}\ st\ \{\varphi\}$ is derivable), and combine with $\neg expr$ on exit to imply the desired postcondition. The rule yields $\{\varphi\}\ \text{while}(expr)\{st\}\ \{\varphi \wedge \neg expr\}$.
+
+5. What does soundness of the Hoare proof system mean, and how is the soundness theorem proved?
+
+> [!success]- Answer
+> Soundness means every derivable triple is actually valid in the relational semantics. The proof is by induction on the height of the derivation: leaves are justified by sound axioms (assignment, plus side conditions), the induction hypothesis gives validity of all immediate sub-derivations, and each proof rule is shown locally to preserve validity. Combining these gives validity at the root.
+
 ---
 
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/07-relational-semantics|Previous: (y-07) Relational Semantics]] | [[/notes/lectures/programverification/09-ultimate-referee|Next: (y-09) Ultimate Referee]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

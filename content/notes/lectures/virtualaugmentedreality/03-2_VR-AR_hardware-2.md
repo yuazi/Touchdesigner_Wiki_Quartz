@@ -110,9 +110,24 @@ Input devices include:
 ## Self-Check
 
 1. Why can OST struggle to show a solid black virtual object?
+
+> [!success]- Answer
+> Optical see-through combines real-world light with light emitted by the display through a combiner. The display can only add light to the user's eye, it cannot subtract incoming real-world light. So a "black" virtual region just lets the real world show through, and no amount of dimming the display produces a true black or hard occlusion edge.
+
 2. Why can VST support stronger occlusion than OST?
+
+> [!success]- Answer
+> In video see-through, both real and virtual content are digital pixels in the same image pipeline. The compositor can simply overwrite the camera background with virtual pixels wherever a virtual object should appear, so occlusion is just a depth test. OST cannot block real light, so the same trick is unavailable without active light-modulating layers.
+
 3. What makes spatial AR useful for shared experiences?
+
+> [!success]- Answer
+> Spatial AR projects virtual imagery onto physical surfaces rather than through a worn or hand-held display, so multiple viewers see the augmentation simultaneously without wearing hardware. That removes the per-user device cost and lets a group share a single, common augmented scene. The tradeoff is that the result depends on surface geometry, lighting, calibration, and each viewer's perspective.
+
 4. Which display tradeoffs appear in the ideal near-eye AR display list?
+
+> [!success]- Answer
+> The ideal-display checklist combines comfort and unobtrusiveness, high dynamic range across all lighting, eye-resolution and full human field of view, binocular true depth, real occlusion, and robust tracking and scene understanding. Real systems trade these against each other: more FOV usually means heavier optics, higher resolution costs power and bandwidth, and true occlusion needs light-blocking hardware that hurts transparency. No current device hits all of them at once.
 
 ---
 

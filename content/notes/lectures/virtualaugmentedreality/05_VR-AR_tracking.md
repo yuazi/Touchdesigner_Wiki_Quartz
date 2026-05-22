@@ -182,10 +182,29 @@ The central reason for fusion is that tracking must be fast, stable, and accurat
 ## Self-Check
 
 1. Why does AR require registration in addition to ordinary tracking?
+
+> [!success]- Answer
+> Tracking produces a pose: where the device is, in some sensor coordinate frame. AR adds the requirement that virtual content stays geometrically aligned with the real world, which means the tracked pose has to be translated into the world frame and the virtual scene rendered from it. Without that registration step, augmentations drift or jitter relative to the physical scene, breaking Azuma's "registered in 3D" criterion.
+
 2. What is the difference between accuracy and precision?
+
+> [!success]- Answer
+> Accuracy is how close measurements are to the true value (bias). Precision is how close repeated measurements are to each other (spread). A sensor can be precise but biased (tight cluster, wrong place), or accurate on average but jittery, or both. The two failure modes are independent and have to be evaluated separately.
+
 3. Why can a high-update-rate sensor still be bad for VR?
+
+> [!success]- Answer
+> Update rate is only one quality axis. A fast sensor can still have high latency (the samples are stale), low accuracy (the values are wrong), or high jitter (the values flicker). VR comfort depends on the whole chain: late samples cause swimming, biased samples cause registration drift, and jittery samples cause visible shake even at high frame rates.
+
 4. How do outside-in and inside-out tracking differ?
+
+> [!success]- Answer
+> Outside-in places stationary sensors in the environment that observe markers or features on the mobile device. Inside-out puts the sensors on the mobile device itself, observing the static environment. Outside-in tends to give higher precision in a fixed instrumented volume; inside-out is portable and scales to larger areas but has to do scene understanding on the device.
+
 5. Why are natural features attractive but difficult for tracking?
+
+> [!success]- Answer
+> Natural features avoid the visual clutter and setup of fiducial markers, so the environment does not have to be instrumented. The difficulty is that ordinary scenes contain many ambiguous, repetitive, or low-texture regions. The system must detect salient points, describe them well enough to recognize across viewpoints, and verify geometric consistency, all in real time. Markers sidestep all of that by being designed for easy detection.
 
 ---
 

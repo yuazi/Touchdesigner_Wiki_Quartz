@@ -742,7 +742,32 @@ class VAE(nn.Module):
 
 **Why blurry?** Optimizing MSE reconstruction encourages the decoder to output the _mean_ of all possible reconstructions consistent with $z$, rather than a single sharp sample. This is the classic **regression-to-the-mean** problem.
 
----
+## Self-Check
+
+1. What does the reparameterization trick do, and why is it necessary?
+
+> [!success]- Answer
+> Instead of sampling $z \sim \mathcal{N}(\mu, \sigma^2)$ directly, the trick samples $\epsilon \sim \mathcal{N}(0, 1)$ and computes $z = \mu + \sigma \odot \epsilon$. The randomness now lives in $\epsilon$, while $\mu$ and $\sigma$ are deterministic functions of the input. Gradients can flow through $\mu$ and $\sigma$ during backprop, which the direct sampling operation would block.
+
+2. What two terms make up the ELBO, and what does each encourage?
+
+> [!success]- Answer
+> The ELBO is reconstruction quality minus KL divergence: $\mathbb{E}_{q(z|x)}[\log p(x|z)] - \mathrm{KL}(q(z|x) \| p(z))$. The reconstruction term encourages the decoder to recover the input from the latent, while the KL term pulls the encoder's posterior $q(z|x)$ toward the prior $\mathcal{N}(0, I)$, making the latent space smooth and easy to sample.
+
+3. Why do VAE samples often look blurry compared to GAN samples?
+
+> [!success]- Answer
+> The MSE (or Gaussian likelihood) reconstruction loss treats every consistent decoder output equally, so when many sharp outputs are plausible the gradient pushes the decoder toward their mean, which is blurry. GANs replace pointwise pixel loss with an adversarial loss that rewards realism, so the generator commits to specific sharp details rather than averaging.
+
+4. What is "posterior collapse," and what causes it?
+
+> [!success]- Answer
+> Posterior collapse happens when the decoder becomes so powerful that it can reconstruct the data without using the latent code: the encoder's posterior $q(z|x)$ collapses toward the prior, $z$ becomes uninformative, and the KL term vanishes. It is encouraged by an over-strong KL weight or an overly expressive decoder; KL annealing and architecture choices are typical fixes.
+
+5. Compare VAEs to GANs and diffusion models in one line each for sample quality and training stability.
+
+> [!success]- Answer
+> VAEs: blurry samples but stable training and explicit likelihood. GANs: sharp samples but unstable training and prone to mode collapse. Diffusion: best sample quality and stable training, but sampling is slow due to many denoising steps.
 
 ## VAEs vs. Other Generative Models
 

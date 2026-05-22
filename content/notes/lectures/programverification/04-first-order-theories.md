@@ -170,5 +170,32 @@ In program verification, we usually care about **$T$-Satisfiability**. If a "bad
 4.  **Array theory** allows us to model computer memory.
 5.  Verification tools combine these theories to reason about complex code.
 
+## Self-Check
+
+1. What two components define a first-order theory $T$, and what does $T$-validity mean?
+
+> [!success]- Answer
+> A theory is a pair $(\Sigma, \mathcal{A}_T)$: a signature of constant, function, and predicate symbols and a set of closed axioms over that signature. A formula $\phi$ is $T$-valid if every $T$-model (every model that satisfies all axioms in $\mathcal{A}_T$) also satisfies $\phi$.
+
+2. What are the five axioms of the theory of equality $T_E$?
+
+> [!success]- Answer
+> Reflexivity ($\forall x. x = x$), symmetry, transitivity, function congruence (equal arguments yield equal results for every $f$), and predicate congruence (equal arguments yield equivalent atoms for every $p$). Function and predicate congruence are axiom schemata because the signature can contain infinitely many symbols.
+
+3. Why is Presburger arithmetic $T_N$ decidable while Peano arithmetic $T_{PA}$ is not?
+
+> [!success]- Answer
+> $T_N$ has only addition over the naturals; the resulting structure has elimination procedures (quantifier elimination via Cooper's algorithm) that decide both satisfiability and validity. $T_{PA}$ adds multiplication, which is enough to encode any recursive function (Gödel), so it can express the halting problem and becomes undecidable. The difference is multiplication.
+
+4. State the two read-over-write axioms of $T_A$ and what they say in plain English.
+
+> [!success]- Answer
+> $\forall a, v, i, j. i = j \to \text{select}(\text{store}(a, i, v), j) = v$ says reading at the index you just wrote returns the written value. $\forall a, v, i, j. i \ne j \to \text{select}(\text{store}(a, i, v), j) = \text{select}(a, j)$ says reading at a different index returns the original array's value. Together with extensionality they capture how arrays behave.
+
+5. Why does verification usually care about $T$-satisfiability of "bad states" rather than validity?
+
+> [!success]- Answer
+> If the formula expressing "some execution reaches a bad state" is $T$-satisfiable, there is an actual execution (a $T$-model) that exhibits the bug; the satisfying model is the counterexample. Verification is therefore typically framed as showing that the negation (no bad execution exists) is $T$-valid, equivalently the bad-state formula is $T$-unsatisfiable.
+
 ---
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/03-first-order-logic|Previous: (y-03) First-Order Logic]] | [[/notes/lectures/programverification/05-smt-lib|Next: (y-05) SMT-LIB]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

@@ -263,5 +263,32 @@ $$ f_r(\mathbf{l}, \mathbf{v}) = \frac{D(\mathbf{h})\, F(\mathbf{l}, \mathbf{v})
 - **Fresnel and Schlick**: know the Schlick formula and what $R_0$ is.
 - **Cook-Torrance**: $f_r = DFG / (4(\mathbf{n} \cdot \mathbf{v})(\mathbf{n} \cdot \mathbf{l}))$ and the role of D, F, G.
 
+## Self-Check
+
+1. What makes Lambert shading view-independent and Phong shading view-dependent?
+
+> [!success]- Answer
+> Lambert's diffuse term uses only $\max(\mathbf{n} \cdot \mathbf{l}, 0)$, which depends on the surface normal and the light direction but not on the camera. Phong adds a specular term $\cos^m \alpha_r$ that compares the reflection vector $\mathbf{r}$ to the view vector $\mathbf{v}$, so the highlight position changes as the camera moves.
+
+2. Write the reflection vector and the half-vector, and explain which model uses which.
+
+> [!success]- Answer
+> Reflection: $\mathbf{r} = 2\mathbf{n}(\mathbf{n} \cdot \mathbf{l}) - \mathbf{l}$. Half-vector: $\mathbf{h} = (\mathbf{l} + \mathbf{v}) / \|\mathbf{l} + \mathbf{v}\|$. Phong specular uses $\cos^m \alpha_r$ with $\alpha_r$ the angle between $\mathbf{r}$ and $\mathbf{v}$. Blinn-Phong replaces that with $\cos^m \theta_h$ where $\theta_h$ is the angle between $\mathbf{n}$ and $\mathbf{h}$, which produces more realistic elongated highlights at grazing angles.
+
+3. Why does naive Phong violate energy conservation, and how does Blinn-Phong fix it?
+
+> [!success]- Answer
+> Increasing the specular power $m$ in unnormalized Phong shrinks the lobe but does not boost its peak proportionally, so total reflected energy drops as the highlight tightens. Blinn-Phong includes the normalization factor $(m+8)/(8\pi)$ so a tighter lobe gets a higher peak, keeping the integrated outgoing energy bounded by the incoming energy.
+
+4. State Schlick's approximation and identify what $R_0$ represents.
+
+> [!success]- Answer
+> $R(\theta) = R_0 + (1 - R_0)(1 - \cos\theta_i)^5$. $R_0$ is the Fresnel reflectance at normal incidence, the fraction of light reflected when the view direction equals the surface normal. Schlick interpolates from $R_0$ at $\theta = 0$ to nearly $1$ at grazing angles using a cheap fifth-power term.
+
+5. In the Cook-Torrance BRDF $f_r = \frac{D F G}{4(\mathbf{n} \cdot \mathbf{v})(\mathbf{n} \cdot \mathbf{l})}$, what does each of $D$, $F$, $G$ represent?
+
+> [!success]- Answer
+> $D$ is the microfacet normal distribution: the fraction of microfacets whose orientation equals the half-vector $\mathbf{h}$. $F$ is the Fresnel term: how much light those microfacets actually reflect. $G$ is the geometric attenuation: the fraction of microfacets that are neither shadowed from the light nor masked from the view. Their product divided by the foreshortening factors gives the per-pixel specular response.
+
 ---
 [[notes/lectures/realtimegraphics/index|(y) Back to RTG Index]]

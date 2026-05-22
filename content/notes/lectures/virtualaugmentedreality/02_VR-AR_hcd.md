@@ -98,9 +98,24 @@ Testing choices should match the question:
 ## Self-Check
 
 1. Why is an "elastic user" dangerous in design?
+
+> [!success]- Answer
+> An elastic user is a vague, undefined user persona that gets stretched to justify whatever the designer already wants to build. It defeats user analysis because every design decision looks defensible against an imaginary user. Concrete personas, task analyses, and real participants force the designer to confront constraints they would otherwise rationalize away.
+
 2. What can a Wizard-of-Oz prototype test before full implementation?
+
+> [!success]- Answer
+> It can test interaction flow, command vocabulary, feedback timing, and user expectations while a human secretly drives the system response. This isolates the interaction design from implementation risk, so issues with discoverability, comfort, or pacing surface before any real tracking, recognition, or rendering work is built.
+
 3. Why does latency matter for both comfort and presence?
+
+> [!success]- Answer
+> High end-to-end delay decouples visual feedback from head and hand motion, producing the mismatch between vestibular and visual signals that triggers cybersickness. The same delay also breaks presence, because the world stops feeling responsive when motion does not produce immediate feedback. Stable, low latency is therefore a hard requirement, not a nicety.
+
 4. What is the difference between formative and summative evaluation?
+
+> [!success]- Answer
+> Formative evaluation runs during design to improve the current prototype; it is diagnostic and feeds back into iteration. Summative evaluation judges a finished system against goals or comparisons; it is evidentiary and produces a verdict. Formative answers "what should we change?", summative answers "does it work well enough?".
 
 ---
 

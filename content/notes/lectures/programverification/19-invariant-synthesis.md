@@ -86,5 +86,32 @@ Imagine you have two points (Initial and Error) and you need to build a "wall" (
 4.  **SMT Solvers** use advanced algorithms to find solutions to these constraints.
 5.  Verification is complete when we have a mathematical reason ($I$) for why no error can occur.
 
+## Self-Check
+
+1. What three obligations must a loop invariant $I$ satisfy for a while loop with guard $B$, precondition $\phi_{\text{pre}}$, and postcondition $\phi_{\text{post}}$?
+
+> [!success]- Answer
+> Initial entry: $\phi_{\text{pre}} \to I$. Inductivity: $I \wedge B \wedge \text{body} \to I'$ (where $I'$ is $I$ in the post-iteration variables). Safety exit: $I \wedge \neg B \to \phi_{\text{post}}$. The three conditions are exactly what the Hoare while rule needs.
+
+2. What is a template, and what is the solver searching for?
+
+> [!success]- Answer
+> A template is a parameterized invariant shape such as $a \cdot x + b \cdot y \le c$ or $L \le x \le U$, with the parameters left symbolic. The solver searches for concrete numeric values of those parameters that make all three loop obligations valid. The template restricts the search space to a tractable family.
+
+3. Give the general form of a constrained Horn clause and identify its components.
+
+> [!success]- Answer
+> $\forall \vec{x}. (\phi \wedge P_1(\vec{x}_1) \wedge \dots \wedge P_n(\vec{x}_n) \to P_0(\vec{x}_0))$, where $\phi$ is a pure theory formula and each $P_i$ is an uninterpreted predicate standing in for an unknown invariant. The body is a conjunction of known constraints plus predicate atoms, and the head is one predicate atom.
+
+4. Write the three Horn clauses generated for a generic loop `while B { body }`.
+
+> [!success]- Answer
+> Entry: $\text{Pre}(x) \to \text{Inv}(x)$. Inductivity: $\text{Inv}(x) \wedge B(x) \wedge \text{Trans}(x, x') \to \text{Inv}(x')$. Safety: $\text{Inv}(x) \wedge \neg B(x) \to \text{Post}(x)$. A CHC solver finds an interpretation of $\text{Inv}$ that satisfies all three.
+
+5. Which SMT tools are designed to solve Horn-clause systems, and why does verification use them rather than ordinary SAT solvers?
+
+> [!success]- Answer
+> Tools such as Spacer (part of Z3) and Eldarica are CHC solvers. Ordinary SAT or SMT solvers check satisfiability of a fixed formula, but CHC solvers search over interpretations of uninterpreted predicates that satisfy a recursive set of implications, which is exactly the shape produced by program-verification conditions over loops and procedure calls.
+
 ---
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/18-trace-abstraction-and-automata|Previous: (y-18) Trace Abstraction and Floyd-Hoare Automata]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

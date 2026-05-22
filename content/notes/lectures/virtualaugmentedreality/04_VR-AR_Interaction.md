@@ -122,9 +122,24 @@ Exam-ready guideline summary:
 ## Self-Check
 
 1. Why is raycasting useful and what problem does it introduce?
+
+> [!success]- Answer
+> Raycasting selects targets at any distance by extending a virtual ray from the controller or hand, which sidesteps the limited reach of direct touch. The problem is angular precision: a small hand jitter at the source translates into a large lateral offset at the far end of the ray, so distant or small targets become hard to acquire without filtering or assistance.
+
 2. What is the difference between travel and wayfinding?
+
+> [!success]- Answer
+> Travel is the motor part of navigation: actually moving the viewpoint through the virtual environment, by walking, teleportation, redirected walking, or a vehicle metaphor. Wayfinding is the cognitive part: deciding where to go and building a mental map of the space. Both belong to navigation, and a good design supports each one.
+
 3. Why should manipulation often reduce degrees of freedom?
+
+> [!success]- Answer
+> Full 6DOF manipulation is hard to control with noisy spatial input, and many tasks do not actually need it. Constraining axes (snap to surface, single-axis rotation, scale on one dimension) reduces hand jitter, prevents accidental motion in unwanted dimensions, and improves precision and speed. The principle is to match the technique's DOF to what the task actually requires.
+
 4. What does world-in-miniature provide?
+
+> [!success]- Answer
+> A world-in-miniature gives the user a small, hand-held replica of the larger environment that can be inspected and manipulated. It supports navigation (point at a location to teleport there), overview (see the whole space at once), and out-of-reach manipulation (move proxy objects in the miniature to move real objects in the scene). It compresses scale and reach into one tangible interface.
 
 ---
 

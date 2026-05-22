@@ -220,11 +220,34 @@ Sparse point clouds with descriptors are common, but search must be pruned. Prio
 ## Self-Check
 
 1. Why are square markers easier to track than natural objects?
+
+> [!success]- Answer
+> Square markers are designed to produce strong, unambiguous visual evidence: high contrast edges, four predictable corners, and a unique interior code. The detection pipeline can scan for quadrilaterals, normalize the warped patch, and identify the marker without solving the general object recognition problem. Natural objects do not provide those guarantees, so detection and matching are much harder.
+
 2. What does a homography give you for a planar marker?
+
+> [!success]- Answer
+> A homography is the projective mapping between two views of a plane. For a planar marker, the four known marker corners in the marker's local 2D frame correspond to the observed 2D corners in the image, and the homography links the two. From that homography the camera pose relative to the marker (the rotation and translation that explain the corner observations) can be recovered.
+
 3. Why is epipolar geometry useful in multiple-camera tracking?
+
+> [!success]- Answer
+> Epipolar geometry constrains the search for stereo correspondences: if a 3D point projects to a pixel in one camera, its projection in the other camera must lie on a specific line (the epipolar line). That turns 2D correspondence search into 1D search, which is much faster and rejects most false matches. Multi-camera blob tracking uses this constraint to decide which blob in camera B matches which blob in camera A.
+
 4. What is the difference between detecting an interest point and describing it?
+
+> [!success]- Answer
+> Detection finds where a salient point sits in the image (corners, blobs, extrema of a scale-space filter). Description summarizes the local image neighborhood around that point into a vector that can be matched across images. Detection answers "is this point worth keeping?"; description answers "is this point the same as that one in another image?". Both are needed for matching across viewpoints.
+
 5. Why combine detection and incremental tracking?
+
+> [!success]- Answer
+> Detection (tracking by detection) is robust because it re-acquires the pose from scratch each frame, so it recovers from occlusion or rapid motion, but it is expensive. Incremental tracking uses the previous frame's pose to predict the current one and only refines locally, which is much cheaper but drifts and fails after large motion. Combining them gives the speed of incremental tracking with the robustness of periodic detection-based re-initialization.
+
 6. What does bundle adjustment optimize in SLAM?
+
+> [!success]- Answer
+> Bundle adjustment jointly refines all camera poses and all 3D point positions to minimize the total reprojection error: the difference between observed 2D feature positions in each frame and the projection of the estimated 3D points using the estimated poses. It is the global polishing step that keeps a SLAM map consistent and limits drift, especially when loop closures bring previously inconsistent observations into agreement.
 
 ---
 

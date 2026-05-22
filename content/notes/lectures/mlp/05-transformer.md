@@ -1138,6 +1138,33 @@ From the lecture's closing slide:
 | BERT                  | Encoder-only, MLM + NSP, 110M–340M params                                                   |
 | GPT                   | Decoder-only, causal self-attention, next-token prediction, strong zero-/few-shot prompting |
 
+## Self-Check
+
+1. Write the scaled dot-product attention formula and explain why we divide by $\sqrt{d_k}$.
+
+> [!success]- Answer
+> $\text{Attention}(Q, K, V) = \text{softmax}(QK^\top / \sqrt{d_k}) V$. As $d_k$ grows, the dot products $QK^\top$ have larger variance, pushing the softmax into very peaked regions where gradients shrink toward zero. Dividing by $\sqrt{d_k}$ keeps the score magnitudes roughly invariant of $d_k$, so the softmax stays in its responsive range.
+
+2. What does masked self-attention achieve, and where is it used?
+
+> [!success]- Answer
+> Masked self-attention sets attention scores from a position to all future positions to $-\infty$ before the softmax, so each position can only attend to itself and earlier positions. This is required by autoregressive decoders (GPT, the Transformer decoder) so that the prediction at position $t$ does not peek at tokens $> t$ during training.
+
+3. What is the role of multi-head attention compared to a single attention head?
+
+> [!success]- Answer
+> A single head projects $Q$, $K$, $V$ into one subspace and computes one attention pattern. Multi-head attention runs $h$ parallel heads with different projections, lets each head attend to different relationships (syntactic, positional, semantic), and concatenates their outputs. This gives the model flexibility to attend to multiple kinds of structure simultaneously at modest extra cost.
+
+4. Why do Transformers need positional encodings?
+
+> [!success]- Answer
+> Self-attention is permutation-invariant: shuffling input tokens does not change the set of attention outputs. Positional encodings (sinusoidal in the original paper, or learned) are added to token embeddings so the model can distinguish word order. Without them, "dog bites man" and "man bites dog" would look identical to the attention layer.
+
+5. Compare BERT and GPT at the architectural level.
+
+> [!success]- Answer
+> BERT is encoder-only with bidirectional self-attention and is pretrained with masked language modeling plus next-sentence prediction, producing contextual representations for classification and tagging tasks. GPT is decoder-only with causal (masked) self-attention and is pretrained with next-token prediction, making it natively autoregressive and well-suited to generation and few-shot prompting.
+
 ---
 
 ## References

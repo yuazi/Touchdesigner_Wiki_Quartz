@@ -212,6 +212,33 @@ The fragment shader decides the output color for each surviving fragment. Later 
 - **Rasterization vs ray tracing**: object-order projection vs image-order visibility queries.
 - **Vulkan explicitness**: resources, descriptors, command buffers, and pipeline state are explicit objects.
 
+## Self-Check
+
+1. What is the difference between object-order and image-order image synthesis?
+
+> [!success]- Answer
+> Object-order rasterization asks, for each primitive, which pixels it covers, and produces fragments for those pixels. Image-order ray tracing asks, for each pixel, what the closest surface along the viewing ray is. Real-time hardware is optimized around the first because triangle rasterization parallelizes very well.
+
+2. List the five stages of the essential graphics pipeline in order, identifying which are fixed-function and which are programmable.
+
+> [!success]- Answer
+> Input assembler (fixed), vertex shader (programmable), rasterizer (fixed), fragment shader (programmable), raster operations (fixed). The programmable stages run shader code; the fixed stages perform standard hardware-driven work like primitive assembly, coverage, interpolation, depth tests, and blending.
+
+3. What is a draw call, and why is it not the same as "draw this object"?
+
+> [!success]- Answer
+> A draw call is a compact command that tells the GPU which buffers, descriptor bindings, pipeline state, and primitive range to process. The application has to set up state, bind resources, and supply geometry separately; the draw call only kicks off processing for that configured slice of work.
+
+4. What is a Pipeline State Object, and why do modern APIs prefer immutable state?
+
+> [!success]- Answer
+> A Pipeline State Object packages all shaders plus fixed-function configuration into one immutable bundle that the driver compiles once. This avoids per-draw driver work to chase state changes, which used to be a major CPU bottleneck in older APIs. The application takes on responsibility for organizing its state up front.
+
+5. Write the minimal vertex-shader job, and describe how its output reaches the fragment shader.
+
+> [!success]- Answer
+> The minimum is $gl\_Position = MVP \cdot position$, transforming a vertex position into clip space. The rasterizer takes these clip-space positions, finds covered samples, and interpolates the vertex outputs (varyings) across each primitive; the fragment shader then runs once per resulting fragment with those interpolated values.
+
 ---
 
 [[notes/lectures/realtimegraphics/01_introduction|Back: (y-01) Introduction]] | [[notes/lectures/realtimegraphics/index|(y) Back to RTG Index]] | [[notes/lectures/realtimegraphics/03_gpu_architecture_parallelism|Next: (y-03) GPU Architecture & Parallelism]]

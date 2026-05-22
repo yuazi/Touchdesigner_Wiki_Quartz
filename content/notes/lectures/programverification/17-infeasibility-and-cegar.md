@@ -68,5 +68,32 @@ Imagine trying to find a path in a dark room.
 4.  **Progress Property**: Once an error trace is proven infeasible, the verifier will never encounter it again in future iterations.
 5.  **Power of Abstraction**: CEGAR allows us to verify complex programs without manually guessing invariants.
 
+## Self-Check
+
+1. When is a trace $\pi = st_1, \dots, st_n$ called feasible, and when is it infeasible?
+
+> [!success]- Answer
+> $\pi$ is feasible iff there is at least one concrete execution that follows $st_1, \dots, st_n$ in order; equivalently, the SSA-encoded path formula is satisfiable. It is infeasible iff no such execution exists, i.e., the path formula is unsatisfiable. CEGAR's whole job is to distinguish these two for abstract counterexamples.
+
+2. State the three conditions that make $\phi_0, \dots, \phi_n$ an infeasibility proof for $\pi$.
+
+> [!success]- Answer
+> First, $\phi_0 = \text{true}$. Second, for every $i$ from $0$ to $n-1$, $sp(\phi_i, st_{i+1}) \subseteq \phi_{i+1}$, i.e., the next formula over-approximates the strongest postcondition. Third, $\phi_n = \text{false}$. Together they certify the trace cannot reach its end with any state.
+
+3. Outline the five steps of the CEGAR loop.
+
+> [!success]- Answer
+> (1) Start with an initial predicate set $B$, often empty. (2) Build the ARG using $sp_B^\#$. (3) Check whether any error location is reachable in the ARG; if not, the program is safe. (4) If an abstract error trace $\pi$ is found, check its concrete feasibility; if feasible, report a real bug. (5) If infeasible, extract an infeasibility proof, add its formulas to $B$, and restart at step 2.
+
+4. Why does CEGAR refine its abstraction using the formulas from the infeasibility proof, rather than arbitrary predicates?
+
+> [!success]- Answer
+> The infeasibility proof identifies exactly the conjunction of facts that ruled out the spurious trace. Adding those formulas to $B$ guarantees the next ARG can distinguish the abstract states that would have re-introduced the same trace, so the verifier cannot make the same spurious counterexample twice. This is the progress property that keeps the loop from looping forever on the same error.
+
+5. Why is the abstraction necessarily coarsened back when CEGAR starts, and what does each refinement step do to it?
+
+> [!success]- Answer
+> The initial $B$ is empty (or minimal), so the abstraction is the coarsest possible and many concrete states collapse into a few abstract ones. Each refinement step grows $B$ with formulas drawn from a real infeasibility proof, which strictly refines the abstraction: more predicates means more abstract states and a tighter over-approximation of reachability. The loop progressively narrows the gap until it either proves safety or finds a true bug.
+
 ---
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/16-abstractions-and-arg|Previous: (y-16) Abstractions and ARG]] | [[/notes/lectures/programverification/18-trace-abstraction-and-automata|Next: (y-18) Trace Abstraction and Floyd-Hoare Automata]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

@@ -827,6 +827,33 @@ class ProtoNet(nn.Module):
 | CLEVR (Johnson 2017)                 | Compositional reasoning benchmark; no statistical shortcuts      |
 | NMN V2 / E2E (Hu 2017)               | End-to-end learned program generation; no parser required        |
 
+## Self-Check
+
+1. What does CLIP train, and how does it enable zero-shot classification?
+
+> [!success]- Answer
+> CLIP trains an image encoder and a text encoder jointly with a contrastive loss: for a batch of image-text pairs, the cosine similarity of matching pairs is pushed up while non-matching pairs are pushed down. At inference, an unseen class is described in text ("a photo of a {class}"), encoded once, and a test image is classified by the most similar text embedding. No fine-tuning is required.
+
+2. How does VisualBERT (single-stream) differ from ViLBERT (dual-stream)?
+
+> [!success]- Answer
+> VisualBERT concatenates region features and text tokens into one sequence and runs a single Transformer with full self-attention, letting both modalities mix from the first layer. ViLBERT keeps two parallel Transformer streams, one per modality, and exchanges information through co-attention layers; modality-specific processing happens before fusion. Single-stream is simpler; dual-stream gives more modality-specific capacity.
+
+3. What problem does ViLT solve compared to earlier vision-language models?
+
+> [!success]- Answer
+> Earlier models depended on heavy region-proposal detectors (Faster R-CNN) to produce visual features, which dominated inference time. ViLT replaces the detector with simple image patches fed directly into a Transformer, reaching about 60× the inference speed at competitive accuracy on vision-language tasks. It is essentially a ViT-style backbone fused with text tokens.
+
+4. In ALBEF, what is the role of ITC (image-text contrastive) versus ITM (image-text matching)?
+
+> [!success]- Answer
+> ITC aligns the unimodal image and text embeddings using contrastive learning before fusion, so the fusion layer receives already-aligned representations. ITM then operates on the fused output and predicts whether an image and text actually match, mining hard negatives that are similar according to ITC. The "align before fuse" recipe makes the fusion stage much easier to train.
+
+5. In an $n$-way $k$-shot setup, what is the role of a "prototype" in prototypical networks?
+
+> [!success]- Answer
+> Each of the $n$ classes is represented by the mean embedding of its $k$ labeled support examples; that mean is the class prototype in the learned embedding space. A query is classified by the nearest prototype under some distance, typically Euclidean. The assumption is that one representative point per class is enough, which works well when the embedding is trained for metric learning.
+
 ---
 
 ## References

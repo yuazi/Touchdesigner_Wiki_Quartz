@@ -81,5 +81,32 @@ An **Execution** is a sequence of states $(s_0, s_1, \dots, s_n)$ that follows a
 4.  **Verification** becomes a graph-reachability problem: "Can we reach the error location?"
 5.  **Tools** prefer CFGs because they provide a uniform way to represent different programming languages.
 
+## Self-Check
+
+1. What four components make up a CFG $G$, and what does each contribute?
+
+> [!success]- Answer
+> $G = (Loc, \Delta, \ell_{\text{init}}, \ell_{\text{ex}})$. $Loc$ is the finite set of locations (nodes), $\Delta$ is the set of transition edges labelled with primitive statements (assignment, havoc, assume), $\ell_{\text{init}}$ is the unique entry, and $\ell_{\text{ex}}$ is the normal exit. Together they describe every execution as a path from $\ell_{\text{init}}$ to some terminal location.
+
+2. How is `if (B) { st1 } else { st2 }` translated into a CFG?
+
+> [!success]- Answer
+> The branching node has two outgoing edges from $\ell_{\text{in}}$: one labelled `assume B` leading to the start of $st_1$, and one labelled `assume !B` leading to the start of $st_2$. Both sub-CFGs merge at the join location $\ell_{\text{out}}$. The branch condition becomes an `assume` on each path.
+
+3. How does a `while (B) { st }` loop appear as a CFG fragment?
+
+> [!success]- Answer
+> A loop head $\ell_{\text{loop}}$ has two outgoing edges: `assume B` into the body $\ell_{\text{body}}$ and `assume !B` to the post-loop location $\ell_{\text{after}}$. The body's CFG ends with a back-edge to $\ell_{\text{loop}}$. The loop unfolds into an arbitrary number of body traversals controlled by the guard.
+
+4. How is `assert P` modeled in a CFG, and what does verification reduce to?
+
+> [!success]- Answer
+> An assert at $\ell_{\text{curr}}$ creates two edges: `assume P` to $\ell_{\text{next}}$ (the assertion held) and `assume !P` to a special error location $\ell_{\text{err}}$ (the assertion failed). Verification reduces to showing $\ell_{\text{err}}$ is unreachable from $\ell_{\text{init}}$: no path of transitions leads there in some execution.
+
+5. What is a program execution along a CFG path?
+
+> [!success]- Answer
+> A sequence of states $(s_0, s_1, \dots, s_n)$ that follows a path of transitions $(\ell_0, st_1, \ell_1, \dots, st_n, \ell_n)$, where each consecutive pair $(s_{i-1}, s_i)$ lies in $[[st_i]]$. The CFG path picks which transitions fire; the state sequence is the actual data witness that those transitions are individually executable.
+
 ---
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/11-nondeterminism-havoc-assume|Previous: (y-11) Nondeterminism: Havoc and Assume]] | [[/notes/lectures/programverification/13-predicate-transformers|Next: (y-13) Predicate Transformers]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

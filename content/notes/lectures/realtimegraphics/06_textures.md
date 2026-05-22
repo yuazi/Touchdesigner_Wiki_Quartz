@@ -446,6 +446,33 @@ The conceptual point is the same as the first texture shader: vertices carry coo
 - **Environment mapping**: cube maps use direction vectors and reflection vectors in the correct coordinate space.
 - **Bump vs displacement vs parallax**: bump/normal maps change lighting only, displacement changes geometry, parallax raycasts a height field in the fragment shader.
 
+## Self-Check
+
+1. What is texture aliasing, and how does mip mapping address it?
+
+> [!success]- Answer
+> Aliasing happens when a single screen pixel covers many texels. A single nearest sample ignores most of those texels, so high-frequency texture content turns into shimmer or jagged patterns. Mip mapping precomputes prefiltered lower-resolution versions of the texture and samples whichever level matches the pixel footprint, so the sample already represents an average over the covered texels.
+
+2. What is the difference between bilinear, trilinear, and anisotropic filtering?
+
+> [!success]- Answer
+> Bilinear samples four neighboring texels inside a chosen mip level and blends by sub-texel position. Trilinear takes bilinear samples on two neighboring mip levels and blends between them, smoothing the transition between mips. Anisotropic filtering recognizes that the footprint is often elongated at oblique angles and takes multiple trilinear samples along the long axis, preserving detail that isotropic mipping would over-blur.
+
+3. Write the standard transparency blend equation and explain why transparent objects still need sorting.
+
+> [!success]- Answer
+> $C = C_s \alpha + C_d (1 - \alpha)$. The result depends on the destination color $C_d$ already in the framebuffer, so the blend is order-dependent. Two overlapping transparent fragments drawn in different orders give different final colors, so transparent surfaces are typically sorted back-to-front (or use order-independent transparency techniques) to look correct.
+
+4. Why are tangent-space normal maps mostly blue?
+
+> [!success]- Answer
+> Tangent space orients each fragment so the unperturbed surface normal points along $+z$. The normal-map texel encodes the perturbed normal as $(x, y, z)$ remapped to $[0, 1]^3$, so a $z$ close to $1$ becomes nearly full blue. Real surface bumps deviate only slightly from $+z$, so almost every pixel is mostly blue with smaller red and green components for the lateral tilt.
+
+5. Compare bump/normal mapping, displacement mapping, and parallax mapping in terms of geometry vs lighting.
+
+> [!success]- Answer
+> Bump and normal mapping only change per-fragment shading: the lighting reacts as if the surface had bumps, but silhouettes and self-shadowing stay flat. Displacement mapping actually moves geometry along the normal after tessellation, producing real silhouettes and shadows at the cost of many small triangles. Parallax mapping raycasts a height field in the fragment shader to fake an offset texture lookup, giving better depth cues than bumps but still no real geometry.
+
 ---
 
 [[notes/lectures/realtimegraphics/index|(y) Back to RTG Index]] | [[notes/lectures/realtimegraphics/08_deferred_shading|Next: (y-08) Deferred Shading]]

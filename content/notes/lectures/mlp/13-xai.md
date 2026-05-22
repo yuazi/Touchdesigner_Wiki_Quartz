@@ -808,6 +808,33 @@ Both LIME and SHAP give you feature importance, but they do it very differently.
 4. Always validate explanations against domain knowledge (does this make sense to an expert?)
 5. Evaluation requires both automatic metrics (deletion/insertion) and human studies (debugging, simulation)
 
+## Self-Check
+
+1. What is the difference between a local and a global explanation method?
+
+> [!success]- Answer
+> A local method explains a single prediction by attributing importance to input features for that specific input (saliency maps, LIME, counterfactuals). A global method describes the model's behavior across the whole dataset or all inputs (activation maximization, network dissection, SP-LIME). Local methods answer "why this prediction?"; global methods answer "what has the model learned overall?".
+
+2. How does Grad-CAM produce a spatial saliency map, and why is it limited to CNN backbones?
+
+> [!success]- Answer
+> Grad-CAM takes the gradient of the predicted class score with respect to the activations of a chosen convolutional layer, averages those gradients spatially to obtain per-channel weights, and projects those weights back onto the activation map to produce a heatmap. It relies on convolutional layers' preserved spatial structure, so it does not transfer directly to architectures (like plain Transformers) that mix spatial information differently.
+
+3. Why does LIME fit a sparse linear surrogate, and what does it claim about the original model?
+
+> [!success]- Answer
+> LIME perturbs the input around a target example, queries the black-box model on the perturbations, and fits a sparse linear model to those query results weighted by proximity to the original input. It only claims that, locally near the target, the black box behaves approximately like that linear model. The sparse coefficients become the per-feature explanation.
+
+4. What axioms do Shapley-value attributions (SHAP) satisfy that distinguish them from LIME?
+
+> [!success]- Answer
+> Shapley values are the unique attribution that satisfies efficiency (attributions sum to the prediction minus the baseline), symmetry (features with the same marginal contribution get equal credit), dummy (a feature with no marginal effect gets zero), and additivity across composed games. LIME does not guarantee any of these; it is a fast local approximation whose results depend on the chosen kernel and perturbation distribution.
+
+5. What is a counterfactual explanation, and what is it useful for?
+
+> [!success]- Answer
+> A counterfactual finds the smallest change to the input that would flip the model's prediction to a desired class. For a denied loan application, it might say "if income were $5,000 higher and debt-to-income ratio were 5% lower, the model would have approved." Counterfactuals provide actionable "recourse" rather than feature importances, which is valuable for decisions that affect people.
+
 ---
 
 ## References

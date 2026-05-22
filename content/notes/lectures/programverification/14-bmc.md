@@ -85,5 +85,32 @@ We use an SMT solver (specifically one that handles **Horn Clauses**) to find va
 4.  **Templates** provide a structure for the solver to find the missing logic.
 5.  **SMT Solvers** are the underlying engine for both BMC and Synthesis.
 
+## Self-Check
+
+1. Why is BMC called "incomplete," and when is it still useful?
+
+> [!success]- Answer
+> BMC only checks executions up to a fixed unrolling depth $k$. If no counterexample is found within $k$ steps, there could still be a bug at depth $k+1$, so BMC cannot prove unbounded safety. It is still useful as a fast bug-finder: any counterexample it returns is a real bug, and most shallow bugs surface at small $k$.
+
+2. Convert the path `x := 1; x := x + 1; assume x > 2` into SSA form and write the resulting SMT formula.
+
+> [!success]- Answer
+> Rename each assignment to a fresh version: $x_1 = 1$, then $x_2 = x_1 + 1$, then the constraint $x_2 > 2$. The conjunction $(x_1 = 1) \wedge (x_2 = x_1 + 1) \wedge (x_2 > 2)$ is sent to the solver. If satisfiable, the path is feasible; here $x_2 = 2$, so the formula is unsatisfiable and this path is infeasible.
+
+3. What three verification conditions does constraint-based invariant synthesis generate, and what role do they play?
+
+> [!success]- Answer
+> Precondition implication $P \to I$, inductivity $I \wedge B \wedge \text{body} \to I'$, and postcondition $I \wedge \neg B \to Q$. These exactly mirror the three obligations of the Hoare while rule: that the invariant holds on entry, is preserved by one iteration, and is strong enough at exit to imply $Q$.
+
+4. What is a template in invariant synthesis, and what does the solver do with it?
+
+> [!success]- Answer
+> A template is a parameterized formula like $c_1 \cdot i + c_2 \cdot j \le c_3$ with unknown coefficients. The synthesis problem becomes finding numeric values for those coefficients that make all three verification conditions valid. A Horn-clause SMT solver searches for such values; if it finds them, the instantiated template is a valid loop invariant.
+
+5. Compare BMC and inductive-invariant proofs using the flashlight versus floodlight metaphor.
+
+> [!success]- Answer
+> BMC is a flashlight pointed down one path of length $k$: it shows that beam in perfect detail without needing invariants, but anything outside the beam or beyond depth $k$ is dark. An inductive invariant is a floodlight: it covers the entire reachable state space at once, proving safety unboundedly, but constructing it (finding the invariant) is the hard part.
+
 ---
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/13-predicate-transformers|Previous: (y-13) Predicate Transformers]] | [[/notes/lectures/programverification/15-correctness-via-assert|Next: (y-15) Correctness via Assert Statements]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

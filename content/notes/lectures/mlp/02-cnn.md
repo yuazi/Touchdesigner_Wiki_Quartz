@@ -604,6 +604,33 @@ class LeNet5(nn.Module):
 - **`F.max_pool2d`**: Selects the maximum value in a small window, reducing spatial size and providing robustness to small translations.
 - **`x.view(-1, ...)`**: Used to "flatten" the 2D feature maps into a 1D vector before passing them to traditional linear layers.
 
+## Self-Check
+
+1. Why are CNNs better suited to images than fully connected MLPs?
+
+> [!success]- Answer
+> Images have strong local structure: nearby pixels are correlated, and the same patterns appear in different locations. A CNN exploits both through shared local filters: a single small filter scans the whole image, reusing parameters across positions and yielding translation invariance. An MLP would have to relearn the same edge or texture detector at every pixel, blowing up parameters and ignoring locality.
+
+2. Write the output spatial dimension formula for a Conv2d layer and explain each term.
+
+> [!success]- Answer
+> $\text{Output} = \frac{W - K + 2P}{S} + 1$, where $W$ is the input width (or height), $K$ is the kernel size, $P$ is the padding added to each side, and $S$ is the stride. The same formula applies independently to height. Padding keeps borders from shrinking; stride downsamples by skipping positions.
+
+3. What does max pooling buy us, and what does it cost?
+
+> [!success]- Answer
+> Max pooling reduces spatial resolution by taking the maximum in each small window, which provides local translation invariance, reduces compute and memory, and lowers overfitting by shrinking the parameter count downstream. The cost is loss of fine spatial detail: pooling too aggressively destroys the precise localization needed for tasks like segmentation.
+
+4. What is a receptive field, and why does depth grow it?
+
+> [!success]- Answer
+> A neuron's receptive field is the region of the original image that can influence its activation. Each convolution and pooling layer enlarges the receptive field by combining inputs from a larger region. Deeper layers therefore "see" more of the image, which is necessary to recognize whole objects but reduces spatial precision because the same activation summarizes a bigger patch.
+
+5. What problem do U-Net and HourGlass solve that a plain classification CNN does not?
+
+> [!success]- Answer
+> Plain classification CNNs shrink spatial resolution drastically to produce one label per image. Dense-prediction tasks (segmentation, keypoint estimation) need a per-pixel output. U-Net and HourGlass are fully convolutional encoder-decoder architectures with skip connections, so they can downsample to extract semantics and then upsample back to full resolution while recovering spatial detail from the skipped levels.
+
 ### ⚠️ Common Pitfalls: Why CNNs Can Fail
 
 1.  **Spatial Info Loss (Over-Pooling)**: Using too many Max-Pooling layers too early can destroy fine-grained spatial information. If your task requires precise localization (like segmentation), excessive pooling makes it impossible to recover the exact boundaries.

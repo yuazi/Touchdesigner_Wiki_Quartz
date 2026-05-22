@@ -78,5 +78,32 @@ When we compute $sp$ forward, we often end up with many existential quantifiers 
 5.  **$wp$ for Assume**: Implication ($\to$).
 6.  **Verification**: To prove `{P} S {Q}`, we check if $sp(P, S) \to Q$ (or if $P \to wp(S, Q)$).
 
+## Self-Check
+
+1. What is the intuitive difference between $sp(\phi, S)$ and $wp(S, \psi)$?
+
+> [!success]- Answer
+> $sp(\phi, S)$ moves forward: given that $\phi$ holds before $S$, it returns the strongest formula guaranteed to hold after $S$. $wp(S, \psi)$ moves backward: given the desired postcondition $\psi$, it returns the weakest precondition that guarantees $\psi$ holds after $S$. They are duals: one starts from what you know, the other from what you want.
+
+2. Compute $sp(x = 5, x := x + 1)$ and simplify.
+
+> [!success]- Answer
+> By the rule, $sp(x=5, x := x+1) \equiv \exists x_{\text{old}}. x_{\text{old}} = 5 \wedge x = x_{\text{old}} + 1$. Substituting $x_{\text{old}} = 5$ gives $x = 6$, and the existential disappears. So the strongest postcondition is $x = 6$.
+
+3. Compute $wp(x := x + 1, x > 0)$.
+
+> [!success]- Answer
+> $wp(x := e, \psi) \equiv \psi[x \mapsto e]$, so $wp(x := x+1, x > 0) \equiv (x+1) > 0$, equivalently $x > -1$ over integers ($x \ge 0$). This is exactly what the Hoare assignment axiom would give.
+
+4. Why is $wp(\text{assume } P, \psi)$ equal to $P \to \psi$ rather than $P \wedge \psi$?
+
+> [!success]- Answer
+> The `assume P` filter only keeps executions where $P$ holds; on paths where $P$ is false, the relation is empty so $\psi$ has nothing to prove. So the precondition need only guarantee $\psi$ in the case that $P$ is actually true, which is exactly the implication $P \to \psi$.
+
+5. State the verification condition for $\{P\}\ S\ \{Q\}$ using $sp$ or $wp$.
+
+> [!success]- Answer
+> Use $sp(P, S) \to Q$ (everything reachable from $P$ through $S$ implies $Q$), or equivalently $P \to wp(S, Q)$ (every initial state in $P$ satisfies the weakest precondition for $Q$). Either implication, if valid, certifies the Hoare triple.
+
 ---
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/12-control-flow-graphs|Previous: (y-12) Control-Flow Graphs]] | [[/notes/lectures/programverification/14-bmc|Next: (y-14) Bounded Model Checking]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

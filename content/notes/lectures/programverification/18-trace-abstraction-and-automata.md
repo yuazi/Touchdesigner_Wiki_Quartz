@@ -91,5 +91,32 @@ Imagine a field (the set of all possible error traces $L(A_P)$).
 4.  **Proof of Safety**: A program is safe if all its error traces can be covered by a finite set of Floyd-Hoare automata.
 5.  **Ultimate Automizer**: This is the core algorithm used in one of the most successful modern verifiers.
 
+## Self-Check
+
+1. What is the alphabet over which program traces are words in trace abstraction?
+
+> [!success]- Answer
+> The alphabet $\Sigma$ is the set of primitive program statements: assignments, havocs, and assumes (including the `assume B` / `assume !B` produced by branches and asserts). Each CFG edge is labelled with a letter of $\Sigma$, and a trace is a sequence of such letters.
+
+2. State the three conditions that make an annotation $\beta$ a Floyd-Hoare annotation for an automaton.
+
+> [!success]- Answer
+> Initial: $\beta(q_0) = \text{true}$ for every initial state. Inductivity: for every transition $(q, st, q')$, the Hoare triple $\{\beta(q)\} st \{\beta(q')\}$ is valid. Safety: $\beta(q_{\text{err}}) = \text{false}$ for every accepting state. Any trace accepted by such an automaton is infeasible.
+
+3. Why does the Floyd-Hoare automaton accepting a trace prove that trace infeasible?
+
+> [!success]- Answer
+> Along an accepting path the annotation forms a sequence $\beta(q_0), \beta(q_1), \dots, \beta(q_{\text{err}})$. The conditions force $\beta(q_0) = \text{true}$, every consecutive pair to be Hoare-valid, and $\beta(q_{\text{err}}) = \text{false}$. That is exactly an infeasibility proof for the trace.
+
+4. Outline the trace-abstraction algorithm.
+
+> [!success]- Answer
+> Pick an error trace $\pi$ in the program automaton $A_P$, prove it infeasible, and build a Floyd-Hoare automaton $A_i$ that accepts $\pi$ and generalizes to other infeasible traces. Then look at the remaining error traces, $L(A_P) \setminus L(A_1 \cup \dots \cup A_i)$. If the difference is empty, the program is safe; otherwise pick another remaining trace and repeat.
+
+5. Use the blanket analogy to describe what "safety" means in trace abstraction.
+
+> [!success]- Answer
+> The program automaton's error language is a field; each Floyd-Hoare automaton is a blanket covering a set of infeasible traces. Safety means the union of all blankets covers the entire error language without any blanket covering a feasible (real bug) trace, so every potential error path is certified infeasible.
+
 ---
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/17-infeasibility-and-cegar|Previous: (y-17) Infeasibility Proofs and CEGAR]] | [[/notes/lectures/programverification/19-invariant-synthesis|Next: (y-19) Constraint-Based Invariant Synthesis]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
