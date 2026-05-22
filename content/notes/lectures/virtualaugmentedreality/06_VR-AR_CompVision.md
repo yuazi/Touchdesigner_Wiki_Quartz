@@ -8,7 +8,7 @@ tags:
 date: 2026-05-12
 ---
 
-[[/notes/lectures/virtualaugmentedreality/05_VR-AR_tracking|Previous: (y-05) Tracking]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]]
+[[/notes/lectures/virtualaugmentedreality/05_VR-AR_tracking|Previous: (y-05) Tracking]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/07_VR-AR_Calibration|Next: (y-07) Calibration and Registration]]
 
 ## Mental Model First
 
@@ -228,4 +228,4 @@ Sparse point clouds with descriptors are common, but search must be pruned. Prio
 
 ---
 
-[[/notes/lectures/virtualaugmentedreality/05_VR-AR_tracking|Previous: (y-05) Tracking]] | [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]]
+[[/notes/lectures/virtualaugmentedreality/05_VR-AR_tracking|Previous: (y-05) Tracking]] | [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/07_VR-AR_Calibration|Next: (y-07) Calibration and Registration]]

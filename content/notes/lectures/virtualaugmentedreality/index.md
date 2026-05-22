@@ -36,6 +36,9 @@ date: 2026-04-14
 - [[/notes/lectures/virtualaugmentedreality/06_VR-AR_CompVision|(y-06) Computer Vision for AR]]  
    Marker tracking, homographies, multi-camera IR tracking, natural features, SIFT, pose estimation, SLAM, and outdoor tracking.
 
+- [[/notes/lectures/virtualaugmentedreality/07_VR-AR_Calibration|(y-07) Calibration and Registration]]  
+   Camera calibration (lens distortion, undistortion, targets), display calibration (shooting gallery, boresight, SPAAM, pointing device, eye tracking), hand-eye calibration, and registration errors from error propagation and latency.
+
 ## Assessment Map
 
 | Component | Weight / Gate                         | Notes                                                                                    |
