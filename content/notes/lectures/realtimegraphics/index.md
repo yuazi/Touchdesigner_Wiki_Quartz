@@ -19,7 +19,8 @@ date: 2026-04-14
 - [[notes/lectures/realtimegraphics/05_shading_models|(y-) 05_shading_models]]: BRDFs, Lambert, Phong, Blinn-Phong, Cook-Torrance, Disney BRDF.
 - [[notes/lectures/realtimegraphics/06_textures|(y-) 06_textures]]: Texture mapping, filtering, multipass rendering, environment mapping, and bump/normal mapping.
 - [[notes/lectures/realtimegraphics/08_deferred_shading|(y-) 08_deferred_shading]]: Deferred rendering, G-Buffers, deferred lighting, light volumes, visibility buffers, and normal encoding.
-- **Global Illumination**: Shadows, high dynamic range (HDR), and realistic lighting.
+- [[notes/lectures/realtimegraphics/09_special_effects|(y-) 09_special_effects]]: Postprocessing pipeline, separable Gaussian, bloom, depth of field, bilateral filters, edge detection, anti-aliasing (SSAA/MSAA/MLAA/TAA), motion blur, lens flare, billboards, particle systems.
+- [[notes/lectures/realtimegraphics/10_semi_global_illumination|(y-) 10_semi_global_illumination]]: Semi-global illumination, shadow techniques, HDR, and realistic lighting.
 - **Rendering Acceleration**: Level of Detail (LOD) and visibility algorithms.
 - **Compute Shaders**: General-purpose computation on the GPU.
 

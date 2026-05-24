@@ -9,7 +9,7 @@ tags:
 date: 2026-05-15
 ---
 
-[[notes/lectures/realtimegraphics/06_textures|Back: (y-06) Textures]] | [[notes/lectures/realtimegraphics/index|RTG Index]]
+[[notes/lectures/realtimegraphics/06_textures|Back: (y-06) Textures]] | [[notes/lectures/realtimegraphics/09_special_effects|Next: (y-09) Image-Space Special Effects]] | [[notes/lectures/realtimegraphics/index|RTG Index]]
 
 ## Mental Model First: Decouple Geometry From Lighting
 
@@ -302,4 +302,4 @@ The result is dramatically better visual quality at the same bit depth than naiv
 
 ---
 
-[[notes/lectures/realtimegraphics/06_textures|Back: (y-06) Textures]] | [[notes/lectures/realtimegraphics/index|RTG Index]]
+[[notes/lectures/realtimegraphics/06_textures|Back: (y-06) Textures]] | [[notes/lectures/realtimegraphics/09_special_effects|Next: (y-09) Image-Space Special Effects]] | [[notes/lectures/realtimegraphics/index|RTG Index]]
