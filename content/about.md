@@ -7,46 +7,37 @@ date: 2026-03-18
 
 ## Who am I?
 
-Hey, I'm **Yusuf**.
+Hey, I'm **Yusuf Abdul Aziz**.
 
-I'm a Wirtschaftsinformatik (Business Informatics) Master's student at the University of Stuttgart. The degree sits between computer science and business, and I picked it because I didn't want to choose.
+I'm an M.Sc. Information Systems student at the University of Stuttgart, focused on Python tooling, data/ML workflows, and TypeScript web projects. I am currently looking for Werkstudent or junior software engineering roles in web development, data, BI, or applied ML.
 
-This site, the **(y)usage Garden**, is where I put what I'm learning. Lecture notes, side projects, random rabbit holes. Some of it is polished, most of it isn't.
-
----
-
-## The Stack
-
-- **Languages:** Python, TypeScript, Java, Lua
-- **AI/ML:** PyTorch, MediaPipe, constraint propagation
-- **Creative:** TouchDesigner, GLSL, strange attractors
-- **Environment:** Ghostty + Neovim + Yazi (keyboard only, no mouse if I can help it)
+This site, the **(y)usage Garden**, is where I publish project notes, technical references, and longer writeups around what I am learning and building.
 
 ---
 
-## Currently
+## Technical Focus
 
-- **Building:** [SlideLink](work/slidelink), a tool that matches lecture slide screenshots to the right headings in my notes.
-- **Studying:** Machine Perception & Learning (MPL).
-- **Training:** Taekwondo. Sparring under pressure on training days, PNF mobility on the off days.
-- **Exploring:** how generative models behave when you wire them into real time visual systems.
+- **Python tooling:** CLIs, package structure, text/PDF processing, tests, reproducible local workflows.
+- **Data and ML:** PyTorch, scikit-learn, TF-IDF matching, n-gram statistics, graph neural networks.
+- **Web:** TypeScript, Vue, Node.js, Quartz, GitHub Pages, Cloudflare.
+- **Interactive systems:** TouchDesigner, OpenCV, MediaPipe, ModernGL, GLSL, real-time rendering.
 
 ---
 
-## Beyond the Screen
+## Current Work
 
-- **Taekwondo:** working my way from white to black. Spinning kicks are the whole reason I started.
-- **Motorcycles:** the Husqvarna Vitpilen 701. More on [why I ride](notes/random/motorcycles).
-- **Scents:** slowly building out a [perfume rotation](notes/random/perfumes) organized by season.
-- **Chaos:** the [Lorenz Attractor](notes/random/lorenz-attractor) is absurdly beautiful. It's also why this site has a moving background.
+- **SlideLink:** offline Python CLI for matching Markdown lecture notes to PDF slide screenshots.
+- **Keyboard AI:** n-gram-based keyboard layout optimizer with an ergonomic scoring model.
+- **AttractorMediaPipe:** gesture-controlled strange-attractor visualizer with high-resolution exports.
+- **Digital Garden:** this Quartz site and its TouchDesigner reference section.
 
 ---
 
 ## Contact
 
-If you want to talk about data science, creative coding, or why the front leg cancel matters more than people give it credit for, reach out.
-
 - **GitHub:** [yuazi](https://github.com/yuazi)
+- **Email:** [yusuf.aziz20@gmail.com](mailto:yusuf.aziz20@gmail.com)
 
 ---
+
 [[index|(y) Return to Garden]]
