@@ -29,8 +29,8 @@ The density of your point cloud is directly tied to the resolution of your sourc
 2.  **Fit TOP:** 
     - **Fit Method** → `Fit Outside`.
     - **Common Page > Output Resolution** → `200 x 200` (40,000 points) or `500 x 500` (250,000 points).
+    - **Interpolation** → `Nearest`. This prevents pixel values from blending together during resize, so each point gets a clean, discrete color value.
 3.  **Level TOP:** Increase **Contrast** to sharpen the distinction between light and dark areas.
-4.  **RGB Key TOP:** Set to "Nearest Pixel" to ensure data points are sampled cleanly without interpolation blur.
 
 ---
 

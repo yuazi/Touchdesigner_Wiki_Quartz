@@ -1,5 +1,5 @@
 ---
-title: "L01 — Introduction to Program Verification"
+title: "L01  -  Introduction to Program Verification"
 tags:
   - program-verification
   - software-correctness

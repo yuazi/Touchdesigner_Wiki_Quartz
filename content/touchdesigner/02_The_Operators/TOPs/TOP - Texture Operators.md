@@ -17,11 +17,21 @@ That GPU residency is what makes TOPs fast. Filters and composites that would cr
 
 The wiki itself only formally lists a "Sweet 16" of commonly-used TOPs (Movie File In, Ramp, Level, Transform, Over, Text, Blur, Composite, Render, CHOP to, Resolution, Crop, Select, Reorder, Cache, Displace). Practically the family groups into:
 
-- **Generators** make pixels from nothing: Constant, Noise, Ramp, Circle, Text, Movie File In, Video Device In, NDI In, Render
+- **Generators** make pixels from nothing: Constant, Noise, Ramp, Circle, Text, Movie File In, Video Device In, NDI In, Render, **Render Simple** (2025+)
 - **Filters** modify a single input: Blur, Level, Threshold, Edge, Monochrome, Transform, Crop, Lookup, Displace
-- **Composites** combine multiple inputs: Composite, Over, Add, Multiply, Layer, Layout, Cross, Switch
+- **Composites** combine multiple inputs: Composite, Over, Add, Multiply, Layer, Layout, Cross, Switch, **Layer Mix** (2025+)
 - **Bridges** convert across families: CHOP to TOP, SOP to TOP (via render), POP to TOP, TOP to CHOP, Texture 3D
 - **Outputs** send pixels outside: Movie File Out, Touch Out, NDI Out, Syphon/Spout Out, Video Device Out, Screen
+- **AI / Hardware** (2025+): **NVIDIA RTX Video TOP** (AI super-resolution and SDR to HDR conversion via the NVIDIA RTX Video SDK; requires an RTX-series GPU)
+
+> [!tip] Layer Mix vs Composite TOP
+> **Layer Mix TOP** (2025+) is the modern choice when you need a proper layer stack with per-layer blend modes and opacity controls — like Photoshop layers. The older **Composite TOP** handles the same blending math but treats all inputs as equals with a single operation. Use Layer Mix for multi-layer designs; use Composite when a single operation across N inputs is enough.
+
+> [!tip] Render Simple TOP
+> **Render Simple TOP** (2025+) renders POP or SOP geometry to a texture without requiring a separate Camera COMP or Light COMP. It is intentionally lightweight — no shadow maps, no multi-pass — and is the fastest way to get a quick render of a POP network. When you need full control (cameras, lights, render passes), use the standard **Render TOP** instead.
+
+> [!info] 3D Texture and 2D Array Support (TD 2025+)
+> Most standard TOPs now natively process 3D textures and 2D texture arrays without conversion: Add, Blur, Composite, Displace, Feedback, HSV Adjust, Level, Multiply, Noise, Over, Threshold, and about 20 more. Previously, 3D texture work required workarounds; you can now pipe a Texture 3D TOP through a standard filter chain directly.
 
 ## Pixel Formats
 

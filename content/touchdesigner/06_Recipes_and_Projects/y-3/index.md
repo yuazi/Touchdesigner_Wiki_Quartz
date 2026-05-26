@@ -15,11 +15,13 @@ Welcome to the **Advanced** module. These recipes involve deep dives into fluid 
 - **[[GPU Fluid Simulation|(y-) GPU Fluid Simulation]]**: A complex TOP-based feedback system for smoke and liquid dynamics based on Jos Stam's stable fluids algorithm. Optimized for Apple Silicon.
 - **[[Dreamscape Particle Cloud|(y-) Dreamscape Particle Cloud]]**: A stylized, glowing particle cloud that uses recursive feedback and blur chains to create the "bloom" effect characteristic of high-end generative art.
 - **[[Vector Field Instancing|(y-) Vector Field Instancing]]**: Learn how to create millions of points following swirling vortex paths driven by an animated 3D vector noise grid on the GPU.
+- **[[Reaction-Diffusion|(y-) Reaction-Diffusion (Gray-Scott Model)]]**: Simulate the chemical patterns found on animal skins and seashells entirely in a GLSL feedback loop. Spot, stripe, and worm-hole morphologies emerge from two parameters.
 
 ---
 
 ## Motion Tracking & Interaction
 
+- **[[Fluid Brush Hand Tracking|(y-) Fluid Brush with Hand Tracking]]**: Your hand becomes a brush painting glowing fluid trails in real time. A MediaPipe wrist position drives a feedback loop combining diffusion, advection, and decay - the interactive wall installation technique.
 - **[[Hand Tracking Tutorial|(y-) ★ Complete Hand Tracking Walkthrough]]**: A comprehensive project covering everything from initial setup to building a watercolor brush and a generative architecture scene driven by MediaPipe landmarks.
 - **[[MediaPipe Hand Tracking Advanced Techniques|(y-) MediaPipe Hand Tracking Advanced]]**: Learn multi-hand tracking, complex gesture recognition (swipes, rotations, claps), and advanced interaction systems for large-scale installations.
 - **[[Real-time Motion History and Optical Flow|(y-) Motion History & Optical Flow]]**: Motion analysis using simple webcams. Learn how to track speed and direction without expensive infrared sensors.

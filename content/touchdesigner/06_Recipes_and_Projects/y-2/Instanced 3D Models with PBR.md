@@ -293,12 +293,12 @@ TouchDesigner instancing limits:
 
 ## 9. Related Techniques
 
-- [[5 Ways To Make Particles|(y-) 5 Ways To Make Particles]] — Alternative for point-based rendering
-- [[Particle System with POPs|(y-) Particle System with POPs]] — GPU particle systems
-- [[GLSL Feedback Effect|(y-) GLSL Feedback Effect]] — Adding trails to instances
-- [[Audio Reactive Geometry|(y-) Audio Reactive Geometry]] — Simpler audio-reactive instancing
-- [[Hand Tracking Tutorial|(y-) Hand Tracking Tutorial]] — Interactive instance control
-- [[Real-time Audio Visualizer|(y-) Real-time Audio Visualizer]] — Audio-driven visuals
+- [[5 Ways To Make Particles|(y-) 5 Ways To Make Particles]] - Alternative for point-based rendering
+- [[Particle System with POPs|(y-) Particle System with POPs]] - GPU particle systems
+- [[GLSL Feedback Effect|(y-) GLSL Feedback Effect]] - Adding trails to instances
+- [[Audio Reactive Geometry|(y-) Audio Reactive Geometry]] - Simpler audio-reactive instancing
+- [[Hand Tracking Tutorial|(y-) Hand Tracking Tutorial]] - Interactive instance control
+- [[Real-time Audio Visualizer|(y-) Real-time Audio Visualizer]] - Audio-driven visuals
 
 ---
 
@@ -332,12 +332,4 @@ Merge CHOP ────────▶ [ Null (NULL_INSTANCES) ]
                        └──────────────┘
 ```
 
-### Data Flow Explanation
-1.  **Data Generation:** We use `Noise TOPs` to generate random-but-smooth values for every instance. A 64x64 Noise TOP creates 4096 unique values (one per pixel).
-2.  **CHOP Conversion:** The `TOP to CHOP` node converts those 4096 pixels into 4096 CHOP samples. Each sample contains the `tx, ty, tz` (translation) and `rx, ry, rz` (rotation) for one specific 3D model.
-3.  **Instancing Engine:** The `Geo COMP` is the "multiplier." It takes the one 3D model you imported and spawns 4096 copies of it on the GPU, using the `NULL_INSTANCES` CHOP as a coordinate map.
-4.  **Physically Based Rendering:** The `PBR MAT` handles the look. Unlike simpler materials, it requires an `Environment Light` (with an HDR image) to calculate realistic reflections and "metalness."
-5.  **Optimization:** Because the positions and rotations are processed on the GPU via the Instance tab, the CPU remains free to handle other logic, keeping the framerate high even with complex models.
-
----
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

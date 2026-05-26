@@ -1,5 +1,5 @@
 ---
-title: "L05 — SMT-LIB"
+title: "L05  -  SMT-LIB"
 tags:
   - program-verification
   - smt-lib

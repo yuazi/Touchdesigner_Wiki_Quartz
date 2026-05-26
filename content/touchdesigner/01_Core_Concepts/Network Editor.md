@@ -54,8 +54,8 @@ Right-click (two-finger tap on trackpad) on empty space → **Add Bookmark** to 
 
 ## Comments and Notes
 
-- **`Shift + C`** — Add a Comment annotation (floating text label).
-- **`Shift + S`** — Add a colored background Subnet box to group and document nodes visually.
+- **`Shift + C`** - Add a Comment annotation (floating text label).
+- **`Shift + S`** - Add a colored background Subnet box to group and document nodes visually.
 - Right-click a node → **Add Comment** to attach a note directly to a node.
 
 ## The Info OP
@@ -77,9 +77,9 @@ This is your first debugging tool.
 
 ## Common Gotchas
 
-- **"Why isn't my node cooking?"** — Check the Cook flag and make sure something downstream is actually requesting the output.
-- **"I can't see my changes"** — Make sure the Viewer flag (bottom-left) is turned on.
-- **"My network is huge and slow"** — Use `/` to search within the network. Collapse modules into COMPs with `Ctrl + Shift + C` (Network Box).
+- **"Why isn't my node cooking?"** - Check the Cook flag and make sure something downstream is actually requesting the output.
+- **"I can't see my changes"** - Make sure the Viewer flag (bottom-left) is turned on.
+- **"My network is huge and slow"** - Use `/` to search within the network. Collapse modules into COMPs with `Ctrl + Shift + C` (Network Box).
 
 ---
 [[touchdesigner/01_Core_Concepts/index|(y) Return to Core Concepts]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

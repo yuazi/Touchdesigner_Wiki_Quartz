@@ -1,5 +1,5 @@
 ---
-title: "L18 — Trace Abstraction and Floyd-Hoare Automata"
+title: "L18  -  Trace Abstraction and Floyd-Hoare Automata"
 tags:
   - program-verification
   - trace-abstraction

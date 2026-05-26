@@ -6,7 +6,7 @@ tags:
 date: 2026-05-09
 ---
 
-A central hub for course-based lecture notes—structured study material from master's coursework.
+A central hub for course-based lecture notes - structured study material from master's coursework.
 
 ---
 

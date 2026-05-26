@@ -1,5 +1,5 @@
 ---
-title: "L06 — Boogie and Boostan"
+title: "L06  -  Boogie and Boostan"
 tags:
   - program-verification
   - boogie

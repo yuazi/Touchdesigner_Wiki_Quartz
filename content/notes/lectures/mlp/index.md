@@ -8,7 +8,7 @@ tags:
 date: 2026-03-10
 ---
 
-This is my study hub for the MPL master's course. Each lecture gets its own page with explanations, key concepts, math, and examples I worked through to actually understand the material — not just memorize it.
+This is my study hub for the MPL master's course. Each lecture gets its own page with explanations, key concepts, math, and examples I worked through to actually understand the material  -  not just memorize it.
 
 I use the [[work/slidelink|SlideLink]] tool I built to automatically align these notes with the lecture slides.
 
@@ -16,7 +16,7 @@ I use the [[work/slidelink|SlideLink]] tool I built to automatically align these
 
 ## How to Use These Notes
 
-- **Reading linearly** works well — each lecture builds on the previous.
+- **Reading linearly** works well  -  each lecture builds on the previous.
 - Each page has a **mental model** section (big picture first), then details.
 - Look for the **Example** blocks to build intuition.
 - Math is included where needed, but always paired with plain-English explanations.

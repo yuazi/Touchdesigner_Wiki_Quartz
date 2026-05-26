@@ -33,9 +33,9 @@ Ever wanted to make your visuals react to someone's movement without fancy senso
 Let's make a visual that shows where people have moved recently.
 
 1.  **Find the Difference:**
-    - Connect `NULL_VIDEO` to a **Subtract TOP**.
-    - Add a **Delay TOP** (set to 1 frame delay) and connect it into the second input of the **Subtract TOP**.
-    - _What it does:_ It subtracts the previous frame from the current one. If something moved, there's a difference!
+    - Connect `NULL_VIDEO` to a **Math TOP** (set Operation to `Subtract`).
+    - Connect `NULL_VIDEO` to a **Cache TOP** (Index `-1`, Cache Size `2`) and wire that into the second input of the Math TOP.
+    - _What it does:_ The Cache TOP provides the previous frame. Subtracting it from the current frame leaves only the pixels that changed - i.e. where motion happened.
 2.  **The Accumulator:**
     - Connect the result to a **Feedback TOP**.
     - Inside the feedback network, add a **Level TOP** and set **Opacity** to `0.95`.
@@ -72,9 +72,9 @@ Let's make a visual where your motion "paints" trails on the screen.
 
 ## Troubleshooting
 
-- **"I see lots of tiny white dots everywhere."** — That's digital noise. Increase the **Blur TOP** before your motion detection or use a **Threshold TOP** to cut out the small stuff.
-- **"The trails never disappear!"** — Lower the **Opacity** in your Feedback loop's **Level TOP** (try `0.90` instead of `0.95`).
-- **"Everything is red/blue."** — Optical Flow results can look strange. Use an **HSV Adjust TOP** to remap the colors into something more pleasing.
+- **"I see lots of tiny white dots everywhere."** - That's digital noise. Increase the **Blur TOP** before your motion detection or use a **Threshold TOP** to cut out the small stuff.
+- **"The trails never disappear!"** - Lower the **Opacity** in your Feedback loop's **Level TOP** (try `0.90` instead of `0.95`).
+- **"Everything is red/blue."** - Optical Flow results can look strange. Use an **HSV Adjust TOP** to remap the colors into something more pleasing.
 
 ---
 
@@ -101,9 +101,10 @@ To visualize how the motion and optical flow data flows, here is the final netwo
 
 ```text
 [ VIDEO INPUT ]                  [ MOTION DETECTION ]
-Video Device In ──▶ Blur TOP ──▶ Subtract TOP (Current - Previous)
-                      │             │
-                      ▼             ▼
+Video Device In ──▶ Blur TOP ──▶ Math TOP (Subtract)
+                      │    └──▶ Cache TOP (Index -1) ──┘
+                      │
+                      ▼
 [ OPTICAL FLOW ]               [ Feedback TOP Loop ]
 Optical Flow TOP ──────────────▶ Level TOP (Fade 0.95)
       │                             │
@@ -116,12 +117,4 @@ Optical Flow TOP ──────────────▶ Level TOP (Fade 0
 [ COMPOSITE ] ──▶ [ Add TOP ] ──▶ [ HSV Adjust ] ──▶ [ OUT ]
 ```
 
-### Data Flow Explanation
-1.  **Preparation:** The `Blur TOP` is our first step. It removes high-frequency digital noise from the webcam that would otherwise trigger "false" motion.
-2.  **Difference Engine:** The `Subtract TOP` compares the current frame to the one just before it. If a pixel's color changed, it means something moved there!
-3.  **Temporal Memory:** The `Feedback TOP` creates the "history." By adding the previous motion back into the current frame at 95% opacity, we see a trailing trail of where you were.
-4.  **Vector Mapping:** The `Optical Flow TOP` calculates the *velocity* of pixels. It outputs this as a two-channel texture where Red = Horizontal speed and Green = Vertical speed.
-5.  **Final Mix:** We combine the original video, the motion "heat map," and the optical flow "direction colors" to create a single interactive visual.
-
----
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

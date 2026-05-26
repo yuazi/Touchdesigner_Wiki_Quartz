@@ -75,9 +75,9 @@ Let's make two spheres that follow your hands in 3D space.
 
 ## Troubleshooting
 
-- **"The skeleton is upside down."** — Use a **Math CHOP** on the Y channel with **Multiply** set to `-1`.
-- **"It's lagging."** — Pose tracking is very heavy. Make sure **Pose Tracking** is the _only_ model turned on in the MediaPipe COMP.
-- **"The dots are shaky."** — Add a **Lag CHOP** between your Select CHOP and your Null to smooth out the movement.
+- **"The skeleton is upside down."** - Use a **Math CHOP** on the Y channel with **Multiply** set to `-1`.
+- **"It's lagging."** - Pose tracking is very heavy. Make sure **Pose Tracking** is the _only_ model turned on in the MediaPipe COMP.
+- **"The dots are shaky."** - Add a **Lag CHOP** between your Select CHOP and your Null to smooth out the movement.
 
 ---
 
@@ -128,12 +128,4 @@ Webcam TOP ──────────────────▶ [ MediaPipe
 [ RENDERING ]                  [ Sphere SOP ] ────────▶ [ Render TOP ]
 ```
 
-### Data Flow Explanation
-1.  **Plugin Layer:** `MediaPipe.tox` is the engine. It runs the "BlazePose" model in an embedded browser and sends the 33 3D landmark points into TouchDesigner.
-2.  **Joint Decoding:** The `Pose Tracking.tox` component decodes those 33 points into named channels for every joint (shoulders, elbows, wrists, etc.).
-3.  **Data Extraction:** We use a `Select CHOP` to grab just the `wrist` channels. This gives us the X, Y, and Z positions of both your hands.
-4.  **The Bridge (Instancing):** The `Geo COMP` takes the `HAND_DATA` CHOP and uses it to "spawn" two `Sphere SOPs` on the GPU — one for each hand.
-5.  **Coordinate Remap:** Because MediaPipe uses a 0-1 (top-left) origin, we use a `Math CHOP` to remap this to TouchDesigner's centered 3D space (-1.0 to 1.0), ensuring the spheres move logically on screen.
-
----
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

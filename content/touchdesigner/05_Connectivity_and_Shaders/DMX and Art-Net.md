@@ -27,6 +27,21 @@ Sending DMX data over Ethernet (UDP). This is the preferred method for high-coun
 - **Art-Net:** Widely used, but can be less efficient than sACN for very large installations due to its broadcast nature. In TD, set the **'Local Address'** and the target **'Network Address'**.
 - **sACN:** Uses multicast, making it more scalable for complex network environments.
 
+## DMX via POPs (TD 2025+)
+
+TouchDesigner 2025 added a GPU-native DMX path that complements the CHOP approach above.
+
+- **DMX Fixture POP:** Define a single fixture's channel profile (pan, tilt, color, dimmer, strobe, etc.) as a POP. Combine multiple Fixture POPs for a full rig.
+- **DMX Out POP:** Connects to one or more DMX Fixture POPs, merges their universes, and transmits to DMX USB (FTDI), Art-Net, sACN, or KiNET hardware in one node.
+
+**When to use POPs vs CHOPs:**
+
+| Scenario | Recommended path |
+| --- | --- |
+| Simple rig, a few fixtures | **DMX Out CHOP** — less setup, easier to debug |
+| Large LED array / pixel-mapped installation | **DMX Out POP** — stays on GPU, scales to thousands of points |
+| Generative lighting driven by POP simulation | **DMX Out POP** — attributes flow directly from POP chain without CPU round-trip |
+
 ## Pro-Tips
 
 1. **Universe Management:** One DMX Universe has **512 channels**. If you are controlling RGB LEDs, that's only 170 pixels per universe (512 / 3).

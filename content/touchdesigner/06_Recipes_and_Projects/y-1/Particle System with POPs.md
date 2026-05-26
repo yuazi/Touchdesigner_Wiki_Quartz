@@ -9,7 +9,7 @@ tags:
 date: 2026-03-01
 ---
 
-Want to create particle systems that can handle hundreds of thousands of particles without melting your CPU? That's exactly what **POPs (Point Operators)** are for—they run entirely on the GPU, letting you push insane amounts of particles with forces, colors, and all the good stuff while keeping your processor happy.
+Want to create particle systems that can handle hundreds of thousands of particles without melting your CPU? That's exactly what **POPs (Point Operators)** are for - they run entirely on the GPU, letting you push insane amounts of particles with forces, colors, and all the good stuff while keeping your processor happy.
 
 > [!info] Operator Families in this Recipe
 >
@@ -22,7 +22,7 @@ Want to create particle systems that can handle hundreds of thousands of particl
 
 ## How POPs fit into a network
 
-POPs work on **point clouds**—big sets of 3D points where each point has "attributes" like position, velocity, and color.
+POPs work on **point clouds** - big sets of 3D points where each point has "attributes" like position, velocity, and color.
 
 They live inside a **POP SOP**, which is the "bridge" node. It takes regular 3D shapes (SOPs), turns them into particles (POPs), and then brings them back into your 3D scene.
 
@@ -94,9 +94,9 @@ The POP SOP outputs "points," but we need to tell TouchDesigner _how_ to draw th
 
 ## Troubleshooting
 
-- **"I don't see anything!"** — Make sure the **Solver POP** is connected and the **Display Flag** (the circle icon in the bottom right) is on.
-- **"Particles fly away too fast"** — Lower the **Initial Velocity** on the Source POP.
-- **"The colors aren't changing"** — Check that **Life Source** is set to `Normalized Life`.
+- **"I don't see anything!"** - Make sure the **Solver POP** is connected and the **Display Flag** (the circle icon in the bottom right) is on.
+- **"Particles fly away too fast"** - Lower the **Initial Velocity** on the Source POP.
+- **"The colors aren't changing"** - Check that **Life Source** is set to `Normalized Life`.
 
 ---
 
@@ -137,12 +137,4 @@ Source POP (1000/sec) ──┐
 [ AUDIO DRIVE ] ──▶ [ Analyze CHOP ] ──▶ [ Render TOP ]
 ```
 
-### Data Flow Explanation
-1.  **Emission:** The `Source POP` generates the initial points on the GPU. Unlike SOPs, these aren't "geometry" yet; they are just data points.
-2.  **Forces & Physics:** The `Force` and `Wind` POPs apply mathematical vectors to every point's velocity attribute. The `Solver POP` then uses those velocities to update the points' positions every frame.
-3.  **Attribute Mapping:** The `Color POP` looks at each particle's `Normalized Life` (0 to 1) and assigns a color from a ramp. As a particle gets older, it changes color automatically.
-4.  **The Bridge:** The `POP SOP` acts as the bridge, bringing those GPU points back into TouchDesigner's main network so they can be rendered.
-5.  **Rendering:** We use the `Sprite SOP` and `Point Sprite MAT` to draw each point as a 2D "glow" that always faces the camera.
-
----
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

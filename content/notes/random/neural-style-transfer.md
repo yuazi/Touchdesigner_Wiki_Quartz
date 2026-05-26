@@ -11,7 +11,7 @@ date: 2026-03-12
 
 > **Inspired by:** [Gatys et al. (A Neural Algorithm of Artistic Style)](https://arxiv.org/abs/1508.06576)
 
-I’ve been looking for a way to actually "see" the concepts from my [[/notes/lectures/mlp/02-cnn|CNN theory]] notes in a live environment. Neural Style Transfer (NST) turns out to be the answer—it uses a pre-trained network to "repaint" your camera feed using the visual DNA of a specific artwork. Since optimization loops are too slow for real-time work, I reach for **Feed-forward Style Transfer** to keep things running at a steady 60fps.
+I’ve been looking for a way to actually "see" the concepts from my [[/notes/lectures/mlp/02-cnn|CNN theory]] notes in a live environment. Neural Style Transfer (NST) turns out to be the answer - it uses a pre-trained network to "repaint" your camera feed using the visual DNA of a specific artwork. Since optimization loops are too slow for real-time work, I reach for **Feed-forward Style Transfer** to keep things running at a steady 60fps.
 
 > [!info] Operator Families in this Recipe
 >
@@ -115,15 +115,15 @@ def onCook(scriptOp):
 Running neural networks in Python can bottleneck quickly. Since we're on an M1 Pro, I use a few tricks to keep the UI from locking up.
 
 1.  **Delayed Arrays:** Setting `delayed=True` in the `numpyArray` call prevents the CPU from waiting for the GPU to finish, which stops the UI from stuttering.
-2.  **Resolution Scaling:** I usually run the inference at `640x480` or even `320x240`. Style transfer is very forgiving—you can scale it back up with a **Resolution TOP** and the painterly textures hide the low-res artifacts perfectly.
+2.  **Resolution Scaling:** I usually run the inference at `640x480` or even `320x240`. Style transfer is very forgiving - you can scale it back up with a **Resolution TOP** and the painterly textures hide the low-res artifacts perfectly.
 
 ---
 
 ## Troubleshooting
 
-- **"The UI is lagging!"** — Lower the resolution in `blobFromImage`. Python is single-threaded, so heavy inference will eat your frame time.
-- **"It's just a black screen."** — Ensure your input image isn't empty and that the `Modelpath` parameter is pointing to a valid ONNX file.
-- **"The colors look weird."** — Toggle `swapRB` in the `blobFromImage` function; some models expect BGR instead of RGB.
+- **"The UI is lagging!"**  -  Lower the resolution in `blobFromImage`. Python is single-threaded, so heavy inference will eat your frame time.
+- **"It's just a black screen."**  -  Ensure your input image isn't empty and that the `Modelpath` parameter is pointing to a valid ONNX file.
+- **"The colors look weird."**  -  Toggle `swapRB` in the `blobFromImage` function; some models expect BGR instead of RGB.
 
 ---
 
@@ -164,9 +164,9 @@ Here is how the data flows through the operator and the Python script:
 
 ## See Also
 
-- [[touchdesigner/04_Scripting_and_Architecture/Python in TD|(y-) Python in TouchDesigner]] — More on how to use external libraries like OpenCV.
-- [[/notes/lectures/mlp/01-introduction|(y-) Introduction to Machine Learning]] — The foundation for understanding how networks "see."
-- [[work/index|(y) The Workshop]] — Other creative coding experiments and finished projects.
+- [[touchdesigner/04_Scripting_and_Architecture/Python in TD|(y-) Python in TouchDesigner]]  -  More on how to use external libraries like OpenCV.
+- [[/notes/lectures/mlp/01-introduction|(y-) Introduction to Machine Learning]]  -  The foundation for understanding how networks "see."
+- [[work/index|(y) The Workshop]]  -  Other creative coding experiments and finished projects.
 
 ---
 [[notes/index|(y) Return to Notes]] | [[notes/random/index|(y) Return to Random Hub]] | [[/index|(y) Return to Home]]

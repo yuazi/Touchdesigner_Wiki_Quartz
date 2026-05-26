@@ -117,7 +117,7 @@ x * x * (3 - 2 * x)
 
 ## Common Gotchas
 
-- **Green background on a parameter field** means expression mode is active — it's not an error.
+- **Green background on a parameter field** means expression mode is active - it's not an error.
 - Division by zero in an expression **silently evaluates to 0** rather than crashing.
 - `absTime.seconds` keeps counting even when a **component's** local timeline is paused. It only stops if you pause the **root timeline** or hit the power button. Use `me.time.seconds` for timeline-relative time.
 - Using `op('path')` with an absolute path is fragile. Prefer relative references or `me` / `parent()`.

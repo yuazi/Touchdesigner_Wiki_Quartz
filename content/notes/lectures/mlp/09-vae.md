@@ -1,5 +1,5 @@
 ---
-title: "L09 — Generative AI & Variational Autoencoders (VAE)"
+title: "L09  -  Generative AI & Variational Autoencoders (VAE)"
 tags:
   - mlp
   - vae
@@ -9,7 +9,7 @@ tags:
   - neural-networks
 date: 2026-03-09
 ---
-[[/notes/lectures/mlp/08-iml|Previous: L08 — IML]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/10-gans|Next: (y-10) GANs]]
+[[/notes/lectures/mlp/08-iml|Previous: L08  -  IML]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/10-gans|Next: (y-10) GANs]]
 
 > **Slide credits**: O. Hilliges @ ETHZ · Paul Liang & Louis-Philippe Morency @ CMU
 
@@ -33,7 +33,7 @@ date: 2026-03-09
 
 |              | Supervised                       | Unsupervised                       |
 | ------------ | -------------------------------- | ---------------------------------- |
-| **Data**     | $(x, y)$ — labelled pairs        | $x$ — no labels                    |
+| **Data**     | $(x, y)$  -  labelled pairs        | $x$  -  no labels                    |
 | **Goal**     | Learn mapping $X \to y$          | Learn underlying structure of data |
 | **Examples** | Image classification, regression | Clustering, generation             |
 
@@ -49,8 +49,8 @@ $$p_{\text{model}}(x) \approx p_{\text{data}}(x)$$
 
 What we want to do with $p_{\text{model}}(x)$:
 
-- **Evaluate** $p_{\text{model}}(x)$ — realistic data should score high, fake data should score low
-- **Sample** new $x \sim p_{\text{model}}(x)$ — e.g. generate realistic images
+- **Evaluate** $p_{\text{model}}(x)$  -  realistic data should score high, fake data should score low
+- **Sample** new $x \sim p_{\text{model}}(x)$  -  e.g. generate realistic images
 
 We may also want **conditional** generation $p(x|c)$, where $c$ is a category (e.g. "generate a face"), or even $p(x_2 | x_1, c)$ for style transfer (change style $c$ applied to image $x_1$).
 
@@ -60,14 +60,14 @@ We may also want **conditional** generation $p(x|c)$, where $c$ is a category (e
 
 <p class="image-caption">Modeling those hidden factors of variation using latent variables.</p>
 
-Images have huge variability: gender, eye colour, hair colour, pose, lighting, etc. Unless annotated, these **factors of variation** are not explicitly available — they are **latent**.
+Images have huge variability: gender, eye colour, hair colour, pose, lighting, etc. Unless annotated, these **factors of variation** are not explicitly available  -  they are **latent**.
 
 **Idea**: explicitly model these factors with latent variables $z$.
 
 - Put a prior on $z$: $z \sim \mathcal{N}(0, I)$
 - Model the data with: $p(x|z) = \mathcal{N}(\mu_\theta(z),\, \Sigma_\theta(z))$ where $\mu_\theta$ and $\Sigma_\theta$ are neural networks
-- After training, $z$ should correspond to meaningful factors — hair colour, pose, etc.
-- Given a new image $x$, extract features via $p(z|x)$ — useful for clustering and representation learning
+- After training, $z$ should correspond to meaningful factors  -  hair colour, pose, etc.
+- Given a new image $x$, extract features via $p(z|x)$  -  useful for clustering and representation learning
 
 > **Example**: two images of the same person smiling will map to nearby $z$ vectors; an image of a different person with the same pose will share some $z$ dimensions but differ in others.
 
@@ -81,7 +81,7 @@ Likelihood as a function of model parameters:
 
 $$L(\theta) = \prod_i p(x_i | \theta) \quad \Longrightarrow \quad \log L(\theta) = \sum_i \log p(x_i | \theta)$$
 
-MLE is the backbone of supervised deep learning — cross-entropy and least-squares are both MLE estimators. Generative models extend this to the _unsupervised_ setting.
+MLE is the backbone of supervised deep learning  -  cross-entropy and least-squares are both MLE estimators. Generative models extend this to the _unsupervised_ setting.
 
 ### Taxonomy of Generative Models
 
@@ -103,7 +103,7 @@ Generative Models
 ```
 
 **Explicit models** define $p(x)$ and evaluate likelihoods → MLE training.
-**Implicit / likelihood-free models** (GANs) are highly expressive but the density function is not defined or is intractable — basis for adversarial training. [Goodfellow et al., 2014; Radford et al., 2016; Karras et al., 2018, 2019]
+**Implicit / likelihood-free models** (GANs) are highly expressive but the density function is not defined or is intractable  -  basis for adversarial training. [Goodfellow et al., 2014; Radford et al., 2016; Karras et al., 2018, 2019]
 
 ---
 
@@ -128,7 +128,7 @@ $$p(x) = \sum_{z} p(x, z) = \sum_{k=1}^{K} p(z=k)\,\mathcal{N}(x;\,\mu_k,\Sigma_
 
 Combining simple Gaussians gives a much more expressive, multi-modal density.
 
-> **Example — MNIST clustering**: fit a MoG with $K=10$ components to MNIST pixels. The model often discovers clusters that roughly correspond to digit identities (0–9) without ever seeing labels. You can also sample new digit images from each cluster, but the quality is low because MoG cannot learn complex pixel-level features.
+> **Example  -  MNIST clustering**: fit a MoG with $K=10$ components to MNIST pixels. The model often discovers clusters that roughly correspond to digit identities (0–9) without ever seeing labels. You can also sample new digit images from each cluster, but the quality is low because MoG cannot learn complex pixel-level features.
 
 **Limitation**: MoG cannot learn rich features of the data (it cannot compute $p(z|x)$ in a meaningful, scalable way for high-dimensional $x$ like images).
 
@@ -153,11 +153,11 @@ x ──→ [Encoder f] ──→ z ──→ [Decoder g] ──→ x̂
 - Decoder $g$: maps samples from $\mathcal{Z}$ back to $\mathcal{X}$
 - Together $[g \circ f]$ approximates the identity on the data
 
-**Training objective** — minimize reconstruction error:
+**Training objective**  -  minimize reconstruction error:
 
 $$\hat\theta_f, \hat\theta_g = \arg\min_{\theta_f, \theta_g} \sum_{n=1}^N \|x_n - g(f(x_n))\|^2$$
 
-> **Linear special case**: if both $f$ and $g$ are linear, the optimal solution is **PCA** — the encoder learns the top-$d$ principal components.
+> **Linear special case**: if both $f$ and $g$ are linear, the optimal solution is **PCA**  -  the encoder learns the top-$d$ principal components.
 
 ### What Autoencoders Are Good At
 
@@ -167,11 +167,11 @@ $$\hat\theta_f, \hat\theta_g = \arg\min_{\theta_f, \theta_g} \sum_{n=1}^N \|x_n 
 
 ### Why Autoencoders Fail for Generation
 
-After training, the latent space $\mathcal{Z}$ is **irregular and discontinuous** — points that decode to valid images cluster in disconnected islands. Sampling a random $z$ and decoding produces garbage.
+After training, the latent space $\mathcal{Z}$ is **irregular and discontinuous**  -  points that decode to valid images cluster in disconnected islands. Sampling a random $z$ and decoding produces garbage.
 
 > **Analogy**: imagine the library stacks were randomly assigned. Opening a random drawer is unlikely to give you a coherent book.
 
-Fitting a simple Gaussian $f(x) \sim \mathcal{N}(\hat\mu, \hat\sigma I)$ over the encoded training points and sampling from it does _not_ work either — the density model is too simple to capture the true structure.
+Fitting a simple Gaussian $f(x) \sim \mathcal{N}(\hat\mu, \hat\sigma I)$ over the encoded training points and sampling from it does _not_ work either  -  the density model is too simple to capture the true structure.
 
 > **MNIST example**: plot the 2D latent codes of an autoencoder trained on MNIST. You'll see tight clusters per digit with large empty gaps between them. A random sample from $z$-space lands in the gaps → blurry or meaningless output.
 
@@ -231,14 +231,14 @@ The VAE is essentially a MoG with a **neural network** replacing the fixed Gauss
 | Features                 | Fixed, hand-specified          | Learned by the network                         |
 
 - Prior: $z \sim \mathcal{N}(0, I)$
-- Decoder: $p(x|z) = \mathcal{N}(\mu_\theta(z),\, \Sigma_\theta(z))$ — $\mu_\theta, \Sigma_\theta$ are neural networks
+- Decoder: $p(x|z) = \mathcal{N}(\mu_\theta(z),\, \Sigma_\theta(z))$  -  $\mu_\theta, \Sigma_\theta$ are neural networks
 - Even though $p(x|z)$ is a simple Gaussian, the **marginal** $p(x) = \int p(x|z)p(z)\,dz$ is much richer and more flexible
 
 **MLE objective** on a dataset $\mathcal{D}$:
 
 $$\log \prod_{x \in \mathcal{D}} p(x;\theta) = \sum_{x \in \mathcal{D}} \log p(x;\theta) = \sum_{x \in \mathcal{D}} \log \sum_z p(x, z;\theta)$$
 
-The sum inside the log is **intractable** for continuous, high-dimensional $z$ — we need a smarter approach.
+The sum inside the log is **intractable** for continuous, high-dimensional $z$  -  we need a smarter approach.
 
 ---
 
@@ -337,12 +337,12 @@ good VAE training means:
 
 <p class="image-caption">ASCII view: the ELBO rewards faithful reconstruction but subtracts a penalty when the posterior drifts too far from the prior.</p>
 
-**Term 1 — Reconstruction loss**: how well does the decoder recover $x$ from $z$?
+**Term 1  -  Reconstruction loss**: how well does the decoder recover $x$ from $z$?
 
 - Continuous data ($x \in \mathbb{R}^d$): $\|x - \hat{x}\|^2$ (MSE / Gaussian likelihood)
 - Binary data (e.g. binarised MNIST): binary cross-entropy
 
-**Term 2 — KL divergence**: how far is the posterior from the prior $\mathcal{N}(0,I)$?
+**Term 2  -  KL divergence**: how far is the posterior from the prior $\mathcal{N}(0,I)$?
 
 For Gaussians ($q_\phi(z|x) = \mathcal{N}(\mu, \sigma^2 I)$, $p(z) = \mathcal{N}(0,I)$) this is **analytic**:
 
@@ -370,7 +370,7 @@ VAE training works when these two pressures balance: **compress, but not so aggr
 
 <p class="image-caption">Fitting a simple distribution q to a messy, intractable posterior.</p>
 
-We introduce an **approximate posterior** $q_\phi(z|x)$ (the encoder) — a tractable distribution parametrised by $\phi$, e.g. a diagonal Gaussian:
+We introduce an **approximate posterior** $q_\phi(z|x)$ (the encoder)  -  a tractable distribution parametrised by $\phi$, e.g. a diagonal Gaussian:
 
 $$q_\phi(z|x) = \mathcal{N}(\phi_1(x),\, \phi_2(x))$$
 
@@ -384,7 +384,7 @@ The key insight of VAEs is to **amortise** this inference: instead of running op
 
 ## The Reparameterization Trick
 
-**Problem**: $z \sim q_\phi(z|x)$ is a stochastic sampling step — gradients cannot flow through it.
+**Problem**: $z \sim q_\phi(z|x)$ is a stochastic sampling step  -  gradients cannot flow through it.
 
 ![[pictures/mpl/09/Lecture09_Pg072_Reparametrisation_Trick.png]]
 
@@ -421,7 +421,7 @@ And the gradient moves inside cleanly:
 
 $$\nabla_\phi \mathbb{E}_{q_\phi}\!\big[r(z)\big] = \mathbb{E}_\varepsilon\!\big[\nabla_\phi\, r(\mu + \sigma\varepsilon)\big] \approx \frac{1}{n}\sum_{i=1}^n \nabla_\phi\, r(\mu + \sigma\varepsilon_i)$$
 
-The randomness ($\varepsilon$) is now **external** — gradients flow back through $\mu_\phi$ and $\sigma_\phi$ via standard backpropagation.
+The randomness ($\varepsilon$) is now **external**  -  gradients flow back through $\mu_\phi$ and $\sigma_\phi$ via standard backpropagation.
 
 ### 🧠 Deep Dive: Why Sampling Breaks Backprop
 
@@ -451,7 +451,7 @@ x ──→ Encoder ──→ μ, σ
                ELBO loss
 ```
 
-> **Example**: without reparameterization, training a VAE on MNIST wouldn't converge — the KL term would not receive gradients back to the encoder. With reparameterization, the encoder learns to produce posteriors that both reconstruct well _and_ stay close to $\mathcal{N}(0,I)$.
+> **Example**: without reparameterization, training a VAE on MNIST wouldn't converge  -  the KL term would not receive gradients back to the encoder. With reparameterization, the encoder learns to produce posteriors that both reconstruct well _and_ stay close to $\mathcal{N}(0,I)$.
 
 ---
 
@@ -465,13 +465,13 @@ We jointly optimise decoder parameters $\theta$ and encoder parameters $\phi$ by
 
 $$\mathcal{L}(x;\theta,\phi) = \mathbb{E}_{q_\phi(z|x)}\!\Big[\log p_\theta(x|z)\Big] - D_{KL}\!\Big(q_\phi(z|x) \| p(z)\Big)$$
 
-**Gradient w.r.t. $\theta$** (decoder — straightforward):
+**Gradient w.r.t. $\theta$** (decoder  -  straightforward):
 
 $$\nabla_\theta \mathcal{L} = \nabla_\theta \mathbb{E}_{q_\phi(z|x)}\!\big[\log p_\theta(x|z)\big] = \mathbb{E}_{q_\phi(z|x)}\!\big[\nabla_\theta \log p_\theta(x|z)\big] \approx \frac{1}{n}\sum_{i=1}^n \nabla_\theta \log p_\theta(x|z_i;\theta)$$
 
 Since $\theta$ does not appear inside the expectation distribution, we can move the gradient inside freely.
 
-**Gradient w.r.t. $\phi$** (encoder — tricky):
+**Gradient w.r.t. $\phi$** (encoder  -  tricky):
 
 $$\nabla_\phi \mathcal{L} = \nabla_\phi \mathbb{E}_{q_\phi(z|x)}\!\big[\log p_\theta(x|z)\big] - \nabla_\phi D_{KL}$$
 
@@ -492,7 +492,7 @@ At **inference / generation time**: only the **decoder** is needed.
 
 <p class="image-caption">At generation time the encoder disappears; we sample from the prior and let the decoder map latent codes back to data.</p>
 
-The KL regularization ensures this works — because the encoder is trained to push $q_\phi(z|x) \approx \mathcal{N}(0,I)$, any random $z$ from the prior decodes to a plausible image.
+The KL regularization ensures this works  -  because the encoder is trained to push $q_\phi(z|x) \approx \mathcal{N}(0,I)$, any random $z$ from the prior decodes to a plausible image.
 
 ```text
 sample z ~ N(0, I)
@@ -579,7 +579,7 @@ z("smiling woman") − z("neutral woman") + z("neutral man") ≈ z("smiling man"
 | Random sampling | Mostly garbage           | Valid outputs                |
 | Interpolation   | Discontinuous            | Smooth                       |
 
-> **MNIST visualisation**: a regular AE has tight digit clusters with large empty gaps — random samples from the gaps are meaningless. A VAE has overlapping, smoothly-varying clusters — samples from anywhere produce recognisable (if blurry) digits.
+> **MNIST visualisation**: a regular AE has tight digit clusters with large empty gaps  -  random samples from the gaps are meaningless. A VAE has overlapping, smoothly-varying clusters  -  samples from anywhere produce recognisable (if blurry) digits.
 
 ---
 
@@ -601,7 +601,7 @@ $$\mathcal{L}_\beta(x) = \mathbb{E}_{q_\phi(z|x)}\!\big[\log p_\theta(x|z)\big] 
 - $\beta = 1$: recovers the standard VAE
 - $\beta > 1$: imposes a stronger constraint, encouraging independent latent dimensions (disentanglement) at the cost of reconstruction quality
 
-[Locatello et al., 2019] showed that unsupervised disentanglement is hard without inductive biases — there are many equally valid disentangled representations.
+[Locatello et al., 2019] showed that unsupervised disentanglement is hard without inductive biases  -  there are many equally valid disentangled representations.
 
 ### 🧠 Deep Dive: What $\beta > 1$ Is Really Buying You
 
@@ -648,7 +648,7 @@ A VAE trained on handwriting samples can:
 
 <p class="image-caption">Mapping hand poses to a smooth manifold for better pose estimation.</p>
 
-A VAE trained on hand pose data learns a smooth, compact manifold of valid hand configurations. Sampling from the manifold always produces a valid (anatomically plausible) hand pose — useful for 3D pose estimation from noisy depth sensors.
+A VAE trained on hand pose data learns a smooth, compact manifold of valid hand configurations. Sampling from the manifold always produces a valid (anatomically plausible) hand pose  -  useful for 3D pose estimation from noisy depth sensors.
 
 ### PyTorch Implementation: Convolutional VAE
 
@@ -792,4 +792,4 @@ class VAE(nn.Module):
 - **Architectural Evolution**: VAEs produce blurry images, and GANs suffer from mode collapse. To get both high quality and high diversity, the modern field has largely shifted to **[[/notes/lectures/mlp/12-diffusion|Diffusion Models (L12)]]**.
 
 ---
-[[/notes/lectures/mlp/08-iml|Previous: L08 — IML]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/10-gans|Next: (y-10) GANs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/lectures/mlp/08-iml|Previous: L08  -  IML]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/10-gans|Next: (y-10) GANs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

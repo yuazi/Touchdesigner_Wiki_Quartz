@@ -1,5 +1,5 @@
 ---
-title: "L13 — Explainable AI (XAI)"
+title: "L13  -  Explainable AI (XAI)"
 tags:
   - mlp
   - machine-learning
@@ -9,7 +9,7 @@ tags:
   - deep-learning
 date: 2026-03-09
 ---
-[[/notes/lectures/mlp/12-diffusion|Previous: L12 — Diffusion]] | [[/notes/lectures/mlp/index|Back to MPL Index]]
+[[/notes/lectures/mlp/12-diffusion|Previous: L12  -  Diffusion]] | [[/notes/lectures/mlp/index|Back to MPL Index]]
 
 ## Mental Model First
 
@@ -22,7 +22,7 @@ date: 2026-03-09
 
 ![[pictures/mpl/13/Lecture13_Pg004_Motivation.png]]
 
-<p class="image-caption">This is why we need XAI—especially when the model is making high-stakes decisions.</p>
+<p class="image-caption">This is why we need XAI - especially when the model is making high-stakes decisions.</p>
 
 Model understanding is critical in domains involving high-stakes decisions. Without it, models remain opaque black boxes that can fail silently and destructively.
 
@@ -36,7 +36,7 @@ Model understanding is critical in domains involving high-stakes decisions. With
 | **Trust calibration**  | Know when (and when not) to trust a prediction                     |
 | **Deployment vetting** | Assess whether a model is safe for real-world use                  |
 
-**Motivating example — Wolf vs. Husky classifier**: A canonical XAI cautionary tale is a classifier that appears to distinguish wolves from huskies, but explanation methods reveal that it is mostly reacting to snow in the background. The point of the example is that a model can be right for the wrong reason, and XAI can expose that before deployment.
+**Motivating example  -  Wolf vs. Husky classifier**: A canonical XAI cautionary tale is a classifier that appears to distinguish wolves from huskies, but explanation methods reveal that it is mostly reacting to snow in the background. The point of the example is that a model can be right for the wrong reason, and XAI can expose that before deployment.
 
 ---
 
@@ -44,7 +44,7 @@ Model understanding is critical in domains involving high-stakes decisions. With
 
 Two approaches exist:
 
-### Approach 1 — Inherently Interpretable Models
+### Approach 1  -  Inherently Interpretable Models
 
 ![[pictures/mpl/13/Lecture13_Pg010_Approach_1_Inherently_Interpretable_Models.png]]
 
@@ -55,7 +55,7 @@ Build a model that is interpretable by design: decision trees, rule lists, linea
 - _If Education ≤ High School → Salary ≤ 50k_ (a rule list)
 - Transparent, auditable, but may sacrifice predictive power
 
-### Approach 2 — Post-hoc Explanations
+### Approach 2  -  Post-hoc Explanations
 
 ![[pictures/mpl/13/Lecture13_Pg015_Approach_2_Post_Hoc_Explanations.png]]
 
@@ -66,7 +66,7 @@ Train a powerful black-box model first, then explain its predictions after the f
 - Works on any model you don't control (e.g., a proprietary API)
 - Does not modify the model
 
-**Rule of thumb**: If you can build an interpretable model that is adequately accurate — do it. Post-hoc explanations are second best, but sometimes the only option.
+**Rule of thumb**: If you can build an interpretable model that is adequately accurate  -  do it. Post-hoc explanations are second best, but sometimes the only option.
 
 ---
 
@@ -76,8 +76,8 @@ When a human looks at a picture of a cat, their eyes jump to the ears, the whisk
 
 **Saliency Maps** tell us where the model is "looking".
 
-- If the model correctly identifies a "cat" because it looked at the ears — we trust it.
-- If the model correctly identifies a "cat" because it looked at a "Cat Food" bowl in the background — we know it's cheating!
+- If the model correctly identifies a "cat" because it looked at the ears  -  we trust it.
+- If the model correctly identifies a "cat" because it looked at a "Cat Food" bowl in the background  -  we know it's cheating!
 
 Saliency helps us catch models that are "right for the wrong reasons."
 
@@ -130,7 +130,7 @@ Post-hoc Explainability
 
 ---
 
-## Feature Importances — LIME
+## Feature Importances  -  LIME
 
 ![[pictures/mpl/13/Lecture13_Pg030_Feature_Importances_Lime.png]]
 
@@ -169,7 +169,7 @@ image_exp, mask = explanation.get_image_and_mask(
 )
 ```
 
-**Wolf vs. Husky example**: LIME shows the model highlights snow (background) rather than the animal's body when classifying a wolf — revealing the spurious feature.
+**Wolf vs. Husky example**: LIME shows the model highlights snow (background) rather than the animal's body when classifying a wolf  -  revealing the spurious feature.
 
 **Properties**:
 
@@ -179,7 +179,7 @@ image_exp, mask = explanation.get_image_and_mask(
 
 ---
 
-## Rule-Based Explanations — Anchors
+## Rule-Based Explanations  -  Anchors
 
 
 ![[pictures/mpl/13/Lecture13_Pg035_Rule_Based_Explanations_Anchors.png]]
@@ -196,8 +196,8 @@ Anchors answer a different question from LIME: instead of _"what features were m
 
 | Method  | Output                                                     |
 | ------- | ---------------------------------------------------------- |
-| LIME    | Feature weights — _age: +0.3, education: +0.5_             |
-| Anchors | Rule — _If Education ≤ High School → Predict Salary ≤ 50k_ |
+| LIME    | Feature weights  -  _age: +0.3, education: +0.5_             |
+| Anchors | Rule  -  _If Education ≤ High School → Predict Salary ≤ 50k_ |
 
 The anchor is interpretable as a human-readable condition that _reliably_ reproduces the model's prediction in its neighbourhood.
 
@@ -256,7 +256,7 @@ where $\epsilon_i \sim \mathcal{N}(0, \sigma^2)$. Produces cleaner, more interpr
 
 ![[pictures/mpl/13/Lecture13_Pg089_Integrated_Gradients_Example.png]]
 
-<p class="image-caption">Integrated Gradients is a bit more robust—it avoids saturation and satisfies that completeness axiom.</p>
+<p class="image-caption">Integrated Gradients is a bit more robust - it avoids saturation and satisfies that completeness axiom.</p>
 
 Vanilla input gradients only measure the **local slope** at the input $x$. This creates a problem in saturated regions: the gradient can be near zero even when a feature was crucial for the prediction. Integrated Gradients was proposed to address this and to satisfy the **completeness axiom**, i.e. the attributions should sum to the prediction difference between the input and a baseline (Sundararajan et al., 2017).
 
@@ -415,7 +415,7 @@ def grad_cam(model, x, target_class):
 
 <p class="image-caption">Sometimes it's easier to explain things using actual examples, like prototypes or influential samples from the training set.</p>
 
-**Key idea**: Explain a model not with feature weights but with _example inputs_ — real or synthetic — that illuminate its behaviour.
+**Key idea**: Explain a model not with feature weights but with _example inputs_  -  real or synthetic  -  that illuminate its behaviour.
 
 Key questions:
 
@@ -427,7 +427,7 @@ Key questions:
 
 Identify which training examples had the most influence on a given test prediction.
 
-> **Example**: For a misclassified test image, the most influential training sample might be a mislabelled image with a very similar appearance — explaining why the model was confused.
+> **Example**: For a misclassified test image, the most influential training sample might be a mislabelled image with a very similar appearance  -  explaining why the model was confused.
 
 ### Activation Maximisation / Feature Visualisation
 
@@ -472,7 +472,7 @@ goal: change as little as possible, but in a feasible direction
 
 <p class="image-caption">ASCII view: a counterfactual explanation asks for the smallest realistic change that would flip the model's output.</p>
 
-This provides **recourse** — actionable feedback to individuals affected by a model's decision.
+This provides **recourse**  -  actionable feedback to individuals affected by a model's decision.
 
 > **Example**: "Your loan application was denied. If you increased your annual income by €15K and paid your credit card bills on time for three months, it would be approved."
 
@@ -482,11 +482,11 @@ Counterfactuals are fundamentally different from saliency: saliency says _"this 
 
 ![[pictures/mpl/13/Lecture13_Pg063_1_Minimum_Distance_Counterfactuals_Wachter_Et.png]]
 
-<p class="image-caption">Minimum distance counterfactuals tell you the smallest change needed to flip the outcome—super useful for recourse.</p>
+<p class="image-caption">Minimum distance counterfactuals tell you the smallest change needed to flip the outcome - super useful for recourse.</p>
 
 $$x^{CF} = \arg\min_{x'} \; d(x, x') \quad \text{s.t.} \quad f(x') = y'$$
 
-Using **normalised Manhattan distance** penalises the total number of changes, favouring small perturbations over many large ones. The candidate CF1 vs. CF2 choice depends on which direction $A$ or $B$ you move $x$ along — the metric governs this.
+Using **normalised Manhattan distance** penalises the total number of changes, favouring small perturbations over many large ones. The candidate CF1 vs. CF2 choice depends on which direction $A$ or $B$ you move $x$ along  -  the metric governs this.
 
 ### 2. Feasible and Least-Cost Counterfactuals [Ustun et al., 2019]
 
@@ -525,7 +525,7 @@ Implementation: solve via a variational autoencoder; requires access to model gr
 
 ## Global Explanations
 
-### Collection of Local Explanations — SP-LIME
+### Collection of Local Explanations  -  SP-LIME
 
 ![[pictures/mpl/13/Lecture13_Pg077_Collection_Of_Local_Explanations_Sp_Lime.png]]
 
@@ -550,7 +550,7 @@ All instances → LIME for each → explanation matrix (N × F)
                k representative, diverse explanations shown to user
 ```
 
-### Representation-based — Network Dissection [Bau et al., 2017]
+### Representation-based  -  Network Dissection [Bau et al., 2017]
 
 ![[pictures/mpl/13/Lecture13_Pg080_Representation_Based_Network_Dissection_Bau_Et.png]]
 
@@ -564,7 +564,7 @@ Determine what human-interpretable concepts are encoded by individual neurons (c
 2. For each concept, gather the response of every hidden unit (filter) to those concept examples
 3. Quantify the alignment of each hidden unit–concept pair using IoU
 
-> **Example**: Filter 47 in layer conv5 may have IoU = 0.72 with the concept "wheel" — meaning this neuron consistently fires on wheels.
+> **Example**: Filter 47 in layer conv5 may have IoU = 0.72 with the concept "wheel"  -  meaning this neuron consistently fires on wheels.
 
 ### Representational Similarity
 
@@ -578,7 +578,7 @@ See CKA [Kornblith et al., 2019] and SVCCA [Raghu et al., 2017] for techniques.
 
 ---
 
-## SHAP — SHapley Additive exPlanations
+## SHAP  -  SHapley Additive exPlanations
 
 **Authors**: Lundberg & Lee (2017)
 
@@ -592,7 +592,7 @@ $$\phi_i = \sum_{S \subseteq F \setminus \{i\}} \frac{|S|!(|F|-|S|-1)!}{|F|!}\bi
 
 | Property       | Meaning                                                                            |
 | -------------- | ---------------------------------------------------------------------------------- |
-| **Efficiency** | $\sum_i \phi_i = f(x) - \mathbb{E}[f(x)]$ — values account for the full prediction |
+| **Efficiency** | $\sum_i \phi_i = f(x) - \mathbb{E}[f(x)]$  -  values account for the full prediction |
 | **Symmetry**   | Features with equal contributions receive equal values                             |
 | **Dummy**      | Feature with zero marginal contribution → zero Shapley value                       |
 | **Linearity**  | Values are additive when games are combined                                        |
@@ -616,7 +616,7 @@ shap.image_plot(shap_values, x_test)
 
 ---
 
-## Concept-Based Explanations — TCAV
+## Concept-Based Explanations  -  TCAV
 
 **Authors**: Kim et al. (2018)  
 **TCAV** = Testing with Concept Activation Vectors
@@ -643,9 +643,9 @@ for x in class_k_inputs:
 tcav_score = mean(scores)
 ```
 
-> **Example — Diabetic Retinopathy diagnosis**: A model's TCAV scores might show it strongly relies on the concept "microaneurysms" (TCAV ≈ 0.85) and less on "general redness" (TCAV ≈ 0.4), aligning with clinical knowledge.
+> **Example  -  Diabetic Retinopathy diagnosis**: A model's TCAV scores might show it strongly relies on the concept "microaneurysms" (TCAV ≈ 0.85) and less on "general redness" (TCAV ≈ 0.4), aligning with clinical knowledge.
 
-> **Example — Zebra classification**: "Striped texture" scores TCAV ≈ 0.9, "has four legs" scores ≈ 0.4.
+> **Example  -  Zebra classification**: "Striped texture" scores TCAV ≈ 0.9, "has four legs" scores ≈ 0.4.
 
 ---
 
@@ -692,7 +692,7 @@ Common in: disease diagnosis (weight, age, glucose), credit scoring (income, pre
 
 Applicable methods: all gradient-based saliency (Input Gradient, Guided Backprop, Integrated Gradients, Grad-CAM), TCAV for concept-level explanations.
 
-**Example — Bone age prediction**: Integrated gradients on an X-ray highlights the growth plates of the wrist bones — the same regions a radiologist would examine. TCAV for diabetic retinopathy confirms the model focuses on retinal microaneurysms.
+**Example  -  Bone age prediction**: Integrated gradients on an X-ray highlights the growth plates of the wrist bones  -  the same regions a radiologist would examine. TCAV for diabetic retinopathy confirms the model focuses on retinal microaneurysms.
 
 ### Natural Language Processing
 
@@ -716,7 +716,7 @@ Applicable methods: all gradient-based saliency (Input Gradient, Guided Backprop
 
 <p class="image-caption">At the end of the day, we need to evaluate whether these explanations are actually helpful for humans.</p>
 
-How do we know if an explanation is _good_? This is non-trivial — explanations exist for human consumers, so evaluation requires human studies.
+How do we know if an explanation is _good_? This is non-trivial  -  explanations exist for human consumers, so evaluation requires human studies.
 
 Three evaluation goals [Doshi-Velez & Kim, 2017]:
 
@@ -725,7 +725,7 @@ Three evaluation goals [Doshi-Velez & Kim, 2017]:
 
 ![[pictures/mpl/13/Lecture13_Pg102_1_Understand_Behaviour.png]]
 
-<p class="image-caption">One goal is just to understand the model's behavior—like seeing which features it really depends on.</p>
+<p class="image-caption">One goal is just to understand the model's behavior - like seeing which features it really depends on.</p>
 
 **Deletion / Insertion tests** [Qi et al., 2020]: Remove (or add) features in order of importance and measure the change in model prediction. A good explanation should identify features whose removal causes a sharp accuracy drop.
 
@@ -803,7 +803,7 @@ Both LIME and SHAP give you feature importance, but they do it very differently.
 **Key takeaways**:
 
 1. If an interpretable model achieves sufficient accuracy, prefer it over post-hoc explanations
-2. No single explanation method is complete — use multiple
+2. No single explanation method is complete  -  use multiple
 3. A convincing-looking explanation can still be wrong (gradient saturation, spurious correlations)
 4. Always validate explanations against domain knowledge (does this make sense to an expert?)
 5. Evaluation requires both automatic metrics (deletion/insertion) and human studies (debugging, simulation)
@@ -839,7 +839,7 @@ Both LIME and SHAP give you feature importance, but they do it very differently.
 
 ## References
 
-- Sundararajan, Taly, Yan (2017) — Axiomatic attribution for deep networks. _ICML_.
+- Sundararajan, Taly, Yan (2017)  -  Axiomatic attribution for deep networks. _ICML_.
 
 ### Applied Exam Focus
 - **Saliency Maps**: Gradient-based methods (like **Grad-CAM**) highlight which pixels most influenced the prediction. Note: they can be noisy and misleading.
@@ -847,4 +847,4 @@ Both LIME and SHAP give you feature importance, but they do it very differently.
 - **Local vs. Global**: LIME provides **Local** explanations (for one specific image), while TCAV provides **Global** explanations (for a whole concept like "stripes").
 
 ---
-[[/notes/lectures/mlp/12-diffusion|Previous: L12 — Diffusion]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/lectures/mlp/12-diffusion|Previous: L12  -  Diffusion]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

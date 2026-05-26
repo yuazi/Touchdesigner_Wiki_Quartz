@@ -20,13 +20,13 @@ This module covers TouchDesigner's fundamental building blocks: Operators (or No
 
 ## Specific Node Deep-Dives
 
-- **[[Constant CHOP|(y-) Constant CHOP]]**: Creating static named values — the building block of controllable networks.
-- **[[LFO CHOP|(y-) LFO CHOP]]**: Oscillating signals — sine, triangle, square, ramp, and pulse waveforms.
+- **[[Constant CHOP|(y-) Constant CHOP]]**: Creating static named values - the building block of controllable networks.
+- **[[LFO CHOP|(y-) LFO CHOP]]**: Oscillating signals - sine, triangle, square, ramp, and pulse waveforms.
 - **[[Math CHOP|(y-) Math CHOP]]**: Scaling, converting, and combining numerical data streams.
 - **[[Select CHOP|(y-) Select CHOP]]**: Routing and filtering data channels cleanly without wires.
 - **[[Timer CHOP|(y-) Timer CHOP]]**: Handling triggers, countdowns, state machines, and time-based events.
 - **[[Noise - CHOP and TOP|(y-) Noise (CHOP/TOP)]]**: The foundation of organic movement and procedural textures.
-- **[[Geo COMP|(y-) Geo COMP]]**: Placing 3D geometry in the scene — transforms, materials, and instancing.
+- **[[Geo COMP|(y-) Geo COMP]]**: Placing 3D geometry in the scene - transforms, materials, and instancing.
 - **[[Render TOP|(y-) Render TOP]]**: Converting 3D scenes into 2D textures for display and processing.
 
 ---

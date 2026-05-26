@@ -1,5 +1,5 @@
 ---
-title: "L11 — Nondeterminism: Havoc and Assume"
+title: "L11  -  Nondeterminism: Havoc and Assume"
 tags:
   - program-verification
   - nondeterminism

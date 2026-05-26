@@ -21,7 +21,7 @@ SlideLink is a domain-agnostic CLI tool that contextually aligns Markdown lectur
 
 ## The Core Concept
 
-If you want to build something similar without an LLM, the core idea is **Vectorization**—turning text into numbers to find the "distance" between your note's context and a list of slide texts. Here is a stripped-down example of the matching logic using `scikit-learn`:
+If you want to build something similar without an LLM, the core idea is **Vectorization** - turning text into numbers to find the "distance" between your note's context and a list of slide texts. Here is a stripped-down example of the matching logic using `scikit-learn`:
 
 ```python
 from sklearn.feature_extraction.text import TfidfVectorizer

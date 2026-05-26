@@ -1,5 +1,5 @@
 ---
-title: "01_introduction — The Challenge of Real-Time Graphics"
+title: "01_introduction  -  The Challenge of Real-Time Graphics"
 tags:
   - rtg
   - graphics
@@ -186,7 +186,7 @@ The course allows discussion, but implementations must remain independent. Treat
 7. Why is the Diligent Engine used in the lab instead of raw Vulkan or DirectX?
 
 > [!success]- Answer
-> Diligent Engine is a cross-platform rendering abstraction layered over Vulkan, DirectX 12, and similar modern APIs. The educational point of the lab is **pipeline and algorithm design** — how the rendering pipeline fits together, how shading and post-processing work — not the platform-specific boilerplate that raw Vulkan demands. Using Diligent lets students focus on rendering concepts while still working with modern (PSO-based, bindless-capable) abstractions.
+> Diligent Engine is a cross-platform rendering abstraction layered over Vulkan, DirectX 12, and similar modern APIs. The educational point of the lab is **pipeline and algorithm design**  -  how the rendering pipeline fits together, how shading and post-processing work  -  not the platform-specific boilerplate that raw Vulkan demands. Using Diligent lets students focus on rendering concepts while still working with modern (PSO-based, bindless-capable) abstractions.
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "L02 — Convolutional Neural Networks"
+title: "L02  -  Convolutional Neural Networks"
 tags:
   - mlp
   - cnn
@@ -8,7 +8,7 @@ tags:
   - computer-vision
 date: 2026-03-09
 ---
-[[/notes/lectures/mlp/01-introduction|Previous: L01 — Intro]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/03-vision-cnn|Next: (y-03) Vision CNNs]]
+[[/notes/lectures/mlp/01-introduction|Previous: L01  -  Intro]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/03-vision-cnn|Next: (y-03) Vision CNNs]]
 
 ## Mental Model First
 
@@ -138,8 +138,8 @@ Optic nerves terminate in two **lateral geniculate nuclei (LGN)**:
 
 [Goodale and Milner, 1992; Norman, 2002]
 
-- **Dorsal stream** (V1 → V2 → V5 → V6): the "where pathway" — visually guided action (eyes, head, limbs)
-- **Ventral stream** (V1 → V2 → V4 → IT): the "what pathway" — representation of the visual world, visual memory, object identification and recognition
+- **Dorsal stream** (V1 → V2 → V5 → V6): the "where pathway"  -  visually guided action (eyes, head, limbs)
+- **Ventral stream** (V1 → V2 → V4 → IT): the "what pathway"  -  representation of the visual world, visual memory, object identification and recognition
 
 ### Specificity vs. Invariance
 
@@ -149,8 +149,8 @@ Optic nerves terminate in two **lateral geniculate nuclei (LGN)**:
 
 Goal: good classification performance requires a trade-off between:
 
-- **Specificity** — sensitivity to fine detail
-- **Invariance** — robustness to affine transformations and lighting changes
+- **Specificity**  -  sensitivity to fine detail
+- **Invariance**  -  robustness to affine transformations and lighting changes
 
 This trade-off directly impacts generalisation ability.
 
@@ -163,7 +163,7 @@ This trade-off directly impacts generalisation ability.
 [Hubel and Wiesel, 1959, 1962]
 
 - **Simple cells**: respond to oriented edges/bars at a specific location
-- **Complex cells**: respond to the same orientations regardless of exact location — position invariance
+- **Complex cells**: respond to the same orientations regardless of exact location  -  position invariance
 
 ### Receptive Field
 
@@ -189,7 +189,7 @@ The visual system builds progressively more complex representations from low-lev
 
 <p class="image-caption">How our brain recognizes objects even when they move, change size, or turn.</p>
 
-Neurons in the inferior temporal cortex show invariance to position, scale, and view [Logothetis et al., 1995] — a property that CNNs aim to replicate.
+Neurons in the inferior temporal cortex show invariance to position, scale, and view [Logothetis et al., 1995]  -  a property that CNNs aim to replicate.
 
 ---
 
@@ -203,21 +203,21 @@ Neurons in the inferior temporal cortex show invariance to position, scale, and 
 
 [Riesenhuber and Poggio, 2000; Serre et al., 2007]
 
-- Models the "immediate object recognition" process (first few hundred milliseconds — before top-down influences such as attention shifts or eye movements)
+- Models the "immediate object recognition" process (first few hundred milliseconds  -  before top-down influences such as attention shifts or eye movements)
 - Alternates between **S-units** and **C-units**; many iterations allow construction of complex objects from low-level features
 
-**S-cell** (simple cell) response — tuned to specific stimuli with typically small receptive fields:
+**S-cell** (simple cell) response  -  tuned to specific stimuli with typically small receptive fields:
 
 $$y = \exp\!\left(-\frac{1}{2\sigma^2} \sum_{j=1}^{n_{S_k}} (w_j - x_j)^2\right)$$
 
 - $\sigma$ defines the sharpness of the bell-shaped tuning
 - $w$ are the trainable parameters
 
-**C-cell** (complex cell) response — combines output from multiple S-units to increase invariance and receptive field:
+**C-cell** (complex cell) response  -  combines output from multiple S-units to increase invariance and receptive field:
 
 $$y = \max_{j=1 \ldots n_{C_k}} x_j$$
 
-- Response corresponds to the strongest of its afferents — a **pooling operation**
+- Response corresponds to the strongest of its afferents  -  a **pooling operation**
 
 ### Neocognitron (1982)
 
@@ -225,7 +225,7 @@ $$y = \max_{j=1 \ldots n_{C_k}} x_j$$
 
 <p class="image-caption">The Neocognitron was a huge early step towards the CNNs we use today.</p>
 
-[Fukushima and Miyake, 1982] — an early CNN-like architecture with alternating S-layers and C-layers, directly implementing the Hubel-Wiesel hierarchy.
+[Fukushima and Miyake, 1982]  -  an early CNN-like architecture with alternating S-layers and C-layers, directly implementing the Hubel-Wiesel hierarchy.
 
 ### LeNet-5 (1998)
 
@@ -233,7 +233,7 @@ $$y = \max_{j=1 \ldots n_{C_k}} x_j$$
 
 <p class="image-caption">LeNet-5, the classic network that first mastered handwritten digit recognition.</p>
 
-[LeCun et al., 1998] — convolutional + pooling + fully-connected layers; **~60,000 parameters**; trained on handwritten digit recognition.
+[LeCun et al., 1998]  -  convolutional + pooling + fully-connected layers; **~60,000 parameters**; trained on handwritten digit recognition.
 
 ### AlexNet (2012)
 
@@ -241,7 +241,7 @@ $$y = \max_{j=1 \ldots n_{C_k}} x_j$$
 
 <p class="image-caption">AlexNet is the model that really kicked off the deep learning revolution in 2012.</p>
 
-[Krizhevsky et al., 2012] — **~60,000,000 parameters**, trained on two GPUs. Evaluated on the large-scale ImageNet dataset [Deng et al., 2009] and dramatically outperformed prior methods.
+[Krizhevsky et al., 2012]  -  **~60,000,000 parameters**, trained on two GPUs. Evaluated on the large-scale ImageNet dataset [Deng et al., 2009] and dramatically outperformed prior methods.
 
 ### Fine-Grained Prediction
 
@@ -249,7 +249,7 @@ $$y = \max_{j=1 \ldots n_{C_k}} x_j$$
 
 <p class="image-caption">CNNs aren't just for classification; they're great for detection and labeling too.</p>
 
-Beyond classification, CNNs were extended to dense predictions — object detection [Ren et al., 2015; Girshick, 2015; He et al., 2017] and scene labelling [Farabet et al., 2012].
+Beyond classification, CNNs were extended to dense predictions  -  object detection [Ren et al., 2015; Girshick, 2015; He et al., 2017] and scene labelling [Farabet et al., 2012].
 
 ---
 
@@ -395,7 +395,7 @@ So stacking small filters is not only cheaper, it also gives the model **more de
 <p class="image-caption">Early layers mostly look for simple things like edges and colors.</p>
 
 
-[Zeiler and Fergus, 2014] — visualising what each filter responds to shows that:
+[Zeiler and Fergus, 2014]  -  visualising what each filter responds to shows that:
 
 - **Early layers** learn edges, colors, and textures
 - **Later layers** learn more complex object parts and eventually whole objects
@@ -419,16 +419,16 @@ Each unit in a feature map is connected only to a local patch of the input (its 
 - Makes representations **smaller and more manageable**
 - Operates over each activation map **independently**
 
-**Max pooling**: takes the maximum value in each pooling window — the most common form.
+**Max pooling**: takes the maximum value in each pooling window  -  the most common form.
 
-> **Example — max pooling**: if a 2×2 activation patch is $\begin{bmatrix}0.1 & 0.7 \\ 0.2 & 0.6\end{bmatrix}$, max pooling outputs `0.7`. If the strongest response shifts slightly within that same window, the pooled output stays almost unchanged, which is why pooling gives small translation invariance.
+> **Example  -  max pooling**: if a 2×2 activation patch is $\begin{bmatrix}0.1 & 0.7 \\ 0.2 & 0.6\end{bmatrix}$, max pooling outputs `0.7`. If the strongest response shifts slightly within that same window, the pooled output stays almost unchanged, which is why pooling gives small translation invariance.
 
 ### Revolution of Depth
 
 
 ![[pictures/mpl/02/Lecture02_Pg060_Revolution_Of_Depth.png]]
 
-<p class="image-caption">The "revolution of depth"—how networks have gotten way deeper over time.</p>
+<p class="image-caption">The "revolution of depth" - how networks have gotten way deeper over time.</p>
 
 
 Increasing network depth has been the primary driver of performance improvements in image recognition.
@@ -454,7 +454,7 @@ Increasing network depth has been the primary driver of performance improvements
 
 [Szegedy et al., 2015]
 
-- 22 layers; efficient **"Inception" module** — "network within a network"
+- 22 layers; efficient **"Inception" module**  -  "network within a network"
 - No fully-connected layers; only **5 million parameters** (12× less than AlexNet)
 - **Naïve Inception module**: applies 1×1, 3×3, and 5×5 convolutions in parallel → continuous increase in dimensionality
 - **Final Inception module**: adds **1×1 convolutions for dimensionality reduction** (feature map pooling) before expensive convolutions
@@ -484,7 +484,7 @@ Shortly afterwards, **batch normalisation** was invented, removing the need for 
 
 [He et al., 2016]
 
-A deeper network should perform at least as well as a shallower one — in theory, you could take a trained shallow network, copy its layers, and set the extra layers to the identity. But in practice, optimisers fail to find this.
+A deeper network should perform at least as well as a shallower one  -  in theory, you could take a trained shallow network, copy its layers, and set the extra layers to the identity. But in practice, optimisers fail to find this.
 
 **Residual connections** fix this:
 
@@ -503,7 +503,7 @@ the block learns a correction F(x) instead of relearning the whole mapping
 
 $F(x)$ is a **residual mapping** w.r.t. identity.
 
-> **Example — learning a correction instead of a full mapping**: if earlier layers already detect a useful edge map, a later residual block only needs to learn a small change like "emphasize curved edges" or "suppress background texture". That is much easier than relearning the entire representation from scratch.
+> **Example  -  learning a correction instead of a full mapping**: if earlier layers already detect a useful edge map, a later residual block only needs to learn a small change like "emphasize curved edges" or "suppress background texture". That is much easier than relearning the entire representation from scratch.
 
 - If identity is optimal, it is easy to push $F(x)$ weights to 0
 - If the optimal mapping is close to identity, it is easier to learn small fluctuations
@@ -523,7 +523,7 @@ Results:
 
 [Huang et al., 2017; Larsson et al., 2016]
 
-**DenseNet**: layer $l_n$ receives feature maps from **all** preceding layers $l_0 \ldots l_{n-1}$ — maximises feature reuse and gradient flow.
+**DenseNet**: layer $l_n$ receives feature maps from **all** preceding layers $l_0 \ldots l_{n-1}$  -  maximises feature reuse and gradient flow.
 
 **FractalNet**: a fractal-structured network that achieves depth without residual connections.
 
@@ -645,4 +645,4 @@ class LeNet5(nn.Module):
 - **Architectural Evolution**: While CNNs dominate via their strong inductive biases (like translation invariance), they are increasingly being challenged by **[[/notes/lectures/mlp/06-vit|Vision Transformers (L06)]]**, which discard these biases in favor of massive data scaling.
 
 ---
-[[/notes/lectures/mlp/01-introduction|Previous: L01 — Intro]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/03-vision-cnn|Next: (y-03) Vision CNNs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/lectures/mlp/01-introduction|Previous: L01  -  Intro]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/03-vision-cnn|Next: (y-03) Vision CNNs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

@@ -1,5 +1,5 @@
 ---
-title: "L19 — Constraint-Based Invariant Synthesis"
+title: "L19  -  Constraint-Based Invariant Synthesis"
 tags:
   - program-verification
   - invariants

@@ -31,7 +31,7 @@ Coffee is defined by its intensity and roasted complexity. It’s a sensory expe
 - **Sensory Notes:** Cacao, toasted nuts, caramel, and often a smoky finish.
 
 #### The Matcha Texture
-Matcha operates on a different frequency. It’s vibrant and "umami"—a grassy, vegetal sweetness that feels like the earth itself. The experience is less about the jolt and more about the velvety, creamy mouthfeel.
+Matcha operates on a different frequency. It’s vibrant and "umami" - a grassy, vegetal sweetness that feels like the earth itself. The experience is less about the jolt and more about the velvety, creamy mouthfeel.
 - **Character:** Vegetal, smooth, and balanced.
 - **Sensory Notes:** Fresh grass, sweet cream, and a slight seaweed-like salinity.
 
@@ -41,7 +41,7 @@ Matcha operates on a different frequency. It’s vibrant and "umami"—a grassy,
 
 **Coffee** is an industrial start. The sound of the grinder, the pressure of the brew, and that first high-contrast sip. It’s the engine for high-velocity tasks where immediate energy is the priority.
 
-**Matcha** is a more deliberate process. It requires a specific temperature—never boiling—and the rhythmic whisking of the powder into a fine foam. It’s a ceremony of calibration, better suited for deep, creative flow states where a "calm alertness" is required.
+**Matcha** is a more deliberate process. It requires a specific temperature - never boiling - and the rhythmic whisking of the powder into a fine foam. It’s a ceremony of calibration, better suited for deep, creative flow states where a "calm alertness" is required.
 
 ---
 

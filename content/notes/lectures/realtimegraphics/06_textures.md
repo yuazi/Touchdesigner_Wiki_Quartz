@@ -1,5 +1,5 @@
 ---
-title: "06_textures — Texture Mapping, Filtering, and Surface Detail"
+title: "06_textures  -  Texture Mapping, Filtering, and Surface Detail"
 tags:
   - rtg
   - textures
@@ -476,7 +476,7 @@ The conceptual point is the same as the first texture shader: vertices carry coo
 6. What are the standard texture addressing modes, and when is each appropriate?
 
 > [!success]- Answer
-> **Clamp** (or *clamp-to-edge*) returns the edge texel for out-of-range coordinates — useful for textures with a meaningful border like a sprite. **Repeat** (or *wrap*) tiles the texture infinitely, ideal for periodic patterns like floor tiles or grass. **Mirror** reflects on each repeat, which hides the visible seam between tiles. **Border** (or *clamp-to-border*) returns a fixed border colour for out-of-range coordinates, useful for masks or single-instance decals where you want surrounding pixels to be a known colour rather than a stretched edge.
+> **Clamp** (or *clamp-to-edge*) returns the edge texel for out-of-range coordinates  -  useful for textures with a meaningful border like a sprite. **Repeat** (or *wrap*) tiles the texture infinitely, ideal for periodic patterns like floor tiles or grass. **Mirror** reflects on each repeat, which hides the visible seam between tiles. **Border** (or *clamp-to-border*) returns a fixed border colour for out-of-range coordinates, useful for masks or single-instance decals where you want surrounding pixels to be a known colour rather than a stretched edge.
 
 7. Why is the texture object separate from the sampler in modern APIs, and what does that decoupling enable?
 

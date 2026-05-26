@@ -1,5 +1,5 @@
 ---
-title: "08_deferred_shading — Deferred Shading, G-Buffers, and Visibility Buffers"
+title: "08_deferred_shading  -  Deferred Shading, G-Buffers, and Visibility Buffers"
 tags:
   - rtg
   - deferred-shading
@@ -303,12 +303,12 @@ The result is dramatically better visual quality at the same bit depth than naiv
 6. Why does the lecture present the deferred lighting variant (three-pass) when the standard two-pass deferred shading already works?
 
 > [!success]- Answer
-> Deferred lighting splits work into three passes — a minimal G-Buffer of positions, normals, and specular intensity; a lighting pass that accumulates diffuse and specular intensity into a light buffer without albedo; and a second geometry pass that multiplies albedo by the pre-computed light buffer. The benefit is a much smaller G-Buffer (no albedo channel) and per-material flexibility in the final pass, where each material can apply its own shading on top of the cached lighting. The cost is one extra geometry pass. This was popular on memory-constrained consoles (PS3, Xbox 360) where every G-Buffer channel mattered.
+> Deferred lighting splits work into three passes  -  a minimal G-Buffer of positions, normals, and specular intensity; a lighting pass that accumulates diffuse and specular intensity into a light buffer without albedo; and a second geometry pass that multiplies albedo by the pre-computed light buffer. The benefit is a much smaller G-Buffer (no albedo channel) and per-material flexibility in the final pass, where each material can apply its own shading on top of the cached lighting. The cost is one extra geometry pass. This was popular on memory-constrained consoles (PS3, Xbox 360) where every G-Buffer channel mattered.
 
 7. How is XY + sign normal encoding different from best-fit normals, and what tradeoffs does each make?
 
 > [!success]- Answer
-> **XY + sign** stores only $x$ and $y$ of a unit normal and reconstructs $z = \pm\sqrt{1 - x^2 - y^2}$ from the unit-length constraint, with one extra bit somewhere in the G-Buffer carrying the sign of $z$ (needed because perspective can produce visible surfaces with $N_z < 0$ in view space). It halves storage but the reconstruction has poor precision near $z = 0$ where the square root flattens. **Best-fit normals** (Kaplanyan 2010) drop the unit-length requirement entirely; for each direction, a precomputed scaling factor — looked up in a cube map indexed by direction — minimizes quantization error when the normal is packed into a low-precision texture. At decode time the stored value is just renormalized. Best-fit normals give dramatically better visual quality at the same bit depth, especially on glossy surfaces where small normal errors visibly distort specular highlights.
+> **XY + sign** stores only $x$ and $y$ of a unit normal and reconstructs $z = \pm\sqrt{1 - x^2 - y^2}$ from the unit-length constraint, with one extra bit somewhere in the G-Buffer carrying the sign of $z$ (needed because perspective can produce visible surfaces with $N_z < 0$ in view space). It halves storage but the reconstruction has poor precision near $z = 0$ where the square root flattens. **Best-fit normals** (Kaplanyan 2010) drop the unit-length requirement entirely; for each direction, a precomputed scaling factor  -  looked up in a cube map indexed by direction  -  minimizes quantization error when the normal is packed into a low-precision texture. At decode time the stored value is just renormalized. Best-fit normals give dramatically better visual quality at the same bit depth, especially on glossy surfaces where small normal errors visibly distort specular highlights.
 
 ---
 

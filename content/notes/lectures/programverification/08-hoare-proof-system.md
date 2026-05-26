@@ -1,5 +1,5 @@
 ---
-title: "L08 — Hoare Proof System"
+title: "L08  -  Hoare Proof System"
 tags:
   - program-verification
   - hoare-logic

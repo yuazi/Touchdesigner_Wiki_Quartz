@@ -29,10 +29,12 @@ The wiki summary: "POPs advantages over SOPs: GPU execution with 'high GPU paral
 
 The wiki splits POPs into the same shape as SOPs:
 
-- **Generators** create points: Add POP, From File, Sphere POP, Box POP, Grid POP, Line POP
-- **Filters / Modifiers** edit attributes: Transform POP, Attribute POP, Limit POP, Sort POP
+- **Generators** create points: Add POP, From File, Sphere POP, Box POP, Grid POP, Line POP, **Text POP** (2025+), **Trace POP** (2025+)
+- **Filters / Modifiers** edit attributes: Transform POP, Attribute POP, Limit POP, Sort POP, **Triangulate POP** (2025+)
 - **Forces** apply per-point physics: Force POP, Noise POP, Gravity, Wind, Turbulence
 - **Simulation** advances state: Feedback POP (the particle workhorse), Solver POP
+- **Export** write to disk: **Alembic Out POP** (2025+)
+- **DMX / Lighting**: **DMX Fixture POP**, **DMX Out POP** (2025+) — see below
 - **Bridges** convert: SOP to POP, TOP to POP, CHOP to POP, POP to SOP, POP to TOP, POP to CHOP
 - **Render** outputs pixels: POP Render TOP
 
@@ -74,6 +76,27 @@ POPs carry whatever attributes you stamp on them. Standard ones include `P` (pos
 - **Attribute drops downstream.** If a downstream POP doesn't declare a custom attribute it expects to operate on, the attribute is silently dropped at that node. Hover and check what each POP actually outputs.
 - **POP cook fits in the TOP cook chain.** POP Render TOP cooks when its TOP output is asked for, and that pulls the upstream POP chain. The pull-system rules from [[touchdesigner/04_Scripting_and_Architecture/Cooking|Cooking]] apply unchanged.
 - **Don't expect SOP semantics.** A POP isn't a Mesh; primitives are optional. If you need to merge polygons or build a closed surface, do that work in SOPs (or convert at the end).
+
+## 2025 POP Additions
+
+### Text POP and Trace POP
+
+**Text POP** generates text as 3D geometry entirely on the GPU: output modes are line strips (outline strokes) or filled triangles. It supersedes the Text COMP + Geo Text COMP path for point-based text work. Parameters mirror the Text SOP but compute on GPU.
+
+**Trace POP** takes a 2D TOP input and traces its bright edges into line-strip point geometry. It is a focused version of the Polygonize POP, tuned for 2D outline extraction and optimized to output the correct winding for the Triangulate POP.
+
+**Triangulate POP** takes closed line strips (from Trace POP or drawn geometry) and fills them with triangles. Two modes: convex-only (fast, fully parallel) and convex+concave (handles complex shapes but slower for long strips). Use the convex-only mode for real-time text fill; use concave only when you need non-convex polygon interiors.
+
+**Alembic Out POP** writes POP point data to an `.abc` Alembic file. Supports multi-frame animation, built-in and custom attributes, and multiple POPs as separate Alembic objects in one file.
+
+### DMX Lighting via POPs
+
+As of TD 2025, DMX fixtures can be driven entirely through POPs — staying on the GPU rather than moving through CHOP channels.
+
+- **DMX Fixture POP:** Define a fixture's channel profile (pan, tilt, color, dimmer, strobe, gobo, etc.). Each POP instance represents one fixture.
+- **DMX Out POP:** Takes one or more DMX Fixture POPs, merges all universes, and transmits to hardware via DMX USB, Art-Net, sACN, KiNET, or FTDI.
+
+The POP path scales better than the CHOP path for large LED arrays or pixel-mapped installations because attribute math stays on the GPU. For simple fixture control (a handful of PAR cans), the CHOP-based **DMX Out CHOP** remains simpler to set up.
 
 ## Practical Examples
 

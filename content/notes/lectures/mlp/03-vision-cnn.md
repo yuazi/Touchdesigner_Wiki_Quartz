@@ -1,5 +1,5 @@
 ---
-title: "L03 — CNNs in Computer Vision"
+title: "L03  -  CNNs in Computer Vision"
 tags:
   - mlp
   - cnn
@@ -10,7 +10,7 @@ tags:
   - semantic-segmentation
 date: 2026-03-09
 ---
-[[/notes/lectures/mlp/02-cnn|Previous: L02 — CNNs]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/04-rnn|Next: (y-04) RNNs]]
+[[/notes/lectures/mlp/02-cnn|Previous: L02  -  CNNs]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/04-rnn|Next: (y-04) RNNs]]
 
 ## Mental Model First
 
@@ -40,7 +40,7 @@ Robotics, assistive systems, self-driving cars, surveillance, medical applicatio
 
 ---
 
-### Classification vs. Regression — Recap
+### Classification vs. Regression  -  Recap
 
 ![[pictures/mpl/03/Lecture03_Pg009_Classification_Vs_Regression_Recap.png]]
 
@@ -50,8 +50,8 @@ Robotics, assistive systems, self-driving cars, surveillance, medical applicatio
 
 **Regression**: predicts a continuous numerical value (e.g., house price, bounding-box coordinates). Common loss: mean squared error.
 
-> **Example — regression output**: a model taking a 224×224 image and outputting `[0.3, 0.5, 0.2, 0.4]` for a single box's $(x, y, w, h)$.  
-> **Problem**: the number of objects varies per image, so the output size is variable — a fixed regression layer can't handle this directly.
+> **Example  -  regression output**: a model taking a 224×224 image and outputting `[0.3, 0.5, 0.2, 0.4]` for a single box's $(x, y, w, h)$.  
+> **Problem**: the number of objects varies per image, so the output size is variable  -  a fixed regression layer can't handle this directly.
 
 ---
 
@@ -61,7 +61,7 @@ Robotics, assistive systems, self-driving cars, surveillance, medical applicatio
 
 <p class="image-caption">Trying to treat object detection as a simple regression problem to find coordinates.</p>
 
-Use a regression model to detect objects — output: coordinates of the objects in the image.
+Use a regression model to detect objects  -  output: coordinates of the objects in the image.
 
 **Problem**: need variable-sized outputs (different images contain different numbers of objects).
 
@@ -100,7 +100,7 @@ Use a **sliding window**:
   - Iteratively merge neighbouring regions based on similarity
   - Produces a hierarchy of region proposals at multiple scales
 
-> **Example — Selective Search**: an image of a dog on a grass field might first be segmented by colour into ~200 regions (brown patch = dog body, green = grass). Nearby similar regions merge iteratively until we have a small set of candidate boxes, one of which tightly covers the dog. This is much faster than dense sliding window search.
+> **Example  -  Selective Search**: an image of a dog on a grass field might first be segmented by colour into ~200 regions (brown patch = dog body, green = grass). Nearby similar regions merge iteratively until we have a small set of candidate boxes, one of which tightly covers the dog. This is much faster than dense sliding window search.
 
 **Key idea**: fast + dense generic detection with selective search, then slow + sparse classification on just the proposals.
 
@@ -112,12 +112,12 @@ Use a **sliding window**:
 
 <p class="image-caption">R-CNN: the first big model to use region proposals with a CNN.</p>
 
-**Region-based CNN** — only feeds proposed regions to a classifier.
+**Region-based CNN**  -  only feeds proposed regions to a classifier.
 
 **Training pipeline:**
 
 1. **Pre-train** AlexNet on ImageNet (1,000 classes)
-2. **Adapt** (fine-tune) the CNN to the detection task and the domain of warped proposal windows — reinitialise the last layer and fine-tune
+2. **Adapt** (fine-tune) the CNN to the detection task and the domain of warped proposal windows  -  reinitialise the last layer and fine-tune
 3. **Train SVMs**: binary SVM per object class using `pool5` features of the fine-tuned AlexNet as inputs
 4. **Train a bounding-box regressor**: input = `pool5` features of the proposed region; output = refined $(x, y, \text{width}, \text{height})$
 
@@ -272,21 +272,21 @@ Extends Faster R-CNN with an additional **instance-segmentation** head:
 
 Two-stage detectors are accurate but slow. Single-stage detectors skip the proposal step.
 
-**SSD — Single Shot MultiBox Detector** [Liu et al., 2016]:
+**SSD  -  Single Shot MultiBox Detector** [Liu et al., 2016]:
 
 - Directly predicts class scores and box offsets (no RPN)
 - Uses **default (anchor) boxes** for predictions
 - Detects objects at **multiple scales** using feature maps from different layers
 - Combines multi-scale predictions for improved accuracy over objects of varying sizes
 
-**YOLO — You Only Look Once** [Redmon et al., 2016]:
+**YOLO  -  You Only Look Once** [Redmon et al., 2016]:
 
 - Divides the image into a grid (e.g., 13×13 for YOLOv3)
 - Each grid cell predicts bounding boxes and class probabilities
 - Processes images in a **single forward pass** → extremely fast
 - Tends to miss small objects as it prioritises global context
 
-> **Example — YOLO grid**: divide a 416×416 image into a 13×13 grid. Each of the 169 cells outputs 5 candidate boxes with (x, y, w, h, confidence) + 80 class scores. The whole prediction runs in one forward pass at ~45 FPS.
+> **Example  -  YOLO grid**: divide a 416×416 image into a 13×13 grid. Each of the 169 cells outputs 5 candidate boxes with (x, y, w, h, confidence) + 80 class scores. The whole prediction runs in one forward pass at ~45 FPS.
 
 ---
 
@@ -300,7 +300,7 @@ Two-stage detectors are accurate but slow. Single-stage detectors skip the propo
 
 **Classification at pixel-level**: assign each pixel an object class label (e.g., road, sky, person). Does **not** distinguish different instances of the same class.
 
-> **Example — Pascal VOC**: an image with two people and a car would have every person-pixel labelled "person" and every car-pixel labelled "car" — both people share the same label colour.
+> **Example  -  Pascal VOC**: an image with two people and a car would have every person-pixel labelled "person" and every car-pixel labelled "car"  -  both people share the same label colour.
 
 It helps to separate the related tasks clearly:
 
@@ -319,7 +319,7 @@ It helps to separate the related tasks clearly:
 
 <p class="image-caption">The old, slow way of doing segmentation with a sliding window.</p>
 
-Apply a patch classifier at every pixel location. **Problem**: inefficient — no sharing of computed features between overlapping patches; requires a multitude of forward passes.
+Apply a patch classifier at every pixel location. **Problem**: inefficient  -  no sharing of computed features between overlapping patches; requires a multitude of forward passes.
 
 ---
 
@@ -345,7 +345,7 @@ Apply a patch classifier at every pixel location. **Problem**: inefficient — n
 
 <p class="image-caption">Nearest-neighbor unpooling: a simple, but blocky, way to resize an image.</p>
 
-Simply repeat (or tile) each value into the larger grid. Fast but blocky — no learned content.
+Simply repeat (or tile) each value into the larger grid. Fast but blocky  -  no learned content.
 
 #### Max Unpooling
 
@@ -366,7 +366,7 @@ During the forward max-pool, record the **switch positions** (which location hel
 
 
 - Insert zeros between input values (stride > 1 in the "input space"), then apply a learned convolution kernel
-- The network **learns** how to upsample — can produce sharp, detailed outputs
+- The network **learns** how to upsample  -  can produce sharp, detailed outputs
 - Also called "deconvolution" (though mathematically it is not a true deconvolution)
 
 ### 🧠 Deep Dive: Transposed Conv vs. Interpolation
@@ -380,7 +380,7 @@ When we want to make an image larger (upsample), we have two main choices:
 
 ---
 
-> **Example — stride-2 transposed conv**: a 2×2 input becomes 4×4 after inserting zeros between each input value, then a 3×3 learned filter sweeps over it.
+> **Example  -  stride-2 transposed conv**: a 2×2 input becomes 4×4 after inserting zeros between each input value, then a 3×3 learned filter sweeps over it.
 
 ---
 
@@ -408,7 +408,7 @@ When we want to make an image larger (upsample), we have two main choices:
 - Skip connections **sum** predictions from different depths before the final upsampling
 - `FCN-32s` (single upsampling) < `FCN-16s` (one skip) < `FCN-8s` (two skips) in quality
 
-> **Example**: the FCN-8s model adds the `pool3` prediction (fine spatial detail) to the `pool4` prediction, then to the `stride-32` prediction before the final 8× upsample — recovering sharper boundary detail than 32× upsampling alone.
+> **Example**: the FCN-8s model adds the `pool3` prediction (fine spatial detail) to the `pool4` prediction, then to the `stride-32` prediction before the final 8× upsample  -  recovering sharper boundary detail than 32× upsampling alone.
 
 ---
 
@@ -458,7 +458,7 @@ $$L = L_\text{cls} + L_\text{box} + L_\text{mask}$$
 
 - $L_\text{cls}$: sigmoid cross-entropy for classification
 - $L_\text{box}$: difference between ground truth and output coordinates
-- $L_\text{mask}$: sigmoid cross-entropy between ground truth binary mask and prediction (not softmax — classes compete only via classification, not through the mask)
+- $L_\text{mask}$: sigmoid cross-entropy between ground truth binary mask and prediction (not softmax  -  classes compete only via classification, not through the mask)
 
 The qualitative Mask R-CNN result slide makes the distinction from semantic segmentation concrete: in sports, retail, and beach scenes, the model outputs **separate masks for different people or objects of the same class**, while keeping the masks aligned to object boundaries. That is the defining extra capability beyond "label every pixel as person/chair/umbrella".
 
@@ -491,7 +491,7 @@ floating box -> sample exact sub-pixel points -> interpolate
 
 <p class="image-caption">ASCII view: ROI Pooling snaps boxes to a coarse grid, while ROI Align samples at exact floating-point locations to keep masks aligned.</p>
 
-> **Example**: a proposal at $(10.7, 20.3, 5.6, 8.2)$ would be rounded to $(11, 20, 6, 8)$ in ROI Pooling, introducing quantisation error. ROI Align samples at the exact floating-point coordinates using bilinear interpolation, preserving pixel-to-pixel alignment — critical for mask quality.
+> **Example**: a proposal at $(10.7, 20.3, 5.6, 8.2)$ would be rounded to $(11, 20, 6, 8)$ in ROI Pooling, introducing quantisation error. ROI Align samples at the exact floating-point coordinates using bilinear interpolation, preserving pixel-to-pixel alignment  -  critical for mask quality.
 
 |                      | ROI Pooling            | ROI Align                     |
 | -------------------- | ---------------------- | ----------------------------- |
@@ -662,7 +662,7 @@ class ResidualBlock(nn.Module):
 
 ## References
 
-- Tan, Le (2019) — EfficientNet: Rethinking model scaling for convolutional neural networks. _ICML_.
+- Tan, Le (2019)  -  EfficientNet: Rethinking model scaling for convolutional neural networks. _ICML_.
 
 ### Applied Exam Focus
 - **AlexNet**: Key for introducing **ReLU** and **Dropout** to scale deep learning.
@@ -670,4 +670,4 @@ class ResidualBlock(nn.Module):
 - **ResNet**: Solved the **degradation problem** in very deep networks using **Skip Connections** (Residual blocks), allowing gradients to flow unimpeded.
 
 ---
-[[/notes/lectures/mlp/02-cnn|Previous: L02 — CNNs]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/04-rnn|Next: (y-04) RNNs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/lectures/mlp/02-cnn|Previous: L02  -  CNNs]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/04-rnn|Next: (y-04) RNNs]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

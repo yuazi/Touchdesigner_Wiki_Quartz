@@ -98,11 +98,4 @@ Solver POP (Physics Engine)
 [ POP SOP ] ───▶ [ Geo COMP ] ───▶ [ Bloom TOP ]
 ```
 
-### Data Flow Explanation
-1.  **Sourcing:** The `Text TOP` creates our base visual. The `TOP to POP` converts those 2D pixels into 3D points. 
-2.  **Forces:** The `Noise POP` pushes the points downward like a liquid drip. 
-3.  **Simulation:** The `Solver POP` is the core of the physics. It ensures that the points don't just "jump" to a new position, but move there over time based on the forces applied. 
-4.  **Polish:** The `Bloom TOP` at the end makes those points glow, emphasizing the liquid and neon aesthetic of the [Okamirufu style](https://www.youtube.com/@OkamirufuV).
-
----
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

@@ -9,7 +9,7 @@ date: 2026-02-11
 
 # Constant CHOP
 
-The **Constant CHOP** is the simplest CHOP — it outputs one or more channels with fixed, user-defined values that do not change over time. Think of it as a named variable or knob.
+The **Constant CHOP** is the simplest CHOP - it outputs one or more channels with fixed, user-defined values that do not change over time. Think of it as a named variable or knob.
 
 ## Key Parameters
 
@@ -25,7 +25,7 @@ Click the **`+`** button to add more name/value pairs.
 The Constant CHOP transforms a raw number into a **named, wireable channel**. This lets you:
 
 - Feed a value into a **Math CHOP** pipeline without hardcoding it in expressions.
-- Create a **single source of truth** — one Constant that multiple nodes reference, so you only need to update one place.
+- Create a **single source of truth** - one Constant that multiple nodes reference, so you only need to update one place.
 - Use it as a **manual override** by putting it in a `Switch CHOP`.
 
 ## Common Usage Patterns
@@ -77,14 +77,14 @@ Place a Constant and an LFO side-by-side, feed both into a **Switch CHOP**, and 
 
 ## Common Gotchas
 
-- The Constant CHOP's value is **not** keyframeable by default — if you want animation, switch to an **Animation CHOP** or an **LFO CHOP**.
+- The Constant CHOP's value is **not** keyframeable by default - if you want animation, switch to an **Animation CHOP** or an **LFO CHOP**.
 - When you export a Constant channel to a parameter, changing the parameter directly will stop working (the export overrides it).
 
 ## Related Nodes
 
-- [[LFO CHOP]] — time-varying signal
-- [[Noise - CHOP and TOP|(y-) Noise CHOP]] — random/organic signal
-- [[Math CHOP]] — combine and remap constant values
+- [[LFO CHOP]] - time-varying signal
+- [[Noise - CHOP and TOP|(y-) Noise CHOP]] - random/organic signal
+- [[Math CHOP]] - combine and remap constant values
 
 ---
 

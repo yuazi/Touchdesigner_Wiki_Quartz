@@ -89,10 +89,10 @@ Let's make it look professional with some glow.
 
 ## Troubleshooting
 
-- **"I don't hear/see anything!"** — Check the "Device" parameter on your **Audio Device In**. Make sure your mic isn't muted.
-- **"The boxes are too tall."** — Use a **Math CHOP** after your audio spectrum to lower the **Multiply** value.
-- **"The movement is too fast."** — Increase the **Lag** value (try `0.1` or `0.2`).
-- **"Nothing is rendering."** — Ensure your **Render TOP** has the `geo1`, `cam1`, and `light1` paths set in its parameters.
+- **"I don't hear/see anything!"** - Check the "Device" parameter on your **Audio Device In**. Make sure your mic isn't muted.
+- **"The boxes are too tall."** - Use a **Math CHOP** after your audio spectrum to lower the **Multiply** value.
+- **"The movement is too fast."** - Increase the **Lag** value (try `0.1` or `0.2`).
+- **"Nothing is rendering."** - Ensure your **Render TOP** has the `geo1`, `cam1`, and `light1` paths set in its parameters.
 
 ---
 
@@ -132,12 +132,4 @@ Noise TOP ──▶ TOP to CHOP ──▶ [ Merge CHOP ] ───────�
 [ RENDERING ]                  [ Bloom TOP ] ──▶ [ HSV Adjust ] ──▶ [ OUT ]
 ```
 
-### Data Flow Explanation
-1.  **Audio Analysis:** The `Audio Spectrum CHOP` is the core. It performs an **FFT**, converting time-based sound into a frequency graph (Bass → Treble).
-2.  **Smoothing:** We use a `Lag CHOP` because raw audio data jumps 60 times a second. The lag ensures the boxes move fluidly rather than "jittering."
-3.  **Layout Logic:** The `Noise TOP` generates the static grid positions. The `TOP to CHOP` converts these pixels into the `tx` (Translate X) coordinates for our 32 boxes.
-4.  **The Bridge (Instancing):** The `Geo COMP` takes the 32 layout coordinates and the 32 audio frequency heights, spawning 32 copies of the `Box SOP` on the GPU.
-5.  **Post-Processing:** The `Bloom TOP` and `HSV Adjust TOP` are the final layers. They add a glow and a slow color cycle to make the visual feel alive.
-
----
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

@@ -1,5 +1,5 @@
 ---
-title: "L09 — Ultimate Referee"
+title: "L09  -  Ultimate Referee"
 tags:
   - program-verification
   - hoare-logic

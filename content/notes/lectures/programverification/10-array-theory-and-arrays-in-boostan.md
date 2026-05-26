@@ -1,5 +1,5 @@
 ---
-title: "L10 — Array Theory and Arrays in Boostan"
+title: "L10  -  Array Theory and Arrays in Boostan"
 tags:
   - program-verification
   - arrays

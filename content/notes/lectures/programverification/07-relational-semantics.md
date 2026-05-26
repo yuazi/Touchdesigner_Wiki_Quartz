@@ -1,5 +1,5 @@
 ---
-title: "L07 — Relational Semantics"
+title: "L07  -  Relational Semantics"
 tags:
   - program-verification
   - semantics

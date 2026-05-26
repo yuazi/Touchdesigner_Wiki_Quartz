@@ -1,5 +1,5 @@
 ---
-title: "Hand Tracking in TouchDesigner — Tutorial"
+title: "Hand Tracking in TouchDesigner - Tutorial"
 tags:
   - touchdesigner
   - td/tutorials
@@ -19,9 +19,9 @@ date: 2026-03-02
 
 This tutorial walks you through building a real-time hand-tracking system in TouchDesigner powered by Google's **MediaPipe** framework. By the end you will have:
 
-1. A **core hand-tracking rig** — the MediaPipe plugin wired up to expose finger positions, gesture signals, and helper channels (pinch distance, midpoint, spread) as CHOPs you can plug into anything.
-2. A **watercolor hand-tracking brush** — an interactive painting system where your hand paints soft, blurry strokes onto a canvas that you can composite over your webcam feed.
-3. A **generative architecture scene** — a procedurally instanced "brutalist" block cityscape that reacts to your hand gestures in real time.
+1. A **core hand-tracking rig** - the MediaPipe plugin wired up to expose finger positions, gesture signals, and helper channels (pinch distance, midpoint, spread) as CHOPs you can plug into anything.
+2. A **watercolor hand-tracking brush** - an interactive painting system where your hand paints soft, blurry strokes onto a canvas that you can composite over your webcam feed.
+3. A **generative architecture scene** - a procedurally instanced "brutalist" block cityscape that reacts to your hand gestures in real time.
 
 > **Note:** This tutorial targets beginners-to-intermediate TouchDesigner users. You should know what TOPs, CHOPs, and SOPs are, and be comfortable adding operators by pressing Tab and connecting wires.
 
@@ -40,21 +40,21 @@ This tutorial walks you through building a real-time hand-tracking system in Tou
 ### 1.2 Add the MediaPipe Component
 
 1. Open your project `.toe` file.
-2. Press **Tab** to open the operator search and type `Component`. Select a base **COMP** and name it `mediapipe_rig` — this will be your container for the whole tracking system.
+2. Press **Tab** to open the operator search and type `Component`. Select a base **COMP** and name it `mediapipe_rig` - this will be your container for the whole tracking system.
 3. Inside the container, drag `MediaPipe.tox` from the `toxes/` folder directly into the network.
-4. When TouchDesigner prompts you: **"Enable External .tox?"** — click **Yes**. This keeps the component as a reference to the external file rather than embedding it. Embedding it would inflate your `.toe` by hundreds of MB.
+4. When TouchDesigner prompts you: **"Enable External .tox?"** - click **Yes**. This keeps the component as a reference to the external file rather than embedding it. Embedding it would inflate your `.toe` by hundreds of MB.
 5. Drag `Hand Tracking.tox` into the same network.
 
-> **Common issue:** If you see a blank component or errors about missing files, check that the `toxes/` folder is in the expected relative location — it should be right next to your `.toe`, not inside a subfolder of it.
+> **Common issue:** If you see a blank component or errors about missing files, check that the `toxes/` folder is in the expected relative location - it should be right next to your `.toe`, not inside a subfolder of it.
 
 ### 1.3 Configure the Camera Source
 
 1. Click on the **MediaPipe COMP**. In the **Parameters** panel, find the first tab (usually called `MediaPipe`).
-2. You will see a **Webcam** dropdown — this lets the embedded browser grab any camera directly. Select your webcam from the list.
-3. Toggle on **Hand Tracking** in the model list. **Toggle off** every other model (Face, Pose, Object, etc.) that you are not using — each active model runs continuously and burns GPU/CPU.
+2. You will see a **Webcam** dropdown - this lets the embedded browser grab any camera directly. Select your webcam from the list.
+3. Toggle on **Hand Tracking** in the model list. **Toggle off** every other model (Face, Pose, Object, etc.) that you are not using - each active model runs continuously and burns GPU/CPU.
 4. Optionally enable **Preview Overlay** to draw the skeleton joints on the video output for debugging.
 
-> **Tip:** The plugin communicates via a local WebSocket on port 9222. If hand tracking never starts, open Google Chrome and go to `http://localhost:9222` — this opens Chrome DevTools for the embedded browser. You can read error messages there without affecting your project.
+> **Tip:** The plugin communicates via a local WebSocket on port 9222. If hand tracking never starts, open Google Chrome and go to `http://localhost:9222` - this opens Chrome DevTools for the embedded browser. You can read error messages there without affecting your project.
 
 ---
 
@@ -106,7 +106,7 @@ The `_*` wildcard matches `_x`, `_y`, `_z`. You can also grab multiple joints at
 H1_index_fingertip_* H1_thumb_tip_*
 ```
 
-3. Add a **Null CHOP** after it and name it `null_fingertip` — this is your clean export reference.
+3. Add a **Null CHOP** after it and name it `null_fingertip` - this is your clean export reference.
 
 ### 2.3 Remapping Coordinates
 
@@ -131,9 +131,9 @@ Add:       0
 
 4. Add a **Lag CHOP** after the Math CHOP. Set **Lag** to around `0.05` or `0.1` seconds. This smooths jittery raw output so that visuals don't snap and flicker.
 
-5. Finish with a **Null CHOP** — name it `null_hand_pos`. This is what everything else in the project will reference.
+5. Finish with a **Null CHOP** - name it `null_hand_pos`. This is what everything else in the project will reference.
 
-### 2.4 Quick Example — Move a Shape to the Pinch Midpoint
+### 2.4 Quick Example - Move a Shape to the Pinch Midpoint
 
 Let's test the rig by positioning a simple shape at the pinch point.
 
@@ -187,21 +187,21 @@ H1_thumb_up_confidence
 me.inputVal[0] > 0.8
 ```
 
-This outputs `1.0` when confidence is above 80%, and `0.0` otherwise — a clean binary trigger.
+This outputs `1.0` when confidence is above 80%, and `0.0` otherwise - a clean binary trigger.
 
 3. Add a **Lag CHOP** with a short lag (`0.03` seconds) to prevent rapid oscillation right at the threshold.
 
-4. Add a **Trigger CHOP** after the Lag — it fires a one-sample pulse on the rising edge (0→1). Use this pulse to trigger one-shot events like resetting a canvas or switching a mode.
+4. Add a **Trigger CHOP** after the Lag - it fires a one-sample pulse on the rising edge (0→1). Use this pulse to trigger one-shot events like resetting a canvas or switching a mode.
 
-### 3.3 Example — Reset the Canvas with Open Palm
+### 3.3 Example - Reset the Canvas with Open Palm
 
 We'll use this in the brush section. When you flatten your hand, the painting canvas clears.
 
-1. Wire the thumbs-up trigger (from 3.2) into a **Count CHOP** — it will increment a counter each time you give a thumbs-up.
+1. Wire the thumbs-up trigger (from 3.2) into a **Count CHOP** - it will increment a counter each time you give a thumbs-up.
 2. To reset (not count), you can instead wire the open-palm trigger to the **Reset** input on any relevant operator, or reference it directly:
 
 ```python
-# In any parameter expression — returns 1 when palm is open
+# In any parameter expression - returns 1 when palm is open
 op('null_gesture_palm')[0]
 ```
 
@@ -211,7 +211,7 @@ op('null_gesture_palm')[0]
 
 This section builds the interactive painting system step by step.
 
-### 4.1 Brush Shape — Circle Driven by Pinch
+### 4.1 Brush Shape - Circle Driven by Pinch
 
 The brush tip is a soft circle whose position is the pinch midpoint, whose size is the pinch distance, and whose opacity indicates whether the pen is "down".
 
@@ -228,9 +228,9 @@ To Range:    0.01  →  0.12
 5. Clamp the output with another **Math CHOP** (Clamp mode, Min `0.01`, Max `0.15`) so the brush never collapses to zero or bloats to fill the screen.
 6. Wire this clamped value to the **Radius** parameter of `circle_brush`.
 
-### 4.2 Pen Up / Pen Down — Using Z Depth
+### 4.2 Pen Up / Pen Down - Using Z Depth
 
-Z gives you depth — when your hand is close to the camera, Z is a large negative number in normalized space. Use this as a pen-up/pen-down switch.
+Z gives you depth - when your hand is close to the camera, Z is a large negative number in normalized space. Use this as a pen-up/pen-down switch.
 
 1. Add a **Select CHOP** to grab `H1_pinch_midpoint_z`.
 2. Add an **Expression CHOP**:
@@ -249,7 +249,7 @@ op('null_pen_state')[0]
 
 > **Tip:** The exact threshold depends on your webcam distance. Tweak the `-0.1` value while watching the value in a **Constant CHOP** display window until the pen up/down switch feels natural at your typical working distance.
 
-### 4.3 Feedback Loop — Accumulating Paint
+### 4.3 Feedback Loop - Accumulating Paint
 
 A **Feedback TOP** holds the previous frame's output and composites new brush strokes on top of it, creating the painted canvas.
 
@@ -264,15 +264,15 @@ To make strokes look soft and watercolor-like, process the feedback buffer befor
 
 Inside the Feedback network (or between the Feedback output and composite):
 
-1. Add a **Blur TOP** — set **Size** to `2–4 pixels`. This subtly spreads each stroke a little every frame, giving the watercolor bleed effect.
+1. Add a **Blur TOP** - set **Size** to `2–4 pixels`. This subtly spreads each stroke a little every frame, giving the watercolor bleed effect.
 2. Add a **Displace TOP** after the Blur:
    - Use a **Noise TOP** as the displacement source (low frequency, small amplitude `0.002–0.005`).
    - This makes the paint appear to slightly drift and flow rather than sit completely still.
-3. Optionally add a **Level TOP** set to reduce **Opacity** by `0.998` per frame — this makes old paint very slowly fade, giving a long-tail painting memory.
+3. Optionally add a **Level TOP** set to reduce **Opacity** by `0.998` per frame - this makes old paint very slowly fade, giving a long-tail painting memory.
 
 > **Common issue:** If the canvas accumulates too fast and becomes fully saturated immediately, lower the **Opacity** (or **Multiply**) value on the Level TOP to something like `0.995`, so each pass reduces brightness very slightly.
 
-### 4.5 Brush Textures — Switching with Gestures
+### 4.5 Brush Textures - Switching with Gestures
 
 Instead of a plain white circle, apply textures to the brush to vary the stroke feel.
 
@@ -306,13 +306,13 @@ op('count_brush')[0]
 
 ## 5. Generative Architecture Scene
 
-This section uses hand data to control an instanced 3D scene — a brutalist block structure that reshapes itself based on your hand movements.
+This section uses hand data to control an instanced 3D scene - a brutalist block structure that reshapes itself based on your hand movements.
 
 ### 5.1 Building the Block Structure (Geometry + Instancing)
 
 Instancing lets you render thousands of copies of one object using a table of positions and transforms stored in a CHOP or DAT.
 
-1. Add a **Box SOP**. Set its default size to something small — `0.1 × 0.1 × 0.5` (tall, narrow column).
+1. Add a **Box SOP**. Set its default size to something small - `0.1 × 0.1 × 0.5` (tall, narrow column).
 2. Add a **Geometry COMP** and set its SOP to the Box SOP.
 3. On the **Geometry COMP**, go to the **Instance** tab:
    - Set **Instancing** → `On`.
@@ -320,9 +320,9 @@ Instancing lets you render thousands of copies of one object using a table of po
 
 ### 5.2 Generating Instance Positions via TOPs and CHOPs
 
-1. Add a **Noise TOP** (64×64 resolution). This generates a grid of random values — one value per "column" in our building grid.
+1. Add a **Noise TOP** (64×64 resolution). This generates a grid of random values - one value per "column" in our building grid.
 2. Add a **TOP to CHOP** to bring that noise into CHOP land as three channels: r, g, b.
-3. Add a **Rename CHOP** — rename channel `r` to `tx`, `g` to `tz` (we'll use Y for height). Now you have X and Z instances spread across the grid.
+3. Add a **Rename CHOP** - rename channel `r` to `tx`, `g` to `tz` (we'll use Y for height). Now you have X and Z instances spread across the grid.
 4. Add a **Math CHOP** to scale tx and tz to the physical size of your grid:
 
 ```
@@ -349,7 +349,7 @@ From Range:  0.01  →  0.3
 To Range:    0.1   →  5.0
 ```
 
-3. Feed this into a **Math CHOP** combining it with your instance `ty` channel (via a **Math CHOP** in Multiply mode) — so more pinching = taller or shorter buildings.
+3. Feed this into a **Math CHOP** combining it with your instance `ty` channel (via a **Math CHOP** in Multiply mode) - so more pinching = taller or shorter buildings.
 
 **Camera orbit from hand X position:**
 
@@ -415,9 +415,9 @@ This ensures the project opens correctly on other machines without re-linking fi
 
 ### 6.4 Final Performance Checklist
 
-- [ ] **Disable unused MediaPipe models** — face, pose, and object detection all cost GPU even when idle.
+- [ ] **Disable unused MediaPipe models** - face, pose, and object detection all cost GPU even when idle.
 - [ ] **Enable External .tox** is checked on both `MediaPipe.tox` and `Hand Tracking.tox`.
-- [ ] Webcam is set to **1280×720** — the model caps at 720p anyway.
+- [ ] Webcam is set to **1280×720** - the model caps at 720p anyway.
 - [ ] All **Null CHOPs** acting as references are named consistently.
 - [ ] Feedback TOP has **Clamp** enabled to prevent overbright accumulation.
 - [ ] Check **Realtime CHOP** channels inside the MediaPipe COMP:
@@ -459,9 +459,9 @@ From here you can extend the rig by:
 
 ## Related
 
--  — video links and series overview
-- [[Sierpinski Tetrahedron with Hand Tracking]] — fractal geometry project using the same MediaPipe rig
-- [[Hand-Tracked Chaotic Attractor]] — Lorenz attractor driven by a custom Script CHOP (no plugin)
+- [Torin Blankensmith - MediaPipe TouchDesigner plugin](https://github.com/torinmb/mediapipe-touchdesigner) - plugin source and accompanying tutorials
+- [[Sierpinski Tetrahedron with Hand Tracking]] - fractal geometry project using the same MediaPipe rig
+- [[Hand-Tracked Chaotic Attractor]] - Lorenz attractor driven by a custom Script CHOP (no plugin)
 - [[touchdesigner/04_Scripting_and_Architecture/Python in TD|(y-) Python in TD]]
 - [[touchdesigner/02_The_Operators/CHOPs/index|(y-) CHOPs]]
 - [[touchdesigner/03_Rendering_and_Output/Instancing|(y-) Instancing]]
@@ -514,12 +514,4 @@ Feedback TOP Loop            Geo COMP (Instancing)         Count CHOP (Switch Mo
    [ OVER ] ◀──────────────── [ RENDER ]                 [ Switch TOP ]
 ```
 
-### Data Flow Explanation
-1.  **Plugin Layer:** The `MediaPipe.tox` is an embedded browser that runs Google's vision models. It sends raw joint data (21 points per hand) into TouchDesigner via WebSockets.
-2.  **Normalization:** Raw data is 0-1 (top-left origin). We use the `Math CHOP` to remap this to TouchDesigner's centered coordinate system (-0.5 to 0.5) and the `Lag CHOP` to remove "shaking" from the webcam signal.
-3.  **The Brush:** The `Circle TOP` uses the X/Y channels of the index finger to move. The `Feedback TOP` preserves the circle's path, "painting" it onto a persistent canvas.
-4.  **The Architecture:** We use `Instancing` on a `Geo COMP`. Each building's height is driven by the `H1_pinch_distance` channel. As you open/close your fingers, the "city" grows and shrinks.
-5.  **Logic:** The `Expression CHOP` looks for specific gestures (like a thumbs-up). When the confidence is high, it sends a trigger to the `Count CHOP` to change the brush color or architectural style.
-
----
 [[Hand Tracking|(y) Return to Hand Tracking]] | [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

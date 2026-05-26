@@ -9,7 +9,7 @@ tags:
 date: 2026-03-02
 ---
 
-This recipe walks you through building a fundamental **A/B Crossfader**—the backbone of any live visual performance. You will learn how to take two different video sources and smoothly blend between them using a slider.
+This recipe walks you through building a fundamental **A/B Crossfader**, the backbone of any live visual performance. You will learn how to take two different video sources and smoothly blend between them using a slider.
 
 > [!info] New to TouchDesigner?
 > Before we start, remember the three main "families" of operators we'll use:
@@ -40,10 +40,8 @@ First, we need two visual sources to mix between.
 Now we need a way to control that "Cross" parameter with a slider.
 
 1.  **Add a Slider:** Press **Tab**, go to the **COMP** tab, and select **Slider**.
-2.  **Look inside:** Every COMP is like a folder. Double-click the **Slider COMP** to "dive" inside it.
-3.  **Find the signal:** Inside, you'll see a node named `out1` (a CHOP). This represents the slider's value (0 to 1).
-4.  **Go back up:** Press **U** on your keyboard to "jump up" to the main network.
-5.  **View the value:** Click the small **plus (+) icon** in the bottom-right corner of the Slider COMP node. This makes the node "Active." Now you can click and drag the slider handle right there in the network!
+2.  **Understand what it outputs:** The Slider COMP automatically produces a CHOP channel called `v1` with a value from 0 to 1 as you drag the handle.
+3.  **Activate the viewer:** Click the small **plus (+) icon** in the bottom-right corner of the Slider COMP node. This makes the node "Active" so you can interact with it. Now you can click and drag the slider handle right there in the network!
 
 ---
 
@@ -86,13 +84,17 @@ You can insert effects between the `Cross TOP` and your `OUT` node to make it mo
 
 ## Troubleshooting
 
-- **"I don't see the parameters!"** — Press **P** to toggle the parameter window on/off.
-- **"The slider isn't moving."** — Make sure the "Viewer Active" flag (the little plus icon in the bottom right of the node) is turned ON.
-- **"The blend is jumpy."** — Add a **Lag CHOP** between the slider and the Cross TOP to smooth out your hand movements.
+- **"I don't see the parameters!"** - Press **P** to toggle the parameter window on/off.
+- **"The slider isn't moving."** - Make sure the "Viewer Active" flag (the little plus icon in the bottom right of the node) is turned ON.
+- **"The blend is jumpy."** - Add a **Lag CHOP** between the slider and the Cross TOP to smooth out your hand movements.
 
 ---
 
 ## Next Steps
+
+- **Add smoothing:** Insert a **Lag CHOP** between the Slider COMP and the Cross TOP to soften abrupt crossfades. Try a Lag value of `0.1`.
+- **Try a third source:** Add a **Switch TOP** before the Cross TOP to cycle through more than two video sources.
+- **Make it audio-reactive:** Replace the Slider COMP with an **Audio Device In CHOP** and an **Analyze CHOP** so the crossfade responds to live sound. See [[Audio Reactive Geometry]].
 
 ---
 
@@ -121,11 +123,4 @@ Movie In TOP (Source B) ─┤           │
                     Null TOP (OUT) ──▶ [ Display Flag ]
 ```
 
-### Data Flow Explanation
-1.  **Sources:** `Noise TOP` and `Movie In TOP` generate pixel data. This is "Video Data."
-2.  **Mixing:** The `Cross TOP` takes both inputs. Its `Cross` parameter determines the blend (0 = Source A, 1 = Source B).
-3.  **Control:** The `Slider COMP` generates a number (0.0 to 1.0) based on your mouse movement. This is "Channel Data."
-4.  **Binding:** By **Binding** the slider to the Cross parameter, we bridge the gap between the user interface and the video processing.
-
----
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

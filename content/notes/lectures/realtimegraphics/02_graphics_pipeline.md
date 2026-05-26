@@ -1,5 +1,5 @@
 ---
-title: "02_graphics_pipeline — The GPU as a Factory"
+title: "02_graphics_pipeline  -  The GPU as a Factory"
 tags:
   - rtg
   - gpu
@@ -252,17 +252,17 @@ The fragment shader decides the output color for each surviving fragment. Later 
 6. What is the role of descriptors in modern graphics APIs, and what problem do they solve?
 
 > [!success]- Answer
-> Descriptors are typed handles that connect shader code to GPU memory resources (buffers, textures, samplers). Without them the shader cannot locate where its inputs live, because the application may bind many different resources to many different shader slots. Modern APIs group descriptors into **descriptor sets** (or tables) that can be bound in bulk, so updating one set rebinds many resources cheaply — a major source of CPU overhead in older bindful APIs.
+> Descriptors are typed handles that connect shader code to GPU memory resources (buffers, textures, samplers). Without them the shader cannot locate where its inputs live, because the application may bind many different resources to many different shader slots. Modern APIs group descriptors into **descriptor sets** (or tables) that can be bound in bulk, so updating one set rebinds many resources cheaply  -  a major source of CPU overhead in older bindful APIs.
 
 7. Why are graphics queues, present semaphores, and fences needed for a single frame in Vulkan?
 
 > [!success]- Answer
-> A frame is a producer-consumer pipeline: the CPU records commands, the GPU executes them, and the display swap chain presents the result. Fences tell the CPU when the GPU has finished using a command buffer so it can be recycled. Semaphores order GPU work between queues — an image-available semaphore signals when the swap chain image is safe to render into, and a render-finished semaphore tells the present queue that the image is ready to display. Without them the CPU could overwrite in-flight command buffers, or frames could be presented before they finished rendering.
+> A frame is a producer-consumer pipeline: the CPU records commands, the GPU executes them, and the display swap chain presents the result. Fences tell the CPU when the GPU has finished using a command buffer so it can be recycled. Semaphores order GPU work between queues  -  an image-available semaphore signals when the swap chain image is safe to render into, and a render-finished semaphore tells the present queue that the image is ready to display. Without them the CPU could overwrite in-flight command buffers, or frames could be presented before they finished rendering.
 
 8. What is a draw call's actual cost in modern explicit APIs, and what made it expensive in older APIs?
 
 > [!success]- Answer
-> In modern APIs (Vulkan, DX12) the draw call itself is cheap because state is pre-baked into a PSO and resources are pre-bound through descriptor sets; the driver just dispatches the GPU work. In older APIs (OpenGL, DX11) every draw call could trigger hidden driver work — shader recompilation for new state combinations, descriptor reshuffling, validation — which serialized CPU work and bottlenecked the frame. Modern APIs trade more application complexity for predictable per-draw cost and multithreaded recording.
+> In modern APIs (Vulkan, DX12) the draw call itself is cheap because state is pre-baked into a PSO and resources are pre-bound through descriptor sets; the driver just dispatches the GPU work. In older APIs (OpenGL, DX11) every draw call could trigger hidden driver work  -  shader recompilation for new state combinations, descriptor reshuffling, validation  -  which serialized CPU work and bottlenecked the frame. Modern APIs trade more application complexity for predictable per-draw cost and multithreaded recording.
 
 ---
 

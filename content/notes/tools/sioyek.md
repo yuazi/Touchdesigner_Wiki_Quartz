@@ -23,20 +23,20 @@ Or download the latest release from [github.com/ahrm/sioyek/releases](https://gi
 
 ## Key Features
 
-- **Keyboard first navigation** — nearly every action has a keybind, no mouse required
-- **Smart jump and portal system** — create persistent links in both directions between locations in a document
-- **Marks** — set named one character bookmarks and jump back instantly
-- **Highlights** — annotate text with color coded highlights that persist across sessions
-- **Search** — full text search across the open document with chapter scoping
-- **Table of contents sidebar** — quickly jump to any chapter or section
-- **Link following** — keyboard activate hyperlinks and footnote references inside PDFs
-- **Overview window** — peek at a link target in a floating overlay without losing your current place
-- **Visual mark ruler** — right click to place a reading ruler that highlights the current line and masks everything above or below; move it line by line with `j` or `k`
-- **Presentation mode** — pages snap to fill the screen; movement keys advance whole pages
-- **Synctex support** — bidirectional sync with LaTeX editors to jump from PDF to source and back
-- **Multiple windows** — open several documents or views simultaneously
-- **Custom keybinds** — fully remappable via a plain text `keys_user.config` file
-- **Dark mode and custom colors** — invert colors or define custom background and foreground themes
+- **Keyboard first navigation**  -  nearly every action has a keybind, no mouse required
+- **Smart jump and portal system**  -  create persistent links in both directions between locations in a document
+- **Marks**  -  set named one character bookmarks and jump back instantly
+- **Highlights**  -  annotate text with color coded highlights that persist across sessions
+- **Search**  -  full text search across the open document with chapter scoping
+- **Table of contents sidebar**  -  quickly jump to any chapter or section
+- **Link following**  -  keyboard activate hyperlinks and footnote references inside PDFs
+- **Overview window**  -  peek at a link target in a floating overlay without losing your current place
+- **Visual mark ruler**  -  right click to place a reading ruler that highlights the current line and masks everything above or below; move it line by line with `j` or `k`
+- **Presentation mode**  -  pages snap to fill the screen; movement keys advance whole pages
+- **Synctex support**  -  bidirectional sync with LaTeX editors to jump from PDF to source and back
+- **Multiple windows**  -  open several documents or views simultaneously
+- **Custom keybinds**  -  fully remappable via a plain text `keys_user.config` file
+- **Dark mode and custom colors**  -  invert colors or define custom background and foreground themes
 
 ---
 
@@ -63,7 +63,7 @@ Or download the latest release from [github.com/ahrm/sioyek/releases](https://gi
 | `+`                              | Zoom in                                                     |
 | `-`                              | Zoom out                                                    |
 | `=` / `F9`                       | Fit page to screen width                                    |
-| `F10`                            | Fit page to screen width (smart — ignores margins)          |
+| `F10`                            | Fit page to screen width (smart  -  ignores margins)          |
 | `Backspace` / `Ctrl+Left`        | Go back (previous location in history)                      |
 | `Shift+Backspace` / `Ctrl+Right` | Go forward (next location in history)                       |
 | `Ctrl+PageDown`                  | Next page (one full page forward)                           |
@@ -93,13 +93,13 @@ Or download the latest release from [github.com/ahrm/sioyek/releases](https://gi
 
 ### Visual Mark (Ruler)
 
-The "ruler" in Sioyek is called the **visual mark**. It highlights the current line and dims everything above and below it — useful for staying focused on a single line of dense text.
+The "ruler" in Sioyek is called the **visual mark**. It highlights the current line and dims everything above and below it  -  useful for staying focused on a single line of dense text.
 
 **How to use it:**
 
 1. **Right click** anywhere on the PDF to place the visual mark on that line.
 2. Press `j` or `↓` to move it down one line, `k` or `↑` to move it up.
-3. Press `F7` to toggle **visual scroll mode** — in this mode the mouse wheel also moves the visual mark line by line instead of scrolling the page.
+3. Press `F7` to toggle **visual scroll mode**  -  in this mode the mouse wheel also moves the visual mark line by line instead of scrolling the page.
 
 | Key         | Action                                                         |
 | ----------- | -------------------------------------------------------------- |
@@ -150,7 +150,7 @@ Select text with the mouse first, then press the shortcut.
 
 ### Portals (Persistent Links)
 
-Portals are bidirectional spatial links between locations — useful for jumping between a figure and the text that references it, or linking across documents.
+Portals are bidirectional spatial links between locations  -  useful for jumping between a figure and the text that references it, or linking across documents.
 
 | Key                | Action                                                             |
 | ------------------ | ------------------------------------------------------------------ |
@@ -164,8 +164,8 @@ Portals are bidirectional spatial links between locations — useful for jumping
 
 | Key      | Action                                                                           |
 | -------- | -------------------------------------------------------------------------------- |
-| `f`      | Enter link follow mode — highlights all links on the page for keyboard selection |
-| `F`      | Smart jump — follow the most semantically relevant link under cursor             |
+| `f`      | Enter link follow mode  -  highlights all links on the page for keyboard selection |
+| `F`      | Smart jump  -  follow the most semantically relevant link under cursor             |
 | `v`      | Select text using the keyboard                                                   |
 | `l`      | Open definition overview (in visual scroll mode)                                 |
 | `Ctrl+]` | Go to definition                                                                 |

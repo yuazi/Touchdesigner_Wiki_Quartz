@@ -1,5 +1,5 @@
 ---
-title: "POPs — Point Operators"
+title: "POPs - Point Operators"
 tags:
   - touchdesigner
   - td/operators

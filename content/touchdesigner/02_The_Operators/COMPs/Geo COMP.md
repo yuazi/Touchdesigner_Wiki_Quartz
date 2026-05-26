@@ -12,7 +12,7 @@ date: 2026-02-11
 
 The **Geometry COMP** (`Geo COMP`) is the fundamental container that places 3D geometry into the scene. It wraps a SOP network (your mesh/points) and adds the properties needed to render it: transform, material, instancing, and render settings.
 
-You can think of the Geo COMP as the "actor" on stage — it holds a mesh (from SOPs) and tells the Render TOP how, where, and how many times to draw it.
+You can think of the Geo COMP as the "actor" on stage - it holds a mesh (from SOPs) and tells the Render TOP how, where, and how many times to draw it.
 
 ## Key Pages
 
@@ -26,20 +26,20 @@ Controls where the geometry sits in 3D space:
 | **Rotate (rx, ry, rz)**    | Euler angles in degrees                                      |
 | **Scale (sx, sy, sz)**     | Uniform or non-uniform scale                                 |
 | **Pivot**                  | Point around which rotation and scale is applied             |
-| **Order**                  | Transformation and rotation order — matters for complex rigs |
+| **Order**                  | Transformation and rotation order - matters for complex rigs |
 
 ### Render Page
 
 | Parameter                    | Description                                                |
 | ---------------------------- | ---------------------------------------------------------- |
-| **Render**                   | On/Off — whether this geometry is picked up by Render TOPs |
-| **Display**                  | On/Off — whether it shows in viewport previews             |
+| **Render**                   | On/Off - whether this geometry is picked up by Render TOPs |
+| **Display**                  | On/Off - whether it shows in viewport previews             |
 | **Material**                 | Path to a MAT operator for the surface shader              |
 | **Shadow Caster / Receiver** | Enable shadow casting/receiving                            |
 
 ### Instance Page
 
-This is where instancing lives — see [[Instancing]] for a full guide.
+This is where instancing lives - see [[Instancing]] for a full guide.
 
 | Parameter                | Description                                           |
 | ------------------------ | ----------------------------------------------------- |
@@ -89,7 +89,7 @@ You can drive any Xform parameter with a CHOP reference or expression:
 
 ## Material Assignment
 
-The Geo COMP does not have its own surface look — you must assign a MAT:
+The Geo COMP does not have its own surface look - you must assign a MAT:
 
 1. Go to the **Render page** of the Geo COMP.
 2. Set the **Material** field to the path of your MAT node (e.g. `/project1/phong1`).
@@ -104,10 +104,10 @@ The Geo COMP does not have its own surface look — you must assign a MAT:
 
 ## Related Nodes
 
-- [[SOP - Surface Operators|(y-) SOP]] — geometry source
-- [[Render TOP]] — renders the scene to a texture
-- [[MAT - Material Operators|(y-) MAT]] — surface shaders
-- [[Instancing]] — duplicating geometry efficiently
+- [[SOP - Surface Operators|(y-) SOP]] - geometry source
+- [[Render TOP]] - renders the scene to a texture
+- [[MAT - Material Operators|(y-) MAT]] - surface shaders
+- [[Instancing]] - duplicating geometry efficiently
 
 ---
 

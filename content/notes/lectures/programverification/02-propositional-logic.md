@@ -1,5 +1,5 @@
 ---
-title: "L02 — Propositional Logic"
+title: "L02  -  Propositional Logic"
 tags:
   - program-verification
   - propositional-logic

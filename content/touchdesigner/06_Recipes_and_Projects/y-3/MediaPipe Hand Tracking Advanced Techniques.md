@@ -321,12 +321,12 @@ Enable multiple users to interact with the same system:
 
 ## 10. Related Techniques
 
-- [[Hand Tracking Tutorial|(y-) Hand Tracking Tutorial]] — Basic hand tracking setup
-- [[MediaPipe Face Tracking for Interactive Expressions|(y-) MediaPipe Face Tracking for Interactive Expressions]] — Facial expression tracking
-- [[MediaPipe Pose Tracking for Full-Body Avatars|(y-) MediaPipe Pose Tracking for Full-Body Avatars]] — Full body tracking
-- [[Hand-Tracked Chaotic Attractor|(y-) Hand-Tracked Chaotic Attractor]] — Chaos system from hand data
-- [[Particle System with POPs|(y-) Particle System with POPs]] — Advanced particle systems driven by hands
-- [[GPU Fluid Simulation|(y-) GPU Fluid Simulation]] — Use hands to control fluid parameters
+- [[Hand Tracking Tutorial|(y-) Hand Tracking Tutorial]] - Basic hand tracking setup
+- [[MediaPipe Face Tracking for Interactive Expressions|(y-) MediaPipe Face Tracking for Interactive Expressions]] - Facial expression tracking
+- [[MediaPipe Pose Tracking for Full-Body Avatars|(y-) MediaPipe Pose Tracking for Full-Body Avatars]] - Full body tracking
+- [[Hand-Tracked Chaotic Attractor|(y-) Hand-Tracked Chaotic Attractor]] - Chaos system from hand data
+- [[Particle System with POPs|(y-) Particle System with POPs]] - Advanced particle systems driven by hands
+- [[GPU Fluid Simulation|(y-) GPU Fluid Simulation]] - Use hands to control fluid parameters
 
 ---
 
@@ -365,12 +365,4 @@ Webcam TOP ──────────────────▶ [ MediaPipe
                                (Emit from Hands)         (Scale by Distance)
 ```
 
-### Data Flow Explanation
-1.  **Multi-Hand Sourcing:** `MediaPipe.tox` is configured to track up to 2 hands. It output channels prefixed with `H1_` and `H2_`.
-2.  **Distance Calculation:** We use a `Math CHOP` to compute the Euclidean distance between Hand 1 and Hand 2. This distance becomes a control signal for visual scale or audio frequency.
-3.  **Gesture Engine:** The `Expression CHOP` monitors velocity and position to detect "swipes" (high velocity in one direction) or "claps" (proximity + low velocity).
-4.  **Feedback Control:** Gesture triggers (like a clap) are sent to a `Count CHOP`, which cycles through different visual modes or resets a particle system.
-5.  **Particle Driving:** The `H1_pinch_midpoint` and `H2_pinch_midpoint` are used as emitter positions in a `POP Network`, allowing you to "spray" particles from your fingertips.
-
----
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

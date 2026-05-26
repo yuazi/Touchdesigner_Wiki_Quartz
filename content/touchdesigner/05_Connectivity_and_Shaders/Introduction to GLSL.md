@@ -32,7 +32,7 @@ A basic pixel shader looks like this:
 
 ```glsl
 // This tells TouchDesigner what to output
-out vec4 fragColor;
+layout(location = 0) out vec4 fragColor;
 
 void main()
 {
@@ -40,6 +40,7 @@ void main()
     // If we define it as (1.0, 0.0, 0.0, 1.0), it will output solid red.
 
     // We can also retrieve UV coordinates (0 to 1 across the image)
+    // TD's built-in varying for texture UV is vUV
     vec2 uv = vUV.st;
 
     // Create a color gradient using the UV coordinates

@@ -1,5 +1,5 @@
 ---
-title: "04_cg_primer — Foundations of 3D Math"
+title: "04_cg_primer  -  Foundations of 3D Math"
 tags:
   - rtg
   - math
@@ -110,7 +110,7 @@ $$ R_x = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & \cos\theta & -\sin\theta & 0 \\ 0 
 
 **Composition order**: read right-to-left as "apply to the vector first". $M = T \cdot R \cdot S$ scales the model, then rotates, then translates. Reverse that order and the object rotates around the world origin instead of its own centre.
 
-**Inverse of a rigid transform** $(R | t)$: the inverse is $(R^T | -R^T t)$ — the transpose of the rotation plus the translated origin. This is the standard view-matrix construction: rotate the world into camera frame, then translate the camera to the origin.
+**Inverse of a rigid transform** $(R | t)$: the inverse is $(R^T | -R^T t)$  -  the transpose of the rotation plus the translated origin. This is the standard view-matrix construction: rotate the world into camera frame, then translate the camera to the origin.
 
 ---
 

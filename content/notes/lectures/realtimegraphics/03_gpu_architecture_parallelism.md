@@ -1,5 +1,5 @@
 ---
-title: "03_gpu_architecture — Hardware Parallelism & Modern Pipelines"
+title: "03_gpu_architecture  -  Hardware Parallelism & Modern Pipelines"
 tags:
   - rtg
   - gpu
@@ -79,11 +79,11 @@ A few numbers worth remembering:
 - **Warp / wavefront size**: 32 lanes (NVIDIA warp) or 64 lanes (AMD wavefront). All lanes execute the same instruction per cycle.
 - **Memory hierarchy**, fastest to slowest:
   - **Registers** (per-thread, on-chip, single-cycle access).
-  - **Shared memory / LDS** (per-workgroup, on-chip scratchpad, hundreds of GB/s but small — tens of KB per SM).
+  - **Shared memory / LDS** (per-workgroup, on-chip scratchpad, hundreds of GB/s but small  -  tens of KB per SM).
   - **L1 cache** (per SM, typically combined with shared memory).
   - **L2 cache** (chip-wide, MB-scale).
   - **Global memory** (off-chip DRAM, hundreds of GB/s bandwidth but hundreds of cycles of latency).
-- **Latency hiding**: a global-memory load takes hundreds of cycles. To hide it, the SM needs *enough other warps with ready operands* to fill those cycles. This is what "occupancy" measures — and why register-heavy or shared-memory-heavy kernels can hurt performance by limiting how many warps fit per SM.
+- **Latency hiding**: a global-memory load takes hundreds of cycles. To hide it, the SM needs *enough other warps with ready operands* to fill those cycles. This is what "occupancy" measures  -  and why register-heavy or shared-memory-heavy kernels can hurt performance by limiting how many warps fit per SM.
 - **Coalesced access**: when 32 threads in a warp read 32 consecutive 4-byte words, the hardware merges them into one cache-line transaction. Strided or scattered access produces multiple transactions, multiplying bandwidth cost.
 
 The art of GPU performance is making sure (a) lanes do not diverge, (b) memory accesses coalesce, and (c) there are enough warps in flight to absorb the latency of the memory accesses that do happen.
@@ -278,7 +278,7 @@ Bindless and pointer-like models reduce the cost of binding many resources, but 
 6. What is the warp/wavefront size, and what determines whether memory accesses are "coalesced"?
 
 > [!success]- Answer
-> A warp is 32 lanes on NVIDIA, a wavefront is 64 on AMD; all lanes execute the same instruction per cycle. An access is coalesced when the threads of a warp request adjacent memory addresses that fit in the same cache line — the hardware then issues a single transaction for all of them. Strided or scattered addresses produce multiple transactions, multiplying memory traffic and dropping effective bandwidth.
+> A warp is 32 lanes on NVIDIA, a wavefront is 64 on AMD; all lanes execute the same instruction per cycle. An access is coalesced when the threads of a warp request adjacent memory addresses that fit in the same cache line  -  the hardware then issues a single transaction for all of them. Strided or scattered addresses produce multiple transactions, multiplying memory traffic and dropping effective bandwidth.
 
 7. What problem do mesh shaders and meshlets solve compared to the classic vertex/geometry pipeline?
 
@@ -288,7 +288,7 @@ Bindless and pointer-like models reduce the cost of binding many resources, but 
 8. Why do bindless resources reduce CPU overhead, and what new responsibility do they put on the application?
 
 > [!success]- Answer
-> In the bindful model, each draw call needs descriptor sets bound for the textures, buffers, and samplers it uses, so changing which resources are visible forces CPU rebinding work. In the bindless model the shader holds an integer index into a large global descriptor array, so any resource can be addressed at any time without rebinding — a draw call becomes "draw N primitives with material ID M" where M is just a number. The cost shifts to the application: it must manage descriptor lifetimes, ensure indices stay valid, and avoid dangling references, since the GPU may read any resource at any time.
+> In the bindful model, each draw call needs descriptor sets bound for the textures, buffers, and samplers it uses, so changing which resources are visible forces CPU rebinding work. In the bindless model the shader holds an integer index into a large global descriptor array, so any resource can be addressed at any time without rebinding  -  a draw call becomes "draw N primitives with material ID M" where M is just a number. The cost shifts to the application: it must manage descriptor lifetimes, ensure indices stay valid, and avoid dangling references, since the GPU may read any resource at any time.
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "L10 — Generative Adversarial Networks (GANs)"
+title: "L10  -  Generative Adversarial Networks (GANs)"
 tags:
   - mlp
   - gans
@@ -8,9 +8,9 @@ tags:
   - neural-networks
 date: 2026-03-09
 ---
-[[/notes/lectures/mlp/09-vae|Previous: L09 — VAE]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/11-rl|Next: (y-11) RL]]
+[[/notes/lectures/mlp/09-vae|Previous: L09  -  VAE]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/11-rl|Next: (y-11) RL]]
 
-> _University of Stuttgart — Machine Perception and Learning for Collaborative Intelligent Systems, Prof. Dr. Andreas Bulling, WS 2025/2026_
+> _University of Stuttgart  -  Machine Perception and Learning for Collaborative Intelligent Systems, Prof. Dr. Andreas Bulling, WS 2025/2026_
 
 ---
 
@@ -64,7 +64,7 @@ High-dimensional $p(x)$ is:
 - Difficult to evaluate and optimise
 - A high $p(x)$ may not correspond to visually realistic samples
 
-This motivates **implicit density** models — we don't write down $p(x)$ at all. We only care about _samples_.
+This motivates **implicit density** models  -  we don't write down $p(x)$ at all. We only care about _samples_.
 
 ### The Two-Sample Test Intuition
 
@@ -74,8 +74,8 @@ This motivates **implicit density** models — we don't write down $p(x)$ at all
 
 The core question GANs are built on: **Given two finite sets of samples, how can we tell if they come from the same distribution?**
 
-- $S_1 = \{x \sim p_{data}\}$ — real data
-- $S_2 = \{x \sim p_\theta\}$ — model samples
+- $S_1 = \{x \sim p_{data}\}$  -  real data
+- $S_2 = \{x \sim p_\theta\}$  -  model samples
 
 We set up a hypothesis test:
 
@@ -84,7 +84,7 @@ We set up a hypothesis test:
 
 The test statistic $T$ compares $S_1$ and $S_2$ in terms of means and variance. If $T < \alpha$, we accept $H_0$.
 
-**Key observation**: The test statistic is _likelihood-free_ — it only uses _samples_, not the densities $P$ or $Q$ directly.
+**Key observation**: The test statistic is _likelihood-free_  -  it only uses _samples_, not the densities $P$ or $Q$ directly.
 
 ### The GAN Idea
 
@@ -136,8 +136,8 @@ Two neural networks compete in a minimax game (Goodfellow et al., 2014):
 
 | Network               | Role                                            | Goal                                                        |
 | --------------------- | ----------------------------------------------- | ----------------------------------------------------------- |
-| **Generator** $G$     | Transforms noise $z \sim p_z$ into fake samples | Fool the discriminator — support $H_0: p_{data} = p_\theta$ |
-| **Discriminator** $D$ | Classifies real vs. fake samples                | Distinguish — support $H_1: p_{data} \neq p_\theta$         |
+| **Generator** $G$     | Transforms noise $z \sim p_z$ into fake samples | Fool the discriminator  -  support $H_0: p_{data} = p_\theta$ |
+| **Discriminator** $D$ | Classifies real vs. fake samples                | Distinguish  -  support $H_1: p_{data} \neq p_\theta$         |
 
 ```
 Noise z ~ p_z ──→ [Generator G] ──→ fake x̂
@@ -145,9 +145,9 @@ Noise z ~ p_z ──→ [Generator G] ──→ fake x̂
 Real data x ~ p_data ──────────────→ [Discriminator D] ──→ Real (1) / Fake (0)
 ```
 
-The generator never sees real data directly — it only receives feedback through the discriminator's gradient.
+The generator never sees real data directly  -  it only receives feedback through the discriminator's gradient.
 
-**Example intuition** — a counterfeiter and a police detective:
+**Example intuition**  -  a counterfeiter and a police detective:
 
 - The **counterfeiter** (G) makes fake banknotes and tries to pass them off as real.
 - The **detective** (D) examines banknotes and tries to identify fakes.
@@ -163,7 +163,7 @@ The generator never sees real data directly — it only receives feedback throug
 
 <p class="image-caption">The discriminator's goal: get as good as possible at spotting real vs. fake data.</p>
 
-The discriminator performs binary classification — real samples get label 1, fake samples get label 0:
+The discriminator performs binary classification  -  real samples get label 1, fake samples get label 0:
 
 $$\max_D \; V(G, D) = \mathbb{E}_{x \sim p_{data}}[\log D(x)] + \mathbb{E}_{x \sim p_G}[\log(1 - D(x))]$$
 
@@ -171,11 +171,11 @@ This is a standard binary cross-entropy loss. For a **fixed generator** $G$, the
 
 $$D^*_G(x) = \frac{p_{data}(x)}{p_{data}(x) + p_G(x)}$$
 
-> **Example**: if at a given point $x$, half the density is real and half is fake, the optimal discriminator outputs $D^*(x) = 0.5$ — it cannot do better than chance there.
+> **Example**: if at a given point $x$, half the density is real and half is fake, the optimal discriminator outputs $D^*(x) = 0.5$  -  it cannot do better than chance there.
 
 ### Generator Objective
 
-The generator minimises the same quantity — it wants the discriminator to fail:
+The generator minimises the same quantity  -  it wants the discriminator to fail:
 
 $$\min_G \; V(G, D) = \mathbb{E}_{x \sim p_{data}}[\log D(x)] + \mathbb{E}_{x \sim p_G}[\log(1 - D(x))]$$
 
@@ -218,11 +218,11 @@ Properties:
 
 Training alternates between gradient steps on $D$ and $G$:
 
-**Step 1 — Gradient ascent on D** (maximise $V$):
+**Step 1  -  Gradient ascent on D** (maximise $V$):
 
 $$\max_{\Theta_d} \; \mathbb{E}_{x \sim p_{data}}[\log D_{\Theta_d}(x)] + \mathbb{E}_{z \sim p_z}[\log(1 - D_{\Theta_d}(G_{\Theta_g}(z)))]$$
 
-**Step 2 — Gradient descent on G** (minimise $V$):
+**Step 2  -  Gradient descent on G** (minimise $V$):
 
 $$\min_{\Theta_g} \; \mathbb{E}_{z \sim p_z}[\log(1 - D_{\Theta_d}(G_{\Theta_g}(z)))]$$
 
@@ -240,7 +240,7 @@ $$\min_{\Theta_g} \; \mathbb{E}_{z \sim p_z}[\log(1 - D_{\Theta_d}(G_{\Theta_g}(
 Minimising $\log(1 - D(G(z)))$ causes a **vanishing gradient** early in training:
 
 - When the fake sample is easily detected (likely at the start), $D(G(z)) \approx 0$, so $\log(1 - D(G(z))) \approx \log 1 = 0$.
-- The gradient in this region is **flat** — the generator receives almost no learning signal exactly when it needs it most.
+- The gradient in this region is **flat**  -  the generator receives almost no learning signal exactly when it needs it most.
 
 ### The Non-Saturating Fix (Standard in Practice)
 
@@ -252,7 +252,7 @@ Instead of minimising $\log(1 - D(G(z)))$, **maximise** $\log D(G(z))$:
 
 $$\max_{\Theta_g} \; \mathbb{E}_{z \sim p_z}[\log D_{\Theta_d}(G_{\Theta_g}(z)))]$$
 
-Same objective (fool the discriminator), but the gradient is large when the sample is bad — exactly where we need it. This heuristic is standard in virtually all GAN implementations.
+Same objective (fool the discriminator), but the gradient is large when the sample is bad  -  exactly where we need it. This heuristic is standard in virtually all GAN implementations.
 
 ### Training Loop (PyTorch)
 
@@ -293,7 +293,7 @@ for real_batch in dataloader:
 
 ![[pictures/mpl/10/Lecture10_Pg042_1_Training_Instability_Nash_Equilibrium.png]]
 
-<p class="image-caption">GAN training is unstable—it's tough to find that perfect Nash equilibrium.</p>
+<p class="image-caption">GAN training is unstable - it's tough to find that perfect Nash equilibrium.</p>
 
 GAN training is a two-player game. Finding a **Nash equilibrium** is hard: making downhill progress for one player may push the other player uphill.
 
@@ -309,7 +309,7 @@ Additionally, the generator can learn to exploit statistical properties of the d
 
 > **Example**: A GAN trained on a dataset of handwritten digits (MNIST) might latch onto only "1"s and "3"s because those were easiest to fool the current discriminator, completely ignoring "0", "2", "4"–"9".
 
-Illustrated by a "saddle point in dual energy landscape" — the generator finds a local mode and the discriminator cannot push it away.
+Illustrated by a "saddle point in dual energy landscape"  -  the generator finds a local mode and the discriminator cannot push it away.
 
 **Solutions**:
 
@@ -327,8 +327,8 @@ Illustrated by a "saddle point in dual energy landscape" — the generator finds
 
 The JSD-based GAN objective has two serious problems:
 
-1. **JSD correlates poorly with sample quality** — you don't know when to stop training.
-2. **Gradient vanishing from an optimal discriminator**: If $D$ becomes too good, $D_{JSD}$ saturates to $\log 2$ — a constant — and the generator receives **zero gradient**.
+1. **JSD correlates poorly with sample quality**  -  you don't know when to stop training.
+2. **Gradient vanishing from an optimal discriminator**: If $D$ becomes too good, $D_{JSD}$ saturates to $\log 2$  -  a constant  -  and the generator receives **zero gradient**.
 
 More fundamentally: if $p_{data}$ and $p_G$ have **non-overlapping supports** (common when the data lies on a low-dimensional manifold of a high-dimensional space), the KL divergence is **undefined or infinite**, and gradients are not continuous or well-behaved.
 
@@ -363,12 +363,12 @@ $$W(P \| Q) = \inf_{\gamma \in \Pi(P, Q)} \mathbb{E}_{(x,y) \sim \gamma}[\| x - 
 
 Where $\Pi(P, Q)$ is the set of all joint distributions $\gamma(x, y)$ whose marginals are $P$ and $Q$.
 
-**Intuition**: the minimum "work" needed to transport a pile of dirt shaped like $P$ to a pile shaped like $Q$. Think of two piles of sand — the Wasserstein distance is the cost of moving sand optimally from one pile's shape to the other's.
+**Intuition**: the minimum "work" needed to transport a pile of dirt shaped like $P$ to a pile shaped like $Q$. Think of two piles of sand  -  the Wasserstein distance is the cost of moving sand optimally from one pile's shape to the other's.
 
 **Why it's better than JSD**:
 
 - Well-defined even when distributions have **disjoint support**
-- **Continuous and differentiable** everywhere — the generator always gets a useful gradient proportional to how far apart the distributions are
+- **Continuous and differentiable** everywhere  -  the generator always gets a useful gradient proportional to how far apart the distributions are
 
 ### WGAN Objective
 
@@ -400,7 +400,7 @@ def critic_loss(real, fake, critic, gp_weight=10):
 **Benefits of WGAN**:
 
 - No mode collapse in practice
-- Loss value is **meaningful** — it correlates with visual sample quality (unlike vanilla GAN loss)
+- Loss value is **meaningful**  -  it correlates with visual sample quality (unlike vanilla GAN loss)
 - More stable training
 
 > **Example**: with a vanilla GAN, the loss can oscillate wildly and gives no indication of quality. With WGAN, as training progresses the Wasserstein loss consistently decreases, and you can use it as a reliable stopping criterion.
@@ -422,7 +422,7 @@ $$\min_G \max_D \; \mathbb{E}_{x,c}[\log D(x, c)] + \mathbb{E}_{z,c}[\log(1 - D(
 
 ---
 
-### Pix2Pix — Image-to-Image Translation
+### Pix2Pix  -  Image-to-Image Translation
 
 ![[pictures/mpl/10/Lecture10_Pg056_Pix2pix_Image_To_Image_Translation.png]]
 
@@ -430,7 +430,7 @@ $$\min_G \max_D \; \mathbb{E}_{x,c}[\log D(x, c)] + \mathbb{E}_{z,c}[\log(1 - D(
 
 _Isola et al., 2017_
 
-A conditional GAN where the condition is a **full image** (not just a label). Requires **paired training images** $(x, y)$ — e.g., (edge map, photo), (semantic mask, street scene), (day, night).
+A conditional GAN where the condition is a **full image** (not just a label). Requires **paired training images** $(x, y)$  -  e.g., (edge map, photo), (semantic mask, street scene), (day, night).
 
 **Objective**:
 
@@ -466,7 +466,7 @@ Input image x ──→ [Generator (U-Net)] ──→ output image ŷ
 
 ---
 
-### CycleGAN — Unpaired Image-to-Image Translation
+### CycleGAN  -  Unpaired Image-to-Image Translation
 
 ![[pictures/mpl/10/Lecture10_Pg062_Applications_Cyclegan_Overview.png]]
 
@@ -514,11 +514,11 @@ y (zebra) ──→ F ──→ x̂ (fake horse) ──→ G ──→ ŷ (recon
 - Photo ↔ Monet painting
 - Apple ↔ Orange
 
-> **Example**: You have a collection of horse photos and a separate collection of zebra photos — no paired images at all. CycleGAN learns to translate between styles. The cycle-consistency loss prevents the generator from making arbitrary, unrelated changes (e.g., it can't translate an apple to a zebra and still reconstruct the original apple, so it's forced to only change the visual style).
+> **Example**: You have a collection of horse photos and a separate collection of zebra photos  -  no paired images at all. CycleGAN learns to translate between styles. The cycle-consistency loss prevents the generator from making arbitrary, unrelated changes (e.g., it can't translate an apple to a zebra and still reconstruct the original apple, so it's forced to only change the visual style).
 
 ---
 
-### GauGAN / SPADE — Spatially-Adaptive Normalization
+### GauGAN / SPADE  -  Spatially-Adaptive Normalization
 
 ![[pictures/mpl/10/Lecture10_Pg066_Gaugan_Spade_Spatially_Adaptive_Normalization.png]]
 
@@ -530,12 +530,12 @@ _Park, Liu, Wang, Zhu (NVIDIA), 2019_
 
 **Problem with standard conditional normalisation**: Unconditional normalisation layers (e.g., BatchNorm) inside the generator "wash away" the semantic label information as activations propagate through the network.
 
-**Solution — SPADE** (Spatially-Adaptive Denormalization):
+**Solution  -  SPADE** (Spatially-Adaptive Denormalization):
 
 Instead of scalar $\gamma$ and $\beta$ vectors, SPADE produces _spatially-varying_ modulation tensors:
 
 1. Project the segmentation mask into an embedding space
-2. Apply convolutions to produce $\gamma(x, y)$ and $\beta(x, y)$ — 2D tensors, not just scalars
+2. Apply convolutions to produce $\gamma(x, y)$ and $\beta(x, y)$  -  2D tensors, not just scalars
 3. Apply element-wise: normalise the activation, then modulate: $h = \gamma(x,y) \cdot \text{Norm}(h) + \beta(x,y)$
 
 ![[pictures/mpl/10/Lecture10_Pg070_Spade.png]]
@@ -550,7 +550,7 @@ The generator contains a series of **SPADE residual blocks** with upsampling lay
 
 ---
 
-### StyleGAN — Style-Based Generator Architecture
+### StyleGAN  -  Style-Based Generator Architecture
 
 ![[pictures/mpl/10/Lecture10_Pg073_Stylegan_Style_Based_Generator_Architecture.png]]
 
@@ -582,7 +582,7 @@ w in disentangled latent space
 
 $z \sim \mathcal{N}(0, I)$ → **8-layer MLP** → $w$ (disentangled latent space)
 
-The $w$-space is more linearly disentangled than $z$-space — individual dimensions correspond more cleanly to interpretable attributes (age, hair, pose, expression, etc.).
+The $w$-space is more linearly disentangled than $z$-space  -  individual dimensions correspond more cleanly to interpretable attributes (age, hair, pose, expression, etc.).
 
 #### 2. Adaptive Instance Normalization (AdaIN)
 
@@ -633,7 +633,7 @@ mixed output = structure from w1 + detail from w2
 
 <p class="image-caption">ASCII view: style mixing uses different latent codes at different resolutions so coarse structure and fine detail can come from different sources.</p>
 
-At inference, use $w_1$ for early (coarse) layers and $w_2$ for later (fine) layers. This creates hybrid outputs — e.g., the face shape and pose of person A combined with the hair colour and skin texture of person B.
+At inference, use $w_1$ for early (coarse) layers and $w_2$ for later (fine) layers. This creates hybrid outputs  -  e.g., the face shape and pose of person A combined with the hair colour and skin texture of person B.
 
 | Style level            | Controls                     |
 | ---------------------- | ---------------------------- |
@@ -641,7 +641,7 @@ At inference, use $w_1$ for early (coarse) layers and $w_2$ for later (fine) lay
 | Middle (16×16–32×32)   | Facial features, eye shape   |
 | Fine (64×64–1024×1024) | Colour scheme, micro-texture |
 
-> **Example**: `thispersondoesnotexist.com` generates realistic human faces using StyleGAN. None of the people exist — every image is synthesised from scratch from random $z$ noise. Refresh the page to get a completely different face.
+> **Example**: `thispersondoesnotexist.com` generates realistic human faces using StyleGAN. None of the people exist  -  every image is synthesised from scratch from random $z$ noise. Refresh the page to get a completely different face.
 
 ---
 
@@ -651,7 +651,7 @@ At inference, use $w_1$ for early (coarse) layers and $w_2$ for later (fine) lay
 
 <p class="image-caption">A case study on using GANs for eye gaze redirection.</p>
 
-_(He, Spurr, Zhang, Hilliges — ICCV 2019)_
+_(He, Spurr, Zhang, Hilliges  -  ICCV 2019)_
 
 ### Motivation
 
@@ -663,7 +663,7 @@ Appearance-based gaze estimation requires large datasets annotated with ground-t
 | GazeCapture (Krafka et al., 2016) | Mobile device eye tracking           |
 | ETH-XGaze (Zhang et al., 2020)    | Extreme head pose and gaze variation |
 
-**One solution**: Use GANs for **gaze redirection as data augmentation** — take existing images and synthesise versions with arbitrary target gaze angles.
+**One solution**: Use GANs for **gaze redirection as data augmentation**  -  take existing images and synthesise versions with arbitrary target gaze angles.
 
 ### Task Definition
 
@@ -700,7 +700,7 @@ $$\mathcal{L}^D_{gaze} = \mathbb{E}_{x_r \sim p_{x_r}}\|d_r - D_{gaze}(x_r)\|^2_
 
 $$\mathcal{L}^G_{gaze} = \mathbb{E}_{x_r \sim p_{x_r}}\|d_g - D_{gaze}(G(x_r, d_g))\|^2_2$$
 
-**3. Reconstruction Loss** (cycle-consistency — redirect then redirect back):
+**3. Reconstruction Loss** (cycle-consistency  -  redirect then redirect back):
 
 $$x_{rec} = G(G(x_r, d_g),\ d_r) \qquad \mathcal{L}_{rec} = \mathbb{E}_{x_r}[\|x_r - x_{rec}\|_1]$$
 
@@ -737,7 +737,7 @@ Perceptual quality is evaluated using **LPIPS** (Learned Perceptual Image Patch 
 <p class="image-caption">A wrap-up of the key takeaways from the gaze redirection case study.</p>
 
 1. **First GAN-based method** for gaze redirection from monocular images
-2. **Novel dual-purpose discriminator** — judges both realism _and_ gaze direction
+2. **Novel dual-purpose discriminator**  -  judges both realism _and_ gaze direction
 3. **One of the first works** to demonstrate synthetic image augmentation improving real gaze estimation model performance
 
 ---
@@ -751,7 +751,7 @@ Perceptual quality is evaluated using **LPIPS** (Learned Perceptual Image Patch 
 | **LPIPS**                            | Perceptual similarity to a reference   | Lower is better  |
 | **Precision & Recall**               | Quality vs. diversity separately       | Both higher      |
 
-### FID — The Standard Metric
+### FID  -  The Standard Metric
 
 Extract InceptionV3 features from real and generated images. Fit Gaussians to each feature set. Compute:
 
@@ -786,7 +786,7 @@ Lower FID means the generated distribution is closer to the real one. FID captur
 | Training           | Relatively easier              | Requires many optimisation tricks, prone to mode collapse |
 | Inference          | Explicit $q(z \mid x)$         | Implicit (no encoder; unless BiGAN)                       |
 | Image quality      | Blurrier (reconstruction loss) | Sharper (discriminator signal)                            |
-| Density evaluation | Lower bound via ELBO           | Not possible — likelihood-free                            |
+| Density evaluation | Lower bound via ELBO           | Not possible  -  likelihood-free                            |
 
 ---
 
@@ -803,7 +803,7 @@ Lower FID means the generated distribution is closer to the real one. FID captur
 | Image quality  | Blurry                       | Sharp                                  |
 | Density access | Lower bound                  | None (likelihood-free)                 |
 
-GANs have largely been superseded by diffusion models for highest-quality generation, but adversarial training and discriminators remain influential — appearing in perceptual loss networks, data augmentation pipelines, and as discriminators in hybrid models.
+GANs have largely been superseded by diffusion models for highest-quality generation, but adversarial training and discriminators remain influential  -  appearing in perceptual loss networks, data augmentation pipelines, and as discriminators in hybrid models.
 
 ### PyTorch Implementation: DCGAN
 
@@ -941,4 +941,4 @@ class Discriminator(nn.Module):
 - **Architectural Evolution**: GANs produce incredibly sharp images but are notoriously difficult to train and suffer from mode collapse. **[[/notes/lectures/mlp/12-diffusion|Diffusion Models (L12)]]** solve these stability issues while maintaining state-of-the-art image quality.
 
 ---
-[[/notes/lectures/mlp/09-vae|Previous: L09 — VAE]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/11-rl|Next: (y-11) RL]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/lectures/mlp/09-vae|Previous: L09  -  VAE]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/11-rl|Next: (y-11) RL]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

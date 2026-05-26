@@ -1,5 +1,5 @@
 ---
-title: "L13 — Predicate Transformers"
+title: "L13  -  Predicate Transformers"
 tags:
   - program-verification
   - predicate-transformers

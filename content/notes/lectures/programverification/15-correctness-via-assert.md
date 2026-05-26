@@ -1,5 +1,5 @@
 ---
-title: "L15 — Correctness via Assert Statements"
+title: "L15  -  Correctness via Assert Statements"
 tags:
   - program-verification
   - assertions

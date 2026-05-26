@@ -9,7 +9,7 @@ date: 2026-02-11
 
 # LFO CHOP
 
-The **LFO (Low Frequency Oscillator) CHOP** generates a continuously cycling waveform signal. It is one of the most fundamental CHOPs — used for anything that should repeat or pulse over time: camera movement, colour cycling, scale breathing, parameter animation.
+The **LFO (Low Frequency Oscillator) CHOP** generates a continuously cycling waveform signal. It is one of the most fundamental CHOPs - used for anything that should repeat or pulse over time: camera movement, colour cycling, scale breathing, parameter animation.
 
 ## Key Parameters
 
@@ -18,7 +18,7 @@ The **LFO (Low Frequency Oscillator) CHOP** generates a continuously cycling wav
 | **Type**         | Waveform shape: Sine, Triangle, Ramp, Square, Pulse               |
 | **Frequency**    | Cycles per second (Hz). `1` = one full cycle per second           |
 | **Amplitude**    | Peak value of the wave                                            |
-| **Offset**       | DC offset — shifts the entire waveform up or down                 |
+| **Offset**       | DC offset - shifts the entire waveform up or down                 |
 | **Phase**        | Starting position in the cycle (0–1). `0.25` = starts at the peak |
 | **Channels**     | How many output channels (each can have its own frequency/phase)  |
 | **Channel Name** | Name(s) of the output channel(s), e.g. `chan1`                    |
@@ -67,16 +67,16 @@ This creates a light that fades between 0 and 1 with a gentle sine curve, comple
 
 ## Common Gotchas
 
-- **The square wave clicks** — place a `Lag CHOP` after it to smooth the edges.
+- **The square wave clicks** - place a `Lag CHOP` after it to smooth the edges.
 - **Phase 0 starts at zero crossing** (for Sine), not the peak. Use `0.25` to start at the peak.
-- **Frequency 0** freezes the output at the current phase position — useful as a trick to hold a value.
+- **Frequency 0** freezes the output at the current phase position - useful as a trick to hold a value.
 - If you need a **one-shot** (non-looping) animation, use a **Timer CHOP** or **Animation CHOP** instead.
 
 ## Related Nodes
 
-- [[Math CHOP]] — remap and combine LFO output
-- [[Noise - CHOP and TOP|(y-) Noise CHOP]] — like an LFO but organic/random
-- [[Timer CHOP]] — for one-shot and sequenced events
+- [[Math CHOP]] - remap and combine LFO output
+- [[Noise - CHOP and TOP|(y-) Noise CHOP]] - like an LFO but organic/random
+- [[Timer CHOP]] - for one-shot and sequenced events
 
 ---
 

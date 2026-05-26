@@ -1,5 +1,5 @@
 ---
-title: "10_semi_global_illumination — Semi-Global Illumination"
+title: "10_semi_global_illumination  -  Semi-Global Illumination"
 tags:
   - rtg
   - global-illumination
@@ -16,10 +16,10 @@ date: 2026-05-25
 
 ## Mental Model First: Cheap Tricks for Light That Travels
 
-- **Full global illumination tracks every light bounce through the scene; in real time, that is unaffordable.** Semi-global illumination computes local lighting everywhere and global lighting only selectively — only for visually important effects, only for surfaces that benefit from it.
+- **Full global illumination tracks every light bounce through the scene; in real time, that is unaffordable.** Semi-global illumination computes local lighting everywhere and global lighting only selectively  -  only for visually important effects, only for surfaces that benefit from it.
 - **The big global effects are reflections, refractions, transparency, shadows, and ambient occlusion.** Each gets its own specialized two-pass technique: first compute the global information into an auxiliary buffer (depth map, stencil, history list, light's-eye view), then use that buffer when shading the camera view.
 - **Reflections come in three flavors.** Planar reflections via stencil masking are exact but only on flat surfaces. Shader-based reflections add fading and refraction on top. Screen-space reflections ray-march the depth buffer and are cheap but limited to whatever is on screen.
-- **Transparency is order-dependent.** Correct alpha blending requires back-to-front order. The three solutions — explicit sort, depth peeling, per-pixel linked lists — trade memory bandwidth against geometry overhead.
+- **Transparency is order-dependent.** Correct alpha blending requires back-to-front order. The three solutions  -  explicit sort, depth peeling, per-pixel linked lists  -  trade memory bandwidth against geometry overhead.
 - **Shadow techniques split into two families.** Shadow mapping renders depth from the light's point of view, then compares per-pixel; fast and general but aliases. Shadow volumes extrude silhouette geometry and count ray crossings in a stencil buffer; exact but expensive.
 - **Ambient occlusion fakes the global contribution of bounced light** by darkening surfaces that are visually crowded. The screen-space variant (SSAO) samples the depth buffer; SSDO adds direction and a single bounce for color bleeding.
 
@@ -27,7 +27,7 @@ date: 2026-05-25
 
 ## 1. The Semi-Global Recipe
 
-Full global illumination — tracking every light bounce through the scene — is too expensive for real-time rendering. The practical compromise is:
+Full global illumination  -  tracking every light bounce through the scene  -  is too expensive for real-time rendering. The practical compromise is:
 
 - compute **local** lighting everywhere (Phong, Cook-Torrance, deferred shading from L08),
 - compute **global** light transport **selectively**: only certain transport types (reflections, refractions, shadows, AO, transparency), only for objects where it matters visually,
@@ -45,7 +45,7 @@ The problem: the mirrored scene appears everywhere, not just inside the mirror. 
 
 ![[pictures/realtimegraphics/10/L10_Pg-006.jpg]]
 
-<p class="image-caption">L10_Pg-006: Stencil-based reflection in four steps — write the mirror shape into the stencil, draw the mirrored object clipped to the stencil, then the normal object and the mirror surface on top.</p>
+<p class="image-caption">L10_Pg-006: Stencil-based reflection in four steps  -  write the mirror shape into the stencil, draw the mirrored object clipped to the stencil, then the normal object and the mirror surface on top.</p>
 
 Algorithm:
 
@@ -71,15 +71,15 @@ Even with RTX hardware, fully ray-traced reflections are expensive. **Screen-spa
 
 ![[pictures/realtimegraphics/10/L10_Pg-014.jpg]]
 
-<p class="image-caption">L10_Pg-014: SSR reflects the view ray across the surface normal and finds where that reflection ray intersects the depth buffer — a cheap dynamic reflection.</p>
+<p class="image-caption">L10_Pg-014: SSR reflects the view ray across the surface normal and finds where that reflection ray intersects the depth buffer  -  a cheap dynamic reflection.</p>
 
 The algorithm per pixel:
 
-1. Read the **reflection map** — a per-pixel scalar (precomputed from material roughness) that decides how much SSR to apply. Zero pixels skip SSR entirely.
+1. Read the **reflection map**  -  a per-pixel scalar (precomputed from material roughness) that decides how much SSR to apply. Zero pixels skip SSR entirely.
 2. **Reflect the view ray** across the surface normal at this pixel, giving a reflection direction in view space.
 3. Project that reflection direction into screen space.
 4. **Ray-march** along that screen-space direction, checking each step against the depth buffer.
-5. If the ray's depth crosses the depth buffer, the intersection point is the reflection sample — read its color from the color buffer.
+5. If the ray's depth crosses the depth buffer, the intersection point is the reflection sample  -  read its color from the color buffer.
 
 ![[pictures/realtimegraphics/10/L10_Pg-017.jpg]]
 
@@ -138,7 +138,7 @@ Two auxiliary buffers are needed:
 
 ![[pictures/realtimegraphics/10/L10_Pg-038.jpg]]
 
-<p class="image-caption">L10_Pg-038: Linked-list creation in progress — each new fragment is appended to the head of its pixel's list, with the old head index recorded as the next pointer.</p>
+<p class="image-caption">L10_Pg-038: Linked-list creation in progress  -  each new fragment is appended to the head of its pixel's list, with the old head index recorded as the next pointer.</p>
 
 The fragment shader appends each fragment with an atomic operation, pushes the new entry onto the head of the per-pixel list, and stores the previous head index as its next pointer. Traversal is a fullscreen quad (or compute shader) that, for each pixel, walks the linked list, sorts the fragments into a small temp array by depth, and blends them back to front.
 
@@ -158,13 +158,13 @@ Shadows are an important visual cue: they tell us the relative position of objec
 
 <p class="image-caption">L10_Pg-045: Without shadows, characters and bushes float over the ground; with shadows, they sit on the surface.</p>
 
-A shadow is a **non-local** interaction between a light source, the **receiver** (the surface being shaded), and an **occluder** (the object blocking light from reaching the receiver). Even regular shading can be thought of as a kind of pseudo self-shadowing — the $\max(\mathbf{N} \cdot \mathbf{L}, 0)$ Lambert factor is just "fully occluded when the surface faces away from the light."
+A shadow is a **non-local** interaction between a light source, the **receiver** (the surface being shaded), and an **occluder** (the object blocking light from reaching the receiver). Even regular shading can be thought of as a kind of pseudo self-shadowing  -  the $\max(\mathbf{N} \cdot \mathbf{L}, 0)$ Lambert factor is just "fully occluded when the surface faces away from the light."
 
 ### Shadow Geometry
 
 ![[pictures/realtimegraphics/10/L10_Pg-047.jpg]]
 
-<p class="image-caption">L10_Pg-047: A shadowing object carves a shadow volume — surfaces inside are shadowed, surfaces outside are illuminated, surfaces partially inside are partially shadowed.</p>
+<p class="image-caption">L10_Pg-047: A shadowing object carves a shadow volume  -  surfaces inside are shadowed, surfaces outside are illuminated, surfaces partially inside are partially shadowed.</p>
 
 The geometric structure is a **shadow volume**: the region of space behind the occluder, relative to the light, that the light cannot reach.
 
@@ -214,7 +214,7 @@ Pros: arbitrary shadow casters, very cheap. Cons: only **planar shadow receivers
 
 ![[pictures/realtimegraphics/10/L10_Pg-060.jpg]]
 
-<p class="image-caption">L10_Pg-060: Projected shadow artifacts — z-fighting with the receiver, double blending where projected triangles overlap, and shadow extending off the ground plane.</p>
+<p class="image-caption">L10_Pg-060: Projected shadow artifacts  -  z-fighting with the receiver, double blending where projected triangles overlap, and shadow extending off the ground plane.</p>
 
 The classic artifacts:
 
@@ -230,14 +230,14 @@ The standard fix uses a **stencil buffer**: draw the receiver plane writing 1 in
 
 Shadow mapping is the modern dominant shadow technique. The idea:
 
-1. **Pass 1**: render the scene from the **light's point of view**, storing only the depth buffer. This is the **shadow map** — the depth of whatever the light "sees" first in each direction.
+1. **Pass 1**: render the scene from the **light's point of view**, storing only the depth buffer. This is the **shadow map**  -  the depth of whatever the light "sees" first in each direction.
 2. **Pass 2**: render the scene normally from the camera. For each pixel, transform its position into the light's coordinate frame, look up the shadow map at that position, and compare depths.
 
 ![[pictures/realtimegraphics/10/L10_Pg-064.jpg]]
 
 <p class="image-caption">L10_Pg-064: For each camera pixel, compute its depth as seen from the light, compare to the shadow map; if the camera-pixel depth is greater, the pixel is in shadow.</p>
 
-If the camera-pixel's light-space depth is **greater** than the shadow map's value, something else was nearer the light at that ray — the pixel is in shadow. If the depths are approximately equal, the pixel itself was visible to the light — it is lit.
+If the camera-pixel's light-space depth is **greater** than the shadow map's value, something else was nearer the light at that ray  -  the pixel is in shadow. If the depths are approximately equal, the pixel itself was visible to the light  -  it is lit.
 
 ![[pictures/realtimegraphics/10/L10_Pg-067.jpg]]
 
@@ -249,7 +249,7 @@ Shadow mapping inherits the strengths and weaknesses of any sampled-buffer techn
 
 ![[pictures/realtimegraphics/10/L10_Pg-068.jpg]]
 
-<p class="image-caption">L10_Pg-068: Shadow-map aliasing has two components — perspective aliasing (camera-space texel resolution) and projection aliasing (shadow-map texel resolution under glancing angles).</p>
+<p class="image-caption">L10_Pg-068: Shadow-map aliasing has two components  -  perspective aliasing (camera-space texel resolution) and projection aliasing (shadow-map texel resolution under glancing angles).</p>
 
 Two distinct aliasing problems coexist:
 
@@ -264,7 +264,7 @@ Naive bilinear filtering of the shadow map gives wrong answers, because averagin
 
 <p class="image-caption">L10_Pg-076: PCF filters the boolean lit/shadow result of per-texel comparison, not the depth values themselves; the example averages 5 of 9 lit samples to give 0.55 visibility.</p>
 
-PCF gives smoother shadow edges in a single pass — much cheaper than a separate screen-space blur — and is supported as a hardware sampler in modern APIs.
+PCF gives smoother shadow edges in a single pass  -  much cheaper than a separate screen-space blur  -  and is supported as a hardware sampler in modern APIs.
 
 ### Depth Precision and Bias
 
@@ -292,7 +292,7 @@ Other practical optimizations:
 
 ![[pictures/realtimegraphics/10/L10_Pg-081.jpg]]
 
-<p class="image-caption">L10_Pg-081: CSM partitions the eye-space frustum into cascading sub-frusta along z, with a separate shadow map per cascade — nearby cascades cover little area at high resolution, far cascades cover more at lower resolution.</p>
+<p class="image-caption">L10_Pg-081: CSM partitions the eye-space frustum into cascading sub-frusta along z, with a separate shadow map per cascade  -  nearby cascades cover little area at high resolution, far cascades cover more at lower resolution.</p>
 
 For a directional light (sun), one shadow map covering the whole view is necessarily low-resolution at close range, where blocky shadows are most visible. CSM splits the eye-space view frustum into $N$ depth slices, generates one shadow map per slice in light space, and uses the appropriate cascade per pixel.
 
@@ -306,17 +306,17 @@ with $\lambda \approx 0.9$ giving mostly logarithmic spacing for natural percept
 
 Standard shadow mapping handles spot and directional lights, which have a single forward direction. For **omni-directional** point lights you need to cover the full $4\pi$ steradian sphere of directions.
 
-The cube-map approach uses six shadow maps, one per cube face — accurate but expensive (six extra render passes).
+The cube-map approach uses six shadow maps, one per cube face  -  accurate but expensive (six extra render passes).
 
 ![[pictures/realtimegraphics/10/L10_Pg-084.jpg]]
 
-<p class="image-caption">L10_Pg-084: A dual paraboloid shadow map projects each hemisphere onto a disc — two passes instead of six, supported by native texture-coordinate hardware.</p>
+<p class="image-caption">L10_Pg-084: A dual paraboloid shadow map projects each hemisphere onto a disc  -  two passes instead of six, supported by native texture-coordinate hardware.</p>
 
 The **dual paraboloid shadow map** is the cheaper alternative: a paraboloid surface maps every direction inside a hemisphere onto a disc. Two such discs, one for each hemisphere, fit inside a single texture. Generation needs only two passes (one per hemisphere) instead of six.
 
 ### Shadow Mapping Summary
 
-- Fast — one extra rendering pass.
+- Fast  -  one extra rendering pass.
 - Independent of scene complexity, no extra shadow geometry.
 - Supports self-shadowing (with proper bias).
 - Sometimes can reuse depth from other passes.
@@ -348,17 +348,17 @@ The logic, geometrically: each entry into the shadow volume between the camera a
 
 ![[pictures/realtimegraphics/10/L10_Pg-090.jpg]]
 
-<p class="image-caption">L10_Pg-090: For an object inside the shadow volume, the front-face increment outnumbers the back-face decrement by 1 — the stencil value is non-zero, so the pixel is shadowed.</p>
+<p class="image-caption">L10_Pg-090: For an object inside the shadow volume, the front-face increment outnumbers the back-face decrement by 1  -  the stencil value is non-zero, so the pixel is shadowed.</p>
 
 ### Depth-Pass vs Depth-Fail
 
-The default scheme (**depth-pass**, or "Carmack's z-pass") fails when the camera is inside the shadow volume — front faces that would normally increment the stencil are clipped by the near plane, throwing off the count.
+The default scheme (**depth-pass**, or "Carmack's z-pass") fails when the camera is inside the shadow volume  -  front faces that would normally increment the stencil are clipped by the near plane, throwing off the count.
 
 The fix (**depth-fail**, or "Carmack's reverse"): increment the stencil on **back faces** that **fail** the depth test, decrement on **front faces** that fail. This counts shadow-volume crossings *behind* the pixel rather than *in front*, which is robust even when the camera is inside the volume. It costs extra geometry (you need a closed dark cap at infinity using projective vertices with $w = 0$) but is the safe choice.
 
 ![[pictures/realtimegraphics/10/L10_Pg-093.jpg]]
 
-<p class="image-caption">L10_Pg-093: Shadow volumes need closed-manifold meshes, can produce extreme overdraw, and are fill-rate bound — the right image visualizes the wireframe of just the shadow volume polygons.</p>
+<p class="image-caption">L10_Pg-093: Shadow volumes need closed-manifold meshes, can produce extreme overdraw, and are fill-rate bound  -  the right image visualizes the wireframe of just the shadow volume polygons.</p>
 
 ### Shadow Volume Problems
 
@@ -387,13 +387,13 @@ Everything above assumes a known **directed** light. The other half of the pictu
 
 ![[pictures/realtimegraphics/10/L10_Pg-099.jpg]]
 
-<p class="image-caption">L10_Pg-099: Ambient occlusion darkens surfaces partially blocked from environmental light — independent of light direction, it adds depth and contrast in corners, crevices, and contact areas.</p>
+<p class="image-caption">L10_Pg-099: Ambient occlusion darkens surfaces partially blocked from environmental light  -  independent of light direction, it adds depth and contrast in corners, crevices, and contact areas.</p>
 
 **Ambient occlusion** (AO) is the cheap approximation: instead of computing every bounce, darken surfaces in proportion to how much of the surrounding hemisphere is **blocked**. AO depends only on geometry, not on light direction, and dramatically improves the perceived depth and grounding of objects.
 
 ![[pictures/realtimegraphics/10/L10_Pg-101.jpg]]
 
-<p class="image-caption">L10_Pg-101: AO weighs the standard shading by $(1 - AO)$ — a fully unoccluded surface uses normal lighting; a deep crevice with $AO \to 1$ goes dark.</p>
+<p class="image-caption">L10_Pg-101: AO weighs the standard shading by $(1 - AO)$  -  a fully unoccluded surface uses normal lighting; a deep crevice with $AO \to 1$ goes dark.</p>
 
 The basic AO equation modifies regular shading by a visibility scalar:
 
@@ -422,7 +422,7 @@ SSAO is a postprocess: cost depends on screen resolution and sample count, not s
 
 ### Screen-Space Directional Occlusion and a First Bounce
 
-SSAO uses scalar occlusion only — it darkens equally regardless of where the surrounding geometry is. **Screen-space directional occlusion** (SSDO) considers direction: a sample is treated as an occluder of incoming light from a specific direction, so light coming from unblocked directions still hits the surface.
+SSAO uses scalar occlusion only  -  it darkens equally regardless of where the surrounding geometry is. **Screen-space directional occlusion** (SSDO) considers direction: a sample is treated as an occluder of incoming light from a specific direction, so light coming from unblocked directions still hits the surface.
 
 ![[pictures/realtimegraphics/10/L10_Pg-106.jpg]]
 
@@ -432,7 +432,7 @@ The further extension: each detected occluder is treated as a small Lambertian p
 
 $$ L_{\text{ind}}(\mathbf{P}) = \sum_{i=1}^{N} \frac{\rho}{\pi} \, L_{\text{pixel}} \, (1 - V(\omega_i)) \, \frac{A_s \cos\theta_{s_i} \cos\theta_{r_i}}{d_i^2} $$
 
-where $A_s$ is the sender patch area and $d_i$ is the sender-receiver distance (clamped to 1 to avoid singularities). The result is cheap **color bleeding** — red walls tint nearby spheres red, green floors give a green wash to objects sitting on them — at the cost of one extra sampling pass per pixel.
+where $A_s$ is the sender patch area and $d_i$ is the sender-receiver distance (clamped to 1 to avoid singularities). The result is cheap **color bleeding**  -  red walls tint nearby spheres red, green floors give a green wash to objects sitting on them  -  at the cost of one extra sampling pass per pixel.
 
 In *Crysis* this is used to give dynamic objects (which receive but do not contribute to GI) plausible bounce light from static walls and terrain that **do** contribute. When the light direction changes, the dominant bounce shifts naturally.
 
@@ -473,7 +473,7 @@ In *Crysis* this is used to give dynamic objects (which receive but do not contr
 4. Why does shadow mapping need a bias, and what is "slope-scale bias"?
 
 > [!success]- Answer
-> Shadow mapping compares two depth values that almost never match exactly due to quantization and rasterization differences between the light-view and camera-view passes. Without a bias, surfaces shadow themselves (shadow acne); too large a bias detaches shadows from their casters (Peter Panning). Slope-scale bias adds a depth offset proportional to the polygon's slope relative to the light direction — steep polygons need a larger offset because adjacent depth samples differ more under quantization, while head-on polygons need almost none.
+> Shadow mapping compares two depth values that almost never match exactly due to quantization and rasterization differences between the light-view and camera-view passes. Without a bias, surfaces shadow themselves (shadow acne); too large a bias detaches shadows from their casters (Peter Panning). Slope-scale bias adds a depth offset proportional to the polygon's slope relative to the light direction  -  steep polygons need a larger offset because adjacent depth samples differ more under quantization, while head-on polygons need almost none.
 
 5. Why does PCF apply the depth comparison **before** filtering rather than after?
 

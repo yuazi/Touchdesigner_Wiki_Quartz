@@ -1,5 +1,5 @@
 ---
-title: "L08 — Interactive Machine Learning (IML)"
+title: "L08  -  Interactive Machine Learning (IML)"
 tags:
   - mlp
   - machine-learning
@@ -9,7 +9,7 @@ tags:
   - annotation
 date: 2026-03-09
 ---
-[[/notes/lectures/mlp/07-multimodal|Previous: L07 — Multimodal]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/09-vae|Next: (y-09) VAE]]
+[[/notes/lectures/mlp/07-multimodal|Previous: L07  -  Multimodal]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/09-vae|Next: (y-09) VAE]]
 
 ## Mental Model First
 
@@ -47,7 +47,7 @@ Interactive ML is the bridge that makes it possible to build high-quality models
 
 ![[pictures/mpl/08/Lecture08_Pg006_Automatic_Vs_Interactive_Ml.png]]
 
-<p class="image-caption">Traditional ML vs. Interactive ML—here's where the human comes in.</p>
+<p class="image-caption">Traditional ML vs. Interactive ML - here's where the human comes in.</p>
 
 Most ML today is **automatic machine learning (aML)**: algorithms that interact with agents and optimize their learning _without_ human involvement during training. This works great when you have large, clean, labeled datasets.
 
@@ -55,9 +55,9 @@ This "big data + end-to-end automation" paradigm powers many successful applicat
 
 But sometimes you **still need a human in the loop**:
 
-- **Small or multiple datasets** — not enough data for aML to be reliable
-- **Rare events** — how do you get enough examples of a 1-in-10,000 failure?
-- **NP-hard problems** — subspace clustering, protein folding, k-anonymisation, graph colouring
+- **Small or multiple datasets**  -  not enough data for aML to be reliable
+- **Rare events**  -  how do you get enough examples of a 1-in-10,000 failure?
+- **NP-hard problems**  -  subspace clustering, protein folding, k-anonymisation, graph colouring
 
 ### Definition
 
@@ -65,9 +65,9 @@ But sometimes you **still need a human in the loop**:
 
 <p class="image-caption">A formal look at iML: putting the human right in the learning loop.</p>
 
-> **Interactive Machine Learning (iML)** := algorithms that interact with agents (which can be humans) and that can optimise their learning behaviour through this interaction. — Holzinger, 2015
+> **Interactive Machine Learning (iML)** := algorithms that interact with agents (which can be humans) and that can optimise their learning behaviour through this interaction.  -  Holzinger, 2015
 
-The human is seen as an agent involved in the **actual learning phase**, influencing years such as distance or cost functions step by step — not just checking results at the end.
+The human is seen as an agent involved in the **actual learning phase**, influencing years such as distance or cost functions step by step  -  not just checking results at the end.
 
 This matters especially in **health informatics** and other high-stakes settings, where decision making can be viewed as a search problem in a very large hypothesis space under tight time constraints. A "good" decision is not only about raw prediction accuracy; it is about **expected utility** under domain-specific costs, risks, and failure modes.
 
@@ -113,7 +113,7 @@ The lecture also highlights two complementary cautions:
 
 <p class="image-caption">Using iML to help with k-anonymization for sensitive medical data.</p>
 
-87% of the US population can be **uniquely re-identified** by zip-code, gender, and date of birth (Sweeney, 2002). k-Anonymity requires transforming data so each record is indistinguishable from at least k−1 others. Finding the optimal transformation is NP-hard — a human expert can guide the search interactively.
+87% of the US population can be **uniquely re-identified** by zip-code, gender, and date of birth (Sweeney, 2002). k-Anonymity requires transforming data so each record is indistinguishable from at least k−1 others. Finding the optimal transformation is NP-hard  -  a human expert can guide the search interactively.
 
 #### Example 2: Protein Folding
 
@@ -124,7 +124,7 @@ The lecture also highlights two complementary cautions:
 
 Proteins are the building blocks of life; their 3D structure is determined by their amino acid sequence. Predicting that structure from sequence is an old, extremely hard problem. As of 2015, automatic ML methods did not work well enough. A human-in-the-loop could guide structure search.
 
-> **Recent breakthrough**: AlphaFold (DeepMind, Jumper et al., 2021) achieved remarkable accuracy using deep learning, largely removing the need for human guidance — showing that when data is sufficient, aML can eventually surpass iML.
+> **Recent breakthrough**: AlphaFold (DeepMind, Jumper et al., 2021) achieved remarkable accuracy using deep learning, largely removing the need for human guidance  -  showing that when data is sufficient, aML can eventually surpass iML.
 
 #### Example 3: Subspace Clustering
 
@@ -185,12 +185,12 @@ In both cases the **goal** is to use far fewer labeled examples than passive (ra
 
 <p class="image-caption">Comparing label complexity: active learning is like doing a binary search.</p>
 
-**Yes — exponentially so (sometimes).**
+**Yes  -  exponentially so (sometimes).**
 
 Consider learning a threshold classifier on the real line:
 
 - **Passive supervised**: need $\Omega(1/\varepsilon)$ labels to find an $\varepsilon$-accurate threshold
-- **Active learning**: only $O(\log 1/\varepsilon)$ labels needed — an **exponential improvement**
+- **Active learning**: only $O(\log 1/\varepsilon)$ labels needed  -  an **exponential improvement**
 
 Binary search is the perfect analogy:
 
@@ -202,15 +202,15 @@ Query midpoint 0.75 → label is -  (threshold < 0.75)
 Query midpoint 0.625 → label is + (threshold > 0.625)
 ...
 
-After k queries: threshold known to within 1/2^k — log(1/ε) queries suffice.
+After k queries: threshold known to within 1/2^k  -  log(1/ε) queries suffice.
 Passive learning needs 1/ε queries to get the same ε accuracy.
 ```
 
-**In practice**: Observed on Newsgroups (20K documents) and CIFAR-10 (60K images) — active learning reaches the same accuracy with far fewer labels (Jain et al., 2010).
+**In practice**: Observed on Newsgroups (20K documents) and CIFAR-10 (60K images)  -  active learning reaches the same accuracy with far fewer labels (Jain et al., 2010).
 
 ---
 
-### Active SVM — Uncertainty Sampling in Practice
+### Active SVM  -  Uncertainty Sampling in Practice
 
 ![[pictures/mpl/08/Lecture08_Pg054_Active_Svm_Uncertainty_Sampling_In_Practice.png]]
 
@@ -248,7 +248,7 @@ for _ in range(num_rounds):
 
 <p class="image-caption">The risk of sampling bias when we're too greedy with uncertainty sampling.</p>
 
-Uncertainty sampling is **myopic and greedy**. Over time the queried sample becomes **less representative** of the true data distribution — the model excels near the boundary but may fail elsewhere. (Dasgupta, 2011)
+Uncertainty sampling is **myopic and greedy**. Over time the queried sample becomes **less representative** of the true data distribution  -  the model excels near the boundary but may fail elsewhere. (Dasgupta, 2011)
 
 **Main tension**: we want informative points (near boundary) _and_ guarantees that the classifier performs well on truly random examples from the underlying distribution.
 
@@ -262,7 +262,7 @@ Uncertainty sampling is **myopic and greedy**. Over time the queried sample beco
 
 **Definition** (Mitchell, 1982):
 
-- $X$ — feature/instance space; distribution $D$ over $X$; target $c^* \in H$
+- $X$  -  feature/instance space; distribution $D$ over $X$; target $c^* \in H$
 - **Realisable case**: $c^* \in H$
 - **Version space** $VS(H)$: the part of $H$ consistent with all labels so far
 
@@ -270,8 +270,8 @@ $$h \in VS(H) \iff h(x_i) = c^*(x_i) \quad \forall i$$
 
 The version space is bounded by:
 
-- **GB** — maximally _general_ positive hypothesis boundary (outer boundary)
-- **SB** — maximally _specific_ positive hypothesis boundary (inner boundary)
+- **GB**  -  maximally _general_ positive hypothesis boundary (outer boundary)
+- **SB**  -  maximally _specific_ positive hypothesis boundary (inner boundary)
 
 > **Example**: Data on a circle in $\mathbb{R}^2$; $H$ = homogeneous linear separators. After 3 positive and 3 negative labels placed on the circle, only separators that correctly divide those 6 points remain in the version space. Each new label eliminates more separators, shrinking the version space.
 
@@ -289,7 +289,7 @@ A point $x \in X$ is in the **region of disagreement** $DIS(VS(H))$ iff there ex
 
 $$x \in DIS(VS(H)) \iff \exists h_1, h_2 \in VS(H), \; h_1(x) \neq h_2(x)$$
 
-Outside the region of disagreement, **all hypotheses agree** — labeling such a point wastes the oracle's time.
+Outside the region of disagreement, **all hypotheses agree**  -  labeling such a point wastes the oracle's time.
 
 ---
 
@@ -299,7 +299,7 @@ Outside the region of disagreement, **all hypotheses agree** — labeling such a
 
 <p class="image-caption">The CAL algorithm: focusing our queries on that region of disagreement.</p>
 
-**Algorithm** (CAL — Cohn et al., 1992):
+**Algorithm** (CAL  -  Cohn et al., 1992):
 
 1. Query labels for a few random $x_i$; initialize version space $H_1 = H$
 2. For $t = 1, 2, \ldots$:
@@ -308,7 +308,7 @@ Outside the region of disagreement, **all hypotheses agree** — labeling such a
    - Update version space: $H_{t+1} \leftarrow$ hypotheses in $H_t$ still consistent with new labels
 3. Stop when the region of disagreement is small
 
-**Why active?** We never waste labels querying outside $DIS(H_t)$ — only queries inside can update the version space.
+**Why active?** We never waste labels querying outside $DIS(H_t)$  -  only queries inside can update the version space.
 
 > **Example**: Spam classifier with a linear decision boundary.
 >
@@ -318,13 +318,13 @@ Outside the region of disagreement, **all hypotheses agree** — labeling such a
 
 ---
 
-### Agnostic Active Learner — A² Algorithm
+### Agnostic Active Learner  -  A² Algorithm
 
 ![[pictures/mpl/08/Lecture08_Pg065_Agnostic_Active_Learner_A_Algorithm.png]]
 
 <p class="image-caption">The A² Agnostic Active Learner, designed for when things get noisy or mismatched.</p>
 
-What if $c^* \notin H$? (The realistic case — noise, model mismatch.)
+What if $c^* \notin H$? (The realistic case  -  noise, model mismatch.)
 
 **A² algorithm** (Balcan, Beygelzimer, Langford, 2006):
 
@@ -340,7 +340,7 @@ What if $c^* \notin H$? (The realistic case — noise, model mismatch.)
 - Exponential improvement for threshold classifiers in low-noise settings
 - For homogeneous linear separators in $\mathbb{R}^d$, uniform distribution, low noise: only $d^2 \log(1/\varepsilon)$ labels needed
 
-### Theoretical Guarantees — What to Retain
+### Theoretical Guarantees  -  What to Retain
 
 ![[pictures/mpl/08/Lecture08_Pg067_Theoretical_Guarantees_What_To_Retain.png]]
 
@@ -414,11 +414,11 @@ query_idx = np.argmax(disagreement)
 
 <p class="image-caption">Density-based sampling: balancing uncertainty with how representative the data is.</p>
 
-Don't just query uncertain points — query uncertain points that are also **representative** of the distribution. An uncertain but isolated point is not worth querying.
+Don't just query uncertain points  -  query uncertain points that are also **representative** of the distribution. An uncertain but isolated point is not worth querying.
 
 $$x^* = \arg\max_x \; \text{uncertainty}(x) \times \left(\frac{1}{U}\sum_{u} \text{sim}(x, x_u)\right)^\beta$$
 
-The second term is the average similarity to all unlabeled points — a proxy for density.
+The second term is the average similarity to all unlabeled points  -  a proxy for density.
 
 ---
 
@@ -441,13 +441,13 @@ What changes is that deep networks do not expose these quantities cleanly, so we
 
 Classical active learning theory assumes a fixed, well-understood hypothesis class. DNNs break this:
 
-1. **Overconfident softmax**: the softmax output of DNNs is typically overconfident — high probability outputs even on misclassified examples
+1. **Overconfident softmax**: the softmax output of DNNs is typically overconfident  -  high probability outputs even on misclassified examples
 2. **Batch selection**: large-scale training requires selecting a _batch_ of images at once, not one at a time
 3. **Mode collapse**: uncertainty heuristics may repeatedly select examples from the same class, severely imbalancing the training set
 
 ---
 
-### MC Dropout — Bayesian Approximation
+### MC Dropout  -  Bayesian Approximation
 
 ![[pictures/mpl/08/Lecture08_Pg089_Mc_Dropout_Bayesian_Approximation.png]]
 
@@ -460,7 +460,7 @@ $$p(y = c \mid x) = \int p(y = c \mid x, \omega) \, p(\omega) \, d\omega$$
 **Approximation via MC Dropout**:
 
 - Apply **dropout at test time** (not just during training)
-- Run $T$ forward passes with different dropout masks — each pass samples a "thinned" network
+- Run $T$ forward passes with different dropout masks  -  each pass samples a "thinned" network
 - Average predictions:
 
 $$p(y \mid x) \approx \frac{1}{T} \sum_t p^t_c$$
@@ -498,18 +498,18 @@ large disagreement across runs = model uncertainty
 
 ---
 
-### BALD — Bayesian Active Learning by Disagreement
+### BALD  -  Bayesian Active Learning by Disagreement
 
 ![[pictures/mpl/08/Lecture08_Pg091_Bald_Bayesian_Active_Learning_By_Disagreement.png]]
 
 <p class="image-caption">The BALD strategy: find where models are confident but totally disagree.</p>
 
-(Gal et al., 2017) — more principled than pure entropy:
+(Gal et al., 2017)  -  more principled than pure entropy:
 
 $$I(y; \omega \mid x, \mathcal{D}) = \underbrace{H(y \mid x, \mathcal{D})}_{\text{entropy of mean}} - \underbrace{\mathbb{E}_{p(\omega \mid \mathcal{D})}[H(y \mid x, \omega, \mathcal{D})]}_{\text{mean entropy of individual models}}$$
 
 - **First term**: high if the _average_ model output is uncertain
-- **Second term**: penalises cases where _individual_ models are also uncertain — we want models that are individually confident but _disagree_ with each other
+- **Second term**: penalises cases where _individual_ models are also uncertain  -  we want models that are individually confident but _disagree_ with each other
 
 $$x^* = \arg\max_x \; I(y; \omega \mid x, \mathcal{D}$$
 
@@ -517,10 +517,10 @@ In practice with MC Dropout:
 
 $$I \approx -\sum_c \left(\frac{1}{T}\sum_t p^t_c\right)\log\left(\frac{1}{T}\sum_t p^t_c\right) + \frac{1}{T}\sum_t\sum_c p^t_c \log p^t_c$$
 
-> **Example**: Blurry image of a handwritten digit — looks like either 4 or 9.
+> **Example**: Blurry image of a handwritten digit  -  looks like either 4 or 9.
 >
 > - Entropy: average of 50 dropout runs gives $[0.5, 0.5]$ (4 vs 9) → high uncertainty ✓
-> - Expected entropy: each _individual_ run says "definitely 4" or "definitely 9" → low — models are confident _individually_ but **disagree** → high BALD score → **query this image**
+> - Expected entropy: each _individual_ run says "definitely 4" or "definitely 9" → low  -  models are confident _individually_ but **disagree** → high BALD score → **query this image**
 
 ---
 
@@ -532,7 +532,7 @@ $$I \approx -\sum_c \left(\frac{1}{T}\sum_t p^t_c\right)\log\left(\frac{1}{T}\su
 <p class="image-caption">Learning to predict loss with an extra module to help pick samples.</p>
 
 
-(Yoo & Kweon, 2019) — **predict which examples the model will get wrong**.
+(Yoo & Kweon, 2019)  -  **predict which examples the model will get wrong**.
 
 **Architecture**:
 
@@ -560,17 +560,17 @@ A critical failure mode: the uncertainty-based strategy keeps selecting the **sa
 
 ---
 
-### Batch-Aware Methods — Uncertainty vs. Diversity (BatchBALD)
+### Batch-Aware Methods  -  Uncertainty vs. Diversity (BatchBALD)
 
 ![[pictures/mpl/08/Lecture08_Pg096_Batch_Aware_Methods_Uncertainty_Vs_Diversity.png]]
 
 <p class="image-caption">Comparing strategies for batch acquisition: uncertainty, diversity, and BatchBALD.</p>
 
-(Kirsch, van Amersfoort, Gal — NeurIPS 2019)
+(Kirsch, van Amersfoort, Gal  -  NeurIPS 2019)
 
-**Problem**: Ranking all unlabeled examples by uncertainty and picking the top-$B$ grabs many **near-duplicate** images. Real datasets have many images that are visually almost identical — wasting the labeling budget.
+**Problem**: Ranking all unlabeled examples by uncertainty and picking the top-$B$ grabs many **near-duplicate** images. Real datasets have many images that are visually almost identical  -  wasting the labeling budget.
 
-**Solution**: Maximise the **joint mutual information** of the entire queried batch with the model parameters — this naturally penalises redundancy:
+**Solution**: Maximise the **joint mutual information** of the entire queried batch with the model parameters  -  this naturally penalises redundancy:
 
 $$x_1^*, \ldots, x_B^* = \arg\max \; I(y_1, \ldots, y_B; \omega \mid x_1, \ldots, x_B, \mathcal{D})$$
 
@@ -584,8 +584,8 @@ Uncertainty alone grabs near-duplicates; diversity alone ignores which regions a
 
 Given:
 
-- $S_l = (x_1, y_1), (x_2, y_2), \ldots, (x_m, y_m)$ — labeled examples drawn i.i.d. from distribution $D$, with $y_i = c^*(x_i)$
-- $S_u = x_1, \ldots, x_{m_u}$ — unlabeled examples drawn i.i.d. from $D$
+- $S_l = (x_1, y_1), (x_2, y_2), \ldots, (x_m, y_m)$  -  labeled examples drawn i.i.d. from distribution $D$, with $y_i = c^*(x_i)$
+- $S_u = x_1, \ldots, x_{m_u}$  -  unlabeled examples drawn i.i.d. from $D$
 
 **Goal**: find a classifier with small generalization error $\text{err}_D(h) = P(h(x) \neq c^*(x))$
 
@@ -611,9 +611,9 @@ _(Zhu and Goldberg, 2009)_
 
 <p class="image-caption">The big questions for discriminative models when dealing with unlabeled data.</p>
 
-- How much unlabeled data is needed? — depends on complexity of $H$ and the compatibility notion
+- How much unlabeled data is needed?  -  depends on complexity of $H$ and the compatibility notion
 - Can unlabeled data reduce the number of labeled examples needed?
-- Is the target function _compatible_ with the data distribution? — helpfulness depends on this
+- Is the target function _compatible_ with the data distribution?  -  helpfulness depends on this
 
 > **Example**: Two concentric rings of data points (inner ring = class A, outer ring = class B). With only labeled data you might draw the wrong boundary; with unlabeled data you can "see" the ring structure and place the boundary between the rings.
 
@@ -686,9 +686,9 @@ This is a **harmonic equation**: labels spread outward from labeled nodes, weigh
 
 **Naïve approach**: query the node with $f(x) \approx 0.5$ (most uncertain).
 
-**Problem**: The uncertain node might be nearly **isolated** (just one edge) — labeling it won't propagate much information.
+**Problem**: The uncertain node might be nearly **isolated** (just one edge)  -  labeling it won't propagate much information.
 
-**Better — 1-step lookahead heuristic** (Fathi et al., 2011):
+**Better  -  1-step lookahead heuristic** (Fathi et al., 2011):
 
 ```text
 labeled nodes:    (+) ------- (+)
@@ -854,4 +854,4 @@ class GNN(nn.Module):
 - **GNN Iterations**: Each message-passing step increases the **receptive field** by one hop. To capture a whole Sudoku board, you need at least $T=9$ iterations.
 
 ---
-[[/notes/lectures/mlp/07-multimodal|Previous: L07 — Multimodal]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/09-vae|Next: (y-09) VAE]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/lectures/mlp/07-multimodal|Previous: L07  -  Multimodal]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/09-vae|Next: (y-09) VAE]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

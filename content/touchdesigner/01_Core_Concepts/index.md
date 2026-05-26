@@ -12,7 +12,7 @@ Welcome to the Core Concepts module! This folder contains everything you need to
 
 - **[[What is TouchDesigner|(y-) What is TouchDesigner]]**: High-level overview of the software.
 - **[[Interface Overview|(y-) Interface Overview]]**: Navigating the panes, palettes, and parameters.
-- **[[Network Editor|(y-) Network Editor]]**: The canvas — navigation, node flags, bookmarks, and debugging tips.
+- **[[Network Editor|(y-) Network Editor]]**: The canvas - navigation, node flags, bookmarks, and debugging tips.
 - **[[Connecting Nodes|(y-) Connecting Nodes]]**: How data flows from left to right.
 - **[[Common Shortcuts|(y-) Common Shortcuts]]**: Essential hotkeys to speed up your workflow.
 - **[[Parameters|(y-) Parameters]]**: Understanding the different modes for node settings (Constant, Expression, Export, Binding).

@@ -10,7 +10,7 @@ date: 2026-02-11
 
 # Render TOP
 
-The **Render TOP** is what converts your 3D scene — geometry, lights, cameras, and materials — into a 2D image you can display, process, or output. It is the bridge between the 3D (SOP/COMP) world and the 2D (TOP) world.
+The **Render TOP** is what converts your 3D scene - geometry, lights, cameras, and materials - into a 2D image you can display, process, or output. It is the bridge between the 3D (SOP/COMP) world and the 2D (TOP) world.
 
 ## Key Parameters
 
@@ -46,14 +46,14 @@ Render TOP  ← set Camera to the Camera COMP
 1. Create a **`Geo COMP`** and connect your geometry SOP into its first input.
 2. Add a **`Camera COMP`** and a **`Light COMP`** at the same network level as the Geo COMP.
 3. Add a **`Render TOP`**. It will auto-discover the Camera and Lights if they are at the same level.
-4. Hit play — you'll see the geometry rendered.
+4. Hit play - you'll see the geometry rendered.
 
 ## Multiple Geometry Objects
 
 To render several objects, either:
 
 - List them explicitly in the **Geometry** parameter: `/project1/geo1, /project1/geo2`
-- Or put all geometry inside a **Container COMP** and reference that level — the Render TOP discovers everything inside it.
+- Or put all geometry inside a **Container COMP** and reference that level - the Render TOP discovers everything inside it.
 
 ## Post-Processing the Image
 
@@ -76,9 +76,9 @@ For effects that require separation (e.g. rendering geometry and particles separ
 
 ## Pixel Format Tips
 
-- **`8-bit fixed (RGBA)`** — standard, fast, enough for most work
-- **`16-bit float (RGBA)`** — better for compositing with transparency
-- **`32-bit float (RGBA)`** — full HDR; needed for GLSL shaders that output values outside 0–1
+- **`8-bit fixed (RGBA)`** - standard, fast, enough for most work
+- **`16-bit float (RGBA)`** - better for compositing with transparency
+- **`32-bit float (RGBA)`** - full HDR; needed for GLSL shaders that output values outside 0–1
 
 ## Common Gotchas
 
@@ -86,14 +86,14 @@ For effects that require separation (e.g. rendering geometry and particles separ
 - **Geometry not appearing** → make sure the Geo COMP's visible flag (eye icon) is on, and its material is assigned.
 - **Render is slow** → reduce resolution, reduce polygon count upstream in SOPs, or use instancing instead of duplicating geometry.
 - **Alpha is not transparent** → set the Background Color alpha to 0 and use a pixel format with alpha (`RGBA`).
-- The Render TOP does **not** need to be connected to the Camera COMP or Geo COMP with wires — it references them by name/path.
+- The Render TOP does **not** need to be connected to the Camera COMP or Geo COMP with wires - it references them by name/path.
 
 ## Related Nodes
 
-- [[COMP - Components|(y-) Geo COMP]] — holds the 3D geometry
-- [[SOP - Surface Operators|(y-) SOP]] — geometry source
-- [[MAT - Material Operators|(y-) MAT]] — shaders applied to geometry
-- [[Rendering Basics]] — full rendering workflow walkthrough
+- [[Geo COMP|(y-) Geo COMP]] - holds the 3D geometry
+- [[SOP - Surface Operators|(y-) SOP]] - geometry source
+- [[MAT - Material Operators|(y-) MAT]] - shaders applied to geometry
+- [[Rendering Basics]] - full rendering workflow walkthrough
 
 ---
 

@@ -72,9 +72,9 @@ We want the boxes to sit in a row, but our audio data only has "Height" (Y) valu
 
 ## Troubleshooting
 
-- **"The bars are too small/too big"** — Use a **Math CHOP** before the Null to multiply the audio values.
-- **"The bars are jittery"** — Add a **Lag CHOP** or **Filter CHOP** before the Null to smooth the movement.
-- **"I only see one bar"** — Check that your **Pattern CHOP** has the same "Number of Samples" as your audio spectrum.
+- **"The bars are too small/too big"** - Use a **Math CHOP** before the Null to multiply the audio values.
+- **"The bars are jittery"** - Add a **Lag CHOP** or **Filter CHOP** before the Null to smooth the movement.
+- **"I only see one bar"** - Check that your **Pattern CHOP** has the same "Number of Samples" as your audio spectrum.
 
 ---
 
@@ -113,11 +113,4 @@ Resample CHOP (40 pts) ──┤ Map chan1 to Scale Y
 Pattern CHOP (Ramp) ──▶ Merge CHOP ──▶ Null (OUT_AUDIO)
 ```
 
-### Data Flow Explanation
-1.  **Analysis:** The `Audio Spectrum CHOP` performs an **FFT**, converting time-based sound into frequency-based height. 
-2.  **Sampling:** We use the `Resample CHOP` to reduce the high frequency detail into a specific number (40). This matches our visual goal.
-3.  **Layout:** The `Pattern CHOP` creates the "grid" (X positions). Without it, all 40 boxes would sit at the same X position (0). 
-4.  **Instancing:** The `Geometry COMP` takes our 40 numbers and spawns 40 copies of the `Box SOP`. The `Y Scale` of each box is driven by its corresponding audio frequency.
-
----
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

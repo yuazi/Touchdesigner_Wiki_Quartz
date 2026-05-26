@@ -101,7 +101,7 @@ Raw MediaPipe data is normalized (usually between 0 and 1) and jittery. We need 
 
 - Connect the wrist **Select CHOP** (`h1_wrist:x`, `h1_wrist:y`) to a **Math CHOP**.
 - In the Math CHOP's _Range_ tab, map _From Range_ `[0, 1]` to _To Range_ `[-180, 180]` (degrees).
-- Connect this to a **Filter CHOP** to smooth the data — a filter width of `0.1` to `0.3` works well.
+- Connect this to a **Filter CHOP** to smooth the data - a filter width of `0.1` to `0.3` works well.
 - Connect the Filter CHOP to a **Null CHOP**.
 - Make `geo1` active. Drag the smoothed `x` channel to _Rotate Y_ and the `y` channel to _Rotate X_ (inverting the axes usually feels more intuitive when tracking hands).
 
@@ -170,12 +170,4 @@ Platonic Solids (Tetrahedron)    Webcam ──▶ [ MediaPipe Plugin ]
                                                (Smooth Data)
 ```
 
-### Data Flow Explanation
-1.  **Fractal Generation:** The `Platonic Solids SOP` provides the base shape. The `Copy SOP` chain (Method 1) or `Instancing` (Method 2) creates the recursive Sierpinski structure.
-2.  **Tracking:** The `MediaPipe Plugin` processes the webcam feed and outputs 3D landmark data. 
-3.  **Coordinate Remapping:** We use a `Select CHOP` to grab specific joints (wrist and fingertips). The `Math CHOP` then scales these values from normalized vision space (0-1) to 3D rotation degrees (-180 to 180).
-4.  **Pinch Math:** The `Script CHOP` performs a Euclidean distance calculation between the thumb and index finger. This distance is then remapped to drive the camera's `Translate Z`.
-5.  **Smoothing:** The `Filter CHOP` is essential here — it prevents the geometry from "jumping" when the webcam loses track of the hand for a single frame.
-
----
 [[Hand Tracking|(y) Return to Hand Tracking]] | [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

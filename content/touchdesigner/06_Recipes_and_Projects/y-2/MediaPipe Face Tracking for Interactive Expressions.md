@@ -72,9 +72,9 @@ Let's make a circle that grows and changes color when you smile.
 
 ## Troubleshooting
 
-- **"The plugin is red/erroring."** — Make sure the `toxes/` folder is in the same folder as your project file.
-- **"It's really slow."** — MediaPipe is heavy. Go to the MediaPipe COMP and make sure **Face Tracking** is the _only_ model turned on.
-- **"My face isn't being detected."** — Ensure you have good lighting! If your room is dark, the AI will struggle to find your features.
+- **"The plugin is red/erroring."** - Make sure the `toxes/` folder is in the same folder as your project file.
+- **"It's really slow."** - MediaPipe is heavy. Go to the MediaPipe COMP and make sure **Face Tracking** is the _only_ model turned on.
+- **"My face isn't being detected."** - Ensure you have good lighting! If your room is dark, the AI will struggle to find your features.
 
 ---
 
@@ -122,12 +122,4 @@ Webcam TOP ──────────────────▶ [ MediaPipe
 [ RENDERING ]                  [ Bloom TOP ] ──▶ [ HSV Adjust ] ──▶ [ OUT ]
 ```
 
-### Data Flow Explanation
-1.  **Plugin Layer:** `MediaPipe.tox` is the engine. It runs the "Face Mesh" model in an embedded browser and sends the 468 landmark points into TouchDesigner.
-2.  **Blend Shapes:** The `Face Tracking.tox` component decodes those 468 points into high-level "Blend Shapes" (e.g., `mouthSmile`, `eyeBlink`, `jawOpen`).
-3.  **Data Extraction:** We use a `Select CHOP` to grab just the `mouthSmileLeft` channel. This gives us a 0.0 to 1.0 value representing the intensity of your smile.
-4.  **The Bridge:** By **Binding** this CHOP value to the `Radius` of a `Circle TOP`, we bridge the physical world (your face) to the digital world (the circle).
-5.  **Polishing:** The `Bloom TOP` adds a glow that intensifies as you smile wider, creating a direct visual feedback loop for the user.
-
----
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

@@ -1,5 +1,5 @@
 ---
-title: "L04 — Recurrent Neural Networks"
+title: "L04  -  Recurrent Neural Networks"
 tags:
   - mlp
   - rnn
@@ -10,7 +10,7 @@ tags:
   - nlp
 date: 2026-03-09
 ---
-[[/notes/lectures/mlp/03-vision-cnn|Previous: L03 — Vision CNNs]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/05-transformer|Next: (y-05) Transformers]]
+[[/notes/lectures/mlp/03-vision-cnn|Previous: L03  -  Vision CNNs]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/05-transformer|Next: (y-05) Transformers]]
 
 **This lecture covers:**
 
@@ -28,11 +28,11 @@ date: 2026-03-09
 - The main challenge is not defining the recurrence, but training it over long horizons without losing useful gradient signal.
 - If one question guides this lecture, let it be: **how can a model remember enough of the past to make a good decision now?**
 
-## RNNs — Flexibility in Architecture
+## RNNs  -  Flexibility in Architecture
 
 ![[pictures/mpl/04/Lecture04_Pg083_Rnns_Flexibility_In_Architecture.png]]
 
-<p class="image-caption">RNNs are super flexible—you can map one or many inputs to one or many outputs.</p>
+<p class="image-caption">RNNs are super flexible - you can map one or many inputs to one or many outputs.</p>
 
 Unlike feedforward networks, RNNs can model a wide range of relationships between variable- or fixed-length inputs and outputs. The architecture adapts to the task structure.
 
@@ -53,7 +53,7 @@ Unlike feedforward networks, RNNs can model a wide range of relationships betwee
 <p class="image-caption">A standard one-to-one setup, just like a classic feedforward network.</p>
 
 
-A standard feedforward network — one fixed input, one fixed output. The classic example is **ImageNet classification** (Russakovsky et al., 2015): a single image in, a single class label out.
+A standard feedforward network  -  one fixed input, one fixed output. The classic example is **ImageNet classification** (Russakovsky et al., 2015): a single image in, a single class label out.
 
 ---
 
@@ -69,7 +69,7 @@ A single fixed-size input (an image) is used to **initialize the hidden state** 
 Image → h_0 → [RNN] → "A" → [RNN] → "dog" → [RNN] → "on" → [RNN] → "the" → [RNN] → "beach"
 ```
 
-**Key papers**: [Mao et al., 2014], [Vinyals et al., 2015 — "Show and Tell"], [Karpathy & Fei-Fei, 2017], [Donahue et al., 2015], [Chen & Zitnick, 2014]
+**Key papers**: [Mao et al., 2014], [Vinyals et al., 2015  -  "Show and Tell"], [Karpathy & Fei-Fei, 2017], [Donahue et al., 2015], [Chen & Zitnick, 2014]
 
 ---
 
@@ -81,12 +81,12 @@ Image → h_0 → [RNN] → "A" → [RNN] → "dog" → [RNN] → "on" → [RNN]
 
 The entire input sequence is processed step-by-step. The **final hidden state** summarizes all context from the variable-length input.
 
-**Example — COVIDSenti dataset** (Naseem et al., 2021):
+**Example  -  COVIDSenti dataset** (Naseem et al., 2021):
 
 | Tweet                                                                                    | Label    |
 | ---------------------------------------------------------------------------------------- | -------- |
 | "Happy New Year. May the Year of the Rat bring you good fortune, cheese in abundance..." | Positive |
-| "Watching breaking news about the coronavirus — 200 infected now! Very sad"              | Negative |
+| "Watching breaking news about the coronavirus  -  200 infected now! Very sad"              | Negative |
 | "What are the symptoms of coronavirus and where has it spread?"                          | Neutral  |
 
 ```
@@ -104,7 +104,7 @@ The entire input sequence is processed step-by-step. The **final hidden state** 
 
 An output is produced at **every time step**, aligned with the input. Each frame in a video gets its own label.
 
-**Example — Epic-Kitchens dataset** (Damen et al., 2018, 2021): First-person video of kitchen activities, with frame-level activity labels (e.g., "chopping", "stirring", "pouring") output at every frame.
+**Example  -  Epic-Kitchens dataset** (Damen et al., 2018, 2021): First-person video of kitchen activities, with frame-level activity labels (e.g., "chopping", "stirring", "pouring") output at every frame.
 
 ---
 
@@ -115,12 +115,12 @@ An output is produced at **every time step**, aligned with the input. Each frame
 <p class="image-caption">Seq2Seq architectures handle translation by reading the whole sentence before starting to output.</p>
 
 
-A **Sequence-to-Sequence** architecture — a combination of:
+A **Sequence-to-Sequence** architecture  -  a combination of:
 
 1. A **many-to-one encoder** that reads the entire source sentence and compresses it into a context vector
 2. A **one-to-many decoder** that generates the target sentence from that context vector
 
-**Example — Google's Neural Machine Translation** (Wu et al., 2016):
+**Example  -  Google's Neural Machine Translation** (Wu et al., 2016):
 
 ```
 Encoder: "I love Paris" → context vector c
@@ -131,7 +131,7 @@ The final hidden state of the encoder "summarizes" the entire variable-sized inp
 
 ---
 
-## The Vanilla RNN — How It Works
+## The Vanilla RNN  -  How It Works
 
 ![[pictures/mpl/04/Lecture04_Pg021_The_Vanilla_Rnn_How_It_Works.png]]
 
@@ -180,7 +180,7 @@ Andrej Karpathy's famous experiment trained a vanilla RNN character-by-character
 | 1,200      | Quotations, questions, exclamation marks  |
 | 2,000      | Properly spelled words, quotations, names |
 
-After enough training, the same RNN could generate plausible **Wikipedia markup**, **Shakespeare**, and even **LaTeX** code (with math environments, tables, etc.) — all from just predicting the next character.
+After enough training, the same RNN could generate plausible **Wikipedia markup**, **Shakespeare**, and even **LaTeX** code (with math environments, tables, etc.)  -  all from just predicting the next character.
 
 ---
 
@@ -271,7 +271,7 @@ The temporal component that carries error through time is:
 
 $$\frac{\partial h_t}{\partial h_k} = \prod_{i=k+1}^{t} \frac{\partial h_i}{\partial h_{i-1}} = \prod_{i=k+1}^{t} W_{hh}^T \cdot \text{diag}(\sigma'(h_{i-1}))$$
 
-This is a **product of $t - k$ matrices** — and that causes problems.
+This is a **product of $t - k$ matrices**  -  and that causes problems.
 
 ### 🧠 Deep Dive: Why do Gradients Vanish?
 
@@ -303,7 +303,7 @@ $$\left\| \prod_{i=k+1}^{t} \frac{\partial h_i}{\partial h_{i-1}} \right\| \leq 
 
 Intuitively: if the repeated matrix multiplication shrinks vectors (eigenvalues < 1), gradients **vanish exponentially** with sequence length. The network cannot learn dependencies between tokens far apart in the sequence.
 
-**Eigenvalue intuition**: With a linear model $h_t = W^T h_{t-1}$, after many steps $h_t = (W^t)^T h_0$. If $W = Q\Lambda Q^T$, then $h_t = Q^T \Lambda^t Q \cdot h_0$ — components along eigenvectors with $|\lambda| < 1$ vanish, components with $|\lambda| > 1$ explode.
+**Eigenvalue intuition**: With a linear model $h_t = W^T h_{t-1}$, after many steps $h_t = (W^t)^T h_0$. If $W = Q\Lambda Q^T$, then $h_t = Q^T \Lambda^t Q \cdot h_0$  -  components along eigenvectors with $|\lambda| < 1$ vanish, components with $|\lambda| > 1$ explode.
 
 ### Exploding Gradients
 
@@ -313,7 +313,7 @@ Intuitively: if the repeated matrix multiplication shrinks vectors (eigenvalues 
 
 The symmetric problem: if $\lambda_1 > \frac{1}{\gamma}$, gradients grow exponentially, causing drastic overshooting in the loss landscape.
 
-**Fix: Gradient Clipping** — rescale the gradient vector if its norm exceeds a threshold:
+**Fix: Gradient Clipping**  -  rescale the gradient vector if its norm exceeds a threshold:
 
 ```python
 # PyTorch
@@ -377,7 +377,7 @@ The LSTM uses four learned gating vectors, all computed from $[h_{t-1}, x_t]$:
 
 $$\begin{pmatrix} i \\ f \\ o \\ g \end{pmatrix} = \begin{pmatrix} \sigma \\ \sigma \\ \sigma \\ \tanh \end{pmatrix} \left( W \begin{pmatrix} h_{t-1} \\ x_t \end{pmatrix} + b \right)$$
 
-(In practice, $W$ is a single stacked weight matrix — this is why PyTorch computes all four gates in one matmul.)
+(In practice, $W$ is a single stacked weight matrix  -  this is why PyTorch computes all four gates in one matmul.)
 
 ### Cell State and Hidden State Update
 
@@ -386,7 +386,7 @@ $$h_t = o \odot \tanh(c_t)$$
 
 where $\odot$ is the Hadamard (element-wise) product.
 
-### Intuition — Concrete Example
+### Intuition  -  Concrete Example
 
 ![[pictures/mpl/04/Lecture04_Pg046_Intuition_Concrete_Example.png]]
 
@@ -409,11 +409,11 @@ where $\odot$ is the Hadamard (element-wise) product.
 
 Three reasons gradients flow more easily through LSTMs (Fei-Fei, Justin Johnson, Serena Yeung):
 
-1. **Element-wise multiplication with $f \in [0,1]$** — numerically nicer than multiplying by the full $W_{hh}$ repeatedly. The forget gate attenuates rather than chaotically distorts.
+1. **Element-wise multiplication with $f \in [0,1]$**  -  numerically nicer than multiplying by the full $W_{hh}$ repeatedly. The forget gate attenuates rather than chaotically distorts.
 
-2. **Forget gate varies per time step** — unlike vanilla RNNs where the _same_ $W$ multiplies at every step (causing exponential behavior), the effective "weight" on $c_{t-1}$ changes each step.
+2. **Forget gate varies per time step**  -  unlike vanilla RNNs where the _same_ $W$ multiplies at every step (causing exponential behavior), the effective "weight" on $c_{t-1}$ changes each step.
 
-3. **No $\tanh$ at every step** — gradients flow directly through the additive cell update $c_t = f \odot c_{t-1} + i \odot g$. The $\tanh$ is only applied once at the output, not at every recurrent step.
+3. **No $\tanh$ at every step**  -  gradients flow directly through the additive cell update $c_t = f \odot c_{t-1} + i \odot g$. The $\tanh$ is only applied once at the output, not at every recurrent step.
 
 > The cell state $c_t$ is a **gradient highway**: signals can travel hundreds of time steps with minimal distortion.
 
@@ -438,7 +438,7 @@ class SentimentLSTM(nn.Module):
         self.dropout = nn.Dropout(0.3)
 
     def forward(self, x):
-        # x: (B, T) — token IDs
+        # x: (B, T)  -  token IDs
         emb = self.dropout(self.embed(x))          # (B, T, E)
         out, (h_n, c_n) = self.lstm(emb)           # out: (B, T, H*2)
         # Use the final time step's hidden state
@@ -458,7 +458,7 @@ criterion = nn.CrossEntropyLoss()
 
 ---
 
-## GRU — Gated Recurrent Unit
+## GRU  -  Gated Recurrent Unit
 
 ![[pictures/mpl/04/Lecture04_Pg079_Gru_Gated_Recurrent_Unit.png]]
 
@@ -473,7 +473,7 @@ $$z_t = \sigma(W_z x_t + U_z h_{t-1} + b_z) \quad \text{(update gate)}$$
 $$\tilde{h}_t = \tanh\bigl(W_h x_t + U_h (r_t \odot h_{t-1}) + b_h\bigr) \quad \text{(candidate state)}$$
 $$h_t = z_t \odot h_{t-1} + (1 - z_t) \odot \tilde{h}_t \quad \text{(new hidden state)}$$
 
-**Reset gate $r_t$**: controls how much of the previous hidden state to use when computing the candidate $\tilde{h}_t$. When $r_t \approx 0$, the model ignores the past — useful for starting a new segment.
+**Reset gate $r_t$**: controls how much of the previous hidden state to use when computing the candidate $\tilde{h}_t$. When $r_t \approx 0$, the model ignores the past  -  useful for starting a new segment.
 
 **Update gate $z_t$**: interpolates between the old hidden state and the candidate. When $z_t \approx 1$, the old state is copied (similar to LSTM's forget gate ≈ 1).
 
@@ -481,7 +481,7 @@ $$h_t = z_t \odot h_{t-1} + (1 - z_t) \odot \tilde{h}_t \quad \text{(new hidden 
 
 ![[pictures/mpl/04/Lecture04_Pg074_Gru_Vs_Lstm.png]]
 
-<p class="image-caption">Comparing the inner workings of GRUs and LSTMs—one is leaner, the other is more complex.</p>
+<p class="image-caption">Comparing the inner workings of GRUs and LSTMs - one is leaner, the other is more complex.</p>
 
 |                | GRU                    | LSTM                  |
 | -------------- | ---------------------- | --------------------- |
@@ -511,7 +511,7 @@ gru = nn.GRU(input_size=128, hidden_size=256, num_layers=2,
 
 **Authors**: Graves & Schmidhuber, 2005
 
-A standard RNN only uses **past context** — it cannot see future tokens when processing position $t$. A BiLSTM runs **two separate LSTMs** over the same sequence:
+A standard RNN only uses **past context**  -  it cannot see future tokens when processing position $t$. A BiLSTM runs **two separate LSTMs** over the same sequence:
 
 - **Forward pass** (left → right): processes $x_1, x_2, \ldots, x_T$
 - **Backward pass** (right → left): processes $x_T, x_{T-1}, \ldots, x_1$
@@ -541,17 +541,17 @@ $$\overleftarrow{i}_t = \sigma(\overleftarrow{W}_i x_t + \overleftarrow{U}_i h_{
 $$\overleftarrow{c}_t = \overleftarrow{f}_t \odot \overleftarrow{c}_{t+1} + \overleftarrow{i}_t \odot \overleftarrow{\tilde{c}}_t$$
 $$\overleftarrow{h}_t = \overleftarrow{o}_t \odot \tanh(\overleftarrow{c}_t)$$
 
-There are **two separate sets of parameters** — one for each direction.
+There are **two separate sets of parameters**  -  one for each direction.
 
 ### When to Use BiLSTM
 
-- **Yes**: any task where the full sequence is available at inference time — text classification, named entity recognition (NER), machine translation encoding
-- **No**: language generation / autoregressive decoding — you can't look at future tokens you haven't generated yet
+- **Yes**: any task where the full sequence is available at inference time  -  text classification, named entity recognition (NER), machine translation encoding
+- **No**: language generation / autoregressive decoding  -  you can't look at future tokens you haven't generated yet
 
 ```python
 bilstm = nn.LSTM(input_size=128, hidden_size=256,
                  batch_first=True, bidirectional=True)
-# Output: (B, T, 512)  — 256 forward + 256 backward
+# Output: (B, T, 512)   -  256 forward + 256 backward
 ```
 
 ### Example: NER with BiLSTM
@@ -653,16 +653,16 @@ class Decoder(nn.Module):
 
 <p class="image-caption">These are the key papers that really kicked off neural image captioning.</p>
 
-- _Explain Images with Multimodal Recurrent Neural Networks_ — Mao et al., 2014
-- _Deep Visual-Semantic Alignments for Generating Image Descriptions_ — Karpathy & Fei-Fei, 2017
-- _Show and Tell: A Neural Image Caption Generator_ — Vinyals et al., 2015
-- _Long-term Recurrent Convolutional Networks_ — Donahue et al., 2015
-- _Learning a Recurrent Visual Representation for Image Caption Generation_ — Chen & Zitnick, 2014
+- _Explain Images with Multimodal Recurrent Neural Networks_  -  Mao et al., 2014
+- _Deep Visual-Semantic Alignments for Generating Image Descriptions_  -  Karpathy & Fei-Fei, 2017
+- _Show and Tell: A Neural Image Caption Generator_  -  Vinyals et al., 2015
+- _Long-term Recurrent Convolutional Networks_  -  Donahue et al., 2015
+- _Learning a Recurrent Visual Representation for Image Caption Generation_  -  Chen & Zitnick, 2014
 
 ### Architecture
 
-1. **CNN** (e.g., VGG, ResNet) — "parses" the image into a fixed-size feature vector
-2. **RNN** — uses the CNN output to initialize $h_0$ and generates the caption word-by-word
+1. **CNN** (e.g., VGG, ResNet)  -  "parses" the image into a fixed-size feature vector
+2. **RNN**  -  uses the CNN output to initialize $h_0$ and generates the caption word-by-word
 
 ```text
 Image → [CNN] → v (image vector)
@@ -702,7 +702,7 @@ class ImageCaptionRNN(nn.Module):
 
     def forward(self, image, captions):
         # image: (B, 3, H, W)
-        # captions: (B, T) — token ids
+        # captions: (B, T)  -  token ids
         feat = self.cnn(image).squeeze(-1).squeeze(-1)   # (B, 2048)
         h = self.cnn_proj(feat)                           # (B, hidden_dim)
         c = torch.zeros_like(h)
@@ -728,7 +728,7 @@ From the lecture's closing slide:
 - **Backward gradient flow** can **vanish** or **explode** in RNNs:
   - Exploding → **Gradient Clipping**
   - Vanishing → **Additive Interactions** (LSTM/GRU cell state)
-- **(Bidirectional) LSTM and GRU** are more powerful in practice — additive interactions improve gradient flow
+- **(Bidirectional) LSTM and GRU** are more powerful in practice  -  additive interactions improve gradient flow
 
 | Model       | Key Idea                                                           | Weakness                                     |
 | ----------- | ------------------------------------------------------------------ | -------------------------------------------- |
@@ -738,7 +738,7 @@ From the lecture's closing slide:
 | BiLSTM      | Forward + backward LSTM, concatenated                              | Cannot be used for autoregressive generation |
 | Seq2Seq     | Encoder (many-to-one) + Decoder (one-to-many)                      | Context bottleneck for long sequences        |
 
-> Further reading: _LSTM: A Search Space Odyssey_ — Greff et al., 2017. Systematic comparison of LSTM variants.
+> Further reading: _LSTM: A Search Space Odyssey_  -  Greff et al., 2017. Systematic comparison of LSTM variants.
 
 ## Self-Check
 
@@ -771,22 +771,22 @@ From the lecture's closing slide:
 
 ## References
 
-- Anderson et al. (2018) — Bottom-up and top-down attention for image captioning and VQA. _CVPR_.
-- Bengio et al. (1994) — Learning long-term dependencies with gradient descent is difficult. _IEEE Trans. Neural Networks_.
-- Chen & Zitnick (2014) — Learning a recurrent visual representation for image caption generation. _arXiv:1411.5654_.
-- Cho et al. (2014) — Learning phrase representations using RNN Encoder-Decoder for statistical machine translation. _EMNLP_.
-- Damen et al. (2018, 2021) — Epic-Kitchens dataset. _ECCV / IJCV_.
-- Donahue et al. (2015) — Long-term recurrent convolutional networks for visual recognition and description. _CVPR_.
-- Graves & Schmidhuber (2005) — Framewise phoneme classification with bidirectional LSTM. _Neural Networks_.
-- Greff et al. (2017) — LSTM: A search space odyssey. _IEEE Trans. Neural Networks and Learning Systems_.
-- Hochreiter & Schmidhuber (1997) — Long short-term memory. _Neural Computation_, 9:1735–1780.
-- Karpathy & Fei-Fei (2017) — Deep visual-semantic alignments for generating image descriptions. _PAMI_.
-- Mao et al. (2014) — Explain images with multimodal recurrent neural networks. _arXiv:1410.1090_.
-- Naseem et al. (2021) — COVIDSenti: A large-scale benchmark Twitter dataset for COVID-19 sentiment analysis. _IEEE Trans. Computational Social Systems_.
-- Pascanu et al. (2013) — On the difficulty of training recurrent neural networks. _ICML_.
-- Russakovsky et al. (2015) — ImageNet large scale visual recognition challenge. _IJCV_, 115:211–252.
-- Vinyals et al. (2015) — Show and tell: A neural image caption generator. _CVPR_.
-- Wu et al. (2016) — Google's neural machine translation system. _arXiv:1609.08144_.
+- Anderson et al. (2018)  -  Bottom-up and top-down attention for image captioning and VQA. _CVPR_.
+- Bengio et al. (1994)  -  Learning long-term dependencies with gradient descent is difficult. _IEEE Trans. Neural Networks_.
+- Chen & Zitnick (2014)  -  Learning a recurrent visual representation for image caption generation. _arXiv:1411.5654_.
+- Cho et al. (2014)  -  Learning phrase representations using RNN Encoder-Decoder for statistical machine translation. _EMNLP_.
+- Damen et al. (2018, 2021)  -  Epic-Kitchens dataset. _ECCV / IJCV_.
+- Donahue et al. (2015)  -  Long-term recurrent convolutional networks for visual recognition and description. _CVPR_.
+- Graves & Schmidhuber (2005)  -  Framewise phoneme classification with bidirectional LSTM. _Neural Networks_.
+- Greff et al. (2017)  -  LSTM: A search space odyssey. _IEEE Trans. Neural Networks and Learning Systems_.
+- Hochreiter & Schmidhuber (1997)  -  Long short-term memory. _Neural Computation_, 9:1735–1780.
+- Karpathy & Fei-Fei (2017)  -  Deep visual-semantic alignments for generating image descriptions. _PAMI_.
+- Mao et al. (2014)  -  Explain images with multimodal recurrent neural networks. _arXiv:1410.1090_.
+- Naseem et al. (2021)  -  COVIDSenti: A large-scale benchmark Twitter dataset for COVID-19 sentiment analysis. _IEEE Trans. Computational Social Systems_.
+- Pascanu et al. (2013)  -  On the difficulty of training recurrent neural networks. _ICML_.
+- Russakovsky et al. (2015)  -  ImageNet large scale visual recognition challenge. _IJCV_, 115:211–252.
+- Vinyals et al. (2015)  -  Show and tell: A neural image caption generator. _CVPR_.
+- Wu et al. (2016)  -  Google's neural machine translation system. _arXiv:1609.08144_.
 
 ### ⚠️ Common Pitfalls: Why RNNs Can Fail
 
@@ -802,4 +802,4 @@ From the lecture's closing slide:
 - **Architectural Evolution**: Because RNNs process data sequentially, they cannot be efficiently parallelized. This bottleneck led to the invention of **[[/notes/lectures/mlp/05-transformer|Transformers (L05)]]**, which process entire sequences at once using self-attention.
 
 ---
-[[/notes/lectures/mlp/03-vision-cnn|Previous: L03 — Vision CNNs]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/05-transformer|Next: (y-05) Transformers]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/lectures/mlp/03-vision-cnn|Previous: L03  -  Vision CNNs]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/05-transformer|Next: (y-05) Transformers]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

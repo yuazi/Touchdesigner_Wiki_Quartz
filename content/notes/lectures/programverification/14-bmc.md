@@ -1,5 +1,5 @@
 ---
-title: "L14 — Bounded Model Checking and Synthesis"
+title: "L14  -  Bounded Model Checking and Synthesis"
 tags:
   - program-verification
   - bmc

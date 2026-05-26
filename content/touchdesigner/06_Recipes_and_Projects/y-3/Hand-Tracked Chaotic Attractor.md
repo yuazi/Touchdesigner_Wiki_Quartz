@@ -15,7 +15,7 @@ date: 2026-03-08
 
 **Related:** [[Hand Tracking Tutorial|(y-) Hand Tracking Tutorial]] · [[Hand Tracking|(y-) Hand Tracking]] · [[Sierpinski Tetrahedron with Hand Tracking|(y-) Sierpinski with Hand Tracking]]
 
-> Tested on M1 Pro · TD 2023+. Performance numbers in Part 7 are from that machine specifically — results will vary.
+> Tested on M1 Pro · TD 2023+. Performance numbers in Part 7 are from that machine specifically - results will vary.
 
 ---
 
@@ -28,11 +28,11 @@ Webcam → Script CHOP (MediaPipe) → Filter/Lag CHOPs → Math CHOPs
   → Script SOP (Lorenz) → Geo COMP → Render TOP → Post FX → Output
 ```
 
-See also: [[notes/random/lorenz-attractor|(y-) The Lorenz Attractor]] — the maths behind the system.
+See also: [[notes/random/lorenz-attractor|(y-) The Lorenz Attractor]] - the maths behind the system.
 
 ---
 
-## Part 1 — Node layout
+## Part 1 - Node layout
 
 Create these inside `/project1`:
 
@@ -73,7 +73,7 @@ In `composite1`: Operation → **Over**. Wire `bloom1` into input 0, `feedback1`
 
 ---
 
-## Part 2 — MediaPipe Script CHOP
+## Part 2 - MediaPipe Script CHOP
 
 Install outside TD first:
 
@@ -191,21 +191,21 @@ script_hand → filter_hand → lag_hand → null_ctrl
 
 ---
 
-## Part 3 — Control mapping
+## Part 3 - Control mapping
 
-> One Math CHOP can't remap different channels to different ranges — you need a separate one per channel.
+> One Math CHOP can't remap different channels to different ranges - you need a separate one per channel.
 
-### Option A — Separate Math CHOPs
+### Option A - Separate Math CHOPs
 
-**`math_sigma`** — channel `x`, From 0→1, To 8→20, rename output to `sigma`
+**`math_sigma`** - channel `x`, From 0→1, To 8→20, rename output to `sigma`
 
-**`math_rho`** — channel `y`, From 0→1, To 20→45, rename output to `rho`
+**`math_rho`** - channel `y`, From 0→1, To 20→45, rename output to `rho`
 
-**`math_beta`** — channel `pinch`, From 0→1, To 1.8→3.5, rename output to `beta`
+**`math_beta`** - channel `pinch`, From 0→1, To 1.8→3.5, rename output to `beta`
 
 Merge them: `math_sigma + math_rho + math_beta → merge_params`
 
-### Option B — Expressions directly in Script SOP parameters
+### Option B - Expressions directly in Script SOP parameters
 
 Skip the Math CHOPs. Type into the parameter fields of `script_lorenz`:
 
@@ -213,11 +213,11 @@ Skip the Math CHOPs. Type into the parameter fields of `script_lorenz`:
 - **Rho**: `tdu.remap(op('null_ctrl')['y'][0], 0, 1, 20, 45)`
 - **Beta**: `tdu.remap(op('null_ctrl')['pinch'][0], 0, 1, 1.8, 3.5)`
 
-Start with Option B — it's less to set up.
+Start with Option B - it's less to set up.
 
 ---
 
-## Part 4 — Lorenz Script SOP
+## Part 4 - Lorenz Script SOP
 
 Create a **Script SOP** named `script_lorenz`.
 
@@ -267,7 +267,7 @@ In `geo_attractor` parameters → SOP path = `../script_lorenz`
 
 ---
 
-## Part 5 — Render setup
+## Part 5 - Render setup
 
 **Geo COMP (`geo_attractor`):** Render on, Primitive Type → Line (or Point for a dot cloud), Constant MAT with a bright colour.
 
@@ -279,7 +279,7 @@ In `geo_attractor` parameters → SOP path = `../script_lorenz`
 
 ```
 render1
-  → level1       (Brightness: 1.2, Gamma: 0.9)
+  → level1       (Brightness 1: 1.2, Gamma: 0.9)
   → bloom1       (Threshold: 0.3, Size: 0.015)
   → composite1   (input 0 = bloom1, input 1 = feedback1, Op = Over)
   ↑___ feedback1 ← composite1   (Opacity: 0.93)
@@ -291,15 +291,15 @@ See [[touchdesigner/03_Rendering_and_Output/Feedback Loops|(y-) Feedback Loops]]
 
 ---
 
-## Part 6 — Output
+## Part 6 - Output
 
 In `window1`: Operator → `../null_out`, match render resolution. Open Window or Perform Mode (F1).
 
 ---
 
-## Part 7 — Performance (M1 Pro)
+## Part 7 - Performance (M1 Pro)
 
-These numbers are from my machine — use them as a rough reference.
+These numbers are from my machine - use them as a rough reference.
 
 | Setting              | Value                      |
 | -------------------- | -------------------------- |
@@ -316,9 +316,9 @@ If CPU spikes, reduce Points first, then lower dt a little. Add a Timer CHOP to 
 
 ## Where to go from here
 
-- **Gesture switching** — detect open hand vs fist to swap between Lorenz, Rössler, and Thomas attractors
-- **Colour reaction** — map `vel` to hue shift in a GLSL MAT, see [[touchdesigner/05_Connectivity_and_Shaders/Introduction to GLSL|(y-) Introduction to GLSL]]
-- **GPU particles** — replace the Script SOP with a feedback TOP based solver for 500k+ particles, see [[5 Ways To Make Particles]]
+- **Gesture switching** - detect open hand vs fist to swap between Lorenz, Rössler, and Thomas attractors
+- **Colour reaction** - map `vel` to hue shift in a GLSL MAT, see [[touchdesigner/05_Connectivity_and_Shaders/Introduction to GLSL|(y-) Introduction to GLSL]]
+- **GPU particles** - replace the Script SOP with a feedback TOP based solver for 500k+ particles, see [[5 Ways To Make Particles]]
 
 ---
 
@@ -370,12 +370,4 @@ Webcam ──────────────────────▶ [ S
 [ POST FX ]                    [ Feedback TOP Loop ] ──▶ [ Bloom TOP ]
 ```
 
-### Data Flow Explanation
-1.  **Vision Layer:** The `Script CHOP` runs a Python script that uses `cv2` (OpenCV) to grab the webcam and `mediapipe` to find hand landmarks. It outputs raw X, Y, and Pinch values as channels.
-2.  **Smoothing:** We use `Filter` and `Lag` CHOPs because raw vision data is "noisy." This ensures the attractor moves fluidly rather than snapping.
-3.  **Mapping:** The `Math CHOPs` take normalized 0-1 values and remap them to the specific mathematical constants needed for the Lorenz system (Sigma, Rho, Beta).
-4.  **Geometry:** The `Script SOP` is the heart of the project. It runs a `for` loop that calculates the next 6000 points of the Lorenz attractor based on the current constants from the hand.
-5.  **Persistence:** The `Feedback TOP` creates the "ghostly" trails. By adding the previous frame back into the current one at a lower opacity, we see the history of the attractor's movement.
-
----
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

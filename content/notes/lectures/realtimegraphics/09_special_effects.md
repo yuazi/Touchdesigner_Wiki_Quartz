@@ -1,5 +1,5 @@
 ---
-title: "09_special_effects — Image-Space Special Effects"
+title: "09_special_effects  -  Image-Space Special Effects"
 tags:
   - rtg
   - special-effects
@@ -50,7 +50,7 @@ When the pixel is close to the camera ($f \approx 1$) it stays bright; far away 
 
 ![[pictures/realtimegraphics/09/L09_Pg-04.jpg]]
 
-<p class="image-caption">L09_Pg-04: Three fog curves — linear, exponential, and squared exponential — produce different falloff shapes.</p>
+<p class="image-caption">L09_Pg-04: Three fog curves  -  linear, exponential, and squared exponential  -  produce different falloff shapes.</p>
 
 Three standard fog curves exist:
 
@@ -125,7 +125,7 @@ Image-space DoF turns this into a postprocess:
 
 ![[pictures/realtimegraphics/09/L09_Pg-17.jpg]]
 
-<p class="image-caption">L09_Pg-17: Per pixel, the circle of confusion comes from depth, then a convolution blurs by that radius — but naive filtering leaks foreground into background.</p>
+<p class="image-caption">L09_Pg-17: Per pixel, the circle of confusion comes from depth, then a convolution blurs by that radius  -  but naive filtering leaks foreground into background.</p>
 
 For each pixel:
 
@@ -141,7 +141,7 @@ The problem: a naive blur lets sharp foreground objects leak onto their blurry b
 
 A Gaussian filter only weighs samples by spatial distance, so it always blurs. A **bilateral filter** also weighs samples by the difference between their colors and the centre pixel's color (range weight). Samples whose color differs strongly are downweighted, so the filter preserves color discontinuities while still smoothing within regions.
 
-The **joint bilateral filter** decouples the range weight from the image being filtered. Instead, range weights come from a separate guide channel — typically the depth buffer or a normal buffer.
+The **joint bilateral filter** decouples the range weight from the image being filtered. Instead, range weights come from a separate guide channel  -  typically the depth buffer or a normal buffer.
 
 ![[pictures/realtimegraphics/09/L09_Pg-19.jpg]]
 
@@ -151,7 +151,7 @@ This is exactly the tool the depth-of-field problem needs: the guide channel is 
 
 ### 💡 Intuition
 
-A Gaussian asks "how close is this sample in screen space?" A bilateral filter also asks "how similar is its color?" A joint bilateral filter substitutes "how similar is its depth (or normal, or object ID)?" — using whichever auxiliary channel best identifies the boundary you want to preserve.
+A Gaussian asks "how close is this sample in screen space?" A bilateral filter also asks "how similar is its color?" A joint bilateral filter substitutes "how similar is its depth (or normal, or object ID)?"  -  using whichever auxiliary channel best identifies the boundary you want to preserve.
 
 ---
 
@@ -186,7 +186,7 @@ The G-Buffer is also the right input for many NPR effects. Hatching, for example
 
 <p class="image-caption">L09_Pg-24: A G-Buffer of normals, screen depth, and surface (u, v) coordinates drives hatching that follows the surface, profile, and curvature.</p>
 
-The trick is to add extra G-Buffer channels for whatever the NPR algorithm needs — in this example, the three normal components, perspective depth, and the surface $u$ and $v$ — and compose the final illustration from filters over those channels.
+The trick is to add extra G-Buffer channels for whatever the NPR algorithm needs  -  in this example, the three normal components, perspective depth, and the surface $u$ and $v$  -  and compose the final illustration from filters over those channels.
 
 ---
 
@@ -194,7 +194,7 @@ The trick is to add extra G-Buffer channels for whatever the NPR algorithm needs
 
 Rendering at lower resolution and upsampling is a cheap way to recover frame rate. Naive bilinear upsampling kills high-frequency detail; joint bilateral upsampling (color as primary channel, depth or ID buffer as guide) preserves edges much better.
 
-On PS4 Pro, for instance, the GPU has 4x more pixels to fill but only 2x more cores, so the driver renders color at quarter resolution, an edge buffer at full resolution, and joint-bilateral upsamples the color using the edge buffer as guide — all transparent to the game engine.
+On PS4 Pro, for instance, the GPU has 4x more pixels to fill but only 2x more cores, so the driver renders color at quarter resolution, an edge buffer at full resolution, and joint-bilateral upsamples the color using the edge buffer as guide  -  all transparent to the game engine.
 
 ![[pictures/realtimegraphics/09/L09_Pg-27.jpg]]
 
@@ -212,15 +212,15 @@ Anti-aliasing has two flavors: **sample more** during rasterization (SSAA, MSAA,
 
 ![[pictures/realtimegraphics/09/L09_Pg-29.jpg]]
 
-<p class="image-caption">L09_Pg-29: SSAA takes many samples per pixel, then accumulates them via a reconstruction filter — equivalent to rendering at higher resolution and downsampling.</p>
+<p class="image-caption">L09_Pg-29: SSAA takes many samples per pixel, then accumulates them via a reconstruction filter  -  equivalent to rendering at higher resolution and downsampling.</p>
 
-SSAA allocates every screen-sized texture and buffer at $N \times$ the target resolution, renders normally at that higher resolution, then downsamples to the target with a box, Lanczos, or Gaussian filter. It is the most accurate AA method and helps with every kind of spatial aliasing (geometry, textures, shading) — but every pipeline stage runs $N$ times as much work.
+SSAA allocates every screen-sized texture and buffer at $N \times$ the target resolution, renders normally at that higher resolution, then downsamples to the target with a box, Lanczos, or Gaussian filter. It is the most accurate AA method and helps with every kind of spatial aliasing (geometry, textures, shading)  -  but every pipeline stage runs $N$ times as much work.
 
 ### Multisample Anti-Aliasing (MSAA)
 
 Most visible aliasing is "jaggies" at triangle edges. **MSAA** places multiple subsamples per pixel for *coverage and depth tests*, but runs the fragment shader only once per pixel. The output color is then blended based on how many of the subsamples were covered. Hardware support is built into every graphics API.
 
-MSAA is cheaper than SSAA because shading runs once per pixel, but it only fixes edge aliasing — not texture or shading aliasing — and it does not compose with deferred rendering, because shading happens after rasterization on a single per-pixel G-Buffer.
+MSAA is cheaper than SSAA because shading runs once per pixel, but it only fixes edge aliasing  -  not texture or shading aliasing  -  and it does not compose with deferred rendering, because shading happens after rasterization on a single per-pixel G-Buffer.
 
 ### Morphological Anti-Aliasing (MLAA)
 
@@ -240,7 +240,7 @@ It is cheap even on weak hardware and is the preferred AA for deferred rendering
 
 ![[pictures/realtimegraphics/09/L09_Pg-34.jpg]]
 
-<p class="image-caption">L09_Pg-34: Summary — SSAA is universal but expensive, MSAA fixes only edges and breaks with deferred, MLAA is cheap but flickers.</p>
+<p class="image-caption">L09_Pg-34: Summary  -  SSAA is universal but expensive, MSAA fixes only edges and breaks with deferred, MLAA is cheap but flickers.</p>
 
 - **SSAA**: spatial AA for everything; too expensive for real-time.
 - **MSAA**: fixes edges only; the gold standard for VR but not applicable to deferred engines.
@@ -301,7 +301,7 @@ The motion vector is built by transforming each vertex twice: by the previous fr
 
 ![[pictures/realtimegraphics/09/L09_Pg-48.jpg]]
 
-<p class="image-caption">L09_Pg-48: Reprojected history is invalid at occlusion or disocclusion events, or when shading changes — use geometry data (depth, normal, ID, motion) or color variance to detect and clear it.</p>
+<p class="image-caption">L09_Pg-48: Reprojected history is invalid at occlusion or disocclusion events, or when shading changes  -  use geometry data (depth, normal, ID, motion) or color variance to detect and clear it.</p>
 
 Reprojected history is sometimes wrong:
 
@@ -326,7 +326,7 @@ The simplest discrete method is to draw the object at several past positions wit
 
 ![[pictures/realtimegraphics/09/L09_Pg-52.jpg]]
 
-<p class="image-caption">L09_Pg-52: Motion blur is relative to the camera — palm trees streak past a moving car while the car itself stays sharp.</p>
+<p class="image-caption">L09_Pg-52: Motion blur is relative to the camera  -  palm trees streak past a moving car while the car itself stays sharp.</p>
 
 Real motion blur is relative to the camera, not the world. In a chase shot, the car is stationary in screen space while the background streaks past.
 
@@ -377,7 +377,7 @@ The line geometry makes the flare slide across the screen as the camera turns, w
 
 ## 14. Billboards
 
-Billboards (also called impostors or sprites) are textured rectangles that always face the camera or align with a fixed axis. They are simple — two triangles plus a texture — and trivially cheap, so they are the go-to representation for distant or small objects.
+Billboards (also called impostors or sprites) are textured rectangles that always face the camera or align with a fixed axis. They are simple  -  two triangles plus a texture  -  and trivially cheap, so they are the go-to representation for distant or small objects.
 
 ![[pictures/realtimegraphics/09/L09_Pg-65.jpg]]
 
@@ -397,7 +397,7 @@ The 1982 Genesis sequence in *Star Trek II* is the canonical historical example.
 
 ![[pictures/realtimegraphics/09/L09_Pg-72.jpg]]
 
-<p class="image-caption">L09_Pg-72: A minimal particle struct: lifetime, speed, position, direction, alpha — varied over time by a shared update rule.</p>
+<p class="image-caption">L09_Pg-72: A minimal particle struct: lifetime, speed, position, direction, alpha  -  varied over time by a shared update rule.</p>
 
 A particle struct stores at minimum lifetime, speed, position, direction, and an alpha. The system handles:
 
@@ -406,7 +406,7 @@ A particle struct stores at minimum lifetime, speed, position, direction, and an
 - **Randomness** (using cheap PRNGs to give each particle a unique trajectory),
 - **Rendering** (typically as billboards, sometimes with simple shapes such as spheres or boxes).
 
-Particles die after their lifetime expires. They can interact with each other for more entropic effects like liquid sprays. The engineering priorities are fast physics and collision, low memory per particle, and fast rendering — not physical correctness.
+Particles die after their lifetime expires. They can interact with each other for more entropic effects like liquid sprays. The engineering priorities are fast physics and collision, low memory per particle, and fast rendering  -  not physical correctness.
 
 **State-less particles** derive their position purely from time and initial conditions (useful for GPU implementation). **State-full particles** carry mutable per-frame state, allowing collisions and other dependencies on the world.
 
@@ -423,8 +423,8 @@ Particles die after their lifetime expires. They can interact with each other fo
 - **Image-space edge detection**: Sobel on depth gives profile edges, Laplacian gives internal edges; depth alone misses near-coplanar silhouettes, so include the normal buffer.
 - **Joint bilateral upsampling**: render color at low resolution, an edge or depth buffer at full resolution, upsample color using the edge buffer as guide (PS4 Pro driver). DLSS does the same idea with a per-game neural net.
 - **Anti-aliasing**:
-  - SSAA: render at $N \times$ resolution and downsample — fixes everything but very expensive.
-  - MSAA: more depth/coverage samples per pixel, fragment shader runs once — fixes only edges, breaks with deferred.
+  - SSAA: render at $N \times$ resolution and downsample  -  fixes everything but very expensive.
+  - MSAA: more depth/coverage samples per pixel, fragment shader runs once  -  fixes only edges, breaks with deferred.
   - MLAA: post-process edge detection plus blend, cheap but flickers and softens fine detail.
   - TAA: jitter projection matrix per frame with Halton(2,3), accumulate history with exponential moving average ($\alpha \approx 0.1$), reproject using per-pixel motion vectors, reject or rectify invalid history (occlusion, shading change, neighbourhood-AABB clip).
 - **Motion blur**: continuous version builds a per-pixel velocity buffer from current and previous MVP matrices, samples the color buffer along that direction, accumulates. Centring the blur reduces silhouette artifacts.
@@ -436,7 +436,7 @@ Particles die after their lifetime expires. They can interact with each other fo
 1. Why is a separable Gaussian filter dramatically faster than the equivalent 2D Gaussian, and what is the cost difference for a 5x5 kernel?
 
 > [!success]- Answer
-> A 2D Gaussian factorizes as the outer product of two 1D Gaussians, so the same blur can be computed in two passes — once horizontally and once vertically. A direct $k \times k$ kernel costs $k^2$ texture taps per pixel; two separable 1D passes cost $2k$. For $k = 5$ that is 25 vs 10 taps; hardware bilinear filtering can collapse a 5x1 pass to three taps in practice.
+> A 2D Gaussian factorizes as the outer product of two 1D Gaussians, so the same blur can be computed in two passes  -  once horizontally and once vertically. A direct $k \times k$ kernel costs $k^2$ texture taps per pixel; two separable 1D passes cost $2k$. For $k = 5$ that is 25 vs 10 taps; hardware bilinear filtering can collapse a 5x1 pass to three taps in practice.
 
 2. Why does naive depth-of-field bleed sharp foreground objects onto blurry backgrounds, and what filter fixes it?
 
@@ -451,7 +451,7 @@ Particles die after their lifetime expires. They can interact with each other fo
 4. What is the role of the motion vector texture in TAA, and how is it generated?
 
 > [!success]- Answer
-> The motion vector texture tells TAA where each current pixel was last frame, so its history sample can be fetched from the right screen position even when the camera or objects moved. It is generated by transforming each vertex twice — once with the current frame's MVP matrix and once with the previous frame's MVP matrix — then writing the per-vertex offset as a pseudo-color into the framebuffer, which the rasterizer interpolates per pixel.
+> The motion vector texture tells TAA where each current pixel was last frame, so its history sample can be fetched from the right screen position even when the camera or objects moved. It is generated by transforming each vertex twice  -  once with the current frame's MVP matrix and once with the previous frame's MVP matrix  -  then writing the per-vertex offset as a pseudo-color into the framebuffer, which the rasterizer interpolates per pixel.
 
 5. How is continuous motion blur implemented in image space?
 
@@ -466,12 +466,12 @@ Particles die after their lifetime expires. They can interact with each other fo
 7. Compare SSAA, MSAA, and MLAA in terms of what they fix and what they cost.
 
 > [!success]- Answer
-> **SSAA** renders the entire frame at $N \times$ resolution and downsamples — the most accurate, fixing geometry, texture, and shading aliasing — but the entire pipeline runs $N$ times as much work, so it is too expensive for real-time. **MSAA** places multiple coverage/depth subsamples per pixel but runs the fragment shader only once, fixing edge aliasing cheaply; it does not address texture or shading aliasing, and breaks with deferred shading because shading happens after G-Buffer rasterization on per-pixel data. **MLAA** is a post-process: detect edges in the rendered image, then blend along those edges based on the detected line shape. It is cheap even on weak hardware and works with deferred, but blurs only at detected edges, softens fine details like text, and is not temporally stable, so edges flicker between frames.
+> **SSAA** renders the entire frame at $N \times$ resolution and downsamples  -  the most accurate, fixing geometry, texture, and shading aliasing  -  but the entire pipeline runs $N$ times as much work, so it is too expensive for real-time. **MSAA** places multiple coverage/depth subsamples per pixel but runs the fragment shader only once, fixing edge aliasing cheaply; it does not address texture or shading aliasing, and breaks with deferred shading because shading happens after G-Buffer rasterization on per-pixel data. **MLAA** is a post-process: detect edges in the rendered image, then blend along those edges based on the detected line shape. It is cheap even on weak hardware and works with deferred, but blurs only at detected edges, softens fine details like text, and is not temporally stable, so edges flicker between frames.
 
 8. Why does TAA need both jittering and reprojection, and what is the role of history rectification?
 
 > [!success]- Answer
-> **Jittering** offsets the projection matrix every frame by a sub-pixel amount (commonly Halton(2,3)), so the same pixel samples a different sub-pixel position each frame, giving stochastic supersampling. **Reprojection** uses per-pixel motion vectors to locate the previous frame's sample for the current pixel, since the camera or objects may have moved. Without reprojection, moving content would never accumulate a coherent history. **History rectification** addresses cases where the reprojected history is wrong (occlusion, disocclusion, shading change) by clipping the history colour to the AABB or convex hull of the current pixel's $3 \times 3$ neighbourhood in colour space — keeping a plausible neighbour rather than throwing the history away entirely. Without rectification, TAA produces visible ghosting trails behind moving objects.
+> **Jittering** offsets the projection matrix every frame by a sub-pixel amount (commonly Halton(2,3)), so the same pixel samples a different sub-pixel position each frame, giving stochastic supersampling. **Reprojection** uses per-pixel motion vectors to locate the previous frame's sample for the current pixel, since the camera or objects may have moved. Without reprojection, moving content would never accumulate a coherent history. **History rectification** addresses cases where the reprojected history is wrong (occlusion, disocclusion, shading change) by clipping the history colour to the AABB or convex hull of the current pixel's $3 \times 3$ neighbourhood in colour space  -  keeping a plausible neighbour rather than throwing the history away entirely. Without rectification, TAA produces visible ghosting trails behind moving objects.
 
 ---
 

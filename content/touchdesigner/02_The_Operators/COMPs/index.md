@@ -1,5 +1,5 @@
 ---
-title: "COMPs — Components"
+title: "COMPs - Components"
 tags:
   - touchdesigner
   - td/operators
@@ -8,7 +8,7 @@ tags:
 date: 2026-02-11
 ---
 
-COMPs are the **structural backbone** of a TouchDesigner project. They act as containers that hold entire sub-networks, 3D objects, cameras, lights, and UI panels. Base COMPs are the go-to tool for modular design — encapsulate logic inside, expose clean custom parameters outside.
+COMPs are the **structural backbone** of a TouchDesigner project. They act as containers that hold entire sub-networks, 3D objects, cameras, lights, and UI panels. Base COMPs are the go-to tool for modular design - encapsulate logic inside, expose clean custom parameters outside.
 
 **Key nodes:** Geometry, Camera, Light, Container, Button, Slider, Base
 

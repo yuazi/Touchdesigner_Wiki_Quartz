@@ -1,5 +1,5 @@
 ---
-title: "L16 — Abstractions and Abstract Reachability Graphs"
+title: "L16  -  Abstractions and Abstract Reachability Graphs"
 tags:
   - program-verification
   - abstraction

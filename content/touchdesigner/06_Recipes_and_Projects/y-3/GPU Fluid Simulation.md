@@ -189,7 +189,7 @@ Similar to velocity advection but advecting density through velocity field.
 ### 5.1 Basic Density Visualization
 
 1. Create `Level TOP` (for brightness/contrast)
-   - **Brightness:** 1.5-3.0 (make fluid visible)
+   - **Brightness 1:** 1.5-3.0 (make fluid visible)
    - **Gamma:** 0.7-0.9 (enhance dark areas)
 
 2. Convert to RGB for color:
@@ -203,7 +203,7 @@ Similar to velocity advection but advecting density through velocity field.
 
 2. **Direction Visualization (HSV):**
    - Hue: atan2(v, u) mapped to 0-1
-   - Saturation: constant (e.g., 0.8)
+   - Saturation Multiplier: constant (e.g., 0.8)
    - Value: velocity magnitude normalized
 
 ### 5.3 Smoke Rendering (Advanced)
@@ -327,10 +327,10 @@ Create a control panel with:
 
 ## 11. Related Techniques
 
-- [[Particle System with POPs|(y-) Particle System with POPs]] — CPU/GPU hybrid alternative
-- [[Dreamscape Particle Cloud|(y-) Dreamscape Particle Cloud]] — GPU particle fluids
-- [[GLSL Feedback Effect|(y-) GLSL Feedback Effect]] — simpler feedback applications
-- [[Hand Tracking Tutorial|(y-) Hand Tracking Tutorial]] — for interactive fluid control
+- [[Particle System with POPs|(y-) Particle System with POPs]] - CPU/GPU hybrid alternative
+- [[Dreamscape Particle Cloud|(y-) Dreamscape Particle Cloud]] - GPU particle fluids
+- [[GLSL Feedback Effect|(y-) GLSL Feedback Effect]] - simpler feedback applications
+- [[Hand Tracking Tutorial|(y-) Hand Tracking Tutorial]] - for interactive fluid control
 
 ---
 
@@ -368,12 +368,4 @@ Constant (RG32) ──┐              Constant (R32) ──┐
 [ vel_field ] ────────────────────▶ [ dens_field ] ──▶ [ OUT ]
 ```
 
-### Data Flow Explanation
-1.  **Dual Simulations:** The `Velocity Field` (where is the fluid going?) and the `Density Field` (what is the fluid carrying?) run in parallel. The velocity field is the "driver."
-2.  **Advection (The SLTOP):** This is the most critical step. The `SLTOP` (Semi-Lagrangian) looks at the current velocity and "moves" the values in the fields. It asks: "Where was the fluid at this point one frame ago?" and fetches that value.
-3.  **Incompressibility (Jacobi):** The `Pressure Projection` uses a series of math loops to ensure that fluid doesn't "pile up" in one spot. It forces the velocity to always flow in a way that respects physics.
-4.  **Decay:** The `Level TOP` at the end of each loop slightly dims the fields every frame. This simulates the natural friction (viscosity) and the fading of smoke over time.
-5.  **Rendering:** Finally, the `dens_field` is colorized and output. The velocity field is invisible but controls all the "swirls" you see.
-
----
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

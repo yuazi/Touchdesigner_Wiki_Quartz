@@ -496,7 +496,7 @@ function startLorenz(): void {
 
   const ctx = canvas.getContext("2d")!
 
-  // Particle arrays — rebuilt when particle-count changes
+  // Particle arrays  -  rebuilt when particle-count changes
   let particles: Particle[] = Array.from({ length: lorenzNumParticles }, (_, i) => initParticle(i))
   let particlesLeft: Particle[] = Array.from({ length: halvorsenNumParticles }, (_, i) =>
     initHalvorsen(i),

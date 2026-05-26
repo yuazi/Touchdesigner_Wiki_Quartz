@@ -97,11 +97,4 @@ Attribute POP (Velocity to Color)
                    (Instancing On)
 ```
 
-### Data Flow Explanation
-1.  **Field Creation:** The `Grid POP` creates a dense 3D space of points.
-2.  **Forces:** The `Noise POP` is set to "Vector Mode," which means it generates three values (X, Y, Z) for every point. This becomes the "current" or "wind" that drives the vortex.
-3.  **Visualization:** Instead of rendering the points directly, we use the `POP SOP` as a "template." The `Geo COMP` looks at this template and places a `Sphere SOP` at every point's location.
-4.  **Scaling:** Because the Noise POP is animated, the "current" shifts, making all 125,000 spheres swirl in unison.
-
----
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

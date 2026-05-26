@@ -1,5 +1,5 @@
 ---
-title: "L12 — Diffusion Models"
+title: "L12  -  Diffusion Models"
 tags:
   - mlp
   - diffusion
@@ -10,7 +10,7 @@ tags:
   - neural-networks
 date: 2026-03-09
 ---
-[[/notes/lectures/mlp/11-rl|Previous: L11 — RL]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/13-xai|Next: (y-13) XAI]]
+[[/notes/lectures/mlp/11-rl|Previous: L11  -  RL]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/13-xai|Next: (y-13) XAI]]
 
 > **Course**: Machine Perception and Learning for Collaborative Intelligent Systems  
 > **Lecturer**: Prof. Dr. Andreas Bulling, University of Stuttgart, WS 2025/2026
@@ -25,7 +25,7 @@ date: 2026-03-09
 - Their biggest strength is stable high-quality generation, while their biggest weakness is often sampling cost.
 - If one question guides this lecture, let it be: **why is reversing a noise process easier to train than generating a full image in one shot?**
 
-## This Lecture — Generative Models III
+## This Lecture  -  Generative Models III
 
 ![[pictures/mpl/12/Lecture12_Pg010_This_Lecture_Generative_Models_Iii.png]]
 
@@ -75,7 +75,7 @@ The forward process starts at $t = 0$ and **adds Gaussian noise incrementally** 
 
 $$q(x_t | x_{t-1}) = \mathcal{N}\!\left(x_t;\; \sqrt{1-\beta_t}\, x_{t-1},\; \beta_t \mathbf{I}\right)$$
 
-- $\beta_t$ is the **variance schedule** — a hyperparameter controlling how much noise to add at step $t$.
+- $\beta_t$ is the **variance schedule**  -  a hyperparameter controlling how much noise to add at step $t$.
 - The process continues until $t = T$, where only white noise remains.
 - This is an **information-destroying** Markov process.
 
@@ -98,11 +98,11 @@ $$q(x_{1:T}|x_0) = \prod_{t=1}^{T} q(x_t|x_{t-1})$$
 
 ---
 
-### Sampling from the Forward Distribution — Closed Form
+### Sampling from the Forward Distribution  -  Closed Form
 
 ![[pictures/mpl/12/Lecture12_Pg025_Sampling_From_The_Forward_Distribution_Closed.png]]
 
-<p class="image-caption">The cool thing is this closed-form trick—we can jump straight to any noisy step we want.</p>
+<p class="image-caption">The cool thing is this closed-form trick - we can jump straight to any noisy step we want.</p>
 
 You do **not** need to simulate step-by-step. The reparameterization trick gives a closed form:
 
@@ -114,7 +114,7 @@ Or equivalently:
 
 $$q(x_t | x_0) = \mathcal{N}\!\left(x_t;\; \sqrt{\bar\alpha_t}\, x_0,\; (1-\bar\alpha_t)\mathbf{I}\right)$$
 
-As $t \to \infty$: $\bar\alpha_t \to 0$, so $q(x_T | x_0) \approx \mathcal{N}(0, I)$ — pure noise.
+As $t \to \infty$: $\bar\alpha_t \to 0$, so $q(x_T | x_0) \approx \mathcal{N}(0, I)$  -  pure noise.
 
 ```python
 # Example: jump to any noisy step in one shot
@@ -124,7 +124,7 @@ def forward_sample(x0, t, alpha_bar):
     return x_t, eps
 ```
 
-> **Why this matters**: Training doesn't require running the full chain — sample a random $t$, perturb $x_0$ directly, and train on that.
+> **Why this matters**: Training doesn't require running the full chain  -  sample a random $t$, perturb $x_0$ directly, and train on that.
 
 ### 💡 Intuition: Every Noisy Sample Is Just "Signal + Noise"
 
@@ -177,7 +177,7 @@ Using Bayes' rule:
 
 $$q(x_{t-1}|x_t) = \frac{q(x_t|x_{t-1}) \cdot q(x_{t-1})}{q(x_t)}$$
 
-**Problem**: this requires access to the entire dataset (intractable). Also, if the timesteps are small enough, $q(x_{t-1}|x_t)$ is approximately Gaussian — so we can **train a neural network to approximate it**.
+**Problem**: this requires access to the entire dataset (intractable). Also, if the timesteps are small enough, $q(x_{t-1}|x_t)$ is approximately Gaussian  -  so we can **train a neural network to approximate it**.
 
 ---
 
@@ -198,7 +198,7 @@ In continuous-time diffusion, we talk about the **Score Function** $\nabla_x \lo
 
 **The Problem:** We want to know how to move from a noisy image $x$ to a more realistic image. If we knew the probability distribution $p(x)$ of all real images, we would just move in the direction where the probability increases the fastest (the gradient).
 
-**The Solution:** The denoiser network $\varepsilon_\theta(x_t, t)$ is mathematically related to this score. When you train a network to predict noise, you are implicitly teaching it the **Score Function**. It learns the "shape" of the data distribution and can push random noise toward the peaks of that distribution — which are the realistic images.
+**The Solution:** The denoiser network $\varepsilon_\theta(x_t, t)$ is mathematically related to this score. When you train a network to predict noise, you are implicitly teaching it the **Score Function**. It learns the "shape" of the data distribution and can push random noise toward the peaks of that distribution  -  which are the realistic images.
 
 ---
 
@@ -220,7 +220,7 @@ $$p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^{T} p_\theta(x_{t-1}|x_t)$$
 
 ![[pictures/mpl/12/Lecture12_Pg037_Reverse_Conditional_Gaussian_And_Training_Objective.png]]
 
-<p class="image-caption">The goal for DDPM is simple—just make the predicted noise match the actual noise we added.</p>
+<p class="image-caption">The goal for DDPM is simple - just make the predicted noise match the actual noise we added.</p>
 
 The reverse conditional $q(x_{t-1}|x_t)$ has no analytical closed form. However, **Ho, Jain and Abbeel (2020)** derived the following approximation for the reverse mean:
 
@@ -232,7 +232,7 @@ Since we don't know $\varepsilon_t$ at inference time, we **train a neural netwo
 
 $$\mathcal{L}(\theta) = \|\varepsilon_t - \theta(x_t, t)\|_2^2$$
 
-This is a **simple MSE loss** — predict the noise added, nothing more.
+This is a **simple MSE loss**  -  predict the noise added, nothing more.
 
 ```python
 # DDPM training loop (Ho et al., 2020)
@@ -252,7 +252,7 @@ for x0 in dataloader:
     optimizer.step(); optimizer.zero_grad()
 ```
 
-> **Intuition**: The model learns "what noise was added to get this blurry image?" By subtracting the predicted noise, it recovers a cleaner version — one step of denoising.
+> **Intuition**: The model learns "what noise was added to get this blurry image?" By subtracting the predicted noise, it recovers a cleaner version  -  one step of denoising.
 
 ### 🧠 Deep Dive: Why Predict the Noise Instead of the Clean Image?
 
@@ -274,7 +274,7 @@ So "predict the noise" is not just a coding convenience. It is the parameterizat
 
 <p class="image-caption">The core training and sampling algorithms for Denoising Diffusion Probabilistic Models (DDPM).</p>
 
-### Training Procedure — U-Net Architecture
+### Training Procedure  -  U-Net Architecture
 
 ![[pictures/mpl/12/Lecture12_Pg039_Training_Procedure_U_Net_Architecture.png]]
 
@@ -309,17 +309,17 @@ Output: predicted noise (H × W × C)
 
 ---
 
-### Diffusion Hyperparameters — The Noise Schedule
+### Diffusion Hyperparameters  -  The Noise Schedule
 
 ![[pictures/mpl/12/Lecture12_Pg040_Diffusion_Hyperparameters_The_Noise_Schedule.png]]
 
 <p class="image-caption">Adjusting these hyperparameters really changes how the noise builds up over time.</p>
 
-Forward: $\mathcal{N}(x_t;\, \sqrt{1-\beta_t}\, x_{t-1},\, \beta_t I)$ — Reverse: $\mathcal{N}(x_{t-1};\, \mu_\theta(x_t, t),\, \sigma_t^2 I)$
+Forward: $\mathcal{N}(x_t;\, \sqrt{1-\beta_t}\, x_{t-1},\, \beta_t I)$  -  Reverse: $\mathcal{N}(x_{t-1};\, \mu_\theta(x_t, t),\, \sigma_t^2 I)$
 
 - $\beta_t$ and $\sigma_t^2$ control the variance of the forward and backward processes.
 - In many papers $\beta_t$ follows a **linear schedule** and $\sigma_t^2 = \beta_t$.
-- More advanced schedules exist (e.g., Kingma et al., 2021 — cosine schedule).
+- More advanced schedules exist (e.g., Kingma et al., 2021  -  cosine schedule).
 
 ```python
 # Linear beta schedule example
@@ -386,13 +386,13 @@ SDE time reversal yields an elegant analytical form for the **reverse (generativ
 
 $$dx_t = \left[f(x,t) - g^2(t)\, \nabla_x \log p_t(x)\right] dt + g(t)\, dw$$
 
-The term $\nabla_x \log p_t(x)$ is the **score function** — the gradient of the log data density at noise level $t$. This is precisely what the denoiser network learns to estimate.
+The term $\nabla_x \log p_t(x)$ is the **score function**  -  the gradient of the log data density at noise level $t$. This is precisely what the denoiser network learns to estimate.
 
-> **Why this matters**: Expressing diffusion as an SDE opens access to the full toolkit of stochastic calculus — ODE solvers, higher-order integrators, and theoretical convergence guarantees. It unifies DDPM, DDIM (which is a probability-flow ODE), and score-based models under one framework.
+> **Why this matters**: Expressing diffusion as an SDE opens access to the full toolkit of stochastic calculus  -  ODE solvers, higher-order integrators, and theoretical convergence guarantees. It unifies DDPM, DDIM (which is a probability-flow ODE), and score-based models under one framework.
 
 ---
 
-## DDIM — Fast Sampling
+## DDIM  -  Fast Sampling
 
 DDPM sampling is high quality but slow: at inference time it often requires **$T = 1000$ denoising steps**. This is one of the main practical bottlenecks of diffusion models.
 
@@ -493,7 +493,7 @@ The essential trick is simple: define a shorter timestep schedule and denoise on
 
 <p class="image-caption">The latent diffusion overview: encode to a compact latent, denoise there, then decode back to pixels.</p>
 
-### Motivation — The Scaling Problem
+### Motivation  -  The Scaling Problem
 
 ![[pictures/mpl/12/Lecture12_Pg055_Motivation_The_Scaling_Problem.png]]
 
@@ -539,7 +539,7 @@ So latent diffusion is really a division of labor:
 
 $$x_0 \xrightarrow{\text{VAE Encoder}} z_0 \xrightarrow{\text{Add noise}} z_T \xrightarrow{\text{Denoiser } \varepsilon_\theta(z_t, t, c)} \hat{z}_0 \xrightarrow{\text{VAE Decoder}} \hat{x}_0$$
 
-- The VAE encoder maps input data to a **compressed embedding** (e.g., 64×64×4 for a 512×512 image — 96× smaller).
+- The VAE encoder maps input data to a **compressed embedding** (e.g., 64×64×4 for a 512×512 image  -  96× smaller).
 - Denoising diffusion is applied in the **latent space**.
 - A patch-based adversarial discriminator is added on top of the reconstruction loss for **perceptual compression**.
 - The VAE decoder reconstructs the final image from the denoised latent.
@@ -596,7 +596,7 @@ In the lecture slides, the first stage is not just plain reconstruction: a **pat
 | **Regularized/smooth space** | Easier denoising task, faster sampling than pixel-space                                      |
 | **Flexibility**              | The autoencoder can be adapted to images, video, text, graphs, 3D point clouds, meshes, etc. |
 
-> **Example — Stable Diffusion**: A 512×512 image is encoded into a 64×64×4 latent. All 1000 denoising steps happen in this small latent space, then a single decoder pass produces the final image. This enables high-quality image generation on a consumer GPU.
+> **Example  -  Stable Diffusion**: A 512×512 image is encoded into a 64×64×4 latent. All 1000 denoising steps happen in this small latent space, then a single decoder pass produces the final image. This enables high-quality image generation on a consumer GPU.
 
 ---
 
@@ -720,7 +720,7 @@ This is the same general diffusion machinery applied in an **editing / inpaintin
 
 ---
 
-## Generative Models in Context — VAEs and GANs
+## Generative Models in Context  -  VAEs and GANs
 
 Now that the diffusion pipeline is in place, the comparison to earlier generative models is easier to interpret.
 
@@ -735,14 +735,14 @@ Now that the diffusion pipeline is in place, the comparison to earlier generativ
 - Puts a prior on the latent $z$: $z \sim \mathcal{N}(0, I)$
 - Decoder: $p(x|z) = \mathcal{N}(\mu_\theta(z),\, \Sigma_\theta(z))$ where $\mu_\theta$ and $\Sigma_\theta$ are neural networks.
 
-**Example**: VAE trained on MNIST. Sample $z \sim \mathcal{N}(0, I)$ and decode it through $\mu_\theta(z)$ to get a plausible digit image — never seen during training.
+**Example**: VAE trained on MNIST. Sample $z \sim \mathcal{N}(0, I)$ and decode it through $\mu_\theta(z)$ to get a plausible digit image  -  never seen during training.
 
 ### Generative Adversarial Networks (GANs)
 
 
 ![[pictures/mpl/12/Lecture12_Pg006_Generative_Adversarial_Networks_Gans.png]]
 
-<p class="image-caption">Here's how GANs work—the Generator and Discriminator constantly trying to outsmart each other.</p>
+<p class="image-caption">Here's how GANs work - the Generator and Discriminator constantly trying to outsmart each other.</p>
 
 
 - **Generator**: try to fool the discriminator by generating real-looking images.
@@ -767,7 +767,7 @@ Now that the diffusion pipeline is in place, the comparison to earlier generativ
 ### Disadvantages
 
 - **Slow generation**: requires many forward passes through the network ($T = 1000$ steps by default).
-- **Less meaningful latents**: latent variables have the same dimensionality as the data — harder to interpret or manipulate.
+- **Less meaningful latents**: latent variables have the same dimensionality as the data  -  harder to interpret or manipulate.
 
 ---
 
@@ -775,7 +775,7 @@ Now that the diffusion pipeline is in place, the comparison to earlier generativ
 
 1.  **The Sampling Bottleneck**: Unlike GANs which are "one-and-done," Diffusion requires iterative refinement. This makes them significantly slower for real-time applications unless you use distillation or DDIM.
 2.  **Schedule Sensitivity**: If the noise schedule ($\beta_t$) is too aggressive, the signal is destroyed too early for the model to learn meaningful structure. If it's too gentle, the reverse process starts from something that isn't true Gaussian noise, leading to artifacts.
-3.  **High-Res Instability**: Running diffusion directly in pixel space for high resolutions often leads to "grid-like" artifacts or extremely long training times. This is exactly why **Latent Diffusion** (LDMs) was invented—to compress the problem first.
+3.  **High-Res Instability**: Running diffusion directly in pixel space for high resolutions often leads to "grid-like" artifacts or extremely long training times. This is exactly why **Latent Diffusion** (LDMs) was invented - to compress the problem first.
 4.  **Prompt Adherence vs. Quality**: Over-using **Classifier-Free Guidance (CFG)** can make images look "deep-fried" or oversaturated. There is a sweet spot (usually scale 7-10) where the model follows the prompt without ruining the image aesthetics.
 
 ---
@@ -805,9 +805,9 @@ FAST SAMPLING ──────────── HIGH DIVERSITY
 | VAEs             | ⚠️ Blurry | ✅ Good              | ✅ 1 pass     |
 | Diffusion (DDPM) | ✅ High   | ✅ Full distribution | ❌ 1000 steps |
 
-Diffusion often offers strong quality and coverage, but usually sacrifices speed — motivating DDIM, consistency models, and flow matching.
+Diffusion often offers strong quality and coverage, but usually sacrifices speed  -  motivating DDIM, consistency models, and flow matching.
 
-## Are We Done? — Open Challenges
+## Are We Done?  -  Open Challenges
 
 ![[pictures/mpl/12/Lecture12_Pg049_Are_We_Done_Open_Challenges.png]]
 
@@ -829,9 +829,9 @@ Diffusion often offers strong quality and coverage, but usually sacrifices speed
 | Concept                      | Key Detail                                                                                                     |
 | ---------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | **Forward process**          | Markov chain: add Gaussian noise step-by-step until $x_T \approx \mathcal{N}(0,I)$                             |
-| **Closed-form noisy sample** | $x_t = \sqrt{\bar\alpha_t}\,x_0 + \sqrt{1-\bar\alpha_t}\,\varepsilon$ — jump to any $t$ directly               |
+| **Closed-form noisy sample** | $x_t = \sqrt{\bar\alpha_t}\,x_0 + \sqrt{1-\bar\alpha_t}\,\varepsilon$  -  jump to any $t$ directly               |
 | **Reverse process**          | Parametric Gaussian: $p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(\mu_\theta(x_t,t), \sigma_t^2 I)$               |
-| **Training loss**            | $\mathcal{L}(\theta) = \lVert \varepsilon - \theta(x_t, t) \rVert_2^2$ — simple noise prediction MSE           |
+| **Training loss**            | $\mathcal{L}(\theta) = \lVert \varepsilon - \theta(x_t, t) \rVert_2^2$  -  simple noise prediction MSE           |
 | **Network**                  | U-Net with ResBlocks + self-attention; time $t$ injected via sinusoidal embeddings                             |
 | **Noise schedule**           | $\beta_t$ (linear or cosine) controls how fast structure is destroyed                                          |
 | **Connection to VAEs**       | Diffusion = hierarchical VAE with fixed encoder, shared decoder                                                |
@@ -922,7 +922,7 @@ class DDPM(nn.Module):
 
 ## References
 
-- Song, Meng, Ermon (2020) — Denoising diffusion implicit models. _arXiv:2010.02502_.
+- Song, Meng, Ermon (2020)  -  Denoising diffusion implicit models. _arXiv:2010.02502_.
 
 ### Applied Exam Focus
 - **Forward Process**: Gradually adds Gaussian noise to an image until it is pure noise. This is fixed and has no learnable parameters.
@@ -930,4 +930,4 @@ class DDPM(nn.Module):
 - **Sampling**: Unlike VAEs or GANs (one-step), Diffusion requires **iterative refinement**, making it high-quality but slower to generate.
 
 ---
-[[/notes/lectures/mlp/11-rl|Previous: L11 — RL]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/13-xai|Next: (y-13) XAI]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]
+[[/notes/lectures/mlp/11-rl|Previous: L11  -  RL]] | [[/notes/lectures/mlp/index|Back to MPL Index]] | [[/notes/lectures/mlp/13-xai|Next: (y-13) XAI]] | [[notes/index|(y) Return to Notes]] | [[/index|(y) Return to Home]]

@@ -33,10 +33,10 @@ A real-time particle system where thousands of points:
 
 This defines the _initial positions_ of the particles.
 
-1. Drop a `Sphere SOP` (or any mesh you like — `Grid`, `Torus`, etc.).
+1. Drop a `Sphere SOP` (or any mesh you like - `Grid`, `Torus`, etc.).
 2. Set its resolution high enough to give you a dense point cloud (e.g., rows/columns = 50).
 3. Optionally add a `Noise SOP` after it to scatter points off the surface.
-4. End the chain with a `Null SOP` — name it `GEO_SOURCE`.
+4. End the chain with a `Null SOP` - name it `GEO_SOURCE`.
 
 ---
 
@@ -54,7 +54,7 @@ This defines the _initial positions_ of the particles.
 
 1. Connect a `Noise POP` after the `SOP to POP`.
 2. Set **Type** to `Alligator` or `Simplex` for smooth organic motion.
-3. Increase **Amplitude** to around `0.005–0.02` — small per-frame nudges add up to fluid movement.
+3. Increase **Amplitude** to around `0.005–0.02` - small per-frame nudges add up to fluid movement.
 4. Animate the **Offset** parameter over time to make the noise field move:
    - Right-click **Offset Z** → Expression → type `absTime.seconds * 0.1`
 
@@ -83,7 +83,7 @@ This keeps the cloud from drifting off screen over time.
 
 To render POP points, bring them back into SOP space and use a standard Geo COMP + Render TOP setup.
 
-1. Add a **`POP SOP`** at the end of your POP chain — this outputs the particle positions as SOP points each frame.
+1. Add a **`POP SOP`** at the end of your POP chain - this outputs the particle positions as SOP points each frame.
 2. Connect the POP SOP output to a **`Sprite SOP`**, then to `out1`.
 3. Create a **`Geo COMP`** and set its SOP to the POP SOP chain.
 4. On the Geo COMP, assign a **`Point Sprite MAT`** in the material slot.
@@ -92,7 +92,7 @@ To render POP points, bring them back into SOP space and use a standard Geo COMP
    - **Resolution:** `1920 × 1080` (or your output resolution)
    - **Background Color:** pure black (`0, 0, 0, 1`)
 
-> The result is white/grey dots on black — the glow comes in the next step.
+> The result is white/grey dots on black - the glow comes in the next step.
 
 ---
 
@@ -101,13 +101,13 @@ To render POP points, bring them back into SOP space and use a standard Geo COMP
 Insert a `Level TOP` after the `Render TOP`:
 
 - **Opacity:** 1
-- **Brightness:** slight boost
+- **Brightness 1:** slight boost
 
-Then add a `HSV Adjust TOP` (or use a `Color Correct TOP`) to shift particle color into the hue you want — soft blues, magentas, or warm yellows work well for the dreamscape look.
+Then add a `HSV Adjust TOP` (or use a `Color Correct TOP`) to shift particle color into the hue you want - soft blues, magentas, or warm yellows work well for the dreamscape look.
 
 ---
 
-## 8. The Dreamscape Glow — Feedback Loop
+## 8. The Dreamscape Glow - Feedback Loop
 
 This is the key step that creates the soft trails and bloom.
 
@@ -126,7 +126,7 @@ Render TOP
 
 Step by step:
 
-1. Drop a `Feedback TOP`. Set its **Target TOP** to itself (or a `Null TOP` at the end of the chain — see Quartz's [[Feedback Loops]] page for details).
+1. Drop a `Feedback TOP`. Set its **Target TOP** to itself (or a `Null TOP` at the end of the chain - see Quartz's [[Feedback Loops]] page for details).
 2. After the Feedback TOP, add a `Level TOP` and set **Opacity** to `0.93–0.97`. This dims the old frame slightly each tick.
 3. Add a `Blur TOP` (size 3–8px) to soften the fading trail.
 4. Feed this blurred+dimmed output into a `Composite TOP`:
@@ -226,12 +226,4 @@ Composite TOP (Add/Screen) ──▶ Level TOP ──▶ Blur TOP
    [ OUT ]
 ```
 
-### Data Flow Explanation
-1.  **Sourcing:** The `Sphere SOP` defines the points where particles begin. 
-2.  **GPU Simulation:** All motion happens in the **POP Network** (Point Operators). The `Noise POP` moves particles randomly, while the `Force POP` pulls them back to the center.
-3.  **Containment:** The `Limit POP` prevents particles from flying off to infinity by "looping" them back to the other side. 
-4.  **Point Splitting:** The `Sprite SOP` and `Point Sprite MAT` turn simple points into glowing, camera-facing dots.
-5.  **Dreamy Trails:** The **Feedback TOP Chain** is where the magic happens. Every frame, the previous frame is blurred, dimmed, and added back to the current frame, creating persistent visual trails.
-
----
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

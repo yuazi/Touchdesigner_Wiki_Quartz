@@ -1,5 +1,5 @@
 ---
-title: "L01 — Introduction to Machine Learning"
+title: "L01  -  Introduction to Machine Learning"
 tags:
   - mlp
   - machine-learning
@@ -25,7 +25,7 @@ date: 2026-03-09
 
 I use the [[work/slidelink|SlideLink]] tool I built to automatically align these notes with the original lecture slides.
 
-This course is **in-depth, hands-on, and advanced** — it assumes prior exposure to machine learning, deep learning, reinforcement learning, or computer vision.
+This course is **in-depth, hands-on, and advanced**  -  it assumes prior exposure to machine learning, deep learning, reinforcement learning, or computer vision.
 
 ---
 
@@ -103,9 +103,9 @@ Or a 3-layer network:
 
 $$f = W_3 \max(0,\, W_2 \max(0,\, W_1 x))$$
 
-**Without** a non-linear activation: $f = W_2 W_1 x = W_3 x$ — we collapse back to a linear classifier. Non-linearity is essential.
+**Without** a non-linear activation: $f = W_2 W_1 x = W_3 x$  -  we collapse back to a linear classifier. Non-linearity is essential.
 
-### Brain Analogy — Be Careful
+### Brain Analogy  -  Be Careful
 
 ![[pictures/mpl/01/Lecture01_Pg040_Brain_Analogy_Be_Careful.png]]
 
@@ -130,7 +130,7 @@ $$f(x) \approx g(x) = \sum_{i=1}^{N} \nu_i\, \sigma(w_i^\top x + b_i), \qquad |g
 
 _(Original proof: Hornik et al., 1989; formal statement: Cybenko, 1989)_
 
-**Key intuition — building a "bump" function:**
+**Key intuition  -  building a "bump" function:**
 
 1. Increase weight $w$ until $\sigma(w^\top x + b)$ becomes a step function; step position $s = -b/w$
 2. Two neurons (with step positions $s_1$, $s_2$) combine to form a "bump" of height $h$
@@ -139,7 +139,7 @@ _(Original proof: Hornik et al., 1989; formal statement: Cybenko, 1989)_
 **Critical caveats:**
 
 - Networks with a single hidden layer need **exponentially wide** layers → in practice, deeper networks work better
-- The theorem guarantees **expressiveness**, not **learnability** — it says nothing about whether gradient descent will find those weights
+- The theorem guarantees **expressiveness**, not **learnability**  -  it says nothing about whether gradient descent will find those weights
 
 ---
 
@@ -159,9 +159,9 @@ $$L(W) = \frac{1}{n} \sum_{i=1}^{n} L_i(W)$$
 
 <p class="image-caption">Gradient descent works by taking small steps downhill to find the minimum.</p>
 
-**Strategy 1 — Random search**: bad idea in practice.
+**Strategy 1  -  Random search**: bad idea in practice.
 
-**Strategy 2 — Follow the slope (gradient descent)**:
+**Strategy 2  -  Follow the slope (gradient descent)**:
 
 In one dimension, the derivative is:
 $$\frac{\partial f(x)}{\partial x} = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$$
@@ -398,7 +398,7 @@ _(Krizhevsky et al., 2012; Nair and Hinton, 2010)_
 | Computationally efficient?          | Yes ✓                                                              |
 | Converges faster than sigmoid/tanh? | ~6× faster ✓                                                       |
 | Zero-centred output?                | No ✗                                                               |
-| Dead neurons?                       | Yes — a ReLU unit can permanently output 0 if it never activates ✗ |
+| Dead neurons?                       | Yes  -  a ReLU unit can permanently output 0 if it never activates ✗ |
 
 **Fix for dead ReLU**: initialise ReLU neurons with slightly positive biases (e.g. 0.01).
 
@@ -467,7 +467,7 @@ _(Goodfellow et al., 2013)_
 
 If all weights are the same value, all neurons compute **identical gradients** → they all update identically → the network never differentiates. This is the **symmetry problem**.
 
-### Small Random Numbers — `W = 0.01 * randn(Din, Dout)`
+### Small Random Numbers  -  `W = 0.01 * randn(Din, Dout)`
 
 ![[pictures/mpl/01/Lecture01_Pg122_Small_Random_Numbers_W_0_01.png]]
 
@@ -478,7 +478,7 @@ Works okay for small networks, but **not** for deep ones:
 - Activations tend to **zero** in deeper layers
 - Gradients $\frac{\partial L}{\partial W} \to 0$ → **no learning**
 
-### Larger Random Numbers — `W = 0.05 * randn(Din, Dout)` (with tanh)
+### Larger Random Numbers  -  `W = 0.05 * randn(Din, Dout)` (with tanh)
 
 ![[pictures/mpl/01/Lecture01_Pg122_Larger_Random_Numbers_W_0_05.png]]
 
@@ -505,7 +505,7 @@ Setting $\text{Var}(y) = \text{Var}(x_i)$ gives $\text{Var}(w_i) = \frac{1}{D_\t
 
 Activations are nicely scaled across all layers. **Assumes a zero-centred activation function (e.g. tanh).**
 
-### Kaiming / MSRA Initialisation — for ReLU (He et al., 2015)
+### Kaiming / MSRA Initialisation  -  for ReLU (He et al., 2015)
 
 ![[pictures/mpl/01/Lecture01_Pg138_Kaiming_Msra_Initialisation_For_Relu_He.png]]
 
@@ -830,14 +830,14 @@ accuracy = model.score(X_test, y_test)
 
 ## References
 
-- Ioffe, Szegedy (2015) — Batch normalization: Accelerating deep network training by reducing internal covariate shift. _ICML_.
-- Srivastava, Hinton, Krizhevsky, Sutskever, Salakhutdinov (2014) — Dropout: A simple way to prevent neural networks from overfitting. _JMLR_, 15:1929–1958.
+- Ioffe, Szegedy (2015)  -  Batch normalization: Accelerating deep network training by reducing internal covariate shift. _ICML_.
+- Srivastava, Hinton, Krizhevsky, Sutskever, Salakhutdinov (2014)  -  Dropout: A simple way to prevent neural networks from overfitting. _JMLR_, 15:1929–1958.
 
 ### ⚠️ Common Pitfalls: Why Neural Networks Can Fail
 
 1.  **Linear Collapse**: If you forget to add a non-linear activation (like ReLU) between your layers, your deep network just becomes one giant linear transformation ($W_3 W_2 W_1 x = W_{total} x$). It's just a linear model with extra steps!
 2.  **The Symmetry Problem**: If you initialize all your weights to zero, every neuron in a hidden layer will calculate the exact same gradient and perform the exact same update. The network will never learn distinct features. **Always use Kaiming or Xavier initialization.**
-3.  **The Sigmoid Trap**: Don't use sigmoid in deep hidden layers. When $x$ is very large or very small, the gradient is almost zero ($\approx 0.0001$). This is the **Vanishing Gradient** problem—the signal dies before it can reach the early layers.
+3.  **The Sigmoid Trap**: Don't use sigmoid in deep hidden layers. When $x$ is very large or very small, the gradient is almost zero ($\approx 0.0001$). This is the **Vanishing Gradient** problem - the signal dies before it can reach the early layers.
 4.  **Learning Rate Extremes**: If your learning rate is too high, the loss will explode. If it's too low, the model might get stuck in a tiny local minimum and take days to train. **Always check your loss curve.**
 
 ### Applied Exam Focus

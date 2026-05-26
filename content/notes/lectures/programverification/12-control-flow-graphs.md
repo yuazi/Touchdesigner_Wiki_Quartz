@@ -1,5 +1,5 @@
 ---
-title: "L12 — Control-Flow Graphs"
+title: "L12  -  Control-Flow Graphs"
 tags:
   - program-verification
   - cfg

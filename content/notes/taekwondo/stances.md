@@ -11,7 +11,7 @@ Core stances used in Taekwondo, covering both poomsae (forms) and sparring.
 
 ---
 
-### Charyeot Seogi — Attention Stance
+### Charyeot Seogi  -  Attention Stance
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Charyot_sogi.svg" alt="Charyeot Seogi" height="280">
 
@@ -19,7 +19,7 @@ Heels together, toes angled slightly outward, arms straight at the sides. Used a
 
 ---
 
-### Moa Seogi — Closed Foot Stance
+### Moa Seogi  -  Closed Foot Stance
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/Moa_sogi.svg" alt="Moa Seogi" height="280">
 
@@ -27,7 +27,7 @@ Feet fully together, weight evenly distributed. Appears at the beginning and end
 
 ---
 
-### Narani Seogi — Parallel Stance
+### Narani Seogi  -  Parallel Stance
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Narani_sogi.svg" alt="Narani Seogi" height="280">
 
@@ -35,7 +35,7 @@ Feet shoulder width apart, toes pointing forward, knees slightly bent. The ready
 
 ---
 
-### Ap Seogi — Walking Stance
+### Ap Seogi  -  Walking Stance
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Ap_sogi.svg" alt="Ap Seogi" height="280">
 
@@ -43,7 +43,7 @@ One foot forward, feet roughly shoulder width apart front to back. Shorter and h
 
 ---
 
-### Gunnun Seogi — Front Stance
+### Gunnun Seogi  -  Front Stance
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Gunnun_sogi.svg" alt="Gunnun Seogi" height="280">
 
@@ -51,15 +51,15 @@ Long, low stance with the front knee bent deep over the toes and the back leg fu
 
 ---
 
-### Niunja Seogi — L Stance
+### Niunja Seogi  -  L Stance
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Niunja_sogi.svg" alt="Niunja Seogi" height="280">
 
-Feet form an L shape — front foot pointing forward, rear foot pointing 90° to the side. About 70% of weight on the rear leg. A defensive stance that also allows fast front leg kicks due to the reduced weight on the lead foot.
+Feet form an L shape  -  front foot pointing forward, rear foot pointing 90° to the side. About 70% of weight on the rear leg. A defensive stance that also allows fast front leg kicks due to the reduced weight on the lead foot.
 
 ---
 
-### Annun Seogi — Sitting Stance
+### Annun Seogi  -  Sitting Stance
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Annun_sogi.svg" alt="Annun Seogi" height="280">
 
@@ -67,7 +67,7 @@ Feet wider than shoulder width, toes forward, knees bent outward, weight low and
 
 ---
 
-### Dwitbal Seogi — Rear Foot Stance
+### Dwitbal Seogi  -  Rear Foot Stance
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Dwitbal_sogi.svg" alt="Dwitbal Seogi" height="280">
 
@@ -77,9 +77,9 @@ Around 90% of weight on the rear leg, front foot resting lightly on the ball. Al
 
 ## Others
 
-- **Beom Seogi (Tiger Stance)** — Similar to Dwitbal Seogi but with the front foot raised higher on the ball and weight further back. Appears in some Taegeuk patterns.
-- **Hakdari Seogi (One Leg Stance)** — Standing on one leg with the opposite knee raised. Tests and develops balance.
-- **Gyeorugi Jaseyo (Sparring Stance)** — Fighting stance used in free sparring. Hands up, rear weighted, front leg light for kicking. Less standardised than poomsae stances.
+- **Beom Seogi (Tiger Stance)**  -  Similar to Dwitbal Seogi but with the front foot raised higher on the ball and weight further back. Appears in some Taegeuk patterns.
+- **Hakdari Seogi (One Leg Stance)**  -  Standing on one leg with the opposite knee raised. Tests and develops balance.
+- **Gyeorugi Jaseyo (Sparring Stance)**  -  Fighting stance used in free sparring. Hands up, rear weighted, front leg light for kicking. Less standardised than poomsae stances.
 
 ---
 

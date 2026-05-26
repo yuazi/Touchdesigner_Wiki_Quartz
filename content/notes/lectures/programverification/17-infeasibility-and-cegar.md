@@ -1,5 +1,5 @@
 ---
-title: "L17 — Infeasibility Proofs and CEGAR"
+title: "L17  -  Infeasibility Proofs and CEGAR"
 tags:
   - program-verification
   - cegar

@@ -98,11 +98,4 @@ Noise POP (Fine Micro-texture)
 [ POP SOP ] ───▶ [ Geo COMP ] ───▶ [ PBR MAT ] ───▶ [ Environment Light ]
 ```
 
-### Data Flow Explanation
-1.  **Curve Definition:** The `Pattern CHOP` creates a mathematical wave. This wave represents the silhouette or "cross-section" of the spine segment.
-2.  **Conversion:** The `CHOP to POP` node turns those 100 CHOP samples into 100 3D points. 
-3.  **Rotation:** The `Revolve POP` takes that line of 100 points and "sweeps" them 360 degrees, creating a 3D geometry from a 2D line. This is the core "revolve" technique used for [biomechanical modelling](https://docs.derivative.ca/Revolve_POP).
-4.  **Rendering:** The `PBR MAT` and `Environment Light` are the most critical parts for the metallic look. The `Environment Light` provides the "reflections" that make the `PBR MAT` appear chrome-like.
-
----
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

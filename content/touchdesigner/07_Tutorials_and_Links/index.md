@@ -36,7 +36,7 @@ This module contains the best external resources for learning TouchDesigner, ran
 ## Community & Components
 
 - **[Olak (Noisetok)](https://olib.amb-service.net/)**: A massive user-driven repository of free, downloadable `.tox` components extending TD's functionality.
-- **[TouchDesigner Discord (Official)](https://discord.gg/touchdesigner)**: The official Discord server — the most active real-time community for troubleshooting and sharing work.
+- **[TouchDesigner Discord (Official)](https://discord.gg/touchdesigner)**: The official Discord server - the most active real-time community for troubleshooting and sharing work.
 - **[r/TouchDesigner](https://www.reddit.com/r/TouchDesigner/)**: Active Reddit community for questions, project sharing, and tutorials.
 
 ---
