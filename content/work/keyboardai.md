@@ -1,5 +1,5 @@
 ---
-title: "The Evolutionary Keyboard"
+title: "Keyboard AI"
 tags:
   - work
   - projects
@@ -16,100 +16,66 @@ github: https://github.com/yuazi/keyboard-AI
 
 [View on GitHub](https://github.com/yuazi/keyboard-AI)
 
-Standard keyboard layouts like QWERTY were designed to prevent mechanical typewriter jams, not for modern ergonomics. Most "improved" layouts like Dvorak or Colemak are better, but they are still one-size-fits-all. I wanted a way to find a layout that was perfectly optimized for _my_ specific typing patterns, so I built **Keyboard AI**.
-
-Keyboard AI is a self-learning Python CLI tool that uses n-gram statistics and an evolutionary algorithm to search for the most ergonomic layout possible for a specific body of writing.
+**Keyboard AI** is a Python CLI that learns character patterns from a text corpus and searches for keyboard layouts with lower ergonomic cost. The goal is not to claim a universal best layout, but to explore how corpus statistics and a scoring model can drive layout search.
 
 ---
 
-## The Core Concept
+## What It Demonstrates
 
-The project treats keyboard optimization as a search problem. It starts with a population of random layouts and "evolves" them over generations. Each layout is scored based on physical effort, finger travel, and comfortable typing patterns like rolls.
+- Corpus ingestion from files, stdin, or a bundled sample text.
+- Unigram, bigram, and trigram statistics for layout scoring.
+- Evolutionary search with configurable generation count, population size, elite count, mutation strength, and random seed.
+- Ergonomic scoring for key effort, same-finger movement, row jumps, hand alternation, rolls, and redirects.
+- Saved model JSON output plus export helpers for Karabiner and QMK-style configs.
+- Regression tests for corpus statistics, optimization behavior, saved-model round trips, and CLI flows.
 
-Here is a simplified version of the evolutionary loop:
+---
+
+## The Core Idea
+
+The project treats keyboard layout design as a search problem. Each candidate layout is scored against a corpus, then the optimizer keeps stronger candidates and mutates/crosses them over to search nearby layouts.
 
 ```python
-import random
-
-def evolve_layout(current_layout, corpus_stats):
-    # Create a slightly mutated version of the layout
-    new_layout = current_layout.copy()
-    a, b = random.sample(range(len(new_layout)), 2)
-    new_layout[a], new_layout[b] = new_layout[b], new_layout[a]
-
-    # Keep it only if it scores better
-    if score(new_layout, corpus_stats) < score(current_layout, corpus_stats):
-        return new_layout
-    return current_layout
-
-# Optimization loop
-layout = list("qwertyuiopasdfghjkl;zxcvbnm,./")
-for generation in range(10000):
-    layout = evolve_layout(layout, my_corpus_stats)
+def train_layout(corpus, initial_layout, optimizer):
+    population = optimizer.initialize(initial_layout)
+    for _ in range(optimizer.generations):
+        scored = optimizer.score(population, corpus)
+        elites = optimizer.select_elites(scored)
+        population = optimizer.recombine_and_mutate(elites)
+    return optimizer.best_layout
 ```
-
----
-
-## The Deep Dive: How it works
-
-To find a truly ergonomic layout, the tool needs to understand both the language and the human hand.
-
-### 1. Linguistic Analysis
-
-The tool builds **unigram, bigram, and trigram** statistics from your provided text. It knows which letters you use most, which pairs appear together (like "th" or "er"), and which sequences are common. This allows the optimizer to place frequent letters in the easiest spots.
-
-### 2. The Ergonomic Model
-
-The scoring engine accounts for several physical factors:
-
-- **Key Effort**: How hard is it to reach a specific key from the home row?
-- **Finger Penalties**: Index fingers are stronger than pinkies.
-- **Hand Alternation**: It is faster to type when you switch hands between letters.
-- **Finger Rolls**: It feels better when you type keys in a sequence moving toward the center of the hand.
-- **Row Jumps**: Avoid moves where a finger has to jump over the home row.
-
-### 3. Evolutionary Search
-
-Instead of checking every possible layout (which is mathematically impossible), the tool uses a population search with **elites, crossover, and mutation**. It keeps the best performers from each generation and mixes their "DNA" to find even better combinations.
-
----
-
-## Project Structure
-
-The tool is built as a modular Python package with clear separation of concerns:
-
-- **`corpus.py`**: Handles loading text and generating N-gram statistics.
-- **`layout.py`**: Manages layout state, mutations, and crossovers.
-- **`scoring.py`**: The "brain" that calculates the ergonomic cost of a layout.
-- **`optimizer.py`**: The search engine that runs the evolutionary loop.
-- **`cli.py`**: Provides the `train`, `score`, and `show` commands.
 
 ---
 
 ## CLI Usage
 
-Train a new model from a text file:
+Train from a text file:
 
 ```bash
-keyboard-ai train --corpus my_writing.txt --output my_model.json
+keyboard-ai train --corpus my_writing.txt --output model.json
 ```
 
-Score an existing layout (like Colemak) against your stats:
+Train from pasted text:
 
 ```bash
-keyboard-ai score --layout colemak --model my_model.json
+keyboard-ai train --stdin
+```
+
+Score an existing layout:
+
+```bash
+keyboard-ai score --layout qwertyuiopasdfghjklzxcvbnm --corpus my_writing.txt
 ```
 
 ---
 
 ## Getting Started
 
-Keyboard AI is available as a Python CLI. It includes a sample corpus so you can start optimizing immediately.
-
 ```bash
 git clone https://github.com/yuazi/keyboard-AI
 cd keyboard-AI
 pip install -e .
+python3 -m unittest discover -s tests -v
 ```
 
 ---
