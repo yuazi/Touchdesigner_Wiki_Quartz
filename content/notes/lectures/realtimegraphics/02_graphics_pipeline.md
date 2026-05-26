@@ -165,6 +165,16 @@ The CPU side of a frame is a loop of acquire, record/submit commands, synchroniz
 
 Command buffers make API calls batchable. The application records a sequence once or per frame, and the GPU consumes that sequence asynchronously.
 
+### 🧠 Deep Dive: Synchronization Primitives
+
+Because the GPU executes commands asynchronously while the CPU keeps building the next frame, modern APIs expose explicit synchronization objects:
+
+- **Fences**: GPU-to-CPU signalling. The CPU waits on a fence to know that the GPU has finished a submitted batch (e.g. before recycling a command buffer or reading back a screenshot).
+- **Semaphores**: GPU-to-GPU signalling between queues or between submission boundaries. Standard frame setup uses an *image-available* semaphore (the swap-chain image is acquired and ready to render into) and a *render-finished* semaphore (rendering is done and the image is safe to present).
+- **Barriers**: pipeline-stage and memory ordering inside one command buffer. They tell the driver when one stage's writes must be visible to a later stage's reads, and which cache flushes/invalidations are required.
+
+The cost of getting this wrong: hangs, tearing, frames presented before they finished rendering, or stale data being read by the next frame. Validation layers exist precisely because the explicit-sync model is unforgiving.
+
 ---
 
 ## 6. Shader Programming Basics
@@ -238,6 +248,21 @@ The fragment shader decides the output color for each surviving fragment. Later 
 
 > [!success]- Answer
 > The minimum is $gl\_Position = MVP \cdot position$, transforming a vertex position into clip space. The rasterizer takes these clip-space positions, finds covered samples, and interpolates the vertex outputs (varyings) across each primitive; the fragment shader then runs once per resulting fragment with those interpolated values.
+
+6. What is the role of descriptors in modern graphics APIs, and what problem do they solve?
+
+> [!success]- Answer
+> Descriptors are typed handles that connect shader code to GPU memory resources (buffers, textures, samplers). Without them the shader cannot locate where its inputs live, because the application may bind many different resources to many different shader slots. Modern APIs group descriptors into **descriptor sets** (or tables) that can be bound in bulk, so updating one set rebinds many resources cheaply — a major source of CPU overhead in older bindful APIs.
+
+7. Why are graphics queues, present semaphores, and fences needed for a single frame in Vulkan?
+
+> [!success]- Answer
+> A frame is a producer-consumer pipeline: the CPU records commands, the GPU executes them, and the display swap chain presents the result. Fences tell the CPU when the GPU has finished using a command buffer so it can be recycled. Semaphores order GPU work between queues — an image-available semaphore signals when the swap chain image is safe to render into, and a render-finished semaphore tells the present queue that the image is ready to display. Without them the CPU could overwrite in-flight command buffers, or frames could be presented before they finished rendering.
+
+8. What is a draw call's actual cost in modern explicit APIs, and what made it expensive in older APIs?
+
+> [!success]- Answer
+> In modern APIs (Vulkan, DX12) the draw call itself is cheap because state is pre-baked into a PSO and resources are pre-bound through descriptor sets; the driver just dispatches the GPU work. In older APIs (OpenGL, DX11) every draw call could trigger hidden driver work — shader recompilation for new state combinations, descriptor reshuffling, validation — which serialized CPU work and bottlenecked the frame. Modern APIs trade more application complexity for predictable per-draw cost and multithreaded recording.
 
 ---
 

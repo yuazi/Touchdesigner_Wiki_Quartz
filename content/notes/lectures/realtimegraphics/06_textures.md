@@ -473,6 +473,21 @@ The conceptual point is the same as the first texture shader: vertices carry coo
 > [!success]- Answer
 > Bump and normal mapping only change per-fragment shading: the lighting reacts as if the surface had bumps, but silhouettes and self-shadowing stay flat. Displacement mapping actually moves geometry along the normal after tessellation, producing real silhouettes and shadows at the cost of many small triangles. Parallax mapping raycasts a height field in the fragment shader to fake an offset texture lookup, giving better depth cues than bumps but still no real geometry.
 
+6. What are the standard texture addressing modes, and when is each appropriate?
+
+> [!success]- Answer
+> **Clamp** (or *clamp-to-edge*) returns the edge texel for out-of-range coordinates — useful for textures with a meaningful border like a sprite. **Repeat** (or *wrap*) tiles the texture infinitely, ideal for periodic patterns like floor tiles or grass. **Mirror** reflects on each repeat, which hides the visible seam between tiles. **Border** (or *clamp-to-border*) returns a fixed border colour for out-of-range coordinates, useful for masks or single-instance decals where you want surrounding pixels to be a known colour rather than a stretched edge.
+
+7. Why is the texture object separate from the sampler in modern APIs, and what does that decoupling enable?
+
+> [!success]- Answer
+> A texture object describes the *data*: pixel values, format, mip levels. A sampler describes *how to read* that data: filter mode (nearest/bilinear/trilinear), addressing mode, anisotropy, comparison function. Separating them lets one sampler be reused across many textures (one immutable "linear-clamp anisotropic" sampler shared by all PBR materials, for instance) and lets one texture be sampled with different settings from different shaders (e.g. a shadow-map texture sampled with a depth-comparison sampler in the lighting pass and a regular sampler for debug visualization). This is more efficient than the old GL model where each texture had its own embedded sampling state.
+
+8. What is the difference between a cube map and a sphere map for environment mapping, and which is preferred?
+
+> [!success]- Answer
+> A **sphere map** flattens the entire environment onto a single 2D texture using a paraboloid-like projection; it is cheap but distorts heavily near the seams and "behind" the camera. A **cube map** uses six square faces, one per axis direction, sampled with a 3D reflection vector that picks the face and 2D coordinate in hardware; it is uniform in resolution, has no distortion, and is the standard for IBL (image-based lighting) and skyboxes. Modern hardware has native cubemap support, so the cost is the same as a 2D sample. Sphere maps appear mainly in legacy code or as fallback paths.
+
 ---
 
 [[notes/lectures/realtimegraphics/index|(y) Back to RTG Index]] | [[notes/lectures/realtimegraphics/08_deferred_shading|Next: (y-08) Deferred Shading]]

@@ -463,6 +463,16 @@ Particles die after their lifetime expires. They can interact with each other fo
 > [!success]- Answer
 > Lens flare physically happens inside the camera's lens system, after the light has already reached the optics, so it should appear in front of every rendered surface. Its component textures (haloes, rings, stars) are placed along the screen-space line between the light source's projected position and the image centre, at various distances along that line, and rendered as alpha-blended billboards on top of the scene.
 
+7. Compare SSAA, MSAA, and MLAA in terms of what they fix and what they cost.
+
+> [!success]- Answer
+> **SSAA** renders the entire frame at $N \times$ resolution and downsamples — the most accurate, fixing geometry, texture, and shading aliasing — but the entire pipeline runs $N$ times as much work, so it is too expensive for real-time. **MSAA** places multiple coverage/depth subsamples per pixel but runs the fragment shader only once, fixing edge aliasing cheaply; it does not address texture or shading aliasing, and breaks with deferred shading because shading happens after G-Buffer rasterization on per-pixel data. **MLAA** is a post-process: detect edges in the rendered image, then blend along those edges based on the detected line shape. It is cheap even on weak hardware and works with deferred, but blurs only at detected edges, softens fine details like text, and is not temporally stable, so edges flicker between frames.
+
+8. Why does TAA need both jittering and reprojection, and what is the role of history rectification?
+
+> [!success]- Answer
+> **Jittering** offsets the projection matrix every frame by a sub-pixel amount (commonly Halton(2,3)), so the same pixel samples a different sub-pixel position each frame, giving stochastic supersampling. **Reprojection** uses per-pixel motion vectors to locate the previous frame's sample for the current pixel, since the camera or objects may have moved. Without reprojection, moving content would never accumulate a coherent history. **History rectification** addresses cases where the reprojected history is wrong (occlusion, disocclusion, shading change) by clipping the history colour to the AABB or convex hull of the current pixel's $3 \times 3$ neighbourhood in colour space — keeping a plausible neighbour rather than throwing the history away entirely. Without rectification, TAA produces visible ghosting trails behind moving objects.
+
 ---
 
 [[notes/lectures/realtimegraphics/08_deferred_shading|Back: (y-08) Deferred Shading]] | [[notes/lectures/realtimegraphics/10_semi_global_illumination|Next: (y-10) Semi-Global Illumination]] | [[notes/lectures/realtimegraphics/index|RTG Index]]

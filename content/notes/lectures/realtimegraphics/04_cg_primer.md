@@ -92,6 +92,26 @@ Scaling changes object size. Non-uniform scaling can distort normals, which matt
 
 Rotation order matters because matrix multiplication is not commutative. `Rz * Ry * Rx` generally differs from `Rx * Ry * Rz`.
 
+### 🧠 Deep Dive: Explicit Matrix Forms
+
+For reference (column-major, applied as $\mathbf{v}' = M \mathbf{v}$):
+
+**Translation** by $(t_x, t_y, t_z)$:
+
+$$ T = \begin{pmatrix} 1 & 0 & 0 & t_x \\ 0 & 1 & 0 & t_y \\ 0 & 0 & 1 & t_z \\ 0 & 0 & 0 & 1 \end{pmatrix} $$
+
+**Scale** by $(s_x, s_y, s_z)$:
+
+$$ S = \begin{pmatrix} s_x & 0 & 0 & 0 \\ 0 & s_y & 0 & 0 \\ 0 & 0 & s_z & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix} $$
+
+**Rotation** about the principal axes by angle $\theta$:
+
+$$ R_x = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & \cos\theta & -\sin\theta & 0 \\ 0 & \sin\theta & \cos\theta & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix},\quad R_y = \begin{pmatrix} \cos\theta & 0 & \sin\theta & 0 \\ 0 & 1 & 0 & 0 \\ -\sin\theta & 0 & \cos\theta & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix},\quad R_z = \begin{pmatrix} \cos\theta & -\sin\theta & 0 & 0 \\ \sin\theta & \cos\theta & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix} $$
+
+**Composition order**: read right-to-left as "apply to the vector first". $M = T \cdot R \cdot S$ scales the model, then rotates, then translates. Reverse that order and the object rotates around the world origin instead of its own centre.
+
+**Inverse of a rigid transform** $(R | t)$: the inverse is $(R^T | -R^T t)$ — the transpose of the rotation plus the translated origin. This is the standard view-matrix construction: rotate the world into camera frame, then translate the camera to the origin.
+
 ---
 
 ## 4. Projection and Camera Space
@@ -277,6 +297,21 @@ Transparency is order-dependent. Correct alpha blending usually requires drawing
 
 > [!success]- Answer
 > For opaque triangles the depth test keeps the closest fragment per pixel regardless of submission order. For transparent fragments the blend equation depends on the order in which fragments are applied to the framebuffer; back-to-front compositing of transparent objects is needed to get the correct color, which sorting (or order-independent transparency techniques) provides.
+
+6. In what order should the model, view, and projection matrices be combined to transform a model-space vertex into clip space, and why?
+
+> [!success]- Answer
+> $\mathbf{v}_{\text{clip}} = P \cdot V \cdot M \cdot \mathbf{v}_{\text{model}}$. Read right-to-left: $M$ places the model into world space, $V$ moves the world into camera space, and $P$ projects into clip space. Matrix multiplication is not commutative, so swapping the order produces a different transform (e.g. $V \cdot M$ vs $M \cdot V$ generally give different camera-space positions). Engines usually precompute $\text{MVP} = P \cdot V \cdot M$ once per object and submit it as a uniform.
+
+7. How is the camera (view) matrix typically constructed from a camera position $\mathbf{e}$, target $\mathbf{t}$, and world-up $\mathbf{u}$?
+
+> [!success]- Answer
+> Build an orthonormal camera frame: forward $\mathbf{f} = (\mathbf{t} - \mathbf{e}) / \|\mathbf{t} - \mathbf{e}\|$, right $\mathbf{r} = (\mathbf{f} \times \mathbf{u}) / \|\mathbf{f} \times \mathbf{u}\|$, up $\mathbf{u}' = \mathbf{r} \times \mathbf{f}$. The view matrix rotates the world so this frame becomes axis-aligned, then translates so $\mathbf{e}$ moves to the origin. In matrix form, $V = R^T \cdot T(-\mathbf{e})$ where $R$ has $\mathbf{r}, \mathbf{u}', -\mathbf{f}$ as columns (the $-\mathbf{f}$ is because OpenGL's camera looks down $-z$).
+
+8. Why is non-uniform scaling problematic for surface normals, and how is the issue fixed?
+
+> [!success]- Answer
+> Transforming a normal with the same matrix as positions distorts it under non-uniform scale: a normal $(1,0,0)$ on a flat surface stays $(1,0,0)$ even if the surface is squashed along $y$, which is wrong. The correct transform is the **inverse transpose** of the upper-left $3\times 3$ submatrix of the model matrix, applied to the normal and then renormalized. For uniform scale the inverse transpose equals the original rotation, so the issue only matters when the model has stretched axes.
 
 ---
 

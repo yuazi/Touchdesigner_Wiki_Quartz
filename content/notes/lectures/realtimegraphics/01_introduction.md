@@ -178,6 +178,16 @@ The course allows discussion, but implementations must remain independent. Treat
 > [!success]- Answer
 > Every individual exercise must be passed with more than 60 percent; a strong assignment cannot be used to average out a weak one. So no single exercise can be skipped or undersized; the workload must be spread across all four assignments.
 
+6. Quantify why even a "modest" real-time rendering target is computationally heavy.
+
+> [!success]- Answer
+> A 4K frame is roughly $3840 \times 2160 \approx 8.3$ million pixels. At 60 Hz that is about 500 million pixels per second, and each pixel may need several texture reads, multiple light evaluations, and post-processing. At 144 Hz the same scene is 1.2 billion pixels per second. So even before counting per-fragment shader work, the raw pixel rate is already in the hundreds of millions of operations per second, which is why specialized parallel hardware is needed.
+
+7. Why is the Diligent Engine used in the lab instead of raw Vulkan or DirectX?
+
+> [!success]- Answer
+> Diligent Engine is a cross-platform rendering abstraction layered over Vulkan, DirectX 12, and similar modern APIs. The educational point of the lab is **pipeline and algorithm design** — how the rendering pipeline fits together, how shading and post-processing work — not the platform-specific boilerplate that raw Vulkan demands. Using Diligent lets students focus on rendering concepts while still working with modern (PSO-based, bindless-capable) abstractions.
+
 ---
 
 [[notes/lectures/realtimegraphics/index|(y) Back to RTG Index]] | [[notes/lectures/realtimegraphics/02_graphics_pipeline|Next: (y-02) Graphics Pipeline]]

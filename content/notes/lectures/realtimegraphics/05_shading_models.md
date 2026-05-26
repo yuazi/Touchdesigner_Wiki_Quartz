@@ -290,5 +290,20 @@ $$ f_r(\mathbf{l}, \mathbf{v}) = \frac{D(\mathbf{h})\, F(\mathbf{l}, \mathbf{v})
 > [!success]- Answer
 > $D$ is the microfacet normal distribution: the fraction of microfacets whose orientation equals the half-vector $\mathbf{h}$. $F$ is the Fresnel term: how much light those microfacets actually reflect. $G$ is the geometric attenuation: the fraction of microfacets that are neither shadowed from the light nor masked from the view. Their product divided by the foreshortening factors gives the per-pixel specular response.
 
+6. State and interpret the three properties any physical BRDF must satisfy.
+
+> [!success]- Answer
+> (1) **Reciprocity**: $f_r(\mathbf{x}, \boldsymbol{\omega}_1, \boldsymbol{\omega}_2) = f_r(\mathbf{x}, \boldsymbol{\omega}_2, \boldsymbol{\omega}_1)$ — swapping light and view gives the same reflectance, which Helmholtz's principle of reversibility requires. (2) **Energy conservation**: $\int_\Omega f_r(\mathbf{x}, \boldsymbol{\omega}_i, \boldsymbol{\omega}_o) \cos\theta_i \, d\boldsymbol{\omega}_i \le 1$ — no surface reflects more energy than it receives. (3) **Positivity**: $f_r \ge 0$ — negative radiance is unphysical. Any BRDF that breaks these (e.g. unnormalized Phong as the specular power grows) produces wrong-looking results and breaks global illumination further down the pipeline.
+
+7. What is anisotropic reflection, and why can Cook-Torrance with a single roughness parameter not represent it?
+
+> [!success]- Answer
+> Anisotropic reflection means the BRDF depends on the *in-plane* viewing direction, not just the angle between view and normal. Brushed metal is the canonical example: the highlight stretches along the grain direction and tightens perpendicular to it. A single roughness $m$ gives an isotropic Beckmann distribution that only depends on $\theta_h$ — the angle between normal and half-vector — so it cannot distinguish "along the grain" from "across the grain". Anisotropic BRDFs introduce two roughness parameters (tangent and bitangent) and a tangent frame per pixel.
+
+8. What does the Disney BRDF combine, and why has it become a real-time standard?
+
+> [!success]- Answer
+> Disney's "principled" BRDF was originally designed for *Wreck-It Ralph* and bundles a small number of artist-controllable parameters (base colour, metallic, roughness, specular, anisotropy, clearcoat, sheen, subsurface) that interpolate between dielectric and metallic responses with a single energy-conserving model. It became standard in real-time engines (Unreal, Unity, Frostbite) because it gives artists physically plausible results without exposing the underlying $D$, $F$, $G$, BRDF maths — the engine handles the layered specular, diffuse, and subsurface terms, while the artist works with a handful of slider parameters that map cleanly to real-world material properties.
+
 ---
 [[notes/lectures/realtimegraphics/index|(y) Back to RTG Index]]
