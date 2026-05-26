@@ -3,6 +3,13 @@ declare module "*.scss" {
   export = content
 }
 
+declare module "d3-delaunay" {
+  export class Delaunay<P> {
+    static from<P>(points: Iterable<P>, fx?: (p: P) => number, fy?: (p: P) => number): Delaunay<P>
+    triangles: Uint32Array
+  }
+}
+
 // dom custom event
 interface CustomEventMap {
   prenav: CustomEvent<{}>
