@@ -1,6 +1,6 @@
 ---
 title:
-draft: "true"
+draft: true
 ---
 
 # Prompt 1
