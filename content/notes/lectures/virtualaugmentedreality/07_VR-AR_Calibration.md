@@ -8,7 +8,7 @@ tags:
 date: 2026-05-22
 ---
 
-[[/notes/lectures/virtualaugmentedreality/06_VR-AR_CompVision|Previous: (y-06) Computer Vision for AR]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]]
+[[/notes/lectures/virtualaugmentedreality/06_VR-AR_CompVision|Previous: (y-06) Computer Vision for AR]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/08_VR-AR_VisualCoherence|Next: (y-08) Visual Coherence]]
 
 ## Mental Model First
 

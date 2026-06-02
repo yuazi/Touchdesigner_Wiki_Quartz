@@ -39,6 +39,9 @@ date: 2026-04-14
 - [[/notes/lectures/virtualaugmentedreality/07_VR-AR_Calibration|(y-07) Calibration and Registration]]  
    Camera calibration (lens distortion, undistortion, targets), display calibration (shooting gallery, boresight, SPAAM, pointing device, eye tracking), hand-eye calibration, and registration errors from error propagation and latency.
 
+- [[/notes/lectures/virtualaugmentedreality/08_VR-AR_VisualCoherence|(y-08) Visual Coherence]]  
+   Occlusion (phantoms, edge refinement, probabilistic, depth, segmentation), illumination (environment maps, light probes, photometric registration), shadows (volumes, differential rendering, path tracing, photon mapping), reflections and refractions, diminished reality and stylized AR, and camera effects (lens distortion, vignetting, post-process emulation).
+
 ## Assessment Map
 
 | Component | Weight / Gate                         | Notes                                                                                    |

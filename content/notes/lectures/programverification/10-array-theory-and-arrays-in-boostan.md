@@ -6,12 +6,12 @@ tags:
   - smt
   - boostan
   - formal-methods
-date: 2025-05-26
+date: 2026-05-26
 ---
 
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/09-ultimate-referee|Previous: (y-09) Ultimate Referee]] | [[/notes/lectures/programverification/11-nondeterminism-havoc-assume|Next: (y-11) Nondeterminism: Havoc and Assume]]
 
-> [!warning] The Boostan-array integration here is from the 2025 course PDF. The pure $T_A$ axioms are now covered in the 2026 slides under [[/notes/lectures/programverification/04-first-order-theories|§4 First-Order Theories]]; the rest of this note refers to the older 514-page deck.
+The 2026 deck covers this material as §9 Arrays (pp 244-271). The $T_A$ axioms also appear in [[/notes/lectures/programverification/04-first-order-theories|§4 First-Order Theories]] for reference.
 
 ## Mental Model for Arrays
 

@@ -6,7 +6,7 @@ tags:
   - boogie
   - boostan
   - formal-methods
-date: 2025-05-28
+date: 2026-05-28
 ---
 
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/10-array-theory-and-arrays-in-boostan|Previous: (y-10) Array Theory and Arrays in Boostan]] | [[/notes/lectures/programverification/12-control-flow-graphs|Next: (y-12) Control-Flow Graphs]]
