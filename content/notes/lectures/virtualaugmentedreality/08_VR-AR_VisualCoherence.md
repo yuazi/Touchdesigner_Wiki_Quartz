@@ -495,6 +495,7 @@ Post-processing trades fidelity for cost. For interactive AR the cost wins and t
 2. Write out the phantom rendering pipeline step by step and explain what each step is for.
 
 > [!success]- Answer
+>
 > 1. Draw the video so the colour buffer holds the real scene. 2. Disable writes to the colour buffer (`glColorMask` or `glBlendFunc(0,1)`) so subsequent draws only touch depth. 3. Render the phantoms of the real objects; they populate the depth buffer at the right registered positions. 4. Enable colour writes again. 5. Render the virtual objects normally; the depth test now compares them against the phantoms and hides parts that are behind real geometry. The depth buffer is the channel through which the real geometry communicates with the virtual rendering.
 
 3. When does edge occlusion improve on phantom rendering, and why?

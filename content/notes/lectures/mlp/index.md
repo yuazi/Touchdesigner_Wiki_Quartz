@@ -25,20 +25,20 @@ I use the [[work/slidelink|SlideLink]] tool I built to automatically align these
 
 ## Lectures
 
-| Topic                                   | Core Idea                                | Example Model / Use Case                       |
-| :-------------------------------------- | :--------------------------------------- | :--------------------------------------------- |
-| [[/notes/lectures/mlp/01-introduction\|(y-01) Introduction]]                    | What is ML? Loss, optimization, training loops | Logistic Regression (Iris dataset)          |
+| Topic                                                                | Core Idea                                      | Example Model / Use Case                    |
+| :------------------------------------------------------------------- | :--------------------------------------------- | :------------------------------------------ |
+| [[/notes/lectures/mlp/01-introduction\|(y-01) Introduction]]         | What is ML? Loss, optimization, training loops | Logistic Regression (Iris dataset)          |
 | [[/notes/lectures/mlp/02-cnn\|(y-02) Convolutional Neural Networks]] | Spatial feature extraction with filters        | Simple CNN (MNIST digit recognition)        |
-| [[/notes/lectures/mlp/03-vision-cnn\|(y-03) Vision CNNs]]                   | AlexNet, VGG, ResNet, EfficientNet             | ResNet-50 (ImageNet classification)         |
+| [[/notes/lectures/mlp/03-vision-cnn\|(y-03) Vision CNNs]]            | AlexNet, VGG, ResNet, EfficientNet             | ResNet-50 (ImageNet classification)         |
 | [[/notes/lectures/mlp/04-rnn\|(y-04) Recurrent Neural Networks]]     | Sequences, LSTMs, GRUs, vanishing gradients    | LSTM (Sentiment analysis / Stocks)          |
-| [[/notes/lectures/mlp/05-transformer\|(y-05) Transformers]]                  | Attention is all you need                      | BERT / GPT (Machine Translation)            |
+| [[/notes/lectures/mlp/05-transformer\|(y-05) Transformers]]          | Attention is all you need                      | BERT / GPT (Machine Translation)            |
 | [[/notes/lectures/mlp/06-vit\|(y-06) Vision Transformer (ViT)]]      | Patches + Transformers = vision                | ViT-Base (Large-scale visual recognition)   |
-| [[/notes/lectures/mlp/07-multimodal\|(y-07) Multimodal Learning]]           | CLIP, image+text, cross-modal alignment        | CLIP (Zero-shot image classification)       |
+| [[/notes/lectures/mlp/07-multimodal\|(y-07) Multimodal Learning]]    | CLIP, image+text, cross-modal alignment        | CLIP (Zero-shot image classification)       |
 | [[/notes/lectures/mlp/08-iml\|(y-08) Interactive Machine Learning]]  | Humans in the loop                             | Active Learning / GNN (Sudoku solver)       |
 | [[/notes/lectures/mlp/09-vae\|(y-09) Generative AI & VAE]]           | Latent spaces and variational inference        | VAE (Face generation / Reconstruction)      |
 | [[/notes/lectures/mlp/10-gans\|(y-10) GANs]]                         | Generator vs. Discriminator                    | StyleGAN (Synthetic high-res faces)         |
-| [[/notes/lectures/mlp/11-rl\|(y-11) Reinforcement Learning]]        | Rewards, policies, Q-learning                  | Q-Learning / PPO (Game playing / Atari)     |
-| [[/notes/lectures/mlp/12-diffusion\|(y-12) Diffusion Models]]    | Denoising as generation                        | Stable Diffusion (Text-to-image generation) |
+| [[/notes/lectures/mlp/11-rl\|(y-11) Reinforcement Learning]]         | Rewards, policies, Q-learning                  | Q-Learning / PPO (Game playing / Atari)     |
+| [[/notes/lectures/mlp/12-diffusion\|(y-12) Diffusion Models]]        | Denoising as generation                        | Stable Diffusion (Text-to-image generation) |
 | [[/notes/lectures/mlp/13-xai\|(y-13) Explainable AI (XAI)]]          | Why did the model decide that?                 | Grad-CAM / SHAP (Debugging model bias)      |
 
 ---
@@ -65,13 +65,13 @@ Practical applications of theory to real-world technical problems.
 
 ## Quick Reference: Key Concepts
 
-| Concept           | Where It Appears                                                                                                                                                                |
-| :---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Backpropagation   | [[/notes/lectures/mlp/01-introduction\|L01]], [[/notes/lectures/mlp/02-cnn\|L02]]                                                                                               |
-| Attention         | [[/notes/lectures/mlp/05-transformer\|L05]], [[/notes/lectures/mlp/06-vit\|L06]], [[/notes/lectures/mlp/07-multimodal\|L07]]                                                    |
-| Latent Space      | [[/notes/lectures/mlp/09-vae\|L09]], [[/notes/lectures/mlp/10-gans\|L10]], [[/notes/lectures/mlp/12-diffusion\|L12]]                                                            |
-| Sequential Data   | [[/notes/lectures/mlp/04-rnn\|L04]], [[/notes/lectures/mlp/05-transformer\|L05]]                                                                                                |
-| Generative Models | [[/notes/lectures/mlp/09-vae\|L09]], [[/notes/lectures/mlp/10-gans\|L10]], [[/notes/lectures/mlp/12-diffusion\|L12]]                                                            |
+| Concept           | Where It Appears                                                                                                             |
+| :---------------- | :--------------------------------------------------------------------------------------------------------------------------- |
+| Backpropagation   | [[/notes/lectures/mlp/01-introduction\|L01]], [[/notes/lectures/mlp/02-cnn\|L02]]                                            |
+| Attention         | [[/notes/lectures/mlp/05-transformer\|L05]], [[/notes/lectures/mlp/06-vit\|L06]], [[/notes/lectures/mlp/07-multimodal\|L07]] |
+| Latent Space      | [[/notes/lectures/mlp/09-vae\|L09]], [[/notes/lectures/mlp/10-gans\|L10]], [[/notes/lectures/mlp/12-diffusion\|L12]]         |
+| Sequential Data   | [[/notes/lectures/mlp/04-rnn\|L04]], [[/notes/lectures/mlp/05-transformer\|L05]]                                             |
+| Generative Models | [[/notes/lectures/mlp/09-vae\|L09]], [[/notes/lectures/mlp/10-gans\|L10]], [[/notes/lectures/mlp/12-diffusion\|L12]]         |
 
 ---
 
