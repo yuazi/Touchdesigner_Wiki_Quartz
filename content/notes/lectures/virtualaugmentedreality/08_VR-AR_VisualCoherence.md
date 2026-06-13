@@ -8,7 +8,7 @@ tags:
 date: 2026-06-02
 ---
 
-[[/notes/lectures/virtualaugmentedreality/07_VR-AR_Calibration|Previous: (y-07) Calibration and Registration]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]]
+[[/notes/lectures/virtualaugmentedreality/07_VR-AR_Calibration|Previous: (y-07) Calibration and Registration]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/09_VR-AR_Perception|Next: (y-09) Perception and Psychology]]
 
 ## Mental Model First
 
@@ -530,4 +530,4 @@ Post-processing trades fidelity for cost. For interactive AR the cost wins and t
 
 ---
 
-[[/notes/lectures/virtualaugmentedreality/07_VR-AR_Calibration|Previous: (y-07) Calibration and Registration]] | [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]]
+[[/notes/lectures/virtualaugmentedreality/07_VR-AR_Calibration|Previous: (y-07) Calibration and Registration]] | [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/09_VR-AR_Perception|Next: (y-09) Perception and Psychology]]

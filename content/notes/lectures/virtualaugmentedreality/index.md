@@ -42,6 +42,9 @@ date: 2026-04-14
 - [[/notes/lectures/virtualaugmentedreality/08_VR-AR_VisualCoherence|(y-08) Visual Coherence]]  
    Occlusion (phantoms, edge refinement, probabilistic, depth, segmentation), illumination (environment maps, light probes, photometric registration), shadows (volumes, differential rendering, path tracing, photon mapping), reflections and refractions, diminished reality and stylized AR, and camera effects (lens distortion, vignetting, post-process emulation).
 
+- [[/notes/lectures/virtualaugmentedreality/09_VR-AR_Perception|(y-09) Perception and Psychology]]  
+   What perception is, why 2D graphical perception research does not transfer cleanly to 3D, depth and size underestimation, colour interference in AR and VR, visual attention and its limits (post-attentive amnesia, change and inattentional blindness), preattentive features and Feature Integration Theory, attention guidance in 2D and in AR/VR (added elements, blur, automatic locomotion, virtual actors, motion, dichoptic disparity), gestalt laws, and clinical applications of VR/AR psychology.
+
 ## Assessment Map
 
 | Component | Weight / Gate                         | Notes                                                                                    |
