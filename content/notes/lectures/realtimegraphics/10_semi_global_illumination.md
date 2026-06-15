@@ -12,7 +12,7 @@ tags:
 date: 2026-05-25
 ---
 
-[[notes/lectures/realtimegraphics/09_special_effects|Back: (y-09) Image-Space Special Effects]] | [[notes/lectures/realtimegraphics/index|RTG Index]]
+[[notes/lectures/realtimegraphics/09_special_effects|Back: (y-09) Image-Space Special Effects]] | [[notes/lectures/realtimegraphics/index|RTG Index]] | [[notes/lectures/realtimegraphics/11_global_illumination|Next: (y-11) Real-Time Global Illumination]]
 
 ## Mental Model First: Cheap Tricks for Light That Travels
 
@@ -492,4 +492,4 @@ In _Crysis_ this is used to give dynamic objects (which receive but do not contr
 
 ---
 
-[[notes/lectures/realtimegraphics/09_special_effects|Back: (y-09) Image-Space Special Effects]] | [[notes/lectures/realtimegraphics/index|RTG Index]]
+[[notes/lectures/realtimegraphics/09_special_effects|Back: (y-09) Image-Space Special Effects]] | [[notes/lectures/realtimegraphics/index|RTG Index]] | [[notes/lectures/realtimegraphics/11_global_illumination|Next: (y-11) Real-Time Global Illumination]]

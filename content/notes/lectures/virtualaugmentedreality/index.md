@@ -45,6 +45,9 @@ date: 2026-04-14
 - [[/notes/lectures/virtualaugmentedreality/09_VR-AR_Perception|(y-09) Perception and Psychology]]  
    What perception is, why 2D graphical perception research does not transfer cleanly to 3D, depth and size underestimation, colour interference in AR and VR, visual attention and its limits (post-attentive amnesia, change and inattentional blindness), preattentive features and Feature Integration Theory, attention guidance in 2D and in AR/VR (added elements, blur, automatic locomotion, virtual actors, motion, dichoptic disparity), gestalt laws, and clinical applications of VR/AR psychology.
 
+- [[/notes/lectures/virtualaugmentedreality/10_VR-AR_Adverse_Health_Effects|(y-10) Adverse Health Effects in VR]]  
+   VR sickness umbrella (motion, simulator, cybersickness), theories of motion sickness (sensory conflict, evolutionary, postural instability, rest frame, unified model), eye strain and accommodation-vergence conflict, readaptation, physical fatigue, fit and hygiene, injury, latency sources and compensation, system / application / individual factors, measurement (SSQ, postural stability, physiological), and design guidelines for reducing adverse effects.
+
 ## Assessment Map
 
 | Component | Weight / Gate                         | Notes                                                                                    |

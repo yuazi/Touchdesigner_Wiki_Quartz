@@ -9,7 +9,7 @@ tags:
 date: 2026-06-13
 ---
 
-[[/notes/lectures/virtualaugmentedreality/08_VR-AR_VisualCoherence|Previous: (y-08) Visual Coherence]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]]
+[[/notes/lectures/virtualaugmentedreality/08_VR-AR_VisualCoherence|Previous: (y-08) Visual Coherence]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/10_VR-AR_Adverse_Health_Effects|Next: (y-10) Adverse Health Effects]]
 
 ## Mental Model First
 
@@ -478,4 +478,4 @@ Third, VR and AR are not only display technologies but also psychological interv
 
 ---
 
-[[/notes/lectures/virtualaugmentedreality/08_VR-AR_VisualCoherence|Previous: (y-08) Visual Coherence]] | [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]]
+[[/notes/lectures/virtualaugmentedreality/08_VR-AR_VisualCoherence|Previous: (y-08) Visual Coherence]] | [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/10_VR-AR_Adverse_Health_Effects|Next: (y-10) Adverse Health Effects]]
