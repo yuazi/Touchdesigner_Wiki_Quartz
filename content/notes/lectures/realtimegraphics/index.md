@@ -22,6 +22,7 @@ date: 2026-04-14
 - [[notes/lectures/realtimegraphics/09_special_effects|(y-) 09_special_effects]]: Postprocessing pipeline, separable Gaussian, bloom, depth of field, bilateral filters, edge detection, anti-aliasing (SSAA/MSAA/MLAA/TAA), motion blur, lens flare, billboards, particle systems.
 - [[notes/lectures/realtimegraphics/10_semi_global_illumination|(y-) 10_semi_global_illumination]]: Semi-global illumination, shadow techniques, HDR, and realistic lighting.
 - [[notes/lectures/realtimegraphics/11_global_illumination|(y-) 11_global_illumination]]: Real-time global illumination, radiosity, photon mapping, instant radiosity, reflective shadow maps, illumination probes, PRT, hybrid caching.
+- [[notes/lectures/realtimegraphics/12_gpu_raytracing|(y-) 12_gpu_raytracing]]: GPU raytracing pipeline, RT cores, the five ray shader types, ray payload/attributes, hybrid rendering, raytraced shadows/AO/reflections, denoising.
 - **Rendering Acceleration**: Level of Detail (LOD) and visibility algorithms.
 - **Compute Shaders**: General-purpose computation on the GPU.
 

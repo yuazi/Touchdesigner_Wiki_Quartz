@@ -12,7 +12,7 @@ tags:
 date: 2026-06-16
 ---
 
-[[notes/lectures/realtimegraphics/10_semi_global_illumination|Back: (y-10) Semi-Global Illumination]] | [[notes/lectures/realtimegraphics/index|RTG Index]]
+[[notes/lectures/realtimegraphics/10_semi_global_illumination|Back: (y-10) Semi-Global Illumination]] | [[notes/lectures/realtimegraphics/index|RTG Index]] | [[notes/lectures/realtimegraphics/12_gpu_raytracing|Next: (y-12) GPU Raytracing]]
 
 ## Mental Model First: Caching Light, Not Tracing It
 
@@ -491,4 +491,4 @@ The arc of the field is from physically-motivated reference methods (path tracin
 
 ---
 
-[[notes/lectures/realtimegraphics/10_semi_global_illumination|Back: (y-10) Semi-Global Illumination]] | [[notes/lectures/realtimegraphics/index|RTG Index]]
+[[notes/lectures/realtimegraphics/10_semi_global_illumination|Back: (y-10) Semi-Global Illumination]] | [[notes/lectures/realtimegraphics/index|RTG Index]] | [[notes/lectures/realtimegraphics/12_gpu_raytracing|Next: (y-12) GPU Raytracing]]
