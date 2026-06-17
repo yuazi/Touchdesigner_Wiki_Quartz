@@ -61,7 +61,7 @@ Direct lighting only is mostly black on surfaces the light cannot see; indirect 
 
 <p class="image-caption">L11_Pg-07: Indirect shadows are non-local  -  a sheet that occludes the bounced light path between two surfaces casts a shadow that does not match any direct-light shadow.</p>
 
-Indirect shadows are subtle but important: when an occluder breaks the *bounced* light path between two surfaces, the indirect contribution disappears even though direct lighting is unchanged. Most of the methods in this lecture either approximate or ignore indirect shadows.
+Indirect shadows are subtle but important: when an occluder breaks the _bounced_ light path between two surfaces, the indirect contribution disappears even though direct lighting is unchanged. Most of the methods in this lecture either approximate or ignore indirect shadows.
 
 ---
 
@@ -124,7 +124,7 @@ Variants:
 
 Pros: no fundamental limits on realism, handles every transport type, mathematically straightforward. Cons: noisy, slow, and finding paths that connect camera and light through strong specular transport is hard.
 
-The point of the rest of the lecture is that everything else is a *cheap approximation* of path tracing.
+The point of the rest of the lecture is that everything else is a _cheap approximation_ of path tracing.
 
 ---
 
@@ -303,7 +303,7 @@ To reduce shading cost, each pixel uses only a random subset of VPLs (interleave
 
 <p class="image-caption">L11_Pg-57: A reflective shadow map (RSM) is a shadow map that also stores position, normal, and outgoing flux per pixel  -  each pixel becomes a small VPL.</p>
 
-A **reflective shadow map** restricts indirect lighting to one bounce from surfaces *visible to the light source*. Each pixel of the light's shadow map stores not just depth, but also position, normal, and flux. The shadow map becomes a flat array of VPLs, automatically distributed where the light hits.
+A **reflective shadow map** restricts indirect lighting to one bounce from surfaces _visible to the light source_. Each pixel of the light's shadow map stores not just depth, but also position, normal, and flux. The shadow map becomes a flat array of VPLs, automatically distributed where the light hits.
 
 ![[pictures/realtimegraphics/11/L11_Pg-58.jpg]]
 
@@ -410,7 +410,7 @@ The price is that the precomputation is per-object and per-pose, so PRT works be
 
 ## 💡 Intuition
 
-Every method in this lecture is the same question with a different answer: *what part of the rendering equation can I precompute and look up later, and where is the cache allowed to be stale?* Radiosity says diffuse irradiance everywhere, no specular ever. Photon mapping says photons in 3D, queried at render time. Instant radiosity says shadow maps for VPLs, possibly imperfect. RSMs say one-bounce light from the shadow map. Probes say sparse 5D cache (position plus direction) interpolated for smoothness. PRT says per-vertex directional transfer cached as SH. The art is choosing which axis (position, direction, time) to coarsen, and trusting that the human visual system will not notice.
+Every method in this lecture is the same question with a different answer: _what part of the rendering equation can I precompute and look up later, and where is the cache allowed to be stale?_ Radiosity says diffuse irradiance everywhere, no specular ever. Photon mapping says photons in 3D, queried at render time. Instant radiosity says shadow maps for VPLs, possibly imperfect. RSMs say one-bounce light from the shadow map. Probes say sparse 5D cache (position plus direction) interpolated for smoothness. PRT says per-vertex directional transfer cached as SH. The art is choosing which axis (position, direction, time) to coarsen, and trusting that the human visual system will not notice.
 
 ## 🧠 Deep Dive
 
@@ -422,7 +422,7 @@ Second, **the topology of the cache**. Radiosity caches in surface space (light 
 
 Third, **the temporal budget**. Truly real-time methods (RSM, screen probes) can afford only per-pixel temporal accumulation. World probes can amortise over many frames if the scene is semi-static. PRT and radiosity precompute offline and ship the result with the scene. Lumen's tiered cache is what happens when you take this seriously and split lighting latency by distance: nearby light updates fast, far light updates slowly, and the user does not notice because they are looking at nearby light.
 
-The arc of the field is from physically-motivated reference methods (path tracing, photon mapping, radiosity) towards engineered cache hierarchies (Lumen) that abandon physical exactness for frame budget. The exam-relevant point is that knowing *what each method gives up* is more important than memorising the equations.
+The arc of the field is from physically-motivated reference methods (path tracing, photon mapping, radiosity) towards engineered cache hierarchies (Lumen) that abandon physical exactness for frame budget. The exam-relevant point is that knowing _what each method gives up_ is more important than memorising the equations.
 
 ### Applied Exam Focus
 
@@ -477,7 +477,7 @@ The arc of the field is from physically-motivated reference methods (path tracin
 8. PRT precomputes per-vertex SH coefficients. What does this buy that probes do not?
 
 > [!success]- Answer
-> Probes are sparse in space, so they cannot capture the directional visibility from inside a teapot handle or from a deep crevice. PRT precomputes, per vertex, the cosine-weighted directional visibility (and optionally interreflections within the object) as SH coefficients. At runtime the lighting environment is also projected onto SH, and shading reduces to a per-vertex dot product. This captures self-occlusion and bounced light *inside* the object, which probes cannot. The price is that the precomputation is per-object and per-pose, so PRT is for static geometry under dynamic environment lighting (skybox, time of day, animated environment map).
+> Probes are sparse in space, so they cannot capture the directional visibility from inside a teapot handle or from a deep crevice. PRT precomputes, per vertex, the cosine-weighted directional visibility (and optionally interreflections within the object) as SH coefficients. At runtime the lighting environment is also projected onto SH, and shading reduces to a per-vertex dot product. This captures self-occlusion and bounced light _inside_ the object, which probes cannot. The price is that the precomputation is per-object and per-pose, so PRT is for static geometry under dynamic environment lighting (skybox, time of day, animated environment map).
 
 9. The "hybrid caching by distance" diagram (Lumen) splits lighting latency by distance. Why is this a defensible perceptual trade-off?
 
@@ -487,7 +487,7 @@ The arc of the field is from physically-motivated reference methods (path tracin
 10. The rendering equation includes a recursive $L$ on its right-hand side. How does each method in the lecture handle this recursion?
 
 > [!success]- Answer
-> Path tracing handles it directly via Monte Carlo, terminating with Russian roulette. Radiosity truncates the recursion into a finite linear system by discretising into patches and assuming purely diffuse transport. Photon mapping discretises the *photons* themselves as particles whose positions and weights encode the recursive transport, and queries them at render time. Instant radiosity and RSM truncate at one bounce by snapshotting the recursion as a swarm of VPLs. World-space probes can capture multiple bounces over time because each probe's update samples its neighbours, so the recursion runs across frames rather than within a frame. PRT factors out the recursion entirely by precomputing the integrated transfer function offline, so at runtime only the dot product with the current environment lighting is needed.
+> Path tracing handles it directly via Monte Carlo, terminating with Russian roulette. Radiosity truncates the recursion into a finite linear system by discretising into patches and assuming purely diffuse transport. Photon mapping discretises the _photons_ themselves as particles whose positions and weights encode the recursive transport, and queries them at render time. Instant radiosity and RSM truncate at one bounce by snapshotting the recursion as a swarm of VPLs. World-space probes can capture multiple bounces over time because each probe's update samples its neighbours, so the recursion runs across frames rather than within a frame. PRT factors out the recursion entirely by precomputing the integrated transfer function offline, so at runtime only the dot product with the current environment lighting is needed.
 
 ---
 
