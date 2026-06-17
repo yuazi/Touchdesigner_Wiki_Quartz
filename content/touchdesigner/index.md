@@ -98,4 +98,22 @@ Practical examples and projects categorized by difficulty.
 
 ---
 
+## (y8) Trending: Gallery-Grade 2026
+
+Ten installation-quality projects on what is trending right now: real-time AI (live diffusion, Gaussian splats, AI depth) and camera-only MediaPipe interaction.
+
+- **[[touchdesigner/08_Trending_2026/index|(y8) Trending 2026 Index]]**: Chapter hub for the ten projects.
+- **[[touchdesigner/08_Trending_2026/Live AI Painting with TouchDiffusion|(y-) Live AI Painting with TouchDiffusion]]**: Real-time Stable Diffusion repaint of any input.
+- **[[touchdesigner/08_Trending_2026/ControlNet Pose to Art|(y-) ControlNet Pose-to-Art]]**: AI artwork that forms around your live body pose.
+- **[[touchdesigner/08_Trending_2026/Gaussian Splatting Scenes|(y-) Gaussian Splatting Scenes]]**: Photoreal volumetric flythroughs from a phone capture.
+- **[[touchdesigner/08_Trending_2026/Depth Anything Parallax Portraits|(y-) Depth Anything Parallax Portraits]]**: Turn a flat photo into a living 2.5D scene with AI depth.
+- **[[touchdesigner/08_Trending_2026/Interactive Portrait Wall|(y-) Interactive Portrait Wall]]**: A portrait that dissolves into particles as you approach.
+- **[[touchdesigner/08_Trending_2026/Air Drawing Light Painting|(y-) Air-Drawing Light Painting]]**: Pinch in the air to paint glowing ribbons of light.
+- **[[touchdesigner/08_Trending_2026/Holistic Magic Mirror|(y-) Holistic Magic Mirror]]**: Face, hands, and body tracked at once for a responsive mirror.
+- **[[touchdesigner/08_Trending_2026/Reaction Diffusion Living Canvas|(y-) Reaction-Diffusion Living Canvas]]**: A GLSL system that grows organic textures forever.
+- **[[touchdesigner/08_Trending_2026/Volumetric Audio Nebula|(y-) Volumetric Audio Nebula]]**: A glowing 3D point cloud that breathes with music.
+- **[[touchdesigner/08_Trending_2026/Projection Mapped Memory Garden|(y-) Projection-Mapped Memory Garden]]**: Flowers bloom on a real wall when someone walks up.
+
+---
+
 [[/index|(y) Return to Home]]
