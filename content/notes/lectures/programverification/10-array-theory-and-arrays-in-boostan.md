@@ -11,11 +11,11 @@ date: 2026-05-26
 
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/09-ultimate-referee|Previous: (y-09) Ultimate Referee]] | [[/notes/lectures/programverification/11-nondeterminism-havoc-assume|Next: (y-11) Nondeterminism: Havoc and Assume]]
 
-The 2026 deck covers this material as §9 Arrays (pp 244-271). The $T_A$ axioms also appear in [[/notes/lectures/programverification/04-first-order-theories|§4 First-Order Theories]] for reference.
+The 2026 deck covers this material as the Arrays section (pp 246-272). The $T_{arr}$ axioms also appear in [[/notes/lectures/programverification/04-first-order-theories|§4 First-Order Theories]] for reference.
 
 ## Mental Model for Arrays
 
-![[pictures/programverification/04/Lecture04_Pg114_Theory_Of_Arrays_T_A.png]]
+![[pictures/programverification/10/Lecture10_Pg254_Arrays_As_Maps.png]]
 
 - **Arrays as Maps**: In formal verification, an array is not a block of memory; it is a **Function** (or Map) from indices to values.
 - **Select and Store**: We interact with this map using two operations: `select(a, i)` (reading) and `store(a, i, v)` (writing).
@@ -24,7 +24,7 @@ The 2026 deck covers this material as §9 Arrays (pp 244-271). The $T_A$ axioms 
 
 ## The SMT Theory of Arrays ($T_{arr}$)
 
-![[pictures/programverification/09/Lecture09_Pg250_The_Smt_Theory_Of_Arrays_T.png]]
+![[pictures/programverification/10/Lecture10_Pg259_Theory_Of_Arrays_Tarr.png]]
 
 The signature $\Sigma_{arr}$ includes $\{ \text{select, store, } = \}$.
 
@@ -41,18 +41,20 @@ The signature $\Sigma_{arr}$ includes $\{ \text{select, store, } = \}$.
 
 ## Arrays in Boostan
 
-![[pictures/programverification/09/Lecture09_Pg267_Arrays_In_Boostan.png]]
+![[pictures/programverification/10/Lecture10_Pg268_Arrays_In_Boostan.png]]
 
 We extend Boostan to support array assignments like `a[i] := expr`.
 
 ### 1. Syntax Extension
+
+![[pictures/programverification/10/Lecture10_Pg269_Grammar_With_Array_Assignment.png]]
 
 - **Left-hand side (LHS)**: Can now be a variable `x` or an array access `a[i]`.
 - **Grammar**: $X_{lhs} \to X_{var} \mid X_{var}[X_{expr}]$.
 
 ### 2. Relational Semantics
 
-![[pictures/programverification/09/Lecture09_Pg299_2_Relational_Semantics.png]]
+![[pictures/programverification/10/Lecture10_Pg270_Semantics_Of_Array_Assignment.png]]
 
 The relation for `a[i] := expr` is defined by:
 
@@ -67,7 +69,7 @@ We add a new rule to the Hoare Proof System to handle array updates:
 
 ### Array Assignment Axiom (arrassig)
 
-![[pictures/programverification/13/Lecture13_Pg270_1_Assignment_X_Expr.png]]
+![[pictures/programverification/10/Lecture10_Pg271_Array_Assignment_Axiom.png]]
 
 The formal rule is:
 $$\{ \phi[a \mapsto \text{store}(a, i, \text{expr})] \} \ a[i] := \text{expr} \ \{ \phi \}$$

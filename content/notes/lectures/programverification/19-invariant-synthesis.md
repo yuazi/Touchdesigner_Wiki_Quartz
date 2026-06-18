@@ -51,7 +51,7 @@ $$\forall \vec{x}. \ (\phi \wedge P_1(\vec{x}_1) \wedge \dots \wedge P_n(\vec{x}
 
 ### Example: Horn Clauses for a Loop
 
-![[pictures/programverification/07/Lecture07_Pg497_Semantics_Of_Loops_While_B_St.png]]
+![[pictures/programverification/07/Lecture07_Pg193_Semantics_Of_While.png]]
 
 For a loop `while B { body }`, the requirements are encoded as:
 

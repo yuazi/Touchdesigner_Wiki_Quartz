@@ -5,14 +5,14 @@ tags:
   - cfg
   - boostan
   - formal-methods
-date: 2025-06-04
+date: 2026-06-16
 ---
 
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/11-nondeterminism-havoc-assume|Previous: (y-11) Nondeterminism: Havoc and Assume]] | [[/notes/lectures/programverification/13-predicate-transformers|Next: (y-13) Predicate Transformers]]
 
 ## Mental Model for Control-Flow Graphs (CFGs)
 
-![[pictures/programverification/11/Lecture11_Pg390_Mental_Model_For_Control_Flow_Graphs.png]]
+![[pictures/programverification/12/Lecture12_Pg302_Example_Control_Flow_Graph.png]]
 
 - **Flattening Code**: Real programs have nested structure (`if` inside `while` inside `if`). A **CFG** flattens this into a simple directed graph of locations and transitions.
 - **Edges are Statements**: Every edge in the graph represents a single "primitive" operation (Assignment, Havoc, or Assume).
@@ -20,6 +20,8 @@ date: 2025-06-04
 - **Verification Ready**: Most automated tools (like Ultimate Automizer) convert code into a CFG before applying any verification algorithms.
 
 ## Formal Definition of a CFG
+
+![[pictures/programverification/12/Lecture12_Pg304_Definition_Control_Flow_Graph.png]]
 
 A Control-Flow Graph is a tuple $G = (Loc, \Delta, \ell_{\text{init}}, \ell_{\text{ex}})$ where:
 
@@ -30,10 +32,7 @@ A Control-Flow Graph is a tuple $G = (Loc, \Delta, \ell_{\text{init}}, \ell_{\te
 
 ### Types of Transition Statements
 
-![[pictures/programverification/12/Lecture12_Pg221_1_Assignment_X_Expr.png]]
-![[pictures/programverification/12/Lecture12_Pg284_2_Havoc_Havoc_X.png]]
-![[pictures/programverification/12/Lecture12_Pg339_Strongest_Postcondition_Sp.png]]
-![[pictures/programverification/12/Lecture12_Pg341_Strongest_Postcondition_Sp.png]]
+![[pictures/programverification/12/Lecture12_Pg305_Cfg_For_Simple_Statements.png]]
 
 1.  **Assignments**: `x := expr` or `a[i] := expr`.
 2.  **Havoc**: `havoc x`.
@@ -47,14 +46,14 @@ Complex control structures are "desugared" into Assume statements and graph edge
 
 ### 1. If-Then-Else
 
-![[pictures/programverification/11/Lecture11_Pg189_1_If_Then_Else.png]]
-
 An `if (B) {st1} else {st2}` statement starting at $\ell_{\text{in}}$ and ending at $\ell_{\text{out}}$ becomes:
 
 - **True Branch**: An edge $(\ell_{\text{in}}, \text{assume } B, \ell_{1})$ where $\ell_{1}$ is the start of $st_1$.
 - **False Branch**: An edge $(\ell_{\text{in}}, \text{assume } \neg B, \ell_{2})$ where $\ell_{2}$ is the start of $st_2$.
 
 ### 2. While Loops
+
+![[pictures/programverification/12/Lecture12_Pg309_Cfg_For_While.png]]
 
 A `while (B) {st}` loop starting at $\ell_{\text{loop}}$ (the loop head) becomes:
 
@@ -76,6 +75,8 @@ To verify correctness, `assert P` is translated using a special **Error Location
 ---
 
 ## Program Executions and Correctness
+
+![[pictures/programverification/12/Lecture12_Pg314_Example_Execution.png]]
 
 An **Execution** is a sequence of states $(s_0, s_1, \dots, s_n)$ that follows a path of transitions $(\ell_0, \text{st}_1, \ell_1, \dots, \text{st}_n, \ell_n)$ in the graph.
 

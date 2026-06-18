@@ -13,6 +13,8 @@ date: 2026-05-28
 
 ## Mental Model for Nondeterminism
 
+![[pictures/programverification/11/Lecture11_Pg280_Nondeterminism_Input.png]]
+
 - **Beyond Predictability**: Real programs interact with the world (users, networks, hardware). We can't predict what a user will type, so we model it as **Nondeterminism**.
 - **Havoc**: The `havoc x` statement is like a "chaos" command. It tells the verifier: "From this point on, $x$ could be absolutely _anything_."
 - **Assume**: The `assume P` statement is a filter. It tells the verifier: "Throw away any execution where $P$ is false. Only focus on the worlds where $P$ holds."
@@ -23,6 +25,8 @@ date: 2026-05-28
 In standard programming, we use `scanf` or `read()`. In verification, we use `havoc`.
 
 ### The `havoc x` Statement
+
+![[pictures/programverification/11/Lecture11_Pg285_Semantics_Of_Havoc.png]]
 
 - **Meaning**: Assign an arbitrary value to $x$ from its domain.
 - **Relational Semantics**:
@@ -38,7 +42,7 @@ An `assume P` statement is NOT a check; it is a **constraint** on the verifier.
 
 ### Relational Semantics of `assume P`
 
-![[pictures/programverification/10/Lecture10_Pg290_The_Assume_Statement.png]]
+![[pictures/programverification/11/Lecture11_Pg292_Semantics_Of_Assume.png]]
 
 - **Partial Identity Relation**: $[[\text{assume P}]] = \{ (s, s) \mid s \in \text{States and } s \models P \}$.
 - The relation is a subset of the **Identity Relation**.
@@ -54,7 +58,7 @@ An `assume P` statement is NOT a check; it is a **constraint** on the verifier.
 
 ## Modeling "User Input" (Havoc + Assume)
 
-![[pictures/programverification/10/Lecture10_Pg278_Modeling_User_Input_Havoc_Assume.png]]
+![[pictures/programverification/11/Lecture11_Pg289_Modelling_Input_With_Assume.png]]
 
 To model a C statement like `x = read_positive_int()`, where the user provides an input we don't control, we use the following pattern in Boogie/Boostan:
 

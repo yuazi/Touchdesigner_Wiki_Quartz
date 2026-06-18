@@ -6,12 +6,14 @@ tags:
   - wp
   - sp
   - formal-methods
-date: 2025-06-15
+date: 2026-06-16
 ---
 
 [[/notes/lectures/programverification/index|Back to Program Verification Index]] | [[/notes/lectures/programverification/12-control-flow-graphs|Previous: (y-12) Control-Flow Graphs]] | [[/notes/lectures/programverification/14-bmc|Next: (y-14) Bounded Model Checking]]
 
 ## Mental Model for Predicate Transformers
+
+![[pictures/programverification/13/Lecture13_Pg339_Strongest_Post_Along_Cfg.png]]
 
 - **Automated Reasoning**: Hoare Logic is great for humans, but machines need something more mechanical. **Predicate Transformers** are functions that take a formula and a statement and "transform" it into a new formula.
 - **Strongest Postcondition ($sp$)**: Moving **forward**. If $\phi$ is true _before_ $S$, what is the most specific thing we can say is true _after_ $S$?
@@ -20,16 +22,13 @@ date: 2025-06-15
 
 ## Strongest Postcondition ($sp$)
 
-<!-- Review Needed: close slide match for 'Strongest Postcondition ($sp$)' (p339: 0.485, p341: 0.477) -->
-
-![[pictures/programverification/12/Lecture12_Pg339_Strongest_Postcondition_Sp.png]]
-![[pictures/programverification/12/Lecture12_Pg341_Strongest_Postcondition_Sp.png]]
+![[pictures/programverification/13/Lecture13_Pg343_Definition_Strongest_Postcondition.png]]
 
 $sp(\phi, S)$ calculates the set of all states reachable from $\phi$ by executing $S$.
 
 ### 1. Assignment: `x := expr`
 
-![[pictures/programverification/12/Lecture12_Pg221_1_Assignment_X_Expr.png]]
+![[pictures/programverification/13/Lecture13_Pg356_Sp_Of_Assignment.png]]
 
 $$sp(\phi, x := e) \equiv \exists x_{\text{old}}. \phi[x \mapsto x_{\text{old}}] \wedge x = e[x \mapsto x_{\text{old}}]$$
 
@@ -37,13 +36,15 @@ $$sp(\phi, x := e) \equiv \exists x_{\text{old}}. \phi[x \mapsto x_{\text{old}}]
 
 ### 2. Havoc: `havoc x`
 
-![[pictures/programverification/12/Lecture12_Pg284_2_Havoc_Havoc_X.png]]
+![[pictures/programverification/13/Lecture13_Pg357_Sp_Of_Havoc.png]]
 
 $$sp(\phi, \text{havoc } x) \equiv \exists x_{\text{old}}. \phi[x \mapsto x_{\text{old}}]$$
 
 - _Intuition_: We lose all specific information about $x$, but everything else in $\phi$ remains true.
 
 ### 3. Assume: `assume P`
+
+![[pictures/programverification/13/Lecture13_Pg358_Sp_Of_Assume.png]]
 
 $$sp(\phi, \text{assume } P) \equiv \phi \wedge P$$
 
@@ -56,8 +57,6 @@ $$sp(\phi, \text{assume } P) \equiv \phi \wedge P$$
 $wp(S, \psi)$ calculates the "least restrictive" condition required to guarantee $\psi$ after $S$.
 
 ### 1. Assignment: `x := expr`
-
-![[pictures/programverification/13/Lecture13_Pg270_1_Assignment_X_Expr.png]]
 
 $$wp(x := e, \psi) \equiv \psi[x \mapsto e]$$
 
@@ -72,6 +71,8 @@ $$wp(\text{assume } P, \psi) \equiv P \to \psi$$
 ---
 
 ## The Problem of Quantifiers
+
+![[pictures/programverification/13/Lecture13_Pg351_Destructive_Equality_Resolution.png]]
 
 When we compute $sp$ forward, we often end up with many existential quantifiers ($\exists \hat{x}$).
 
