@@ -1,5 +1,7 @@
 ---
 title: (y) TouchDesigner Wiki
+tags:
+  - touchdesigner
 date: 2026-02-01
 ---
 
