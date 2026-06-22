@@ -15,6 +15,7 @@ The ten projects that are lighting up galleries, festivals, and Instagram feeds 
 > Every recipe here is built to look finished on a big screen or projector. Pick one, swap in a photo or song that means something to the two of you, and you have an installation-quality piece in an evening.
 
 > [!info] What you'll need
+>
 > - TouchDesigner 2025+ (any build with the **POP** family).
 > - The **MediaPipe TouchDesigner plugin** by Torin Blankensmith: [download here](https://github.com/torinmb/mediapipe-touchdesigner/releases).
 > - For the AI recipes: an NVIDIA GPU (RTX 20-series or newer) and the **TouchDiffusion** plugin by olegchomp: [download here](https://github.com/olegchomp/TouchDiffusion).

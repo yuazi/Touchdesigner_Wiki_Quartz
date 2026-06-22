@@ -23,9 +23,9 @@ This is the single most important concept in TouchDesigner. Operators only **coo
 
 Wires don't push data, they expose it. The destination pulls. See [[touchdesigner/04_Scripting_and_Architecture/Cooking|Cooking]] for the full mechanic.
 
-## The Six Operator Families
+## The Seven Operator Families
 
-Every operator belongs to one of six families. They generally only wire to siblings of the same family. Cross-family bridges happen through dedicated converter ops (e.g. `CHOP to DAT`, `TOP to CHOP`).
+Every operator belongs to one of seven families (the classic six plus **POP**, the newer GPU point family). They generally only wire to siblings of the same family. Cross-family bridges happen through dedicated converter ops (e.g. `CHOP to DAT`, `TOP to CHOP`).
 
 | Family   | Stands for        | What it handles                                                                                                                        |
 | -------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------- |

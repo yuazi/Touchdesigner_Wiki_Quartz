@@ -13,6 +13,7 @@ date: 2026-06-18
 **3D Gaussian Splatting (3DGS)** is the volumetric capture format that took over from NeRFs. You film a place with your phone, train a `.ply` of millions of fuzzy coloured "splats," and get a photoreal 3D scene you can fly a camera through. In 2026 there are TouchDesigner renderers that play these splats live, which means you can take the cafe where you had your first date and turn it into a slow, dreamy flythrough.
 
 > [!info] Before You Start
+>
 > - Capture and train a splat first. The easy path is a phone app like **Polycam** or **Luma**, or the desktop trainer **Postshot**, exporting a `.ply`.
 > - Grab a TD splat renderer. Community options include the **TD Gaussian Splatting** GLSL components on GitHub and Olib. Search "gaussian splatting" on [Olib](https://olib.amb-service.net/).
 
@@ -76,12 +77,12 @@ This is where it becomes cinematic.
 
 ## Parameter Tuning & Behavior
 
-| Parameter          | Behavior                                                                  |
-| :----------------- | :------------------------------------------------------------------------ |
-| **Splat scale**     | Higher = softer, more painterly; Lower = sharper but more gaps show.      |
-| **Camera speed**    | Slower = cinematic and photoreal; Faster = reveals the fuzzy artefacts.   |
-| **Depth of field**  | Stronger = dreamy focus pull; Weaker = everything crisp.                  |
-| **Splat count**     | Higher = more detail and cost; Lower = faster but holes appear.           |
+| Parameter          | Behavior                                                                |
+| :----------------- | :---------------------------------------------------------------------- |
+| **Splat scale**    | Higher = softer, more painterly; Lower = sharper but more gaps show.    |
+| **Camera speed**   | Slower = cinematic and photoreal; Faster = reveals the fuzzy artefacts. |
+| **Depth of field** | Stronger = dreamy focus pull; Weaker = everything crisp.                |
+| **Splat count**    | Higher = more detail and cost; Lower = faster but holes appear.         |
 
 ## Network Architecture
 

@@ -14,6 +14,7 @@ date: 2026-06-18
 Ink-in-water smoke that swirls along the motion in a video, hypnotic, endlessly looped, very save-able. It works by reading **optical flow** (which direction each pixel is moving) from footage or a webcam, then pushing particles along that flow. Move, and smoke trails follow you.
 
 > [!info] Watch the trend
+>
 > - [Creating Smoky Particle Feedback Effects in TouchDesigner](https://www.classcentral.com/course/youtube-smoky-particle-feedback-fx-in-touchdesigner-344208)
 > - [Video to move particles with Optical Flow + ParticlesGPU (AllTouchDesigner)](https://alltd.org/touchdesigner-using-video-to-move-particles-with-optical-flow-and-particlesgpu/)
 >
@@ -76,12 +77,12 @@ Start with A: it is fewer nodes and reads as smoke immediately.
 
 ## Parameter Tuning & Behavior
 
-| Parameter          | Behavior                                                              |
-| :----------------- | :------------------------------------------------------------------- |
-| **Flow strength**   | Higher = violent swirls; Lower = lazy drifting smoke.                |
-| **Density fade**    | Closer to 1 = thick lingering smoke; Lower = wispy, quick-clearing.  |
-| **Feedback zoom**   | Higher = fast rising/expanding; Lower = settled, hovering.           |
-| **Input blur**      | Higher = smooth elegant flow; Lower = detailed but jittery.          |
+| Parameter         | Behavior                                                            |
+| :---------------- | :------------------------------------------------------------------ |
+| **Flow strength** | Higher = violent swirls; Lower = lazy drifting smoke.               |
+| **Density fade**  | Closer to 1 = thick lingering smoke; Lower = wispy, quick-clearing. |
+| **Feedback zoom** | Higher = fast rising/expanding; Lower = settled, hovering.          |
+| **Input blur**    | Higher = smooth elegant flow; Lower = detailed but jittery.         |
 
 ## Network Architecture
 

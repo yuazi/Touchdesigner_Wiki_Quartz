@@ -13,6 +13,7 @@ date: 2026-06-18
 **Depth Anything v2** is the AI model that estimates a depth map from a single flat photo, no depth camera needed. In 2026 it ships as a drop-in TouchDesigner `.tox`, which means you can take one ordinary photo of someone, generate its depth, and turn it into a living 2.5D scene where the camera drifts and the subject separates from the background. It is the most "wow per minute" recipe in this chapter.
 
 > [!info] Before You Start
+>
 > - Grab a depth plugin. The popular one is **TDDepthAnything** by olegchomp: [GitHub](https://github.com/olegchomp/TDDepthAnything) (a drop-in `.tox` that turns any TOP into a real-time depth map). There is also **TDDepthAnythingRT** by jetXS for a TensorRT path.
 > - On Apple Silicon, prefer a build that runs the model on CPU/MPS, or use a pre-baked depth map exported from a desktop tool. The TouchDesigner displacement steps are GPU and run anywhere.
 
@@ -80,12 +81,12 @@ This subtle camera drift is what sells the illusion.
 
 ## Parameter Tuning & Behavior
 
-| Parameter           | Behavior                                                                    |
-| :------------------ | :-------------------------------------------------------------------------- |
-| **Displace amount**  | Higher = dramatic 3D pop but more edge tearing; Lower = subtle, clean.       |
-| **Depth blur**       | Higher = smooth surfaces; Lower = crisp but spiky.                          |
-| **Camera sway**      | Larger = strong parallax but reveals gaps; Smaller = gentle, believable.     |
-| **Grid resolution**  | Higher = smoother displacement; Lower = faceted, lower-poly look.            |
+| Parameter           | Behavior                                                                 |
+| :------------------ | :----------------------------------------------------------------------- |
+| **Displace amount** | Higher = dramatic 3D pop but more edge tearing; Lower = subtle, clean.   |
+| **Depth blur**      | Higher = smooth surfaces; Lower = crisp but spiky.                       |
+| **Camera sway**     | Larger = strong parallax but reveals gaps; Smaller = gentle, believable. |
+| **Grid resolution** | Higher = smoother displacement; Lower = faceted, lower-poly look.        |
 
 ## Network Architecture
 

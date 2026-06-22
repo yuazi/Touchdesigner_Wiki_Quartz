@@ -13,6 +13,7 @@ date: 2026-06-18
 A slow, glowing cloud of thousands of points, drifting in 3D space and breathing with the music: bass pushes the cloud outward, highs make it sparkle. It is the perfect ambient loop for a date night, a quiet gallery room, or a screen behind a couch. Built on the GPU **POP** family so it stays smooth at high point counts.
 
 > [!info] Before You Start
+>
 > - Helpful background: [[touchdesigner/02_The_Operators/POPs/index|POPs]] and [[touchdesigner/05_Connectivity_and_Shaders/Audio Reactivity|Audio Reactivity]].
 > - Any audio source works: a track on disk, system audio, or a microphone.
 
@@ -71,12 +72,12 @@ A slow, glowing cloud of thousands of points, drifting in 3D space and breathing
 
 ## Parameter Tuning & Behavior
 
-| Parameter          | Behavior                                                                    |
-| :----------------- | :-------------------------------------------------------------------------- |
-| **Bass → radius**   | Higher = dramatic inhale/exhale; Lower = subtle pulse.                      |
-| **Bass lag**        | Slower = smooth swelling; Faster = punchy, percussive.                      |
-| **High → sparkle**  | Higher = glittery and busy; Lower = calm and ambient.                       |
-| **Point count**     | Higher = dense, luminous nebula; Lower = sparse, starry.                    |
+| Parameter          | Behavior                                                 |
+| :----------------- | :------------------------------------------------------- |
+| **Bass → radius**  | Higher = dramatic inhale/exhale; Lower = subtle pulse.   |
+| **Bass lag**       | Slower = smooth swelling; Faster = punchy, percussive.   |
+| **High → sparkle** | Higher = glittery and busy; Lower = calm and ambient.    |
+| **Point count**    | Higher = dense, luminous nebula; Lower = sparse, starry. |
 
 ## Network Architecture
 

@@ -13,6 +13,7 @@ date: 2026-06-18
 Pinch your thumb and index finger together in the air and paint a glowing ribbon of light that hangs in space and slowly fades. Open your fingers to stop. This is the single most reliable crowd-pleaser in interactive art: people understand it in two seconds and immediately start signing their names in light. It runs on a webcam and the **MediaPipe** hand model.
 
 > [!info] Before You Start
+>
 > - You need the **MediaPipe TouchDesigner plugin**: [download here](https://github.com/torinmb/mediapipe-touchdesigner/releases).
 > - MediaPipe gives 21 keypoints per hand. We mainly use the thumb tip, index tip, and index knuckle.
 
@@ -77,12 +78,12 @@ See [[touchdesigner/03_Rendering_and_Output/Feedback Loops|Feedback Loops]] for 
 
 ## Parameter Tuning & Behavior
 
-| Parameter            | Behavior                                                                  |
-| :------------------- | :------------------------------------------------------------------------ |
-| **Pinch threshold**   | Lower = needs a tight pinch (fewer accidents); Higher = easy but messy.    |
-| **Feedback multiply** | Closer to 1 = long-lasting trails; Lower = quick-fading strokes.           |
-| **Brush size**        | Larger = bold marker; Smaller = fine pen.                                  |
-| **Position lag**      | Higher = smooth, flowing lines; Lower = responsive but jittery.            |
+| Parameter             | Behavior                                                                |
+| :-------------------- | :---------------------------------------------------------------------- |
+| **Pinch threshold**   | Lower = needs a tight pinch (fewer accidents); Higher = easy but messy. |
+| **Feedback multiply** | Closer to 1 = long-lasting trails; Lower = quick-fading strokes.        |
+| **Brush size**        | Larger = bold marker; Smaller = fine pen.                               |
+| **Position lag**      | Higher = smooth, flowing lines; Lower = responsive but jittery.         |
 
 ## Network Architecture
 

@@ -13,6 +13,7 @@ date: 2026-06-18
 This is the technique everyone is posting in 2026: feed any image, webcam, or generative network into a **real-time Stable Diffusion** model and watch TouchDesigner repaint it 15 to 30 times a second. Wave your hand and it becomes brushstrokes of flowers. Point the camera at your face and it becomes an oil painting that moves when you do.
 
 > [!info] Before You Start
+>
 > - You need an **NVIDIA GPU** (RTX 2060 or newer; the more VRAM the better).
 > - Download the **TouchDiffusion** plugin by olegchomp: [GitHub releases](https://github.com/olegchomp/TouchDiffusion).
 > - This plugin wraps **StreamDiffusion**, a pipeline tuned for low-latency, frame-by-frame generation.
@@ -86,12 +87,12 @@ Swap the webcam for something personal:
 
 ## Parameter Tuning & Behavior
 
-| Parameter           | Behavior                                                                       |
-| :------------------ | :----------------------------------------------------------------------------- |
+| Parameter              | Behavior                                                                         |
+| :--------------------- | :------------------------------------------------------------------------------- |
 | **Strength / Denoise** | Higher = AI dominates and ignores your input; Lower = your webcam shows through. |
-| **Steps**           | Higher = more detail but slower; Lower = faster, looser, more painterly.        |
-| **Seed**            | Fixed = consistent style frame to frame; Random = ever-shifting look.           |
-| **Prompt weight**   | Higher = literal interpretation; Lower = loose, dreamy abstraction.             |
+| **Steps**              | Higher = more detail but slower; Lower = faster, looser, more painterly.         |
+| **Seed**               | Fixed = consistent style frame to frame; Random = ever-shifting look.            |
+| **Prompt weight**      | Higher = literal interpretation; Lower = loose, dreamy abstraction.              |
 
 ## Network Architecture
 

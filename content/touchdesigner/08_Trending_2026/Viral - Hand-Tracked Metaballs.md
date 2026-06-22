@@ -14,6 +14,7 @@ date: 2026-06-18
 Wave your hand and glowing blobs gather at your fingertips, merging and splitting like mercury. The "viral blob" effect, driven by MediaPipe hand tracking. It reads instantly on camera, which is exactly why it spreads.
 
 > [!info] Watch the trend
+>
 > - [Interactive Particles & Metaballs in TouchDesigner (YouTube)](https://www.youtube.com/watch?v=FAYpBUBDonY)
 > - [Hand-Tracked Interactive Orbit Gallery, Apr 2026 (YouTube)](https://www.youtube.com/watch?v=9WL-sOtpAXI)
 >
@@ -69,12 +70,12 @@ A metaball is a soft field around a point. Where two fields overlap, they fuse i
 
 ## Parameter Tuning & Behavior
 
-| Parameter         | Behavior                                                              |
-| :---------------- | :------------------------------------------------------------------- |
-| **Field radius**   | Larger = blobs merge eagerly; Smaller = stay as separate dots.       |
-| **Threshold**      | Higher = small tight blobs; Lower = big gooey mass.                  |
-| **Fingertip lag**  | Higher = slow, liquid follow; Lower = snappy and responsive.         |
-| **Bloom / rim**    | Higher = glowing chrome; Lower = matte, subtle.                      |
+| Parameter         | Behavior                                                       |
+| :---------------- | :------------------------------------------------------------- |
+| **Field radius**  | Larger = blobs merge eagerly; Smaller = stay as separate dots. |
+| **Threshold**     | Higher = small tight blobs; Lower = big gooey mass.            |
+| **Fingertip lag** | Higher = slow, liquid follow; Lower = snappy and responsive.   |
+| **Bloom / rim**   | Higher = glowing chrome; Lower = matte, subtle.                |
 
 ## Network Architecture
 

@@ -13,6 +13,7 @@ date: 2026-06-18
 The finale. Point a projector at a real wall or object, and digital flowers bloom across it. When someone walks up, the garden wakes: petals unfurl from where they stand, captured by a webcam running **MediaPipe** presence detection. This combines everything in the chapter, projection mapping plus camera tracking plus generative growth, into one installation. It is the piece to build when you want to turn a room into a surprise.
 
 > [!info] Before You Start
+>
 > - You need a **projector** and a **webcam**, ideally mounted near the projector facing the same wall.
 > - You need the **MediaPipe TouchDesigner plugin**: [download here](https://github.com/torinmb/mediapipe-touchdesigner/releases).
 > - Helpful background: TD's projection-mapping workflow (the **Camera Schnappr** / palette mapping tools).
@@ -76,12 +77,12 @@ This is what makes it personal:
 
 ## Parameter Tuning & Behavior
 
-| Parameter           | Behavior                                                                    |
-| :------------------ | :-------------------------------------------------------------------------- |
-| **Bloom radius**     | Larger = a wide swath wakes around the visitor; Smaller = a tight footprint. |
-| **Bloom rise time**  | Faster = instant, playful; Slower = graceful, cinematic unfurling.           |
-| **Close (fade) time** | Slower = the garden "remembers" longer; Faster = resets quickly.            |
-| **Presence lag**     | Higher = calm, smooth response; Lower = snappy but jittery.                  |
+| Parameter             | Behavior                                                                     |
+| :-------------------- | :--------------------------------------------------------------------------- |
+| **Bloom radius**      | Larger = a wide swath wakes around the visitor; Smaller = a tight footprint. |
+| **Bloom rise time**   | Faster = instant, playful; Slower = graceful, cinematic unfurling.           |
+| **Close (fade) time** | Slower = the garden "remembers" longer; Faster = resets quickly.             |
+| **Presence lag**      | Higher = calm, smooth response; Lower = snappy but jittery.                  |
 
 ## Network Architecture
 

@@ -13,6 +13,7 @@ date: 2026-06-18
 A gallery favourite for 2026: a large screen showing a calm portrait. When someone steps closer, their silhouette dissolves into a cloud of drifting particles, then reforms when they step back. It uses nothing but a webcam and the **MediaPipe** body-segmentation model. No depth camera, no floor sensors. This is the recipe that makes people stop walking and start playing.
 
 > [!info] Before You Start
+>
 > - You need the **MediaPipe TouchDesigner plugin**: [download here](https://github.com/torinmb/mediapipe-touchdesigner/releases).
 > - A webcam mounted near the screen, pointing at the viewer.
 
@@ -73,12 +74,12 @@ We have no depth sensor, so we infer proximity from how much of the frame the pe
 
 ## Parameter Tuning & Behavior
 
-| Parameter           | Behavior                                                                   |
-| :------------------ | :------------------------------------------------------------------------- |
-| **Noise amplitude**  | Higher = explosive scatter; Lower = gentle shimmer.                        |
-| **Proximity lag (fall)** | Slower = portrait reforms dreamily; Faster = snaps back instantly.     |
-| **Mask blur**        | Higher = soft, stable silhouette; Lower = sharp but jittery.               |
-| **Bloom intensity**  | Higher = ethereal glow; Lower = grounded, photographic.                    |
+| Parameter                | Behavior                                                           |
+| :----------------------- | :----------------------------------------------------------------- |
+| **Noise amplitude**      | Higher = explosive scatter; Lower = gentle shimmer.                |
+| **Proximity lag (fall)** | Slower = portrait reforms dreamily; Faster = snaps back instantly. |
+| **Mask blur**            | Higher = soft, stable silhouette; Lower = sharp but jittery.       |
+| **Bloom intensity**      | Higher = ethereal glow; Lower = grounded, photographic.            |
 
 ## Network Architecture
 

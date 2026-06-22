@@ -13,6 +13,7 @@ date: 2026-06-18
 The scroll-stopper that is everywhere on TikTok and Reels right now: a photo or video clip shatters into a living 3D cloud of points, drifts, then snaps back. This tutorial recreates the viral version end to end, including the vertical export so you can post it.
 
 > [!info] Watch the trend
+>
 > - [IMAGE / VIDEO TO PARTICLES, TouchDesigner Tutorial (YouTube)](https://www.youtube.com/watch?v=TbM2_Cvygww)
 > - [Video Motion Controlled Particles (Derivative)](https://derivative.ca/community-post/tutorial/video-motion-controlled-particles/70171)
 >
@@ -71,12 +72,12 @@ This is the viral move.
 
 ## Parameter Tuning & Behavior
 
-| Parameter        | Behavior                                                              |
-| :--------------- | :------------------------------------------------------------------- |
-| **Explode amount** | Higher = full disintegration; Lower = gentle shimmer.               |
-| **Noise scale**    | Larger = big swirling clumps; Smaller = fine fizzy dust.            |
-| **Point size**     | Larger = bold, painterly; Smaller = delicate starfield.            |
-| **Camera speed**   | Slower = cinematic; Faster = energetic, music-video feel.          |
+| Parameter          | Behavior                                                  |
+| :----------------- | :-------------------------------------------------------- |
+| **Explode amount** | Higher = full disintegration; Lower = gentle shimmer.     |
+| **Noise scale**    | Larger = big swirling clumps; Smaller = fine fizzy dust.  |
+| **Point size**     | Larger = bold, painterly; Smaller = delicate starfield.   |
+| **Camera speed**   | Slower = cinematic; Faster = energetic, music-video feel. |
 
 ## Network Architecture
 

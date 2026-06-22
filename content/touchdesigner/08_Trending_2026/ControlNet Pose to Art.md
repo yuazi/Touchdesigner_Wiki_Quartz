@@ -14,6 +14,7 @@ date: 2026-06-18
 Real-time diffusion alone is mesmerising, but it "wanders." **ControlNet** fixes that: it locks the AI's composition to a control image. In 2026 the favourite control signal is your own **body pose**, captured live with MediaPipe. Stand in front of the camera and a continuously regenerating artwork forms around your silhouette, following every move you make.
 
 > [!info] Before You Start
+>
 > - Finish [[touchdesigner/08_Trending_2026/Live AI Painting with TouchDiffusion|Live AI Painting with TouchDiffusion]] first; this builds directly on it.
 > - You also need the **MediaPipe TouchDesigner plugin**: [download here](https://github.com/torinmb/mediapipe-touchdesigner/releases).
 > - Confirm your TouchDiffusion build includes a **ControlNet (OpenPose)** option in its parameters.
@@ -76,11 +77,11 @@ ControlNet wants a clean stick-figure image, not raw video.
 
 ## Parameter Tuning & Behavior
 
-| Parameter            | Behavior                                                                  |
-| :------------------- | :------------------------------------------------------------------------ |
-| **ControlNet weight** | Higher = rigidly follows your pose; Lower = AI improvises the body shape.  |
-| **Denoise strength**  | Higher = fully AI-painted; Lower = the control skeleton stays visible.     |
-| **Feedback amount**   | Higher = long petal ghost-trails; Lower = crisp, immediate figure.         |
+| Parameter               | Behavior                                                                  |
+| :---------------------- | :------------------------------------------------------------------------ |
+| **ControlNet weight**   | Higher = rigidly follows your pose; Lower = AI improvises the body shape. |
+| **Denoise strength**    | Higher = fully AI-painted; Lower = the control skeleton stays visible.    |
+| **Feedback amount**     | Higher = long petal ghost-trails; Lower = crisp, immediate figure.        |
 | **Skeleton line width** | Thicker = bolder, more confident figure; Thinner = delicate, fragmented.  |
 
 ## Network Architecture

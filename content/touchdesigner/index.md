@@ -28,7 +28,7 @@ The fundamentals: interface, navigation, and workflow.
 
 ## (y2) The Operators
 
-The six operator families are the building blocks of every network.
+The seven operator families are the building blocks of every network.
 
 - **[[touchdesigner/02_The_Operators/index|(y) Index: The Operators]]**: Chapter hub and navigation.
 - **[[touchdesigner/02_The_Operators/TOPs/index|(y-) TOPs]]**: 2D image & video processing (GPU).

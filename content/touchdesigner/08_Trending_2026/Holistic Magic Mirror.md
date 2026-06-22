@@ -13,6 +13,7 @@ date: 2026-06-18
 A "magic mirror" reacts to your whole presence at once: a crown of light follows your head, particles trail your hands, and the background colour breathes with your posture. We get all of it from running several **MediaPipe** models together (face, hands, and pose), the holistic approach that defines 2026 installation work. The viewer sees a stylised reflection that knows where they are looking and reaching.
 
 > [!info] Before You Start
+>
 > - Finish at least one earlier MediaPipe recipe so you are comfortable with the plugin.
 > - You need the **MediaPipe TouchDesigner plugin**: [download here](https://github.com/torinmb/mediapipe-touchdesigner/releases).
 > - This recipe is heavier than the single-model ones. A recent GPU helps.
@@ -75,12 +76,12 @@ Composite all layers over the mirror base with additive blending.
 
 ## Parameter Tuning & Behavior
 
-| Parameter            | Behavior                                                                   |
-| :------------------- | :------------------------------------------------------------------------- |
-| **Pose complexity**   | Higher = accurate joints but slow; Lower = fast but rougher tracking.       |
-| **Position lag**      | Higher = dreamy, floaty mirror; Lower = tight and responsive.               |
-| **Mood (hue) range**  | Wider = dramatic colour swings with posture; Narrower = subtle.             |
-| **Element opacity**   | Higher = bold overlay; Lower = ghostly, reflection-first look.              |
+| Parameter            | Behavior                                                              |
+| :------------------- | :-------------------------------------------------------------------- |
+| **Pose complexity**  | Higher = accurate joints but slow; Lower = fast but rougher tracking. |
+| **Position lag**     | Higher = dreamy, floaty mirror; Lower = tight and responsive.         |
+| **Mood (hue) range** | Wider = dramatic colour swings with posture; Narrower = subtle.       |
+| **Element opacity**  | Higher = bold overlay; Lower = ghostly, reflection-first look.        |
 
 ## Network Architecture
 

@@ -13,6 +13,7 @@ date: 2026-06-18
 **Reaction-diffusion** is the math behind leopard spots, coral, and the patterns on seashells. Implemented as a GLSL feedback loop, it grows organic, ever-changing textures that never repeat. It is the definitive "living wallpaper" for a gallery wall or a quiet corner of a room, and it teaches the GLSL-plus-feedback pattern that half of generative TouchDesigner relies on.
 
 > [!info] Before You Start
+>
 > - Helpful background: [[touchdesigner/05_Connectivity_and_Shaders/Introduction to GLSL|Introduction to GLSL]] and [[touchdesigner/03_Rendering_and_Output/Feedback Loops|Feedback Loops]].
 > - We implement the classic **Gray-Scott** model: two virtual chemicals, A and B, where A feeds B and B decays.
 
@@ -77,12 +78,12 @@ The raw simulation is greyscale. Make it gorgeous:
 
 ## Parameter Tuning & Behavior
 
-| Parameter        | Behavior                                                                       |
-| :--------------- | :----------------------------------------------------------------------------- |
-| **Feed rate**     | Higher = denser growth; Lower = sparse, isolated spots.                        |
-| **Kill rate**     | Higher = patterns shrink and vanish; Lower = they spread and merge.            |
-| **Sub-steps/frame** | More = stable and smooth but costlier; Fewer = faster but can destabilise.    |
-| **Gradient (Lookup)** | Sets the entire mood: icy, coral, molten, monochrome.                        |
+| Parameter             | Behavior                                                                   |
+| :-------------------- | :------------------------------------------------------------------------- |
+| **Feed rate**         | Higher = denser growth; Lower = sparse, isolated spots.                    |
+| **Kill rate**         | Higher = patterns shrink and vanish; Lower = they spread and merge.        |
+| **Sub-steps/frame**   | More = stable and smooth but costlier; Fewer = faster but can destabilise. |
+| **Gradient (Lookup)** | Sets the entire mood: icy, coral, molten, monochrome.                      |
 
 ## Network Architecture
 

@@ -14,6 +14,7 @@ date: 2026-06-18
 The exact combo blowing up on Instagram in 2026: visuals that pulse with the music **and** bend to your hands at the same time. The music gives it energy; the hand control makes it feel magic and personal. This tutorial wires both signals into one reactive scene built for a vertical reel.
 
 > [!info] Watch the trend
+>
 > - [Audio reactive + hand tracking #touchdesigner (Instagram reel)](https://www.instagram.com/reel/DUjQgrBCurX/)
 >
 > Technique base: [[touchdesigner/08_Trending_2026/Volumetric Audio Nebula|Volumetric Audio Nebula]] (audio) and [[touchdesigner/08_Trending_2026/Holistic Magic Mirror|Holistic Magic Mirror]] (hands).
@@ -72,12 +73,12 @@ This single interaction (hand position plus beat plus pinch) is what reads as "m
 
 ## Parameter Tuning & Behavior
 
-| Parameter          | Behavior                                                            |
-| :----------------- | :----------------------------------------------------------------- |
-| **Bass → energy**   | Higher = explosive on the beat; Lower = subtle pulse.              |
-| **Palm → position** | Direct = effect glued to hand; Lagged = trailing, dreamy.         |
-| **Pinch → density** | Strong = tight gather/release; Weak = barely changes.             |
-| **High → sparkle**  | Higher = glittery and busy; Lower = calm.                         |
+| Parameter           | Behavior                                                  |
+| :------------------ | :-------------------------------------------------------- |
+| **Bass → energy**   | Higher = explosive on the beat; Lower = subtle pulse.     |
+| **Palm → position** | Direct = effect glued to hand; Lagged = trailing, dreamy. |
+| **Pinch → density** | Strong = tight gather/release; Weak = barely changes.     |
+| **High → sparkle**  | Higher = glittery and busy; Lower = calm.                 |
 
 ## Network Architecture
 

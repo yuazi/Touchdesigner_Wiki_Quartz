@@ -14,6 +14,7 @@ date: 2026-06-18
 Live footage continuously repainted into an oil painting, a Ghibli watercolour, or molten glass, in real time, following your every move. This is the headline AI-art trend of 2026 and a guaranteed save on Reels. This tutorial focuses on getting a clean, postable repaint loop, building on the engine setup from the main diffusion recipe.
 
 > [!info] Watch the trend
+>
 > - [Audio-Reactive Generative Art Using ComfyUI + TouchDesigner](https://www.classcentral.com/course/youtube-comfyui-generative-ai-with-touchdesigner-355092)
 >
 > Engine setup first: [[touchdesigner/08_Trending_2026/Live AI Painting with TouchDiffusion|Live AI Painting with TouchDiffusion]]. Pose-locked version: [[touchdesigner/08_Trending_2026/ControlNet Pose to Art|ControlNet Pose-to-Art]].
@@ -76,12 +77,12 @@ Raw real-time diffusion shimmers. Tame it:
 
 ## Parameter Tuning & Behavior
 
-| Parameter        | Behavior                                                                 |
-| :--------------- | :----------------------------------------------------------------------- |
-| **Strength**      | Higher = fully AI, ignores you; Lower = your footage shows through.      |
-| **Seed**          | Fixed = stable style; Random = shifting, less coherent.                  |
-| **Feedback blend** | Higher = very stable but smeary; Lower = crisp but flickery.            |
-| **Steps**         | Higher = detailed but slow; Lower = fast and painterly.                  |
+| Parameter          | Behavior                                                            |
+| :----------------- | :------------------------------------------------------------------ |
+| **Strength**       | Higher = fully AI, ignores you; Lower = your footage shows through. |
+| **Seed**           | Fixed = stable style; Random = shifting, less coherent.             |
+| **Feedback blend** | Higher = very stable but smeary; Lower = crisp but flickery.        |
+| **Steps**          | Higher = detailed but slow; Lower = fast and painterly.             |
 
 ## Network Architecture
 
