@@ -69,11 +69,8 @@ Place a Constant and an LFO side-by-side, feed both into a **Switch CHOP**, and 
 | -------------------------- | ------------------- | -------------------- |
 | Can drive multiple targets | ✗ (must copy value) | ✓ (one wire to many) |
 | Can be automated later     | Requires rewrite    | Just swap in an LFO  |
-
----
-
-| Visible in network | ✗ | ✓ |
-| Named | ✗ | ✓ |
+| Visible in network         | ✗                   | ✓                    |
+| Named                      | ✗                   | ✓                    |
 
 ## Common Gotchas
 
