@@ -38,9 +38,9 @@ TouchDesigner 2025 added a GPU-native DMX path that complements the CHOP approac
 
 | Scenario                                     | Recommended path                                                                 |
 | -------------------------------------------- | -------------------------------------------------------------------------------- |
-| Simple rig, a few fixtures                   | **DMX Out CHOP** — less setup, easier to debug                                   |
-| Large LED array / pixel-mapped installation  | **DMX Out POP** — stays on GPU, scales to thousands of points                    |
-| Generative lighting driven by POP simulation | **DMX Out POP** — attributes flow directly from POP chain without CPU round-trip |
+| Simple rig, a few fixtures                   | **DMX Out CHOP** - less setup, easier to debug                                   |
+| Large LED array / pixel-mapped installation  | **DMX Out POP** - stays on GPU, scales to thousands of points                    |
+| Generative lighting driven by POP simulation | **DMX Out POP** - attributes flow directly from POP chain without CPU round-trip |
 
 ## Pro-Tips
 

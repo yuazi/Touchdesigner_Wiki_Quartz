@@ -25,10 +25,10 @@ The wiki itself only formally lists a "Sweet 16" of commonly-used TOPs (Movie Fi
 - **AI / Hardware** (2025+): **NVIDIA RTX Video TOP** (AI super-resolution and SDR to HDR conversion via the NVIDIA RTX Video SDK; requires an RTX-series GPU)
 
 > [!tip] Layer Mix vs Composite TOP
-> **Layer Mix TOP** (2025+) is the modern choice when you need a proper layer stack with per-layer blend modes and opacity controls — like Photoshop layers. The older **Composite TOP** handles the same blending math but treats all inputs as equals with a single operation. Use Layer Mix for multi-layer designs; use Composite when a single operation across N inputs is enough.
+> **Layer Mix TOP** (2025+) is the modern choice when you need a proper layer stack with per-layer blend modes and opacity controls - like Photoshop layers. The older **Composite TOP** handles the same blending math but treats all inputs as equals with a single operation. Use Layer Mix for multi-layer designs; use Composite when a single operation across N inputs is enough.
 
 > [!tip] Render Simple TOP
-> **Render Simple TOP** (2025+) renders POP or SOP geometry to a texture without requiring a separate Camera COMP or Light COMP. It is intentionally lightweight — no shadow maps, no multi-pass — and is the fastest way to get a quick render of a POP network. When you need full control (cameras, lights, render passes), use the standard **Render TOP** instead.
+> **Render Simple TOP** (2025+) renders POP or SOP geometry to a texture without requiring a separate Camera COMP or Light COMP. It is intentionally lightweight - no shadow maps, no multi-pass - and is the fastest way to get a quick render of a POP network. When you need full control (cameras, lights, render passes), use the standard **Render TOP** instead.
 
 > [!info] 3D Texture and 2D Array Support (TD 2025+)
 > Most standard TOPs now natively process 3D textures and 2D texture arrays without conversion: Add, Blur, Composite, Displace, Feedback, HSV Adjust, Level, Multiply, Noise, Over, Threshold, and about 20 more. Previously, 3D texture work required workarounds; you can now pipe a Texture 3D TOP through a standard filter chain directly.

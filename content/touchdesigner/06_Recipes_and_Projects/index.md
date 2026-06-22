@@ -18,6 +18,7 @@ _Perfect for your first hour in TouchDesigner. Focus on the core UI and basic op
 - **[[touchdesigner/06_Recipes_and_Projects/y-1/Audio Reactive Geometry|(y-) Audio Reactive Geometry]]**: A classic project. Turn sound into numbers and use **Instancing** to drive 3D shapes.
 - **[[touchdesigner/06_Recipes_and_Projects/y-1/Chromatic Aberration Feedback|(y-) Chromatic Aberration Feedback]]**: The "Okamirufu" signature. A simple post-processing trick using time-delayed caching.
 - **[[touchdesigner/06_Recipes_and_Projects/y-1/Particle System with POPs|(y-) Particle System with POPs]]**: Your first look at **POPs** (Point Operators) for GPU-accelerated particles.
+- **[[touchdesigner/06_Recipes_and_Projects/y-1/Waveform Oscilloscope|(y-) Waveform Oscilloscope]]**: Turn live mic or system audio into a glowing 3D waveform with **CHOP to SOP**. A ten-minute build.
 
 ---
 
@@ -31,6 +32,10 @@ _Requires a basic understanding of how data flows between TOPs, CHOPs, and SOPs.
 - **[[touchdesigner/06_Recipes_and_Projects/y-2/GLSL Feedback Effect|(y-) GLSL Feedback Effect]]**: Your first dip into **GLSL (Shaders)**. Create hypnotic trails and zooms that respond to music.
 - **[[touchdesigner/06_Recipes_and_Projects/y-2/5 Ways To Make Particles|(y-) 5 Ways To Make Particles]]**: A comparison of every way to make particles in TD. Great for choosing the right tool.
 - **[[touchdesigner/06_Recipes_and_Projects/y-2/Fluid Text Morphing|(y-) Fluid Text Morphing]]**: Liquid text effects bridging the 2D TOP world into 3D points that melt and dissolve.
+- **[[touchdesigner/06_Recipes_and_Projects/y-2/Audio Terrain Generator|(y-) Audio Terrain Generator]]**: A scrolling 3D landscape whose peaks rise and fall with the bass, driven from mic amplitude.
+- **[[touchdesigner/06_Recipes_and_Projects/y-2/Slit-Scan Time Warp|(y-) Slit-Scan Time Warp]]**: Webcam time-smear using the **Texture 3D TOP + Time Machine TOP** workflow.
+- **[[touchdesigner/06_Recipes_and_Projects/y-2/MIDI Hardware Control|(y-) MIDI Hardware Control]]**: Wire a physical MIDI controller to any visual parameter for a live VJ rig.
+- **[[touchdesigner/06_Recipes_and_Projects/y-2/Pixel Sorting Glitch|(y-) Pixel Sorting Glitch]]**: Glitch-art streaks from live webcam footage via a GLSL threshold-shift shader.
 
 ### 3D & Rendering
 
@@ -43,6 +48,9 @@ _Requires a basic understanding of how data flows between TOPs, CHOPs, and SOPs.
 
 - **[[touchdesigner/06_Recipes_and_Projects/y-2/MediaPipe Face Tracking for Interactive Expressions|(y-) MediaPipe Face Tracking]]**: Real-time expression detection (smiling, blinking) to drive visuals.
 - **[[touchdesigner/06_Recipes_and_Projects/y-2/MediaPipe Pose Tracking for Full-Body Avatars|(y-) MediaPipe Pose Tracking]]**: Full body skeleton tracking for driving 2D/3D avatars.
+- **[[touchdesigner/06_Recipes_and_Projects/y-2/Body Segmentation Composite|(y-) Body Segmentation Composite]]**: Cut your live silhouette from the webcam and composite it over a generative background.
+- **[[touchdesigner/06_Recipes_and_Projects/y-2/Face Mesh 3D Sculpture|(y-) Face Mesh 3D Sculpture]]**: Turn all 468 face mesh landmarks into a glowing 3D point cloud that moves with you.
+- **[[touchdesigner/06_Recipes_and_Projects/y-2/Object Tracking Particle Trails|(y-) Object Tracking Particle Trails]]**: Track everyday objects and leave glowing comet trails as they move.
 
 ---
 
@@ -55,9 +63,12 @@ _Deep dives into fluid dynamics, motion tracking, and complex math._
 - **[[touchdesigner/06_Recipes_and_Projects/y-3/GPU Fluid Simulation|(y-) GPU Fluid Simulation]]**: A complex TOP-based feedback system for smoke and liquid dynamics.
 - **[[touchdesigner/06_Recipes_and_Projects/y-3/Dreamscape Particle Cloud|(y-) Dreamscape Particle Cloud]]**: A stylized, glowing particle system with recursive feedback-based bloom.
 - **[[touchdesigner/06_Recipes_and_Projects/y-3/Vector Field Instancing|(y-) Vector Field Instancing]]**: Millions of points following swirling vortex paths driven by a 3D vector noise grid.
+- **[[touchdesigner/06_Recipes_and_Projects/y-3/Reaction-Diffusion|(y-) Reaction-Diffusion (Gray-Scott)]]**: Animal-skin and seashell patterns emerging from a two-parameter GLSL feedback loop.
 
 ### Motion Tracking & Interaction
 
+- **[[touchdesigner/06_Recipes_and_Projects/y-3/Hand Tracking|(y-) Hand Tracking Index]]**: The central hub for all MediaPipe hand-tracking resources and the project series.
+- **[[touchdesigner/06_Recipes_and_Projects/y-3/Fluid Brush Hand Tracking|(y-) Fluid Brush with Hand Tracking]]**: Your hand becomes a brush painting glowing fluid trails through a feedback loop.
 - **[[touchdesigner/06_Recipes_and_Projects/y-3/Hand Tracking Tutorial|(y-) ★ Complete Hand Tracking Walkthrough]]**: Setup → core rig → watercolor brush → generative architecture.
 - **[[touchdesigner/06_Recipes_and_Projects/y-3/MediaPipe Hand Tracking Advanced Techniques|(y-) MediaPipe Hand Tracking Advanced]]**: Multi-hand tracking, complex gesture recognition, and interaction systems.
 - **[[touchdesigner/06_Recipes_and_Projects/y-3/Real-time Motion History and Optical Flow|(y-) Motion History & Optical Flow]]**: Track movement from a simple webcam without expensive sensors.

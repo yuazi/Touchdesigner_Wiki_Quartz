@@ -34,7 +34,7 @@ The wiki splits POPs into the same shape as SOPs:
 - **Forces** apply per-point physics: Force POP, Noise POP, Gravity, Wind, Turbulence
 - **Simulation** advances state: Feedback POP (the particle workhorse), Solver POP
 - **Export** write to disk: **Alembic Out POP** (2025+)
-- **DMX / Lighting**: **DMX Fixture POP**, **DMX Out POP** (2025+) — see below
+- **DMX / Lighting**: **DMX Fixture POP**, **DMX Out POP** (2025+) - see below
 - **Bridges** convert: SOP to POP, TOP to POP, CHOP to POP, POP to SOP, POP to TOP, POP to CHOP
 - **Render** outputs pixels: POP Render TOP
 
@@ -91,7 +91,7 @@ POPs carry whatever attributes you stamp on them. Standard ones include `P` (pos
 
 ### DMX Lighting via POPs
 
-As of TD 2025, DMX fixtures can be driven entirely through POPs — staying on the GPU rather than moving through CHOP channels.
+As of TD 2025, DMX fixtures can be driven entirely through POPs - staying on the GPU rather than moving through CHOP channels.
 
 - **DMX Fixture POP:** Define a fixture's channel profile (pan, tilt, color, dimmer, strobe, gobo, etc.). Each POP instance represents one fixture.
 - **DMX Out POP:** Takes one or more DMX Fixture POPs, merges all universes, and transmits to hardware via DMX USB, Art-Net, sACN, KiNET, or FTDI.
