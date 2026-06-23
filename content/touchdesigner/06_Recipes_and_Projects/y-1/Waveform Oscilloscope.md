@@ -121,4 +121,9 @@ Resample CHOP (1024 pts) ──────────────▶ │
                    Geo COMP (Line MAT) ──▶ Render TOP ──▶ Bloom ──▶ OUT
 ```
 
+> [!tip]- 📚 Learning Path · Stage 2 - Your First Visuals · step 11 of 44
+> [[touchdesigner/06_Recipes_and_Projects/y-1/Audio Reactive Geometry|(y-) ← Prev: Audio Reactive Geometry]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/06_Recipes_and_Projects/y-1/Chromatic Aberration Feedback|(y-) Next: Chromatic Aberration Feedback →]]
+
+---
+
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

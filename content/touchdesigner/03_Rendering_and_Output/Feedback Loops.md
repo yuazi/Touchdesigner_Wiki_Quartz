@@ -92,4 +92,9 @@ Swap Transform for Noise TOP (as a displacement map fed into a Displace TOP) for
 
 ---
 
+> [!tip]- 📚 Learning Path · Stage 4 - Rendering & 3D · step 24 of 44
+> [[touchdesigner/03_Rendering_and_Output/Instancing|(y-) ← Prev: Instancing]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/06_Recipes_and_Projects/y-2/Real-time Audio Visualizer|(y-) Next: Real-time Audio Visualizer →]]
+
+---
+
 [[touchdesigner/03_Rendering_and_Output/index|(y) Return to Rendering & Output]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

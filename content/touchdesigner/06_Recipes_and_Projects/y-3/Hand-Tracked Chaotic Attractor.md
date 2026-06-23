@@ -370,4 +370,9 @@ Webcam ──────────────────────▶ [ S
 [ POST FX ]                    [ Feedback TOP Loop ] ──▶ [ Bloom TOP ]
 ```
 
+> [!tip]- 📚 Learning Path · Stage 8 - Advanced Projects · step 44 of 44
+> [[touchdesigner/06_Recipes_and_Projects/y-3/Vector Field Instancing|(y-) ← Prev: Vector Field Instancing]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/08_Trending_2026/index|(y-) Next: Gallery-Grade 2026 →]]
+
+---
+
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

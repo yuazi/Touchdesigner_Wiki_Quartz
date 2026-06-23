@@ -7,8 +7,13 @@ date: 2026-02-01
 
 My TouchDesigner wiki. Reference notes for visual programming with nodes and real-time interactive media.
 
-> [!tip] New to TouchDesigner?
-> If you just installed TouchDesigner, start with the **[[touchdesigner/06_Recipes_and_Projects/y-1/index|(y-1) Beginner Recipes]]**. You should be making visuals inside ten minutes.
+> [!abstract] Start here: the Learning Path
+> New here, or want a structured way through? Follow the **[[touchdesigner/Learning Path|(y) TouchDesigner Learning Path]]**, one ordered track from zero to gallery-grade, in nine stages. Every page on the track has a collapsible **📚 Learning Path** bar at the bottom with prev/next, so you can just keep clicking forward.
+
+> [!tip] Just want to make something now?
+> Skip straight to the **[[touchdesigner/06_Recipes_and_Projects/y-1/index|(y-1) Beginner Recipes]]**. You should be making visuals inside ten minutes.
+
+The sections below are the full reference, organized by topic. Browse them directly, or let the Learning Path thread them in order for you.
 
 ---
 

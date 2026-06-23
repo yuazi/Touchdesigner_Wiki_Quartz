@@ -114,4 +114,9 @@ Texture-driven color (a TOP feeding the Color OP slot) is essentially free per i
 
 ---
 
+> [!tip]- 📚 Learning Path · Stage 4 - Rendering & 3D · step 23 of 44
+> [[touchdesigner/03_Rendering_and_Output/Cameras and Lights|(y-) ← Prev: Cameras and Lights]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/03_Rendering_and_Output/Feedback Loops|(y-) Next: Feedback Loops →]]
+
+---
+
 [[touchdesigner/03_Rendering_and_Output/index|(y) Return to Rendering & Output]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

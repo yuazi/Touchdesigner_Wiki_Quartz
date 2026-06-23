@@ -97,4 +97,9 @@ Attribute POP (Velocity to Color)
                    (Instancing On)
 ```
 
+> [!tip]- 📚 Learning Path · Stage 8 - Advanced Projects · step 43 of 44
+> [[touchdesigner/06_Recipes_and_Projects/y-3/Reaction-Diffusion|(y-) ← Prev: Reaction-Diffusion]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/06_Recipes_and_Projects/y-3/Hand-Tracked Chaotic Attractor|(y-) Next: Hand-Tracked Chaotic Attractor →]]
+
+---
+
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

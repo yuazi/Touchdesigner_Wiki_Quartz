@@ -96,4 +96,9 @@ Keep wires inside their owning COMP. To pass data between modules, use these mec
 
 ---
 
+> [!tip]- 📚 Learning Path · Stage 6 - Scripting & Architecture · step 33 of 44
+> [[touchdesigner/04_Scripting_and_Architecture/Cooking|(y-) ← Prev: Cooking]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/04_Scripting_and_Architecture/Performance Monitoring|(y-) Next: Performance Monitoring →]]
+
+---
+
 [[touchdesigner/04_Scripting_and_Architecture/index|(y) Return to Scripting & Architecture]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

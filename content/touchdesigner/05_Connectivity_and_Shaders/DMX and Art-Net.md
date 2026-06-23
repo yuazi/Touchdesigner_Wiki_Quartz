@@ -50,4 +50,9 @@ TouchDesigner 2025 added a GPU-native DMX path that complements the CHOP approac
 
 ---
 
+> [!tip]- 📚 Learning Path · Stage 7 - Connectivity & Shaders · step 39 of 44
+> [[touchdesigner/05_Connectivity_and_Shaders/NDI and Syphon|(y-) ← Prev: NDI and Syphon]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/06_Recipes_and_Projects/y-3/Hand Tracking Tutorial|(y-) Next: Complete Hand Tracking Walkthrough →]]
+
+---
+
 [[touchdesigner/05_Connectivity_and_Shaders/index|(y) Return to Connectivity & Shaders]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

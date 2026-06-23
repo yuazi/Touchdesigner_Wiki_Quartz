@@ -71,4 +71,9 @@ Triggered from the **Dialogs** menu. Bind these to muscle memory:
 
 ---
 
+> [!tip]- 📚 Learning Path · Stage 1 - Foundations · step 2 of 44
+> [[touchdesigner/01_Core_Concepts/What is TouchDesigner|(y-) ← Prev: What is TouchDesigner]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/01_Core_Concepts/Network Editor|(y-) Next: Network Editor →]]
+
+---
+
 [[touchdesigner/01_Core_Concepts/index|(y) Return to Core Concepts]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

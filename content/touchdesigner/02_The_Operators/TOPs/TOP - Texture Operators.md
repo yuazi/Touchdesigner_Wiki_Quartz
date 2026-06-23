@@ -77,4 +77,9 @@ The cook times you see in the Performance Monitor for TOPs are **not** the GPU's
 
 ---
 
+> [!tip]- 📚 Learning Path · Stage 3 - The Operator Families · step 14 of 44
+> [[touchdesigner/06_Recipes_and_Projects/y-1/Particle System with POPs|(y-) ← Prev: Particle System with POPs]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/02_The_Operators/CHOPs/CHOP - Channel Operators|(y-) Next: CHOPs →]]
+
+---
+
 [[touchdesigner/02_The_Operators/TOPs/index|(y) Return to TOPs]] | [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

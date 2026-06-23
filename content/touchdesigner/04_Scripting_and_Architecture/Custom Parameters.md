@@ -112,4 +112,9 @@ Inside the COMP, the shorthand is even cleaner: if you set the COMP's Parent Sho
 
 ---
 
+> [!tip]- 📚 Learning Path · Stage 6 - Scripting & Architecture · step 31 of 44
+> [[touchdesigner/04_Scripting_and_Architecture/The op and me objects|(y-) ← Prev: The op and me objects]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/04_Scripting_and_Architecture/Cooking|(y-) Next: Cooking →]]
+
+---
+
 [[touchdesigner/04_Scripting_and_Architecture/index|(y) Return to Scripting & Architecture]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

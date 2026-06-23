@@ -93,4 +93,9 @@ For point clouds and GPU particles, the **POP Render TOP** is the dedicated rend
 
 ---
 
+> [!tip]- 📚 Learning Path · Stage 4 - Rendering & 3D · step 21 of 44
+> [[touchdesigner/02_The_Operators/POPs/POP - Point Operators|(y-) ← Prev: POPs]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/03_Rendering_and_Output/Cameras and Lights|(y-) Next: Cameras and Lights →]]
+
+---
+
 [[touchdesigner/03_Rendering_and_Output/index|(y) Return to Rendering & Output]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

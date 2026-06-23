@@ -91,4 +91,9 @@ def onValueChange(channel, sampleIndex, val, prev):
 
 ---
 
+> [!tip]- 📚 Learning Path · Stage 3 - The Operator Families · step 18 of 44
+> [[touchdesigner/02_The_Operators/COMPs/COMP - Components|(y-) ← Prev: COMPs]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/02_The_Operators/MATs/MAT - Material Operators|(y-) Next: MATs →]]
+
+---
+
 [[touchdesigner/02_The_Operators/DATs/index|(y) Return to DATs]] | [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

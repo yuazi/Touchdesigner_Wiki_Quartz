@@ -83,4 +83,9 @@ This is your first debugging tool.
 
 ---
 
+> [!tip]- 📚 Learning Path · Stage 1 - Foundations · step 3 of 44
+> [[touchdesigner/01_Core_Concepts/Interface Overview|(y-) ← Prev: Interface Overview]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/01_Core_Concepts/Connecting Nodes|(y-) Next: Connecting Nodes →]]
+
+---
+
 [[touchdesigner/01_Core_Concepts/index|(y) Return to Core Concepts]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

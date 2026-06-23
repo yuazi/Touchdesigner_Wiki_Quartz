@@ -95,4 +95,9 @@ n.outputConnectors           # all output connectors
 
 ---
 
+> [!tip]- 📚 Learning Path · Stage 1 - Foundations · step 4 of 44
+> [[touchdesigner/01_Core_Concepts/Network Editor|(y-) ← Prev: Network Editor]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/01_Core_Concepts/Parameters|(y-) Next: Parameters →]]
+
+---
+
 [[touchdesigner/01_Core_Concepts/index|(y) Return to Core Concepts]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

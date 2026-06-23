@@ -66,4 +66,9 @@ The biggest advantage of GLSL in TD is how easily you can pass data _into_ the s
 
 ---
 
+> [!tip]- 📚 Learning Path · Stage 7 - Connectivity & Shaders · step 37 of 44
+> [[touchdesigner/05_Connectivity_and_Shaders/Audio Reactivity|(y-) ← Prev: Audio Reactivity]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/05_Connectivity_and_Shaders/NDI and Syphon|(y-) Next: NDI and Syphon →]]
+
+---
+
 [[touchdesigner/05_Connectivity_and_Shaders/index|(y) Return to Connectivity & Shaders]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

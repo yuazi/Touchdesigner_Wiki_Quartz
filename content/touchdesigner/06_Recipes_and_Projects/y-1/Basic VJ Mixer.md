@@ -123,4 +123,9 @@ Movie In TOP (Source B) ─┤           │
                     Null TOP (OUT) ──▶ [ Display Flag ]
 ```
 
+> [!tip]- 📚 Learning Path · Stage 2 - Your First Visuals · step 9 of 44
+> [[touchdesigner/01_Core_Concepts/Common Shortcuts|(y-) ← Prev: Common Shortcuts]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/06_Recipes_and_Projects/y-1/Audio Reactive Geometry|(y-) Next: Audio Reactive Geometry →]]
+
+---
+
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

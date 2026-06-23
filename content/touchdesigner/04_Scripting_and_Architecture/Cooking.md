@@ -91,4 +91,9 @@ The golden rule: **only cook what is necessary, when it is necessary.**
 
 ---
 
+> [!tip]- 📚 Learning Path · Stage 6 - Scripting & Architecture · step 32 of 44
+> [[touchdesigner/04_Scripting_and_Architecture/Custom Parameters|(y-) ← Prev: Custom Parameters]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/04_Scripting_and_Architecture/Modular Design and Toxes|(y-) Next: Modular Design and Toxes →]]
+
+---
+
 [[touchdesigner/04_Scripting_and_Architecture/index|(y) Return to Scripting & Architecture]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

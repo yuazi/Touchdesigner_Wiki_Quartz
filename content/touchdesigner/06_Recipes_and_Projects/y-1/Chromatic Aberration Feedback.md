@@ -96,4 +96,9 @@ Render TOP
 [ Feedback TOP ] ──▶ [ Transform TOP ] ──▶ [ Level TOP ] ──▶ [ Composite TOP ]
 ```
 
+> [!tip]- 📚 Learning Path · Stage 2 - Your First Visuals · step 12 of 44
+> [[touchdesigner/06_Recipes_and_Projects/y-1/Waveform Oscilloscope|(y-) ← Prev: Waveform Oscilloscope]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/06_Recipes_and_Projects/y-1/Particle System with POPs|(y-) Next: Particle System with POPs →]]
+
+---
+
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

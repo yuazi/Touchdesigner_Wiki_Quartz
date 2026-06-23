@@ -87,4 +87,9 @@ SOP work is CPU-bound and serial. A Noise SOP on a 100,000-point Grid will warm 
 
 ---
 
+> [!tip]- 📚 Learning Path · Stage 3 - The Operator Families · step 16 of 44
+> [[touchdesigner/02_The_Operators/CHOPs/CHOP - Channel Operators|(y-) ← Prev: CHOPs]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/02_The_Operators/COMPs/COMP - Components|(y-) Next: COMPs →]]
+
+---
+
 [[touchdesigner/02_The_Operators/SOPs/index|(y) Return to SOPs]] | [[touchdesigner/02_The_Operators/index|(y) Return to The Operators]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

@@ -197,4 +197,9 @@ Start with Coral and slowly drag `uKill` up to watch spots morph into stripes an
                    Level TOP ──▶ HSV Adjust TOP ──▶ (Invert TOP) ──▶ OUT
 ```
 
+> [!tip]- 📚 Learning Path · Stage 8 - Advanced Projects · step 42 of 44
+> [[touchdesigner/06_Recipes_and_Projects/y-3/GPU Fluid Simulation|(y-) ← Prev: GPU Fluid Simulation]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/06_Recipes_and_Projects/y-3/Vector Field Instancing|(y-) Next: Vector Field Instancing →]]
+
+---
+
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

@@ -514,4 +514,9 @@ Feedback TOP Loop            Geo COMP (Instancing)         Count CHOP (Switch Mo
    [ OVER ] ◀──────────────── [ RENDER ]                 [ Switch TOP ]
 ```
 
+> [!tip]- 📚 Learning Path · Stage 8 - Advanced Projects · step 40 of 44
+> [[touchdesigner/05_Connectivity_and_Shaders/DMX and Art-Net|(y-) ← Prev: DMX and Art-Net]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/06_Recipes_and_Projects/y-3/GPU Fluid Simulation|(y-) Next: GPU Fluid Simulation →]]
+
+---
+
 [[Hand Tracking|(y) Return to Hand Tracking]] | [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

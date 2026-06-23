@@ -30,4 +30,9 @@ Often, raw audio data is too jittery or "spiky" for smooth visuals. You should s
 
 ---
 
+> [!tip]- 📚 Learning Path · Stage 7 - Connectivity & Shaders · step 36 of 44
+> [[touchdesigner/05_Connectivity_and_Shaders/OSC and MIDI|(y-) ← Prev: OSC and MIDI]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/05_Connectivity_and_Shaders/Introduction to GLSL|(y-) Next: Introduction to GLSL →]]
+
+---
+
 [[touchdesigner/05_Connectivity_and_Shaders/index|(y) Return to Connectivity & Shaders]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

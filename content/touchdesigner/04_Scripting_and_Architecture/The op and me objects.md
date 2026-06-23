@@ -109,4 +109,9 @@ These keep your inner network refactorable without breaking expressions written 
 
 ---
 
+> [!tip]- 📚 Learning Path · Stage 6 - Scripting & Architecture · step 30 of 44
+> [[touchdesigner/04_Scripting_and_Architecture/Python in TD|(y-) ← Prev: Python in TD]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/04_Scripting_and_Architecture/Custom Parameters|(y-) Next: Custom Parameters →]]
+
+---
+
 [[touchdesigner/04_Scripting_and_Architecture/index|(y) Return to Scripting & Architecture]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

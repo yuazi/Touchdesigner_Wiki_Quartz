@@ -85,4 +85,9 @@ RMB any parameter row to get common operations: reset to default, copy/paste val
 
 ---
 
+> [!tip]- 📚 Learning Path · Stage 1 - Foundations · step 5 of 44
+> [[touchdesigner/01_Core_Concepts/Connecting Nodes|(y-) ← Prev: Connecting Nodes]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/01_Core_Concepts/Expressions and Parameters|(y-) Next: Expressions and Parameters →]]
+
+---
+
 [[touchdesigner/01_Core_Concepts/index|(y) Return to Core Concepts]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

@@ -137,4 +137,9 @@ Source POP (1000/sec) ──┐
 [ AUDIO DRIVE ] ──▶ [ Analyze CHOP ] ──▶ [ Render TOP ]
 ```
 
+> [!tip]- 📚 Learning Path · Stage 2 - Your First Visuals · step 13 of 44
+> [[touchdesigner/06_Recipes_and_Projects/y-1/Chromatic Aberration Feedback|(y-) ← Prev: Chromatic Aberration Feedback]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/02_The_Operators/TOPs/TOP - Texture Operators|(y-) Next: TOPs →]]
+
+---
+
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

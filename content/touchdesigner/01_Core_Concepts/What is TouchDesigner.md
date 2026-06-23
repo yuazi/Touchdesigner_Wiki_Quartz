@@ -60,4 +60,9 @@ TouchDesigner ships in four editions. The non-commercial edition is fully featur
 
 ---
 
+> [!tip]- 📚 Learning Path · Stage 1 - Foundations · step 1 of 44
+> [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/01_Core_Concepts/Interface Overview|(y-) Next: Interface Overview →]]
+
+---
+
 [[touchdesigner/01_Core_Concepts/index|(y) Return to Core Concepts]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

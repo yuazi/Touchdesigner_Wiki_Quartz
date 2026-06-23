@@ -113,4 +113,9 @@ Resample CHOP (40 pts) ──┤ Map chan1 to Scale Y
 Pattern CHOP (Ramp) ──▶ Merge CHOP ──▶ Null (OUT_AUDIO)
 ```
 
+> [!tip]- 📚 Learning Path · Stage 2 - Your First Visuals · step 10 of 44
+> [[touchdesigner/06_Recipes_and_Projects/y-1/Basic VJ Mixer|(y-) ← Prev: Basic VJ Mixer]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/06_Recipes_and_Projects/y-1/Waveform Oscilloscope|(y-) Next: Waveform Oscilloscope →]]
+
+---
+
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

@@ -132,4 +132,9 @@ Noise TOP ──▶ TOP to CHOP ──▶ [ Merge CHOP ] ───────�
 [ RENDERING ]                  [ Bloom TOP ] ──▶ [ HSV Adjust ] ──▶ [ OUT ]
 ```
 
+> [!tip]- 📚 Learning Path · Stage 5 - Intermediate Recipes · step 25 of 44
+> [[touchdesigner/03_Rendering_and_Output/Feedback Loops|(y-) ← Prev: Feedback Loops]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/06_Recipes_and_Projects/y-2/GLSL Feedback Effect|(y-) Next: GLSL Feedback Effect →]]
+
+---
+
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]

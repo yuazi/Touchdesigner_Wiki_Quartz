@@ -122,4 +122,9 @@ Webcam TOP ──────────────────▶ [ MediaPipe
 [ RENDERING ]                  [ Bloom TOP ] ──▶ [ HSV Adjust ] ──▶ [ OUT ]
 ```
 
+> [!tip]- 📚 Learning Path · Stage 5 - Intermediate Recipes · step 28 of 44
+> [[touchdesigner/06_Recipes_and_Projects/y-2/Instanced 3D Models with PBR|(y-) ← Prev: Instanced 3D Models with PBR]] · [[touchdesigner/Learning Path|(y) Path Overview]] · [[touchdesigner/04_Scripting_and_Architecture/Python in TD|(y-) Next: Python in TD →]]
+
+---
+
 [[touchdesigner/06_Recipes_and_Projects/index|(y) Return to Recipes & Projects]] | [[touchdesigner/index|(y) Return to TouchDesigner]] | [[/index|(y) Return to Home]]
