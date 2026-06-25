@@ -18,11 +18,12 @@ date: 2026-04-14
 - [[notes/lectures/realtimegraphics/04_cg_primer|(y-) 04_cg_primer]]: Math foundations, transformations, and shading models.
 - [[notes/lectures/realtimegraphics/05_shading_models|(y-) 05_shading_models]]: BRDFs, Lambert, Phong, Blinn-Phong, Cook-Torrance, Disney BRDF.
 - [[notes/lectures/realtimegraphics/06_textures|(y-) 06_textures]]: Texture mapping, filtering, multipass rendering, environment mapping, and bump/normal mapping.
-- [[notes/lectures/realtimegraphics/08_deferred_shading|(y-) 08_deferred_shading]]: Deferred rendering, G-Buffers, deferred lighting, light volumes, visibility buffers, and normal encoding.
-- [[notes/lectures/realtimegraphics/09_special_effects|(y-) 09_special_effects]]: Postprocessing pipeline, separable Gaussian, bloom, depth of field, bilateral filters, edge detection, anti-aliasing (SSAA/MSAA/MLAA/TAA), motion blur, lens flare, billboards, particle systems.
-- [[notes/lectures/realtimegraphics/10_semi_global_illumination|(y-) 10_semi_global_illumination]]: Semi-global illumination, shadow techniques, HDR, and realistic lighting.
-- [[notes/lectures/realtimegraphics/11_global_illumination|(y-) 11_global_illumination]]: Real-time global illumination, radiosity, photon mapping, instant radiosity, reflective shadow maps, illumination probes, PRT, hybrid caching.
-- [[notes/lectures/realtimegraphics/12_gpu_raytracing|(y-) 12_gpu_raytracing]]: GPU raytracing pipeline, RT cores, the five ray shader types, ray payload/attributes, hybrid rendering, raytraced shadows/AO/reflections, denoising.
+- [[notes/lectures/realtimegraphics/07_deferred_shading|(y-) 07_deferred_shading]]: Deferred rendering, G-Buffers, deferred lighting, light volumes, visibility buffers, and normal encoding.
+- [[notes/lectures/realtimegraphics/08_special_effects|(y-) 08_special_effects]]: Postprocessing pipeline, separable Gaussian, bloom, depth of field, bilateral filters, edge detection, anti-aliasing (SSAA/MSAA/MLAA/TAA), motion blur, lens flare, billboards, particle systems.
+- [[notes/lectures/realtimegraphics/09_semi_global_illumination|(y-) 09_semi_global_illumination]]: Semi-global illumination, reflections, transparency/order-independent transparency, shadow techniques, and ambient occlusion.
+- [[notes/lectures/realtimegraphics/10_global_illumination|(y-) 10_global_illumination]]: Real-time global illumination, radiosity, photon mapping, instant radiosity, reflective shadow maps, illumination probes, PRT, hybrid caching.
+- [[notes/lectures/realtimegraphics/11_gpu_raytracing|(y-) 11_gpu_raytracing]]: GPU raytracing pipeline, RT cores, the five ray shader types, ray payload/attributes, hybrid rendering, raytraced shadows/AO/reflections, denoising.
+- [[notes/lectures/realtimegraphics/12_hdr|(y-) 12_hdr]]: High dynamic range rendering, tone mapping operators, exposure and the human visual system, bloom, and HDR display output.
 - **Rendering Acceleration**: Level of Detail (LOD) and visibility algorithms.
 - **Compute Shaders**: General-purpose computation on the GPU.
 

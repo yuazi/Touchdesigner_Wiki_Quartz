@@ -12,7 +12,7 @@ tags:
 date: 2026-06-16
 ---
 
-[[/notes/lectures/virtualaugmentedreality/09_VR-AR_Perception|Previous: (y-09) Perception and Psychology]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]]
+[[/notes/lectures/virtualaugmentedreality/09_VR-AR_Perception|Previous: (y-09) Perception and Psychology]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/11_Immersive_Analytics|Next: (y-11) Immersive Analytics]]
 
 ## Mental Model First
 
@@ -67,8 +67,8 @@ Two practical sub-types matter for VR design:
 
 Two distinctions that drive a lot of design choices:
 
-- **Scene motion** is anything moving in the VR environment. *Intentional* motion is part of the experience (navigating, watching a scripted animation). *Unintentional* motion comes from head movement plus latency, calibration drift, or tracking jitter; this is the dangerous category because the brain expects the scene to stay still.
-- **Vection** is the illusion of self-movement created by visual flow. Constant vection (gliding at a fixed speed) is mostly tolerable, like a train ride. *Acceleration* and *artificial head rotation* trigger sickness because the visual cue does not match the vestibular cue.
+- **Scene motion** is anything moving in the VR environment. _Intentional_ motion is part of the experience (navigating, watching a scripted animation). _Unintentional_ motion comes from head movement plus latency, calibration drift, or tracking jitter; this is the dangerous category because the brain expects the scene to stay still.
+- **Vection** is the illusion of self-movement created by visual flow. Constant vection (gliding at a fixed speed) is mostly tolerable, like a train ride. _Acceleration_ and _artificial head rotation_ trigger sickness because the visual cue does not match the vestibular cue.
 
 ## 3. Theories of Motion Sickness
 
@@ -108,7 +108,7 @@ Riccio and Stoffregen's ecological account: the body has not yet learned how to 
 
 <p class="image-caption">Rest frame hypothesis: motion sickness comes not from the cues themselves but from conflicting stationary frames of reference implied by those cues. If the conflicting cues do not bear on the chosen rest frame, no sickness.</p>
 
-A refinement of sensory conflict: the brain does not compare raw cues, it compares *implied rest frames*. Each cue implies an answer to "what is stationary in this scene?" When two cues imply different rest frames, sickness follows. The corollary is empirically useful: if a conflicting cue is not load-bearing for the rest frame (a small moving object in the periphery), no sickness occurs. This justifies adding a visible cockpit or other stable visual anchor.
+A refinement of sensory conflict: the brain does not compare raw cues, it compares _implied rest frames_. Each cue implies an answer to "what is stationary in this scene?" When two cues imply different rest frames, sickness follows. The corollary is empirically useful: if a conflicting cue is not load-bearing for the rest frame (a small moving object in the periphery), no sickness occurs. This justifies adding a visible cockpit or other stable visual anchor.
 
 ### 3.5 Unified Model
 
@@ -264,7 +264,7 @@ Provide stable cues that the brain can use as a rest frame. A cockpit, a vehicle
 
 <p class="image-caption">Self-motion versus world-motion: pushing the world as an object from a stationary vantage point stimulates the vestibular system less than self-motion through the world.</p>
 
-A subtle viewpoint design choice: in *self-motion* the user moves through a stationary world. In *world-motion* the world is treated as a manipulable object that the user pushes and pulls from a stationary vantage point. World-motion stimulates the vestibular conflict less and is a robust trick for navigation, especially in data exploration.
+A subtle viewpoint design choice: in _self-motion_ the user moves through a stationary world. In _world-motion_ the world is treated as a manipulable object that the user pushes and pulls from a stationary vantage point. World-motion stimulates the vestibular conflict less and is a robust trick for navigation, especially in data exploration.
 
 ### 7.5 Delay Compensation
 
@@ -377,4 +377,4 @@ Third, **the design payoff is small and finite**. Latency below 20 ms with predi
 
 ---
 
-[[/notes/lectures/virtualaugmentedreality/09_VR-AR_Perception|Previous: (y-09) Perception and Psychology]] | [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]]
+[[/notes/lectures/virtualaugmentedreality/09_VR-AR_Perception|Previous: (y-09) Perception and Psychology]] | [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/11_Immersive_Analytics|Next: (y-11) Immersive Analytics]]

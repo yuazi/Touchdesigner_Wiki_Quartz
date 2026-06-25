@@ -48,6 +48,9 @@ date: 2026-04-14
 - [[/notes/lectures/virtualaugmentedreality/10_VR-AR_Adverse_Health_Effects|(y-10) Adverse Health Effects in VR]]  
    VR sickness umbrella (motion, simulator, cybersickness), theories of motion sickness (sensory conflict, evolutionary, postural instability, rest frame, unified model), eye strain and accommodation-vergence conflict, readaptation, physical fatigue, fit and hygiene, injury, latency sources and compensation, system / application / individual factors, measurement (SSQ, postural stability, physiological), and design guidelines for reducing adverse effects.
 
+- [[/notes/lectures/virtualaugmentedreality/11_Immersive_Analytics|(y-11) Immersive Analytics]]  
+   Immersive analytics at the intersection of data visualization and VR/AR, visual analytics versus data-driven storytelling, brief history (Super Cockpit, scientific versus abstract data, term coined 2015), eight advantages over the desktop (extra visual channel, immersion, spatial memory, collaboration, embodiment, multimodal input, hybrid interfaces, situated visualization), the evaluation and 3D-for-infovis debates, and situated visualization (definition, situated versus situated analytics, non-situated / situated / embedded, forms and examples, enabling technologies, constraints).
+
 ## Assessment Map
 
 | Component | Weight / Gate                         | Notes                                                                                    |
