@@ -249,6 +249,11 @@ Sparse point clouds with descriptors are common, but search must be pruned. Prio
 > [!success]- Answer
 > Bundle adjustment jointly refines all camera poses and all 3D point positions to minimize the total reprojection error: the difference between observed 2D feature positions in each frame and the projection of the estimated 3D points using the estimated poses. It is the global polishing step that keeps a SLAM map consistent and limits drift, especially when loop closures bring previously inconsistent observations into agreement.
 
+7. What does SLAM solve that marker or model-based tracking does not, and what is the price?
+
+> [!success]- Answer
+> SLAM (Simultaneous Localization and Mapping) builds a map of an unknown environment while simultaneously tracking the camera within it, so it works without prepared markers or a pre-supplied 3D model of the scene. That makes it the enabling technology for AR in arbitrary, un-instrumented spaces. The price is complexity and fragility: it must bootstrap from nothing, accumulates drift that needs loop closure and bundle adjustment to correct, and struggles in low-texture, repetitive, or dynamic scenes where reliable features are scarce.
+
 ---
 
 [[/notes/lectures/virtualaugmentedreality/05_VR-AR_tracking|Previous: (y-05) Tracking]] | [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/07_VR-AR_Calibration|Next: (y-07) Calibration and Registration]]

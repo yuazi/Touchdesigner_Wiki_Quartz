@@ -151,6 +151,21 @@ This conflict explains why comfortable UI distances matter. Light-field and vari
 > [!success]- Answer
 > In a real scene, vergence (eye rotation toward an object) and accommodation (lens focus) cue the same distance. In a HMD the display sits at a fixed focal plane while vergence is driven by the rendered disparity, so the two cues disagree whenever the virtual object's apparent depth differs from the display's focal depth. This mismatch causes eye fatigue and constrains where comfortable UI can be placed; light-field and varifocal displays try to reduce the conflict.
 
+5. List the monocular and binocular depth cues and say which require both eyes.
+
+> [!success]- Answer
+> Monocular cues work with one eye: motion parallax (near objects sweep across the retina faster during head motion), occlusion (nearer objects hide farther ones), linear perspective (parallel lines converge), and aerial perspective (distant objects lose contrast and shift colour). Binocular cues require both eyes: stereopsis (depth from horizontal retinal disparity due to the interpupillary separation) and convergence (the inward eye rotation needed to fixate a near object). Stereo displays add the binocular cues that a flat image lacks.
+
+6. Why do HMDs need lenses, and what optical tradeoff does that introduce?
+
+> [!success]- Answer
+> The display sits only centimetres from the eye, far inside the eye's near focus limit, so it cannot be focused directly. A lens shifts the apparent focal distance outward so the eye can accommodate to it comfortably. The cost is optical distortion (and chromatic aberration) introduced by the lens, which the renderer must pre-correct so the warped image looks straight through the lens. Lenses also fix the focal plane, which is what creates the vergence-accommodation conflict.
+
+7. How do a high refresh rate and a low-persistence display reduce judder?
+
+> [!success]- Answer
+> Judder is the visible smearing or stuttering of the image during head motion, caused by the eye moving while a frame is held on a static display. A high refresh rate shortens the time between updates so the image keeps up with motion. Low persistence flashes each frame for only a brief instant rather than holding it for the whole frame interval, so the image does not smear across the retina as the eye moves. Together they keep world-fixed content sharp and stable during head turns.
+
 ---
 
 [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]]

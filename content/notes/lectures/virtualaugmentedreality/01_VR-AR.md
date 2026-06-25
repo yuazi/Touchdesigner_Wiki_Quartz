@@ -118,6 +118,21 @@ The point is more specific than a generic hype-cycle diagram: AR and VR do not m
 > [!success]- Answer
 > Ordinary screen graphics live in the display's coordinate system; the real world is irrelevant. AR overlays virtual content on the physical environment, so the system must know the user's viewpoint and the world's geometry well enough to place virtual content at the right pixel. Without tracking and registration the overlay drifts and the illusion collapses, which is Azuma's "registered in 3D" criterion.
 
+5. How does the lecture define VR, and how is that definition different from AR?
+
+> [!success]- Answer
+> VR is framed as a computer-generated environment that uses artificial sensory stimulation to induce targeted behaviour: the system stimulates the senses so the user acts as if the virtual situation were real. AR, by Azuma's criteria, instead keeps the real world in view and adds virtual content that is combined with reality, interactive in real time, and registered in 3D. The dividing line is whether the real world is replaced (VR) or kept and augmented (AR).
+
+6. What recurring pattern does the history of VR/AR reveal about how the field advances?
+
+> [!success]- Answer
+> Progress happens when display, tracking, registration, and interaction improve together, not when any one alone does. Sutherland's Sword of Damocles paired a head-mounted display with head tracking; later milestones (NASA VIEW, Boeing wire-harness guidance, ARToolKit, outdoor AR) each advanced because the supporting capabilities matured in step. A great display with poor tracking, or good tracking with no interaction, does not produce a usable immersive system.
+
+7. Distinguish augmented virtuality, mediated reality, and diminished reality.
+
+> [!success]- Answer
+> Augmented virtuality sits on Milgram's continuum near the virtual end: a mostly virtual world with real elements brought into it. Mediated reality is broader, altering perception by adding, removing, or transforming information. Diminished reality is the subtractive case, removing real-world content from the user's view. Standard AR only adds content, so diminished and mediated reality are generalizations of it.
+
 ---
 
 [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]]

@@ -323,6 +323,17 @@ Second, **the theories are not competitors but layers**. Sensory conflict explai
 
 Third, **the design payoff is small and finite**. Latency below 20 ms with prediction; matching FoV; head-coupled viewpoint; sitting tasks where possible; a stable rest frame when locomotion is unavoidable; incremental exposure; SSQ at end of session. These few rules, applied consistently, eliminate most adverse effects in well-engineered VR. The hard cases are racing simulators (visual acceleration is the point), unstructured exploration (no obvious rest frame), and multi-user platforms (hygiene plus mixed sensitivities). For those, the designer chooses which guideline to break and which compensation to add.
 
+## Exam Focus
+
+- Adverse health effect (Jerald 2016): anything a VR system does to the user that degrades their health; the three buckets are VR sickness, eye strain, and other challenges.
+- VR sickness umbrella: motion sickness (real or apparent motion), simulator sickness (simulation shortcomings), cybersickness (visually induced from immersion); know scene motion and vection.
+- Five theories of motion sickness: sensory conflict, evolutionary, postural instability, rest frame, and the unified model (a control loop where sickness follows a prediction failure).
+- Eye strain and accommodation-vergence conflict as the dominant optical fatigue cause.
+- Three factor groups: system (latency, calibration, tracking, FoV, persistence, fit), application design (frame rate, locus of control, acceleration, head motion, duration), and individual (sensitivity, adaptation, history, age, gender).
+- Latency sources and how each is reduced or compensated (prediction, post-render warping).
+- Measurement: SSQ as the standard discomfort questionnaire, plus postural-stability and physiological measures.
+- Design guidelines: lightweight low-persistence HMDs, careful calibration, minimised latency, seated tasks, slow head motion, rest frames, world-as-object viewpoint control, short sessions.
+
 ## Self-Check
 
 1. The lecture distinguishes motion sickness, simulator sickness, and cybersickness. What are the practical differences and why are they all reported under the umbrella "VR sickness"?

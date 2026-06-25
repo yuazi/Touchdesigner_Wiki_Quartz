@@ -434,6 +434,17 @@ Second, attention as a bottleneck. Post-attentive amnesia, change blindness, and
 
 Third, VR and AR are not only display technologies but also psychological interventions. The same depth misperception that makes a chart misleading is, in another framing, an embodied illusion that can be used therapeutically. Trash-It, embodied avatars, OCD exposure, Hopohopo: in each case the technology's perceptual peculiarity is the mechanism rather than a side effect.
 
+## Exam Focus
+
+- Perception is active interpretation, not passive image capture; know the sensory pathway and a working definition.
+- Explain why 2D graphical-perception results (Cleveland and McGill's accuracy ranking) do not transfer cleanly to 3D, AR, and VR.
+- Depth and size are underestimated in VR/AR; colour is distorted differently in AR (additive blending with the real world) than in VR (limited display gamut).
+- Visual attention: the fovea is a tiny detail window, preattentive features pop out in parallel, Feature Integration Theory binds them, and attention has hard limits (post-attentive amnesia, change blindness, inattentional blindness).
+- What guides attention: subjective goals and task, scene context, image properties, preattentive features, level of detail and rendering style, motion and flicker, and subtle approaches.
+- AR/VR attention-guidance techniques: added elements, blurring, automatic locomotion, virtual actor, motion cues (HiveFive), binocular disparity (Deadeye).
+- Gestalt laws: similarity, proximity, closure, good continuation, common fate, good figure (Pragnanz).
+- Psychology applications: embodied avatars and body awareness, and exposure therapy (OCD, social anxiety) as perceptually driven interventions.
+
 ## Self-Check
 
 1. Why do Cleveland and McGill's accuracy rankings for elementary perceptual tasks not transfer cleanly from 2D to AR/VR?

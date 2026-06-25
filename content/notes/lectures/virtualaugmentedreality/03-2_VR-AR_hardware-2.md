@@ -129,6 +129,16 @@ Input devices include:
 > [!success]- Answer
 > The ideal-display checklist combines comfort and unobtrusiveness, high dynamic range across all lighting, eye-resolution and full human field of view, binocular true depth, real occlusion, and robust tracking and scene understanding. Real systems trade these against each other: more FOV usually means heavier optics, higher resolution costs power and bandwidth, and true occlusion needs light-blocking hardware that hurts transparency. No current device hits all of them at once.
 
+5. Compare optical and video see-through across latency, occlusion, image control, and safety.
+
+> [!success]- Answer
+> Optical see-through shows the real world directly through a combiner, so the real view has zero latency and full resolution, but virtual content can lag the real world, true occlusion and black are hard (the display only adds light), and it is relatively safe because the wearer still sees the world if the system fails. Video see-through captures the world with cameras and composites digitally, so occlusion and image processing are easy and both views share one pipeline, but camera latency, limited resolution and dynamic range apply to the whole view, and a system failure can blind the user, which is a real safety concern.
+
+6. Name the four display-space categories with an example of each.
+
+> [!success]- Answer
+> Head-mounted (HMDs and near-eye displays worn on the head), hand-held (phones and tablets used as a magic window), stationary (fixed screens or magic mirrors the user looks at), and spatial AR (projectors that augment physical surfaces directly). The categories differ in who can see the augmentation, how mobile it is, and how registration is achieved.
+
 ---
 
 [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]]

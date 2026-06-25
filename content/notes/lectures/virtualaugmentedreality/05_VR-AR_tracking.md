@@ -206,6 +206,16 @@ The central reason for fusion is that tracking must be fast, stable, and accurat
 > [!success]- Answer
 > Natural features avoid the visual clutter and setup of fiducial markers, so the environment does not have to be instrumented. The difficulty is that ordinary scenes contain many ambiguous, repetitive, or low-texture regions. The system must detect salient points, describe them well enough to recognize across viewpoints, and verify geometric consistency, all in real time. Markers sidestep all of that by being designed for easy detection.
 
+6. How do registration, calibration, and tracking differ?
+
+> [!success]- Answer
+> Tracking is the real-time measurement of pose as the user or object moves. Calibration is the offline (or occasional) adjustment of sensor and display parameters so measurements are correct. Registration is the goal: aligning virtual content with the real or virtual world so it appears in the right place. Tracking feeds registration, and calibration keeps the numbers that registration depends on accurate; mixing them up is a common exam error.
+
+7. Name the four sensor-fusion types and give the idea behind each.
+
+> [!success]- Answer
+> Complementary fusion combines sensors that measure different degrees of freedom or cover each other's weaknesses (fast inertial data corrected by slower vision). Competitive fusion uses sensors that measure the same quantity redundantly, falling back to a worse sensor when a better one is unavailable. Statistical fusion combines measurements into a single state estimate by modelling uncertainty (Kalman-style). Cooperative fusion has one sensor help another obtain a measurement, as in assisted GPS using cell-tower information. Fusion exists because no single sensor is simultaneously fast, accurate, and robust.
+
 ---
 
 [[/notes/lectures/virtualaugmentedreality/04_VR-AR_Interaction|Previous: (y-04) Interaction]] | [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/06_VR-AR_CompVision|Next: (y-06) Computer Vision for AR]]

@@ -204,6 +204,18 @@ AR is well suited to deliver situated visualization hands-free and in-situ, supp
 
 ---
 
+## Exam Focus
+
+- Immersive analytics definition (Dwyer et al. 2018) and its parent fields: data visualization, visual analytics, VR, computer graphics, HCI.
+- Two purposes: visual analytics (analytical reasoning, measured by accuracy and speed) versus data-driven storytelling (measured by engagement and memorability).
+- History: scientific data was a natural 3D fit, abstract data was not; the term was coined in 2015 (Chandler et al.) alongside commodity VR (Rift, Vive).
+- The eight advantages over the desktop: extra visual channel, immersion/presence, spatial workspace and memory, collaboration, embodiment, multimodal input, hybrid interfaces, situated visualization.
+- Evaluation is hard because the more VR/AR characteristics a system uses the further it is from a desktop baseline; hybrid interfaces sidestep it, and metrics should extend beyond task performance.
+- The 3D-for-infovis debate: justified skepticism from the 1990s, but 3D still helps for overviews, networks, and terrain with proper depth cues.
+- Situated visualization (White and Feiner): displayed in and semantically related to its environment; AR suits it, VR generally does not.
+- Situated visualization versus situated analytics; physical referents (Willett et al.); non-situated versus situated versus embedded.
+- Enabling technologies (AR, 3D game engines, computer vision, IoT) and four constraints (world knowledge, location awareness, referent size/density, navigational requirements).
+
 ## Self-Check
 
 1. Give the Dwyer et al. (2018) definition of immersive analytics and name the fields it builds on.

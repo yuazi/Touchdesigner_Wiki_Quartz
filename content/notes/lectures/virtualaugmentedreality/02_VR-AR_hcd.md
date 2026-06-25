@@ -117,6 +117,16 @@ Testing choices should match the question:
 > [!success]- Answer
 > Formative evaluation runs during design to improve the current prototype; it is diagnostic and feeds back into iteration. Summative evaluation judges a finished system against goals or comparisons; it is evidentiary and produces a verdict. Formative answers "what should we change?", summative answers "does it work well enough?".
 
+5. Distinguish real, overcomable, and imagined constraints, with an example of each.
+
+> [!success]- Answer
+> Real constraints cannot be overcome: human physiology (the eye's field of view, the vestibular system) or hard hardware limits. Overcomable constraints can be handled with resources, redesign, or engineering effort, such as a tracking volume that is too small until more cameras are added. Imagined constraints are unchallenged assumptions ("users will not accept teleportation") that should be tested by prototyping rather than treated as fixed. Separating the three prevents a team from designing around a limit that does not actually exist.
+
+6. Why does VR/AR demand iterative design more urgently than a typical desktop interface?
+
+> [!success]- Answer
+> A bad desktop interface is annoying; a bad immersive interface can cause physical discomfort or sickness, and many of its failure modes (nausea, hand fatigue, broken presence, unreachable targets, tracking range) cannot be predicted on paper. Early, cheap prototypes are the only reliable way to surface these issues before they are baked into a high-fidelity build, so iteration is the method by which an immersive idea is found to break.
+
 ---
 
 [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]]

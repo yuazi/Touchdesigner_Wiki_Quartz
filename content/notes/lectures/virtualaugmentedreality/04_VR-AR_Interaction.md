@@ -141,6 +141,21 @@ Exam-ready guideline summary:
 > [!success]- Answer
 > A world-in-miniature gives the user a small, hand-held replica of the larger environment that can be inspected and manipulated. It supports navigation (point at a location to teleport there), overview (see the whole space at once), and out-of-reach manipulation (move proxy objects in the miniature to move real objects in the scene). It compresses scale and reach into one tangible interface.
 
+5. What are the four categories of 3D interaction task, and what does each cover?
+
+> [!success]- Answer
+> Selection (specifying which object to act on), manipulation (changing an object's properties: translate, rotate, scale), navigation (moving the viewpoint, split into travel and wayfinding), and system control (issuing commands and changing modes through menus or gestures). Most concrete VR/AR interactions are compositions of these four primitives, and a technique is usually evaluated within one of them.
+
+6. Why is teleportation comfortable compared with continuous virtual locomotion?
+
+> [!success]- Answer
+> Continuous virtual locomotion creates strong visual flow (vection) while the body stays still, so the eyes report motion the vestibular system does not, which provokes cybersickness. Teleportation jumps the viewpoint instantly with no sustained optical flow, so there is little or no vection and therefore little sensory conflict. The cost is a weaker sense of continuous space and possible disorientation about where one has moved, which techniques mitigate with brief transitions or previews.
+
+7. How does AR interaction differ from VR interaction?
+
+> [!success]- Answer
+> In VR the user manipulates only virtual objects in a fully synthetic space, so the designer controls everything. In AR the interaction has to coordinate virtual objects with real objects, real surfaces, and the shared physical space, respecting real-world geometry, occlusion, and other people. This enables AR-specific patterns such as tangible props, magic mirrors, projection on surfaces, personal interaction panels, and augmented maps, where the physical world is part of the interface rather than a backdrop.
+
 ---
 
 [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]]
