@@ -10,7 +10,7 @@ tags:
 date: 2026-06-25
 ---
 
-[[/notes/lectures/virtualaugmentedreality/10_VR-AR_Adverse_Health_Effects|Previous: (y-10) Adverse Health Effects in VR]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]]
+[[/notes/lectures/virtualaugmentedreality/10_VR-AR_Adverse_Health_Effects|Previous: (y-10) Adverse Health Effects in VR]] | [[/notes/lectures/virtualaugmentedreality/index|VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/12_Haptics|Next: (y-12) Haptics]]
 
 ## Mental Model First
 
@@ -270,4 +270,4 @@ AR is well suited to deliver situated visualization hands-free and in-situ, supp
 
 ---
 
-[[/notes/lectures/virtualaugmentedreality/10_VR-AR_Adverse_Health_Effects|Previous: (y-10) Adverse Health Effects in VR]] | [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]]
+[[/notes/lectures/virtualaugmentedreality/10_VR-AR_Adverse_Health_Effects|Previous: (y-10) Adverse Health Effects in VR]] | [[/notes/lectures/virtualaugmentedreality/index|(y) Back to VR/AR Index]] | [[/notes/lectures/virtualaugmentedreality/12_Haptics|Next: (y-12) Haptics]]

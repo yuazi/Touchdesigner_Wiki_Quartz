@@ -24,7 +24,9 @@ date: 2026-04-14
 - [[notes/lectures/realtimegraphics/10_global_illumination|(y-) 10_global_illumination]]: Real-time global illumination, radiosity, photon mapping, instant radiosity, reflective shadow maps, illumination probes, PRT, hybrid caching.
 - [[notes/lectures/realtimegraphics/11_gpu_raytracing|(y-) 11_gpu_raytracing]]: GPU raytracing pipeline, RT cores, the five ray shader types, ray payload/attributes, hybrid rendering, raytraced shadows/AO/reflections, denoising.
 - [[notes/lectures/realtimegraphics/12_hdr|(y-) 12_hdr]]: High dynamic range rendering, tone mapping operators, exposure and the human visual system, bloom, and HDR display output.
-- **Rendering Acceleration**: Level of Detail (LOD) and visibility algorithms.
+- [[notes/lectures/realtimegraphics/13_lod|(y-) 13_lod]]: Levels of detail, static/reactive/predictive selection, switching (popping, blending, geomorphing), simplification operators, quadric error metric, continuous/view-dependent/terrain LOD.
+- [[notes/lectures/realtimegraphics/14_visibility|(y-) 14_visibility]]: Output-sensitive rendering, frustum/backface/occlusion culling, BVH, PVS classification, occluder fusion, cells and portals, hierarchical depth buffer, region visibility, virtual occluders.
+- [[notes/lectures/realtimegraphics/15_virtual_textures|(y-) 15_virtual_textures]]: Clipmaps, virtual memory for textures, tiled virtual textures, tile fault pass, geometry clipmaps, and Nanite's combination of all acceleration techniques.
 - **Compute Shaders**: General-purpose computation on the GPU.
 
 ## Exercises

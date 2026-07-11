@@ -51,6 +51,12 @@ date: 2026-04-14
 - [[/notes/lectures/virtualaugmentedreality/11_Immersive_Analytics|(y-11) Immersive Analytics]]  
    Immersive analytics at the intersection of data visualization and VR/AR, visual analytics versus data-driven storytelling, brief history (Super Cockpit, scientific versus abstract data, term coined 2015), eight advantages over the desktop (extra visual channel, immersion, spatial memory, collaboration, embodiment, multimodal input, hybrid interfaces, situated visualization), the evaluation and 3D-for-infovis debates, and situated visualization (definition, situated versus situated analytics, non-situated / situated / embedded, forms and examples, enabling technologies, constraints).
 
+- [[/notes/lectures/virtualaugmentedreality/12_Haptics|(y-12) Haptics]]  
+   Tactile versus kinesthetic feedback and the skin's receptor types, grounded versus ungrounded devices (full trade-off table), active versus passive feedback, the device taxonomy (vibration, pressure, skin stretch, propeller, string, mechanical arm, encountered-type, EMS, gloves, pseudo), pseudo-haptics and haptic retargeting, automotive applications (Strives), and the perfect-system question.
+
+- [[/notes/lectures/virtualaugmentedreality/13_VR-AR_Evaluation_Future_Trends|(y-13) Evaluation and Future Trends]]  
+   Experiments on human subjects (variables, ethics), evaluation of versus with VR/AR, the method toolbox, operationalizing hypotheses into measures, the novelty effect, VR sickness and the SSQ, SUS and NASA TLX, interviews and the limits of self-report, pilot studies and good practices, descriptive versus inferential statistics, control and confounding variables, the asymmetric AR assembly case study, and future trends (displays, more senses, smart objects, robots, brain-machine interfaces, ML/AI, semantic scene understanding, standards).
+
 ## Assessment Map
 
 | Component | Weight / Gate                         | Notes                                                                                    |

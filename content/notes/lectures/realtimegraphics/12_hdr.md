@@ -10,7 +10,7 @@ tags:
 date: 2026-06-25
 ---
 
-[[notes/lectures/realtimegraphics/11_gpu_raytracing|Back: (y-11) GPU Raytracing]] | [[notes/lectures/realtimegraphics/index|RTG Index]]
+[[notes/lectures/realtimegraphics/11_gpu_raytracing|Back: (y-11) GPU Raytracing]] | [[notes/lectures/realtimegraphics/index|RTG Index]] | [[notes/lectures/realtimegraphics/13_lod|Next: (y-13) Levels of Detail]]
 
 ## Mental Model First: The World Has More Range Than Your Screen
 
@@ -247,4 +247,4 @@ HDR also stresses the link to the display. Scanning out 4K at 10 bits and 30 Hz 
 
 ---
 
-[[notes/lectures/realtimegraphics/11_gpu_raytracing|Back: (y-11) GPU Raytracing]] | [[notes/lectures/realtimegraphics/index|RTG Index]]
+[[notes/lectures/realtimegraphics/11_gpu_raytracing|Back: (y-11) GPU Raytracing]] | [[notes/lectures/realtimegraphics/index|RTG Index]] | [[notes/lectures/realtimegraphics/13_lod|Next: (y-13) Levels of Detail]]
