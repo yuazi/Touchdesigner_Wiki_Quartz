@@ -14,3 +14,4 @@ quartz/cli/tui/dist/
 CLAUDE.md
 AGENTS.md
 content/**/*.pdf
+.claude/

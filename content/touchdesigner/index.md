@@ -95,6 +95,7 @@ Practical examples and projects categorized by difficulty.
 - **[[touchdesigner/06_Recipes_and_Projects/y-1/index|(y-1) Fundamentals]]**: Core UI, Binding, and basic audio-reactive 3D.
 - **[[touchdesigner/06_Recipes_and_Projects/y-2/index|(y-2) Intermediate]]**: Shaders, PBR Materials, and basic MediaPipe tracking.
 - **[[touchdesigner/06_Recipes_and_Projects/y-3/index|(y-3) Advanced]]**: Fluid simulations, advanced gesture recognition, and fractal math.
+- **[[touchdesigner/Projects/index|(y) Ready-to-Open Projects]]**: Three verified, self-contained `.toe` files (feedback trails, a 3D render pipeline, and GPU instancing) with renders and notes.
 
 ---
 
