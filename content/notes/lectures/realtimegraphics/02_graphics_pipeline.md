@@ -9,7 +9,7 @@ tags:
 date: 2026-05-12
 ---
 
-[[notes/lectures/realtimegraphics/01_introduction|Back: (y-01) Introduction]] | [[notes/lectures/realtimegraphics/03_gpu_architecture_parallelism|Next: (y-03) GPU Architecture & Parallelism]]
+[[notes/lectures/realtimegraphics/01_introduction|Back: (y-01) Introduction]] | [[notes/lectures/realtimegraphics/index|(y) Back to RTG Index]] | [[notes/lectures/realtimegraphics/03_gpu_architecture_parallelism|Next: (y-03) GPU Architecture & Parallelism]]
 
 ## Mental Model First: The Graphics Factory
 

@@ -217,7 +217,7 @@ Other trend lines:
 
 ![[pictures/virtualaugmentedreality/13/Lecture13_Pg051_Applications_And_Interfaces.png]]
 
-<p class="image-caption">Application frontier from the group's research: motion guidance, guitAR hero for music learning, gaze visualization for the visually impaired, attention guidance, AR-guided human-robot interaction, AR in chemistry, situated visualization, and AR in marketing and industry.</p>
+<p class="image-caption">Application frontier from the group's research: motion guidance, guitARhero for music learning, gaze visualization for the visually impaired, attention guidance, AR-guided human-robot interaction, AR in chemistry, situated visualization, and AR in marketing and industry.</p>
 
 - **Standards and open source**: open source is a licensing class; a **de facto standard** dominates through sheer adoption (DirectX, Steam OS, LiquidVR, GameWorks VR); **open standards** are developed and maintained via a collaborative, consensus-driven process available to the public [ITU-T 2015], with the **Khronos Group** (OpenGL, OpenCL, WebGL) as the working example of a non-profit standards organization.
 - **Applications and interfaces** from current research: motion guidance, music learning (guitARhero), gaze visualization for the visually impaired, attention guidance, AR-guided human-robot interaction, AR in chemistry and simulation, situated visualization and analytics, AR in marketing and industry.

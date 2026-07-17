@@ -171,9 +171,9 @@ Gloves are the commercially most visible form factor, combining kinesthetic (per
 
 ![[pictures/virtualaugmentedreality/12/Lecture12_Pg038_Strives_Automotive.png]]
 
-<p class="image-caption">Strives: string-based force feedback for automotive engineering  -  virtual prototypes of car interiors become graspable during design reviews in VR.</p>
+<p class="image-caption">STRIVE: string-based force feedback for automotive engineering  -  virtual prototypes of car interiors become graspable during design reviews in VR.</p>
 
-The lecture's application example is the **automotive industry**: **Strives** (Achberger et al.) provides **string-based force feedback for automotive engineering**, letting engineers physically feel virtual car interior prototypes during VR design reviews, long before physical prototypes exist.
+The lecture's application example is the **automotive industry**: **STRIVE** (Achberger et al.; the slide titles it "Strives") provides **string-based force feedback for automotive engineering**, letting engineers physically feel virtual car interior prototypes during VR design reviews, long before physical prototypes exist.
 
 ## 10. The Future of Haptics
 
@@ -202,7 +202,7 @@ Every requirement fights another (whole-body active force wants grounding and bu
 - Active versus passive: active applies forces independent of user movement (more interactions, safety issues); passive only stops movement (safe, simple, but useless when the user is still).
 - Device taxonomy: vibration/pressure/skin stretch (ungrounded tactile), propeller/string/mechanical arm/encountered-type (kinesthetic), EMS, gloves, pseudo.
 - EMS renders force by stimulating antagonist muscles; encountered-type moves physical actuators to meet the user (CoVR, quadcopters); pseudo-haptics is pure illusion, visually or by stimulus substitution (Grabity, haptic retargeting).
-- Application: Strives string-based force feedback in automotive engineering.
+- Application: STRIVE string-based force feedback in automotive engineering (Achberger et al.; the same group's STROE does ungrounded weight simulation).
 - The perfect-system checklist and why its requirements conflict.
 
 ## Self-Check
