@@ -1,5 +1,5 @@
 ---
-title: Yusuf's Digital Garden
+title: (y)usage Garden
 description: Notes on TouchDesigner, real-time graphics, machine learning, program verification, tools, and creative projects.
 tags:
   - home
