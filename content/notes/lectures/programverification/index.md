@@ -6,6 +6,8 @@ tags:
   - software-engineering
 ---
 
+# Program Verification
+
 Lecture notes for the master's PV course. The course teaches how to formally prove that programs do what their specifications say, using logic, SMT solvers, and Hoare-style reasoning.
 
 ## Foundations

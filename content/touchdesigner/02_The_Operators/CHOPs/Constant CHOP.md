@@ -1,5 +1,4 @@
 ---
-title: Constant CHOP
 tags:
   - touchdesigner
   - td/operators
@@ -7,6 +6,8 @@ tags:
   - operators
 date: 2026-02-11
 ---
+
+# Constant CHOP
 
 The **Constant CHOP** is the simplest CHOP - it outputs one or more channels with fixed, user-defined values that do not change over time. Think of it as a named variable or knob.
 

@@ -9,7 +9,7 @@ tags:
 date: 2026-06-18
 ---
 
-Fifteen project studies across two formats: ten installation-scale builds and five shorter, reel-style recreations. The chapter focuses on **real-time AI** (live diffusion, monocular depth, Gaussian splats), **camera-only body interaction** (MediaPipe presence, hands, and holistic tracking), and generative systems that can run as finished gallery loops.
+The ten projects that are lighting up galleries, festivals, and Instagram feeds **right now (June 2026)**. This chapter leans into the two things every new-media show is doing this year: **real-time AI** (live diffusion, monocular depth, Gaussian splats) and **camera-only body interaction** (MediaPipe presence, hands, and holistic tracking). No depth cameras, no expensive sensors, just a webcam and a GPU.
 
 > [!tip] Want to amaze someone?
 > Every recipe here is built to look finished on a big screen or projector. Pick one, swap in a photo or song that means something to the two of you, and you have an installation-quality piece in an evening.
@@ -56,7 +56,7 @@ Five art-video styles going viral on TikTok and Instagram in June 2026, each as 
 
 ## Suggested order
 
-If you are new to these techniques, build the ten installation projects in this order. Each one teaches a skill the next reuses:
+If you are new to these techniques, build them in this order. Each one teaches a skill the next reuses:
 
 1. Reaction-Diffusion Living Canvas (GLSL + feedback).
 2. Volumetric Audio Nebula (POPs + audio).
@@ -68,8 +68,6 @@ If you are new to these techniques, build the ten installation projects in this 
 8. ControlNet Pose-to-Art (diffusion + pose).
 9. Gaussian Splatting Scenes (volumetric capture).
 10. Projection-Mapped Memory Garden (the installation finale).
-
-The five viral tutorials are shorter variations rather than prerequisites. Try them whenever their source technique—POPs, MediaPipe, optical flow, audio analysis, or live diffusion—feels familiar.
 
 ---
 

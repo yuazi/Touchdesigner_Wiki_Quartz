@@ -1,11 +1,12 @@
 ---
-title: Rendering Basics
 tags:
   - touchdesigner
   - td/rendering
   - rendering
 date: 2026-02-16
 ---
+
+# Rendering Basics
 
 A 3D render in TouchDesigner is the work of four cooperating ops: a **Geometry COMP** holds the geometry, a **Camera COMP** is the eye, a **Light COMP** illuminates, and a **Render TOP** runs the GPU pass that produces a 2D texture. Everything else (post-process chains, multi-pass setups, instancing, custom shaders) builds on this minimum recipe.
 

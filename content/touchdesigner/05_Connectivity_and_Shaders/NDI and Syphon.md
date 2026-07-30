@@ -1,5 +1,4 @@
 ---
-title: NDI and Syphon (Video Sharing)
 tags:
   - touchdesigner
   - td/connectivity
@@ -9,6 +8,8 @@ tags:
   - io
 date: 2026-02-26
 ---
+
+# NDI and Syphon (Video Sharing)
 
 Sharing real-time video textures between applications without using excessive CPU.
 

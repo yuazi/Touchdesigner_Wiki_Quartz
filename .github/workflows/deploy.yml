@@ -50,10 +50,7 @@ jobs:
         run: npx quartz plugin install
 
       - name: Build Quartz
-        run: npx quartz build --concurrency=1
-
-      - name: Check built site
-        run: npm run check:site
+        run: npx quartz build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

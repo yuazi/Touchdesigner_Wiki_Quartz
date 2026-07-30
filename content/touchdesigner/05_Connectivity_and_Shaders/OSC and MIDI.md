@@ -1,5 +1,4 @@
 ---
-title: OSC and MIDI (Input/Output)
 tags:
   - touchdesigner
   - td/connectivity
@@ -8,6 +7,8 @@ tags:
   - osc
 date: 2026-02-26
 ---
+
+# OSC and MIDI (Input/Output)
 
 How to communicate with other software and controllers.
 

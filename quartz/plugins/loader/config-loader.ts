@@ -26,7 +26,6 @@ import { loadComponentsFromPackage } from "./componentLoader"
 import { loadFramesFromPackage } from "./frameLoader"
 import { componentRegistry } from "../../components/registry"
 import { getCondition } from "./conditions"
-import { namespaceGeneratedIds } from "../../components/NamespaceGeneratedIds"
 
 const CONFIG_YAML_PATH = path.join(process.cwd(), "quartz.config.yaml")
 const DEFAULT_CONFIG_YAML_PATH = path.join(process.cwd(), "quartz.config.default.yaml")
@@ -732,7 +731,6 @@ function buildLayoutForEntries(
   entries: PluginJsonEntry[],
   layoutConfig: LayoutConfig,
 ): Partial<FullPageLayout> {
-  const overflowListPlugins = new Set(["explorer", "backlinks", "table-of-contents"])
   const positions: Record<
     string,
     {
@@ -791,10 +789,6 @@ function buildLayoutForEntries(
       )
     } else {
       component = reg.component as QuartzComponent
-    }
-
-    if (overflowListPlugins.has(name)) {
-      component = namespaceGeneratedIds(component, name)
     }
 
     // Apply display modifier

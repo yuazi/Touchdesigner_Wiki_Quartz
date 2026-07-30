@@ -1,5 +1,4 @@
 ---
-title: SOP - Surface Operators
 tags:
   - touchdesigner
   - td/operators
@@ -7,6 +6,8 @@ tags:
   - sop
 date: 2026-02-11
 ---
+
+# SOP - Surface Operators
 
 SOPs ("Surface Operators") are TouchDesigner's family for 3D geometry. Per the wiki: "Surface Operators... are operators that can generate, import, modify and combine 3D surfaces (also called geometry)." They handle "3D points, polygons, lines, particles, surfaces, spheres and meatballs."
 

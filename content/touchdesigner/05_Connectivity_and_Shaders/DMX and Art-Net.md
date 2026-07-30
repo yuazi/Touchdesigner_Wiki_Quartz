@@ -1,5 +1,4 @@
 ---
-title: DMX and Art-Net (Lighting)
 tags:
   - touchdesigner
   - td/connectivity
@@ -9,6 +8,8 @@ tags:
   - io
 date: 2026-02-26
 ---
+
+# DMX and Art-Net (Lighting)
 
 Controlling physical lighting fixtures and LEDs from TouchDesigner using standard protocols.
 

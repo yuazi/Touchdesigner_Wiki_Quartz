@@ -1,5 +1,4 @@
 ---
-title: Math CHOP
 tags:
   - touchdesigner
   - td/operators
@@ -8,6 +7,8 @@ tags:
   - operators
 date: 2026-02-11
 ---
+
+# Math CHOP
 
 The **Math CHOP** is the workhorse for combining and remapping numerical data. It handles per-channel functions, channel-to-channel arithmetic, multi-input arithmetic, and linear range remapping in a single op. If you find yourself reaching for a Constant + a multiply + a clamp, a single Math CHOP almost always does it more cleanly.
 

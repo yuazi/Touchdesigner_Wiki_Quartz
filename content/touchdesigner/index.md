@@ -108,7 +108,7 @@ Practical examples and projects categorized by difficulty.
 
 ## (y8) Trending: Gallery-Grade 2026
 
-Fifteen project studies: ten installation-scale builds and five shorter reel recreations covering real-time AI, Gaussian splats, AI depth, MediaPipe interaction, and generative systems.
+Ten installation-quality projects on what is trending right now: real-time AI (live diffusion, Gaussian splats, AI depth) and camera-only MediaPipe interaction.
 
 - **[[touchdesigner/08_Trending_2026/index|(y8) Trending 2026 Index]]**: Chapter hub for the ten projects.
 - **[[touchdesigner/08_Trending_2026/Live AI Painting with TouchDiffusion|(y-) Live AI Painting with TouchDiffusion]]**: Real-time Stable Diffusion repaint of any input.

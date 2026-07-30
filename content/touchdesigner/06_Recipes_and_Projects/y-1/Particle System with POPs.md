@@ -79,7 +79,7 @@ The POP SOP outputs "points," but we need to tell TouchDesigner _how_ to draw th
   - Each particle becomes a glowing 2D "dot" facing the camera.
 
 - **Option B: Instanced Geometry (Advanced)**
-  - Follow the [[touchdesigner/06_Recipes_and_Projects/y-1/Audio Reactive Geometry|Instancing Recipe]] but use the POP SOP as your data source.
+  - Follow the [[touchdesigner/06_Recipes_and_Projects/Audio Reactive Geometry|Instancing Recipe]] but use the POP SOP as your data source.
   - Each particle becomes a full 3D shape (like a small box or sphere).
 
 ---

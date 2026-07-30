@@ -1,11 +1,12 @@
 ---
-title: Cameras and Lights
 tags:
   - touchdesigner
   - td/rendering
   - rendering
 date: 2026-02-16
 ---
+
+# Cameras and Lights
 
 The Camera COMP and Light COMP are the two Object COMPs that join the Geo COMP in any 3D render. The Camera defines the eye; the Lights illuminate. Both attach to a Render TOP via name, not via wires.
 

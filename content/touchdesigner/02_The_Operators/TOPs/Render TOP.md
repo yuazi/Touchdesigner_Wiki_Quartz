@@ -1,5 +1,4 @@
 ---
-title: Render TOP
 tags:
   - touchdesigner
   - td/operators
@@ -8,6 +7,8 @@ tags:
   - operators
 date: 2026-02-11
 ---
+
+# Render TOP
 
 The **Render TOP** is what converts your 3D scene - geometry, lights, cameras, and materials - into a 2D image you can display, process, or output. It is the bridge between the 3D (SOP/COMP) world and the 2D (TOP) world.
 
