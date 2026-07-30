@@ -1,4 +1,5 @@
 ---
+title: TOP - Texture Operators
 tags:
   - touchdesigner
   - td/operators
@@ -6,8 +7,6 @@ tags:
   - top
 date: 2026-02-11
 ---
-
-# TOP - Texture Operators
 
 TOPs ("Texture Operators") are TouchDesigner's family for 2D image work: video playback, generative imagery, compositing, and any GPU-side pixel manipulation. Per the wiki: "Texture Operators... are image operators that provide real-time, GPU-based compositing and image manipulation," and "all calculations for TOPs are performed on the system's GPU."
 

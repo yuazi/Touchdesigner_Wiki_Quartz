@@ -1,4 +1,5 @@
 ---
+title: Geometry Instancing
 tags:
   - touchdesigner
   - td/rendering
@@ -7,8 +8,6 @@ tags:
   - advanced
 date: 2026-02-16
 ---
-
-# Geometry Instancing
 
 Instancing draws the same piece of geometry many times in one render call. The geometry uploads to the GPU once; per-instance data (position, rotation, scale, color, custom attributes) provides the variation. The GPU is built for this: thousands or millions of instances cost a fraction of what the same number of separate Geo COMPs would.
 

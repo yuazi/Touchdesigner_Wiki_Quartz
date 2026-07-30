@@ -1,4 +1,5 @@
 ---
+title: MAT - Material Operators
 tags:
   - touchdesigner
   - td/operators
@@ -6,8 +7,6 @@ tags:
   - operators
 date: 2026-02-11
 ---
-
-# MAT - Material Operators
 
 MATs are TouchDesigner's family of shaders. The wiki: "MATs or Materials are an Operator Family that applies a Shader to a SOP or 3D Geometry Object for rendering textured surfaces with lighting." A SOP defines geometry; a MAT decides how that geometry catches light, takes a texture, and writes pixels in a Render TOP.
 

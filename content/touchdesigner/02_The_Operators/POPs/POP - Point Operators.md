@@ -1,4 +1,5 @@
 ---
+title: POP - Point Operators (GPU Points)
 tags:
   - touchdesigner
   - td/operators
@@ -6,8 +7,6 @@ tags:
   - pop
 date: 2026-02-11
 ---
-
-# POP - Point Operators (GPU Points)
 
 POPs ("Point Operators") are TouchDesigner's GPU-resident operator family for points and point-based geometry. The wiki: "POPs are a replacement and re-think of TouchDesigner's historically first operator family, SOPs (1989), with many new features and benefits." Points are the fundamental record; primitives can be built on top of them, but the unit of work is the per-point attribute, processed in massive parallel on the GPU.
 

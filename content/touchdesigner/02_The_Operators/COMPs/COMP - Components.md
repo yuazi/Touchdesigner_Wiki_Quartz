@@ -1,4 +1,5 @@
 ---
+title: COMP - Components
 tags:
   - touchdesigner
   - td/operators
@@ -6,8 +7,6 @@ tags:
   - operators
 date: 2026-02-11
 ---
-
-# COMP - Components
 
 COMPs are the family that holds _other_ networks. Every other operator family stays in its own column of the network; COMPs are the wrappers that group ops together, give them a 3D transform, host a UI panel, or run a sub-process. They're the structural backbone of any project bigger than a sketch.
 

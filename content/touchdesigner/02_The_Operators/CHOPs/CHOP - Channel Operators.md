@@ -1,4 +1,5 @@
 ---
+title: CHOP - Channel Operators (Data)
 tags:
   - touchdesigner
   - td/operators
@@ -6,8 +7,6 @@ tags:
   - operators
 date: 2026-02-11
 ---
-
-# CHOP - Channel Operators (Data)
 
 CHOPs ("CHannel OPerators") are the family that handles motion, audio, math, logic, MIDI, OSC, and any other stream of numeric data. Per the wiki: a CHOP holds one or more named **channels**, and each channel is "a sequence of numbers (also known as Samples)." A sample is "one floating point number per channel." If a CHOP needs to represent something time-varying, those samples are spaced at the CHOP's sample rate.
 

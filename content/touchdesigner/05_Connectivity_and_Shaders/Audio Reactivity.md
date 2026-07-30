@@ -1,4 +1,5 @@
 ---
+title: Audio Reactivity
 tags:
   - touchdesigner
   - td/connectivity
@@ -7,8 +8,6 @@ tags:
   - advanced
 date: 2026-02-26
 ---
-
-# Audio Reactivity
 
 Audio reactivity is the process of extracting data from an audio signal and mapping it to visual parameters.
 

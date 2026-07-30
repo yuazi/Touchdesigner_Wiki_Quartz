@@ -1,4 +1,5 @@
 ---
+title: DAT - Data Operators
 tags:
   - touchdesigner
   - td/operators
@@ -6,8 +7,6 @@ tags:
   - operators
 date: 2026-02-11
 ---
-
-# DAT - Data Operators
 
 DATs ("DATa Operators") hold text. The wiki's definition: "DATs are used to hold text data like strings, scripts, and XML. DATs either contain multiple lines of text as in a script, or a table of rows and columns of cells, each containing one string."
 

@@ -1,4 +1,5 @@
 ---
+title: Noise Operators (CHOP and TOP)
 tags:
   - touchdesigner
   - td/operators
@@ -8,8 +9,6 @@ tags:
   - top
 date: 2026-02-11
 ---
-
-# Noise Operators (CHOP and TOP)
 
 Noise is the foundation of organic movement, procedural textures, and any generative behavior that needs a coherent random feel. The **Noise CHOP** and **Noise TOP** share the same family of noise functions but operate on different sides of the GPU/CPU divide. Pick the one that matches what you'll do with the result: per-channel signal work goes through the CHOP; per-pixel image work goes through the TOP.
 

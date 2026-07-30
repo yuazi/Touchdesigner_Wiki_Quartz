@@ -1,4 +1,5 @@
 ---
+title: Select CHOP
 tags:
   - touchdesigner
   - td/operators
@@ -7,8 +8,6 @@ tags:
   - select
 date: 2026-02-11
 ---
-
-# Select CHOP
 
 The **Select CHOP** picks (and optionally renames) channels from a remote CHOP without drawing a wire. It's the canonical way to keep networks clean: instead of running a long wire across a project to grab one channel, drop a Select CHOP next to where you need the value and point it at the source.
 

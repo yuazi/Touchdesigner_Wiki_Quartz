@@ -16,7 +16,7 @@ Download a `.toe`, double-click it, and press play. The interesting output is al
 
 ![NeonFeedback render](NeonFeedback.png)
 
-**File:** [NeonFeedback.toe](NeonFeedback.toe) - *TOP feedback loop, 100% 2D*
+**File:** [NeonFeedback.toe](NeonFeedback.toe) - _TOP feedback loop, 100% 2D_
 
 A dot traces a Lissajous curve while a classic **Feedback TOP** loop recycles the previous frame with a slight zoom, rotate, opacity fade, and hue shift, so the dot leaves spiralling rainbow trails. This is the foundational pattern behind most "infinite trails" visuals.
 
@@ -28,7 +28,7 @@ Things to try: raise `transform1` scale for a faster spiral, lower `level1` opac
 
 ![TorusBloom render](TorusBloom.png)
 
-**File:** [TorusBloom.toe](TorusBloom.toe) - *minimal 3D render pipeline*
+**File:** [TorusBloom.toe](TorusBloom.toe) - _minimal 3D render pipeline_
 
 A torus displaced by an animated **Noise SOP**, shaded with a Phong material, lit by two colored lights, rendered by a Camera + **Render TOP**, then finished with a cheap bloom (wide blur added back on top). This is the smallest complete 3D pipeline worth memorizing: SOP → Geo COMP → MAT → Camera/Light → Render TOP → post.
 
@@ -40,7 +40,7 @@ Things to try: `noise1` amplitude and period inside `geo1`, the light colors, `b
 
 ![InstanceField render](InstanceField.png)
 
-**File:** [InstanceField.toe](InstanceField.toe) - *GPU instancing driven by CHOPs*
+**File:** [InstanceField.toe](InstanceField.toe) - _GPU instancing driven by CHOPs_
 
 A 28×28 grid run through an animated Noise SOP becomes rolling terrain; a **SOP to CHOP** converts the point positions into `tx ty tz` channels, and a Geometry COMP instances one small box per sample: 784 boxes in a single draw call. Instancing is the workhorse technique behind almost every large-scale TD piece.
 

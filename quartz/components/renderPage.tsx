@@ -16,6 +16,7 @@ import { styleText } from "util"
 import { resolveFrame } from "./frames"
 import type { TreeTransform } from "../plugins/types"
 import type { BuildCtx } from "../util/ctx"
+import { namespaceRenderedGeneratedIds } from "./NamespaceGeneratedIds"
 
 interface RenderComponents {
   head: QuartzComponent
@@ -372,5 +373,5 @@ export function renderPage(
     </html>
   )
 
-  return "<!DOCTYPE html>\n" + render(doc)
+  return "<!DOCTYPE html>\n" + namespaceRenderedGeneratedIds(render(doc))
 }

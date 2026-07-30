@@ -1,4 +1,5 @@
 ---
+title: Timer CHOP
 tags:
   - touchdesigner
   - td/operators
@@ -7,8 +8,6 @@ tags:
   - timer
 date: 2026-02-11
 ---
-
-# Timer CHOP
 
 The **Timer CHOP** is a state machine for time. Use it any time you'd reach for "do X after N seconds," "play through these phases," or "loop this for 10 cycles." It outputs a current fraction, a current state (running, done, ready), and fires Python callbacks at the right moments. Building this by hand with Constant CHOPs and counters works briefly, then breaks the moment you need cycling, segments, or pause.
 

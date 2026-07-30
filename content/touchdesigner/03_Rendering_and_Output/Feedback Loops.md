@@ -1,4 +1,5 @@
 ---
+title: Feedback Loops
 tags:
   - touchdesigner
   - td/rendering
@@ -7,8 +8,6 @@ tags:
   - advanced
 date: 2026-02-16
 ---
-
-# Feedback Loops
 
 A **Feedback TOP** outputs the previous frame of another TOP. Combine that with a blend or composite, and you can build motion trails, painterly streaks, fluid-like reaction-diffusion patterns, and complex generative imagery. The wiki's terse summary: it "can be used to create feedback effects in TOPs. It can give fake motion blur by not clearing the color buffer."
 
