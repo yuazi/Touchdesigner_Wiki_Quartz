@@ -46,6 +46,8 @@ Notes, references, and rabbit holes. Some are seedlings, some are evergreen.
 - [[notes/taekwondo/sparring|(y-) Sparring]]: front-leg cancel style, inspired by CJ Nickolas.
 - [[notes/taekwondo/stretching|(y-) Stretching]]: PNF protocols and the mobility work that actually moved my range.
 - [[notes/taekwondo/philosophy|(y-) Philosophy]]: the five tenets and what they mean off the mat.
+- [[notes/taekwondo/rules|(y-) Rules (2026)]]: PSS electronic scoring, point values, and the new-for-2026 rule changes.
+- [[notes/taekwondo/2026-season|(y-) 2026 Season]]: Wuxi 2025 Worlds, the Roma Grand Prix, and the road to LA 2028.
 
 ## Fencing (Épée)
 
@@ -57,6 +59,8 @@ Notes, references, and rabbit holes. Some are seedlings, some are evergreen.
 - [[notes/fencing/parries|(y-) Parries]]: the numbered parries, circular parries, prises de fer.
 - [[notes/fencing/bladework|(y-) Bladework]]: simple and compound attacks, taking the blade, counter-offense.
 - [[notes/fencing/tactics|(y-) Tactics]]: distance, tempo, second intention, and modern competitive styles.
+- [[notes/fencing/equipment|(y-) Equipment]]: the weapon, electric scoring, the 750g tip, and the 40ms lockout.
+- [[notes/fencing/2026-season|(y-) 2026 Season]]: Hong Kong Worlds, the World Cup circuit, and who's fencing well now.
 - [[notes/fencing/workout|(y-) Workout]]: no-equipment conditioning grouped by purpose.
 - [[notes/fencing/stretching|(y-) Stretching]]: mobility for the lunge, the wrist, and the asymmetric fencer's body.
 - [[notes/fencing/glossary|(y-) Glossary]]: the French (mostly) vocabulary you need to read a coaching book.

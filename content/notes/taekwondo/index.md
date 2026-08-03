@@ -60,6 +60,18 @@ Poomsae (patterns / forms) practice has its own vocabulary. Knowing what the ins
 
 ---
 
+## (y-) Following the Sport
+
+The competitive side changes fast. New electronic-scoring rules landed in 2026 and the LA 2028 ranking race is already on.
+
+> [!abstract] [[notes/taekwondo/rules|(y-) Modern Competition Rules (2026)]]
+> Best-of-three rounds, PSS electronic scoring, point values, and the new-for-2026 rule changes (wider 15-point gap, double-value stalling penalty, punch sensors).
+
+> [!abstract] [[notes/taekwondo/2026-season|(y-) 2026 Season & Rankings]]
+> Wuxi 2025 Worlds gold medalists, the Roma 2026 Grand Prix, and the road to LA 2028.
+
+---
+
 ## Sources
 
 - [Kukkiwon (World Taekwondo Headquarters)](http://www.kukkiwon.or.kr/)
@@ -68,7 +80,7 @@ Poomsae (patterns / forms) practice has its own vocabulary. Knowing what the ins
 
 ---
 
-[[notes/taekwondo/stances|(y-) Stances]] | [[notes/taekwondo/combinations|(y-) Combinations]] | [[notes/taekwondo/sparring|(y-) Sparring]] | [[notes/taekwondo/stretching|(y-) Stretching]] | [[notes/taekwondo/philosophy|(y-) Philosophy]] | [[notes/taekwondo/taeguk|(y-) Taegeuk]]
+[[notes/taekwondo/stances|(y-) Stances]] | [[notes/taekwondo/combinations|(y-) Combinations]] | [[notes/taekwondo/sparring|(y-) Sparring]] | [[notes/taekwondo/stretching|(y-) Stretching]] | [[notes/taekwondo/philosophy|(y-) Philosophy]] | [[notes/taekwondo/taeguk|(y-) Taegeuk]] | [[notes/taekwondo/rules|(y-) Rules (2026)]] | [[notes/taekwondo/2026-season|(y-) 2026 Season]]
 
 ---
 
