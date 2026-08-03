@@ -44,7 +44,12 @@ Notes, references, and rabbit holes. Some are seedlings, some are evergreen.
 - [[notes/taekwondo/stances|(y-) Stances]]: foot positions and how they shape balance and power.
 - [[notes/taekwondo/combinations|(y-) Combinations]]: chaining strikes, transitions, and pressure tactics.
 - [[notes/taekwondo/sparring|(y-) Sparring]]: front-leg cancel style, inspired by CJ Nickolas.
+- [[notes/taekwondo/spinning-kicks|(y-) Spinning Kicks]]: the complete guide to the spins, phase by phase.
+- [[notes/taekwondo/spinning-back-kick|(y-) Spinning Back Kick]]: the highest-percentage spin, step by step.
+- [[notes/taekwondo/spinning-hook-kick|(y-) Spinning Hook Kick]]: the head-hunter that hooks around the guard.
+- [[notes/taekwondo/spin-drills|(y-) Spin Drills]]: balance, spotting, and power work that builds the engine.
 - [[notes/taekwondo/stretching|(y-) Stretching]]: PNF protocols and the mobility work that actually moved my range.
+- [[notes/taekwondo/splits-progression|(y-) Splits Progression]]: the flexibility project for head-height kicks.
 - [[notes/taekwondo/philosophy|(y-) Philosophy]]: the five tenets and what they mean off the mat.
 - [[notes/taekwondo/rules|(y-) Rules (2026)]]: PSS electronic scoring, point values, and the new-for-2026 rule changes.
 - [[notes/taekwondo/2026-season|(y-) 2026 Season]]: Wuxi 2025 Worlds, the Roma Grand Prix, and the road to LA 2028.

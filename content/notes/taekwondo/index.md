@@ -60,6 +60,20 @@ Poomsae (patterns / forms) practice has its own vocabulary. Knowing what the ins
 
 ---
 
+## (y-) Spinning Kicks
+
+The whole reason I started. Full breakdowns of the spins, plus the training that makes them land.
+
+> [!abstract] [[notes/taekwondo/spinning-kicks|(y-) Spinning Kicks - The Complete Guide]]
+> The five phases every spin shares, the whole spinning-kick family, and the universal principles (spot, axis, hip power, land loaded).
+
+- [[notes/taekwondo/spinning-back-kick|(y-) Spinning Back Kick (Dwi Chagi)]]: the highest-percentage spin, straight-line heel thrust, best counter to pressure.
+- [[notes/taekwondo/spinning-hook-kick|(y-) Spinning Hook Kick (Dwi Huryeo Chagi)]]: the showstopper head kick that hooks around the guard.
+- [[notes/taekwondo/spin-drills|(y-) Spin Training Drills]]: balance, spotting, and rotational-power work that builds the engine.
+- [[notes/taekwondo/splits-progression|(y-) Splits & Kick-Height Progression]]: the flexibility project that gets your leg to head height.
+
+---
+
 ## (y-) Following the Sport
 
 The competitive side changes fast. New electronic-scoring rules landed in 2026 and the LA 2028 ranking race is already on.
@@ -80,7 +94,7 @@ The competitive side changes fast. New electronic-scoring rules landed in 2026 a
 
 ---
 
-[[notes/taekwondo/stances|(y-) Stances]] | [[notes/taekwondo/combinations|(y-) Combinations]] | [[notes/taekwondo/sparring|(y-) Sparring]] | [[notes/taekwondo/stretching|(y-) Stretching]] | [[notes/taekwondo/philosophy|(y-) Philosophy]] | [[notes/taekwondo/taeguk|(y-) Taegeuk]] | [[notes/taekwondo/rules|(y-) Rules (2026)]] | [[notes/taekwondo/2026-season|(y-) 2026 Season]]
+[[notes/taekwondo/stances|(y-) Stances]] | [[notes/taekwondo/combinations|(y-) Combinations]] | [[notes/taekwondo/sparring|(y-) Sparring]] | [[notes/taekwondo/spinning-kicks|(y-) Spinning Kicks]] | [[notes/taekwondo/spinning-back-kick|(y-) Back Kick]] | [[notes/taekwondo/spinning-hook-kick|(y-) Hook Kick]] | [[notes/taekwondo/spin-drills|(y-) Spin Drills]] | [[notes/taekwondo/stretching|(y-) Stretching]] | [[notes/taekwondo/splits-progression|(y-) Splits]] | [[notes/taekwondo/philosophy|(y-) Philosophy]] | [[notes/taekwondo/taeguk|(y-) Taegeuk]] | [[notes/taekwondo/rules|(y-) Rules (2026)]] | [[notes/taekwondo/2026-season|(y-) 2026 Season]]
 
 ---
 
