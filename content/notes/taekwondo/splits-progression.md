@@ -17,18 +17,20 @@ Flexibility is a strength quality, not just a passive one. You do not want a leg
 
 ## (y-) The Two Splits and What They Unlock
 
-| Split        | Opens                | Kicks It Unlocks                                        |
-| ------------ | -------------------- | ------------------------------------------------------- |
-| Front splits | Hamstrings, hip flexors | High front kick, axe kick, high roundhouse, back kick   |
-| Side splits  | Adductors, hip rotators | Side kick, high roundhouse, spinning hook kick to head  |
+| Split        | Opens                   | Kicks It Unlocks                                       |
+| ------------ | ----------------------- | ------------------------------------------------------ |
+| Front splits | Hamstrings, hip flexors | High front kick, axe kick, high roundhouse, back kick  |
+| Side splits  | Adductors, hip rotators | Side kick, high roundhouse, spinning hook kick to head |
 
 Most people are far closer to a front split than a side split. Do not be discouraged when the side split moves slowly; it is normal and it is the more demanding of the two.
+
+Each split now has its own page with the full drill list, the progression ladder, and the mistakes to avoid: [[notes/taekwondo/front-splits|(y-) Front Splits]] and [[notes/taekwondo/side-splits|(y-) Side Splits]].
 
 ---
 
 ## (y-) The Golden Rules
 
-- **Warm first, always.** Never deep-stretch cold. Five minutes of [[notes/taekwondo/stretching|(y-) dynamic mobility]] or light cardio first. Cold static stretching is how you get hurt and it gains you nothing.
+- **Warm first, always.** Never deep-stretch cold. Run [[notes/taekwondo/warmup-routine|(y-) the RAMP warm-up]] first, or at minimum five minutes of dynamic mobility. Cold static stretching is how you get hurt and it gains you nothing.
 - **Static and PNF at the end.** Save the deep split work for after training when the muscles are warm and the nervous system is fatigued and willing to give up range.
 - **Frequency beats intensity.** Ten quality minutes daily beats a punishing hour once a week. Range is a habit your nervous system learns.
 - **Never bounce into pain.** Ballistic bouncing triggers the stretch reflex, which tightens the muscle to protect it. You want slow, breathing, deliberate lengthening.
@@ -51,18 +53,18 @@ Proprioceptive Neuromuscular Facilitation is the fastest route to new range. It 
 
 This is a template, not a law. Progress at the pace your body actually gives you.
 
-| Weeks | Focus                                                                                        |
-| ----- | -------------------------------------------------------------------------------------------- |
-| 1-3   | Groove the daily habit. Dynamic warm-up plus gentle static holds. Learn the positions.       |
-| 4-6   | Add PNF contract-relax to hamstrings and adductors. This is where range starts moving.       |
+| Weeks | Focus                                                                                         |
+| ----- | --------------------------------------------------------------------------------------------- |
+| 1-3   | Groove the daily habit. Dynamic warm-up plus gentle static holds. Learn the positions.        |
+| 4-6   | Add PNF contract-relax to hamstrings and adductors. This is where range starts moving.        |
 | 7-9   | Loaded and active work: leg raises, elevated splits, holding the leg at height under control. |
-| 10-12 | Deepen the splits and start converting range into kick height on the bag and in the air.     |
+| 10-12 | Deepen the splits and start converting range into kick height on the bag and in the air.      |
 
 ---
 
 ## (y-) Active Flexibility (the part people skip)
 
-Getting into a passive split on the floor does not automatically mean your leg reaches head height in a kick. You have to train the muscles to *actively pull* the leg into that range.
+Getting into a passive split on the floor does not automatically mean your leg reaches head height in a kick. You have to train the muscles to _actively pull_ the leg into that range.
 
 - **Slow controlled leg raises.** Raise the leg to its max height under muscular control (no swing) and hold at the top for 5 seconds. Front, side, and back.
 - **Standing leg-height holds.** Hold your extended leg at its highest point against a wall or with a hand, then let go and try to keep it there for 3 to 5 seconds. This is the isometric strength that turns a floppy high kick into a sharp one.
@@ -76,6 +78,8 @@ Getting into a passive split on the floor does not automatically mean your leg r
 - **Hydrate and sleep.** Range is a nervous-system adaptation, and a tired, dehydrated nervous system protects range instead of giving it.
 - **Track it.** Note how far off the floor you are, or your kick height on a wall. Slow progress is invisible day to day but obvious month to month.
 
+When progress stops, work down the list in [[notes/taekwondo/flexibility-plateaus|(y-) Flexibility Plateaus & Troubleshooting]] before assuming your hips are the problem.
+
 Pair this with the [[notes/taekwondo/spin-drills|(y-) spin drills]] and the height you build here goes straight into the [[notes/taekwondo/spinning-hook-kick|(y-) spinning hook kick]].
 
 ---
@@ -88,7 +92,7 @@ Pair this with the [[notes/taekwondo/spin-drills|(y-) spin drills]] and the heig
 
 ---
 
-[[notes/taekwondo/stretching|(y-) Stretching & Mobility]] | [[notes/taekwondo/spin-drills|(y-) Spin Drills]] | [[notes/taekwondo/spinning-kicks|(y-) Spinning Kicks Guide]]
+[[notes/taekwondo/warmup-routine|(y-) Flexibility Warm-Up]] | [[notes/taekwondo/front-splits|(y-) Front Splits]] | [[notes/taekwondo/side-splits|(y-) Side Splits]] | [[notes/taekwondo/flexibility-plateaus|(y-) Plateaus]] | [[notes/taekwondo/stretching|(y-) Stretching & Mobility]] | [[notes/taekwondo/spin-drills|(y-) Spin Drills]]
 
 ---
 

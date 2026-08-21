@@ -65,11 +65,27 @@ Recent research (2025) on high-level martial artists found that **core stability
 
 ---
 
+## (y-) Going Deeper
+
+This page is the overview. The detail work lives in its own pages:
+
+- [[notes/taekwondo/warmup-routine|(y-) The Flexibility Warm-Up (RAMP Protocol)]]: the full fifteen-minute pre-session structure, plus a five-minute emergency version.
+- [[notes/taekwondo/splits-progression|(y-) Splits & Kick-Height Progression]]: the 12-week program.
+- [[notes/taekwondo/front-splits|(y-) Front Splits]]: hamstrings, hip flexors, and the six-stage ladder.
+- [[notes/taekwondo/side-splits|(y-) Side Splits]]: adductors, hip rotation, and the real anatomical ceiling.
+- [[notes/taekwondo/flexibility-plateaus|(y-) Flexibility Plateaus]]: what to check when nothing has moved in two months.
+
+---
+
 ## Sources
 
 - [National Strength and Conditioning Association (NSCA)](https://www.nsca.com/)
 - [American College of Sports Medicine (ACSM)](https://www.acsm.org/)
 - [Science of Taekwondo (Academic Studies)](https://www.google.com/search?q=taekwondo+sports+science+studies)
+
+---
+
+[[notes/taekwondo/warmup-routine|(y-) Flexibility Warm-Up]] | [[notes/taekwondo/front-splits|(y-) Front Splits]] | [[notes/taekwondo/side-splits|(y-) Side Splits]] | [[notes/taekwondo/flexibility-plateaus|(y-) Plateaus]]
 
 ---
 

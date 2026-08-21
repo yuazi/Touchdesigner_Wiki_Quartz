@@ -53,15 +53,15 @@ Power in a spin comes from throwing the hips and shoulders around a straight axi
 
 ## (y-) A Simple Weekly Structure
 
-| Day       | Focus                                             |
-| --------- | ------------------------------------------------- |
-| Mon       | Balance holds + slow-motion kick holds            |
-| Tue       | Spotting drills + shadow spin volume              |
-| Wed       | Rest or [[notes/taekwondo/stretching|(y-) mobility]] |
-| Thu       | Rotational power (med ball, woodchops)            |
-| Fri       | Plyometric pivots + speed chambers                |
-| Sat       | Full spinning-kick practice on target/bag         |
-| Sun       | Rest                                              |
+| Day | Focus                                                 |
+| --- | ----------------------------------------------------- |
+| Mon | Balance holds + slow-motion kick holds                |
+| Tue | Spotting drills + shadow spin volume                  |
+| Wed | Rest or [[notes/taekwondo/stretching\|(y-) mobility]] |
+| Thu | Rotational power (med ball, woodchops)                |
+| Fri | Plyometric pivots + speed chambers                    |
+| Sat | Full spinning-kick practice on target/bag             |
+| Sun | Rest                                                  |
 
 Ten focused minutes a day beats one long weekend session. The nervous system learns spins through frequent repetition, not through occasional grinding.
 

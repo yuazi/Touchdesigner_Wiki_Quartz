@@ -7,11 +7,27 @@ tags:
 date: 2026-03-05
 ---
 
-What I'm working on in the dojang (gym). Kicks, stances, sparring, and the rest of it.
+What I'm working on in the dojang (gym). Kicks, stances, sparring, flexibility, and the rest of it.
 
 ---
 
 I like kicking and spinning, looks really cool. Honestly I just saw someone do a spinning hook kick in a Jackie Chan movie and thought "I need to learn that." That was enough motivation for me. No deep philosophical reason. Just pure "that looks insane, I want to do it."
+
+This page is the map. Everything below is grouped by what I am actually trying to do: get the technique right, get the flexibility to throw it high, get it to land on a moving person, and know what the sport looks like at the top.
+
+---
+
+## (y-) Start Here
+
+New to the notes, or coming back after a while? This is the order that makes sense.
+
+| If you want to...      | Go to                                                                                      |
+| ---------------------- | ------------------------------------------------------------------------------------------ |
+| Learn the vocabulary   | [[notes/taekwondo/stances\|(y-) Stances]] and the kick table below                         |
+| Kick higher            | [[notes/taekwondo/warmup-routine\|(y-) Flexibility Warm-Up]]                               |
+| Learn to spin          | [[notes/taekwondo/spinning-kicks\|(y-) Spinning Kicks Guide]]                              |
+| Actually fight someone | [[notes/taekwondo/sparring\|(y-) Sparring]]                                                |
+| Grade or compete       | [[notes/taekwondo/taeguk\|(y-) Taegeuk Poomsae]] and [[notes/taekwondo/rules\|(y-) Rules]] |
 
 ---
 
@@ -34,6 +50,68 @@ These are the kicks I have been drilling. Some feel natural, some still feel lik
 | Push Kick               | Mireo Chagi         | A thrusting kick used to create distance, pushing the target away with the sole of the foot.                      |
 | Jump Front Kick         | Ieo Chagi           | A front kick executed while jumping, adding height and momentum to the strike.                                    |
 | Jump Spinning Back Kick | Twieo Dwi Chagi     | A jumping variation of the back kick with a full spin, striking the target with the heel in the air.              |
+
+---
+
+## (y-) Fundamentals
+
+The base everything else is built on.
+
+- [[notes/taekwondo/stances|(y-) Stances]]: the poomsae and sparring stances, what each one is for.
+- [[notes/taekwondo/combinations|(y-) Combination Kicks]]: chaining kicks together, which is where it starts to feel like the real thing.
+- [[notes/taekwondo/taeguk|(y-) Taegeuk Poomsae]]: the eight foundational WT forms and the philosophy behind each.
+- [[notes/taekwondo/philosophy|(y-) Philosophy]]: the "Do", the tenets, and why any of this is more than kicking.
+
+---
+
+## (y-) Flexibility & Kick Height
+
+The whole flexibility project, in the order you actually use it. Warm-up first, splits second, troubleshooting when it stalls.
+
+> [!abstract] [[notes/taekwondo/warmup-routine|(y-) The Flexibility Warm-Up (RAMP Protocol)]]
+> The fifteen minutes before every session: raise, activate, mobilise, potentiate. Includes the five-minute emergency version and what never to do before training.
+
+> [!abstract] [[notes/taekwondo/stretching|(y-) Stretching & Mobility]]
+> The science of when to stretch, the PNF contract-relax protocol, and why core stability moves kick height more than pure flexibility does.
+
+> [!abstract] [[notes/taekwondo/splits-progression|(y-) Splits & Kick-Height Progression]]
+> The 12-week structure, the golden rules, and the active flexibility work that turns a floor split into an actual high kick.
+
+- [[notes/taekwondo/front-splits|(y-) Front Splits]]: hamstrings and hip flexors, the six-stage ladder, and why the back leg is the half everyone forgets.
+- [[notes/taekwondo/side-splits|(y-) Side Splits]]: adductors, hip rotation, and the bone geometry that decides your real ceiling.
+- [[notes/taekwondo/flexibility-plateaus|(y-) Flexibility Plateaus & Troubleshooting]]: the diagnostic list for when nothing has moved in two months.
+
+---
+
+## (y-) Spinning Kicks
+
+The whole reason I started. Full breakdowns of the spins, plus the training that makes them land.
+
+> [!abstract] [[notes/taekwondo/spinning-kicks|(y-) Spinning Kicks - The Complete Guide]]
+> The five phases every spin shares, the whole spinning-kick family, and the universal principles (spot, axis, hip power, land loaded).
+
+- [[notes/taekwondo/spinning-back-kick|(y-) Spinning Back Kick (Dwi Chagi)]]: the highest-percentage spin, straight-line heel thrust, best counter to pressure.
+- [[notes/taekwondo/spinning-hook-kick|(y-) Spinning Hook Kick (Dwi Huryeo Chagi)]]: the showstopper head kick that hooks around the guard.
+- [[notes/taekwondo/spin-drills|(y-) Spin Training Drills]]: balance, spotting, and rotational-power work that builds the engine.
+
+---
+
+## (y-) Sparring
+
+- [[notes/taekwondo/sparring|(y-) Sparring (Gyeorugi)]]: distance, timing, footwork, and the business of not getting hit.
+- [[notes/taekwondo/rules|(y-) Modern Competition Rules (2026)]]: what actually scores under PSS electronic scoring.
+
+---
+
+## (y-) Following the Sport
+
+The competitive side changes fast. New electronic-scoring rules landed in 2026 and the LA 2028 ranking race is already on.
+
+> [!abstract] [[notes/taekwondo/rules|(y-) Modern Competition Rules (2026)]]
+> Best-of-three rounds, PSS electronic scoring, point values, and the new-for-2026 rule changes (wider 15-point gap, double-value stalling penalty, punch sensors).
+
+> [!abstract] [[notes/taekwondo/2026-season|(y-) 2026 Season & Rankings]]
+> Wuxi 2025 Worlds gold medalists, the Roma 2026 Grand Prix, and the road to LA 2028.
 
 ---
 
@@ -60,29 +138,27 @@ Poomsae (patterns / forms) practice has its own vocabulary. Knowing what the ins
 
 ---
 
-## (y-) Spinning Kicks
+## (y-) Every Page
 
-The whole reason I started. Full breakdowns of the spins, plus the training that makes them land.
-
-> [!abstract] [[notes/taekwondo/spinning-kicks|(y-) Spinning Kicks - The Complete Guide]]
-> The five phases every spin shares, the whole spinning-kick family, and the universal principles (spot, axis, hip power, land loaded).
-
-- [[notes/taekwondo/spinning-back-kick|(y-) Spinning Back Kick (Dwi Chagi)]]: the highest-percentage spin, straight-line heel thrust, best counter to pressure.
-- [[notes/taekwondo/spinning-hook-kick|(y-) Spinning Hook Kick (Dwi Huryeo Chagi)]]: the showstopper head kick that hooks around the guard.
-- [[notes/taekwondo/spin-drills|(y-) Spin Training Drills]]: balance, spotting, and rotational-power work that builds the engine.
-- [[notes/taekwondo/splits-progression|(y-) Splits & Kick-Height Progression]]: the flexibility project that gets your leg to head height.
-
----
-
-## (y-) Following the Sport
-
-The competitive side changes fast. New electronic-scoring rules landed in 2026 and the LA 2028 ranking race is already on.
-
-> [!abstract] [[notes/taekwondo/rules|(y-) Modern Competition Rules (2026)]]
-> Best-of-three rounds, PSS electronic scoring, point values, and the new-for-2026 rule changes (wider 15-point gap, double-value stalling penalty, punch sensors).
-
-> [!abstract] [[notes/taekwondo/2026-season|(y-) 2026 Season & Rankings]]
-> Wuxi 2025 Worlds gold medalists, the Roma 2026 Grand Prix, and the road to LA 2028.
+| Page                                                                | What It Covers                         |
+| ------------------------------------------------------------------- | -------------------------------------- |
+| [[notes/taekwondo/stances\|(y-) Stances]]                           | Poomsae and sparring stances           |
+| [[notes/taekwondo/combinations\|(y-) Combinations]]                 | Chaining kicks together                |
+| [[notes/taekwondo/taeguk\|(y-) Taegeuk Poomsae]]                    | The eight WT forms                     |
+| [[notes/taekwondo/philosophy\|(y-) Philosophy]]                     | The "Do" and the tenets                |
+| [[notes/taekwondo/warmup-routine\|(y-) Flexibility Warm-Up]]        | RAMP protocol before every session     |
+| [[notes/taekwondo/stretching\|(y-) Stretching & Mobility]]          | When and how to stretch, PNF           |
+| [[notes/taekwondo/splits-progression\|(y-) Splits Progression]]     | The 12-week flexibility program        |
+| [[notes/taekwondo/front-splits\|(y-) Front Splits]]                 | Hamstrings and hip flexors             |
+| [[notes/taekwondo/side-splits\|(y-) Side Splits]]                   | Adductors and hip rotation             |
+| [[notes/taekwondo/flexibility-plateaus\|(y-) Flexibility Plateaus]] | Troubleshooting a stalled split        |
+| [[notes/taekwondo/spinning-kicks\|(y-) Spinning Kicks Guide]]       | The universal mechanics of every spin  |
+| [[notes/taekwondo/spinning-back-kick\|(y-) Spinning Back Kick]]     | Dwi chagi, the highest-percentage spin |
+| [[notes/taekwondo/spinning-hook-kick\|(y-) Spinning Hook Kick]]     | Dwi huryeo chagi, the showstopper      |
+| [[notes/taekwondo/spin-drills\|(y-) Spin Drills]]                   | Balance, spotting, rotational power    |
+| [[notes/taekwondo/sparring\|(y-) Sparring]]                         | Distance, timing, not getting hit      |
+| [[notes/taekwondo/rules\|(y-) Rules (2026)]]                        | PSS scoring and the 2026 rule changes  |
+| [[notes/taekwondo/2026-season\|(y-) 2026 Season]]                   | Rankings and the road to LA 2028       |
 
 ---
 
@@ -91,10 +167,6 @@ The competitive side changes fast. New electronic-scoring rules landed in 2026 a
 - [Kukkiwon (World Taekwondo Headquarters)](http://www.kukkiwon.or.kr/)
 - [World Taekwondo (WT)](http://www.worldtaekwondo.org/)
 - [USA Taekwondo (USATKD)](https://www.usatkd.org/)
-
----
-
-[[notes/taekwondo/stances|(y-) Stances]] | [[notes/taekwondo/combinations|(y-) Combinations]] | [[notes/taekwondo/sparring|(y-) Sparring]] | [[notes/taekwondo/spinning-kicks|(y-) Spinning Kicks]] | [[notes/taekwondo/spinning-back-kick|(y-) Back Kick]] | [[notes/taekwondo/spinning-hook-kick|(y-) Hook Kick]] | [[notes/taekwondo/spin-drills|(y-) Spin Drills]] | [[notes/taekwondo/stretching|(y-) Stretching]] | [[notes/taekwondo/splits-progression|(y-) Splits]] | [[notes/taekwondo/philosophy|(y-) Philosophy]] | [[notes/taekwondo/taeguk|(y-) Taegeuk]] | [[notes/taekwondo/rules|(y-) Rules (2026)]] | [[notes/taekwondo/2026-season|(y-) 2026 Season]]
 
 ---
 
